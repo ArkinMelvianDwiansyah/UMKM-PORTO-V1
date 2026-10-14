@@ -12,4 +12,5 @@ desktop.ini
 # Temp / Scratch / Logs
 *.log
 *.tmp
+*.zip
 node_modules/
