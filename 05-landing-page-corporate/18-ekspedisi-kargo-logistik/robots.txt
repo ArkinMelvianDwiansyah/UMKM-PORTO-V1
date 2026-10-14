@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jalaninweb.site/05-landing-page-corporate/18-ekspedisi-kargo-logistik/sitemap.xml

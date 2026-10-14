@@ -1,0 +1,47 @@
+/* PT SAMUDERA LOGISTIK NUSANTARA Custom CSS */
+
+:root {
+  --navy-deep: #0C1E36;
+  --navy-dark: #081426;
+  --navy-card: #152A47;
+  --amber-safety: #E65100;
+  --amber-bright: #F57C00;
+  --slate-clean: #F4F6F9;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #081426;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3A5F;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E65100;
+}
+
+/* Maritime grid pattern overlay */
+.bg-maritime-pattern {
+  background-image: radial-gradient(rgba(245, 124, 0, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Industrial stripe accent for cards */
+.industrial-border-top {
+  border-top: 3px solid #E65100;
+}
+
+.industrial-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(230, 81, 0, 0.15),
+    rgba(230, 81, 0, 0.15) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}

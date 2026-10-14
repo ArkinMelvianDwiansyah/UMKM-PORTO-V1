@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 100" fill="none" width="100%" height="100%">
+  <!-- Geometric Cargo Container & Anchor Mark -->
+  <g transform="translate(10, 10)">
+    <!-- Outer Shield / Container Contour -->
+    <rect x="0" y="4" width="72" height="72" rx="10" fill="#0C1E36" />
+    <!-- Container Top Rib Lines -->
+    <rect x="6" y="10" width="60" height="4" rx="2" fill="#1E3A5F" />
+    
+    <!-- ISO Cargo Container Front Faces in Isometric/Modern 2D -->
+    <path d="M12 22 H60 V68 H12 Z" fill="#152A47" />
+    <path d="M12 22 H34 V68 H12 Z" fill="#0C1E36" />
+    
+    <!-- Container Vertical Corrugation Ribs -->
+    <line x1="19" y1="26" x2="19" y2="64" stroke="#E65100" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="27" y1="26" x2="27" y2="64" stroke="#E65100" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="45" y1="26" x2="45" y2="64" stroke="#F57C00" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="53" y1="26" x2="53" y2="64" stroke="#F57C00" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Central Maritime Anchor + Crane Stylization -->
+    <circle cx="36" cy="30" r="5" stroke="#FFFFFF" stroke-width="2.5" fill="none" />
+    <line x1="36" y1="35" x2="36" y2="62" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+    <line x1="24" y1="42" x2="48" y2="42" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Anchor Flukes -->
+    <path d="M22 52 C22 62, 50 62, 50 52" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <polygon points="19,50 24,54 24,46" fill="#FFFFFF" />
+    <polygon points="53,50 48,54 48,46" fill="#FFFFFF" />
+    
+    <!-- Corner Cargo Lock Twistlocks -->
+    <rect x="2" y="6" width="6" height="6" rx="1.5" fill="#E65100" />
+    <rect x="64" y="6" width="6" height="6" rx="1.5" fill="#E65100" />
+    <rect x="2" y="68" width="6" height="6" rx="1.5" fill="#E65100" />
+    <rect x="64" y="68" width="6" height="6" rx="1.5" fill="#E65100" />
+  </g>
+
+  <!-- Typography: PT SAMUDERA LOGISTIK NUSANTARA -->
+  <g transform="translate(98, 18)">
+    <!-- Subtitle / Category -->
+    <text x="0" y="16" fill="#E65100" font-family="'IBM Plex Mono', 'Space Grotesk', monospace" font-size="11" font-weight="700" letter-spacing="2.5">
+      PT SAMUDERA LOGISTIK NUSANTARA
+    </text>
+    
+    <!-- Main Acronym Brand -->
+    <text x="0" y="46" fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="28" font-weight="800" letter-spacing="1">
+      SLN <tspan fill="#F57C00">CARGO</tspan>
+    </text>
+    
+    <!-- Description / Scope -->
+    <text x="0" y="66" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" letter-spacing="0.8">
+      FREIGHT FORWARDING &amp; INTER-ISLAND LOGISTICS
+    </text>
+  </g>
+</svg>

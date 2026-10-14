@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Halaman Tidak Ditemukan | PT Samudera Logistik Nusantara</title>
+  <meta name="description" content="Halaman yang Anda tuju tidak tercatat dalam manifest rute PT Samudera Logistik Nusantara. Kembali ke beranda untuk cek tarif kargo atau pelacakan AWB.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maritime: {
+              950: '#060E1A',
+              900: '#0C1E36',
+              850: '#112542',
+              800: '#152A47',
+              700: '#1E3A5F',
+              600: '#2C5282',
+              500: '#3182CE'
+            },
+            cargo: {
+              400: '#FB8C00',
+              500: '#F57C00',
+              600: '#E65100',
+              700: '#BF360C'
+            },
+            slateclean: '#F4F6F9'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-maritime-950 text-slate-100 font-sans antialiased selection:bg-cargo-500 selection:text-white min-h-screen flex flex-col">
+
+  <!-- Top Demo Bar (Mandatory Rule #1) -->
+  <aside class="bg-cargo-600 text-white px-4 py-2 text-xs font-semibold tracking-wide flex flex-wrap items-center justify-between border-b border-cargo-700 z-50">
+    <div class="flex items-center gap-2">
+      <span class="bg-maritime-950 text-cargo-400 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider">Demo B2B</span>
+      <span>Contoh Tampilan / Demo Portofolio JalaninWeb — <strong>Ekspedisi &amp; Logistik Kargo</strong> (Data &amp; Entitas Fiktif)</span>
+    </div>
+    <a href="../../index.html" class="inline-flex items-center gap-1.5 underline hover:text-amber-200 font-bold ml-auto sm:ml-0">
+      <i class="fa-solid fa-arrow-left"></i> Kembali ke Katalog Portofolio
+    </a>
+  </aside>
+
+  <!-- Top Utility Strip -->
+  <div class="bg-maritime-900 border-b border-maritime-800 text-[11px] text-slate-300 py-2 hidden md:block">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-mono">
+      <div class="flex items-center gap-6">
+        <span><i class="fa-solid fa-location-dot text-cargo-400 mr-1.5"></i> Hub Utama: Jl. Perak Timur No. 88, Tanjung Perak, Surabaya</span>
+        <a href="tel:+6289680551957" class="hover:text-cargo-400"><i class="fa-solid fa-phone text-cargo-400 mr-1.5"></i> (031) 329-8821</a>
+        <a href="https://wa.me/6289680551957" target="_blank" rel="noopener" class="text-emerald-400 hover:text-emerald-300"><i class="fa-brands fa-whatsapp mr-1.5"></i> +62 896-8055-1957</a>
+      </div>
+      <div class="text-slate-400 font-mono">
+        Status Server: <span class="text-emerald-400">Normal 200 OK</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-40 bg-maritime-900/95 backdrop-blur-md border-b border-maritime-800 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cargo-500 rounded p-1">
+          <div class="w-12 h-12 flex items-center justify-center shrink-0 bg-maritime-950 rounded-lg border border-maritime-700 group-hover:border-cargo-500 transition-colors">
+            <img src="assets/favicon.svg" alt="SLN Cargo Icon" class="w-8 h-8">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono tracking-widest text-cargo-400 uppercase font-bold">PT Samudera Logistik Nusantara</span>
+            <span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1 font-display">
+              SLN <span class="text-cargo-500">CARGO</span>
+            </span>
+            <span class="text-[9px] text-slate-400 tracking-wider font-mono">FREIGHT FORWARDING &amp; TRUCKING</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-200">
+          <a href="index.html" class="hover:text-cargo-400 flex items-center gap-1.5 transition-colors">
+            <span>Beranda</span>
+          </a>
+          <a href="layanan.html" class="hover:text-cargo-400 flex items-center gap-1.5 transition-colors">
+            <span>Layanan Kargo</span>
+          </a>
+          <a href="armada.html" class="hover:text-cargo-400 flex items-center gap-1.5 transition-colors">
+            <span>Armada &amp; Kapasitas</span>
+          </a>
+          <a href="index.html#rute-pelayaran" class="hover:text-cargo-400 flex items-center gap-1.5 transition-colors">
+            <span>Rute &amp; Jadwal</span>
+          </a>
+          <a href="kontak.html" class="hover:text-cargo-400 flex items-center gap-1.5 transition-colors">
+            <span>Hubungi Kami</span>
+          </a>
+        </nav>
+
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="index.html" class="px-4 py-2 text-xs font-bold bg-cargo-600 hover:bg-cargo-500 text-white rounded-md shadow-lg transition-all inline-flex items-center gap-2">
+            <i class="fa-solid fa-house"></i> Kembali ke Beranda
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center py-20 bg-maritime-950 px-4">
+    <div class="max-w-xl w-full text-center space-y-6">
+      
+      <div class="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-maritime-900 border-2 border-cargo-500/50 shadow-2xl relative">
+        <i class="fa-solid fa-triangle-exclamation text-4xl text-cargo-400"></i>
+        <span class="absolute -bottom-2 bg-cargo-600 text-white text-[10px] font-mono px-2 py-0.5 rounded font-bold">
+          ERROR 404
+        </span>
+      </div>
+
+      <div class="space-y-2">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-display">
+          Posisi Rute Tidak Ditemukan
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-mono">
+          Halaman atau berkas yang Anda tuju di luar jangkauan manifest logistik kami. Halaman mungkin telah dipindahkan atau tautan yang dimasukkan keliru.
+        </p>
+      </div>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+        <a href="index.html" class="px-6 py-3 bg-cargo-600 hover:bg-cargo-500 text-white font-bold text-xs rounded transition-colors inline-flex items-center gap-2 shadow-lg">
+          <i class="fa-solid fa-house"></i> Ke Beranda Utama
+        </a>
+        <a href="index.html#cek-tarif" class="px-6 py-3 bg-maritime-800 hover:bg-maritime-700 text-slate-200 border border-maritime-700 font-bold text-xs rounded transition-colors inline-flex items-center gap-2">
+          <i class="fa-solid fa-calculator text-cargo-400"></i> Cek Tarif Kargo
+        </a>
+        <a href="kontak.html" class="px-6 py-3 bg-maritime-900 hover:bg-maritime-800 text-slate-300 border border-maritime-800 font-bold text-xs rounded transition-colors inline-flex items-center gap-2">
+          <i class="fa-solid fa-headset text-cargo-400"></i> Kontak Customer Service
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Comprehensive Logistics Footer (Single Source of Truth) -->
+  <footer class="bg-maritime-950 border-t border-maritime-800 text-slate-300 pt-16 pb-8 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-maritime-800">
+        
+        <!-- Col 1: Identity & Single Source of Truth -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="assets/favicon.svg" alt="SLN Cargo" class="w-10 h-10">
+            <div>
+              <span class="block text-base font-extrabold text-white font-display">PT SAMUDERA LOGISTIK NUSANTARA</span>
+              <span class="block text-[10px] text-cargo-400 font-mono">FREIGHT FORWARDING &amp; INTER-ISLAND LOGISTICS</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Perusahaan jasa ekspedisi kargo laut dan darat nasional berizin resmi. Mengoperasikan rute pelayaran reguler Tanjung Perak Surabaya &amp; Tanjung Priok Jakarta ke seluruh pelabuhan komersial di Indonesia.
+          </p>
+          <div class="space-y-2 font-mono text-slate-300 pt-1">
+            <p><i class="fa-solid fa-map-location-dot text-cargo-400 mr-2"></i> <strong>Kantor Pusat:</strong> Jl. Perak Timur No. 88, Tanjung Perak, Surabaya, Jawa Timur 60165</p>
+            <p><i class="fa-solid fa-phone text-cargo-400 mr-2"></i> <strong>Telepon:</strong> (031) 329-8821</p>
+            <p><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> <strong>WhatsApp Operasional:</strong> <a href="https://wa.me/6289680551957" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">+62 896-8055-1957</a></p>
+            <p><i class="fa-solid fa-envelope text-cargo-400 mr-2"></i> <strong>Email:</strong> operasional@samuderalogistik.co.id</p>
+          </div>
+        </div>
+
+        <!-- Col 2: Layanan Kargo -->
+        <div>
+          <h4 class="text-white font-bold font-display text-sm tracking-wider uppercase mb-4 border-l-2 border-cargo-500 pl-2">
+            Layanan Kargo
+          </h4>
+          <ul class="space-y-2.5 font-medium">
+            <li><a href="layanan.html#kargo-laut" class="hover:text-cargo-400 transition-colors">Kargo Laut FCL &amp; LCL</a></li>
+            <li><a href="layanan.html#truk-charter" class="hover:text-cargo-400 transition-colors">Sewa Truk Tronton Wingbox</a></li>
+            <li><a href="layanan.html#truk-charter" class="hover:text-cargo-400 transition-colors">Carter Truk Fuso &amp; CDD</a></li>
+            <li><a href="layanan.html#pergudangan" class="hover:text-cargo-400 transition-colors">Pergudangan &amp; Cross Docking</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Armada & Fasilitas -->
+        <div>
+          <h4 class="text-white font-bold font-display text-sm tracking-wider uppercase mb-4 border-l-2 border-cargo-500 pl-2">
+            Armada &amp; Depo
+          </h4>
+          <ul class="space-y-2.5 font-medium">
+            <li><a href="armada.html#wingbox" class="hover:text-cargo-400 transition-colors">Tronton Wingbox 45 m³</a></li>
+            <li><a href="armada.html#fuso" class="hover:text-cargo-400 transition-colors">Fuso Heavy Duty 30 m³</a></li>
+            <li><a href="armada.html#cdd" class="hover:text-cargo-400 transition-colors">Colt Diesel Double (CDD)</a></li>
+            <li><a href="armada.html#trailer" class="hover:text-cargo-400 transition-colors">Trailer Kontainer 20ft / 40ft</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Syarat, Regulasi & Tender -->
+        <div>
+          <h4 class="text-white font-bold font-display text-sm tracking-wider uppercase mb-4 border-l-2 border-cargo-500 pl-2">
+            Regulasi &amp; Kontrak
+          </h4>
+          <ul class="space-y-2.5 font-medium">
+            <li><a href="syarat-ketentuan.html#asuransi" class="hover:text-cargo-400 transition-colors">Ketentuan Asuransi Marine Cargo</a></li>
+            <li><a href="syarat-ketentuan.html#detention" class="hover:text-cargo-400 transition-colors">Syarat Free Time &amp; Detention</a></li>
+            <li><a href="syarat-ketentuan.html#dangerous-goods" class="hover:text-cargo-400 transition-colors">Barang Berbahaya (DG Class)</a></li>
+            <li><a href="kebijakan-privasi.html" class="hover:text-cargo-400 transition-colors">Kerahasiaan Manifest B2B</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-slate-400">
+        <div>
+          &copy; 2026 PT Samudera Logistik Nusantara. Seluruh Hak Cipta Dilindungi Undang-Undang.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="syarat-ketentuan.html" class="hover:text-cargo-400">Syarat &amp; Ketentuan</a>
+          <span>&bull;</span>
+          <a href="kebijakan-privasi.html" class="hover:text-cargo-400">Kebijakan Privasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
