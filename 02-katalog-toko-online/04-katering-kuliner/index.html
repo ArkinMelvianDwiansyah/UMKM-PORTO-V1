@@ -1,0 +1,2229 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapur Berkah Nusantara — Katering Nasi Box, Paket Aqiqah, Tumpeng & Frozen Food Halal</title>
+    <meta name="description" content="Pesan Katering Nasi Box, Paket Aqiqah Siap Saji, Tumpeng Kuning & Frozen Food Halal Higienis. Masak fresh setiap hari, pesan mudah via WhatsApp.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans, Fraunces & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Fraunces"', 'serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        terracotta: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#d94e1f',
+                            600: '#B83B14',
+                            700: '#9a3412',
+                            800: '#7c2d12',
+                            900: '#5c210e',
+                        },
+                        cream: {
+                            50: '#FAF6F0',
+                            100: '#F3ECE1',
+                            200: '#E6DBC8',
+                        },
+                        halal: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#16a34a',
+                            600: '#15803D',
+                            700: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF6F0;
+            color: #1C1917;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF6F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6C7B2;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B83B14;
+        }
+        .editorial-grid {
+            background-image: linear-gradient(to right, rgba(28, 25, 23, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(28, 25, 23, 0.04) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+        .card-hover {
+            transition: all 0.25s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+        }
+        @keyframes pulseSubtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-cart-bump {
+            animation: pulseSubtle 0.35s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-terracotta-600 selection:text-white">
+
+    <!-- TOP FLOATING PORTFOLIO DEMO BAR -->
+    <div class="bg-[#1C1917] text-stone-200 text-xs py-2.5 px-4 border-b border-stone-800 relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="inline-flex items-center gap-2 font-mono text-amber-400 hover:text-amber-300 font-semibold transition-colors">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>KEMBALI KE KATALOG PORTOFOLIO UMKM</span>
+                </a>
+                <span class="hidden md:inline-flex items-center gap-1.5 text-stone-400 font-mono text-[11px]">
+                    | PROYEK #04 // KATALOG KATERING, AQIQAH & FROZEN FOOD
+                </span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+                <button onclick="fillSampleOrder50Box()" class="bg-halal-600 hover:bg-halal-700 text-white px-3 py-1 font-mono text-[11px] font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-sliders text-amber-300"></i>
+                    <span>SIMULASI 50 BOX (DISKON 10%)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMO BANNER -->
+    <div class="bg-[#B83B14] text-white text-xs py-2 px-4 text-center font-medium border-b border-stone-900/15">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <span class="inline-flex items-center gap-2">
+                <span class="bg-[#1C1917] text-amber-300 font-mono font-bold px-2 py-0.5 text-[10px] uppercase tracking-wider">PRIVILEGE ACARA</span>
+                <span>Pemesanan Minimal <strong>50 Box / Porsi</strong> Otomatis Mendapat <strong>Potongan 10%</strong> di Keranjang</span>
+            </span>
+            <span class="hidden sm:inline opacity-60">•</span>
+            <span class="inline-flex items-center gap-1.5 font-mono text-[11px] text-amber-100">
+                <i class="fa-solid fa-certificate"></i> SERTIFIKAT HALAL MUI ID3111000129482
+            </span>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-stone-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 shrink-0">
+                <img src="assets/logo.svg" alt="Dapur Berkah Nusantara" class="h-11 w-auto shrink-0">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-stone-700 whitespace-nowrap">
+                <a href="#katalog-menu" class="whitespace-nowrap hover:text-terracotta-600 transition">Katalog Menu</a>
+                <a href="#kalkulator-acara" class="whitespace-nowrap hover:text-terracotta-600 transition">Simulasi Porsi</a>
+                <a href="#keunggulan" class="whitespace-nowrap hover:text-terracotta-600 transition">Standar Dapur</a>
+                <a href="#testimoni" class="whitespace-nowrap hover:text-terracotta-600 transition">Ulasan & Foto</a>
+                <a href="#faq" class="whitespace-nowrap hover:text-terracotta-600 transition">FAQ</a>
+            </nav>
+
+            <!-- Right Actions: WA Consult & Cart Button -->
+            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah." target="_blank" rel="noopener noreferrer" class="whitespace-nowrap hidden md:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-semibold text-xs transition">
+                    <i class="fa-brands fa-whatsapp text-sm text-halal-600"></i>
+                    <span>Konsultasi Menu</span>
+                </a>
+
+                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-3 bg-[#1C1917] hover:bg-terracotta-600 text-white font-bold px-4 py-2.5 transition">
+                    <div class="relative flex items-center gap-1.5">
+                        <i class="fa-solid fa-basket-shopping text-base text-amber-400"></i>
+                        <span id="cartCountBadge" class="bg-terracotta-600 text-white font-mono text-[11px] font-bold min-w-[22px] h-5 px-1.5 inline-flex items-center justify-center">0</span>
+                    </div>
+                    <div class="text-left hidden sm:block leading-tight border-l border-stone-700 pl-3">
+                        <span class="block text-[10px] uppercase tracking-wider text-stone-400 font-mono">KERANJANG</span>
+                        <span id="headerCartTotal" class="block font-mono text-xs font-bold text-amber-300">Rp 0</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden editorial-grid pt-10 pb-16 lg:py-16 border-b border-stone-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2.5 bg-white border border-stone-300 px-3.5 py-1.5 text-xs font-mono">
+                        <span class="h-2 w-2 bg-halal-600"></span>
+                        <span class="font-bold text-halal-700 uppercase">DAPUR PRODUKSI BUKA SETIAP HARI • 05.00 - 21.00 WIB</span>
+                        <span class="text-stone-300">|</span>
+                        <span class="font-semibold text-stone-700">4.95/5 (2.400+ ACARA)</span>
+                    </div>
+
+                    <h1 class="font-display font-bold text-3xl sm:text-5xl lg:text-[52px] text-[#1C1917] leading-[1.1] tracking-tight">
+                        Sajian Warisan <span class="text-terracotta-600 italic">Nusantara</span>, Higienis & Berkah untuk Setiap Hajat.
+                    </h1>
+
+                    <p class="text-stone-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Dari <strong>Nasi Box Korporat</strong>, <strong>Paket Aqiqah Syar'i Siap Saji</strong>, <strong>Tumpeng Tampah Bambu</strong>, hingga <strong>Frozen Food Rumahan</strong> tanpa pengawet. Kustomisasi varian nasi & sambal langsung per menu, lengkap dengan nota WhatsApp instan.
+                    </p>
+
+                    <!-- Highlight Trust Pills -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-0 border border-stone-300 bg-white">
+                        <div class="p-3.5 border-b sm:border-b-0 border-r border-stone-200">
+                            <div class="font-mono text-xs font-bold text-halal-700 uppercase">100% HALAL MUI</div>
+                            <div class="text-[11px] text-stone-500 mt-0.5">Juru masak tersertifikasi</div>
+                        </div>
+                        <div class="p-3.5 border-b sm:border-b-0 sm:border-r border-stone-200">
+                            <div class="font-mono text-xs font-bold text-terracotta-600 uppercase">MASAK FRESH</div>
+                            <div class="text-[11px] text-stone-500 mt-0.5">Rempah segar harian</div>
+                        </div>
+                        <div class="p-3.5 border-r border-stone-200">
+                            <div class="font-mono text-xs font-bold text-[#1C1917] uppercase">DISKON 10%</div>
+                            <div class="text-[11px] text-stone-500 mt-0.5">Otomatis min. 50 box</div>
+                        </div>
+                        <div class="p-3.5">
+                            <div class="font-mono text-xs font-bold text-halal-700 uppercase">ARMADA BOX</div>
+                            <div class="text-[11px] text-stone-500 mt-0.5">Garansi tiba tepat waktu</div>
+                        </div>
+                    </div>
+
+                    <!-- Hero CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                        <a href="#katalog-menu" class="inline-flex items-center gap-2.5 bg-terracotta-600 hover:bg-[#1C1917] text-white font-bold px-6 py-3.5 text-sm uppercase tracking-wider transition">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Eksplorasi Menu & Pesan</span>
+                        </a>
+                        <button onclick="filterByCategory('aqiqah'); document.getElementById('katalog-menu').scrollIntoView({behavior:'smooth'});" class="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-[#1C1917] border border-stone-400 font-bold px-5 py-3.5 text-sm uppercase tracking-wider transition">
+                            <i class="fa-solid fa-mosque text-halal-600"></i>
+                            <span>Paket Aqiqah Syar'i</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Featured Visual Showcase Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white p-3.5 border-2 border-[#1C1917] shadow-[8px_8px_0px_#1C1917]">
+                        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-stone-200 font-mono text-[11px]">
+                            <span class="font-bold text-halal-700"><i class="fa-solid fa-check-circle mr-1"></i>LAIK HYGIENE DINKES</span>
+                            <span class="text-stone-500">DAPUR PUSAT CONDET</span>
+                        </div>
+                        <div class="relative overflow-hidden aspect-[4/3] bg-stone-900">
+                            <img src="assets/images/hero-catering.jpg" 
+                                 alt="Hidangan Nusantara Dapur Berkah" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/20 to-transparent"></div>
+
+                            <!-- Bottom Caption inside Image -->
+                            <div class="absolute bottom-3 left-3 right-3 text-white flex items-end justify-between gap-2">
+                                <div>
+                                    <span class="bg-terracotta-600 text-white font-mono text-[10px] font-bold px-2 py-0.5 uppercase">SIGNATURE MENU</span>
+                                    <h3 class="font-display font-bold text-lg sm:text-xl mt-1">Nasi Box Ayam Bakar Madu & Kebuli</h3>
+                                    <p class="text-xs text-stone-200">Bebas pilih Nasi Putih / Uduk / Kuning + 4 Sambal</p>
+                                </div>
+                                <button onclick="openProductModal(1)" class="bg-white hover:bg-amber-300 text-[#1C1917] font-mono text-xs font-bold px-3.5 py-2 shrink-0 transition">
+                                    RP 28.000
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Customizer Preview Bar -->
+                        <div class="mt-3 pt-2.5 border-t border-stone-200 flex items-center justify-between gap-2 text-xs text-stone-600">
+                            <div class="flex items-center gap-1.5 truncate">
+                                <span class="w-2 h-2 bg-terracotta-600 shrink-0"></span>
+                                <span class="font-semibold text-stone-800 shrink-0">Bebas Pilih:</span>
+                                <span class="truncate">3 Varian Nasi & 4 Jenis Sambal</span>
+                            </div>
+                            <span class="font-mono font-bold text-halal-700 text-[10px] bg-halal-50 border border-halal-500/30 px-2 py-0.5 whitespace-nowrap shrink-0">FREE KARTU DOA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CATALOG SECTION -->
+    <main id="katalog-menu" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <!-- Section Title & Discount Alert -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 font-mono text-terracotta-600 font-bold text-xs uppercase tracking-widest mb-1">
+                    [01] DAFTAR MENU & HARGA TRANSPARAN
+                </div>
+                <h2 class="font-display font-bold text-2xl sm:text-4xl text-[#1C1917]">Katalog Menu Dapur Berkah</h2>
+                <p class="text-stone-600 text-sm mt-1">Pilih varian sambal & nasi langsung pada kartu menu atau klik <strong>Detail / Opsi</strong> untuk catatan khusus.</p>
+            </div>
+
+            <!-- Interactive Discount Status Pill -->
+            <div class="bg-white border border-stone-300 p-3.5 flex items-center gap-3.5">
+                <div class="w-11 h-11 bg-[#1C1917] text-amber-300 font-mono flex items-center justify-center font-bold text-sm shrink-0">
+                    -10%
+                </div>
+                <div class="text-xs">
+                    <div class="font-bold text-[#1C1917] uppercase font-mono">Diskon Acara 10% Otomatis</div>
+                    <div class="text-stone-600">Berlaku otomatis untuk pemesanan total <strong>&ge; 50 Box/Porsi</strong> atau Paket Aqiqah.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILTER TABS, SEARCH & SORT CONTROLS -->
+        <div class="bg-white p-4 sm:p-5 border border-stone-300 mb-8 space-y-4">
+            <!-- Category Filter Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1.5 no-scrollbar" id="categoryTabs">
+                <button onclick="filterByCategory('all')" data-cat="all" class="cat-tab active-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-terracotta-600 text-white">
+                    <i class="fa-solid fa-border-all"></i> Semua Menu
+                </button>
+                <button onclick="filterByCategory('nasibox')" data-cat="nasibox" class="cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-box-open text-terracotta-600"></i> Nasi Box (Kotak)
+                </button>
+                <button onclick="filterByCategory('aqiqah')" data-cat="aqiqah" class="cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-mosque text-halal-600"></i> Paket Aqiqah
+                </button>
+                <button onclick="filterByCategory('tumpeng')" data-cat="tumpeng" class="cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-mountain-sun text-amber-600"></i> Tumpeng & Prasmanan
+                </button>
+                <button onclick="filterByCategory('frozen')" data-cat="frozen" class="cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-snowflake text-sky-600"></i> Frozen Food & Dimsum
+                </button>
+                <button onclick="filterByCategory('kue')" data-cat="kue" class="cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-cookie-bite text-amber-700"></i> Kue & Hampers
+                </button>
+            </div>
+
+            <!-- Search Bar & Sort Dropdown -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 pt-2 border-t border-stone-200">
+                <div class="md:col-span-7 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                    <input type="text" id="searchInput" oninput="renderProducts()" placeholder="Cari menu... (contoh: Ayam Bakar, Kebuli, Aqiqah, Tumpeng, Dimsum, Risol)" 
+                           class="w-full pl-11 pr-10 py-2.5 bg-cream-50 border border-stone-300 text-sm focus:outline-none focus:border-terracotta-600 focus:bg-white transition">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="md:col-span-5 flex items-center gap-3">
+                    <div class="flex items-center gap-2 text-xs font-mono font-semibold text-stone-600 shrink-0 uppercase">
+                        <i class="fa-solid fa-arrow-up-wide-short text-terracotta-600"></i> Urutkan:
+                    </div>
+                    <select id="sortSelect" onchange="renderProducts()" class="w-full py-2.5 px-3.5 bg-cream-50 border border-stone-300 text-sm font-semibold text-stone-800 focus:outline-none focus:border-terracotta-600">
+                        <option value="bestseller">Paling Laris (Best Seller)</option>
+                        <option value="price-asc">Harga: Termurah ke Termahal</option>
+                        <option value="price-desc">Harga: Termahal ke Termurah</option>
+                        <option value="name-asc">Nama Menu (A - Z)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Count & Active Filter Info -->
+        <div class="flex items-center justify-between text-xs sm:text-sm text-stone-600 mb-5 px-1">
+            <div>Menampilkan <strong id="productCountText" class="font-mono text-[#1C1917]">12</strong> menu pilihan terbaik</div>
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 text-halal-700 font-semibold">
+                    <i class="fa-solid fa-circle-check"></i> Harga termasuk kemasan sekat food-grade & alat makan
+                </span>
+            </div>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically populated by JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden bg-white p-12 text-center border border-stone-300 my-6">
+            <div class="w-14 h-14 bg-cream-100 text-terracotta-600 flex items-center justify-center mx-auto mb-4 text-xl">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="font-display font-bold text-xl text-stone-900">Menu Tidak Ditemukan</h3>
+            <p class="text-stone-500 text-sm max-w-md mx-auto mt-1 mb-5">Maaf, menu yang Anda cari belum tersedia di kata kunci tersebut. Silakan atur ulang pencarian.</p>
+            <button onclick="resetFilters()" class="bg-terracotta-600 hover:bg-[#1C1917] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 transition">
+                Tampilkan Semua Menu
+            </button>
+        </div>
+    </main>
+
+    <!-- INTERACTIVE PORTION & BUDGET SIMULATOR -->
+    <section id="kalkulator-acara" class="py-16 bg-[#1C1917] text-white border-y border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-4">
+                    <span class="inline-flex items-center gap-2 font-mono text-amber-400 text-xs font-bold uppercase tracking-widest">
+                        [02] KALKULATOR ANGGARAN KATERING
+                    </span>
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl">Simulasi Porsi & Anggaran Acara</h2>
+                    <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+                        Hitung cepat estimasi biaya Nasi Box beserta <strong>Potongan Acara 10% otomatis</strong> untuk pemesanan minimal 50 porsi. Hasil simulasi dapat langsung dimasukkan ke keranjang pesanan.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="bg-stone-900 border border-stone-700 p-4">
+                            <div class="font-mono text-amber-400 font-bold text-sm uppercase">GRATIS TEST FOOD</div>
+                            <p class="text-xs text-stone-400 mt-1">Untuk rencana pemesanan korporat / tasyakuran di atas 100 porsi.</p>
+                        </div>
+                        <div class="bg-stone-900 border border-stone-700 p-4">
+                            <div class="font-mono text-halal-500 font-bold text-sm uppercase">TERMIN DP 50%</div>
+                            <p class="text-xs text-stone-400 mt-1">Pelunasan 50% dibayarkan saat pesanan tiba di lokasi acara.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="bg-[#FAF6F0] text-[#1C1917] p-6 sm:p-8 border-2 border-stone-400">
+                        <h3 class="font-display font-bold text-xl text-[#1C1917] mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-terracotta-600 text-base"></i> Kalkulator Paket Nasi Box
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block font-mono text-xs font-bold text-stone-600 uppercase mb-1.5">Pilih Menu Utama Simulasi</label>
+                                <select id="simMenuSelect" onchange="updateSimulator()" class="w-full p-3 bg-white border border-stone-300 text-sm font-semibold">
+                                    <option value="1">Nasi Box Ayam Bakar Madu Spesial — Rp 28.000 / box</option>
+                                    <option value="2">Nasi Kebuli Kambing Muda Arab — Rp 42.000 / box</option>
+                                    <option value="3">Nasi Box Rendang Daging Sapi Padang — Rp 36.000 / box</option>
+                                    <option value="4">Nasi Kotak Ikan Gurame Asam Manis — Rp 34.000 / box</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1.5">
+                                    <span class="font-mono text-stone-600 uppercase">Jumlah Tamu (<span id="simQtyLabel" class="text-terracotta-600 font-bold">50</span> Box)</span>
+                                    <span id="simDiscountBadge" class="font-mono bg-halal-100 text-halal-700 px-2.5 py-0.5 text-[11px] font-bold">DISKON ACARA 10% AKTIF</span>
+                                </div>
+                                <input type="range" id="simQtyRange" min="10" max="250" step="5" value="50" oninput="updateSimulator()" class="w-full accent-terracotta-600 cursor-pointer">
+                                <div class="flex justify-between font-mono text-[11px] text-stone-500">
+                                    <span>10 Box</span>
+                                    <span>50 Box (-10%)</span>
+                                    <span>150 Box</span>
+                                    <span>250 Box</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white border border-stone-300 p-4 space-y-2 font-mono">
+                                <div class="flex justify-between text-xs text-stone-600">
+                                    <span>Harga Normal:</span>
+                                    <span id="simNormalTotal" class="font-semibold line-through">Rp 1.400.000</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-halal-700 font-bold">
+                                    <span>Potongan Diskon Acara (10%):</span>
+                                    <span id="simSavingTotal">- Rp 140.000</span>
+                                </div>
+                                <div class="pt-2 border-t border-stone-200 flex justify-between items-baseline">
+                                    <span class="text-xs font-bold text-stone-900 uppercase">Estimasi Total Bayar:</span>
+                                    <span id="simFinalTotal" class="text-xl font-bold text-terracotta-600">Rp 1.260.000</span>
+                                </div>
+                            </div>
+
+                            <button onclick="applySimulationToCart()" class="w-full bg-terracotta-600 hover:bg-[#1C1917] text-white font-bold py-3.5 text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Masukkan Hasil Simulasi ke Keranjang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STANDAR DAPUR & TESTIMONIALS -->
+    <section id="keunggulan" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="font-mono text-xs font-bold uppercase tracking-widest text-terracotta-600">[03] JAMINAN MUTU & KEHALALAN</span>
+            <h2 class="font-display font-bold text-2xl sm:text-3xl text-[#1C1917] mt-1">Standar Dapur Higienis & Syar'i</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+            <div class="bg-white p-6 border border-stone-300">
+                <div class="w-11 h-11 bg-halal-50 border border-halal-500/30 text-halal-600 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900 mb-2">Aqiqah Sesuai Syariat Islam</h3>
+                <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">Pemilihan kambing cukup umur, sehat, tidak cacat, dan disembelih sesuai syariat disertai dokumentasi foto/video serta sertifikat berbingkai.</p>
+            </div>
+            <div class="bg-white p-6 border border-stone-300">
+                <div class="w-11 h-11 bg-orange-50 border border-orange-300 text-terracotta-600 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-box-tissue"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900 mb-2">Kemasan Sekat Food-Grade Rapi</h3>
+                <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">Lauk, sayur, dan sambal dikemas dalam sekat terpisah sehingga terjaga kesegarannya, lengkap dengan sendok, tisu, dan tusuk gigi higienis.</p>
+            </div>
+            <div class="bg-white p-6 border border-stone-300">
+                <div class="w-11 h-11 bg-amber-50 border border-amber-300 text-amber-700 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900 mb-2">Garansi Tepat Waktu ke Lokasi</h3>
+                <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">Dikirim menggunakan armada mobil box tertutup untuk pesanan besar agar kotak nasi tetap utuh, hangat, dan tiba sebelum acara dimulai.</p>
+            </div>
+        </div>
+
+        <!-- Testimonials with Real Customer Order Photos -->
+        <div id="testimoni" class="bg-white p-6 sm:p-8 border border-stone-300">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-stone-200">
+                <div>
+                    <span class="font-mono text-xs text-terracotta-600 font-bold uppercase tracking-wider">[04] BUKTI NYATA & DOKUMENTASI PESANAN</span>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl text-stone-900 mt-1">Ulasan & Foto Pesanan Pelanggan Dapur Berkah</h3>
+                    <p class="text-xs sm:text-sm text-stone-600">Dokumentasi asli pesanan Nasi Box, Aqiqah, Tumpeng & Frozen Food yang diterima pelanggan.</p>
+                </div>
+                <div class="flex items-center gap-1.5 text-amber-500 font-mono text-xs font-bold bg-cream-50 px-4 py-2 border border-stone-300 shrink-0">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span class="text-stone-900 ml-1">4.95 / 5.0 (2.400+ Order)</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Photo Review 1 -->
+                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/menu-05-aqiqah-50.jpg" alt="Foto Pesanan Paket Aqiqah 50 Box" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • 50 Box Aqiqah</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Pesan Paket Aqiqah 50 Box untuk anak kedua kami. Kambingnya empuk sekali dan bebas bau prengus. Tamu pengajian memuji sambal bawang dan nasi kebulinya."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-1.jpg" alt="Bunda Siti Nurhaliza" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Bunda Siti Nurhaliza</div>
+                                <div class="text-stone-500 text-[10px]">Tebet, Jakarta Selatan</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-halal-50 text-halal-700 border border-halal-500/30 font-bold px-2 py-0.5">AQIQAH</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 2 -->
+                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/menu-01-ayam-bakar.jpg" alt="Foto Pesanan Nasi Box Kantor" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • 80 Nasi Box</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Rutin pesan 80 Nasi Box Ayam Bakar Madu untuk rapat bulanan kantor. Di katalog ini bisa pilih varian nasi uduk & sambal matah, plus otomatis diskon 10%."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-2.jpg" alt="Hendra Wijaya" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Hendra Wijaya (HRD)</div>
+                                <div class="text-stone-500 text-[10px]">SCBD, Jakarta</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-orange-50 text-terracotta-700 border border-orange-200 font-bold px-2 py-0.5">KORPORAT</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 3 -->
+                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/menu-02-nasi-kebuli.jpg" alt="Foto Tumpeng & Kebuli Syukuran Kantor" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • Syukuran Kantor</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Tumpeng Kuning Tampah Bambu untuk peresmian cabang klinik kami datang tepat pukul 08.00 pagi masih hangat. Hiasan ukiran sayurnya sangat rapi dan cantik."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-1.jpg" alt="drg. Clarissa" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">drg. Clarissa Putri</div>
+                                <div class="text-stone-500 text-[10px]">Kemang, Jakarta</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-amber-50 text-amber-800 border border-amber-300 font-bold px-2 py-0.5">TUMPENG</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 4 -->
+                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/menu-09-dimsum-mentai.jpg" alt="Foto Paket Frozen Food & Dimsum" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Dimsum & Risol</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Stok Dimsum Mentai dan Risol Mayo Frozen di kulkas untuk bekal anak sekolah. Praktis tinggal kukus atau goreng, kualitas daging ayamnya sangat terasa."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-3.jpg" alt="Ratna Pratiwi" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Ibu Ratna Pratiwi</div>
+                                <div class="text-stone-500 text-[10px]">Bintaro, Tangerang Selatan</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-stone-200 text-stone-800 font-bold px-2 py-0.5">FROZEN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pertanyaan yang Sering Ditanyakan (FAQ) -->
+        <div id="faq" class="bg-white p-6 sm:p-8 border border-stone-300 mt-10">
+            <div class="mb-6 pb-4 border-b border-stone-200">
+                <span class="font-mono text-xs text-terracotta-600 font-bold uppercase tracking-wider">[05] INFORMASI PEMESANAN & PENGIRIMAN</span>
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-stone-900 mt-1">Pertanyaan yang Sering Ditanyakan (FAQ)</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>1. Berapa minimal order untuk Nasi Box & maksimal pemesanan H-berapa?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Minimal pemesanan Nasi Box adalah 10 kotak per varian menu, sedangkan Frozen Food & Hampers bebas mulai dari 1 pack. Pemesanan reguler disarankan H-1 sebelum pukul 17.00 WIB, dan untuk Paket Aqiqah / >100 box disarankan H-2.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>2. Bagaimana cara mendapatkan Diskon Acara 10%?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Sistem keranjang belanja kami menghitung otomatis: begitu total akumulasi pesanan Anda mencapai minimal 50 box/porsi (atau memilih Paket Aqiqah 50/100 Box), potongan harga 10% langsung memotong total tagihan di nota WhatsApp.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>3. Apakah kambing Aqiqah dipotong sesuai syariat & bisa disaksikan?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Ya, 100% sesuai syariat Islam. Ayah/Bunda dapat menyaksikan langsung proses penyembelihan di kandang kami atau menerima dokumentasi foto & video penyebutan nama anak beserta sertifikat Aqiqah berbingkai.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>4. Apakah bisa sistem pembayaran DP 50% terlebih dahulu?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Tentu bisa. Anda cukup membayar DP 50% melalui transfer Bank BCA/Mandiri/BSI atau QRIS untuk mengunci jadwal masak, dan pelunasan 50% sisanya dapat dibayarkan saat kurir mobil box kami tiba di lokasi acara.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>5. Bagaimana pengiriman agar Nasi Box & Tumpeng tidak rusak di jalan?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Untuk pesanan &ge;30 box atau Tumpeng, pengiriman wajib menggunakan kurir mobil tertutup / armada operasional Dapur Berkah agar kemasan tetap rapi, higienis, dan tiba tepat waktu sesuai jam acara.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-50 border border-stone-300 p-4 open:bg-white transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-stone-900 list-none">
+                        <span>6. Apakah melayani katering prasmanan kantor & faktur pajak perusahaan?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#1C1917] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Kami melayani pengadaan konsumsi rapat BUMN, instansi pemerintah, dan perusahaan swasta lengkap dengan kuitansi resmi berstempel, NPWP badan, serta Faktur Pajak bila dibutuhkan.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-[#1C1917] text-stone-300 pb-20 lg:pb-0 border-t-2 border-stone-800 text-sm">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-stone-800 bg-stone-900/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider">
+                            <span class="inline-flex items-center gap-2 bg-[#1C1917] text-halal-500 border border-stone-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-certificate"></i>
+                                <span>100% Halal MUI &amp; Laik Hygiene</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#1C1917] text-amber-300 border border-stone-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-tags"></i>
+                                <span>Diskon Acara 10% (≥50 Box)</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#1C1917] text-stone-200 border border-stone-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-truck-fast text-terracotta-500"></i>
+                                <span>Garansi Tiba Tepat Waktu</span>
+                            </span>
+                        </div>
+
+                        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+                            Rencanakan Konsumsi Rapat, Syukuran, atau Tasyakuran Aqiqah Tanpa Repot.
+                        </h2>
+                        <p class="text-stone-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Masak segar setiap pagi dengan rempah pilihan Nusantara. Kunci jadwal pengiriman Anda cukup dengan DP 50%, dan nikmati potongan otomatis 10% untuk pemesanan minimal 50 box/porsi.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3.5 lg:justify-end">
+                        <a href="#katalog-menu"
+                           class="inline-flex items-center justify-center gap-2.5 bg-terracotta-600 hover:bg-terracotta-500 text-white font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Pilih Menu &amp; Pesan</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah%20dan%20jadwal%20pengiriman."
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2.5 bg-[#1C1917] hover:bg-halal-600 text-white border border-stone-700 hover:border-halal-500 font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base text-halal-500"></i>
+                            <span>Konsultasi Menu WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group">
+                        <img src="assets/logo.svg" alt="Emblem Dapur Berkah Nusantara" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-terracotta-500/50">
+                        <div>
+                            <span class="font-display font-bold text-lg text-white tracking-tight block leading-none">
+                                Dapur <span class="text-amber-400">Berkah</span>
+                            </span>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-stone-400 block mt-1">
+                                KATERING NUSANTARA • HALAL MUI
+                            </span>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-stone-400 leading-relaxed">
+                        Dapur produksi katering harian, korporat, tasyakuran aqiqah syar'i, tumpeng tampah bambu, dan frozen food keluarga Indonesia. Bersertifikat Halal MUI &amp; Laik Hygiene Dinkes.
+                    </p>
+
+                    <div class="pt-1">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-stone-500 block mb-2.5">Kanal Dokumentasi Dapur</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dapur Berkah Nusantara"
+                               class="w-9 h-9 bg-stone-900 hover:bg-terracotta-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok Dapur Berkah Nusantara"
+                               class="w-9 h-9 bg-stone-900 hover:bg-terracotta-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Dapur Berkah Nusantara"
+                               class="w-9 h-9 bg-stone-900 hover:bg-halal-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Dapur Berkah Nusantara"
+                               class="w-9 h-9 bg-stone-900 hover:bg-terracotta-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-terracotta-500 pl-3">
+                        Navigasi Cepat
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">01</span>
+                                <span>Beranda Utama</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-menu" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">02</span>
+                                <span>Katalog Menu &amp; Harga</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-acara" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">03</span>
+                                <span>Kalkulator Porsi &amp; Anggaran</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#keunggulan" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">04</span>
+                                <span>Cara Pemesanan &amp; Standar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#testimoni" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">05</span>
+                                <span>Galeri &amp; Ulasan Foto Pesanan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="text-stone-400 hover:text-amber-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-terracotta-400">06</span>
+                                <span>FAQ &amp; Info Pengiriman</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Layanan Unggulan -->
+                <nav aria-label="Layanan Unggulan" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-terracotta-500 pl-3">
+                        Kategori Hidangan
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#katalog-menu" onclick="filterByCategory('nasibox')" class="text-stone-400 hover:text-amber-300 transition-colors flex items-center justify-between">
+                                <span>Nasi Box Rapat &amp; Syukuran</span>
+                                <span class="font-mono text-[11px] text-stone-500">Mulai Rp 28rb</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-menu" onclick="filterByCategory('aqiqah')" class="text-stone-400 hover:text-amber-300 transition-colors flex items-center justify-between">
+                                <span>Paket Aqiqah Siap Saji</span>
+                                <span class="font-mono text-[11px] text-stone-500">50 &amp; 100 Box</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-menu" onclick="filterByCategory('tumpeng')" class="text-stone-400 hover:text-amber-300 transition-colors flex items-center justify-between">
+                                <span>Tumpeng Tampah &amp; Mini</span>
+                                <span class="font-mono text-[11px] text-stone-500">Gratis Topper</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-menu" onclick="filterByCategory('frozen')" class="text-stone-400 hover:text-amber-300 transition-colors flex items-center justify-between">
+                                <span>Frozen Food &amp; Dimsum</span>
+                                <span class="font-mono text-[11px] text-stone-500">Kemasan Vakum</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-menu" onclick="filterByCategory('kue')" class="text-stone-400 hover:text-amber-300 transition-colors flex items-center justify-between">
+                                <span>Tampah Jajanan Pasar</span>
+                                <span class="font-mono text-[11px] text-stone-500">Isi 50 Kue</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Highlighted Special Package Link -->
+                    <div class="pt-1">
+                        <button type="button" onclick="fillSampleOrder50Box()"
+                           class="w-full text-left p-3 bg-stone-900 hover:bg-stone-800 border border-amber-400/40 transition-colors group">
+                            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-amber-300 font-bold">
+                                <span>★ PAKET ISTIMEWA</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-0.5 transition-transform"></i>
+                            </div>
+                            <div class="text-xs font-bold text-white mt-0.5">Paket Aqiqah &amp; Prasmanan (-10%)</div>
+                            <div class="text-[11px] text-stone-400">Klik untuk simulasi otomatis 50 Box di keranjang</div>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-terracotta-500 pl-3">
+                        Dapur Pusat &amp; Kontak
+                    </h3>
+                    <ul class="space-y-3.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-terracotta-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Dapur Produksi Sentral:</strong>
+                                <span class="text-stone-400 leading-relaxed block">Jl. Raya Condet No. 88, Batu Ampar, Kec. Kramat Jati, Jakarta Timur 13520</span>
+                                <a href="https://maps.google.com/?q=Jl.+Raya+Condet+No.+88+Jakarta+Timur" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1 font-mono text-[11px] text-amber-400 hover:underline mt-1 font-semibold">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-halal-500 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Admin Pesanan &amp; Test Food:</strong>
+                                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20pesan%20katering." target="_blank" rel="noopener noreferrer"
+                                   class="font-mono text-stone-300 hover:text-amber-300 transition-colors">+62 812-3456-7890</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Surel Katering Korporat:</strong>
+                                <a href="mailto:pesanan@dapurberkahnusantara.id" class="font-mono text-stone-300 hover:text-amber-300 transition-colors">pesanan@dapurberkahnusantara.id</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-terracotta-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Jam Operasional &amp; Pengiriman:</strong>
+                                <span class="text-stone-400 block">Senin – Minggu: 05.00 – 21.00 WIB</span>
+                                <span class="font-mono text-[10px] text-halal-500">(Armada Mobil Box Siaga Subuh)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-stone-800 bg-stone-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-stone-500 mr-1 whitespace-nowrap">Metode Pembayaran (Bisa DP 50%):</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">QRIS</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">BCA</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">BRI</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">Mandiri</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">GoPay</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">OVO</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Policy Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-stone-500 text-center lg:text-right">
+                    <p>© 2026 Dapur Berkah Nusantara. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4 font-mono text-[11px]">
+                        <!-- TODO: Hubungkan ke dokumen Syarat & Ketentuan Pemesanan Katering -->
+                        <a href="#" class="hover:text-amber-400 transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Hubungkan ke dokumen Kebijakan Privasi Pelanggan -->
+                        <a href="#" class="hover:text-amber-400 transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-amber-400 transition-colors whitespace-nowrap">Kebijakan Garansi / Pembatalan</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING BOTTOM STICKY BAR FOR MOBILE CART -->
+    <div id="mobileStickyCart" class="fixed bottom-4 inset-x-4 z-30 lg:hidden hidden">
+        <button onclick="toggleCartDrawer(true)" class="w-full bg-[#1C1917] text-white p-3.5 shadow-2xl border border-stone-700 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-terracotta-600 flex items-center justify-center font-mono font-bold text-sm" id="mobileCartQty">0</div>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">Lihat Keranjang & Checkout WA</div>
+                    <div id="mobileDiscountHint" class="text-[11px] text-amber-300">Klik untuk pilih jadwal pengiriman</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div id="mobileCartTotal" class="font-mono text-sm font-bold text-amber-400">Rp 0</div>
+                <div class="text-[10px] text-stone-300">Kirim Nota <i class="fa-solid fa-arrow-right ml-0.5"></i></div>
+            </div>
+        </button>
+    </div>
+
+    <!-- ==========================================
+         PRODUCT CUSTOMIZATION MODAL
+         ========================================== -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-stone-950/75 backdrop-blur-xs">
+        <div class="bg-white max-w-lg w-full overflow-hidden shadow-2xl border-2 border-[#1C1917] max-h-[92vh] flex flex-col">
+            <!-- Modal Image Header -->
+            <div class="relative h-52 bg-stone-200 shrink-0">
+                <img id="modalProductImg" src="" alt="Menu" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-stone-950/30"></div>
+                <button onclick="closeProductModal()" class="absolute top-3.5 right-3.5 w-9 h-9 bg-stone-900/80 hover:bg-stone-900 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-3 left-4 right-4 text-white">
+                    <span id="modalProductCategory" class="bg-terracotta-600 font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5">Nasi Box</span>
+                    <h3 id="modalProductName" class="font-display font-bold text-xl mt-1">Nama Menu</h3>
+                    <div class="flex items-center gap-2 mt-0.5">
+                        <span id="modalProductPrice" class="font-mono text-amber-300 font-bold text-base">Rp 28.000</span>
+                        <span id="modalProductMinInfo" class="text-xs text-stone-200">• Min. order disarankan 10 box</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-5 overflow-y-auto space-y-5 flex-1">
+                <p id="modalProductDesc" class="text-xs sm:text-sm text-stone-600 leading-relaxed bg-cream-50 p-3 border border-stone-200"></p>
+
+                <!-- Pilihan Nasi -->
+                <div id="modalRiceSection">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="font-mono text-xs font-bold uppercase tracking-wider text-stone-800">
+                            01 // PILIH VARIAN NASI
+                        </label>
+                        <span class="font-mono text-[10px] font-bold text-halal-700 bg-halal-50 px-2 py-0.5 border border-halal-500/30">WAJIB PILIH 1</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2.5" id="modalRiceOptions">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalRice" value="Nasi Putih" class="peer sr-only" checked>
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 text-center transition">
+                                <div class="text-xs font-bold text-stone-900">Nasi Putih</div>
+                                <div class="text-[10px] text-stone-500">Pulen Pandan Wangi</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalRice" value="Nasi Uduk" class="peer sr-only">
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 text-center transition">
+                                <div class="text-xs font-bold text-stone-900">Nasi Uduk</div>
+                                <div class="text-[10px] text-stone-500">Gurih Bawang Goreng</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalRice" value="Nasi Kuning" class="peer sr-only">
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 text-center transition">
+                                <div class="text-xs font-bold text-stone-900">Nasi Kuning</div>
+                                <div class="text-[10px] text-stone-500">Rempah Kunyit Harum</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pilihan Sambal -->
+                <div id="modalSambalSection">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="font-mono text-xs font-bold uppercase tracking-wider text-stone-800">
+                            02 // PILIH JENIS SAMBAL PENDAMPING
+                        </label>
+                        <span class="font-mono text-[10px] font-bold text-halal-700 bg-halal-50 px-2 py-0.5 border border-halal-500/30">TERMASUK HARGA</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2.5" id="modalSambalOptions">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalSambal" value="Sambal Bawang" class="peer sr-only" checked>
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 flex items-center gap-2 transition">
+                                <i class="fa-solid fa-pepper-hot text-red-600 text-xs"></i>
+                                <div>
+                                    <div class="text-xs font-bold text-stone-900">Sambal Bawang</div>
+                                    <div class="text-[10px] text-stone-500">Pedas Gurih Favorit</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalSambal" value="Sambal Ijo" class="peer sr-only">
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 flex items-center gap-2 transition">
+                                <i class="fa-solid fa-leaf text-halal-600 text-xs"></i>
+                                <div>
+                                    <div class="text-xs font-bold text-stone-900">Sambal Ijo</div>
+                                    <div class="text-[10px] text-stone-500">Pedas Sedang Khas</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalSambal" value="Sambal Matah" class="peer sr-only">
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 flex items-center gap-2 transition">
+                                <i class="fa-solid fa-lemon text-amber-600 text-xs"></i>
+                                <div>
+                                    <div class="text-xs font-bold text-stone-900">Sambal Matah</div>
+                                    <div class="text-[10px] text-stone-500">Segar Serai & Limau</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalSambal" value="Tidak Pedas" class="peer sr-only">
+                            <div class="p-2.5 border-2 border-stone-200 peer-checked:border-terracotta-600 peer-checked:bg-terracotta-50 flex items-center gap-2 transition">
+                                <i class="fa-solid fa-check text-stone-600 text-xs"></i>
+                                <div>
+                                    <div class="text-xs font-bold text-stone-900">Tidak Pedas</div>
+                                    <div class="text-[10px] text-stone-500">Ramah Anak & Lansia</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quantity & Quick Preset Buttons -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="font-mono text-xs font-bold uppercase tracking-wider text-stone-800">03 // KUANTITAS PESANAN</label>
+                        <span class="font-mono text-[11px] text-terracotta-600 font-semibold">Order &ge; 50 Box otomatis diskon 10%</span>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-3 bg-cream-50 p-3 border border-stone-300">
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="adjustModalQty(-1)" class="w-9 h-9 bg-white border border-stone-300 hover:bg-stone-100 font-bold text-stone-800">-</button>
+                            <input type="number" id="modalQtyInput" value="10" min="1" onchange="validateModalQty()" class="w-16 text-center font-mono font-bold text-base bg-white border border-stone-300 py-1.5">
+                            <button type="button" onclick="adjustModalQty(1)" class="w-9 h-9 bg-white border border-stone-300 hover:bg-stone-100 font-bold text-stone-800">+</button>
+                        </div>
+                        <div class="flex items-center gap-1.5 font-mono text-xs">
+                            <button type="button" onclick="setModalQty(10)" class="px-2.5 py-1.5 bg-white border border-stone-300 hover:bg-stone-100 text-stone-800 font-bold transition">10</button>
+                            <button type="button" onclick="setModalQty(25)" class="px-2.5 py-1.5 bg-white border border-stone-300 hover:bg-stone-100 text-stone-800 font-bold transition">25</button>
+                            <button type="button" onclick="setModalQty(50)" class="px-2.5 py-1.5 bg-amber-300 hover:bg-amber-400 text-stone-950 font-bold transition">50 (-10%)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item Note -->
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Catatan Tambahan Menu Ini (Opsional)</label>
+                    <input type="text" id="modalItemNote" placeholder="Contoh: Sambal dipisah plastik, ayam bagian dada/paha..." class="w-full px-3.5 py-2 text-xs bg-cream-50 border border-stone-300 focus:outline-none focus:border-terracotta-600">
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-cream-100 border-t border-stone-300 flex items-center justify-between gap-4 shrink-0">
+                <div>
+                    <span class="block font-mono text-[10px] uppercase text-stone-500 font-semibold">Subtotal Item:</span>
+                    <span id="modalSubtotalPrice" class="font-mono font-bold text-lg text-terracotta-600">Rp 280.000</span>
+                </div>
+                <button onclick="confirmAddFromModal()" class="flex-1 bg-terracotta-600 hover:bg-[#1C1917] text-white font-bold py-3 px-5 text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span>Masukkan ke Keranjang</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE-OVER SHOPPING CART DRAWER
+         ========================================== -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-stone-950/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+
+    <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col border-l-2 border-[#1C1917]">
+        <!-- Drawer Header -->
+        <div class="p-4 sm:p-5 bg-[#1C1917] text-white flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="bg-[#FAF6F0] px-2.5 py-1">
+                    <img src="assets/logo.svg" alt="Dapur Berkah Nusantara" class="h-7 w-auto">
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base leading-tight">Keranjang & Jadwal Acara</h3>
+                    <p class="font-mono text-[10px] text-stone-400 uppercase">CHECKOUT NOTA WHATSAPP</p>
+                </div>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 bg-stone-800 hover:bg-stone-700 text-stone-300 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Discount Progress Banner inside Cart -->
+        <div id="cartDiscountBanner" class="bg-amber-50 border-b border-amber-200 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-tag text-terracotta-600 text-sm"></i>
+                <span id="cartDiscountStatusText" class="font-semibold text-stone-800">Tambah hingga 50 box untuk klaim <strong>Diskon Acara 10%</strong>!</span>
+            </div>
+            <span id="cartBoxCounterPill" class="font-mono bg-amber-200 text-stone-900 font-bold px-2 py-0.5 text-[11px] shrink-0">0 / 50 Box</span>
+        </div>
+
+        <!-- Scrollable Body: Cart Items + Delivery Form -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6">
+            <!-- Cart Items List -->
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-stone-500">Daftar Menu Dipesan</h4>
+                    <button onclick="clearCart()" id="clearCartBtn" class="font-mono text-xs text-red-600 hover:underline font-semibold hidden">Kosongkan</button>
+                </div>
+                <div id="cartItemsContainer" class="space-y-3">
+                    <!-- Dynamic Cart Items -->
+                </div>
+            </div>
+
+            <!-- Delivery & Event Details Form -->
+            <div id="cartCheckoutFormSection" class="bg-cream-50 p-4 sm:p-5 border border-stone-300 space-y-4">
+                <div class="flex items-center gap-2 border-b border-stone-300 pb-2.5">
+                    <i class="fa-solid fa-clipboard-list text-terracotta-600"></i>
+                    <h4 class="font-display font-bold text-base text-stone-900">Data Pengiriman & Jadwal Acara</h4>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Nama Pemesan / Instansi <span class="text-red-500">*</span></label>
+                        <input type="text" id="custName" value="Bpk/Ibu Ahmad Fauzi" placeholder="Contoh: Ibu Siti / PT Maju Jaya" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">No. WhatsApp Aktif <span class="text-red-500">*</span></label>
+                        <input type="tel" id="custPhone" value="081298765432" placeholder="0812xxxx" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Alamat Lengkap Pengiriman <span class="text-red-500">*</span></label>
+                    <textarea id="custAddress" rows="2" placeholder="Nama jalan, nomor rumah/gedung, patokan, kecamatan..." class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600">Jl. Tebet Barat Dalam Raya No. 45, Kec. Tebet, Jakarta Selatan (Dekat Masjid Al-Ikhlas)</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Tanggal & Jam Acara / Tiba <span class="text-red-500">*</span></label>
+                        <input type="datetime-local" id="custDateTime" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Metode Pengiriman</label>
+                        <select id="custDeliveryMethod" onchange="updateCartSummary()" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600 font-medium">
+                            <option value="Kurir Instan Mobil (Armada Katering / Lalamove Car)">Kurir Instan Mobil (Aman &ge; 20 Box)</option>
+                            <option value="Kurir Instan Motor (GoSend / GrabExpress)">Kurir Instan Motor (Frozen / &lt; 15 Box)</option>
+                            <option value="Ambil Sendiri di Dapur Pusat Condet">Ambil Sendiri di Dapur Pusat (Gratis)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Catatan Khusus / Nama Anak & Orang Tua (Untuk Aqiqah / Kartu Ucapan)</label>
+                    <input type="text" id="custNotes" placeholder="Contoh: Tasyakuran Aqiqah Muhammad Al-Fatih Putra dari Bpk Ahmad & Ibu Sarah" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Metode Pembayaran Pilihan</label>
+                    <select id="custPaymentMethod" onchange="updateCartSummary()" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-terracotta-600 font-semibold text-stone-800">
+                        <option value="DP 50% Transfer Bank BCA / Mandiri (Pelunasan Saat Tiba)">DP 50% Transfer BCA / Mandiri (Sisa 50% Saat Tiba)</option>
+                        <option value="QRIS Instan (Bebas Biaya Admin)">QRIS Resmi Dapur Berkah (Lunas / DP)</option>
+                        <option value="Lunas 100% Transfer Bank BCA / Mandiri / BSI">Lunas 100% Transfer Bank BCA / Mandiri / BSI</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer: Price Breakdown & Checkout CTA -->
+        <div class="p-4 sm:p-5 bg-white border-t border-stone-300 space-y-3 shrink-0">
+            <div class="space-y-1.5 text-xs font-mono">
+                <div class="flex justify-between text-stone-600">
+                    <span>Subtotal Pesanan (<span id="summaryTotalQty">0</span> porsi/item):</span>
+                    <span id="summarySubtotal" class="font-bold text-stone-900">Rp 0</span>
+                </div>
+                <div id="summaryDiscountRow" class="flex justify-between text-halal-700 font-bold hidden">
+                    <span>Diskon Acara 10% (&ge; 50 Box):</span>
+                    <span id="summaryDiscountAmount">- Rp 0</span>
+                </div>
+                <div class="flex justify-between items-baseline pt-2 border-t border-stone-200">
+                    <span class="text-sm font-bold text-stone-900 uppercase">Total Tagihan:</span>
+                    <span id="summaryGrandTotal" class="text-lg sm:text-xl font-bold text-terracotta-600">Rp 0</span>
+                </div>
+                <div id="summaryDpRow" class="flex justify-between text-[11px] text-amber-900 bg-amber-50 border border-amber-200 px-2.5 py-1 font-semibold">
+                    <span>Nominal DP 50% Kunci Jadwal:</span>
+                    <span id="summaryDpAmount" class="font-bold">Rp 0</span>
+                </div>
+            </div>
+
+            <button onclick="openInvoicePreview()" class="w-full bg-halal-600 hover:bg-halal-700 text-white font-bold py-3.5 px-5 transition flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Checkout & Kirim Nota ke WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==========================================
+         INVOICE PREVIEW & WHATSAPP REDIRECT MODAL
+         ========================================== -->
+    <div id="invoiceModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-stone-950/75 backdrop-blur-xs">
+        <div class="bg-white max-w-lg w-full overflow-hidden shadow-2xl border-2 border-[#1C1917] flex flex-col max-h-[92vh]">
+            <div class="p-4 sm:p-5 bg-[#1C1917] text-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-[#FAF6F0] px-2 py-1">
+                        <img src="assets/logo.svg" alt="Dapur Berkah" class="h-6 w-auto">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm uppercase font-mono">Preview Nota Pesanan WhatsApp</h3>
+                        <p class="text-[11px] text-stone-400">Nota siap dikirim otomatis ke Admin Dapur Berkah</p>
+                    </div>
+                </div>
+                <button onclick="closeInvoiceModal()" class="w-8 h-8 bg-stone-800 hover:bg-stone-700 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1 bg-cream-50">
+                <div class="bg-white border border-stone-300 p-4">
+                    <div class="flex items-center justify-between border-b border-dashed border-stone-300 pb-3 mb-3">
+                        <div>
+                            <div class="font-display font-bold text-base text-stone-900">DAPUR BERKAH NUSANTARA</div>
+                            <div class="text-[11px] text-stone-500">No. Nota: <span id="invNumber" class="font-mono font-bold text-stone-800">DBN-8821</span></div>
+                        </div>
+                        <span class="font-mono bg-halal-100 text-halal-700 text-[10px] font-bold px-2.5 py-1">SIAP KIRIM WA</span>
+                    </div>
+                    <pre id="invoicePreviewText" class="text-xs font-mono text-stone-800 whitespace-pre-wrap leading-relaxed overflow-x-auto"></pre>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t border-stone-300 flex flex-col sm:flex-row gap-2.5">
+                <button onclick="copyInvoiceText()" id="copyInvoiceBtn" class="sm:w-1/3 py-3 px-4 border border-stone-300 hover:bg-stone-100 text-stone-700 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Salin Nota</span>
+                </button>
+                <a id="waDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="sm:w-2/3 bg-halal-600 hover:bg-halal-700 text-white font-bold py-3 px-5 flex items-center justify-center gap-2 text-xs uppercase tracking-wider transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Lanjut Buka WhatsApp Sekarang</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300">
+        <div class="bg-[#1C1917] text-white px-4 py-3 shadow-2xl border border-stone-700 flex items-center gap-3">
+            <div class="w-8 h-8 bg-halal-600 flex items-center justify-center text-white shrink-0">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="text-xs">
+                <div id="toastTitle" class="font-bold text-white">Berhasil Ditambahkan!</div>
+                <div id="toastDesc" class="text-stone-300">Menu masuk ke keranjang pesanan.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+         ========================================== -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "Dapur Berkah Nusantara",
+            tagline: "Katering Nasi Box, Paket Aqiqah, Tumpeng & Frozen Food Halal",
+            address: "Jl. Raya Condet No. 88, Batu Ampar, Kec. Kramat Jati, Jakarta Timur 13520",
+            mapsUrl: "https://maps.google.com/?q=Jl.+Raya+Condet+No.+88+Jakarta+Timur",
+            whatsappNumber: "6281234567890",
+            whatsappDisplay: "+62 812-3456-7890",
+            email: "pesanan@dapurberkahnusantara.id",
+            operationalHours: "Senin – Minggu: 05.00 – 21.00 WIB",
+            socials: {
+                instagram: "https://instagram.com",
+                tiktok: "https://tiktok.com",
+                whatsapp: "https://wa.me/6281234567890",
+                youtube: "https://youtube.com"
+            }
+        };
+
+        // 12 Authentic Indonesian Culinary Products with Local Photography Assets
+        const products = [
+            {
+                id: 1,
+                name: "Nasi Box Ayam Bakar Madu Spesial",
+                category: "nasibox",
+                categoryLabel: "Nasi Box",
+                price: 28000,
+                minOrderInfo: "Rekomendasi rapat & syukuran",
+                defaultQty: 10,
+                boxEquivalent: 1,
+                bestSeller: true,
+                badge: "Terlaris #1",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-01-ayam-bakar.jpg",
+                desc: "Nasi hangat pilihan, Ayam Bakar Madu bumbu meresap, Tahu & Tempe Bacem, Lalapan Segar, Kerupuk Udang, Pisang Sunpride & Air Mineral.",
+                contents: ["Ayam Bakar Madu", "Tahu & Tempe", "Lalapan + Kerupuk", "Buah Pisang"]
+            },
+            {
+                id: 2,
+                name: "Nasi Kebuli Kambing Muda Arab",
+                category: "nasibox",
+                categoryLabel: "Nasi Box",
+                price: 42000,
+                minOrderInfo: "Daging Kambing Muda Empuk",
+                defaultQty: 10,
+                boxEquivalent: 1,
+                bestSeller: true,
+                badge: "Menu Utama",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-02-nasi-kebuli.jpg",
+                desc: "Nasi Kebuli rempah kapulaga & minyak samin (atau pilih varian nasi), Kambing Muda Panggang bebas bau prengus, Acar Nanas & Emping Melinjo.",
+                contents: ["Kambing Muda Empuk", "Rempah Arab Asli", "Acar Nanas Segar", "Emping Melinjo"]
+            },
+            {
+                id: 3,
+                name: "Nasi Box Rendang Daging Sapi Padang",
+                category: "nasibox",
+                categoryLabel: "Nasi Box",
+                price: 36000,
+                minOrderInfo: "Daging Sapi Pilihan",
+                defaultQty: 10,
+                boxEquivalent: 1,
+                bestSeller: true,
+                badge: "Bumbu Otentik",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-03-rendang-sapi.jpg",
+                desc: "Potongan daging sapi empuk dimasak rendang rempah 6 jam khas Minang, dilengkapi Telur Balado, Sayur Nangka Muda, Daun Singkong & Kerupuk.",
+                contents: ["Rendang Sapi Asli", "Telur Balado Utuh", "Gulai Nangka", "Kerupuk + Buah"]
+            },
+            {
+                id: 4,
+                name: "Nasi Kotak Ikan Gurame Asam Manis",
+                category: "nasibox",
+                categoryLabel: "Nasi Box",
+                price: 34000,
+                minOrderInfo: "Fillet Tanpa Duri",
+                defaultQty: 10,
+                boxEquivalent: 1,
+                bestSeller: false,
+                badge: "Favorit Kantor",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-04-ikan-gurame.jpg",
+                desc: "Fillet Ikan Gurame crispy saus asam manis nanas segar, pendamping Capcay Sayur Seafood, Mie Goreng Oriental, Kerupuk Udang & Puding.",
+                contents: ["Fillet Gurame Crispy", "Capcay Segar", "Mie Goreng", "Puding Manis"]
+            },
+            {
+                id: 5,
+                name: "Paket Aqiqah Berkah 50 Box (Siap Saji)",
+                category: "aqiqah",
+                categoryLabel: "Paket Aqiqah",
+                price: 1850000,
+                minOrderInfo: "1 Ekor Kambing + 50 Nasi Box",
+                defaultQty: 1,
+                boxEquivalent: 50,
+                bestSeller: true,
+                badge: "Otomatis Diskon 10%",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-05-aqiqah-50.jpg",
+                desc: "Paket lengkap 1 Ekor Kambing Aqiqah Syar'i diolah menjadi 250 tusuk Sate Kambing + 50 cup Gulai Kambing, dikemas dalam 50 Nasi Box eksklusif + Sertifikat Berbingkai.",
+                contents: ["50 Box Nasi Lengkap", "Sate & Gulai Kambing", "Sertifikat Bingkai", "Kartu Ucapan Anak"]
+            },
+            {
+                id: 6,
+                name: "Paket Aqiqah Sultan Kebuli 100 Box",
+                category: "aqiqah",
+                categoryLabel: "Paket Aqiqah",
+                price: 3650000,
+                minOrderInfo: "2 Ekor Kambing Jantan (Anak Laki-laki)",
+                defaultQty: 1,
+                boxEquivalent: 100,
+                bestSeller: true,
+                badge: "Aqiqah Putra",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-06-aqiqah-100.jpg",
+                desc: "Syariat Aqiqah anak laki-laki (2 Ekor Kambing Jantan Sehat). Dikemas 100 Box mewah berisi Kambing Panggang Madu, Gulai, Acar, Puding, Totebag & Risalah Doa.",
+                contents: ["100 Box Eksklusif", "2 Kambing Syar'i", "Gratis Totebag", "Dokumentasi Video"]
+            },
+            {
+                id: 7,
+                name: "Tumpeng Kuning Komplit 20 Porsi",
+                category: "tumpeng",
+                categoryLabel: "Tumpeng & Prasmanan",
+                price: 650000,
+                minOrderInfo: "Untuk 20 - 25 Orang",
+                defaultQty: 1,
+                boxEquivalent: 20,
+                bestSeller: true,
+                badge: "Gratis Pisau Tumpeng",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-07-tumpeng-besar.jpg",
+                desc: "Tumpeng Nasi Kuning tampah bambu hias ukiran sayur, lengkap dengan Ayam Goreng Lengkuas, Telur Balado, Perkedel Kentang, Urap Sayur & Kering Tempe.",
+                contents: ["20-25 Porsi Besar", "7 Lauk Nusantara", "Hiasan Garnish", "Gratis Topper Ucapan"]
+            },
+            {
+                id: 8,
+                name: "Tumpeng Mini Syukuran Personal (Min. 15 Pax)",
+                category: "tumpeng",
+                categoryLabel: "Tumpeng & Prasmanan",
+                price: 38000,
+                minOrderInfo: "Kemasan Mika Bulat Cantik",
+                defaultQty: 15,
+                boxEquivalent: 1,
+                bestSeller: false,
+                badge: "Syukuran & Ultah",
+                hasRiceOption: true,
+                hasSambalOption: true,
+                image: "assets/images/menu-08-tumpeng-mini.jpg",
+                desc: "Tumpeng ukuran personal dalam kemasan mika bening pita emas. Isi: Ayam Suwir Bumbu Bali, Sate Lilit, Telur Rawis, Kering Kentang & Sambal Pilihan.",
+                contents: ["Kemasan Pita Cantik", "Stiker Custom Nama", "Ayam + Sate Lilit", "Telur Rawis + Mie"]
+            },
+            {
+                id: 9,
+                name: "Dimsum Ayam Udang Mentai (Isi 16 Pcs)",
+                category: "frozen",
+                categoryLabel: "Frozen & Dimsum",
+                price: 48000,
+                minOrderInfo: "Bisa beli satuan (1 Pack)",
+                defaultQty: 1,
+                boxEquivalent: 1,
+                bestSeller: true,
+                badge: "100% Daging Segar",
+                hasRiceOption: false,
+                hasSambalOption: true,
+                image: "assets/images/menu-09-dimsum-mentai.jpg",
+                desc: "Dimsum premium full daging ayam & udang segar tanpa pengawet, disiram saus Mentai creamy yang di-torch wangi + bonus Chili Oil pedas.",
+                contents: ["Isi 16 Pcs Besar", "Saus Mentai Torch", "Bonus Chili Oil", "Siap Santap/Frozen"]
+            },
+            {
+                id: 10,
+                name: "Risol Mayo Smoked Beef Frozen (Isi 10 Pcs)",
+                category: "frozen",
+                categoryLabel: "Frozen & Dimsum",
+                price: 32000,
+                minOrderInfo: "Tahan 2 bulan di freezer",
+                defaultQty: 1,
+                boxEquivalent: 1,
+                bestSeller: true,
+                badge: "Stok Kulkas",
+                hasRiceOption: false,
+                hasSambalOption: true,
+                image: "assets/images/menu-10-risol-mayo.jpg",
+                desc: "Risol mayo kulit lembut dengan balutan tepung roti renyah. Isian Smoked Beef tebal, potongan telur rebus, keju cheddar & saus mayo gurih lumer.",
+                contents: ["Isi 10 Pcs Risol", "Smoked Beef Tebal", "Keju & Mayo Lumer", "Kemasan Thinwall"]
+            },
+            {
+                id: 11,
+                name: "Ayam Kampung & Paru Ungkep Rempah Vacuum",
+                category: "frozen",
+                categoryLabel: "Frozen & Dimsum",
+                price: 55000,
+                minOrderInfo: "1 Ekor Potong 4 + Sambal",
+                defaultQty: 1,
+                boxEquivalent: 1,
+                bestSeller: false,
+                badge: "Praktis 3 Menit",
+                hasRiceOption: false,
+                hasSambalOption: true,
+                image: "assets/images/menu-11-ayam-ungkep.jpg",
+                desc: "Ayam kampung muda ungkep bumbu kuning lengkuas melimpah dalam kemasan vakum kedap udara. Tinggal goreng sebentar, sudah termasuk sambal.",
+                contents: ["Kemasan Vacuum Seal", "Rempah Lengkuas", "Tanpa Pengawet", "Termasuk Sambal"]
+            },
+            {
+                id: 12,
+                name: "Tampah Jajanan Pasar & Kue Tradisional (Isi 50 Kue)",
+                category: "kue",
+                categoryLabel: "Kue & Hampers",
+                price: 185000,
+                minOrderInfo: "5 Macam Kue Basah Premium",
+                defaultQty: 1,
+                boxEquivalent: 5,
+                bestSeller: false,
+                badge: "Fresh Pagi Hari",
+                hasRiceOption: false,
+                hasSambalOption: false,
+                image: "assets/images/menu-12-jajanan-pasar.jpg",
+                desc: "Nampan cantik berisi 50 pcs kue tradisional buatan pagi hari: Klepon Gula Aren Lumer, Lemper Ayam Bakar, Risoles Ragout, Soes Vla Vanilla & Kue Lumpur.",
+                contents: ["Isi 50 Pcs Kue", "5 Varian Favorit", "Santan & Gula Asli", "Cocok Rapat Pagi"]
+            }
+        ];
+
+        // State
+        let activeCategory = 'all';
+        let currentModalProductId = null;
+        let cart = [
+            {
+                cartItemId: 'init-1',
+                productId: 1,
+                name: "Nasi Box Ayam Bakar Madu Spesial",
+                price: 28000,
+                qty: 20,
+                boxEquivalent: 1,
+                rice: "Nasi Uduk",
+                sambal: "Sambal Bawang",
+                note: "Sambal dipisah plastik",
+                image: "assets/images/menu-01-ayam-bakar.jpg"
+            },
+            {
+                cartItemId: 'init-2',
+                productId: 9,
+                name: "Dimsum Ayam Udang Mentai (Isi 16 Pcs)",
+                price: 48000,
+                qty: 2,
+                boxEquivalent: 1,
+                rice: "Tanpa Nasi (Frozen/Snack)",
+                sambal: "Sambal Bawang",
+                note: "",
+                image: "assets/images/menu-09-dimsum-mentai.jpg"
+            }
+        ];
+
+        // Format Rupiah Helper
+        function formatRupiah(num) {
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        // Initialize Default DateTime (Tomorrow 10:00 AM)
+        function initDefaultDateTime() {
+            const dtInput = document.getElementById('custDateTime');
+            if (dtInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(10, 0, 0, 0);
+                const tzOffset = tomorrow.getTimezoneOffset() * 60000;
+                const localISOTime = (new Date(tomorrow - tzOffset)).toISOString().slice(0, 16);
+                dtInput.value = localISOTime;
+            }
+        }
+
+        // Category Filter
+        function filterByCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-tab').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = "cat-tab active-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-terracotta-600 text-white";
+                } else {
+                    btn.className = "cat-tab shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-cream-50 hover:bg-cream-100 text-stone-700 border border-stone-300";
+                }
+            });
+            renderProducts();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            renderProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sortSelect').value = 'bestseller';
+            filterByCategory('all');
+        }
+
+        // Render Product Grid
+        function renderProducts() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const sortBy = document.getElementById('sortSelect').value;
+            const clearBtn = document.getElementById('clearSearchBtn');
+            
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            let filtered = products.filter(p => {
+                const matchCat = activeCategory === 'all' || p.category === activeCategory;
+                const matchQuery = !query || 
+                    p.name.toLowerCase().includes(query) || 
+                    p.desc.toLowerCase().includes(query) ||
+                    p.categoryLabel.toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+
+            if (sortBy === 'price-asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'name-asc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else {
+                filtered.sort((a, b) => (b.bestSeller === a.bestSeller) ? a.id - b.id : (b.bestSeller ? 1 : -1));
+            }
+
+            document.getElementById('productCountText').textContent = filtered.length;
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(p => `
+                <article class="bg-white border border-stone-300 overflow-hidden flex flex-col card-hover group">
+                    <!-- Image Container -->
+                    <div class="relative h-52 overflow-hidden bg-stone-900">
+                        <img src="${p.image}" 
+                             alt="${p.name}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-transparent to-transparent"></div>
+                        
+                        <!-- Top Badges -->
+                        <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                            <span class="bg-[#1C1917] text-amber-300 font-mono text-[10px] font-bold uppercase px-2.5 py-1 border border-stone-700">
+                                ${p.badge}
+                            </span>
+                            <span class="bg-halal-600 text-white font-mono text-[10px] font-bold px-2.5 py-1 flex items-center gap-1">
+                                <i class="fa-solid fa-check-circle"></i> HALAL
+                            </span>
+                        </div>
+
+                        <!-- Bottom Price Overlay -->
+                        <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white">
+                            <div>
+                                <span class="font-mono text-[10px] uppercase tracking-wider text-amber-200 font-bold block">${p.categoryLabel}</span>
+                                <span class="font-mono font-bold text-xl text-white">${formatRupiah(p.price)}</span>
+                            </div>
+                            <span class="font-mono text-[10px] bg-stone-900/80 border border-stone-600 px-2.5 py-1">
+                                ${p.minOrderInfo}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Content -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-stone-900 group-hover:text-terracotta-600 transition line-clamp-1">${p.name}</h3>
+                            <p class="text-xs text-stone-600 mt-1.5 line-clamp-2 leading-relaxed">${p.desc}</p>
+
+                            <!-- Contents Pills -->
+                            <div class="flex flex-wrap gap-1.5 mt-3">
+                                ${p.contents.map(item => `
+                                    <span class="text-[11px] bg-cream-50 text-stone-700 border border-stone-200 px-2 py-0.5 font-medium">${item}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Quick Inline Customization Selectors -->
+                        <div class="pt-3 border-t border-stone-200 space-y-2.5">
+                            <div class="grid grid-cols-2 gap-2">
+                                ${p.hasRiceOption ? `
+                                <div>
+                                    <label class="block font-mono text-[10px] font-bold text-stone-500 uppercase mb-1">Pilihan Nasi</label>
+                                    <select id="cardRice-${p.id}" class="w-full text-xs font-semibold bg-cream-50 border border-stone-300 px-2 py-1.5 text-stone-800 focus:outline-none focus:border-terracotta-600">
+                                        <option value="Nasi Putih">Nasi Putih</option>
+                                        <option value="Nasi Uduk">Nasi Uduk</option>
+                                        <option value="Nasi Kuning">Nasi Kuning</option>
+                                    </select>
+                                </div>
+                                ` : `
+                                <div>
+                                    <label class="block font-mono text-[10px] font-bold text-stone-500 uppercase mb-1">Penyajian</label>
+                                    <div class="text-xs font-semibold bg-stone-100 border border-stone-200 px-2 py-1.5 text-stone-600 truncate">Siap Saji / Frozen</div>
+                                </div>
+                                `}
+
+                                ${p.hasSambalOption ? `
+                                <div>
+                                    <label class="block font-mono text-[10px] font-bold text-stone-500 uppercase mb-1">Pilihan Sambal</label>
+                                    <select id="cardSambal-${p.id}" class="w-full text-xs font-semibold bg-cream-50 border border-stone-300 px-2 py-1.5 text-stone-800 focus:outline-none focus:border-terracotta-600">
+                                        <option value="Sambal Bawang">Sambal Bawang</option>
+                                        <option value="Sambal Ijo">Sambal Ijo</option>
+                                        <option value="Sambal Matah">Sambal Matah</option>
+                                        <option value="Tidak Pedas">Tidak Pedas</option>
+                                    </select>
+                                </div>
+                                ` : `
+                                <div>
+                                    <label class="block font-mono text-[10px] font-bold text-stone-500 uppercase mb-1">Karakter Rasa</label>
+                                    <div class="text-xs font-semibold bg-stone-100 border border-stone-200 px-2 py-1.5 text-stone-600 truncate">Manis & Gurih</div>
+                                </div>
+                                `}
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex items-center gap-2 pt-1">
+                                <button onclick="openProductModal(${p.id})" class="w-1/2 py-2.5 px-3 border border-stone-300 bg-cream-50 hover:bg-stone-200 text-stone-800 font-bold text-xs transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-sliders"></i>
+                                    <span>Detail / Opsi</span>
+                                </button>
+                                <button onclick="quickAddFromCard(${p.id})" class="w-1/2 py-2.5 px-3 bg-terracotta-600 hover:bg-[#1C1917] text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>+ Keranjang (${p.defaultQty})</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Quick Add directly from Product Card
+        function quickAddFromCard(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const riceSelect = document.getElementById(`cardRice-${productId}`);
+            const sambalSelect = document.getElementById(`cardSambal-${productId}`);
+
+            const chosenRice = riceSelect ? riceSelect.value : "Tanpa Nasi (Frozen/Snack)";
+            const chosenSambal = sambalSelect ? sambalSelect.value : "Standar";
+
+            addItemToCart(product, product.defaultQty, chosenRice, chosenSambal, "");
+        }
+
+        // Open Customization Modal
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            currentModalProductId = productId;
+
+            document.getElementById('modalProductImg').src = product.image;
+            document.getElementById('modalProductCategory').textContent = product.categoryLabel;
+            document.getElementById('modalProductName').textContent = product.name;
+            document.getElementById('modalProductPrice').textContent = formatRupiah(product.price);
+            document.getElementById('modalProductMinInfo').textContent = "• " + product.minOrderInfo;
+            document.getElementById('modalProductDesc').textContent = product.desc;
+
+            // Show/hide Rice & Sambal sections appropriately
+            document.getElementById('modalRiceSection').style.display = product.hasRiceOption ? 'block' : 'none';
+            document.getElementById('modalSambalSection').style.display = product.hasSambalOption ? 'block' : 'none';
+
+            document.getElementById('modalQtyInput').value = product.defaultQty;
+            document.getElementById('modalItemNote').value = '';
+            updateModalSubtotal();
+
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function adjustModalQty(delta) {
+            const input = document.getElementById('modalQtyInput');
+            let val = parseInt(input.value) || 1;
+            val = Math.max(1, val + delta);
+            input.value = val;
+            updateModalSubtotal();
+        }
+
+        function setModalQty(qty) {
+            document.getElementById('modalQtyInput').value = qty;
+            updateModalSubtotal();
+        }
+
+        function validateModalQty() {
+            const input = document.getElementById('modalQtyInput');
+            let val = parseInt(input.value) || 1;
+            if (val < 1) val = 1;
+            input.value = val;
+            updateModalSubtotal();
+        }
+
+        function updateModalSubtotal() {
+            const product = products.find(p => p.id === currentModalProductId);
+            if (!product) return;
+            const qty = parseInt(document.getElementById('modalQtyInput').value) || 1;
+            document.getElementById('modalSubtotalPrice').textContent = formatRupiah(product.price * qty);
+        }
+
+        function confirmAddFromModal() {
+            const product = products.find(p => p.id === currentModalProductId);
+            if (!product) return;
+
+            const qty = parseInt(document.getElementById('modalQtyInput').value) || 1;
+            const riceRadio = document.querySelector('input[name="modalRice"]:checked');
+            const sambalRadio = document.querySelector('input[name="modalSambal"]:checked');
+            const note = document.getElementById('modalItemNote').value.trim();
+
+            const chosenRice = product.hasRiceOption && riceRadio ? riceRadio.value : "Tanpa Nasi (Frozen/Snack)";
+            const chosenSambal = product.hasSambalOption && sambalRadio ? sambalRadio.value : "Standar";
+
+            addItemToCart(product, qty, chosenRice, chosenSambal, note);
+            closeProductModal();
+            toggleCartDrawer(true);
+        }
+
+        // Core Cart Management
+        function addItemToCart(product, qty, rice, sambal, note) {
+            const existingIndex = cart.findIndex(item => 
+                item.productId === product.id && 
+                item.rice === rice && 
+                item.sambal === sambal && 
+                item.note === note
+            );
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += qty;
+            } else {
+                cart.push({
+                    cartItemId: 'item-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6),
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    qty: qty,
+                    boxEquivalent: product.boxEquivalent || 1,
+                    rice: rice,
+                    sambal: sambal,
+                    note: note,
+                    image: product.image
+                });
+            }
+
+            updateCartSummary();
+            showToast(`${qty}x ${product.name}`, `Pilihan: ${rice} • ${sambal}`);
+
+            // Bump animation on header cart
+            const btn = document.getElementById('headerCartBtn');
+            btn.classList.remove('animate-cart-bump');
+            void btn.offsetWidth;
+            btn.classList.add('animate-cart-bump');
+        }
+
+        function updateCartItemQty(cartItemId, delta) {
+            const idx = cart.findIndex(i => i.cartItemId === cartItemId);
+            if (idx === -1) return;
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCartSummary();
+        }
+
+        function setCartItemDirectQty(cartItemId, newValue) {
+            const idx = cart.findIndex(i => i.cartItemId === cartItemId);
+            if (idx === -1) return;
+            const parsed = parseInt(newValue);
+            if (isNaN(parsed) || parsed <= 0) {
+                cart.splice(idx, 1);
+            } else {
+                cart[idx].qty = parsed;
+            }
+            updateCartSummary();
+        }
+
+        function removeCartItem(cartItemId) {
+            cart = cart.filter(i => i.cartItemId !== cartItemId);
+            updateCartSummary();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartSummary();
+        }
+
+        // Calculate Totals & Render Cart Drawer
+        function getCartCalculation() {
+            let subtotal = 0;
+            let totalRawUnits = 0;
+            let totalBoxEquivalent = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+                totalRawUnits += item.qty;
+                totalBoxEquivalent += item.qty * (item.boxEquivalent || 1);
+            });
+
+            // Automatic 10% Discount when >= 50 boxes/portions
+            const qualifiesForDiscount = totalBoxEquivalent >= 50 || totalRawUnits >= 50;
+            const discountAmount = qualifiesForDiscount ? Math.round(subtotal * 0.10) : 0;
+            const grandTotal = subtotal - discountAmount;
+            const dpAmount = Math.round(grandTotal * 0.50);
+
+            return {
+                subtotal,
+                totalRawUnits,
+                totalBoxEquivalent,
+                qualifiesForDiscount,
+                discountAmount,
+                grandTotal,
+                dpAmount
+            };
+        }
+
+        function updateCartSummary() {
+            const calc = getCartCalculation();
+
+            // Header & Mobile Badges
+            document.getElementById('cartCountBadge').textContent = calc.totalRawUnits;
+            document.getElementById('headerCartTotal').textContent = formatRupiah(calc.grandTotal);
+            document.getElementById('mobileCartQty').textContent = calc.totalRawUnits;
+            document.getElementById('mobileCartTotal').textContent = formatRupiah(calc.grandTotal);
+
+            const mobileBar = document.getElementById('mobileStickyCart');
+            if (calc.totalRawUnits > 0) {
+                mobileBar.classList.remove('hidden');
+            } else {
+                mobileBar.classList.add('hidden');
+            }
+
+            // Discount Banner inside Cart Drawer
+            const statusText = document.getElementById('cartDiscountStatusText');
+            const counterPill = document.getElementById('cartBoxCounterPill');
+            const banner = document.getElementById('cartDiscountBanner');
+
+            if (calc.qualifiesForDiscount) {
+                banner.className = "bg-halal-50 border-b border-halal-500/30 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0";
+                statusText.innerHTML = `<span class="text-halal-700 font-bold">[DISKON AKTIF] Anda Hemat ${formatRupiah(calc.discountAmount)} (Potongan Acara 10%)</span>`;
+                counterPill.className = "font-mono bg-halal-600 text-white font-bold px-2.5 py-0.5 text-[11px] shrink-0";
+                counterPill.textContent = `${calc.totalBoxEquivalent} Porsi ✓`;
+                document.getElementById('mobileDiscountHint').textContent = `Diskon Acara 10% Aktif (-${formatRupiah(calc.discountAmount)})`;
+            } else {
+                const needed = Math.max(0, 50 - calc.totalBoxEquivalent);
+                banner.className = "bg-amber-50 border-b border-amber-200 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0";
+                statusText.innerHTML = `Tambah <strong>${needed} porsi/box lagi</strong> untuk klaim <strong>Diskon Acara 10%</strong> otomatis!`;
+                counterPill.className = "font-mono bg-amber-200 text-stone-900 font-bold px-2 py-0.5 text-[11px] shrink-0";
+                counterPill.textContent = `${calc.totalBoxEquivalent} / 50 Box`;
+                document.getElementById('mobileDiscountHint').textContent = `Tambah ${needed} box lagi untuk Diskon 10%`;
+            }
+
+            // Render Cart Items
+            const container = document.getElementById('cartItemsContainer');
+            const clearBtn = document.getElementById('clearCartBtn');
+
+            if (cart.length === 0) {
+                clearBtn.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="text-center py-8 bg-cream-50 border border-dashed border-stone-300 p-4">
+                        <i class="fa-solid fa-basket-shopping text-3xl text-stone-300 mb-2"></i>
+                        <p class="text-sm font-bold text-stone-700">Keranjang Pesanan Masih Kosong</p>
+                        <p class="text-xs text-stone-500 mt-1 mb-4">Silakan pilih menu Nasi Box, Paket Aqiqah, atau Frozen Food favorit Anda.</p>
+                        <button onclick="fillSampleOrder50Box()" class="text-xs bg-terracotta-600 text-white font-bold px-3.5 py-2 hover:bg-[#1C1917] transition">
+                            + Isi Contoh Pesanan 50 Box (Diskon 10%)
+                        </button>
+                    </div>
+                `;
+            } else {
+                clearBtn.classList.remove('hidden');
+                container.innerHTML = cart.map(item => `
+                    <div class="bg-white p-3.5 border border-stone-300 flex gap-3 items-start">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover shrink-0 bg-stone-100 border border-stone-200">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <h5 class="font-bold text-xs sm:text-sm text-stone-900 truncate">${item.name}</h5>
+                                <button onclick="removeCartItem('${item.cartItemId}')" class="text-stone-400 hover:text-red-600 text-xs">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mt-1 font-mono">
+                                <span class="text-[10px] bg-cream-100 text-stone-800 border border-stone-300 px-2 py-0.5 font-semibold">${item.rice}</span>
+                                <span class="text-[10px] bg-orange-50 text-terracotta-700 border border-orange-200 px-2 py-0.5 font-semibold">${item.sambal}</span>
+                            </div>
+                            ${item.note ? `<p class="text-[11px] text-stone-500 italic mt-1">Catatan: "${item.note}"</p>` : ''}
+                            
+                            <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-stone-200">
+                                <div class="font-mono text-xs font-bold text-terracotta-600">
+                                    ${formatRupiah(item.price * item.qty)}
+                                    <span class="block text-[10px] font-normal text-stone-400">@ ${formatRupiah(item.price)}</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 font-mono">
+                                    <button onclick="updateCartItemQty('${item.cartItemId}', -1)" class="w-7 h-7 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs">-</button>
+                                    <input type="number" value="${item.qty}" min="1" onchange="setCartItemDirectQty('${item.cartItemId}', this.value)" class="w-12 text-center text-xs font-bold border border-stone-300 py-1">
+                                    <button onclick="updateCartItemQty('${item.cartItemId}', 1)" class="w-7 h-7 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs">+</button>
+                                    <button onclick="updateCartItemQty('${item.cartItemId}', 10)" title="Tambah 10" class="px-2 h-7 bg-orange-100 hover:bg-orange-200 text-terracotta-800 font-bold text-[10px]">+10</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Summary Footer Values
+            document.getElementById('summaryTotalQty').textContent = calc.totalBoxEquivalent;
+            document.getElementById('summarySubtotal').textContent = formatRupiah(calc.subtotal);
+
+            const discountRow = document.getElementById('summaryDiscountRow');
+            if (calc.qualifiesForDiscount) {
+                discountRow.classList.remove('hidden');
+                document.getElementById('summaryDiscountAmount').textContent = '- ' + formatRupiah(calc.discountAmount);
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            document.getElementById('summaryGrandTotal').textContent = formatRupiah(calc.grandTotal);
+            document.getElementById('summaryDpAmount').textContent = formatRupiah(calc.dpAmount);
+        }
+
+        // Toggle Slide-Over Cart Drawer
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            if (open) {
+                backdrop.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('hidden');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Demo Helper: Fill 50 Box Order to demonstrate 10% Event Discount
+        function fillSampleOrder50Box() {
+            cart = [
+                {
+                    cartItemId: 'demo-50',
+                    productId: 1,
+                    name: "Nasi Box Ayam Bakar Madu Spesial",
+                    price: 28000,
+                    qty: 50,
+                    boxEquivalent: 1,
+                    rice: "Nasi Uduk",
+                    sambal: "Sambal Bawang",
+                    note: "Acara Syukuran Kantor - Sambal dipisah",
+                    image: "assets/images/menu-01-ayam-bakar.jpg"
+                },
+                {
+                    cartItemId: 'demo-dimsum',
+                    productId: 9,
+                    name: "Dimsum Ayam Udang Mentai (Isi 16 Pcs)",
+                    price: 48000,
+                    qty: 3,
+                    boxEquivalent: 1,
+                    rice: "Tanpa Nasi (Frozen/Snack)",
+                    sambal: "Sambal Bawang",
+                    note: "",
+                    image: "assets/images/menu-09-dimsum-mentai.jpg"
+                }
+            ];
+            updateCartSummary();
+            toggleCartDrawer(true);
+            showToast("Simulasi 50 Box Aktif!", "Diskon Acara 10% otomatis diterapkan.");
+        }
+
+        // Budget & Portion Simulator
+        function updateSimulator() {
+            const prodId = parseInt(document.getElementById('simMenuSelect').value);
+            const qty = parseInt(document.getElementById('simQtyRange').value);
+            const product = products.find(p => p.id === prodId);
+            if (!product) return;
+
+            document.getElementById('simQtyLabel').textContent = qty;
+            const normalTotal = product.price * qty;
+            const hasDiscount = qty >= 50;
+            const saving = hasDiscount ? Math.round(normalTotal * 0.10) : 0;
+            const finalTotal = normalTotal - saving;
+
+            const badge = document.getElementById('simDiscountBadge');
+            if (hasDiscount) {
+                badge.className = "font-mono bg-halal-100 text-halal-700 px-2.5 py-0.5 text-[11px] font-bold";
+                badge.textContent = "DISKON ACARA 10% AKTIF";
+            } else {
+                badge.className = "font-mono bg-stone-200 text-stone-600 px-2.5 py-0.5 text-[11px] font-medium";
+                badge.textContent = `TAMBAH ${50 - qty} BOX UNTUK DISKON 10%`;
+            }
+
+            document.getElementById('simNormalTotal').textContent = formatRupiah(normalTotal);
+            document.getElementById('simSavingTotal').textContent = '- ' + formatRupiah(saving);
+            document.getElementById('simFinalTotal').textContent = formatRupiah(finalTotal);
+        }
+
+        function applySimulationToCart() {
+            const prodId = parseInt(document.getElementById('simMenuSelect').value);
+            const qty = parseInt(document.getElementById('simQtyRange').value);
+            const product = products.find(p => p.id === prodId);
+            if (!product) return;
+
+            addItemToCart(product, qty, "Nasi Uduk", "Sambal Bawang", "Pesanan dari Simulasi Acara");
+            toggleCartDrawer(true);
+        }
+
+        // Generate Formatted WhatsApp Invoice & Open Preview Modal
+        function openInvoicePreview() {
+            if (cart.length === 0) {
+                showToast("Keranjang Kosong", "Silakan pilih minimal 1 menu terlebih dahulu.");
+                return;
+            }
+
+            const custName = document.getElementById('custName').value.trim() || "Pelanggan Dapur Berkah";
+            const custPhone = document.getElementById('custPhone').value.trim() || "-";
+            const custAddress = document.getElementById('custAddress').value.trim() || "-";
+            const custDateTime = document.getElementById('custDateTime').value;
+            const custDeliveryMethod = document.getElementById('custDeliveryMethod').value;
+            const custNotes = document.getElementById('custNotes').value.trim() || "-";
+            const custPaymentMethod = document.getElementById('custPaymentMethod').value;
+
+            const formattedDate = custDateTime ? new Date(custDateTime).toLocaleString('id-ID', {
+                weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            }) + ' WIB' : 'Segera / Konfirmasi via WA';
+
+            const calc = getCartCalculation();
+            const invCode = 'DBN-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('invNumber').textContent = invCode;
+
+            let lines = [];
+            lines.push(`*NOTA PESANAN — DAPUR BERKAH NUSANTARA*`);
+            lines.push(`No. Pesanan: *${invCode}*`);
+            lines.push(`====================================`);
+            lines.push(`*RINCIAN MENU DIPESAN:*`);
+
+            cart.forEach((item, index) => {
+                lines.push(`${index + 1}. *${item.name}*`);
+                lines.push(`   • Jumlah: ${item.qty} x ${formatRupiah(item.price)} = *${formatRupiah(item.qty * item.price)}*`);
+                lines.push(`   • Opsi: ${item.rice} | ${item.sambal}`);
+                if (item.note) {
+                    lines.push(`   • Catatan Menu: _${item.note}_`);
+                }
+            });
+
+            lines.push(`------------------------------------`);
+            lines.push(`Subtotal (${calc.totalBoxEquivalent} Porsi/Box): ${formatRupiah(calc.subtotal)}`);
+            if (calc.qualifiesForDiscount) {
+                lines.push(`Diskon Acara 10% (>=50 Box): -${formatRupiah(calc.discountAmount)}`);
+            }
+            lines.push(`*TOTAL TAGIHAN: ${formatRupiah(calc.grandTotal)}*`);
+            lines.push(`Estimasi DP 50%: *${formatRupiah(calc.dpAmount)}*`);
+            lines.push(`====================================`);
+            lines.push(`*DATA PEMESAN & PENGIRIMAN:*`);
+            lines.push(`- Nama: ${custName}`);
+            lines.push(`- No. WA: ${custPhone}`);
+            lines.push(`- Waktu Acara/Kirim: ${formattedDate}`);
+            lines.push(`- Pengiriman: ${custDeliveryMethod}`);
+            lines.push(`- Alamat: ${custAddress}`);
+            lines.push(`- Catatan/Nama Aqiqah: ${custNotes}`);
+            lines.push(`- Pembayaran: ${custPaymentMethod}`);
+            lines.push(`====================================`);
+            lines.push(`Mohon konfirmasi ketersediaan jadwal & nomor rekening resmi Dapur Berkah Nusantara. Terima kasih.`);
+
+            const fullText = lines.join('\n');
+            document.getElementById('invoicePreviewText').textContent = fullText;
+
+            const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(fullText)}`;
+            document.getElementById('waDirectLink').href = waUrl;
+
+            const modal = document.getElementById('invoiceModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeInvoiceModal() {
+            const modal = document.getElementById('invoiceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function copyInvoiceText() {
+            const text = document.getElementById('invoicePreviewText').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyInvoiceBtn');
+                btn.innerHTML = `<i class="fa-solid fa-check text-halal-600"></i> <span>Nota Tersalin!</span>`;
+                setTimeout(() => {
+                    btn.innerHTML = `<i class="fa-regular fa-copy"></i> <span>Salin Nota</span>`;
+                }, 2000);
+            });
+        }
+
+        // Toast Helper
+        let toastTimer = null;
+        function showToast(title, desc) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastDesc').textContent = desc;
+            toast.classList.remove('hidden');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            initDefaultDateTime();
+            renderProducts();
+            updateCartSummary();
+            updateSimulator();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 56" fill="none">
+  <!-- Tactile Offset Shadow Box -->
+  <rect x="5" y="7" width="44" height="44" rx="12" fill="#141413"/>
+  <!-- Main Brand Mark Box -->
+  <rect x="2" y="4" width="44" height="44" rx="12" fill="#E85D2A" stroke="#141413" stroke-width="2.2"/>
+  <!-- Architectural Roof + Geometric Paw Mark -->
+  <path d="M12 24L24 13L36 24" stroke="#FFFDF8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Paw Pads -->
+  <circle cx="17.5" cy="27.5" r="2.3" fill="#FFFDF8"/>
+  <circle cx="24" cy="25" r="2.5" fill="#FFFDF8"/>
+  <circle cx="30.5" cy="27.5" r="2.3" fill="#FFFDF8"/>
+  <!-- Main Paw Cushion -->
+  <path d="M18 35.5C18 32.2 20.7 30 24 30C27.3 30 30 32.2 30 35.5C30 37.8 28.2 39.2 26.2 39.2H21.8C19.8 39.2 18 37.8 18 35.5Z" fill="#FFFDF8"/>
+  <!-- Sage Mint Badge Accent -->
+  <circle cx="40" cy="10" r="5" fill="#2A6F57" stroke="#141413" stroke-width="1.8"/>
+
+  <!-- Wordmark with generous right margin -->
+  <text x="56" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.02em" fill="#141413">PAW<tspan fill="#E85D2A">HAUS</tspan></text>
+  <text x="57" y="43" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="9" letter-spacing="0.08em" fill="#2A6F57">PET MART • GROOMING • STAY</text>
+</svg>

@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KelolaPro UMKM — Sistem Manajemen Kos-Kosan & Bengkel Servis Kendaraan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-variant-numeric: tabular-nums; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        @media print {
+            body * { visibility: hidden; }
+            #bengkelReceiptModal, #bengkelPrintable, #bengkelPrintable * { visibility: visible; }
+            #bengkelReceiptModal { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- TOP BAR WITH 2-IN-1 APP SWITCHER -->
+    <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30">
+        <div class="flex items-center gap-3 lg:gap-4 shrink-0">
+            <a href="../../index.html" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-[10px] text-indigo-400"></i>
+                <span>Katalog Portofolio</span>
+            </a>
+            <div class="h-6 w-[1px] bg-slate-700 hidden sm:block shrink-0"></div>
+            <div class="flex items-center gap-2.5 shrink-0">
+                <img src="assets/logo.svg" alt="KelolaPro UMKM Logo" class="w-9 h-9 rounded-xl shadow-md shrink-0">
+                <div class="shrink-0">
+                    <div class="flex items-center gap-2 whitespace-nowrap">
+                        <span class="font-extrabold tracking-tight text-sm lg:text-base text-white whitespace-nowrap">KelolaPro <span class="text-violet-400">UMKM</span></span>
+                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30 font-bold whitespace-nowrap shrink-0">2-in-1 App Suite</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden xl:block whitespace-nowrap">Sistem Manajemen Kos-Kosan & Bengkel Otomotif Terpadu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP APP SWITCHER (JURAGANKOS VS BENGKELPINTAR) -->
+        <div class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shrink-0">
+            <button onclick="switchMainApp('kos')" id="appSwitch-kos" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 bg-indigo-500 text-white shadow whitespace-nowrap shrink-0">
+                <img src="assets/logo-kos.svg" alt="JuraganKos" class="w-4 h-4 rounded shrink-0">
+                <span>Aplikasi A: JuraganKos (20 Kamar)</span>
+            </button>
+            <button onclick="switchMainApp('bengkel')" id="appSwitch-bengkel" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 text-slate-300 hover:text-white whitespace-nowrap shrink-0">
+                <img src="assets/logo-bengkel.svg" alt="BengkelPintar" class="w-4 h-4 rounded shrink-0">
+                <span>Aplikasi B: BengkelPintar (Plat & PKB)</span>
+            </button>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2 shrink-0">
+            <button onclick="scrollToKelolaSection('ulasan-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-camera-retro text-indigo-400 mr-1"></i>Ulasan Mitra
+            </button>
+            <button onclick="scrollToKelolaSection('faq-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-circle-question text-amber-400 mr-1"></i>FAQ
+            </button>
+            <div class="hidden 2xl:flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl text-xs whitespace-nowrap shrink-0">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span class="text-slate-300 font-semibold whitespace-nowrap">Auto-Reminder WA Aktif</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN SCROLLABLE WORKSPACE -->
+    <div id="mainScrollContainer" class="flex-1 overflow-y-auto p-4 lg:p-6 custom-scroll space-y-8">
+
+        <!-- ========================================================================================= -->
+        <!-- APLIKASI A: JURAGANKOS — SISTEM MANAJEMEN KOS-KOSAN & KONTRAKAN (20 KAMAR LANTAI 1 & 2) -->
+        <!-- ========================================================================================= -->
+        <main id="app-kos" class="max-w-7xl mx-auto space-y-5">
+
+            <!-- Financial Summary & Occupancy KPIs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Okupansi Kamar</span>
+                        <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-bed"></i></span>
+                    </div>
+                    <p id="kosKpiOccupancy" class="text-2xl font-extrabold text-slate-900 font-mono mt-2">16 / 20 Kamar</p>
+                    <p class="text-[11px] text-emerald-600 font-semibold mt-1">Tingkat Hunian: 80% (4 Kamar Kosong)</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Omset Sewa Bulan Ini</span>
+                        <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-sack-dollar"></i></span>
+                    </div>
+                    <p id="kosKpiOmset" class="text-2xl font-extrabold text-emerald-600 font-mono mt-2">Rp 23.400.000</p>
+                    <p class="text-[11px] text-slate-500 mt-1">Dari 13 kamar berstatus Lunas</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Tagihan Belum Dibayar</span>
+                        <span class="w-8 h-8 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-bell"></i></span>
+                    </div>
+                    <p id="kosKpiUnpaid" class="text-2xl font-extrabold text-rose-600 font-mono mt-2">Rp 5.400.000</p>
+                    <p id="kosKpiUnpaidCount" class="text-[11px] text-rose-600 font-semibold mt-1">3 Kamar Jatuh Tempo / Nunggak</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Komplain & Perbaikan</span>
+                        <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                    </div>
+                    <p class="text-2xl font-extrabold text-slate-900 font-mono mt-2" id="kosKpiComplaint">3 Tiket</p>
+                    <p class="text-[11px] text-amber-600 font-semibold mt-1">AC kurang dingin, keran & lampu</p>
+                </div>
+            </div>
+
+            <!-- Interactive Room Map + Maintenance Sidebar -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                
+                <!-- Denah Visual Kamar Interaktif (8 Cols) -->
+                <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
+                        <div>
+                            <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-building-user text-indigo-600"></i>
+                                <span>Denah Visual Kamar Interaktif — Kos Eksklusif Griya Melati</span>
+                            </h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Klik pada kartu kamar mana saja untuk melihat KTP penghuni, meteran token listrik, kirim tagihan WA, atau Check-in baru.</p>
+                        </div>
+                        <!-- Color Legend -->
+                        <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-200 whitespace-nowrap">
+                                <span class="w-2.5 h-2.5 rounded-full bg-sky-600"></span> Biru = Terisi & Lunas
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-200 whitespace-nowrap">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span> Merah = Nunggak / Jatuh Tempo
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 whitespace-nowrap">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Hijau = Kamar Kosong
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Room Type Photo Showcase (Lantai 1 VIP & Lantai 2 Reguler) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <img src="assets/images/kos-vip.jpg" alt="Kamar Tipe VIP AC Lantai 1" class="w-20 h-16 rounded-lg object-cover shrink-0 border border-slate-200">
+                            <div class="min-w-0">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">Lantai 1 • VIP Suite</span>
+                                <h4 class="text-xs font-extrabold text-slate-900 mt-1 truncate">Kamar 101–110 (Full Furnished + Water Heater)</h4>
+                                <p class="text-[11px] font-mono font-bold text-indigo-600 mt-0.5">Rp 1.800.000 / bln • Token Mandiri</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <img src="assets/images/kos-reguler.jpg" alt="Kamar Tipe Reguler AC Lantai 2" class="w-20 h-16 rounded-lg object-cover shrink-0 border border-slate-200">
+                            <div class="min-w-0">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-100 text-sky-700">Lantai 2 • Reguler Balkon</span>
+                                <h4 class="text-xs font-extrabold text-slate-900 mt-1 truncate">Kamar 201–210 (AC + Kamar Mandi Dalam + Balkon)</h4>
+                                <p class="text-[11px] font-mono font-bold text-sky-600 mt-0.5">Rp 1.650.000 / bln • WiFi 100 Mbps</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LANTAI 1 (10 Kamar: 101 - 110) -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-building text-indigo-600"></i> Lantai 1 — Kamar 101 s/d 110 (Tipe VIP AC + Kamar Mandi Dalam)
+                            </span>
+                            <span class="text-[11px] font-mono font-bold text-slate-500">Rp 1.800.000 / bln</span>
+                        </div>
+                        <div id="floor1Grid" class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- LANTAI 2 (10 Kamar: 201 - 210) -->
+                    <div class="pt-2">
+                        <div class="flex items-center justify-between mb-2.5">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-building text-indigo-600"></i> Lantai 2 — Kamar 201 s/d 210 (Tipe Reguler AC + Balkon)
+                            </span>
+                            <span class="text-[11px] font-mono font-bold text-slate-500">Rp 1.650.000 / bln</span>
+                        </div>
+                        <div id="floor2Grid" class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Keluhan/Komplain Perbaikan Kamar & Bulk WA (4 Cols) -->
+                <div class="lg:col-span-4 space-y-5">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-screwdriver-wrench text-amber-500"></i> Tiket Keluhan Penghuni
+                            </h3>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Maintenance</span>
+                        </div>
+                        <div id="complaintsList" class="space-y-2.5 text-xs">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 shadow-sm space-y-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                            <h4 class="text-sm font-extrabold">Broadcast Tagihan Kos Otomatis</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Kirim pesan pengingat jatuh tempo beserta nomor Virtual Account / QRIS ke seluruh kamar berstatus <strong class="text-rose-400">Merah (Nunggak)</strong> dalam 1 klik.
+                        </p>
+                        <button onclick="broadcastAllUnpaidKos()" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition shadow flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Kirim WA ke Semua Kamar Nunggak</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- ========================================================================================= -->
+        <!-- APLIKASI B: BENGKELPINTAR — RIWAYAT SERVIS PLAT NOMOR, STOK OLI & KOMISI MEKANIK          -->
+        <!-- ========================================================================================= -->
+        <main id="app-bengkel" class="hidden max-w-7xl mx-auto space-y-6">
+
+            <!-- Top Bengkel Banner & Quick Stats -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                
+                <!-- Left: Pencarian Riwayat Servis per Plat Nomor (7 Cols) -->
+                <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600">Buku Servis Digital Terpusat</span>
+                                <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                                    <i class="fa-solid fa-screwdriver-wrench text-indigo-600"></i>
+                                    <span>Pencarian Riwayat Servis per Plat Nomor</span>
+                                </h2>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 font-mono font-bold text-xs whitespace-nowrap">Database: 1.420 Kendaraan</span>
+                        </div>
+
+                        <!-- Search Bar & Quick Sample Plates -->
+                        <div class="mt-3 flex flex-col sm:flex-row gap-2">
+                            <div class="relative flex-1">
+                                <i class="fa-solid fa-car-side absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                <input id="plateSearchInput" type="text" value="B 4512 KZX" placeholder="Masukkan Plat Nomor (Contoh: B 4512 KZX)" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-mono font-extrabold text-sm uppercase focus:outline-none focus:border-indigo-600">
+                            </div>
+                            <button onclick="renderPlateHistory()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white font-bold text-xs transition shrink-0 whitespace-nowrap">
+                                <i class="fa-solid fa-magnifying-glass mr-1"></i> Cari Plat Nomor
+                            </button>
+                        </div>
+
+                        <div class="mt-2.5 flex flex-wrap items-center gap-1.5 text-xs">
+                            <span class="text-slate-400 font-semibold text-[11px]">Klik Contoh Plat Nomor:</span>
+                            <button onclick="selectSamplePlate('B 4512 KZX')" class="px-2.5 py-1 rounded-lg bg-slate-900 text-white font-mono font-bold text-[11px] hover:bg-indigo-600 transition">B 4512 KZX</button>
+                            <button onclick="selectSamplePlate('D 1890 VCA')" class="px-2.5 py-1 rounded-lg bg-slate-200 text-slate-800 font-mono font-bold text-[11px] hover:bg-indigo-600 hover:text-white transition">D 1890 VCA</button>
+                            <button onclick="selectSamplePlate('L 3321 QP')" class="px-2.5 py-1 rounded-lg bg-slate-200 text-slate-800 font-mono font-bold text-[11px] hover:bg-indigo-600 hover:text-white transition">L 3321 QP</button>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Profile & Service History Container -->
+                    <div id="vehicleHistoryContainer" class="space-y-3 pt-2 border-t border-slate-200">
+                        <!-- Populated via JS -->
+                    </div>
+
+                    <!-- Mechanic Team & Workshop Inspection Showcase -->
+                    <div class="pt-3 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                        <div class="sm:col-span-5 relative rounded-xl overflow-hidden h-28 border border-slate-200">
+                            <img src="assets/images/veh-service.jpg" alt="Bay Servis BengkelPintar" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-2.5">
+                                <span class="text-[10px] font-bold text-white"><i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i>Garansi Servis 14 Hari / 1.000 KM</span>
+                            </div>
+                        </div>
+                        <div class="sm:col-span-7 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">Tim Mekanik Bersertifikat Hari Ini</span>
+                                <span class="text-[10px] font-mono font-bold text-emerald-600">3 Pit Aktif</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2">
+                                    <img src="assets/images/mech-1.jpg" alt="Bang Hendri" class="w-8 h-8 rounded-full object-cover shrink-0">
+                                    <div class="min-w-0">
+                                        <p class="text-[11px] font-extrabold text-slate-900 truncate">Bang Hendri</p>
+                                        <p class="text-[9px] text-slate-500 truncate">Injeksi & CVT</p>
+                                    </div>
+                                </div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2">
+                                    <img src="assets/images/mech-2.jpg" alt="Mas Wahyu" class="w-8 h-8 rounded-full object-cover shrink-0">
+                                    <div class="min-w-0">
+                                        <p class="text-[11px] font-extrabold text-slate-900 truncate">Mas Wahyu</p>
+                                        <p class="text-[9px] text-slate-500 truncate">Kaki & Mesin</p>
+                                    </div>
+                                </div>
+                                <div class="p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2">
+                                    <img src="assets/images/mech-3.jpg" alt="Kang Deden" class="w-8 h-8 rounded-full object-cover shrink-0">
+                                    <div class="min-w-0">
+                                        <p class="text-[11px] font-extrabold text-slate-900 truncate">Kang Deden</p>
+                                        <p class="text-[9px] text-slate-500 truncate">Kelistrikan ECU</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Input Work Order (PKB) Baru & Komisi Mekanik (5 Cols) -->
+                <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="p-4 bg-slate-900 text-white flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Perintah Kerja Bengkel (PKB)</span>
+                                <h3 class="text-sm font-extrabold flex items-center gap-2">
+                                    <i class="fa-solid fa-clipboard-list text-amber-400"></i>
+                                    <span>Input Work Order Baru & Komisi Mekanik</span>
+                                </h3>
+                            </div>
+                            <span class="font-mono text-xs bg-slate-800 px-2.5 py-1 rounded border border-slate-700 font-bold text-emerald-400 whitespace-nowrap">Komisi 40% Jasa</span>
+                        </div>
+
+                        <form onsubmit="handleCreateWorkOrder(event)" class="p-5 space-y-3.5 text-xs">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="font-bold text-slate-700 block mb-1">Plat Nomor Kendaraan</label>
+                                    <input id="woPlate" required type="text" value="B 4512 KZX" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl font-mono font-extrabold uppercase">
+                                </div>
+                                <div>
+                                    <label class="font-bold text-slate-700 block mb-1">Kilometer Saat Ini (KM)</label>
+                                    <input id="woKm" required type="number" value="48500" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl font-mono font-bold">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="font-bold text-slate-700 block mb-1">Pilih Mekanik Bertugas</label>
+                                <select id="woMechanic" onchange="calculateWoTotals()" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800">
+                                    <option value="Bang Hendri (Kepala Mekanik)">Bang Hendri (Kepala Mekanik — Spesialis Injeksi & CVT)</option>
+                                    <option value="Mas Wahyu (Mekanik Senior)">Mas Wahyu (Mekanik Senior — Tune Up & Kaki-kaki)</option>
+                                    <option value="Kang Deden (Spesialis Kelistrikan)">Kang Deden (Spesialis Kelistrikan & ECU)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="font-bold text-slate-700 block mb-1">Paket Jasa Servis (Komisi Mekanik 40%)</label>
+                                <select id="woService" onchange="calculateWoTotals()" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl font-semibold">
+                                    <option value="Servis Lengkap Injeksi + Bongkar CVT|95000">Servis Lengkap Injeksi + Bongkar CVT — Rp 95.000</option>
+                                    <option value="Tune Up Reguler + Cek Rem|65000">Tune Up Reguler + Cek Rem — Rp 65.000</option>
+                                    <option value="Turun Mesin / Overhaul Ringan|350000">Turun Mesin / Overhaul Ringan — Rp 350.000</option>
+                                    <option value="Ganti Kampas Rem & Kuras Air Radiator|50000">Ganti Kampas Rem & Kuras Air Radiator — Rp 50.000</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="font-bold text-slate-700 block mb-1">Pilih Oli & Sparepart yang Diganti</label>
+                                <select id="woPart" onchange="calculateWoTotals()" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl font-semibold">
+                                    <option value="Oli Shell Advance AX7 Matic 1L + Oli Gardan|88000">Oli Shell Advance AX7 Matic 1L + Oli Gardan — Rp 88.000</option>
+                                    <option value="Oli Motul Scooter Expert LE + Kampas Rem Ori|165000">Oli Motul Scooter Expert LE + Kampas Rem Ori — Rp 165.000</option>
+                                    <option value="V-Belt Kit Original + Roller Set|195000">V-Belt Kit Original + Roller Set — Rp 195.000</option>
+                                    <option value="Aki Kering GS Astra MF GTZ5S|245000">Aki Kering GS Astra MF GTZ5S — Rp 245.000</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="font-bold text-slate-700 block mb-1">Keluhan / Catatan Mekanik</label>
+                                <input id="woComplaint" type="text" value="Tarikan awal gredek di RPM bawah, sekalian ganti oli rutin" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl">
+                            </div>
+
+                            <!-- Auto-Calculated Breakdown Box -->
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Biaya Jasa Servis:</span>
+                                    <span id="woServiceCostText" class="font-mono font-bold text-slate-900">Rp 95.000</span>
+                                </div>
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Harga Sparepart / Oli:</span>
+                                    <span id="woPartCostText" class="font-mono font-bold text-slate-900">Rp 88.000</span>
+                                </div>
+                                <div class="flex justify-between text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+                                    <span class="font-bold"><i class="fa-solid fa-user-gear mr-1"></i> Bagi Hasil Komisi Mekanik (40% Jasa):</span>
+                                    <span id="woCommissionText" class="font-mono font-extrabold">Rp 38.000</span>
+                                </div>
+                                <div class="flex justify-between items-baseline pt-1.5 border-t border-slate-200 text-sm font-extrabold">
+                                    <span>TOTAL NOTA BENGKEL:</span>
+                                    <span id="woTotalText" class="font-mono text-base text-indigo-600">Rp 183.000</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-print"></i>
+                                <span>Simpan Riwayat Plat & Cetak Struk Bengkel</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- ========================================================================================= -->
+        <!-- PROMOTIONAL MEDIA: GALERI ULASAN MITRA & PENGHUNI + INTERACTIVE FAQ ACCORDION             -->
+        <!-- ========================================================================================= -->
+        <section id="ulasan-section" class="max-w-7xl mx-auto pt-4 border-t border-slate-200/80 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-[11px] font-extrabold uppercase tracking-wider">
+                        <i class="fa-solid fa-camera-retro"></i> Bukti Nyata Operasional UMKM
+                    </span>
+                    <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Galeri Ulasan Penghuni Kos & Pelanggan Bengkel</h2>
+                    <p class="text-xs text-slate-500 mt-1">Dokumentasi langsung dari pemilik properti kos eksklusif dan pelanggan bengkel rekanan yang menggunakan sistem KelolaPro.</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-sm shrink-0">
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs justify-end">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-[11px] font-bold text-slate-600 mt-0.5"><span class="font-mono font-extrabold text-slate-900">4.9/5.0</span> dari 640+ Ulasan Terverifikasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Customer Photo Review Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/kos-vip.jpg" alt="Kamar VIP Griya Melati" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-bed text-indigo-400 mr-1"></i>JuraganKos • Kamar 101 VIP
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Kamarnya persis foto, bersih banget dan tiap bulan selalu dapat pengingat tagihan WA otomatis lengkap dengan rincian kWh token listrik."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-1.jpg" alt="Dimas Anggara" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Dimas Anggara</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kos Lantai 1 • 9 Bulan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/kos-reguler.jpg" alt="Kamar Reguler Balkon Lantai 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-building text-sky-400 mr-1"></i>JuraganKos • Lantai 2 Balkon
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Waktu AC kamar kurang dingin, lapor lewat tiket keluhan langsung dijadwalkan teknisi besok paginya. Manajemen kos paling rapi!"</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-2.jpg" alt="Shenina Cinnamon" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Shenina Cinnamon</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 108 • Mahasiswi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/veh-service.jpg" alt="Servis Berkala BengkelPintar" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-wrench text-amber-400 mr-1"></i>BengkelPintar • B 4512 KZX
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Nggak takut lupa ganti oli lagi. Begitu datang sebut plat nomor, riwayat kilometer dan sparepart yang pernah diganti langsung muncul lengkap."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-3.jpg" alt="Bpk. Hendra Wijaya" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Bpk. Hendra Wijaya</p>
+                            <p class="text-[10px] text-slate-500 truncate">Pemilik Vario 160 • Pelanggan Tetap</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/mech-1.jpg" alt="Mekanik Kepala BengkelPintar" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-user-gear text-emerald-400 mr-1"></i>Komisi Mekanik Transparan
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">4.9</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Sebagai pemilik bengkel, hitung bagi hasil komisi 40% jasa mekanik sekarang otomatis per struk PKB. Nggak ada lagi selisih hitung akhir pekan."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-4.jpg" alt="H. Ridwan Pratama" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">H. Ridwan Pratama</p>
+                            <p class="text-[10px] text-slate-500 truncate">Owner Bengkel & Kontrakan 20 Pintu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE FAQ ACCORDION SECTION -->
+        <section id="faq-section" class="max-w-4xl mx-auto pt-4 pb-8 space-y-5">
+            <div id="faq"></div>
+            <div class="text-center space-y-1.5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-extrabold uppercase tracking-wider">
+                    <i class="fa-solid fa-circle-question"></i> Pusat Bantuan & Informasi
+                </span>
+                <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900">Pertanyaan yang Sering Ditanyakan (FAQ)</h2>
+                <p class="text-xs text-slate-500">Jawaban lengkap seputar sistem manajemen kos-kosan JuraganKos dan aplikasi servis BengkelPintar.</p>
+            </div>
+
+            <div class="space-y-2.5">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleKelolaFaq(0)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900">1. Bagaimana cara kerja pengingat tagihan WhatsApp otomatis untuk penghuni kos yang jatuh tempo?</span>
+                        <i id="faq-icon-0" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200 rotate-180"></i>
+                    </button>
+                    <div id="faq-body-0" class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Sistem JuraganKos menandai kamar yang melewati tanggal jatuh tempo dengan warna <strong>Merah (Nunggak)</strong> pada denah lantai. Anda dapat menekan tombol <strong>Broadcast WA ke Semua Kamar Nunggak</strong> atau mengirim pengingat per kamar berisi nominal sewa, pemakaian kWh listrik, dan nomor pembayaran QRIS/Virtual Account.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleKelolaFaq(1)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900">2. Apakah riwayat servis kendaraan di BengkelPintar tersimpan permanen berdasarkan plat nomor?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-body-1" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Ya. Setiap kali kasir atau kepala mekanik menerbitkan <strong>Perintah Kerja Bengkel (PKB)</strong>, data kilometer odometer, keluhan, jenis oli/sparepart yang diganti, serta nama mekanik langsung tercatat di bawah nomor polisi kendaraan tersebut dan otomatis menghitung target kilometer ganti oli berikutnya (+2.000 KM).
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleKelolaFaq(2)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900">3. Bagaimana perhitungan bagi hasil komisi mekanik dihitung pada setiap nota servis?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-body-2" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Sistem memisahkan komponen <strong>Biaya Jasa Servis</strong> dan <strong>Harga Sparepart/Oli</strong>. Persentase komisi mekanik (default 40% dari biaya jasa, dapat disesuaikan pemilik bengkel) dihitung otomatis saat memilih paket servis tanpa memotong margin penjualan suku cadang.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleKelolaFaq(3)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900">4. Bisakah penghuni kos melaporkan kerusakan fasilitas kamar seperti AC atau keran bocor?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-body-3" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Bisa. Setiap laporan masuk ke panel <strong>Tiket Keluhan Penghuni (Maintenance)</strong> lengkap dengan nomor kamar, nama penghuni, dan deskripsi kerusakan. Penjaga kos atau teknisi dapat menekan tombol <strong>Selesai</strong> setelah perbaikan diverifikasi.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button onclick="toggleKelolaFaq(4)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-slate-50 transition">
+                        <span class="text-xs sm:text-sm font-extrabold text-slate-900">5. Apakah struk PKB Bengkel mendukung printer thermal Bluetooth 58mm / 80mm?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-body-4" class="hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Tentu. Saat Anda menekan tombol <strong>Simpan Riwayat Plat & Cetak Struk Bengkel</strong>, sistem menyiapkan format struk khusus thermal printer yang memuat rincian jasa, sparepart, mekanik bertugas, serta pengingat jadwal ganti oli berikutnya.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer id="kontak-footer" class="max-w-7xl mx-auto bg-slate-900 text-slate-300 rounded-3xl border border-slate-800 overflow-hidden shadow-lg">
+            <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+            <div class="border-b border-slate-800 bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 p-6 lg:p-8">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-indigo-400">
+                        <i class="fa-solid fa-bolt"></i> Konfirmasi &amp; Pengingat WA Instan
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-emerald-400">
+                        <i class="fa-solid fa-shield-halved"></i> Pembayaran Aman QRIS &amp; VA
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-amber-400">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Sistem Real-Time 24 Jam
+                    </span>
+                </div>
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                    <div class="max-w-2xl">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                            Otomatisasi Tagihan Kamar Kos &amp; Buku Servis Bengkel Anda Sekarang
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1.5 leading-relaxed">
+                            Satu platform terpadu untuk memantau okupansi 20 pintu kamar kos sekaligus mengelola riwayat servis plat nomor, stok oli, dan bagi hasil komisi mekanik secara transparan.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                        <button type="button" onclick="broadcastAllUnpaidKos()" class="px-4 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-extrabold text-xs transition shadow-lg shadow-indigo-500/20 inline-flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Uji Broadcast Tagihan WA</span>
+                        </button>
+                        <a href="https://wa.me/6281188776655?text=Halo%20Tim%20KelolaPro%20UMKM%2C%20saya%20ingin%20konsultasi%20sistem%20Kos%20%26%20Bengkel" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition shadow-lg shadow-emerald-600/20 inline-flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Hubungi Kami via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 4-Column Responsive Grid -->
+            <div class="p-6 lg:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Kolom 1: Brand & Sosial Media -->
+                    <div class="space-y-3.5">
+                        <div class="flex items-center gap-3">
+                            <img src="assets/logo.svg" alt="KelolaPro UMKM Logo" class="w-11 h-11 rounded-xl shadow-md shrink-0">
+                            <div>
+                                <div class="font-extrabold text-base text-white leading-tight">KelolaPro <span class="text-violet-400">UMKM</span></div>
+                                <div class="font-mono text-[10px] uppercase tracking-wider text-amber-400 font-bold">2-IN-1 KOS &amp; BENGKEL SUITE</div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Sistem manajemen properti kos-kosan (JuraganKos) dan aplikasi kasir servis bengkel kendaraan (BengkelPintar) dengan pengingat WhatsApp otomatis.
+                        </p>
+                        <div class="flex items-center gap-2 pt-1">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram KelolaPro UMKM" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-indigo-400 hover:bg-indigo-500 hover:text-white text-slate-300 flex items-center justify-center transition">
+                                <i class="fa-brands fa-instagram text-xs"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok KelolaPro UMKM" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-indigo-400 hover:bg-indigo-500 hover:text-white text-slate-300 flex items-center justify-center transition">
+                                <i class="fa-brands fa-tiktok text-xs"></i>
+                            </a>
+                            <a href="https://wa.me/6281188776655" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp KelolaPro UMKM" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube KelolaPro UMKM" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-amber-400 hover:bg-amber-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                <i class="fa-brands fa-youtube text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kolom 2: Navigasi Cepat -->
+                    <nav aria-label="Navigasi Cepat" class="space-y-2.5">
+                        <h4 class="font-mono text-[11px] uppercase tracking-wider text-indigo-400 font-bold">Navigasi Cepat</h4>
+                        <ul class="space-y-2 text-xs">
+                            <li><a href="#app-kos" onclick="switchMainApp('kos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> Beranda &amp; Denah Kos</a></li>
+                            <li><a href="#app-bengkel" onclick="switchMainApp('bengkel')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> Layanan / Modul Bengkel</a></li>
+                            <li><a href="#floor1Grid" onclick="switchMainApp('kos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> Jadwal Tagihan &amp; Harga Sewa</a></li>
+                            <li><a href="#plateSearchInput" onclick="switchMainApp('bengkel')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> Cara Penggunaan &amp; Cek Plat</a></li>
+                            <li><a href="#ulasan-section" onclick="scrollToKelolaSection('ulasan-section')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> Ulasan &amp; Foto Mitra</a></li>
+                            <li><a href="#faq" onclick="scrollToKelolaSection('faq-section')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-indigo-400"></i> FAQ &amp; Kontak Bantuan</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Kolom 3: Layanan dan Modul -->
+                    <nav aria-label="Layanan dan Modul" class="space-y-2.5">
+                        <h4 class="font-mono text-[11px] uppercase tracking-wider text-amber-400 font-bold">Layanan &amp; Modul</h4>
+                        <ul class="space-y-2 text-xs">
+                            <li><a href="#app-kos" onclick="switchMainApp('kos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-building-user text-[10px] text-indigo-400 w-4"></i> Denah Interaktif 20 Kamar Kos</a></li>
+                            <li><a href="#app-kos" onclick="switchMainApp('kos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-bolt text-[10px] text-sky-400 w-4"></i> Monitoring Token kWh &amp; Komplain</a></li>
+                            <li><a href="#app-bengkel" onclick="switchMainApp('bengkel')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-car-side text-[10px] text-amber-400 w-4"></i> Riwayat Servis per Plat Nomor</a></li>
+                            <li><a href="#app-bengkel" onclick="switchMainApp('bengkel')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-file-invoice text-[10px] text-emerald-400 w-4"></i> Work Order PKB &amp; Struk 58mm</a></li>
+                            <li><a href="#app-bengkel" onclick="switchMainApp('bengkel')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-user-gear text-[10px] text-violet-400 w-4"></i> Kalkulasi Komisi Mekanik 40%</a></li>
+                            <li class="pt-1">
+                                <a href="https://wa.me/6281188776655?text=Halo%20KelolaPro%2C%20saya%20ingin%20info%20Lisensi%20Multi-Properti%20Kos%20%26%20Cabang%20Bengkel" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-950/90 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900 hover:text-white text-[11px] font-bold transition">
+                                    <i class="fa-solid fa-crown text-amber-400"></i>
+                                    <span>Paket Juragan Multi-Properti &amp; Bengkel</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Kolom 4: Kontak & Jam Operasional -->
+                    <div class="space-y-2.5">
+                        <h4 class="font-mono text-[11px] uppercase tracking-wider text-indigo-400 font-bold">Kontak &amp; Jam Operasional</h4>
+                        <div class="space-y-2.5 text-xs text-slate-400">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-location-dot text-[11px]"></i>
+                                </span>
+                                <div>
+                                    <p class="text-slate-200 font-semibold leading-snug">Jl. Raya Otomotif &amp; Griya Melati No. 45, Buahbatu, Kota Bandung 40286</p>
+                                    <a href="https://maps.google.com/?q=Buahbatu+Kota+Bandung" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-amber-400 hover:underline font-semibold text-[11px] mt-0.5">
+                                        <span>Buka di Google Maps</span>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-emerald-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-brands fa-whatsapp text-xs"></i>
+                                </span>
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block">WhatsApp Admin &amp; Teknisi</span>
+                                    <a href="https://wa.me/6281188776655" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-slate-200 hover:text-emerald-400 transition tabular-nums">+62 811-8877-6655</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-indigo-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-envelope text-[11px]"></i>
+                                </span>
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block">Email Resmi</span>
+                                    <a href="mailto:halo@kelolapro.id" class="font-mono text-slate-200 hover:text-indigo-400 transition">halo@kelolapro.id</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-amber-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-clock text-[11px]"></i>
+                                </span>
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block">Jam Operasional Kantor &amp; Pit</span>
+                                    <span class="font-mono font-semibold text-slate-200">Senin – Minggu: 08:00 – 21:00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Bottom Bar -->
+            <div class="border-t border-slate-800 bg-slate-950/80 px-6 lg:px-8 py-4 flex flex-col xl:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
+                <div class="flex flex-wrap items-center justify-center xl:justify-start gap-1.5">
+                    <span class="text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-200 whitespace-nowrap">QRIS</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BCA</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BRI</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">Mandiri</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">GoPay</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">OVO</span>
+                    <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">DANA</span>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
+                    <p>© 2026 KelolaPro UMKM. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-3">
+                        <!-- TODO: Tambahkan halaman Syarat & Ketentuan -->
+                        <a href="#" class="hover:text-white transition whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Tambahkan halaman Kebijakan Privasi -->
+                        <a href="#" class="hover:text-white transition whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-amber-400 transition whitespace-nowrap">Kebijakan Pembatalan / Garansi</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ==================== MODAL A: DETAIL KAMAR KOS & PENGHUNI ==================== -->
+    <div id="kosRoomModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
+            <div class="px-5 py-4 bg-slate-900 text-white flex items-center justify-between">
+                <div>
+                    <span id="mdlKosFloor" class="text-[10px] uppercase tracking-wider font-bold text-indigo-300">Lantai 1 • VIP AC</span>
+                    <h3 id="mdlKosTitle" class="text-base font-extrabold">Detail Kamar 101</h3>
+                </div>
+                <button onclick="closeKosModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="mdlKosBody" class="p-5 space-y-4 text-xs">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL B: STRUK PKB BENGKEL ==================== -->
+    <div id="bengkelReceiptModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden border border-slate-200">
+            <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between no-print">
+                <span class="text-xs font-bold"><i class="fa-solid fa-wrench text-amber-400 mr-1.5"></i> Struk Servis & Kartu Ganti Oli</span>
+                <button onclick="closeBengkelModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-5 bg-slate-100 flex justify-center">
+                <div id="bengkelPrintable" class="w-full bg-white p-4 rounded-xl border border-slate-300 font-mono text-[11px] space-y-2 shadow-sm">
+                    <div class="text-center border-b border-dashed border-slate-400 pb-2">
+                        <p class="font-extrabold text-sm">BENGKELPINTAR MOTOR & MOBIL</p>
+                        <p class="text-[10px] text-slate-500">Jl. Raya Otomotif No. 45 • WA: 0811-8877-6655</p>
+                    </div>
+                    <div class="space-y-0.5 text-[10px] border-b border-dashed border-slate-400 pb-2">
+                        <div class="flex justify-between"><span>NO PKB:</span><span id="pkbNo" class="font-bold">PKB-2026-091</span></div>
+                        <div class="flex justify-between"><span>PLAT NOMOR:</span><span id="pkbPlate" class="font-extrabold text-indigo-700">B 4512 KZX</span></div>
+                        <div class="flex justify-between"><span>KILOMETER:</span><span id="pkbKm">48.500 KM</span></div>
+                        <div class="flex justify-between"><span>MEKANIK:</span><span id="pkbMechanic">Bang Hendri</span></div>
+                    </div>
+                    <div class="space-y-1 border-b border-dashed border-slate-400 pb-2 text-[10px]">
+                        <div class="flex justify-between"><span id="pkbServiceName">Jasa Servis</span><span id="pkbServicePrice" class="font-bold">Rp 95.000</span></div>
+                        <div class="flex justify-between"><span id="pkbPartName">Oli & Sparepart</span><span id="pkbPartPrice" class="font-bold">Rp 88.000</span></div>
+                        <div class="flex justify-between font-extrabold text-xs pt-1 border-t border-slate-200"><span>TOTAL BAYAR</span><span id="pkbTotal">Rp 183.000</span></div>
+                    </div>
+                    <div class="p-2 rounded bg-amber-50 border border-amber-200 text-[10px] text-center">
+                        <p class="font-extrabold text-amber-900"><i class="fa-solid fa-bell text-amber-600 mr-1"></i>JADWAL GANTI OLI BERIKUTNYA:</p>
+                        <p id="pkbNextOil" class="font-bold text-amber-800">50.500 KM / 12 Des 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3.5 bg-white border-t border-slate-200 flex gap-2 no-print">
+                <button onclick="window.print()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs">
+                    <i class="fa-solid fa-print mr-1"></i> Cetak Struk PKB
+                </button>
+                <button onclick="closeBengkelModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="kelolaToast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-indigo-500/40 flex items-center gap-3 text-xs font-bold opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="kelolaToastMsg">Berhasil!</span>
+    </div>
+
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'KelolaPro UMKM',
+            tagline: '2-IN-1 KOS & BENGKEL SUITE',
+            address: 'Jl. Raya Otomotif & Griya Melati No. 45, Buahbatu, Kota Bandung 40286',
+            mapsUrl: 'https://maps.google.com/?q=Buahbatu+Kota+Bandung',
+            whatsappNumber: '6281188776655',
+            whatsappDisplay: '+62 811-8877-6655',
+            email: 'halo@kelolapro.id',
+            operationalHours: 'Senin – Minggu: 08:00 – 21:00 WIB',
+            socials: {
+                instagram: 'https://instagram.com',
+                tiktok: 'https://tiktok.com',
+                whatsapp: 'https://wa.me/6281188776655',
+                youtube: 'https://youtube.com'
+            }
+        };
+
+        function formatRp(n) {
+            return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+        }
+
+        function showKelolaToast(msg) {
+            const box = document.getElementById('kelolaToast');
+            document.getElementById('kelolaToastMsg').textContent = msg;
+            box.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => box.classList.add('opacity-0', 'pointer-events-none'), 2600);
+        }
+
+        function scrollToKelolaSection(sectionId) {
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function toggleKelolaFaq(idx) {
+            const body = document.getElementById(`faq-body-${idx}`);
+            const icon = document.getElementById(`faq-icon-${idx}`);
+            if (!body) return;
+            const isHidden = body.classList.contains('hidden');
+            if (isHidden) {
+                body.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                body.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Switch between JuraganKos and BengkelPintar
+        function switchMainApp(app) {
+            const kosMain = document.getElementById('app-kos');
+            const bengkelMain = document.getElementById('app-bengkel');
+            const btnKos = document.getElementById('appSwitch-kos');
+            const btnBengkel = document.getElementById('appSwitch-bengkel');
+
+            if (app === 'kos') {
+                kosMain.classList.remove('hidden');
+                bengkelMain.classList.add('hidden');
+                btnKos.className = 'px-4 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 bg-indigo-500 text-white shadow';
+                btnBengkel.className = 'px-4 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 text-slate-300 hover:text-white';
+            } else {
+                kosMain.classList.add('hidden');
+                bengkelMain.classList.remove('hidden');
+                btnBengkel.className = 'px-4 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 bg-amber-500 text-slate-950 shadow';
+                btnKos.className = 'px-4 py-1.5 rounded-lg text-xs font-extrabold transition flex items-center gap-2 text-slate-300 hover:text-white';
+                renderPlateHistory();
+                calculateWoTotals();
+            }
+        }
+
+        // ============================================================================
+        // DATA & LOGIC FOR APLIKASI A: JURAGANKOS (20 KAMAR)
+        // ============================================================================
+        const kosRooms = [
+            // Floor 1 (101 - 110)
+            { number: '101', floor: 1, status: 'paid', tenant: 'Dimas Anggara', wa: '0812-3456-7801', checkIn: '10 Jan 2026', rate: 1800000, kwh: '342 kWh' },
+            { number: '102', floor: 1, status: 'paid', tenant: 'Putri Marino', wa: '0812-3456-7802', checkIn: '05 Feb 2026', rate: 1800000, kwh: '218 kWh' },
+            { number: '103', floor: 1, status: 'overdue', tenant: 'Rizky Nazar', wa: '0812-3456-7803', checkIn: '12 Mar 2026', rate: 1800000, kwh: '410 kWh' },
+            { number: '104', floor: 1, status: 'paid', tenant: 'Anya Geraldine', wa: '0812-3456-7804', checkIn: '01 Apr 2026', rate: 1800000, kwh: '295 kWh' },
+            { number: '105', floor: 1, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1800000, kwh: '0 kWh' },
+            { number: '106', floor: 1, status: 'paid', tenant: 'Iqbaal Ramadhan', wa: '0812-3456-7806', checkIn: '18 Jan 2026', rate: 1800000, kwh: '310 kWh' },
+            { number: '107', floor: 1, status: 'overdue', tenant: 'Jefri Nichol', wa: '0812-3456-7807', checkIn: '20 Mei 2026', rate: 1800000, kwh: '512 kWh' },
+            { number: '108', floor: 1, status: 'paid', tenant: 'Shenina Cinnamon', wa: '0812-3456-7808', checkIn: '14 Feb 2026', rate: 1800000, kwh: '190 kWh' },
+            { number: '109', floor: 1, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1800000, kwh: '0 kWh' },
+            { number: '110', floor: 1, status: 'paid', tenant: 'Angga Yunanda', wa: '0812-3456-7810', checkIn: '03 Jun 2026', rate: 1800000, kwh: '275 kWh' },
+            // Floor 2 (201 - 210)
+            { number: '201', floor: 2, status: 'paid', tenant: 'Prilly Latuconsina', wa: '0813-8899-2201', checkIn: '09 Jan 2026', rate: 1650000, kwh: '185 kWh' },
+            { number: '202', floor: 2, status: 'paid', tenant: 'Bryan Domani', wa: '0813-8899-2202', checkIn: '11 Mar 2026', rate: 1650000, kwh: '260 kWh' },
+            { number: '203', floor: 2, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1650000, kwh: '0 kWh' },
+            { number: '204', floor: 2, status: 'paid', tenant: 'Caitlin Halderman', wa: '0813-8899-2204', checkIn: '22 Apr 2026', rate: 1650000, kwh: '230 kWh' },
+            { number: '205', floor: 2, status: 'overdue', tenant: 'Abidzar Al-Ghifari', wa: '0813-8899-2205', checkIn: '02 Feb 2026', rate: 1650000, kwh: '490 kWh' },
+            { number: '206', floor: 2, status: 'paid', tenant: 'Syifa Hadju', wa: '0813-8899-2206', checkIn: '19 Mei 2026', rate: 1650000, kwh: '205 kWh' },
+            { number: '207', floor: 2, status: 'paid', tenant: 'Refal Hady', wa: '0813-8899-2207', checkIn: '01 Jul 2026', rate: 1650000, kwh: '312 kWh' },
+            { number: '208', floor: 2, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1650000, kwh: '0 kWh' },
+            { number: '209', floor: 2, status: 'paid', tenant: 'Febby Rastanty', wa: '0813-8899-2209', checkIn: '15 Jun 2026', rate: 1650000, kwh: '198 kWh' },
+            { number: '210', floor: 2, status: 'paid', tenant: 'Dikta Wicaksono', wa: '0813-8899-2210', checkIn: '25 Jan 2026', rate: 1650000, kwh: '280 kWh' }
+        ];
+
+        const kosComplaints = [
+            { id: 1, room: '103', tenant: 'Rizky Nazar', issue: 'AC kurang dingin, perlu cuci evaporator', status: 'Proses Teknisi' },
+            { id: 2, room: '205', tenant: 'Abidzar', issue: 'Keran wastafel kamar mandi menetes', status: 'Menunggu Sparepart' },
+            { id: 3, room: '108', tenant: 'Shenina', issue: 'Lampu balkon luar minta diganti LED baru', status: 'Baru Masuk' }
+        ];
+
+        function renderKosFloorMap() {
+            const renderRoomCard = (r) => {
+                let cardStyle = '';
+                let badgeText = '';
+                if (r.status === 'paid') {
+                    cardStyle = 'bg-sky-50 hover:bg-sky-100/80 border-sky-300 text-sky-950';
+                    badgeText = '<span class="px-1.5 py-0.5 rounded bg-sky-600 text-white text-[9px] font-extrabold">LUNAS</span>';
+                } else if (r.status === 'overdue') {
+                    cardStyle = 'bg-rose-50 hover:bg-rose-100/80 border-rose-300 text-rose-950';
+                    badgeText = '<span class="px-1.5 py-0.5 rounded bg-rose-600 text-white text-[9px] font-extrabold animate-pulse">NUNGGAK</span>';
+                } else {
+                    cardStyle = 'bg-emerald-50 hover:bg-emerald-100/80 border-emerald-300 text-emerald-950';
+                    badgeText = '<span class="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-extrabold">KOSONG</span>';
+                }
+
+                return `
+                <div onclick="openKosRoomModal('${r.number}')" class="p-3 rounded-xl border-2 ${cardStyle} cursor-pointer transition shadow-sm hover:shadow active:scale-95 flex flex-col justify-between min-h-[96px]">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono font-extrabold text-sm">KMR ${r.number}</span>
+                        ${badgeText}
+                    </div>
+                    <div class="mt-2">
+                        <p class="text-xs font-extrabold truncate">${r.status === 'empty' ? '+ Klik Check-In' : r.tenant}</p>
+                        <p class="text-[10px] opacity-75 font-mono">${formatRp(r.rate)}</p>
+                    </div>
+                </div>`;
+            };
+
+            document.getElementById('floor1Grid').innerHTML = kosRooms.filter(r => r.floor === 1).map(renderRoomCard).join('');
+            document.getElementById('floor2Grid').innerHTML = kosRooms.filter(r => r.floor === 2).map(renderRoomCard).join('');
+
+            // Update KPIs
+            const occupied = kosRooms.filter(r => r.status !== 'empty').length;
+            const paidRooms = kosRooms.filter(r => r.status === 'paid');
+            const overdueRooms = kosRooms.filter(r => r.status === 'overdue');
+            const omset = paidRooms.reduce((sum, r) => sum + r.rate, 0);
+            const unpaid = overdueRooms.reduce((sum, r) => sum + r.rate, 0);
+
+            document.getElementById('kosKpiOccupancy').textContent = `${occupied} / 20 Kamar`;
+            document.getElementById('kosKpiOmset').textContent = formatRp(omset);
+            document.getElementById('kosKpiUnpaid').textContent = formatRp(unpaid);
+            document.getElementById('kosKpiUnpaidCount').textContent = `${overdueRooms.length} Kamar Jatuh Tempo / Nunggak`;
+        }
+
+        function renderComplaints() {
+            const el = document.getElementById('complaintsList');
+            document.getElementById('kosKpiComplaint').textContent = `${kosComplaints.length} Tiket`;
+            if (kosComplaints.length === 0) {
+                el.innerHTML = `<p class="text-center text-slate-400 py-4">Semua komplain kamar telah diselesaikan! 🎉</p>`;
+                return;
+            }
+            el.innerHTML = kosComplaints.map((c, i) => `
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-2">
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-mono font-bold text-[10px]">Kamar ${c.room}</span>
+                            <span class="font-bold text-slate-800">${c.tenant}</span>
+                        </div>
+                        <p class="text-[11px] text-slate-600 mt-1">${c.issue}</p>
+                    </div>
+                    <button onclick="resolveComplaint(${i})" class="px-2.5 py-1 rounded-lg bg-emerald-100 hover:bg-emerald-600 text-emerald-800 hover:text-white font-bold text-[10px] shrink-0 transition">
+                        ✓ Selesai
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function resolveComplaint(idx) {
+            const c = kosComplaints[idx];
+            kosComplaints.splice(idx, 1);
+            renderComplaints();
+            showKelolaToast(`Komplain Kamar ${c.room} ditandai selesai!`);
+        }
+
+        function openKosRoomModal(roomNo) {
+            const r = kosRooms.find(rm => rm.number === roomNo);
+            if (!r) return;
+
+            document.getElementById('mdlKosFloor').textContent = `Lantai ${r.floor} • Tarif ${formatRp(r.rate)}/bln`;
+            document.getElementById('mdlKosTitle').textContent = `Kamar Nomor ${r.number}`;
+
+            const body = document.getElementById('mdlKosBody');
+            if (r.status === 'empty') {
+                body.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                        <p class="font-extrabold">✨ Kamar Tersedia (Siap Huni)</p>
+                        <p class="text-[11px] mt-0.5">Fasilitas: AC, Springbed Queen, WiFi 100Mbps, Kamar Mandi Dalam.</p>
+                    </div>
+                    <form onsubmit="checkInNewTenant(event, '${r.number}')" class="space-y-3">
+                        <div>
+                            <label class="font-bold text-slate-700 block mb-1">Nama Penghuni Baru</label>
+                            <input id="newTenantName" required type="text" placeholder="Contoh: Mas Fajar Sadboy" value="Bpk. Vino G. Bastian" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-semibold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-slate-700 block mb-1">Nomor WhatsApp</label>
+                            <input id="newTenantWa" required type="text" value="0812-7788-9900" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-mono">
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow">
+                            + Check-in Penghuni Baru & Tandai Lunas
+                        </button>
+                    </form>
+                `;
+            } else {
+                const isOverdue = r.status === 'overdue';
+                body.innerHTML = `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block">Nama Penghuni Terdaftar</span>
+                            <p class="text-sm font-extrabold text-slate-900">${r.tenant}</p>
+                            <p class="text-[11px] font-mono text-slate-600 mt-0.5"><i class="fa-brands fa-whatsapp text-emerald-600"></i> ${r.wa}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold text-[10px]">
+                            <i class="fa-solid fa-id-card mr-1"></i> e-KTP Terverifikasi
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-[10px] text-slate-400 block">Tgl Masuk</span>
+                            <span class="font-bold text-slate-800">${r.checkIn}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-[10px] text-slate-400 block">Tarif / Bln</span>
+                            <span class="font-mono font-bold text-slate-800">${formatRp(r.rate)}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-[10px] text-slate-400 block">Meteran Listrik</span>
+                            <span class="font-mono font-bold text-indigo-700">${r.kwh}</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2">
+                        <button onclick="sendWaReminderKos('${r.number}')" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>📲 Kirim Pengingat Tagihan WA Otomatis</span>
+                        </button>
+                        ${isOverdue ? `
+                        <button onclick="markRoomPaid('${r.number}')" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs">
+                            ✅ Tandai Sudah Bayar (Lunas Bulan Ini)
+                        </button>` : ''}
+                        <button onclick="checkOutRoom('${r.number}')" class="w-full py-2 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-700 font-bold text-xs">
+                            Kosongkan Kamar (Check-out)
+                        </button>
+                    </div>
+                `;
+            }
+
+            const modal = document.getElementById('kosRoomModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeKosModal() {
+            const modal = document.getElementById('kosRoomModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function checkInNewTenant(e, roomNo) {
+            e.preventDefault();
+            const r = kosRooms.find(rm => rm.number === roomNo);
+            if (!r) return;
+            r.tenant = document.getElementById('newTenantName').value;
+            r.wa = document.getElementById('newTenantWa').value;
+            r.checkIn = '12 Okt 2026';
+            r.status = 'paid';
+            r.kwh = '120 kWh';
+            closeKosModal();
+            renderKosFloorMap();
+            showKelolaToast(`Kamar ${roomNo} berhasil Check-In a.n ${r.tenant}!`);
+        }
+
+        function markRoomPaid(roomNo) {
+            const r = kosRooms.find(rm => rm.number === roomNo);
+            if (!r) return;
+            r.status = 'paid';
+            closeKosModal();
+            renderKosFloorMap();
+            showKelolaToast(`Pembayaran Kamar ${roomNo} (${r.tenant}) berhasil diverifikasi LUNAS!`);
+        }
+
+        function checkOutRoom(roomNo) {
+            const r = kosRooms.find(rm => rm.number === roomNo);
+            if (!r) return;
+            r.status = 'empty';
+            r.tenant = '-';
+            closeKosModal();
+            renderKosFloorMap();
+            showKelolaToast(`Kamar ${roomNo} sekarang berstatus KOSONG & siap dipasarkan.`);
+        }
+
+        function sendWaReminderKos(roomNo) {
+            const r = kosRooms.find(rm => rm.number === roomNo);
+            if (!r) return;
+            closeKosModal();
+            showKelolaToast(`📲 Tagihan WA sebesar ${formatRp(r.rate)} terkirim ke ${r.tenant} (${r.wa})!`);
+        }
+
+        function broadcastAllUnpaidKos() {
+            const overdue = kosRooms.filter(r => r.status === 'overdue');
+            showKelolaToast(`📲 Broadcast WA Tagihan terkirim ke ${overdue.length} kamar yang jatuh tempo!`);
+        }
+
+        // ============================================================================
+        // DATA & LOGIC FOR APLIKASI B: BENGKELPINTAR (PLAT NOMOR & KOMISI MEKANIK)
+        // ============================================================================
+        const vehicleDatabase = {
+            'B 4512 KZX': {
+                plate: 'B 4512 KZX',
+                model: 'Honda Vario 160 ABS (2024)',
+                owner: 'Bpk. Hendra Wijaya',
+                wa: '0812-9090-8080',
+                nextServiceKm: '50.500 KM',
+                history: [
+                    { date: '15 Agu 2026', km: '46.200 KM', complaint: 'Servis rutin & ganti oli mesin + gardan', part: 'Oli Shell Advance AX7 Matic + Kampas Belakang', mechanic: 'Bang Hendri (Kepala Mekanik)', total: 175000 },
+                    { date: '10 Jun 2026', km: '43.800 KM', complaint: 'Tarikan CVT agak selip saat tanjakan', part: 'V-Belt Kit Original + Roller Set', mechanic: 'Mas Wahyu (Mekanik Senior)', total: 280000 }
+                ]
+            },
+            'D 1890 VCA': {
+                plate: 'D 1890 VCA',
+                model: 'Yamaha NMAX 155 Connected (2023)',
+                owner: 'Kang Ridwan Kamil',
+                wa: '0811-2233-9988',
+                nextServiceKm: '32.000 KM',
+                history: [
+                    { date: '28 Sep 2026', km: '29.500 KM', complaint: 'Lampu indikator aki menyala & ganti oli', part: 'Aki Kering GS Astra MF + Oli Motul Scooter', mechanic: 'Kang Deden (Spesialis Kelistrikan)', total: 410000 }
+                ]
+            },
+            'L 3321 QP': {
+                plate: 'L 3321 QP',
+                model: 'Honda Scoopy Prestige (2025)',
+                owner: 'Mbak Tiara Andini',
+                wa: '0813-5566-7788',
+                nextServiceKm: '14.000 KM',
+                history: [
+                    { date: '02 Okt 2026', km: '11.400 KM', complaint: 'Tune up berkala & kuras minyak rem', part: 'Oli MPX2 + Minyak Rem DOT4', mechanic: 'Bang Hendri (Kepala Mekanik)', total: 145000 }
+                ]
+            }
+        };
+
+        function selectSamplePlate(plate) {
+            document.getElementById('plateSearchInput').value = plate;
+            document.getElementById('woPlate').value = plate;
+            renderPlateHistory();
+        }
+
+        function renderPlateHistory() {
+            const rawPlate = document.getElementById('plateSearchInput').value.trim().toUpperCase();
+            const container = document.getElementById('vehicleHistoryContainer');
+            const v = vehicleDatabase[rawPlate] || vehicleDatabase['B 4512 KZX'];
+
+            const historyHtml = v.history.map(h => `
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs">
+                    <div class="flex items-center justify-between">
+                        <span class="font-mono font-extrabold text-indigo-700">${h.date} • Odometer: ${h.km}</span>
+                        <span class="font-mono font-extrabold text-slate-900">${formatRp(h.total)}</span>
+                    </div>
+                    <p class="text-slate-700 font-semibold">Keluhan: <span class="font-normal">${h.complaint}</span></p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 pt-1 border-t border-slate-200/70">
+                        <span><i class="fa-solid fa-oil-can text-amber-600 mr-1"></i>Part/Oli: <strong class="text-slate-800">${h.part}</strong></span>
+                        <span><i class="fa-solid fa-user-gear text-indigo-600 mr-1"></i>Mekanik: <strong class="text-slate-800">${h.mechanic}</strong></span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="p-4 rounded-2xl bg-slate-900 text-white flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded bg-amber-400 text-slate-950 font-mono font-extrabold text-xs">${v.plate}</span>
+                            <h4 class="text-sm font-extrabold">${v.model}</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-1">Pemilik: <strong>${v.owner}</strong> (${v.wa}) • Jadwal Ganti Oli Berikutnya: <strong class="text-amber-400">${v.nextServiceKm}</strong></p>
+                    </div>
+                    <button onclick="sendServiceReminderWa('${v.plate}')" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 transition shrink-0">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>📲 Kirim Pengingat Servis Berkala via WA</span>
+                    </button>
+                </div>
+                <div class="space-y-2 max-h-[260px] overflow-y-auto custom-scroll pr-1">
+                    ${historyHtml}
+                </div>
+            `;
+        }
+
+        function sendServiceReminderWa(plate) {
+            const v = vehicleDatabase[plate] || vehicleDatabase['B 4512 KZX'];
+            showKelolaToast(`📲 Pengingat ganti oli (${v.nextServiceKm}) terkirim ke WA ${v.owner} (${v.plate})!`);
+        }
+
+        function calculateWoTotals() {
+            const [, srvPriceStr] = document.getElementById('woService').value.split('|');
+            const [, prtPriceStr] = document.getElementById('woPart').value.split('|');
+            const srvPrice = parseFloat(srvPriceStr);
+            const prtPrice = parseFloat(prtPriceStr);
+            const commission = srvPrice * 0.4;
+            const total = srvPrice + prtPrice;
+
+            document.getElementById('woServiceCostText').textContent = formatRp(srvPrice);
+            document.getElementById('woPartCostText').textContent = formatRp(prtPrice);
+            document.getElementById('woCommissionText').textContent = formatRp(commission);
+            document.getElementById('woTotalText').textContent = formatRp(total);
+        }
+
+        function handleCreateWorkOrder(e) {
+            e.preventDefault();
+            const plate = document.getElementById('woPlate').value.trim().toUpperCase();
+            const kmNum = parseInt(document.getElementById('woKm').value, 10) || 48500;
+            const mechanic = document.getElementById('woMechanic').value;
+            const [srvName, srvPriceStr] = document.getElementById('woService').value.split('|');
+            const [prtName, prtPriceStr] = document.getElementById('woPart').value.split('|');
+            const complaint = document.getElementById('woComplaint').value;
+
+            const srvPrice = parseFloat(srvPriceStr);
+            const prtPrice = parseFloat(prtPriceStr);
+            const total = srvPrice + prtPrice;
+
+            if (!vehicleDatabase[plate]) {
+                vehicleDatabase[plate] = {
+                    plate,
+                    model: 'Kendaraan Pelanggan Baru',
+                    owner: 'Pelanggan Umum',
+                    wa: '0812-0000-1111',
+                    nextServiceKm: `${(kmNum + 2000).toLocaleString('id-ID')} KM`,
+                    history: []
+                };
+            }
+
+            vehicleDatabase[plate].nextServiceKm = `${(kmNum + 2000).toLocaleString('id-ID')} KM`;
+            vehicleDatabase[plate].history.unshift({
+                date: '12 Okt 2026 (Baru)',
+                km: `${kmNum.toLocaleString('id-ID')} KM`,
+                complaint,
+                part: prtName,
+                mechanic,
+                total
+            });
+
+            document.getElementById('plateSearchInput').value = plate;
+            renderPlateHistory();
+
+            // Populate & show Struk PKB Modal
+            document.getElementById('pkbPlate').textContent = plate;
+            document.getElementById('pkbKm').textContent = `${kmNum.toLocaleString('id-ID')} KM`;
+            document.getElementById('pkbMechanic').textContent = mechanic.split('(')[0].trim();
+            document.getElementById('pkbServiceName').textContent = srvName;
+            document.getElementById('pkbServicePrice').textContent = formatRp(srvPrice);
+            document.getElementById('pkbPartName').textContent = prtName;
+            document.getElementById('pkbPartPrice').textContent = formatRp(prtPrice);
+            document.getElementById('pkbTotal').textContent = formatRp(total);
+            document.getElementById('pkbNextOil').textContent = `${(kmNum + 2000).toLocaleString('id-ID')} KM / Des 2026`;
+
+            const modal = document.getElementById('bengkelReceiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBengkelModal() {
+            const modal = document.getElementById('bengkelReceiptModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Init
+        renderKosFloorMap();
+        renderComplaints();
+        renderPlateHistory();
+        calculateWoTotals();
+    </script>
+</body>
+</html>

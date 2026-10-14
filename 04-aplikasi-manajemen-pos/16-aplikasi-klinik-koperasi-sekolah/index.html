@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaERP — Sistem Manajemen Klinik &amp; Apotek (SOAP), SPP Sekolah &amp; Koperasi Simpan Pinjam</title>
+    <meta name="description" content="Aplikasi Web Enterprise 3-in-1 UMKM & Institusi Indonesia: SIMKlinik & Apotek (Rekam Medis SOAP + Peringatan Obat Expired), EduSPP Tagihan Sekolah via WA, dan Koperasi Simpan Pinjam.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'NusaERP Enterprise Suite',
+            tagline: 'SIMKLINIK, EDUSPP & KOPERASIKU',
+            description: 'Platform manajemen institusi terlengkap di Indonesia untuk klinik pratama, sekolah/bimbel/pesantren, dan koperasi simpan pinjam (KSP/BMT).',
+            address: 'Cyber 2 Tower Lt. 18, Jl. HR Rasuna Said Blok X-5, Kuningan, Jakarta Selatan 12950',
+            mapsUrl: 'https://maps.google.com/?q=Cyber+2+Tower+Jakarta',
+            whatsapp: '+62 812-3456-7890',
+            email: 'support@nusaerp.id',
+            hours: 'Senin - Sabtu: 08.00 - 20.00 WIB (Server Uptime SLA 99.9%)',
+            paymentMethods: ['QRIS', 'BCA', 'BRI', 'Mandiri', 'GoPay', 'OVO', 'DANA']
+        };
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        clinical: {
+                            DEFAULT: '#0D9488',
+                            dark: '#0F766E',
+                            light: '#F0FDFA'
+                        },
+                        royal: {
+                            DEFAULT: '#2563EB',
+                            dark: '#1D4ED8',
+                            light: '#EFF6FF'
+                        },
+                        coop: {
+                            DEFAULT: '#059669',
+                            dark: '#047857',
+                            light: '#ECFDF5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+        .enterprise-panel {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableReceiptArea, #printableReceiptArea * {
+                visibility: visible;
+            }
+            #printableReceiptArea {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-clinical selection:text-white">
+
+    <!-- TOP PORTFOLIO DEMO BAR -->
+    <div class="bg-slate-950 text-slate-100 text-xs py-2 px-4 border-b border-slate-800 relative z-50">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 flex-nowrap overflow-x-auto">
+            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <a href="../../index.html" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-clinical text-white font-semibold px-3 py-1 rounded-md transition-colors duration-150 border border-slate-700 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span>Kembali ke Katalog Portofolio</span>
+                </a>
+                <span class="hidden lg:inline-flex items-center gap-2 text-slate-400 font-mono text-[11px] whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 shrink-0"></span>
+                    <span>DEMO #16 • 3-IN-1 WEB APP: KLINIK APOTEK (SOAP) • SPP SEKOLAH • KOPERASI KSP</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-[11px] shrink-0 whitespace-nowrap">
+                <span class="text-slate-400 hidden sm:inline">Ganti Modul:</span>
+                <button onclick="switchApp('klinik')" class="px-2.5 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/40 hover:bg-teal-600 hover:text-white transition whitespace-nowrap">1. SIMKlinik</button>
+                <button onclick="switchApp('eduspp')" class="px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/40 hover:bg-blue-600 hover:text-white transition whitespace-nowrap">2. EduSPP</button>
+                <button onclick="switchApp('koperasi')" class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600 hover:text-white transition whitespace-nowrap">3. KoperasiKu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENTERPRISE TOP NAVBAR & MODULE SWITCHER -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4 flex-nowrap">
+            <!-- Brand & Active Sub-Brand Logo -->
+            <div class="flex items-center gap-3 shrink-0">
+                <img src="assets/logo.svg" alt="NusaERP" class="h-10 w-auto shrink-0">
+                <span class="h-6 w-[1px] bg-slate-200 hidden sm:inline-block shrink-0"></span>
+                <img id="activeSubLogo" src="assets/logo-medika.svg" alt="Active Module Logo" class="h-9 w-auto hidden sm:inline-block shrink-0">
+            </div>
+
+            <!-- 3 Enterprise App Switcher Tabs + Quick Links -->
+            <div class="hidden md:flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 shrink-0">
+                    <button id="tabBtn_klinik" onclick="switchApp('klinik')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 bg-slate-900 text-white shadow-xs whitespace-nowrap">
+                        <i class="fa-solid fa-stethoscope text-teal-400"></i>
+                        <span>1. SIMKlinik &amp; Apotek</span>
+                    </button>
+                    <button id="tabBtn_eduspp" onclick="switchApp('eduspp')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 text-slate-700 hover:bg-white whitespace-nowrap">
+                        <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+                        <span>2. EduSPP Sekolah</span>
+                    </button>
+                    <button id="tabBtn_koperasi" onclick="switchApp('koperasi')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 text-slate-700 hover:bg-white whitespace-nowrap">
+                        <i class="fa-solid fa-landmark text-emerald-600"></i>
+                        <span>3. KoperasiKu KSP</span>
+                    </button>
+                </div>
+                <a href="#testimoni-klien" class="px-2.5 py-1.5 text-xs font-bold text-slate-700 hover:text-clinical transition whitespace-nowrap shrink-0">Testimoni Klien</a>
+                <a href="#faq" class="px-2.5 py-1.5 text-xs font-bold text-slate-700 hover:text-clinical transition whitespace-nowrap shrink-0">FAQ</a>
+            </div>
+
+            <!-- Operator Profile -->
+            <div class="hidden xl:flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <div class="text-right">
+                    <div class="text-xs font-bold text-slate-900 whitespace-nowrap" id="activeOperatorName">dr. Hendra Wijaya, Sp.PD</div>
+                    <div class="font-mono text-[10px] text-teal-700 font-semibold whitespace-nowrap" id="activeOperatorRole">KLINIK PRATAMA NUSANTARA</div>
+                </div>
+                <img id="activeOperatorAvatar" src="assets/images/doctor-avatar-1.jpg" alt="Operator Avatar" class="w-9 h-9 rounded-full object-cover border border-slate-300 shrink-0">
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN WORKSPACE CONTAINER -->
+    <main class="max-w-[1440px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- ========================================================================= -->
+        <!-- APP 1: SIMKLINIK & APOTEK (REKAM MEDIS SOAP & STOK OBAT EXPIRED ALERT)    -->
+        <!-- ========================================================================= -->
+        <section id="appView_klinik" class="space-y-6">
+            <!-- Top Clinic Banner & KPI Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-slate-500 font-semibold">ANTREAN POLI HARI INI</span>
+                        <div class="text-2xl font-extrabold text-slate-900 font-mono mt-1" id="kpiClinicQueueCount">5 Pasien</div>
+                        <span class="text-[11px] text-teal-700 font-semibold">Poli Umum &amp; Poli Gigi Aktif</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-clinical-light text-clinical flex items-center justify-center border border-teal-200">
+                        <i class="fa-solid fa-user-injured text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-slate-500 font-semibold">REKAM MEDIS SOAP TERKIRIM</span>
+                        <div class="text-2xl font-extrabold text-slate-900 font-mono mt-1" id="kpiSoapDoneCount">28 EMR</div>
+                        <span class="text-[11px] text-emerald-700 font-semibold"><i class="fa-solid fa-check-double mr-1"></i>Terhubung SatuSehat Kemenkes</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
+                        <i class="fa-solid fa-file-medical text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-slate-500 font-semibold">TOTAL SKU OBAT APOTEK</span>
+                        <div class="text-2xl font-extrabold text-slate-900 font-mono mt-1" id="kpiTotalDrugUnits">482 Unit</div>
+                        <span class="text-[11px] text-slate-500">Potong stok otomatis dari E-Resep</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-200">
+                        <i class="fa-solid fa-pills text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between border-amber-300 bg-amber-50/40">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-amber-800 font-bold">PERINGATAN EXPIRED &lt; 90 HARI</span>
+                        <div class="text-2xl font-extrabold text-amber-700 font-mono mt-1" id="kpiExpiredAlertCount">3 Batch Obat</div>
+                        <button onclick="filterDrugInventory('expiring')" class="text-[11px] text-amber-800 font-bold underline hover:text-slate-900">Klik untuk filter batch mendekati ED</button>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center border border-amber-300">
+                        <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Clinic Grid: Left Patient Queue (4 cols) + Right Interactive SOAP & E-Resep Form (8 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                <!-- Left: Live Antrean Poli Umum & Gigi -->
+                <div class="lg:col-span-5 enterprise-panel rounded-xl overflow-hidden">
+                    <div class="p-4 bg-slate-900 text-white flex items-center justify-between">
+                        <div>
+                            <h2 class="font-bold text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-users-viewfinder text-teal-400"></i>
+                                <span>Antrean Pasien Poli Umum &amp; Gigi</span>
+                            </h2>
+                            <p class="text-[11px] text-slate-400">Klik "Periksa" untuk memuat data pasien ke Form SOAP</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <img src="assets/images/clinic-room.jpg" alt="Klinik" class="w-8 h-8 rounded object-cover border border-slate-700">
+                        </div>
+                    </div>
+
+                    <div class="divide-y divide-slate-200" id="patientQueueContainer">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Form Input Rekam Medis SOAP + E-Resep Apotek -->
+                <div class="lg:col-span-7 enterprise-panel rounded-xl overflow-hidden">
+                    <div class="p-4 bg-clinical text-white flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <span class="font-mono text-[10px] uppercase tracking-widest bg-slate-900/30 px-2 py-0.5 rounded">ELECTRONIC MEDICAL RECORD (FORMAT SOAP)</span>
+                            <h2 class="font-bold text-base mt-1" id="soapActivePatientHeader">Pemeriksaan Pasien: Bpk. Rahmat Hidayat (RM-2026-0104)</h2>
+                        </div>
+                        <span class="font-mono text-xs bg-white text-clinical font-bold px-3 py-1 rounded-lg" id="soapActivePoliBadge">POLI UMUM • A-014</span>
+                    </div>
+
+                    <form id="soapForm" onsubmit="saveSoapAndDeductStock(event)" class="p-5 space-y-5">
+                        <!-- S: SUBJECTIVE -->
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start">
+                            <div class="sm:col-span-3">
+                                <span class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-clinical bg-clinical-light px-2.5 py-1 rounded border border-teal-200">
+                                    S • SUBJECTIVE
+                                </span>
+                                <p class="text-[11px] text-slate-500 mt-1">Keluhan utama &amp; anamnesis pasien</p>
+                            </div>
+                            <div class="sm:col-span-9">
+                                <textarea id="soapSubjective" rows="2" required class="w-full p-3 rounded-lg border border-slate-300 text-xs font-medium focus:outline-none focus:border-clinical">Demam sejak 2 hari lalu disertai batuk berdahak, nyeri menelan, dan badan terasa pegal.</textarea>
+                            </div>
+                        </div>
+
+                        <!-- O: OBJECTIVE (Vital Signs) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start pt-3 border-t border-slate-100">
+                            <div class="sm:col-span-3">
+                                <span class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">
+                                    O • OBJECTIVE
+                                </span>
+                                <p class="text-[11px] text-slate-500 mt-1">Tanda vital &amp; pemeriksaan fisik</p>
+                            </div>
+                            <div class="sm:col-span-9 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                <div>
+                                    <label class="block font-mono text-[10px] text-slate-500 mb-1">TENSI (mmHg)</label>
+                                    <input id="soapTensi" type="text" value="125/82" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold">
+                                </div>
+                                <div>
+                                    <label class="block font-mono text-[10px] text-slate-500 mb-1">SUHU (°C)</label>
+                                    <input id="soapSuhu" type="text" value="38.4" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold">
+                                </div>
+                                <div>
+                                    <label class="block font-mono text-[10px] text-slate-500 mb-1">BERAT (kg)</label>
+                                    <input id="soapBerat" type="text" value="68" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold">
+                                </div>
+                                <div>
+                                    <label class="block font-mono text-[10px] text-slate-500 mb-1">NADI (bpm)</label>
+                                    <input id="soapNadi" type="text" value="88" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- A: ASSESSMENT (ICD-10 Diagnosis) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start pt-3 border-t border-slate-100">
+                            <div class="sm:col-span-3">
+                                <span class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded border border-amber-200">
+                                    A • ASSESSMENT
+                                </span>
+                                <p class="text-[11px] text-slate-500 mt-1">Kode Diagnosa ICD-10</p>
+                            </div>
+                            <div class="sm:col-span-9">
+                                <select id="soapIcdSelect" class="w-full px-3 py-2.5 rounded-lg border border-slate-300 font-mono text-xs font-semibold bg-white">
+                                    <option value="J06.9 — Acute upper respiratory infection (ISPA)">J06.9 — Acute upper respiratory infection (ISPA)</option>
+                                    <option value="K29.7 — Gastritis, unspecified (Dispepsia / Maag Akut)">K29.7 — Gastritis, unspecified (Dispepsia / Maag Akut)</option>
+                                    <option value="K04.0 — Pulpitis / Caries Dentis (Poli Gigi)">K04.0 — Pulpitis / Caries Dentis (Poli Gigi)</option>
+                                    <option value="I10 — Essential (primary) hypertension">I10 — Essential (primary) hypertension</option>
+                                    <option value="A09 — Infectious gastroenteritis and colitis">A09 — Infectious gastroenteritis and colitis</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- P: PLAN & DYNAMIC E-RESEP APOTEK (AUTO DEDUCTS STOCK) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start pt-3 border-t border-slate-100">
+                            <div class="sm:col-span-3">
+                                <span class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                                    P • PLAN &amp; E-RESEP
+                                </span>
+                                <p class="text-[11px] text-slate-500 mt-1">Otomatis memotong stok obat Apotek</p>
+                            </div>
+                            <div class="sm:col-span-9 space-y-3">
+                                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-3">
+                                    <div class="text-xs font-bold text-slate-800 flex items-center justify-between">
+                                        <span>Tambah Obat ke E-Resep Pasien:</span>
+                                        <span class="font-mono text-[11px] text-clinical">Integrasi Stok Apotek Real-time</span>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                                        <div class="sm:col-span-6">
+                                            <select id="resepDrugSelect" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-xs font-medium bg-white">
+                                                <!-- Populated dynamically from drug inventory -->
+                                            </select>
+                                        </div>
+                                        <div class="sm:col-span-2">
+                                            <input id="resepQtyInput" type="number" value="10" min="1" max="100" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold text-center" title="Jumlah Obat">
+                                        </div>
+                                        <div class="sm:col-span-4 flex gap-1.5">
+                                            <input id="resepSignaInput" type="text" value="3x1 Sesudah Makan" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-xs" placeholder="Signa / Dosis">
+                                            <button type="button" onclick="addDrugToDraftResep()" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-clinical text-white text-xs font-bold shrink-0" title="Tambah ke Resep">
+                                                + Obat
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Draft Prescription Items List -->
+                                    <div id="draftResepContainer" class="space-y-1.5">
+                                        <!-- Populated via JS -->
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+                                    <span class="text-[11px] text-slate-500">
+                                        <i class="fa-solid fa-bolt text-clinical mr-1"></i>Saat disimpan, stok obat di Tabel Apotek di bawah langsung berkurang otomatis.
+                                    </span>
+                                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-clinical hover:bg-clinical-dark text-white font-bold text-xs shadow-sm transition flex items-center gap-2">
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                        <span>Simpan Rekam Medis SOAP &amp; Potong Stok Apotek</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TABEL STOK OBAT APOTEK & FILTER PERINGATAN KADALUARSA (< 90 HARI) -->
+            <div class="enterprise-panel rounded-xl overflow-hidden">
+                <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/images/clinic-pharmacy.jpg" alt="Apotek" class="w-12 h-12 rounded-xl object-cover border border-slate-200 hidden sm:block">
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900">Tabel Inventori Stok Obat Apotek &amp; Monitoring Batch Kadaluarsa (FEFO)</h3>
+                            <p class="text-xs text-slate-500">Pantau sisa stok real-time setelah dipotong E-Resep dokter &amp; deteksi dini obat mendekati masa kadaluarsa (&lt; 90 Hari).</p>
+                        </div>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="filterDrugInventory('all')" id="drugFilter_all" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition">
+                            Semua Obat (7)
+                        </button>
+                        <button onclick="filterDrugInventory('expiring')" id="drugFilter_expiring" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <span>Expired Alert &lt; 90 Hari</span>
+                        </button>
+                        <button onclick="filterDrugInventory('low')" id="drugFilter_low" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition">
+                            Stok Menipis
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 font-mono text-[11px] uppercase text-slate-500">
+                                <th class="py-3 px-4">Kode &amp; Nama Obat</th>
+                                <th class="py-3 px-4">No. Batch</th>
+                                <th class="py-3 px-4">Tgl Kadaluarsa (ED)</th>
+                                <th class="py-3 px-4">Status ED</th>
+                                <th class="py-3 px-4 text-right">Stok Apotek</th>
+                                <th class="py-3 px-4 text-right">Harga Satuan</th>
+                                <th class="py-3 px-4 text-center">Aksi Cepat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="drugInventoryTableBody" class="divide-y divide-slate-200 text-xs">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- APP 2: EDUSPP — SISTEM ADMINISTRASI SPP SEKOLAH, BIMBEL & PESANTREN       -->
+        <!-- ========================================================================= -->
+        <section id="appView_eduspp" class="hidden space-y-6">
+            <!-- Top KPI Summary -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-slate-500 font-semibold">TARGET TAGIHAN SPP BULAN INI</span>
+                        <div class="text-2xl font-extrabold text-slate-900 font-mono mt-1" id="sppTotalTargetText">Rp 6.450.000</div>
+                        <span class="text-[11px] text-slate-500">7 Siswa / Santri Terdaftar Demo</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-blue-50 text-royal flex items-center justify-center border border-blue-200">
+                        <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-emerald-700 font-semibold">SUDAHTERBAYAR / LUNAS</span>
+                        <div class="text-2xl font-extrabold text-emerald-600 font-mono mt-1" id="sppPaidTotalText">Rp 3.150.000</div>
+                        <span class="text-[11px] text-emerald-700 font-semibold" id="sppPaidCountText">3 Siswa Lunas</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex items-center justify-between border-rose-200 bg-rose-50/30">
+                    <div>
+                        <span class="font-mono text-[11px] uppercase text-rose-700 font-bold">TUNGGAKAN / BELUM LUNAS</span>
+                        <div class="text-2xl font-extrabold text-rose-600 font-mono mt-1" id="sppUnpaidTotalText">Rp 3.300.000</div>
+                        <span class="text-[11px] text-rose-700 font-semibold" id="sppUnpaidCountText">4 Wali Murid Perlu Diingatkan</span>
+                    </div>
+                    <div class="w-11 h-11 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center border border-rose-200">
+                        <i class="fa-solid fa-bell text-lg"></i>
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl p-4 flex flex-col justify-between bg-slate-900 text-white">
+                    <div class="font-mono text-[10px] uppercase text-blue-300">FITUR UNGGULAN BENDAHARA</div>
+                    <button onclick="openBulkWaBroadcastModal()" class="mt-2 w-full py-2.5 px-3 rounded-lg bg-royal hover:bg-royal-dark text-white font-bold text-xs transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Broadcast Pengingat SPP ke WA Ortu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Student SPP Table & Class Filter -->
+            <div class="enterprise-panel rounded-xl overflow-hidden">
+                <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/images/school-campus.jpg" alt="Sekolah" class="w-12 h-12 rounded-xl object-cover border border-slate-200 hidden sm:block">
+                        <div>
+                            <h2 class="font-bold text-base text-slate-900">Daftar Tagihan SPP Bulanan Siswa &amp; Santri (Oktober 2026)</h2>
+                            <p class="text-xs text-slate-500">Filter per kelas, kirim pengingat tagihan WA otomatis ke orang tua, atau cetak kwitansi resmi.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                        <select id="sppClassFilter" onchange="renderSppTable()" class="px-3 py-2 rounded-lg border border-slate-300 text-xs font-bold bg-white">
+                            <option value="all">Semua Kelas (SMP &amp; Tahfidz)</option>
+                            <option value="Kelas 7A SMP">Kelas 7A SMP</option>
+                            <option value="Kelas 8B SMP">Kelas 8B SMP</option>
+                            <option value="Kelas 9A SMP">Kelas 9A SMP</option>
+                            <option value="Asrama Tahfidz">Asrama Tahfidz</option>
+                        </select>
+
+                        <select id="sppStatusFilter" onchange="renderSppTable()" class="px-3 py-2 rounded-lg border border-slate-300 text-xs font-bold bg-white">
+                            <option value="all">Semua Status Pembayaran</option>
+                            <option value="Belum Bayar">Belum Bayar</option>
+                            <option value="Cicilan">Cicilan Sebagian</option>
+                            <option value="Lunas">Sudah Lunas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200 font-mono text-[11px] uppercase text-slate-500">
+                                <th class="py-3 px-4">NISN &amp; Nama Siswa</th>
+                                <th class="py-3 px-4">Kelas</th>
+                                <th class="py-3 px-4">Wali Murid &amp; WA</th>
+                                <th class="py-3 px-4 text-right">Tagihan SPP</th>
+                                <th class="py-3 px-4 text-right">Terbayar</th>
+                                <th class="py-3 px-4 text-center">Status</th>
+                                <th class="py-3 px-4 text-right">Tindakan Bendahara</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sppTableBody" class="divide-y divide-slate-200 text-xs">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- APP 3: KOPERASIKU — SISTEM KOPERASI SIMPAN PINJAM (KSP) & BMT SYARIAH      -->
+        <!-- ========================================================================= -->
+        <section id="appView_koperasi" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                <!-- Left: Buku Simpanan Anggota & Kartu Angsuran Digital (6 cols) -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="enterprise-panel rounded-xl overflow-hidden">
+                        <div class="p-4 bg-slate-900 text-white flex items-center justify-between">
+                            <div>
+                                <h2 class="font-bold text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-book-bookmark text-emerald-400"></i>
+                                    <span>Buku Simpanan Anggota Digital (Pokok, Wajib, Sukarela)</span>
+                                </h2>
+                                <p class="text-[11px] text-slate-400">Klik "+ Setor Simpanan" untuk menambah saldo tabungan anggota</p>
+                            </div>
+                            <button onclick="addQuickSavingsDeposit()" class="px-3 py-1.5 rounded-lg bg-coop hover:bg-coop-dark text-white font-bold text-xs">
+                                + Setor Simpanan
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-200 font-mono text-[10px] uppercase text-slate-500">
+                                        <th class="py-2.5 px-3">ID &amp; Anggota</th>
+                                        <th class="py-2.5 px-3 text-right">Pokok &amp; Wajib</th>
+                                        <th class="py-2.5 px-3 text-right">Sukarela</th>
+                                        <th class="py-2.5 px-3 text-right">Total Saldo</th>
+                                        <th class="py-2.5 px-3 text-center">Kartu</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="coopMembersTableBody" class="divide-y divide-slate-200 text-xs">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Kartu Angsuran Digital Aktif -->
+                    <div class="enterprise-panel rounded-xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                            <div>
+                                <span class="font-mono text-[10px] uppercase tracking-wider text-coop font-bold">KARTU ANGSURAN PINJAMAN DIGITAL</span>
+                                <h3 class="font-bold text-base text-slate-900" id="activeLoanCardMember">Bpk. Suryono Pedagang Pasar (KSP-2026-019)</h3>
+                            </div>
+                            <button onclick="recordLoanInstallmentPayment()" class="px-3.5 py-2 rounded-lg bg-coop hover:bg-coop-dark text-white font-bold text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <span>Catat Bayar Angsuran Bulan Ini</span>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3 font-mono text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">PLAFON PINJAMAN</span>
+                                <strong class="text-slate-900" id="loanCardPlafon">Rp 12.000.000</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">PROGRESS CICILAN</span>
+                                <strong class="text-coop" id="loanCardProgress">Bulan 4 / 12</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">SISA POKOK</span>
+                                <strong class="text-rose-600" id="loanCardRemaining">Rp 8.000.000</strong>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5 max-h-48 overflow-y-auto" id="loanCardHistoryList">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Kalkulator Simulasi Pinjaman & Tabel Jadwal Angsuran Bulanan (6 cols) -->
+                <div class="lg:col-span-6 enterprise-panel rounded-xl overflow-hidden">
+                    <div class="p-4 bg-coop text-white flex items-center justify-between">
+                        <div>
+                            <span class="font-mono text-[10px] uppercase tracking-widest bg-slate-900/25 px-2 py-0.5 rounded">SIMULASI KREDIT KSP &amp; AKAD MURABAHAH BMT</span>
+                            <h2 class="font-bold text-base mt-1">Kalkulator Pinjaman &amp; Tabel Jadwal Angsuran Bulanan</h2>
+                        </div>
+                        <i class="fa-solid fa-calculator text-2xl opacity-80"></i>
+                    </div>
+
+                    <div class="p-5 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block font-mono text-[10px] uppercase text-slate-500 mb-1">Plafon Pinjaman (Rp)</label>
+                                <select id="loanSimAmount" onchange="renderLoanAmortization()" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold bg-white">
+                                    <option value="6000000">Rp 6.000.000</option>
+                                    <option value="12000000" selected>Rp 12.000.000</option>
+                                    <option value="24000000">Rp 24.000.000</option>
+                                    <option value="50000000">Rp 50.000.000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-mono text-[10px] uppercase text-slate-500 mb-1">Tenor (Bulan)</label>
+                                <select id="loanSimTenor" onchange="renderLoanAmortization()" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold bg-white">
+                                    <option value="6">6 Bulan</option>
+                                    <option value="12" selected>12 Bulan</option>
+                                    <option value="18">18 Bulan</option>
+                                    <option value="24">24 Bulan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-mono text-[10px] uppercase text-slate-500 mb-1">Jasa / Margin per Bulan</label>
+                                <select id="loanSimRate" onchange="renderLoanAmortization()" class="w-full px-3 py-2 rounded-lg border border-slate-300 font-mono text-xs font-bold bg-white">
+                                    <option value="1.0">1.0% / bln (UMKM Mikro)</option>
+                                    <option value="1.25" selected>1.25% / bln (KSP Reguler)</option>
+                                    <option value="1.5">1.5% / bln (Margin BMT)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Summary Highlight Box -->
+                        <div class="grid grid-cols-3 gap-3 bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-200 font-mono text-xs">
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">ANGSURAN POKOK/BLN</span>
+                                <strong class="text-slate-900" id="simMonthlyPrincipal">Rp 1.000.000</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">JASA / BAGI HASIL</span>
+                                <strong class="text-coop" id="simMonthlyInterest">Rp 150.000</strong>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">SETORAN PER BULAN</span>
+                                <strong class="text-slate-900 text-sm" id="simMonthlyTotal">Rp 1.150.000</strong>
+                            </div>
+                        </div>
+
+                        <!-- Amortization Schedule Table -->
+                        <div class="border border-slate-200 rounded-xl overflow-hidden">
+                            <div class="max-h-72 overflow-y-auto">
+                                <table class="w-full text-left border-collapse font-mono text-xs">
+                                    <thead class="bg-slate-100 sticky top-0 border-b border-slate-200 text-[10px] uppercase text-slate-600">
+                                        <tr>
+                                            <th class="py-2.5 px-3">Bulan</th>
+                                            <th class="py-2.5 px-3 text-right">Pokok</th>
+                                            <th class="py-2.5 px-3 text-right">Jasa/Margin</th>
+                                            <th class="py-2.5 px-3 text-right">Total Angsuran</th>
+                                            <th class="py-2.5 px-3 text-right">Sisa Pinjaman</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="loanAmortizationBody" class="divide-y divide-slate-200">
+                                        <!-- Populated via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="printScheduleReceipt()" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-coop text-white font-mono text-xs font-semibold flex items-center gap-2">
+                                <i class="fa-solid fa-print"></i>
+                                <span>Cetak Tabel Simulasi Angsuran</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION TESTIMONI KLIEN & DOKUMENTASI IMPLEMENTASI INSTITUSI -->
+    <section id="testimoni-klien" class="py-14 bg-white border-t border-slate-200 mt-8">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-clinical font-bold">DOKUMENTASI IMPLEMENTASI &amp; ULASAN KLIEN</span>
+                    <h2 class="font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1">
+                        Dipercaya Klinik Pratama, Sekolah Swasta &amp; Koperasi Simpan Pinjam
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                        Dokumentasi nyata operasional harian di meja dokter, apotek, loket tata usaha sekolah, dan kantor layanan koperasi.
+                    </p>
+                </div>
+                <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200 flex items-center gap-3 shrink-0">
+                    <div class="text-amber-500 text-xs flex items-center gap-0.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="text-xs font-mono">
+                        <strong class="text-slate-900">340+ Institusi Aktif</strong> • <span class="text-clinical font-bold">99.9% Uptime</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Client Photo Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/clinic-room.jpg" alt="Dokumentasi Poli Klinik" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-slate-900/90 text-teal-300 font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Dokumentasi • Poli Umum &amp; Gigi
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-clinical font-bold ml-1">SIMKlinik SOAP</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Input rekam medis SOAP dan kode ICD-10 sekarang kurang dari 2 menit per pasien. Begitu resep disimpan, orang apotek langsung terima rincian obat tanpa salah baca tulisan tangan."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/doctor-avatar-1.jpg" alt="dr. Hendra" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">dr. Hendra Wijaya, M.Kes</div>
+                            <div class="font-mono text-[10px] text-slate-500">Kepala Klinik Pratama Nusantara</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/clinic-pharmacy.jpg" alt="Dokumentasi Stok Apotek" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-clinical text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Dokumentasi • Gudang Apotek FEFO
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-clinical font-bold ml-1">Stok &amp; Expired Alert</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Fitur peringatan obat mendekati expired (&lt;90 hari) menyelamatkan apotek kami dari kerugian jutaan rupiah tiap kuartal. Batch obat lama selalu keluar duluan."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/doctor-avatar-2.jpg" alt="Apt. Rina" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Apt. Rina Kusumawati, S.Farm</div>
+                            <div class="font-mono text-[10px] text-slate-500">Apoteker Penanggung Jawab</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/school-campus.jpg" alt="Dokumentasi Tata Usaha Sekolah" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-royal text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Dokumentasi • Tata Usaha Sekolah
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-royal font-bold ml-1">EduSPP Broadcast WA</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Dulu staf TU harus kirim chat WA satu-satu ke 400 wali murid. Sekarang sekali klik Broadcast Pengingat SPP, pembayaran lunas naik jadi 95% sebelum tanggal 10!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/student-avatar-1.jpg" alt="Ibu Dewi" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Hj. Dewi Sartika, M.Pd</div>
+                            <div class="font-mono text-[10px] text-slate-500">Kepala Tata Usaha SMP IT &amp; Tahfidz</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/koperasi-office.jpg" alt="Dokumentasi Kantor Koperasi" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-coop text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Dokumentasi • KSP &amp; BMT Syariah
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-coop font-bold ml-1">KoperasiKu KSP</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Anggota koperasi sangat terbantu dengan Kartu Angsuran Digital dan tabel simulasi pinjaman yang transparan. Hitungan SHU akhir tahun otomatis beres tanpa lembur."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/member-avatar-1.jpg" alt="Bpk. Suryono" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Bpk. H. Suryono, SE</div>
+                            <div class="font-mono text-[10px] text-slate-500">Ketua KSP Mitra Sejahtera Mandiri</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION FAQ ACCORDION -->
+    <section id="faq" class="py-14 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs uppercase tracking-widest text-clinical font-bold">ENTERPRISE FAQ &amp; TEKNIS IMPLEMENTASI</span>
+                <h2 class="font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1">
+                    Pertanyaan yang Sering Ditanyakan Calon Institusi
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                    Penjelasan teknis mengenai keamanan data, bridging SatuSehat, WhatsApp Gateway, dan migrasi data lama.
+                </p>
+            </div>
+
+            <div class="space-y-3" id="faqAccordion16">
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(0)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>1. Apakah modul SIMKlinik sudah mendukung standar Rekam Medis Elektronik (RME) SatuSehat Kemenkes?</span>
+                        <i id="faqIcon16_0" class="fa-solid fa-minus text-clinical text-xs"></i>
+                    </button>
+                    <div id="faqBody16_0" class="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Ya. Format input pemeriksaan pasien menggunakan standar <strong>SOAP (Subjective, Objective, Assessment, Plan)</strong> lengkap dengan kamus kode diagnosa <strong>ICD-10</strong> dan sinkronisasi API SatuSehat Kemenkes RI sesuai regulasi Permenkes No. 24 Tahun 2022.
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(1)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>2. Bagaimana cara kerja potong stok obat otomatis dan peringatan Expired Date di Apotek?</span>
+                        <i id="faqIcon16_1" class="fa-solid fa-plus text-slate-500 text-xs"></i>
+                    </button>
+                    <div id="faqBody16_1" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Setiap kali dokter menyimpan E-Resep pada form SOAP, sistem otomatis mengurangi stok obat berdasarkan prinsip <strong>FEFO (First Expired, First Out)</strong>. Batch obat yang masa kadaluarsanya kurang dari 90 hari otomatis diberi penanda merah/kuning di dashboard Apotek.
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(2)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>3. Apakah fitur Broadcast WA Tagihan SPP di EduSPP aman dari pemblokiran nomor WhatsApp?</span>
+                        <i id="faqIcon16_2" class="fa-solid fa-plus text-slate-500 text-xs"></i>
+                    </button>
+                    <div id="faqBody16_2" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Sangat aman. Sistem menggunakan antrean <em>Smart Delay Queue</em> dengan variabel sapaan personal (Nama Wali Murid, Nama Siswa, NISN, dan Nominal Tagihan unik) sehingga tidak terdeteksi sebagai spam, serta mendukung WhatsApp Official Business API.
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(3)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>4. Apakah perhitungan pinjaman Koperasi mendukung sistem Konvensional (KSP) dan Syariah (BMT)?</span>
+                        <i id="faqIcon16_3" class="fa-solid fa-plus text-slate-500 text-xs"></i>
+                    </button>
+                    <div id="faqBody16_3" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Ya. Modul KoperasiKu mendukung skema <strong>Jasa Bunga Flat / Efektif</strong> untuk KSP Konvensional maupun skema <strong>Akad Murabahah (Margin Jual Beli) &amp; Mudharabah (Bagi Hasil)</strong> untuk BMT Syariah, lengkap dengan Kartu Angsuran Digital.
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(4)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>5. Bagaimana jika data pasien, siswa, atau anggota kami sebelumnya masih di Excel / buku manual?</span>
+                        <i id="faqIcon16_4" class="fa-solid fa-plus text-slate-500 text-xs"></i>
+                    </button>
+                    <div id="faqBody16_4" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Tim implementasi kami menyediakan fitur <strong>1-Click Import Excel (.xlsx / .csv)</strong> dan membantu proses migrasi seluruh database pasien, stok obat, daftar siswa, maupun saldo simpanan anggota secara gratis sampai siap pakai.
+                    </div>
+                </div>
+
+                <div class="enterprise-panel rounded-xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq16(5)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900">
+                        <span>6. Apakah aplikasi ini bisa diakses lewat HP/Tablet dan apakah bisa dibeli putus (On-Premise)?</span>
+                        <i id="faqIcon16_5" class="fa-solid fa-plus text-slate-500 text-xs"></i>
+                    </button>
+                    <div id="faqBody16_5" class="hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                        Bisa keduanya. Aplikasi bersifat responsif penuh (dapat dibuka dari Laptop kasir, Tablet dokter, maupun HP kepala sekolah/pengurus) dan tersedia dalam paket <strong>Cloud Berlangganan</strong> maupun <strong>Lisensi Beli Putus (Source Code &amp; Server Milik Institusi Sendiri)</strong>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-16">
+        <!-- 1. Strip CTA & Trust Badges -->
+        <div class="border-b border-slate-800 bg-slate-900/60">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center lg:text-left max-w-2xl">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
+                            <i class="fa-solid fa-notes-medical"></i> Standar Rekam Medis SOAP &amp; ICD-10
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                            <i class="fa-solid fa-shield-halved"></i> Multi-Role RBAC &amp; Audit Log Transaksi
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                            <i class="fa-solid fa-file-invoice"></i> Export Excel, PDF &amp; WhatsApp Gateway
+                        </span>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl text-white font-bold tracking-tight">
+                        Modernisasi Operasional Klinik, Sekolah &amp; Koperasi Anda
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                        Pangkas waktu administrasi manual, hilangkan selisih kas dan stok obat, serta pantau seluruh laporan keuangan secara real-time dari satu sistem terpadu.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3.5 shrink-0 w-full sm:w-auto">
+                    <button type="button" onclick="bukaModalKonsultasi()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm transition text-center shadow-lg shadow-teal-500/20">
+                        <i class="fa-solid fa-headset mr-2"></i>Konsultasi &amp; Demo Sistem
+                    </button>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Tim%20NusaERP,%20saya%20tertarik%20implementasi%20sistem%20manajemen" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm transition text-center border border-slate-700">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i>Hubungi Tim Teknis
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Four Columns Grid -->
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/logo.svg" alt="NusaERP Logo" class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 p-2 object-contain shrink-0">
+                        <div>
+                            <div class="font-bold text-xl text-white tracking-wide">Nusa<span class="text-teal-400">ERP</span></div>
+                            <span class="font-mono text-[10px] text-teal-400 uppercase tracking-widest block">ENTERPRISE SUITE v4.2</span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                        Platform manajemen institusi terlengkap di Indonesia untuk klinik pratama, sekolah/bimbel/pesantren, dan koperasi simpan pinjam (KSP/BMT).
+                    </p>
+                    <div class="pt-1">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-slate-500 block mb-2.5">Kanal Informasi Resmi</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com/nusaerp.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram NusaERP" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-teal-500 hover:text-slate-950 transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/nusaerp" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn NusaERP" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-teal-500 hover:text-slate-950 transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hotline" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-teal-500 hover:text-slate-950 transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <a href="https://youtube.com/@nusaerptutorial" target="_blank" rel="noopener noreferrer" aria-label="YouTube Tutorial" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-teal-500 hover:text-slate-950 transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Navigasi Modul</h3>
+                    <nav aria-label="Navigasi Cepat">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+                            <li><a href="#" class="hover:text-teal-400 transition-colors block">Dashboard Utama</a></li>
+                            <li><a href="#modul-klinik" onclick="pindahModul('klinik')" class="hover:text-teal-400 transition-colors block">SIMKlinik &amp; Apotek (Rekam Medis)</a></li>
+                            <li><a href="#modul-sekolah" onclick="pindahModul('sekolah')" class="hover:text-teal-400 transition-colors block">EduSPP (Tagihan &amp; Kas Sekolah)</a></li>
+                            <li><a href="#modul-koperasi" onclick="pindahModul('koperasi')" class="hover:text-teal-400 transition-colors block">KoperasiKu (Simpan Pinjam BMT)</a></li>
+                            <li><a href="#faq" class="hover:text-teal-400 transition-colors block">Tanya Jawab Teknis (FAQ)</a></li>
+                            <li><a href="#kontak-footer" class="hover:text-teal-400 transition-colors block">Kontak Tim Support &amp; SLA</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Fitur Unggulan -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Fitur Terintegrasi</h3>
+                    <nav aria-label="Fitur Terintegrasi">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+                            <li><a href="#modul-klinik" onclick="pindahModul('klinik')" class="hover:text-teal-400 transition-colors block">Peringatan Kadaluarsa Obat &lt; 90 Hari</a></li>
+                            <li><a href="#modul-sekolah" onclick="pindahModul('sekolah')" class="hover:text-teal-400 transition-colors block">Broadcast Tagihan SPP WhatsApp Otomatis</a></li>
+                            <li><a href="#modul-koperasi" onclick="pindahModul('koperasi')" class="hover:text-teal-400 transition-colors block">Simulasi Angsuran Pinjaman Anuitas/Flat</a></li>
+                            <li><a href="#modul-klinik" onclick="pindahModul('klinik')" class="hover:text-teal-400 transition-colors block">Cetak Resep &amp; Kwitansi Thermal 58/80mm</a></li>
+                        </ul>
+                        <div class="pt-3">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Tim%20NusaERP,%20kami%20ingin%20pengajuan%20Lisensi%20Beli%20Putus%20Source%20Code" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-teal-500/40 hover:bg-teal-500 hover:text-slate-950 text-teal-300 text-xs font-semibold transition w-full justify-between">
+                                <span><i class="fa-solid fa-server mr-1.5"></i>Lisensi Beli Putus &amp; Source Code</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Kolom 4: Kontak & Jam Support -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Kantor &amp; Support Teknis</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-teal-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </span>
+                            <div>
+                                <p class="text-white font-medium leading-relaxed">Cyber 2 Tower Lt. 18, Jl. HR Rasuna Said Blok X-5, Kuningan, Jakarta Selatan 12950</p>
+                                <a href="https://maps.google.com/?q=Cyber+2+Tower+Jakarta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-teal-400 hover:underline font-mono text-[11px] mt-1">
+                                    <span>Buka Lokasi Kantor di Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-slate-500">Hotline Helpdesk &amp; Konsultasi</span>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-white hover:text-teal-400 font-mono font-bold transition">
+                                    +62 812-3456-7890
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-slate-500">Email Helpdesk &amp; SLA</span>
+                                <a href="mailto:support@nusaerp.id" class="text-white hover:text-teal-400 font-mono transition">
+                                    support@nusaerp.id
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-slate-500">Jam Layanan Helpdesk Teknis</span>
+                                <p class="text-white font-medium">Senin &ndash; Sabtu: 08.00 &ndash; 20.00 WIB (Server Uptime SLA 99.9%)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-slate-800 bg-slate-950">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">DANA</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-slate-400 text-center sm:text-right">
+                    <p>&copy; 2026 NusaERP Enterprise Suite. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
+                        <!-- TODO: Dedicated terms page -->
+                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Perjanjian Lisensi (EULA)</a>
+                        <!-- TODO: Dedicated privacy page -->
+                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Kebijakan Kerahasiaan Data Medis</a>
+                        <a href="#faq" class="hover:text-teal-400 transition-colors whitespace-nowrap">Jaminan SLA 99.9%</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRINTABLE KWITANSI SPP / NOTA RESEP / KARTU ANGSURAN MODAL -->
+    <div id="receiptModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 border border-slate-200 shadow-2xl relative">
+            <button onclick="closeReceiptModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="printableReceiptArea" class="space-y-4 text-xs text-slate-800">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="mt-5 flex justify-end gap-2 pt-3 border-t border-slate-200">
+                <button onclick="window.print()" class="px-4 py-2 rounded-lg bg-slate-900 text-white font-bold text-xs flex items-center gap-1.5">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Cetak Resmi / Simpan PDF</span>
+                </button>
+                <button onclick="closeReceiptModal()" class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="erpToast" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-xl border border-teal-500 shadow-xl flex items-center gap-2.5 text-xs font-semibold">
+        <i class="fa-solid fa-circle-check text-teal-400"></i>
+        <span id="erpToastMsg">Berhasil disimpan!</span>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // =========================================================================
+        // 1. SIMKLINIK & APOTEK STATE
+        // =========================================================================
+        const patientQueue = [
+            { id: 'P01', queueNo: 'A-014', rmNo: 'RM-2026-0104', name: 'Bpk. Rahmat Hidayat (44 Thn)', poli: 'Poli Umum', complaint: 'Demam 2 hari, batuk berdahak & nyeri tenggorokan', status: 'Sedang Diperiksa' },
+            { id: 'P02', queueNo: 'A-015', rmNo: 'RM-2026-0119', name: 'Ibu Siti Aminah (36 Thn)', poli: 'Poli Umum', complaint: 'Nyeri ulu hati, mual & perut kembung', status: 'Menunggu' },
+            { id: 'P03', queueNo: 'G-004', rmNo: 'RM-2026-0208', name: 'An. Fajar Pratama (12 Thn)', poli: 'Poli Gigi', complaint: 'Gigi geraham bawah berlubang & ngilu saat makan manis', status: 'Menunggu' },
+            { id: 'P04', queueNo: 'A-013', rmNo: 'RM-2026-0082', name: 'Bpk. H. Bambang Sutejo (58 Thn)', poli: 'Poli Umum', complaint: 'Kontrol rutin tekanan darah tinggi & kolesterol', status: 'Selesai' }
+        ];
+
+        const drugInventory = [
+            { code: 'OBT-001', name: 'Amoxicillin Trihydrate 500mg Kaplet', batch: 'B2601-AMX', expDate: '2026-11-18', daysToExp: 36, stock: 140, unit: 'Kaplet', price: 1500 },
+            { code: 'OBT-002', name: 'Paracetamol 500mg Tablet Pim', batch: 'B2704-PCT', expDate: '2027-08-20', daysToExp: 311, stock: 320, unit: 'Tablet', price: 800 },
+            { code: 'OBT-003', name: 'Ambroxol HCl 30mg Syrup 60ml', batch: 'B2602-AMB', expDate: '2026-12-05', daysToExp: 53, stock: 18, unit: 'Botol', price: 24000 },
+            { code: 'OBT-004', name: 'Omeprazole 20mg Kapsul Lambung', batch: 'B2709-OMP', expDate: '2027-11-10', daysToExp: 393, stock: 95, unit: 'Kapsul', price: 2200 },
+            { code: 'OBT-005', name: 'Cefixime 100mg Kapsul Antibiotik', batch: 'B2603-CFX', expDate: '2026-12-28', daysToExp: 76, stock: 42, unit: 'Kapsul', price: 4500 },
+            { code: 'OBT-006', name: 'Asam Mefenamat 500mg Analgesik Gigi', batch: 'B2801-ASM', expDate: '2028-02-15', daysToExp: 490, stock: 15, unit: 'Kaplet', price: 1200 },
+            { code: 'OBT-007', name: 'Amlodipine Besylate 10mg Antihipertensi', batch: 'B2710-AML', expDate: '2027-10-30', daysToExp: 382, stock: 110, unit: 'Tablet', price: 1800 }
+        ];
+
+        let activePatientId = 'P01';
+        let draftResep = [
+            { code: 'OBT-001', name: 'Amoxicillin Trihydrate 500mg Kaplet', qty: 10, signa: '3x1 Habiskan' },
+            { code: 'OBT-002', name: 'Paracetamol 500mg Tablet Pim', qty: 10, signa: '3x1 Bila Demam' }
+        ];
+        let currentDrugFilter = 'all';
+        let completedSoapCounter = 28;
+
+        // =========================================================================
+        // 2. EDUSPP STATE
+        // =========================================================================
+        const sppStudents = [
+            { nisn: '00981241', name: 'Muhammad Rizky Pratama', kelas: 'Kelas 7A SMP', parent: 'Bpk. Agus Pratama', phone: '6281290001122', bill: 850000, paid: 850000, status: 'Lunas' },
+            { nisn: '00981242', name: 'Aisyah Putri Zahra', kelas: 'Kelas 7A SMP', parent: 'Ibu Dewi Sartika', phone: '6281290001133', bill: 850000, paid: 0, status: 'Belum Bayar' },
+            { nisn: '00981243', name: 'Dimas Aditya Saputra', kelas: 'Kelas 8B SMP', parent: 'Bpk. Hendro Saputra', phone: '6281290001144', bill: 850000, paid: 450000, status: 'Cicilan' },
+            { nisn: '00981244', name: 'Nabila Khairunnisa', kelas: 'Kelas 8B SMP', parent: 'Ibu Rina Marlina', phone: '6281290001155', bill: 850000, paid: 850000, status: 'Lunas' },
+            { nisn: '00981245', name: 'Fathan Al-Ghifari', kelas: 'Asrama Tahfidz', parent: 'Bpk. H. Lukman Hakim', phone: '6281290001166', bill: 1350000, paid: 0, status: 'Belum Bayar' },
+            { nisn: '00981246', name: 'Keysha Aurelia Putri', kelas: 'Kelas 9A SMP', parent: 'Ibu Yuniarti', phone: '6281290001177', bill: 850000, paid: 0, status: 'Belum Bayar' },
+            { nisn: '00981247', name: 'Bagas Satrio Wibowo', kelas: 'Kelas 9A SMP', parent: 'Bpk. Tri Wibowo', phone: '6281290001188', bill: 850000, paid: 850000, status: 'Lunas' }
+        ];
+
+        // =========================================================================
+        // 3. KOPERASIKU STATE
+        // =========================================================================
+        const coopMembers = [
+            { id: 'KSP-2026-019', name: 'Bpk. Suryono (Pedagang Sembako)', pokokWajib: 2400000, sukarela: 4850000 },
+            { id: 'KSP-2026-024', name: 'Ibu Hj. Darmawati (Katering)', pokokWajib: 3600000, sukarela: 9200000 },
+            { id: 'KSP-2026-031', name: 'Bpk. Taufik Hidayat (Konveksi)', pokokWajib: 1800000, sukarela: 2150000 },
+            { id: 'KSP-2026-042', name: 'Ibu Ratna Sari (Warung Makan)', pokokWajib: 1500000, sukarela: 1900000 }
+        ];
+
+        let paidMonthsOnActiveLoan = 4;
+
+        function fmtRp(n) {
+            return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+        }
+
+        // SWITCH ACTIVE ENTERPRISE APP
+        function switchApp(appKey) {
+            ['klinik', 'eduspp', 'koperasi'].forEach(k => {
+                const sec = document.getElementById('appView_' + k);
+                const btn = document.getElementById('tabBtn_' + k);
+                if (k === appKey) {
+                    sec.classList.remove('hidden');
+                    btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 bg-slate-900 text-white shadow-xs whitespace-nowrap';
+                } else {
+                    sec.classList.add('hidden');
+                    btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 text-slate-700 hover:bg-white whitespace-nowrap';
+                }
+            });
+
+            const subLogo = document.getElementById('activeSubLogo');
+            const opName = document.getElementById('activeOperatorName');
+            const opRole = document.getElementById('activeOperatorRole');
+            const opAvatar = document.getElementById('activeOperatorAvatar');
+
+            if (appKey === 'klinik') {
+                subLogo.src = 'assets/logo-medika.svg';
+                opName.textContent = 'dr. Hendra Wijaya, Sp.PD';
+                opRole.textContent = 'KLINIK PRATAMA NUSANTARA';
+                opAvatar.src = 'assets/images/doctor-avatar-1.jpg';
+            } else if (appKey === 'eduspp') {
+                subLogo.src = 'assets/logo-eduspp.svg';
+                opName.textContent = 'Ust. Ahmad Fauzi, S.Pd';
+                opRole.textContent = 'BENDAHARA SMP & TAHFIDZ';
+                opAvatar.src = 'assets/images/doctor-avatar-2.jpg';
+            } else {
+                subLogo.src = 'assets/logo-koperasi.svg';
+                opName.textContent = 'Bpk. Irwan Setiawan, SE';
+                opRole.textContent = 'MANAJER KSP & BMT';
+                opAvatar.src = 'assets/images/member-avatar-1.jpg';
+            }
+        }
+
+        function toggleFaq16(idx) {
+            for (let i = 0; i < 6; i++) {
+                const body = document.getElementById('faqBody16_' + i);
+                const icon = document.getElementById('faqIcon16_' + i);
+                if (!body || !icon) continue;
+                if (i === idx) {
+                    const isHidden = body.classList.contains('hidden');
+                    body.classList.toggle('hidden', !isHidden);
+                    icon.className = isHidden ? 'fa-solid fa-minus text-clinical text-xs' : 'fa-solid fa-plus text-slate-500 text-xs';
+                } else {
+                    body.classList.add('hidden');
+                    icon.className = 'fa-solid fa-plus text-slate-500 text-xs';
+                }
+            }
+        }
+
+        // RENDER CLINIC QUEUE & SOAP
+        function renderClinicApp() {
+            const qContainer = document.getElementById('patientQueueContainer');
+            qContainer.innerHTML = patientQueue.map(p => {
+                const isCurrent = p.id === activePatientId;
+                const badgeCls = p.status === 'Selesai'
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                    : p.status === 'Sedang Diperiksa'
+                        ? 'bg-teal-100 text-teal-800 border-teal-300'
+                        : 'bg-amber-100 text-amber-800 border-amber-200';
+                return `
+                    <div class="p-4 transition ${isCurrent ? 'bg-clinical-light/60 border-l-4 border-l-clinical' : 'hover:bg-slate-50'}">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-900 text-white">${p.queueNo}</span>
+                                    <span class="font-mono text-[11px] text-slate-500">${p.rmNo}</span>
+                                    <span class="text-[11px] font-semibold text-clinical">${p.poli}</span>
+                                </div>
+                                <div class="font-bold text-sm text-slate-900 mt-1">${p.name}</div>
+                                <p class="text-xs text-slate-500 mt-0.5">${p.complaint}</p>
+                            </div>
+                            <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border ${badgeCls}">${p.status}</span>
+                        </div>
+                        <div class="mt-3 flex items-center justify-end gap-2">
+                            <button onclick="loadPatientToSoap('${p.id}')" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-clinical text-white font-semibold text-xs transition">
+                                Periksa Pasien (Isi SOAP)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Populate drug select dropdown
+            const sel = document.getElementById('resepDrugSelect');
+            sel.innerHTML = drugInventory.map(d => `
+                <option value="${d.code}">${d.name} (Stok: ${d.stock} ${d.unit})</option>
+            `).join('');
+
+            renderDraftResep();
+            renderDrugInventoryTable();
+        }
+
+        function loadPatientToSoap(pid) {
+            const p = patientQueue.find(x => x.id === pid);
+            if (!p) return;
+            activePatientId = pid;
+            p.status = 'Sedang Diperiksa';
+            document.getElementById('soapActivePatientHeader').textContent = `Pemeriksaan Pasien: ${p.name} (${p.rmNo})`;
+            document.getElementById('soapActivePoliBadge').textContent = `${p.poli.toUpperCase()} • ${p.queueNo}`;
+            document.getElementById('soapSubjective').value = p.complaint;
+            renderClinicApp();
+            showErpToast(`Memuat Rekam Medis ${p.name}`);
+        }
+
+        function addDrugToDraftResep() {
+            const code = document.getElementById('resepDrugSelect').value;
+            const qty = parseInt(document.getElementById('resepQtyInput').value || '1', 10);
+            const signa = document.getElementById('resepSignaInput').value.trim() || '3x1 Sesudah Makan';
+            const drug = drugInventory.find(d => d.code === code);
+            if (!drug) return;
+
+            const existing = draftResep.find(r => r.code === code);
+            if (existing) {
+                existing.qty += qty;
+                existing.signa = signa;
+            } else {
+                draftResep.push({ code: drug.code, name: drug.name, qty, signa });
+            }
+            renderDraftResep();
+        }
+
+        function removeDraftResepItem(code) {
+            draftResep = draftResep.filter(r => r.code !== code);
+            renderDraftResep();
+        }
+
+        function renderDraftResep() {
+            const c = document.getElementById('draftResepContainer');
+            if (draftResep.length === 0) {
+                c.innerHTML = `<div class="text-xs text-slate-400 italic py-1">Belum ada item obat di E-Resep.</div>`;
+                return;
+            }
+            c.innerHTML = draftResep.map(r => `
+                <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-slate-200 text-xs">
+                    <div>
+                        <span class="font-bold text-slate-800">${r.name}</span>
+                        <span class="font-mono text-clinical font-bold ml-2">× ${r.qty}</span>
+                        <span class="text-slate-500 ml-2">(${r.signa})</span>
+                    </div>
+                    <button type="button" onclick="removeDraftResepItem('${r.code}')" class="text-rose-600 hover:text-rose-800 font-bold">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function saveSoapAndDeductStock(e) {
+            e.preventDefault();
+            const p = patientQueue.find(x => x.id === activePatientId);
+            if (!p) return;
+
+            // Deduct stock from drugInventory
+            let deductedSummary = [];
+            draftResep.forEach(item => {
+                const drug = drugInventory.find(d => d.code === item.code);
+                if (drug) {
+                    drug.stock = Math.max(0, drug.stock - item.qty);
+                    deductedSummary.push(`${drug.name} (-${item.qty} ${drug.unit})`);
+                }
+            });
+
+            p.status = 'Selesai';
+            completedSoapCounter++;
+            document.getElementById('kpiSoapDoneCount').textContent = `${completedSoapCounter} EMR`;
+
+            renderClinicApp();
+            showErpToast(`SOAP ${p.rmNo} disimpan! Stok Apotek otomatis terpotong: ${deductedSummary.join(', ')}`);
+        }
+
+        function filterDrugInventory(mode) {
+            currentDrugFilter = mode;
+            ['all', 'expiring', 'low'].forEach(k => {
+                const btn = document.getElementById('drugFilter_' + k);
+                if (k === mode) {
+                    btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition flex items-center gap-1.5';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-1.5';
+                }
+            });
+            renderDrugInventoryTable();
+        }
+
+        function restockDrugUnit(code) {
+            const d = drugInventory.find(x => x.code === code);
+            if (!d) return;
+            d.stock += 50;
+            renderClinicApp();
+            showErpToast(`Restock +50 ${d.unit} untuk ${d.name} berhasil dicatat!`);
+        }
+
+        function renderDrugInventoryTable() {
+            const tbody = document.getElementById('drugInventoryTableBody');
+            const totalUnits = drugInventory.reduce((s, d) => s + d.stock, 0);
+            const expCount = drugInventory.filter(d => d.daysToExp <= 90).length;
+
+            document.getElementById('kpiTotalDrugUnits').textContent = `${totalUnits} Unit`;
+            document.getElementById('kpiExpiredAlertCount').textContent = `${expCount} Batch Obat`;
+
+            const list = drugInventory.filter(d => {
+                if (currentDrugFilter === 'expiring') return d.daysToExp <= 90;
+                if (currentDrugFilter === 'low') return d.stock <= 25;
+                return true;
+            });
+
+            tbody.innerHTML = list.map(d => {
+                const isExpiring = d.daysToExp <= 90;
+                const isLow = d.stock <= 25;
+                return `
+                    <tr class="${isExpiring ? 'bg-amber-50/60' : 'hover:bg-slate-50'}">
+                        <td class="py-3 px-4">
+                            <div class="font-mono text-[11px] text-slate-500">${d.code}</div>
+                            <div class="font-bold text-slate-900">${d.name}</div>
+                        </td>
+                        <td class="py-3 px-4 font-mono font-semibold text-slate-700">${d.batch}</td>
+                        <td class="py-3 px-4 font-mono">${d.expDate}</td>
+                        <td class="py-3 px-4">
+                            ${isExpiring
+                                ? `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2.5 py-1 rounded bg-amber-100 text-amber-900 border border-amber-300"><i class="fa-solid fa-triangle-exclamation"></i> EXPIRED ${d.daysToExp} HARI LAGI</span>`
+                                : `<span class="font-mono text-[10px] font-semibold px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">AMAN (${d.daysToExp} Hari)</span>`
+                            }
+                        </td>
+                        <td class="py-3 px-4 text-right font-mono font-bold ${isLow ? 'text-rose-600' : 'text-slate-900'}">
+                            ${d.stock} ${d.unit}
+                            ${isLow ? `<span class="block text-[10px] text-rose-600">Stok Menipis</span>` : ''}
+                        </td>
+                        <td class="py-3 px-4 text-right font-mono">${fmtRp(d.price)}</td>
+                        <td class="py-3 px-4 text-center">
+                            <button onclick="restockDrugUnit('${d.code}')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-clinical hover:text-white text-slate-700 font-mono text-[11px] font-semibold transition">
+                                +50 Stok
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // =========================================================================
+        // 2. EDUSPP FUNCTIONS
+        // =========================================================================
+        function renderSppTable() {
+            const clsFilter = document.getElementById('sppClassFilter').value;
+            const stFilter = document.getElementById('sppStatusFilter').value;
+            const tbody = document.getElementById('sppTableBody');
+
+            let totalBill = 0;
+            let totalPaid = 0;
+            let lunasCount = 0;
+            let unpaidCount = 0;
+
+            sppStudents.forEach(s => {
+                totalBill += s.bill;
+                totalPaid += s.paid;
+                if (s.status === 'Lunas') lunasCount++;
+                else unpaidCount++;
+            });
+
+            document.getElementById('sppTotalTargetText').textContent = fmtRp(totalBill);
+            document.getElementById('sppPaidTotalText').textContent = fmtRp(totalPaid);
+            document.getElementById('sppPaidCountText').textContent = `${lunasCount} Siswa Lunas`;
+            document.getElementById('sppUnpaidTotalText').textContent = fmtRp(totalBill - totalPaid);
+            document.getElementById('sppUnpaidCountText').textContent = `${unpaidCount} Wali Murid Perlu Diingatkan`;
+
+            const filtered = sppStudents.filter(s => {
+                const mCls = clsFilter === 'all' || s.kelas === clsFilter;
+                const mSt = stFilter === 'all' || s.status === stFilter;
+                return mCls && mSt;
+            });
+
+            tbody.innerHTML = filtered.map(s => {
+                const sisa = s.bill - s.paid;
+                const badge = s.status === 'Lunas'
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                    : s.status === 'Cicilan'
+                        ? 'bg-amber-100 text-amber-800 border-amber-300'
+                        : 'bg-rose-100 text-rose-800 border-rose-200';
+
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-4">
+                            <div class="font-mono text-[11px] text-slate-500">NISN: ${s.nisn}</div>
+                            <div class="font-bold text-slate-900">${s.name}</div>
+                        </td>
+                        <td class="py-3 px-4 font-semibold text-slate-700">${s.kelas}</td>
+                        <td class="py-3 px-4">
+                            <div class="font-medium text-slate-800">${s.parent}</div>
+                            <div class="font-mono text-[11px] text-slate-500">+${s.phone}</div>
+                        </td>
+                        <td class="py-3 px-4 text-right font-mono font-semibold">${fmtRp(s.bill)}</td>
+                        <td class="py-3 px-4 text-right font-mono font-bold ${sisa === 0 ? 'text-emerald-600' : 'text-amber-700'}">${fmtRp(s.paid)}</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="font-mono text-[10px] font-bold px-2.5 py-1 rounded border ${badge}">${s.status.toUpperCase()}</span>
+                        </td>
+                        <td class="py-3 px-4 text-right space-x-1.5">
+                            ${s.status !== 'Lunas' ? `
+                                <button onclick="sendSingleSppWaReminder('${s.nisn}')" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-[11px] inline-flex items-center gap-1">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <span>Ingatkan WA</span>
+                                </button>
+                                <button onclick="markSppPaid('${s.nisn}')" class="px-2.5 py-1.5 rounded-lg bg-royal hover:bg-royal-dark text-white font-semibold text-[11px]">
+                                    Terima Lunas
+                                </button>
+                            ` : `
+                                <button onclick="openSppReceiptModal('${s.nisn}')" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-700 text-white font-mono text-[11px] inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-print"></i>
+                                    <span>Cetak Kwitansi</span>
+                                </button>
+                            `}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function sendSingleSppWaReminder(nisn) {
+            const s = sppStudents.find(x => x.nisn === nisn);
+            if (!s) return;
+            const sisa = s.bill - s.paid;
+            const msg = [
+                `Assalamu'alaikum Wr. Wb. Yth. *${s.parent}* (Wali Murid dari *${s.name}* - ${s.kelas}),`,
+                ``,
+                `Kami dari Bagian Keuangan *EduSPP Sekolah / Pesantren* menginformasikan rincian tagihan SPP Bulan Oktober 2026:`,
+                `• Nomor Induk (NISN): ${s.nisn}`,
+                `• Total Tagihan SPP: ${fmtRp(s.bill)}`,
+                `• Sudah Terbayar: ${fmtRp(s.paid)}`,
+                `• *Sisa Tagihan: ${fmtRp(sisa)}*`,
+                ``,
+                `Pembayaran dapat dilakukan melalui Virtual Account Bank / QRIS Sekolah atau langsung di Loket Tata Usaha. Terima kasih atas kerja samanya.`
+            ].join('\n');
+            window.open(`https://wa.me/${s.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function markSppPaid(nisn) {
+            const s = sppStudents.find(x => x.nisn === nisn);
+            if (!s) return;
+            s.paid = s.bill;
+            s.status = 'Lunas';
+            renderSppTable();
+            openSppReceiptModal(nisn);
+            showErpToast(`Pembayaran SPP ${s.name} berhasil dilunasi!`);
+        }
+
+        function openSppReceiptModal(nisn) {
+            const s = sppStudents.find(x => x.nisn === nisn);
+            if (!s) return;
+            const area = document.getElementById('printableReceiptArea');
+            area.innerHTML = `
+                <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                    <img src="assets/logo-eduspp.svg" alt="EduSPP" class="h-9 w-auto">
+                    <div class="text-right font-mono">
+                        <div class="font-bold text-slate-900">KWITANSI RESMI PEMBAYARAN SPP</div>
+                        <div class="text-[11px] text-slate-500">NO: KW-SPP/2026/${s.nisn}</div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1.5 font-mono">
+                    <div class="flex justify-between"><span class="text-slate-500">Nama Siswa/Santri:</span><strong class="text-slate-900">${s.name}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-500">NISN / Kelas:</span><strong>${s.nisn} • ${s.kelas}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Diterima Dari:</span><strong>${s.parent}</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-500">Periode Tagihan:</span><strong>SPP Oktober 2026</strong></div>
+                    <div class="flex justify-between pt-2 border-t border-slate-200 text-sm"><span class="font-sans font-bold">Nominal Lunas:</span><strong class="text-emerald-700">${fmtRp(s.paid)}</strong></div>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2">
+                    <span>Status: <strong>LUNAS TERVERIFIKASI SISTEM</strong></span>
+                    <span>Bendahara Tata Usaha</span>
+                </div>
+            `;
+            const modal = document.getElementById('receiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function openBulkWaBroadcastModal() {
+            const unpaidList = sppStudents.filter(s => s.status !== 'Lunas');
+            const area = document.getElementById('printableReceiptArea');
+            area.innerHTML = `
+                <div class="border-b border-slate-200 pb-3">
+                    <span class="font-mono text-[10px] uppercase font-bold text-royal">WHATSAPP GATEWAY BROADCAST</span>
+                    <h3 class="font-bold text-base text-slate-900">Kirim Pengingat SPP Serentak (${unpaidList.length} Wali Murid)</h3>
+                </div>
+                <p class="text-xs text-slate-600">Sistem akan mengirimkan pesan tagihan personal otomatis ke nomor WhatsApp masing-masing orang tua yang berstatus Belum Bayar / Cicilan:</p>
+                <div class="space-y-1.5 max-h-44 overflow-y-auto font-mono text-[11px]">
+                    ${unpaidList.map(u => `
+                        <div class="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                            <span>${u.parent} (${u.name})</span>
+                            <strong class="text-rose-600">Kurang ${fmtRp(u.bill - u.paid)}</strong>
+                        </div>
+                    `).join('')}
+                </div>
+                <button onclick="closeReceiptModal(); showErpToast('Broadcast WA terkirim ke ${unpaidList.length} nomor Wali Murid!');" class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
+                    Jalankan Antrean Broadcast WhatsApp Sekarang
+                </button>
+            `;
+            const modal = document.getElementById('receiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // =========================================================================
+        // 3. KOPERASI SIMPAN PINJAM (KSP) FUNCTIONS
+        // =========================================================================
+        function renderCoopApp() {
+            const tbody = document.getElementById('coopMembersTableBody');
+            tbody.innerHTML = coopMembers.map(m => {
+                const total = m.pokokWajib + m.sukarela;
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3">
+                            <div class="font-mono text-[10px] text-slate-500">${m.id}</div>
+                            <div class="font-bold text-slate-900">${m.name}</div>
+                        </td>
+                        <td class="py-2.5 px-3 text-right font-mono">${fmtRp(m.pokokWajib)}</td>
+                        <td class="py-2.5 px-3 text-right font-mono text-coop font-semibold">${fmtRp(m.sukarela)}</td>
+                        <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900">${fmtRp(total)}</td>
+                        <td class="py-2.5 px-3 text-center">
+                            <button onclick="selectMemberLoanCard('${m.id}')" class="px-2 py-1 rounded bg-slate-100 hover:bg-coop hover:text-white font-mono text-[10px] font-semibold">
+                                Pilih
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            renderLoanCardHistory();
+            renderLoanAmortization();
+        }
+
+        function addQuickSavingsDeposit() {
+            coopMembers[0].sukarela += 250000;
+            renderCoopApp();
+            showErpToast(`Setoran Simpanan Sukarela +Rp 250.000 berhasil ditambahkan ke buku ${coopMembers[0].name}!`);
+        }
+
+        function selectMemberLoanCard(id) {
+            const m = coopMembers.find(x => x.id === id);
+            if (!m) return;
+            document.getElementById('activeLoanCardMember').textContent = `${m.name} (${m.id})`;
+            showErpToast(`Menampilkan Kartu Angsuran ${m.name}`);
+        }
+
+        function recordLoanInstallmentPayment() {
+            if (paidMonthsOnActiveLoan < 12) {
+                paidMonthsOnActiveLoan++;
+                renderLoanCardHistory();
+                showErpToast(`Setoran Angsuran Bulan ke-${paidMonthsOnActiveLoan} berhasil dicatat LUNAS!`);
+            } else {
+                showErpToast('Pinjaman anggota ini sudah LUNAS 12 Bulan!');
+            }
+        }
+
+        function renderLoanCardHistory() {
+            const plafon = 12000000;
+            const monthlyPrincipal = 1000000;
+            const remaining = Math.max(0, plafon - (paidMonthsOnActiveLoan * monthlyPrincipal));
+
+            document.getElementById('loanCardProgress').textContent = `Bulan ${paidMonthsOnActiveLoan} / 12`;
+            document.getElementById('loanCardRemaining').textContent = fmtRp(remaining);
+
+            const list = document.getElementById('loanCardHistoryList');
+            let rows = '';
+            for (let m = 1; m <= 6; m++) {
+                const isPaid = m <= paidMonthsOnActiveLoan;
+                rows += `
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg border text-xs font-mono ${
+                        isPaid ? 'bg-emerald-50/60 border-emerald-200 text-emerald-900' : 'bg-white border-slate-200 text-slate-600'
+                    }">
+                        <span>Angsuran Ke-${m} (Pokok Rp 1jt + Jasa Rp 150rb)</span>
+                        <span class="font-bold">${isPaid ? 'LUNAS TERBAYAR' : 'BELUM JATUH TEMPO'}</span>
+                    </div>
+                `;
+            }
+            list.innerHTML = rows;
+        }
+
+        function renderLoanAmortization() {
+            const principal = parseInt(document.getElementById('loanSimAmount').value, 10);
+            const tenor = parseInt(document.getElementById('loanSimTenor').value, 10);
+            const ratePct = parseFloat(document.getElementById('loanSimRate').value);
+
+            const monthlyPrincipal = Math.round(principal / tenor);
+            const monthlyInterest = Math.round(principal * (ratePct / 100));
+            const monthlyTotal = monthlyPrincipal + monthlyInterest;
+
+            document.getElementById('simMonthlyPrincipal').textContent = fmtRp(monthlyPrincipal);
+            document.getElementById('simMonthlyInterest').textContent = fmtRp(monthlyInterest);
+            document.getElementById('simMonthlyTotal').textContent = fmtRp(monthlyTotal);
+
+            const tbody = document.getElementById('loanAmortizationBody');
+            let html = '';
+            let balance = principal;
+
+            for (let m = 1; m <= tenor; m++) {
+                balance = Math.max(0, balance - monthlyPrincipal);
+                html += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2 px-3 font-bold text-slate-800">Bulan ke-${m}</td>
+                        <td class="py-2 px-3 text-right">${fmtRp(monthlyPrincipal)}</td>
+                        <td class="py-2 px-3 text-right text-coop">${fmtRp(monthlyInterest)}</td>
+                        <td class="py-2 px-3 text-right font-bold text-slate-900">${fmtRp(monthlyTotal)}</td>
+                        <td class="py-2 px-3 text-right text-slate-500">${fmtRp(balance)}</td>
+                    </tr>
+                `;
+            }
+            tbody.innerHTML = html;
+        }
+
+        function printScheduleReceipt() {
+            const principal = parseInt(document.getElementById('loanSimAmount').value, 10);
+            const tenor = parseInt(document.getElementById('loanSimTenor').value, 10);
+            const monthlyTotal = document.getElementById('simMonthlyTotal').textContent;
+
+            const area = document.getElementById('printableReceiptArea');
+            area.innerHTML = `
+                <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+                    <img src="assets/logo-koperasi.svg" alt="KoperasiKu" class="h-9 w-auto">
+                    <div class="text-right font-mono">
+                        <div class="font-bold text-slate-900">LEMBAR PERSETUJUAN ANGSURAN KSP</div>
+                        <div class="text-[11px] text-slate-500">TENOR ${tenor} BULAN</div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 font-mono">
+                    <div class="flex justify-between"><span>Plafon Pinjaman Disetujui:</span><strong>${fmtRp(principal)}</strong></div>
+                    <div class="flex justify-between"><span>Jangka Waktu (Tenor):</span><strong>${tenor} Bulan</strong></div>
+                    <div class="flex justify-between pt-2 border-t border-slate-200 text-sm"><span>Setoran Angsuran / Bulan:</span><strong class="text-coop">${monthlyTotal}</strong></div>
+                </div>
+            `;
+            const modal = document.getElementById('receiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReceiptModal() {
+            const modal = document.getElementById('receiptModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function showErpToast(msg) {
+            const t = document.getElementById('erpToast');
+            document.getElementById('erpToastMsg').textContent = msg;
+            t.classList.remove('hidden');
+            clearTimeout(window.__erpToastTimer);
+            window.__erpToastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderClinicApp();
+            renderSppTable();
+            renderCoopApp();
+        });
+    </script>
+</body>
+</html>

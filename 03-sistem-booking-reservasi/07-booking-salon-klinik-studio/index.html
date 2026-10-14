@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservasiKu Multi-Booking — Sistem Reservasi Online Barbershop, Klinik Gigi/Kecantikan & Self-Photo Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            font-variant-numeric: tabular-nums;
+        }
+        .step-card-transition {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-item:hover {
+            transform: translateY(-2px);
+        }
+        .specialist-card:hover {
+            transform: translateY(-3px);
+        }
+        /* Ticket perforated edge effect */
+        .ticket-notch-left, .ticket-notch-right {
+            position: absolute;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            background-color: #0F172A;
+            border-radius: 9999px;
+            transform: translateY(-50%);
+        }
+        .ticket-notch-left { left: -14px; }
+        .ticket-notch-right { right: -14px; }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #digitalQueueCardModalContent, #digitalQueueCardModalContent * {
+                visibility: visible;
+            }
+            #digitalQueueCardModalContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-600 selection:text-white min-h-screen flex flex-col bg-slate-50">
+
+    <!-- TOP FLOATING DEMO BAR -->
+    <div class="sticky top-0 z-50 bg-slate-950 text-white border-b border-slate-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-11 flex items-center justify-between text-xs sm:text-sm">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-amber-400 hover:text-amber-300 transition-colors">
+                <span class="bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-lg inline-flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span>Katalog Portofolio UMKM</span>
+                </span>
+            </a>
+            <div class="hidden md:flex items-center gap-2 text-slate-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span class="font-mono text-xs text-slate-400">PORTFOLIO #07</span>
+                <span class="text-slate-600">•</span>
+                <strong class="text-white">ReservasiKu Multi-Booking (3 Mode Bisnis dalam 1 Sistem)</strong>
+            </div>
+            <button onclick="runAutoDemoBooking()" class="bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-400/30 px-2.5 py-1 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Isi Otomatis & Lihat Antrean
+            </button>
+        </div>
+    </div>
+
+    <!-- LIVE INDUSTRY MODE SWITCHER BAR (3 UMKM IN 1 PAGE) -->
+    <div class="bg-white border-b border-slate-200 sticky top-11 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                <div class="flex items-center gap-4 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/logo.svg" alt="ReservasiKu Logo" class="w-9 h-9 rounded-xl shadow-sm shrink-0">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-display font-bold text-sm text-slate-900 whitespace-nowrap">ReservasiKu</span>
+                                <span class="bg-slate-900 text-white text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded whitespace-nowrap">
+                                    3-IN-1 BOOKING
+                                </span>
+                            </div>
+                            <span class="text-xs text-slate-500 hidden xl:inline whitespace-nowrap">
+                                Pilih mode bisnis &amp; uji reservasi:
+                            </span>
+                        </div>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-4 text-xs font-bold text-slate-600 border-l border-slate-200 pl-4 whitespace-nowrap">
+                        <a href="#ulasan-pelanggan" class="hover:text-indigo-600 transition whitespace-nowrap">Ulasan &amp; Foto</a>
+                        <a href="#faq" class="hover:text-indigo-600 transition whitespace-nowrap">FAQ</a>
+                    </nav>
+                </div>
+
+                <!-- 3 Industry Mode Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <button onclick="switchIndustryMode('barber')" id="modeBtn-barber" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center sm:justify-start gap-2.5 border-2 bg-amber-950 text-amber-300 border-amber-500 shadow-sm">
+                        <img src="assets/logo-barber.svg" alt="Barber Logo" class="w-8 h-8 rounded-lg shrink-0">
+                        <div class="text-left">
+                            <div class="leading-tight">Gentleman's Cut</div>
+                            <div class="text-[10px] font-normal opacity-80">Barbershop & Hair Salon</div>
+                        </div>
+                    </button>
+
+                    <button onclick="switchIndustryMode('clinic')" id="modeBtn-clinic" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center sm:justify-start gap-2.5 border-2 bg-slate-100 text-slate-700 border-transparent hover:border-slate-300">
+                        <img src="assets/logo-clinic.svg" alt="Clinic Logo" class="w-8 h-8 rounded-lg shrink-0">
+                        <div class="text-left">
+                            <div class="leading-tight">SenyumSehat</div>
+                            <div class="text-[10px] font-normal opacity-80">Klinik Gigi & Aesthetic</div>
+                        </div>
+                    </button>
+
+                    <button onclick="switchIndustryMode('studio')" id="modeBtn-studio" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center sm:justify-start gap-2.5 border-2 bg-slate-100 text-slate-700 border-transparent hover:border-slate-300">
+                        <img src="assets/logo-studio.svg" alt="Studio Logo" class="w-8 h-8 rounded-lg shrink-0">
+                        <div class="text-left">
+                            <div class="leading-tight">KuyPhoto Studio</div>
+                            <div class="text-[10px] font-normal opacity-80">Self-Photo & Photobox</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC BRAND HEADER / HERO BANNER -->
+    <header id="brandHeroSection" class="bg-gradient-to-br from-slate-900 via-stone-900 to-neutral-900 text-white py-10 border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                <div class="space-y-3.5 max-w-2xl">
+                    <div class="flex items-center gap-3">
+                        <img id="heroModeLogo" src="assets/logo-barber.svg" alt="Mode Brand Logo" class="w-12 h-12 rounded-2xl shadow-lg">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 backdrop-blur-sm border border-white/15" id="heroBadge">
+                            <span>PREMIUM GROOMING & HAIR STUDIO</span>
+                        </div>
+                    </div>
+                    <h1 id="heroTitle" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+                        Gentleman's Cut Barbershop & Salon
+                    </h1>
+                    <p id="heroSubtitle" class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Bebas antre berjam-jam di tempat! Pilih paket perawatan rambut, tentukan Capster favorit Anda, kunci jam kedatangan, dan dapatkan Nomor Antrean Digital instan.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-200" id="heroMetaPills">
+                        <span class="bg-black/30 border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-star text-amber-400"></i> <strong>4.9/5.0</strong> (2.310+ Pelanggan Puas)
+                        </span>
+                        <span class="bg-black/30 border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-amber-400"></i> <span id="heroAddressText">Jl. Senopati Raya No. 45, Jakarta Selatan</span>
+                        </span>
+                        <span class="bg-black/30 border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-mono">
+                            <i class="fa-regular fa-clock text-emerald-400"></i> Buka: <strong>09:00 – 21:00 WIB</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Hero Visual + Live Queue Status Box -->
+                <div class="flex flex-col sm:flex-row lg:flex-row items-stretch gap-4 shrink-0">
+                    <div class="hidden sm:block w-48 lg:w-52 rounded-2xl overflow-hidden border border-white/15 shadow-xl relative">
+                        <img id="heroPreviewImage" src="assets/images/hero-barber.jpg" alt="Venue Interior" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-2.5 left-3 text-[11px] font-semibold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-heart text-emerald-400"></i> Terverifikasi Higienis
+                        </span>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 lg:w-72 shrink-0 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="uppercase tracking-wider font-bold text-slate-300">Status Antrean Live</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Lancar
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2.5 my-2.5">
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/10">
+                                <div class="text-[11px] text-slate-300">Antrean Dilayani</div>
+                                <div id="liveCurrentQueue" class="font-mono font-bold text-2xl text-amber-400 mt-0.5">B-014</div>
+                            </div>
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/10">
+                                <div class="text-[11px] text-slate-300">Slot Kosong</div>
+                                <div id="liveAvailableSlotsCount" class="font-mono font-bold text-2xl text-emerald-400 mt-0.5">6 Slot</div>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-300 flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+                            <span>Pengingat otomatis via WhatsApp H-1 jam</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 4-STEP INTERACTIVE BOOKING WIZARD -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+        <!-- WIZARD STEP PROGRESS NAVIGATION BAR -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:p-4 mb-8 shadow-sm">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+                <button onclick="scrollToWizardStep(1)" id="stepIndicator-1" class="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl border-2 border-slate-900 bg-slate-900 text-white text-left transition">
+                    <span class="w-7 h-7 rounded-lg bg-amber-400 text-slate-950 font-mono font-black text-xs flex items-center justify-center shrink-0">01</span>
+                    <div class="overflow-hidden">
+                        <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300">Langkah 1</div>
+                        <div class="text-xs sm:text-sm font-bold truncate" id="stepLabel1">Pilih Layanan / Paket</div>
+                    </div>
+                </button>
+
+                <button onclick="scrollToWizardStep(2)" id="stepIndicator-2" class="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-left transition">
+                    <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-800 font-mono font-black text-xs flex items-center justify-center shrink-0">02</span>
+                    <div class="overflow-hidden">
+                        <div class="text-[10px] uppercase tracking-wider font-bold text-slate-400">Langkah 2</div>
+                        <div class="text-xs sm:text-sm font-bold truncate" id="stepLabel2">Pilih Capster / Spesialis</div>
+                    </div>
+                </button>
+
+                <button onclick="scrollToWizardStep(3)" id="stepIndicator-3" class="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-left transition">
+                    <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-800 font-mono font-black text-xs flex items-center justify-center shrink-0">03</span>
+                    <div class="overflow-hidden">
+                        <div class="text-[10px] uppercase tracking-wider font-bold text-slate-400">Langkah 3</div>
+                        <div class="text-xs sm:text-sm font-bold truncate">Tanggal & Jam Tersedia</div>
+                    </div>
+                </button>
+
+                <button onclick="scrollToWizardStep(4)" id="stepIndicator-4" class="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-left transition">
+                    <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-800 font-mono font-black text-xs flex items-center justify-center shrink-0">04</span>
+                    <div class="overflow-hidden">
+                        <div class="text-[10px] uppercase tracking-wider font-bold text-slate-400">Langkah 4</div>
+                        <div class="text-xs sm:text-sm font-bold truncate">Data & Nomor Antrean</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- 2-COLUMN WORKSPACE: LEFT (4 STEPS) & RIGHT (STICKY LIVE RESERVATION SUMMARY) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT 8 COLUMNS: STEPS 1, 2, 3, 4 -->
+            <div class="lg:col-span-8 space-y-8">
+
+                <!-- =============================================================== -->
+                <!-- STEP 1: PILIH LAYANAN / PAKET TREATMENT -->
+                <!-- =============================================================== -->
+                <section id="wizard-step-1" class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-100">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-600 mb-1">
+                                <span>STEP 01 / 04</span>
+                            </div>
+                            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900" id="step1Heading">
+                                Pilih Layanan / Paket Treatment
+                            </h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                                Anda dapat memilih satu atau beberapa layanan sekaligus. Estimasi durasi dihitung otomatis.
+                            </p>
+                        </div>
+                        <span id="selectedServicesCountBadge" class="self-start sm:self-center bg-slate-900 text-white text-xs font-mono font-bold px-3 py-1.5 rounded-full">
+                            1 Layanan Dipilih
+                        </span>
+                    </div>
+
+                    <!-- Services Grid -->
+                    <div id="servicesGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                        <!-- Dynamically rendered via JS -->
+                    </div>
+                </section>
+
+                <!-- =============================================================== -->
+                <!-- STEP 2: PILIH SPESIALIS (CAPSTER / DOKTER / RUANGAN STUDIO) -->
+                <!-- =============================================================== -->
+                <section id="wizard-step-2" class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-100">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-600 mb-1">
+                                <span>STEP 02 / 04</span>
+                            </div>
+                            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900" id="step2Heading">
+                                Pilih Capster / Hair Stylist
+                            </h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-0.5" id="step2Subheading">
+                                Pilih spesialis andalan Anda lengkap dengan rating pelanggan dan keahlian khusus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Specialists Grid -->
+                    <div id="specialistsGridContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Dynamically rendered via JS -->
+                    </div>
+                </section>
+
+                <!-- =============================================================== -->
+                <!-- STEP 3: PILIH TANGGAL & SLOT JAM TERSEDIA -->
+                <!-- =============================================================== -->
+                <section id="wizard-step-3" class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-100">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-600 mb-1">
+                                <span>STEP 03 / 04</span>
+                            </div>
+                            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+                                Pilih Tanggal & Jam Kedatangan
+                            </h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                                Jam berstatus <strong class="text-emerald-600">Tersedia</strong> dapat langsung diklik. Jam berstatus <strong class="text-rose-500">Penuh</strong> sudah dipesan pelanggan lain.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Date Selector Pills + Datepicker -->
+                    <div class="mb-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Tanggal Reservasi</label>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-slate-500">Kalender:</span>
+                                <input type="date" id="bookingDateInput" onchange="handleCustomDateChange(this.value)" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 text-xs font-mono font-semibold text-slate-800 focus:outline-none focus:border-slate-900">
+                            </div>
+                        </div>
+                        <div id="datePillsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Time Slots Grid (09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 16:00, 19:00, 20:00) -->
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Pilih Slot Jam Tersedia (WIB)</label>
+                            <div class="flex items-center gap-3 text-xs">
+                                <span class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Tersedia
+                                </span>
+                                <span class="flex items-center gap-1.5 text-rose-600 font-semibold">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span> Penuh
+                                </span>
+                                <span class="flex items-center gap-1.5 text-slate-900 font-bold">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-slate-900"></span> Dipilih
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="timeSlotsGridContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =============================================================== -->
+                <!-- STEP 4: DATA PELANGGAN & OPSI PEMBAYARAN -->
+                <!-- =============================================================== -->
+                <section id="wizard-step-4" class="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm">
+                    <div class="pb-4 mb-5 border-b border-slate-100">
+                        <div class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-600 mb-1">
+                            <span>STEP 04 / 04</span>
+                        </div>
+                        <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+                            Data Pelanggan & Metode Pembayaran
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                            Lengkapi nama dan nomor WhatsApp untuk menerbitkan <strong>Kartu Nomor Antrean Digital</strong> Anda.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Lengkap Pelanggan <span class="text-rose-500">*</span></label>
+                            <div class="relative">
+                                <i class="fa-regular fa-user absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                                <input type="text" id="custNameInput" placeholder="Contoh: Raka Pratama / dr. Nadia" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-slate-900 focus:bg-white">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Nomor WhatsApp Aktif <span class="text-rose-500">*</span></label>
+                            <div class="relative">
+                                <i class="fa-brands fa-whatsapp absolute left-3.5 top-3 text-emerald-600 text-base"></i>
+                                <input type="tel" id="custWaInput" placeholder="Contoh: 081234567890" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm font-mono text-slate-900 focus:outline-none focus:border-slate-900 focus:bg-white">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" id="custNoteLabel">Catatan Tambahan / Request Khusus (Opsional)</label>
+                            <input type="text" id="custNoteInput" placeholder="Contoh: Model potongan Comma Hair / Gigi agak ngilu / Request background putih" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-slate-900 focus:bg-white">
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection: QRIS Instant vs Bayar di Tempat -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">Pilih Metode Pembayaran</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button type="button" onclick="selectPaymentMethod('qris')" id="payMethodBtn-qris" class="p-4 rounded-2xl border-2 border-slate-900 bg-slate-900 text-white text-left transition flex items-start justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-sm">
+                                        <i class="fa-solid fa-qrcode text-amber-400"></i>
+                                        <span>QRIS Instant (Prioritas Antrean)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 mt-1">Bayar lunas sekarang via GoPay/OVO/BCA/Mandiri. Slot dijamin 100% aman.</p>
+                                </div>
+                                <i class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
+                            </button>
+
+                            <button type="button" onclick="selectPaymentMethod('cash')" id="payMethodBtn-cash" class="p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-slate-300 text-slate-800 text-left transition flex items-start justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-sm">
+                                        <i class="fa-solid fa-cash-register text-emerald-600"></i>
+                                        <span>Bayar di Tempat (Kasir / Resepsionis)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-1">Ambil nomor antrean online sekarang, bayar saat selesai treatment di kasir.</p>
+                                </div>
+                                <i class="fa-regular fa-circle text-slate-400 text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Generate Digital Queue Ticket CTA -->
+                    <button onclick="generateReservationTicket()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 hover:from-slate-800 hover:to-slate-700 text-white font-extrabold text-sm sm:text-base shadow-xl transition transform active:scale-[0.99] flex items-center justify-center gap-2.5">
+                        <i class="fa-solid fa-ticket text-amber-400 text-lg"></i>
+                        <span>Terbitkan Kartu Nomor Antrean & Bukti Reservasi Digital</span>
+                    </button>
+                </section>
+            </div>
+
+            <!-- RIGHT 4 COLUMNS: STICKY LIVE RESERVATION SUMMARY -->
+            <div class="lg:col-span-4 lg:sticky lg:top-28">
+                <div class="bg-white border-2 border-slate-200 rounded-3xl overflow-hidden shadow-xl">
+                    <!-- Top Header -->
+                    <div id="summaryHeaderBox" class="bg-slate-900 text-white p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/15" id="summaryModePill">
+                                BARBERSHOP & SALON
+                            </span>
+                            <span class="text-xs text-slate-300 font-mono" id="summaryTotalDurationBadge">
+                                <i class="fa-regular fa-clock mr-1"></i> 45 Menit
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2.5 mt-2.5">
+                            <img id="summaryModeLogo" src="assets/logo-barber.svg" alt="Mode Logo" class="w-7 h-7 rounded-lg">
+                            <h3 class="font-display font-bold text-lg leading-tight" id="summaryBusinessName">Gentleman's Cut Barbershop</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-1">Ringkasan Reservasi Real-Time</p>
+                    </div>
+
+                    <div class="p-5 space-y-5">
+                        <!-- Step 1 Summary: Services -->
+                        <div>
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
+                                <span>1. Layanan Dipilih</span>
+                                <span id="summaryDurationText" class="text-indigo-600 font-mono font-bold">Total 45 mnt</span>
+                            </div>
+                            <div id="summaryServicesList" class="space-y-2 text-xs">
+                                <!-- Populated via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Summary: Specialist / Room -->
+                        <div class="pt-3 border-t border-slate-100">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2" id="summarySpecialistTitle">
+                                2. Spesialis Pilihan
+                            </div>
+                            <div id="summarySpecialistBox" class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+                                <!-- Populated via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Step 3 Summary: Date & Time -->
+                        <div class="pt-3 border-t border-slate-100">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                                3. Jadwal Kedatangan
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Tanggal:</span>
+                                    <strong id="summaryDateValue" class="text-slate-900">Hari Ini</strong>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Jam Mulai – Selesai:</span>
+                                    <strong id="summaryTimeValue" class="text-emerald-600 font-mono">10:00 - 10:45 WIB</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Total -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-4 space-y-2">
+                            <div class="flex justify-between text-xs text-slate-300">
+                                <span>Biaya Admin Antrean Online</span>
+                                <span class="text-emerald-400 font-mono font-bold">GRATIS</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                                <div>
+                                    <div class="text-[11px] text-slate-400" id="summaryPayMethodLabel">Metode: QRIS Instant</div>
+                                    <div class="font-bold text-sm">Total Estimasi Biaya</div>
+                                </div>
+                                <div id="summaryGrandTotal" class="font-mono font-extrabold text-xl text-amber-400">
+                                    Rp 85.000
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="generateReservationTicket()" class="w-full py-3.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm transition shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <span>Ambil Nomor Antrean Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ULASAN PELANGGAN & FOTO HASIL LAYANAN -->
+    <section id="ulasan-pelanggan" class="bg-slate-50 border-t border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="font-mono text-xs text-indigo-600 uppercase tracking-wider font-semibold">Hasil Nyata & Kepuasan Klien</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Ulasan & Foto Pelanggan <span class="text-indigo-600">Terverifikasi</span></h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-md">
+                    Sistem reservasi ini juga berfungsi sebagai media promosi yang menampilkan keahlian spesialis dan dokumentasi hasil layanan nyata.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Review 1: Barbershop -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/hero-barber.jpg" alt="Hasil Potong Rambut" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-amber-900/90 text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Hasil Barbershop</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            "Booking capster favorit gak perlu antri lagi. Dateng sesuai jadwal, langsung potong. Hasilnya selalu rapi, fade-nya presisi banget."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                        <img src="assets/images/cust-1.jpg" alt="Dimas P." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Dimas Prasetyo</div>
+                            <div class="text-[10px] font-mono text-slate-400">Gentleman's Cut • Reguler</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2: Klinik Gigi -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/hero-clinic.jpg" alt="Perawatan Klinik" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-emerald-900/90 text-emerald-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Perawatan Klinik</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            "Bisa pilih dokter dan jam sendiri lewat website. Scaling + bleaching hasilnya kelihatan beda jauh! Ruang perawatan bersih dan steril."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                        <img src="assets/images/cust-2.jpg" alt="Anisa F." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Anisa Fitrianti</div>
+                            <div class="text-[10px] font-mono text-slate-400">Scaling & Bleaching Gigi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3: Self-Photo Studio -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/hero-studio.jpg" alt="Sesi Self-Photo Studio" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-violet-900/90 text-violet-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Sesi Studio</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">4.8</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            "Self-photo studio-nya aesthetic banget, backdrop banyak pilihan. Booking 30 menit sesi couple, dapat 4 strip foto gratis. Seru!"
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                        <img src="assets/images/cust-3.jpg" alt="Putri N." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Putri Nabilah</div>
+                            <div class="text-[10px] font-mono text-slate-400">Sesi Couple 30 Min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4: Barbershop Member -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/spec-barber-1.jpg" alt="Capster Senior" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-slate-200 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Spesialis Capster</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            "Sudah 2 tahun langganan di sini. Sistem reservasi online bikin saya gak pernah buang waktu nunggu. Capster Mas Rizky memang terbaik."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                        <img src="assets/images/cust-4.jpg" alt="Arif S." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Arif Setiawan</div>
+                            <div class="text-[10px] font-mono text-slate-400">Member Gold • 24 Kunjungan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (PERTANYAAN YANG SERING DITANYAKAN) -->
+    <section id="faq" class="bg-white border-t border-slate-200 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs text-indigo-600 uppercase tracking-wider font-semibold">Informasi Reservasi</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Pertanyaan yang Sering Ditanyakan</h2>
+            </div>
+
+            <div class="space-y-3">
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>1. Apakah bisa reschedule jadwal reservasi?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Ya, reschedule bisa dilakukan maksimal H-3 jam sebelum waktu reservasi melalui WhatsApp admin. Jika lewat dari batas waktu tersebut, reservasi dianggap hangus dan DP tidak bisa dikembalikan.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>2. Apakah harus bayar DP atau bisa bayar di tempat?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Kami menyediakan 2 opsi: bayar DP 50% via QRIS/Transfer untuk mengunci jadwal (direkomendasikan saat slot ramai), atau bayar penuh di tempat saat kedatangan. Walk-in tanpa reservasi juga dilayani bila ada slot kosong.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>3. Apakah bisa memilih capster/dokter/ruangan studio favorit?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Tentu, di Step 2 alur booking Anda bisa memilih spesialis favorit beserta jadwal ketersediaan mereka. Setiap spesialis menampilkan rating, spesialisasi, dan foto profil untuk memudahkan pilihan Anda.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>4. Bagaimana jika saya terlambat dari jam reservasi?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Toleransi keterlambatan maksimal 15 menit. Lebih dari itu, slot Anda otomatis dilepas untuk pelanggan walk-in. Kami akan mengirim pengingat otomatis via WhatsApp H-1 dan 1 jam sebelum jadwal.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>5. Apakah ada diskon untuk pelanggan yang sering datang?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Ya, kami memiliki sistem Member: Silver (5+ kunjungan, diskon 5%), Gold (12+ kunjungan, diskon 10% + prioritas booking), dan Platinum (24+ kunjungan, diskon 15% + booking tanpa DP). Status membership dihitung otomatis oleh sistem.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 border border-slate-200 rounded-xl p-5 open:border-indigo-400 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-slate-900 list-none">
+                        <span>6. Apakah sesi self-photo studio bisa diperpanjang di tempat?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-indigo-600 group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-500 leading-relaxed pt-3 border-t border-slate-200">
+                        Bisa, selama slot berikutnya masih kosong. Perpanjangan dikenakan tarif per 15 menit tambahan. Sebaiknya booking durasi lebih panjang dari awal supaya lebih hemat dan tidak terburu-buru.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-slate-950 text-slate-300 border-t border-slate-800">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-slate-800/80 bg-gradient-to-r from-slate-950 via-indigo-950/40 to-slate-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex flex-wrap items-center gap-2.5 mb-6">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-amber-400">
+                        <i class="fa-solid fa-bolt"></i> Konfirmasi Instan
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-emerald-400">
+                        <i class="fa-solid fa-shield-halved"></i> Pembayaran Aman QRIS
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-indigo-400">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Sistem Real-Time 24 Jam
+                    </span>
+                </div>
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                    <div class="max-w-2xl">
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                            Siap Bebas Antre &amp; Kunci Jadwal Favorit Anda Hari Ini?
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                            Pilih layanan Barbershop, Klinik Gigi &amp; Estetika, atau Self-Photo Studio dalam satu sistem terpadu. Dapatkan Kartu Nomor Antrean Digital instan lengkap dengan pengingat WhatsApp otomatis.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 shrink-0">
+                        <a href="#wizard-step-1" class="px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm transition shadow-lg shadow-amber-400/10 inline-flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Booking Slot Sekarang</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20ReservasiKu%2C%20saya%20ingin%20konsultasi%20jadwal%20reservasi" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm transition shadow-lg shadow-emerald-600/20 inline-flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chat Admin via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/logo.svg" alt="ReservasiKu Logo" class="w-11 h-11 rounded-xl shadow-md shrink-0">
+                        <div>
+                            <div class="font-display font-bold text-lg text-white leading-tight">Reservasi<span class="text-amber-400">Ku</span></div>
+                            <div class="font-mono text-[10px] uppercase tracking-widest text-indigo-400 font-semibold">3-IN-1 MULTI-BOOKING ENGINE</div>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Platform reservasi online dan manajemen antrean digital untuk Barbershop, Klinik Gigi/Kecantikan, serta Self-Photo Studio modern di Indonesia.
+                    </p>
+                    <div class="flex items-center gap-2.5 pt-1">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram ReservasiKu" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok ReservasiKu" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ReservasiKu" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube ReservasiKu" class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400 hover:bg-amber-400 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-3">
+                    <h4 class="font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li><a href="#brandHeroSection" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> Beranda &amp; Mode Bisnis</a></li>
+                        <li><a href="#wizard-step-1" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> Layanan / Modul Paket</a></li>
+                        <li><a href="#wizard-step-2" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> Jadwal &amp; Harga Spesialis</a></li>
+                        <li><a href="#wizard-step-3" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> Cara Penggunaan (4 Step)</a></li>
+                        <li><a href="#ulasan-pelanggan" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> Ulasan &amp; Foto Pelanggan</a></li>
+                        <li><a href="#faq" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-indigo-400"></i> FAQ &amp; Kontak Bantuan</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Layanan dan Modul -->
+                <nav aria-label="Layanan dan Modul" class="space-y-3">
+                    <h4 class="font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">Layanan &amp; Modul</h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li><a href="#wizard-step-1" onclick="switchIndustryMode('barber')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-scissors text-[11px] text-amber-400 w-4"></i> Gentleman's Cut Barbershop</a></li>
+                        <li><a href="#wizard-step-1" onclick="switchIndustryMode('clinic')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-tooth text-[11px] text-teal-400 w-4"></i> SenyumSehat Klinik Gigi</a></li>
+                        <li><a href="#wizard-step-1" onclick="switchIndustryMode('studio')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-camera-retro text-[11px] text-purple-400 w-4"></i> KuyPhoto Self-Photo Studio</a></li>
+                        <li><a href="#wizard-step-3" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-regular fa-calendar-check text-[11px] text-emerald-400 w-4"></i> Kalender Slot Jam Real-Time</a></li>
+                        <li><a href="#wizard-step-4" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-ticket text-[11px] text-indigo-400 w-4"></i> Tiket Antrean QR Digital</a></li>
+                        <li class="pt-1">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20ReservasiKu%2C%20saya%20ingin%20info%20Member%20VIP%20Platinum%20%26%20Kemitraan%20Multi-Cabang" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-950/80 border border-indigo-500/40 text-indigo-200 hover:bg-indigo-900 hover:text-white text-xs font-bold transition">
+                                <i class="fa-solid fa-crown text-amber-400"></i>
+                                <span>Paket Member VIP &amp; Lisensi Cabang</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-3">
+                    <h4 class="font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">Kontak &amp; Jam Operasional</h4>
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-400">
+                        <div class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <p class="text-slate-200 font-semibold">Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan 12190</p>
+                                <a href="https://maps.google.com/?q=Jl.+Senopati+Raya+No.+45+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-amber-400 hover:underline font-semibold text-xs mt-1">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">WhatsApp Concierge</span>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-slate-200 hover:text-emerald-400 transition tabular-nums">+62 812-3456-7890</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">Email Resmi</span>
+                                <a href="mailto:halo@reservasiku.id" class="font-mono text-slate-200 hover:text-indigo-400 transition">halo@reservasiku.id</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">Jam Operasional Outlet</span>
+                                <span class="font-mono font-semibold text-slate-200">Senin – Minggu: 09:00 – 21:00 WIB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-slate-800/80 bg-slate-950/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-1.5">
+                    <span class="text-[11px] text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-200 whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono text-[11px] font-bold text-slate-300 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Legal Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 text-center sm:text-right">
+                    <p class="text-slate-400">© 2026 ReservasiKu. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4 text-slate-400">
+                        <!-- TODO: Tambahkan halaman Syarat & Ketentuan -->
+                        <a href="#" class="hover:text-white transition whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Tambahkan halaman Kebijakan Privasi -->
+                        <a href="#" class="hover:text-white transition whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-amber-400 transition whitespace-nowrap">Kebijakan Pembatalan / Garansi</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+    <!-- DIGITAL QUEUE CARD / BUKTI RESERVASI MODAL -->
+    <!-- ======================================================================= -->
+    <div id="queueTicketModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 overflow-y-auto">
+        <div id="digitalQueueCardModalContent" class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl my-8 relative border border-slate-200">
+            
+            <!-- Close Button -->
+            <button onclick="closeQueueTicketModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Ticket Header -->
+            <div id="ticketTopBanner" class="bg-slate-900 text-white p-6 text-center relative">
+                <span class="inline-block text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 mb-2">
+                    ✓ RESERVASI & ANTREAN TERKONFIRMASI
+                </span>
+                <h3 id="ticketBizName" class="font-display font-bold text-xl">Gentleman's Cut Barbershop</h3>
+                <p id="ticketBizAddress" class="text-xs text-slate-300 mt-0.5">Jl. Senopati Raya No. 45, Jakarta Selatan</p>
+            </div>
+
+            <!-- Queue Number Spotlight -->
+            <div class="p-6 bg-slate-50 border-b border-dashed border-slate-300 relative text-center">
+                <div class="ticket-notch-left"></div>
+                <div class="ticket-notch-right"></div>
+                <div class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400">NOMOR ANTREAN PRIORITAS ANDA</div>
+                <div id="ticketQueueNumber" class="font-display font-black text-5xl text-slate-900 tracking-tight my-1 tabular-nums">
+                    B-018
+                </div>
+                <div class="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
+                    <span>Kode Booking: <strong id="ticketBookingCode" class="font-mono tabular-nums">RSV-9482</strong></span>
+                </div>
+            </div>
+
+            <!-- Ticket Body Details -->
+            <div class="p-6 space-y-4 text-xs">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <span class="text-slate-400 block">Nama Pelanggan</span>
+                        <strong id="ticketCustName" class="text-slate-900 text-sm">Raka Pratama</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block">WhatsApp</span>
+                        <strong id="ticketCustWa" class="text-slate-900 text-sm tabular-nums">081234567890</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block" id="ticketSpecLabel">Spesialis / Capster</span>
+                        <strong id="ticketSpecName" class="text-indigo-700 text-sm">Master Rizky</strong>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block">Status Pembayaran</span>
+                        <strong id="ticketPayStatus" class="text-emerald-600 text-sm">QRIS Instant</strong>
+                    </div>
+                </div>
+
+                <div class="bg-slate-100 rounded-2xl p-3.5 space-y-1.5">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Tanggal Kedatangan:</span>
+                        <strong id="ticketDateText" class="text-slate-900">Hari Ini, 12 Okt 2026</strong>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Jadwal Sesi:</span>
+                        <strong id="ticketTimeText" class="text-emerald-700 font-mono tabular-nums">10:00 - 10:45 WIB (45 Menit)</strong>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">Rincian Layanan / Paket:</span>
+                    <div id="ticketServicesItems" class="space-y-1 font-medium text-slate-800"></div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
+                    <div>
+                        <span class="text-slate-400 block">Total Biaya</span>
+                        <strong id="ticketTotalCost" class="font-display text-xl font-extrabold text-slate-900 tabular-nums">Rp 85.000</strong>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-900 text-white px-3 py-2 rounded-xl">
+                        <i class="fa-solid fa-qrcode text-2xl text-amber-400"></i>
+                        <div class="text-[10px] leading-tight">
+                            <div class="font-bold">SCAN CHECK-IN</div>
+                            <div class="text-slate-300">Meja Resepsionis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="pt-3 space-y-2">
+                    <button onclick="sendReminderToWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Kirim Pengingat & Bukti Reservasi ke WhatsApp</span>
+                    </button>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="window.print()" class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-print"></i> Cetak / Simpan Kartu
+                        </button>
+                        <button onclick="closeQueueTicketModal()" class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                            Tutup Jendela
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MULTI-INDUSTRY BOOKING ENGINE -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'ReservasiKu',
+            tagline: '3-IN-1 MULTI-BOOKING ENGINE',
+            address: 'Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan 12190',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Senopati+Raya+No.+45+Jakarta+Selatan',
+            whatsappNumber: '6281234567890',
+            whatsappDisplay: '+62 812-3456-7890',
+            email: 'halo@reservasiku.id',
+            operationalHours: 'Senin – Minggu: 09:00 – 21:00 WIB',
+            socials: {
+                instagram: 'https://instagram.com',
+                tiktok: 'https://tiktok.com',
+                whatsapp: 'https://wa.me/6281234567890',
+                youtube: 'https://youtube.com'
+            }
+        };
+
+        const INDUSTRY_DATA = {
+            barber: {
+                id: 'barber',
+                logo: 'assets/logo-barber.svg',
+                heroImage: 'assets/images/hero-barber.jpg',
+                queuePrefix: 'B',
+                currentQueue: 'B-014',
+                pillText: 'PREMIUM GROOMING & HAIR STUDIO',
+                title: "Gentleman's Cut Barbershop & Salon",
+                subtitle: 'Bebas antre berjam-jam di tempat! Pilih paket perawatan rambut, tentukan Capster favorit Anda, kunci jam kedatangan, dan dapatkan Nomor Antrean Digital instan.',
+                address: 'Jl. Senopati Raya No. 45, Jakarta Selatan',
+                heroGradient: 'bg-gradient-to-br from-slate-900 via-stone-900 to-amber-950',
+                step1Title: 'Pilih Layanan / Paket Grooming',
+                step2Title: 'Pilih Capster / Master Barber',
+                step2Sub: 'Pilih Capster favorit Anda lengkap dengan rating pelanggan dan spesialisasi gaya rambut.',
+                specLabel: 'Capster Pilihan',
+                notePlaceholder: 'Contoh: Model potongan Comma Hair / Taper Fade rapi, pomade waterbased',
+                services: [
+                    { id: 'b-s1', name: 'Signature Haircut + Wash + Hot Towel + Pomade', duration: 45, price: 85000, tag: 'TERLARIS', desc: 'Potong rambut konsultasi bentuk wajah, keramas pijat kepala, handuk hangat & styling pomade.' },
+                    { id: 'b-s2', name: 'Royal Grooming + Beard Trim & Shave Ritual', duration: 60, price: 120000, tag: 'PAKET LENGKAP', desc: 'Haircut lengkap + rapikan kumis/jenggot dengan pisau cukur steril & aftershave soothing balm.' },
+                    { id: 'b-s3', name: 'Korean Perm / Down Perm & Hair Styling', duration: 90, price: 275000, tag: 'TRENDING', desc: 'Membentuk gelombang rambut natural ala Korea atau merapikan rambut samping yang mengembang.' },
+                    { id: 'b-s4', name: 'Premium Hair Coloring / Balayage / Highlight', duration: 90, price: 320000, tag: 'WARNA PREMIUM', desc: 'Pewarnaan rambut menggunakan produk bebas amonia + vitamin pelindung kilau rambut.' },
+                    { id: 'b-s5', name: 'Smoothing Keratin & Hair Spa Detox', duration: 60, price: 195000, tag: 'PERAWATAN', desc: 'Meluruskan dan menutrisi batang rambut kering serta ketombe dengan uap ozon.' },
+                    { id: 'b-s6', name: 'Kids Gentleman Haircut (Anak < 12 Tahun)', duration: 30, price: 65000, tag: 'RAMAH ANAK', desc: 'Potong rambut anak nyaman dan sabar dilengkapi kursi khusus & camilan gratis.' }
+                ],
+                specialists: [
+                    { id: 'b-sp1', name: 'Master Barber Rizky', role: 'Senior Fade & Korean Style Specialist', rating: '4.98', reviews: 640, badge: 'TOP CAPSTER #1', image: 'assets/images/spec-barber-1.jpg', avatarIcon: 'fa-user-tie', color: 'bg-amber-600' },
+                    { id: 'b-sp2', name: 'Capster Aldo Wijaya', role: 'Classic Pompadour & Beard Sculptor', rating: '4.92', reviews: 415, badge: '8 THN PENGALAMAN', image: 'assets/images/spec-barber-2.jpg', avatarIcon: 'fa-scissors', color: 'bg-stone-700' },
+                    { id: 'b-sp3', name: 'Stylist Kevin Tan', role: 'Coloring, Perming & Smoothing Expert', rating: '4.95', reviews: 510, badge: 'HAIR CHEMIST', image: 'assets/images/spec-barber-3.jpg', avatarIcon: 'fa-wand-magic-sparkles', color: 'bg-slate-800' }
+                ],
+                bookedHours: ['11:00', '16:00', '19:00']
+            },
+            clinic: {
+                id: 'clinic',
+                logo: 'assets/logo-clinic.svg',
+                heroImage: 'assets/images/hero-clinic.jpg',
+                queuePrefix: 'D',
+                currentQueue: 'D-008',
+                pillText: 'KLINIK GIGI & AESTHETIC TERAKREDITASI',
+                title: 'SenyumSehat Klinik Gigi & Aesthetic',
+                subtitle: 'Reservasi jadwal dokter gigi & perawatan wajah tanpa perlu menunggu lama di ruang tunggu klinik. Alat 100% steril berstandar medis internasional.',
+                address: 'Jl. Boulevard Gading Serpong Blok M5, Tangerang',
+                heroGradient: 'bg-gradient-to-br from-teal-950 via-cyan-900 to-slate-900',
+                step1Title: 'Pilih Tindakan Gigi / Aesthetic Treatment',
+                step2Title: 'Pilih Dokter Gigi / Dokter Estetika',
+                step2Sub: 'Ditangani langsung oleh dokter spesialis berpengalaman dengan pendekatan ramah & minim nyeri.',
+                specLabel: 'Dokter Pemeriksa',
+                notePlaceholder: 'Contoh: Gigi geraham kanan agak sensitif dingin / Konsultasi kulit berjerawat',
+                services: [
+                    { id: 'c-s1', name: 'Scaling Karang Gigi Rahang Atas & Bawah + Poles', duration: 45, price: 250000, tag: 'PROMO SEHAT', desc: 'Pembersihan karang gigi menyeluruh dengan Ultrasonic Scaler minim ngilu + stain polishing.' },
+                    { id: 'c-s2', name: 'Laser Teeth Bleaching (Pemutihan Gigi Instan)', duration: 60, price: 1250000, tag: 'SENYUM CERAH', desc: 'Mencerahkan warna gigi hingga 4–6 tingkat lebih putih dalam 1x kunjungan.' },
+                    { id: 'c-s3', name: 'Korean Glass Skin Facial Glow + Hydra Peel', duration: 60, price: 350000, tag: 'BEST SELLER', desc: 'Deep cleansing pori, ekstraksi komedo vakum lembut, serum PDRN & LED Photon Therapy.' },
+                    { id: 'c-s4', name: 'Tambal Gigi Estetik Sinar UV (Komposit Sejenis)', duration: 45, price: 300000, tag: 'PRESISI', desc: 'Menambal gigi berlubang atau patah dengan bahan sewarna gigi asli yang kuat.' },
+                    { id: 'c-s5', name: 'Konsultasi Dokter + Kamera Intraoral HD', duration: 30, price: 100000, tag: 'CEK RUTIN', desc: 'Pemeriksaan menyeluruh kondisi gigi & gusi pada layar monitor HD bersama dokter.' },
+                    { id: 'c-s6', name: 'Peeling Acne Clear & Skin Barrier Booster', duration: 45, price: 290000, tag: 'ACNE CARE', desc: 'Merawat jerawat aktif dan memudarkan bekas kemerahan dengan bahan dermatologis aman.' }
+                ],
+                specialists: [
+                    { id: 'c-sp1', name: 'drg. Amanda Putri, Sp.KG', role: 'Spesialis Konservasi & Estetika Gigi', rating: '4.99', reviews: 820, badge: 'FAVORIT PASIEN', image: 'assets/images/spec-clinic-1.jpg', avatarIcon: 'fa-user-doctor', color: 'bg-teal-600' },
+                    { id: 'c-sp2', name: 'drg. Hendra Kusuma', role: 'Dokter Gigi Umum & Dental Scaling Pro', rating: '4.95', reviews: 530, badge: 'RAMAH & TELITI', image: 'assets/images/spec-clinic-2.jpg', avatarIcon: 'fa-tooth', color: 'bg-cyan-700' },
+                    { id: 'c-sp3', name: 'dr. Clarissa Wijaya, Dipl.AAAM', role: 'Aesthetic Physician & Laser Specialist', rating: '4.97', reviews: 690, badge: 'SKIN EXPERT', image: 'assets/images/spec-clinic-3.jpg', avatarIcon: 'fa-spa', color: 'bg-emerald-700' }
+                ],
+                bookedHours: ['10:00', '14:00', '19:00']
+            },
+            studio: {
+                id: 'studio',
+                logo: 'assets/logo-studio.svg',
+                heroImage: 'assets/images/hero-studio.jpg',
+                queuePrefix: 'S',
+                currentQueue: 'S-022',
+                pillText: 'SELF-PHOTO STUDIO, YEARBOOK & PHOTOBOX',
+                title: 'KuyPhoto Self-Photo Studio & Photobox',
+                subtitle: 'Abadikan momen seru bareng pasangan, sahabat, atau keluarga! Privasi 100% tanpa fotografer di dalam ruangan, remote shutter nirkabel & cetak foto instan.',
+                address: 'Jl. Braga No. 112, Kota Bandung',
+                heroGradient: 'bg-gradient-to-br from-indigo-950 via-purple-950 to-rose-950',
+                step1Title: 'Pilih Paket Sesi Foto & Cetak',
+                step2Title: 'Pilih Ruangan Studio / Tema Photobox',
+                step2Sub: 'Setiap studio dilengkapi kamera Mirrorless Full-Frame, lampu studio Profoto & puluhan properti lucu gratis.',
+                specLabel: 'Ruangan Studio',
+                notePlaceholder: 'Contoh: Datang 4 orang teman kuliah, mau warna background Maroon / Putih',
+                services: [
+                    { id: 's-s1', name: 'Sesi Self-Photo 15 Menit (1-2 Orang) + 2 Cetak Strip', duration: 15, price: 75000, tag: 'HEMAT COUPLE', desc: 'Bebas jepret sepuasnya selama 15 menit + Gratis semua file softcopy HD di Google Drive.' },
+                    { id: 's-s2', name: 'Sesi Self-Photo 30 Menit Grup (Maks 6 Orang) + 4 Cetak', duration: 30, price: 135000, tag: 'PALING LARIS', desc: 'Cocok untuk bestie & keluarga! Bebas ganti kacamata/aksesoris + 4 lembar cetak foto 4R/Strip.' },
+                    { id: 's-s3', name: 'Paket American Yearbook Concept 60 Menit + Kostum', duration: 60, price: 260000, tag: 'VIRAL TIKTOK', desc: 'Termasuk pinjam jas/blazer buku tahunan retro, majalah cetakan & semua file diedit warna.' },
+                    { id: 's-s4', name: 'Tambahan Cetak Ekstra 4 Strip Photo + Magnet Kulkas', duration: 15, price: 35000, tag: 'ADD-ON CETAK', desc: 'Kertas foto Silky Waterproof anti-luntur lengkap dengan tempelan magnetik.' },
+                    { id: 's-s5', name: 'Sewa Kostum Tematik / Hanbok / Jas Formal', duration: 15, price: 45000, tag: 'KOSTUM', desc: 'Bebas pilih aksesoris, bando karakter, kacamata retro & blazer di ruang ganti.' },
+                    { id: 's-s6', name: 'Wide Angle High-Angle Elevator Photobox Session', duration: 30, price: 110000, tag: 'WIDE ANGLE', desc: 'Sudut kamera dari atas (High-Angle) dengan lantai metalik futuristik super keren.' }
+                ],
+                specialists: [
+                    { id: 's-sp1', name: 'Studio 1 — Wide Panoramic Room', role: 'Kapasitas 1–10 Orang • 5 Pilihan Warna Background', rating: '4.99', reviews: 1120, badge: 'STUDIO TERLUAS', image: 'assets/images/spec-studio-1.jpg', avatarIcon: 'fa-camera-retro', color: 'bg-purple-600' },
+                    { id: 's-sp2', name: 'Studio 2 — American Yearbook Set', role: 'Dekorasi Loker Sekolah Retro & Meja Kayu Klasik', rating: '4.97', reviews: 875, badge: 'TEMA YEARBOOK', image: 'assets/images/spec-studio-2.jpg', avatarIcon: 'fa-graduation-cap', color: 'bg-rose-600' },
+                    { id: 's-sp3', name: 'Studio 3 — Intimate Couple & High-Angle Box', role: 'Pencahayaan Sunset Lamp & Lensa Wide-Angle', rating: '4.96', reviews: 740, badge: 'FAVORIT PASANGAN', image: 'assets/images/spec-studio-3.jpg', avatarIcon: 'fa-heart', color: 'bg-indigo-600' }
+                ],
+                bookedHours: ['13:00', '15:00', '20:00']
+            }
+        };
+
+        const TIME_SLOTS = ['09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '19:00', '20:00'];
+
+        // State
+        let currentMode = 'barber';
+        let selectedServiceIds = ['b-s1'];
+        let selectedSpecialistId = 'b-sp1';
+        let selectedDateIdx = 0;
+        let availableDates = [];
+        let selectedTimeSlot = '10:00';
+        let selectedPayMethod = 'qris';
+        let customLockedSlots = {}; // key: mode|date|time -> true
+        let activeReservationTicket = null;
+
+        function formatIDR(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function initDates() {
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const now = new Date();
+            availableDates = [];
+
+            for (let i = 0; i < 4; i++) {
+                const d = new Date(now);
+                d.setDate(now.getDate() + i);
+                const iso = d.toISOString().split('T')[0];
+                const tag = i === 0 ? 'Hari Ini' : (i === 1 ? 'Besok' : (i === 2 ? 'Lusa' : days[d.getDay()]));
+                availableDates.push({
+                    iso,
+                    tag,
+                    dayName: days[d.getDay()],
+                    short: `${d.getDate()} ${months[d.getMonth()]}`,
+                    full: `${tag}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`
+                });
+            }
+
+            const dateInput = document.getElementById('bookingDateInput');
+            if (dateInput) {
+                dateInput.value = availableDates[0].iso;
+                dateInput.min = availableDates[0].iso;
+            }
+        }
+
+        // Switch Industry Mode (Barbershop / Clinic / Studio)
+        function switchIndustryMode(mode) {
+            currentMode = mode;
+            const data = INDUSTRY_DATA[mode];
+
+            // Default selections for new mode
+            selectedServiceIds = [data.services[0].id];
+            selectedSpecialistId = data.specialists[0].id;
+            // Pick first available time slot
+            selectedTimeSlot = TIME_SLOTS.find(t => !data.bookedHours.includes(t)) || '09:00';
+
+            // Update Mode Switcher Buttons
+            const btnConfigs = {
+                barber: 'bg-amber-950 text-amber-300 border-amber-500 shadow-sm',
+                clinic: 'bg-teal-950 text-teal-300 border-teal-500 shadow-sm',
+                studio: 'bg-purple-950 text-purple-300 border-purple-500 shadow-sm'
+            };
+            ['barber', 'clinic', 'studio'].forEach(m => {
+                const btn = document.getElementById(`modeBtn-${m}`);
+                if (m === mode) {
+                    btn.className = `px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center sm:justify-start gap-2 border-2 ${btnConfigs[m]}`;
+                } else {
+                    btn.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center justify-center sm:justify-start gap-2 border-2 bg-slate-100 text-slate-700 border-transparent hover:border-slate-300';
+                }
+            });
+
+            // Update Hero & Labels
+            const hero = document.getElementById('brandHeroSection');
+            hero.className = `${data.heroGradient} text-white py-10 border-b border-slate-800 transition-all duration-300`;
+            document.getElementById('heroBadge').textContent = data.pillText;
+            document.getElementById('heroTitle').textContent = data.title;
+            document.getElementById('heroSubtitle').textContent = data.subtitle;
+            document.getElementById('liveCurrentQueue').textContent = data.currentQueue;
+
+            const heroLogo = document.getElementById('heroModeLogo');
+            if (heroLogo) heroLogo.src = data.logo;
+            const heroImg = document.getElementById('heroPreviewImage');
+            if (heroImg) {
+                heroImg.src = data.heroImage;
+                heroImg.alt = data.title;
+            }
+            const heroAddr = document.getElementById('heroAddressText');
+            if (heroAddr) heroAddr.textContent = data.address;
+            const summaryLogo = document.getElementById('summaryModeLogo');
+            if (summaryLogo) summaryLogo.src = data.logo;
+
+            document.getElementById('step1Heading').textContent = data.step1Title;
+            document.getElementById('step2Heading').textContent = data.step2Title;
+            document.getElementById('step2Subheading').textContent = data.step2Sub;
+            document.getElementById('stepLabel2').textContent = data.step2Title.replace('Pilih ', '');
+            document.getElementById('custNoteInput').placeholder = data.notePlaceholder;
+
+            document.getElementById('summaryModePill').textContent = data.pillText;
+            document.getElementById('summaryBusinessName').textContent = data.title;
+            document.getElementById('summarySpecialistTitle').textContent = `2. ${data.specLabel}`;
+
+            renderServicesStep();
+            renderSpecialistsStep();
+            renderDatesAndTimesStep();
+            updateLiveSummary();
+        }
+
+        // Render Step 1: Services
+        function renderServicesStep() {
+            const data = INDUSTRY_DATA[currentMode];
+            const container = document.getElementById('servicesGridContainer');
+
+            container.innerHTML = data.services.map(srv => {
+                const isSelected = selectedServiceIds.includes(srv.id);
+                return `
+                    <div onclick="toggleService('${srv.id}')" class="service-item cursor-pointer rounded-2xl p-4 border-2 transition flex flex-col justify-between select-none ${
+                        isSelected
+                        ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
+                        : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 text-slate-900'
+                    }">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
+                                    isSelected ? 'bg-amber-400 text-slate-950' : 'bg-indigo-100 text-indigo-700'
+                                }">${srv.tag}</span>
+                                <span class="text-xs font-semibold tabular-nums ${isSelected ? 'text-slate-300' : 'text-slate-500'}">
+                                    <i class="fa-regular fa-clock mr-1"></i>${srv.duration} Menit
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-sm sm:text-base leading-snug">${srv.name}</h3>
+                            <p class="text-xs mt-1.5 leading-relaxed ${isSelected ? 'text-slate-300' : 'text-slate-500'}">${srv.desc}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t ${isSelected ? 'border-slate-700' : 'border-slate-200'} flex items-center justify-between">
+                            <span class="font-display font-extrabold text-base tabular-nums ${isSelected ? 'text-amber-400' : 'text-slate-900'}">${formatIDR(srv.price)}</span>
+                            <span class="text-xs font-bold flex items-center gap-1.5 ${isSelected ? 'text-emerald-400' : 'text-slate-600'}">
+                                <i class="fa-solid ${isSelected ? 'fa-circle-check text-amber-400 text-base' : 'fa-circle-plus text-slate-400 text-base'}"></i>
+                                ${isSelected ? 'Dipilih' : 'Pilih'}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('selectedServicesCountBadge').textContent = `${selectedServiceIds.length} Layanan Dipilih`;
+        }
+
+        function toggleService(serviceId) {
+            const idx = selectedServiceIds.indexOf(serviceId);
+            if (idx !== -1) {
+                if (selectedServiceIds.length === 1) {
+                    alert('Minimal pilih 1 layanan atau paket untuk reservasi.');
+                    return;
+                }
+                selectedServiceIds.splice(idx, 1);
+            } else {
+                selectedServiceIds.push(serviceId);
+            }
+            renderServicesStep();
+            updateLiveSummary();
+        }
+
+        // Render Step 2: Specialists (Capster / Dokter / Studio)
+        function renderSpecialistsStep() {
+            const data = INDUSTRY_DATA[currentMode];
+            const container = document.getElementById('specialistsGridContainer');
+
+            container.innerHTML = data.specialists.map(sp => {
+                const active = sp.id === selectedSpecialistId;
+                return `
+                    <div onclick="selectSpecialist('${sp.id}')" class="specialist-card cursor-pointer rounded-2xl p-4 border-2 transition flex flex-col justify-between select-none ${
+                        active
+                        ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
+                        : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 text-slate-900'
+                    }">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <img src="${sp.image}" alt="${sp.name}" class="w-14 h-14 rounded-2xl object-cover shadow-md border ${active ? 'border-amber-400' : 'border-slate-200'}">
+                                <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full ${
+                                    active ? 'bg-amber-400 text-slate-950' : 'bg-slate-200 text-slate-700'
+                                }">${sp.badge}</span>
+                            </div>
+                            <h3 class="font-bold text-base">${sp.name}</h3>
+                            <p class="text-xs mt-1 ${active ? 'text-slate-300' : 'text-slate-500'}">${sp.role}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t ${active ? 'border-slate-700' : 'border-slate-200'} flex items-center justify-between text-xs">
+                            <span class="font-bold flex items-center gap-1 tabular-nums">
+                                <i class="fa-solid fa-star text-amber-400"></i> ${sp.rating}
+                                <span class="${active ? 'text-slate-400' : 'text-slate-400'} font-normal">(${sp.reviews})</span>
+                            </span>
+                            <span class="font-bold ${active ? 'text-amber-400' : 'text-indigo-600'}">
+                                ${active ? 'Terpilih' : 'Pilih'}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectSpecialist(specId) {
+            selectedSpecialistId = specId;
+            renderSpecialistsStep();
+            renderDatesAndTimesStep();
+            updateLiveSummary();
+        }
+
+        // Render Step 3: Dates & Time Slots
+        function renderDatesAndTimesStep() {
+            const data = INDUSTRY_DATA[currentMode];
+            const dateContainer = document.getElementById('datePillsContainer');
+
+            dateContainer.innerHTML = availableDates.map((d, idx) => {
+                const active = idx === selectedDateIdx;
+                return `
+                    <button type="button" onclick="selectDatePill(${idx})" class="p-3 rounded-xl border-2 text-left transition ${
+                        active
+                        ? 'border-slate-900 bg-slate-900 text-white shadow-md'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300 text-slate-800'
+                    }">
+                        <div class="text-[10px] font-extrabold uppercase tracking-wider ${active ? 'text-amber-400' : 'text-indigo-600'}">${d.tag}</div>
+                        <div class="text-xs sm:text-sm font-bold mt-0.5">${d.dayName}, ${d.short}</div>
+                    </button>
+                `;
+            }).join('');
+
+            const timeContainer = document.getElementById('timeSlotsGridContainer');
+            const dateIso = availableDates[selectedDateIdx].iso;
+            let openCount = 0;
+
+            timeContainer.innerHTML = TIME_SLOTS.map(t => {
+                const lockKey = `${currentMode}|${selectedSpecialistId}|${dateIso}|${t}`;
+                const isBooked = (selectedDateIdx === 0 && data.bookedHours.includes(t)) || customLockedSlots[lockKey];
+                const isSelected = (!isBooked && t === selectedTimeSlot);
+
+                if (isBooked) {
+                    return `
+                        <div class="p-3.5 rounded-2xl border border-rose-200 bg-rose-50/70 text-rose-400 cursor-not-allowed flex items-center justify-between select-none">
+                            <div>
+                                <div class="font-mono font-bold text-sm line-through tabular-nums">${t} WIB</div>
+                                <div class="text-[11px] font-semibold text-rose-500">Slot Penuh</div>
+                            </div>
+                            <span class="text-[10px] font-extrabold uppercase bg-rose-100 text-rose-600 px-2 py-0.5 rounded-md">PENUH</span>
+                        </div>
+                    `;
+                }
+
+                openCount++;
+
+                if (isSelected) {
+                    return `
+                        <button type="button" onclick="selectTimeSlot('${t}')" class="p-3.5 rounded-2xl border-2 border-slate-900 bg-slate-900 text-white shadow-md flex items-center justify-between text-left transition">
+                            <div>
+                                <div class="font-mono font-extrabold text-sm text-amber-400 tabular-nums">${t} WIB</div>
+                                <div class="text-[11px] text-slate-300">Jadwal Anda</div>
+                            </div>
+                            <span class="text-[10px] font-extrabold uppercase bg-amber-400 text-slate-950 px-2 py-0.5 rounded-md">DIPILIH</span>
+                        </button>
+                    `;
+                }
+
+                return `
+                    <button type="button" onclick="selectTimeSlot('${t}')" class="p-3.5 rounded-2xl border border-emerald-300 bg-emerald-50/50 hover:bg-emerald-50 hover:border-emerald-500 text-slate-800 flex items-center justify-between text-left transition">
+                        <div>
+                            <div class="font-mono font-bold text-sm text-slate-900 tabular-nums">${t} WIB</div>
+                            <div class="text-[11px] text-emerald-700 font-medium">Tersedia</div>
+                        </div>
+                        <span class="text-[10px] font-extrabold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md">PILIH</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('liveAvailableSlotsCount').textContent = `${openCount} Slot`;
+        }
+
+        function selectDatePill(idx) {
+            selectedDateIdx = idx;
+            document.getElementById('bookingDateInput').value = availableDates[idx].iso;
+            renderDatesAndTimesStep();
+            updateLiveSummary();
+        }
+
+        function handleCustomDateChange(val) {
+            if (!val) return;
+            const d = new Date(val + 'T00:00:00');
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            availableDates[3] = {
+                iso: val,
+                tag: 'Tanggal Pilihan',
+                dayName: days[d.getDay()],
+                short: `${d.getDate()} ${months[d.getMonth()]}`,
+                full: `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`
+            };
+            selectedDateIdx = 3;
+            renderDatesAndTimesStep();
+            updateLiveSummary();
+        }
+
+        function selectTimeSlot(timeStr) {
+            selectedTimeSlot = timeStr;
+            renderDatesAndTimesStep();
+            updateLiveSummary();
+        }
+
+        function selectPaymentMethod(method) {
+            selectedPayMethod = method;
+            const btnQris = document.getElementById('payMethodBtn-qris');
+            const btnCash = document.getElementById('payMethodBtn-cash');
+
+            if (method === 'qris') {
+                btnQris.className = 'p-4 rounded-2xl border-2 border-slate-900 bg-slate-900 text-white text-left transition flex items-start justify-between';
+                btnQris.querySelector('i.fa-circle-check, i.fa-circle').className = 'fa-solid fa-circle-check text-amber-400 text-lg';
+                btnCash.className = 'p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-slate-300 text-slate-800 text-left transition flex items-start justify-between';
+                btnCash.querySelector('i.fa-circle-check, i.fa-circle').className = 'fa-regular fa-circle text-slate-400 text-lg';
+            } else {
+                btnCash.className = 'p-4 rounded-2xl border-2 border-slate-900 bg-slate-900 text-white text-left transition flex items-start justify-between';
+                btnCash.querySelector('i.fa-circle-check, i.fa-circle').className = 'fa-solid fa-circle-check text-amber-400 text-lg';
+                btnQris.className = 'p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-slate-300 text-slate-800 text-left transition flex items-start justify-between';
+                btnQris.querySelector('i.fa-circle-check, i.fa-circle').className = 'fa-regular fa-circle text-slate-400 text-lg';
+            }
+            updateLiveSummary();
+        }
+
+        // Calculate end time from start "HH:00" and durationMinutes
+        function getEndTimeFormatted(startStr, totalMinutes) {
+            const [hh, mm] = startStr.split(':').map(Number);
+            const totalMins = hh * 60 + mm + totalMinutes;
+            const endH = Math.floor(totalMins / 60) % 24;
+            const endM = totalMins % 60;
+            return `${String(endH).padStart(2, '0')}:${String(endM).padStart(2, '0')}`;
+        }
+
+        // Update Sticky Live Summary
+        function updateLiveSummary() {
+            const data = INDUSTRY_DATA[currentMode];
+            const chosenServices = data.services.filter(s => selectedServiceIds.includes(s.id));
+            const chosenSpec = data.specialists.find(sp => sp.id === selectedSpecialistId) || data.specialists[0];
+            const dateObj = availableDates[selectedDateIdx];
+
+            let totalDuration = 0;
+            let totalCost = 0;
+
+            document.getElementById('summaryServicesList').innerHTML = chosenServices.map(s => {
+                totalDuration += s.duration;
+                totalCost += s.price;
+                return `
+                    <div class="flex items-start justify-between gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200/70">
+                        <div>
+                            <div class="font-bold text-slate-800 leading-snug">${s.name}</div>
+                            <div class="text-[11px] text-slate-500 tabular-nums">${s.duration} Menit</div>
+                        </div>
+                        <span class="font-bold text-slate-900 shrink-0 tabular-nums">${formatIDR(s.price)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('summaryTotalDurationBadge').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${totalDuration} Menit`;
+            document.getElementById('summaryDurationText').textContent = `Total ${totalDuration} mnt`;
+
+            document.getElementById('summarySpecialistBox').innerHTML = `
+                <img src="${chosenSpec.image}" alt="${chosenSpec.name}" class="w-11 h-11 rounded-xl object-cover shrink-0 border border-slate-200 shadow-sm">
+                <div class="overflow-hidden">
+                    <div class="font-bold text-xs sm:text-sm text-slate-900 truncate">${chosenSpec.name}</div>
+                    <div class="text-[11px] text-slate-500 truncate tabular-nums">Rating ${chosenSpec.rating} • ${chosenSpec.badge}</div>
+                </div>
+            `;
+
+            const endTime = getEndTimeFormatted(selectedTimeSlot, totalDuration);
+            document.getElementById('summaryDateValue').textContent = dateObj.full;
+            document.getElementById('summaryTimeValue').textContent = `${selectedTimeSlot} - ${endTime} WIB`;
+            document.getElementById('summaryPayMethodLabel').textContent = selectedPayMethod === 'qris' ? 'Metode: QRIS Instant' : 'Metode: Bayar di Kasir';
+            document.getElementById('summaryGrandTotal').textContent = formatIDR(totalCost);
+        }
+
+        function scrollToWizardStep(stepNum) {
+            const el = document.getElementById(`wizard-step-${stepNum}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function runAutoDemoBooking() {
+            document.getElementById('custNameInput').value = 'Dimas Anggara';
+            document.getElementById('custWaInput').value = '081288997766';
+            document.getElementById('custNoteInput').value = 'Mohon disiapkan tepat waktu ya, terima kasih!';
+            generateReservationTicket();
+        }
+
+        // Generate Official Digital Queue Card & Reservation Ticket
+        function generateReservationTicket() {
+            const custName = document.getElementById('custNameInput').value.trim();
+            const custWa = document.getElementById('custWaInput').value.trim();
+
+            if (!custName) {
+                alert('Mohon lengkapi Nama Lengkap Pelanggan pada Langkah 4.');
+                document.getElementById('custNameInput').focus();
+                return;
+            }
+            if (!custWa) {
+                alert('Mohon lengkapi Nomor WhatsApp Aktif pada Langkah 4.');
+                document.getElementById('custWaInput').focus();
+                return;
+            }
+
+            const data = INDUSTRY_DATA[currentMode];
+            const chosenServices = data.services.filter(s => selectedServiceIds.includes(s.id));
+            const chosenSpec = data.specialists.find(sp => sp.id === selectedSpecialistId) || data.specialists[0];
+            const dateObj = availableDates[selectedDateIdx];
+
+            const totalDuration = chosenServices.reduce((sum, s) => sum + s.duration, 0);
+            const totalCost = chosenServices.reduce((sum, s) => sum + s.price, 0);
+            const endTime = getEndTimeFormatted(selectedTimeSlot, totalDuration);
+
+            const qNumber = `${data.queuePrefix}-0${Math.floor(15 + Math.random() * 75)}`;
+            const bookCode = `RSV-${Math.floor(1000 + Math.random() * 9000)}`;
+
+            // Lock the chosen time slot so the user sees it become Penuh in real-time
+            const lockKey = `${currentMode}|${selectedSpecialistId}|${dateObj.iso}|${selectedTimeSlot}`;
+            customLockedSlots[lockKey] = true;
+
+            // Populate Modal
+            document.getElementById('ticketBizName').textContent = data.title;
+            document.getElementById('ticketBizAddress').textContent = data.address;
+            document.getElementById('ticketQueueNumber').textContent = qNumber;
+            document.getElementById('ticketBookingCode').textContent = bookCode;
+            document.getElementById('ticketCustName').textContent = custName;
+            document.getElementById('ticketCustWa').textContent = custWa;
+            document.getElementById('ticketSpecLabel').textContent = data.specLabel;
+            document.getElementById('ticketSpecName').textContent = chosenSpec.name;
+            document.getElementById('ticketPayStatus').textContent = selectedPayMethod === 'qris' ? 'LUNAS (QRIS Instant)' : 'Bayar di Kasir Venue';
+            document.getElementById('ticketDateText').textContent = dateObj.full;
+            document.getElementById('ticketTimeText').textContent = `${selectedTimeSlot} - ${endTime} WIB (${totalDuration} Menit)`;
+
+            document.getElementById('ticketServicesItems').innerHTML = chosenServices.map(s => `
+                <div class="flex justify-between">
+                    <span>• ${s.name}</span>
+                    <span class="font-bold tabular-nums">${formatIDR(s.price)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('ticketTotalCost').textContent = formatIDR(totalCost);
+
+            activeReservationTicket = {
+                bizName: data.title,
+                qNumber,
+                bookCode,
+                custName,
+                custWa,
+                specLabel: data.specLabel,
+                specName: chosenSpec.name,
+                dateText: dateObj.full,
+                timeText: `${selectedTimeSlot} - ${endTime} WIB`,
+                services: chosenServices.map(s => s.name),
+                totalCost: formatIDR(totalCost),
+                payStatus: selectedPayMethod === 'qris' ? 'QRIS Instant' : 'Bayar di Tempat (Kasir)'
+            };
+
+            renderDatesAndTimesStep();
+
+            const modal = document.getElementById('queueTicketModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQueueTicketModal() {
+            const modal = document.getElementById('queueTicketModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function sendReminderToWhatsApp() {
+            if (!activeReservationTicket) return;
+            const t = activeReservationTicket;
+            const msg = `Halo Admin *${t.bizName}*!%0ASaya ingin konfirmasi Kartu Nomor Antrean & Reservasi Online:%0A%0A*Nomor Antrean:* ${t.qNumber}%0A*Kode Booking:* ${t.bookCode}%0A*Nama Pelanggan:* ${t.custName}%0A*${t.specLabel}:* ${t.specName}%0A*Tanggal:* ${t.dateText}%0A*Jam Sesi:* ${t.timeText}%0A*Layanan:* ${t.services.join(', ')}%0A*Total Biaya:* ${t.totalCost} (${t.payStatus})%0A%0ATerima kasih!`;
+            window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initDates();
+            switchIndustryMode('barber');
+        });
+    </script>
+</body>
+</html>

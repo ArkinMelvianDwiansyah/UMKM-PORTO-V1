@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DinginKilat & Kinclong — Layanan Teknis Cuci AC, Hydrovacuum & Laundry Panggilan 60 Menit</title>
+    <meta name="description" content="Jasa Cuci AC Panggilan terukur PSI, Hydrovacuum Kasur & Sofa, serta Laundry Sepatu & Kiloan Antar-Jemput Gratis. Teknisi BNSP tiba dalam 60 menit, Garansi 30 Hari.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .swiss-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-[#F4F6F8] text-slate-900 font-sans antialiased selection:bg-sky-600 selection:text-white">
+
+    <!-- TOP DEMO BAR -->
+    <div class="bg-slate-950 text-slate-200 border-b border-slate-800 text-xs py-2.5 px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-mono uppercase tracking-wider text-sky-400 hover:text-sky-300 transition-colors whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                <span>Indeks Portofolio UMKM</span>
+            </a>
+            <div class="flex items-center gap-4 text-slate-400 font-mono text-[11px] shrink-0">
+                <span class="hidden md:inline-flex items-center gap-2 whitespace-nowrap">
+                    <span class="w-1.5 h-1.5 bg-emerald-400"></span>
+                    <span>PROYEK #02 // HOME SERVICE & LAUNDRY</span>
+                </span>
+                <a href="#booking-instan" class="bg-sky-600 text-white px-3 py-0.5 font-semibold hover:bg-sky-500 transition whitespace-nowrap">
+                    ORDER INSTAN
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Bespoke Brand Logo -->
+            <a href="#" class="flex items-center group shrink-0" aria-label="DinginKilat & Kinclong Beranda">
+                <img src="assets/logo.svg" alt="DinginKilat & Kinclong Home Service" class="h-11 w-auto">
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-6 text-xs font-mono uppercase tracking-wider font-semibold text-slate-700">
+                <a href="#katalog-layanan" class="hover:text-sky-600 transition-colors whitespace-nowrap">Layanan & Tarif</a>
+                <a href="#booking-instan" class="text-sky-600 font-bold flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-calculator text-[10px]"></i> Kalkulator
+                </a>
+                <a href="#teknisi" class="hover:text-sky-600 transition-colors whitespace-nowrap">Teknisi BNSP</a>
+                <a href="#area-layanan" class="hover:text-sky-600 transition-colors whitespace-nowrap">Posko Cabang</a>
+                <a href="#ulasan" class="hover:text-sky-600 transition-colors whitespace-nowrap">Ulasan Klien</a>
+                <a href="#faq" class="hover:text-sky-600 transition-colors whitespace-nowrap">FAQ</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center gap-3 shrink-0">
+                <a href="#booking-instan"
+                   class="inline-flex items-center gap-2 bg-slate-900 hover:bg-sky-600 text-white font-mono uppercase tracking-wider font-bold text-xs px-5 py-3 transition-colors whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-truck-fast text-sky-400"></i>
+                    <span>Panggil Teknisi</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden text-slate-900 p-2.5 border border-slate-300 bg-slate-50 shrink-0">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-300 px-4 pt-3 pb-6 space-y-2 font-mono text-xs uppercase tracking-wider">
+            <a href="#katalog-layanan" class="block py-2 text-slate-800 border-b border-slate-100">01. Layanan AC, Cleaning & Laundry</a>
+            <a href="#booking-instan" class="block py-2 text-sky-600 font-bold border-b border-slate-100">02. Kalkulator & Form Panggil Instan</a>
+            <a href="#teknisi" class="block py-2 text-slate-800 border-b border-slate-100">03. Teknisi Bersertifikat BNSP</a>
+            <a href="#area-layanan" class="block py-2 text-slate-800 border-b border-slate-100">04. Area Layanan (6 Kota)</a>
+            <a href="#ulasan" class="block py-2 text-slate-800 border-b border-slate-100">05. Testimoni Pelanggan</a>
+            <a href="#faq" class="block py-2 text-slate-800">06. FAQ</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: SWISS TECHNICAL GRID -->
+    <section class="relative overflow-hidden swiss-grid py-14 lg:py-20 bg-white border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+                    <div class="space-y-6">
+                        <!-- Guarantee Pill -->
+                        <div class="inline-flex flex-wrap items-center gap-2.5 bg-slate-100 border border-slate-300 px-3.5 py-1.5 text-xs font-mono text-slate-900">
+                            <span class="bg-emerald-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">GARANSI 30 HARI</span>
+                            <span>AC Kurang Dingin atau Cucian Kurang Bersih? Kami Cuci Ulang Gratis.</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-[50px] font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+                            Servis Cuci AC, Hydrovacuum & Laundry Sepatu — <span class="text-sky-600 underline decoration-2 underline-offset-8">Tiba dalam 60 Menit.</span>
+                        </h1>
+
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Standar pemeliharaan rumah tangga & residensial dengan teknisi bersertifikat BNSP, ekstraktor vakum Jerman, serta tarif transparan sesuai tabel tanpa praktik manipulasi tambah freon.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3.5 pt-1">
+                            <a href="#booking-instan" class="inline-flex items-center justify-center gap-3 bg-sky-600 hover:bg-sky-700 text-white font-mono uppercase tracking-wider font-bold px-7 py-4 text-xs sm:text-sm transition-colors">
+                                <i class="fa-solid fa-calculator"></i>
+                                <span>Pilih Layanan & Hitung Biaya</span>
+                            </a>
+                            <a href="#katalog-layanan" class="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-slate-100 text-slate-900 border border-slate-900 font-mono uppercase tracking-wider font-bold px-6 py-4 text-xs sm:text-sm transition-colors">
+                                <i class="fa-solid fa-table-list text-sky-600"></i>
+                                <span>Tabel Parameter SOP</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Swiss Technical Metrics Bar -->
+                    <div class="grid grid-cols-3 border border-slate-900 bg-[#F4F6F8] divide-x divide-slate-900">
+                        <div class="p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-slate-900">18.400+</div>
+                            <div class="font-mono text-[11px] uppercase tracking-wider text-slate-500 mt-0.5">Unit AC & Sofa Dicuci</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-sky-600">≤ 60 MNT</div>
+                            <div class="font-mono text-[11px] uppercase tracking-wider text-slate-500 mt-0.5">SLA Respon Posko</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-emerald-600">4.95/5</div>
+                            <div class="font-mono text-[11px] uppercase tracking-wider text-slate-500 mt-0.5">Indeks Kepuasan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Image & Technical Spec Card -->
+                <div class="lg:col-span-5">
+                    <div class="border-2 border-slate-900 bg-slate-900 text-white h-full flex flex-col justify-between">
+                        <!-- Top Dispatch Bar -->
+                        <div class="px-4 py-3 bg-slate-950 border-b border-slate-800 flex items-center justify-between font-mono text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                                <span class="font-bold text-white">24 TEKNISI & KURIR SIAGA</span>
+                            </div>
+                            <span class="text-[11px] text-sky-400">JAM OPERASIONAL 07:00–21:00</span>
+                        </div>
+
+                        <!-- Main Photo -->
+                        <div class="relative overflow-hidden flex-1 min-h-[320px]">
+                            <img src="assets/images/hero-technician.jpg"
+                                 alt="Teknisi Kebersihan Profesional Kinclong & DinginKilat"
+                                 class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Bottom 30-Day Guarantee Card -->
+                        <div class="p-5 bg-slate-900 border-t border-slate-800">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-10 h-10 bg-emerald-500 text-slate-950 flex items-center justify-center shrink-0 text-base font-bold">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-400 block">PROTOKOL INSPEKSI DIGITAL</span>
+                                    <h2 class="text-sm sm:text-base font-bold text-white mt-0.5">Manometer PSI Digital & Endoskopi Evaporator</h2>
+                                    <p class="text-xs text-slate-400 mt-1 leading-relaxed">Tekanan freon dan suhu hembusan diukur secara terbuka di hadapan pelanggan sebelum dan sesudah pencucian.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MULTI-SERVICE TAB SHOWCASE -->
+    <section id="katalog-layanan" class="py-16 bg-[#F4F6F8] border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="font-mono text-sky-600 font-bold text-xs uppercase tracking-widest block mb-1">// 01. KATALOG STANDAR OPERASIONAL</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">Pilih Kategori Layanan Panggilan</h2>
+                </div>
+                <p class="text-slate-600 text-sm max-w-md">Pilih tab teknis di bawah ini untuk memeriksa spesifikasi pengerjaan dan daftar harga resmi.</p>
+            </div>
+
+            <!-- Interactive Tab Buttons -->
+            <div class="flex flex-wrap gap-2 mb-8" id="serviceTabs">
+                <button type="button" data-tab="tab-ac" class="service-tab-btn active flex items-center gap-2.5 px-5 py-3.5 font-mono uppercase tracking-wider font-bold text-xs bg-cyan-600 text-white shadow-lg shadow-cyan-600/25 transition">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <span>[A] Service & Cuci AC Panggilan</span>
+                </button>
+                <button type="button" data-tab="tab-cleaning" class="service-tab-btn flex items-center gap-2.5 px-5 py-3.5 font-mono uppercase tracking-wider font-bold text-xs bg-sky-50 text-slate-700 hover:bg-sky-100 border border-sky-200 transition">
+                    <i class="fa-solid fa-couch"></i>
+                    <span>[B] Deep Cleaning Kasur & Sofa</span>
+                </button>
+                <button type="button" data-tab="tab-laundry" class="service-tab-btn flex items-center gap-2.5 px-5 py-3.5 font-mono uppercase tracking-wider font-bold text-xs bg-sky-50 text-slate-700 hover:bg-sky-100 border border-sky-200 transition">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                    <span>[C] Laundry Kiloan & Cuci Sepatu</span>
+                </button>
+            </div>
+
+            <!-- Tab Content Panels -->
+            <div id="tabPanels">
+                <!-- Panel A: Service AC -->
+                <div id="tab-ac" class="service-panel grid md:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-9 border-2 border-slate-900">
+                    <div class="md:col-span-5">
+                        <img src="assets/images/service-ac.jpg"
+                             alt="Service dan Cuci AC Panggilan"
+                             class="w-full h-72 sm:h-80 object-cover border border-slate-900">
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="inline-block bg-slate-900 text-sky-400 font-mono text-[11px] font-bold px-3 py-1 uppercase">SOP 7 Tahap Cuci AC Anti-Bocor</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">AC Kembali Dingin Optimal dalam 45 Menit Tanpa Cipratan ke Dinding</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Menggunakan <strong>Jet Cleaner bertekanan terukur</strong>, cover corong kedap air, penembakan pipa drainase lendir dengan kompresor, serta disinfektan Food-Grade untuk mengeliminasi bakteri evaporator.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Cuci AC Split 0.5 – 1 PK</span>
+                                <span class="font-bold text-sky-600">Rp 75.000</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Cuci AC Split 1.5 – 2 PK</span>
+                                <span class="font-bold text-sky-600">Rp 95.000</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Tambah Freon R32 / R410</span>
+                                <span class="font-bold text-sky-600">Rp 150.000</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Overhaul / Cuci Besar Turun</span>
+                                <span class="font-bold text-sky-600">Rp 250.000</span>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="#booking-instan" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-sky-600 text-white font-mono uppercase tracking-wider font-bold px-6 py-3 text-xs transition">
+                                <span>Masukkan ke Tiket Panggilan</span>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel B: Deep Cleaning -->
+                <div id="tab-cleaning" class="service-panel hidden grid md:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-9 border-2 border-slate-900">
+                    <div class="md:col-span-5">
+                        <img src="assets/images/service-cleaning.jpg"
+                             alt="Deep Cleaning Sofa dan Kasur"
+                             class="w-full h-72 sm:h-80 object-cover border border-slate-900">
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="inline-block bg-emerald-700 text-white font-mono text-[11px] font-bold px-3 py-1 uppercase">Hydrovacuum & Wet Extraction Jerman</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Ekstraksi 99,9% Tungau Debu, Noda Organik & Bau Lembap Sofa/Kasur</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Tim Deep Cleaning kami menyedot partikel alergen hingga kedalaman 20 cm matras, mencuci noda membandel pada upholstery sofa kain/kulit, dan mengeringkannya hingga 90% dengan Turbo Blower.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Deep Clean Sofa (per dudukan)</span>
+                                <span class="font-bold text-emerald-700">Rp 60.000</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Hydrovacuum Tungau Kasur</span>
+                                <span class="font-bold text-emerald-700">Rp 135.000</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Cuci Karpet Kantor / Masjid</span>
+                                <span class="font-bold text-emerald-700">Rp 25.000/m²</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">General Cleaning Kamar Mandi</span>
+                                <span class="font-bold text-emerald-700">Rp 160.000</span>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="#booking-instan" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-mono uppercase tracking-wider font-bold px-6 py-3 text-xs transition">
+                                <span>Pilih Layanan Deep Cleaning</span>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel C: Laundry & Shoes -->
+                <div id="tab-laundry" class="service-panel hidden grid md:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-9 border-2 border-slate-900">
+                    <div class="md:col-span-5">
+                        <img src="assets/images/service-laundry.jpg"
+                             alt="Cuci Sepatu Sneakers dan Laundry Antar Jemput"
+                             class="w-full h-72 sm:h-80 object-cover border border-slate-900">
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="inline-block bg-slate-900 text-white font-mono text-[11px] font-bold px-3 py-1 uppercase">Gratis Jemput & Antar ke Pintu Rumah</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Restorasi Sneakers & Pakaian Higienis Sistem 1 Mesin 1 Pelanggan</h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Kurir kami menjemput cucian harian maupun sepatu Anda. Menggunakan <strong>1 Mesin 1 Pelanggan (Tidak Dicampur)</strong>, setrika uap boiler anti-kilap, serta teknik <em>Hand-Brushing</em> khusus Suede, Canvas & Leather.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Cuci Sepatu Deep Clean</span>
+                                <span class="font-bold text-slate-900">Rp 55.000/psg</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Unyellowing Midsole Sepatu</span>
+                                <span class="font-bold text-slate-900">Rp 85.000/psg</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Laundry Kiloan Komplit Uap</span>
+                                <span class="font-bold text-slate-900">Rp 9.000/kg</span>
+                            </div>
+                            <div class="bg-[#F4F6F8] p-3.5 border border-slate-300 flex items-center justify-between">
+                                <span class="font-bold text-slate-800">Cuci Bedcover Besar / King</span>
+                                <span class="font-bold text-slate-900">Rp 40.000/pcs</span>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="#booking-instan" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-sky-600 text-white font-mono uppercase tracking-wider font-bold px-6 py-3 text-xs transition">
+                                <span>Panggil Kurir Jemput Gratis</span>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE KALKULATOR & FORM PANGGIL TEKNISI / KURIR INSTAN -->
+    <section id="booking-instan" class="py-20 bg-white border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-slate-300 gap-4">
+                <div>
+                    <span class="font-mono text-sky-600 font-bold text-xs uppercase tracking-widest block mb-1">
+                        // 02. KALKULATOR & DISPATCH OTOMATIS
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Hitung Biaya & Terbitkan Tiket Panggilan
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm max-w-md">
+                    Klik tombol <strong>(+)</strong> pada layanan yang dibutuhkan, tentukan jadwal kedatangan, lalu teruskan tiket ke WhatsApp Dispatch terdekat.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Column: Interactive Service Menu with +/- Buttons (7 cols) -->
+                <div class="lg:col-span-7 bg-[#F4F6F8] p-6 sm:p-8 border-2 border-slate-900 space-y-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-300">
+                        <div>
+                            <h3 class="text-base font-extrabold text-slate-900 uppercase font-mono">01 // Daftar Unit & Layanan</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Dapat menggabungkan layanan AC, Deep Cleaning, dan Laundry sekaligus.</p>
+                        </div>
+                        <button type="button" id="resetCartBtn" class="font-mono text-xs font-bold text-rose-700 hover:bg-rose-100 bg-rose-50 border border-rose-300 px-3 py-1.5">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> RESET
+                        </button>
+                    </div>
+
+                    <!-- Service List Container -->
+                    <div class="space-y-2.5" id="serviceItemsContainer">
+                        <!-- Item 1 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-sky-300 bg-sky-50/60 transition"
+                             data-id="cuci_ac_1pk" data-name="Cuci AC Split 0.5 - 1 PK" data-price="75000" data-unit="unit">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-slate-900 text-sky-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-wind"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Cuci AC Split 0.5 – 1 PK</div>
+                                    <div class="text-xs text-slate-600">Indoor + outdoor + cek PSI freon • <strong class="font-mono text-sky-700">Rp 75.000 / unit</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">2</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="cuci_ac_2pk" data-name="Cuci AC Split 1.5 - 2 PK" data-price="95000" data-unit="unit">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-slate-900 text-sky-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-snowflake"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Cuci AC Split 1.5 – 2 PK / Inverter</div>
+                                    <div class="text-xs text-slate-600">Perawatan unit kapasitas besar • <strong class="font-mono text-sky-700">Rp 95.000 / unit</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="tambah_freon" data-name="Tambah Freon R32 / R410A Murni" data-price="150000" data-unit="unit">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-slate-900 text-sky-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Tambah Freon R32 / R410A Murni</div>
+                                    <div class="text-xs text-slate-600">Garansi dingin 30 hari • <strong class="font-mono text-sky-700">Rp 150.000 / unit</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="sofa_clean" data-name="Deep Cleaning Sofa" data-price="60000" data-unit="dudukan">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-emerald-700 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-couch"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Deep Cleaning Sofa (Wet Vacuum)</div>
+                                    <div class="text-xs text-slate-600">Ekstraksi noda & kering 90% • <strong class="font-mono text-emerald-700">Rp 60.000 / dudukan</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="kasur_tungau" data-name="Hydrovacuum Tungau Kasur Springbed" data-price="135000" data-unit="kasur">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-emerald-700 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-bed"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Hydrovacuum Tungau Kasur (All Size)</div>
+                                    <div class="text-xs text-slate-600">Sedot tungau + sterilisasi UV-C • <strong class="font-mono text-emerald-700">Rp 135.000 / kasur</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="cuci_sepatu" data-name="Cuci Sepatu Deep Clean" data-price="55000" data-unit="pasang">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-slate-800 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shoe-prints"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Cuci Sepatu Deep Clean (Antar-Jemput)</div>
+                                    <div class="text-xs text-slate-600">Upper, midsole, outsole + silica • <strong class="font-mono text-slate-900">Rp 55.000 / pasang</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Item 7 -->
+                        <div class="service-row flex items-center justify-between p-4 border border-slate-200 bg-white transition"
+                             data-id="laundry_kiloan" data-name="Laundry Kiloan Komplit Setrika Uap" data-price="9000" data-unit="kg">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 bg-slate-800 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shirt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 text-sm sm:text-base">Laundry Kiloan Komplit Setrika Uap</div>
+                                    <div class="text-xs text-slate-600">1 mesin 1 pelanggan, min. 5 kg • <strong class="font-mono text-slate-900">Rp 9.000 / kg</strong></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0 font-mono">
+                                <button type="button" class="qty-minus w-8 h-8 bg-white border border-slate-400 text-slate-900 hover:bg-slate-100 font-bold flex items-center justify-center">-</button>
+                                <span class="qty-val w-7 text-center font-bold text-slate-900 text-sm">0</span>
+                                <button type="button" class="qty-plus w-8 h-8 bg-slate-900 hover:bg-sky-600 text-white font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Live Order Summary & Customer Dispatch Form (5 cols) -->
+                <div class="lg:col-span-5 bg-slate-900 text-white p-6 sm:p-8 border-2 border-slate-900 space-y-5">
+                    <!-- Brand Header in Dispatch Ticket -->
+                    <div class="bg-white px-3.5 py-2 flex items-center justify-between border border-slate-700">
+                        <img src="assets/logo.svg" alt="DinginKilat" class="h-8 w-auto">
+                        <span class="font-mono text-[10px] font-bold uppercase tracking-wider bg-slate-900 text-sky-400 px-2 py-0.5">TIKET DISPATCH</span>
+                    </div>
+
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div>
+                            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-sky-400 block">02 // Ringkasan Panggilan</span>
+                            <h3 class="text-base font-extrabold">Jadwal & Lokasi Kunjungan</h3>
+                        </div>
+                        <span class="font-mono bg-emerald-950 text-emerald-400 border border-emerald-700 text-[11px] font-bold px-2.5 py-1">
+                            BEBAS ONGKIR
+                        </span>
+                    </div>
+
+                    <!-- Dynamic Selected Items List -->
+                    <div id="selectedCartList" class="bg-slate-950 p-4 border border-slate-800 space-y-2 font-mono text-xs max-h-44 overflow-y-auto">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Promo Checkbox -->
+                    <label class="flex items-center justify-between bg-slate-950 border border-sky-500/40 px-4 py-2.5 cursor-pointer">
+                        <div class="flex items-center gap-2.5">
+                            <input type="checkbox" id="promoCheckbox" checked class="w-4 h-4 accent-sky-500">
+                            <span class="text-xs font-bold text-sky-300">Gunakan Voucher Pelanggan Baru (Potongan Rp 15.000)</span>
+                        </div>
+                        <span class="font-mono text-xs font-bold text-emerald-400">-Rp 15rb</span>
+                    </label>
+
+                    <!-- Total Price Box -->
+                    <div class="bg-sky-600 p-4 flex items-center justify-between">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-wider text-sky-100 block">Total Estimasi Bayar (COD / QRIS)</span>
+                            <span id="totalOrderPrice" class="font-mono text-2xl sm:text-3xl font-bold text-white">Rp 135.000</span>
+                        </div>
+                        <div class="text-right font-mono text-[11px] text-white">
+                            <i class="fa-solid fa-shield-halved text-base block mb-0.5"></i>
+                            <span>GARANSI 30 HARI</span>
+                        </div>
+                    </div>
+
+                    <!-- Customer Form Inputs -->
+                    <div class="space-y-3.5 pt-1">
+                        <div>
+                            <label for="custName" class="block font-mono text-[11px] uppercase font-bold text-slate-300 mb-1">Nama Pemesan *</label>
+                            <input type="text" id="custName" placeholder="Contoh: Ibu Rina / Bpk. Dimas"
+                                class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="custCity" class="block font-mono text-[11px] uppercase font-bold text-slate-300 mb-1">Kota / Posko *</label>
+                                <select id="custCity" class="w-full bg-slate-950 border border-slate-700 px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-400">
+                                    <option value="Jakarta Selatan & Pusat">Jakarta Selatan & Pusat</option>
+                                    <option value="Jakarta Barat & Utara">Jakarta Barat & Utara</option>
+                                    <option value="Jakarta Timur">Jakarta Timur</option>
+                                    <option value="Tangerang & Tangsel (BSD/Bintaro)">Tangerang & Tangsel</option>
+                                    <option value="Depok">Depok</option>
+                                    <option value="Bekasi">Bekasi</option>
+                                    <option value="Bandung">Bandung</option>
+                                    <option value="Surabaya">Surabaya</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="custSchedule" class="block font-mono text-[11px] uppercase font-bold text-slate-300 mb-1">Sesi Kedatangan *</label>
+                                <select id="custSchedule" class="w-full bg-slate-950 border border-slate-700 px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-400">
+                                    <option value="Express — Tiba dalam 60 Menit">Express (SLA 60 Menit)</option>
+                                    <option value="Hari Ini — Sesi Pagi (08.00 - 11.00)">Hari Ini • Pagi (08-11)</option>
+                                    <option value="Hari Ini — Sesi Siang (13.00 - 16.00)">Hari Ini • Siang (13-16)</option>
+                                    <option value="Hari Ini — Sesi Sore (16.00 - 20.00)">Hari Ini • Sore (16-20)</option>
+                                    <option value="Besok Pagi (08.00 - 11.00)">Besok Pagi (08-11)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="custAddress" class="block font-mono text-[11px] uppercase font-bold text-slate-300 mb-1">Alamat Lengkap & Patokan *</label>
+                            <textarea id="custAddress" rows="2" placeholder="Contoh: Jl. Melati No. 14 RT 03/05 (Pagar hitam sebelah Indomaret)..."
+                                class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="button" id="dispatchWaBtn"
+                        class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono uppercase tracking-wider font-extrabold py-4 px-6 transition-all flex items-center justify-center gap-2.5 text-xs sm:text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Terbitkan Tiket Panggilan via WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE AREA COVERAGE & VERIFIED TECHNICIAN PROFILES -->
+    <section id="teknisi" class="py-20 bg-[#F4F6F8] border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <!-- Area Coverage Badges -->
+            <div id="area-layanan" class="bg-slate-900 border-2 border-slate-900 p-8 sm:p-10 text-white">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <span class="font-mono text-sky-400 font-bold text-xs uppercase tracking-widest block mb-1">// 04. JARINGAN POSKO KECAMATAN</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold">Tersebar di 6 Kota Besar dengan 45+ Titik Dispatch</h2>
+                        <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                            Teknisi dan kurir diberangkatkan dari titik posko kecamatan terdekat sehingga waktu tempuh terukur di bawah 60 menit dan bebas biaya transportasi.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono">
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">DKI Jakarta</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">14 Posko • SLA ±45 Mnt</p>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">Tangerang & BSD</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">9 Posko • SLA ±45 Mnt</p>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">Depok</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">6 Posko • SLA ±50 Mnt</p>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">Bekasi</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">7 Posko • SLA ±50 Mnt</p>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">Bandung Raya</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">5 Posko • SLA ±55 Mnt</p>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white text-sm">Surabaya</span>
+                                <span class="w-2 h-2 bg-emerald-400"></span>
+                            </div>
+                            <p class="text-xs text-sky-400 mt-1">5 Posko • SLA ±55 Mnt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technician Profile Cards -->
+            <div>
+                <div class="mb-10">
+                    <span class="font-mono text-sky-600 font-bold text-xs uppercase tracking-widest block mb-1">// 03. OTORISASI PERSONEL LAPANGAN</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Profil Spesialis Bersertifikat BNSP</h2>
+                    <p class="text-slate-600 text-sm mt-1">Seluruh personel telah lulus uji kompetensi BNSP, terverifikasi SKCK aktif, dan dilengkapi ID Card resmi.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Tech 1 -->
+                    <div class="bg-white p-6 border border-slate-900 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4">
+                                <img src="assets/images/tech-bagus.jpg"
+                                     alt="Teknisi Kepala AC"
+                                     class="w-16 h-16 object-cover border border-slate-900">
+                                <div>
+                                    <span class="font-mono bg-sky-100 text-sky-900 text-[10px] font-bold px-2 py-0.5 uppercase">DIVISI HVAC & INVERTER</span>
+                                    <h3 class="text-lg font-extrabold text-slate-900 mt-1">Bagus Prasetyo</h3>
+                                    <p class="font-mono text-xs text-slate-500">ID #TK-104 • 2.400+ Penugasan</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                "Pantang bagi kami menyarankan isi freon apabila sistem pipa tertutup tidak mengalami kebocoran. Angka tekanan PSI wajib ditunjukkan pada manometer di hadapan pelanggan."
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-slate-200 flex items-center justify-between font-mono text-xs font-bold">
+                            <span class="text-emerald-700"><i class="fa-solid fa-id-card-clip mr-1"></i> BNSP TATA UDARA</span>
+                            <span class="text-slate-900">RATING 4.98/5</span>
+                        </div>
+                    </div>
+
+                    <!-- Tech 2 -->
+                    <div class="bg-white p-6 border border-slate-900 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4">
+                                <img src="assets/images/tech-ridwan.jpg"
+                                     alt="Spesialis Hydrovacuum"
+                                     class="w-16 h-16 object-cover border border-slate-900">
+                                <div>
+                                    <span class="font-mono bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2 py-0.5 uppercase">DIVISI HYDROVACUUM</span>
+                                    <h3 class="text-lg font-extrabold text-slate-900 mt-1">Ridwan Kamiludin</h3>
+                                    <p class="font-mono text-xs text-slate-500">ID #TK-209 • 1.850+ Penugasan</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                "Formula ekstraksi yang kami gunakan berstandar Eco-Friendly sehingga aman untuk bayi dan hewan peliharaan. Noda organik terangkat hingga ke lapisan busa dalam."
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-slate-200 flex items-center justify-between font-mono text-xs font-bold">
+                            <span class="text-emerald-700"><i class="fa-solid fa-shield-virus mr-1"></i> HYGIENE CARE CERT</span>
+                            <span class="text-slate-900">RATING 4.96/5</span>
+                        </div>
+                    </div>
+
+                    <!-- Tech 3 -->
+                    <div class="bg-white p-6 border border-slate-900 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4">
+                                <img src="assets/images/tech-siti.jpg"
+                                     alt="Spesialis Shoe Care & Laundry"
+                                     class="w-16 h-16 object-cover border border-slate-900">
+                                <div>
+                                    <span class="font-mono bg-slate-200 text-slate-900 text-[10px] font-bold px-2 py-0.5 uppercase">HEAD OF SHOE CARE</span>
+                                    <h3 class="text-lg font-extrabold text-slate-900 mt-1">Siti Nurhaliza</h3>
+                                    <p class="font-mono text-xs text-slate-500">ID #TK-312 • 3.100+ Penugasan</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                "Setiap material sepatu memiliki protokol perawatan berbeda. Kami menggunakan sikat bulu kuda khusus untuk permukaan suede/nubuck agar tekstur serat tetap terjaga."
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-slate-200 flex items-center justify-between font-mono text-xs font-bold">
+                            <span class="text-emerald-700"><i class="fa-solid fa-award mr-1"></i> SNEAKER CARE SPEC</span>
+                            <span class="text-slate-900">RATING 4.99/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS WITH SERVICE PHOTOS -->
+    <section id="ulasan" class="py-20 bg-white border-b border-slate-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="font-mono text-sky-600 font-bold text-xs uppercase tracking-widest block mb-1">// 05. LOG PELANGGAN & FOTO PENGERJAAN ASLI</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Ulasan & Bukti Servis Pelanggan</h2>
+                </div>
+                <p class="text-slate-600 text-sm max-w-md">Dokumentasi aktual pengerjaan teknisi di kediaman pelanggan beserta ulasan terverifikasi pasca-servis.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Review Card 1 -->
+                <div class="bg-[#F4F6F8] border border-slate-900 flex flex-col justify-between overflow-hidden group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-slate-900 border-b border-slate-900">
+                            <img src="assets/images/service-ac.jpg" alt="Dokumentasi Cuci AC Tebet" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-slate-950/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+                                FOTO SERVIS // CUCI AC INVERTER
+                            </div>
+                            <div class="absolute bottom-2.5 right-2.5 bg-sky-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                SLA 40 MENIT
+                            </div>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-300">
+                                <div class="flex text-amber-500 text-xs gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="font-mono text-[10px] text-emerald-700 font-bold">TERVERIFIKASI</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                "AC kamar anak tiba-tiba meneteskan air pukul 16.00. Pesan lewat kalkulator web pilih Express, pukul 16.40 teknisi sudah tiba. Saluran drainase dibersihkan dengan kompresor dan hanya membayar Rp 75.000 sesuai aplikasi."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-white border-t border-slate-300 flex items-center gap-3 text-xs">
+                        <img src="assets/images/avatar-2.jpg" alt="Ibu Clarissa Putri" class="w-10 h-10 object-cover border border-slate-900 shrink-0">
+                        <div>
+                            <strong class="text-slate-900 block">Ibu Clarissa Putri</strong>
+                            <span class="font-mono text-[11px] text-sky-700">Tebet, Jakarta Selatan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-[#F4F6F8] border border-slate-900 flex flex-col justify-between overflow-hidden group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-slate-900 border-b border-slate-900">
+                            <img src="assets/images/service-cleaning.jpg" alt="Dokumentasi Deep Cleaning Sofa Bintaro" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-slate-950/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+                                FOTO SERVIS // HYDROVACUUM SOFA
+                            </div>
+                            <div class="absolute bottom-2.5 right-2.5 bg-emerald-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                BEBAS TUNGAU
+                            </div>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-300">
+                                <div class="flex text-amber-500 text-xs gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="font-mono text-[10px] text-emerald-700 font-bold">TERVERIFIKASI</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                "Sofa ruang tamu terkena tumpahan kuah makanan dan kasur penuh debu tungau. Setelah diekstraksi dengan mesin vakum basah, air limbahnya tampak pekat dan permukaan sofa kembali bersih seperti baru."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-white border-t border-slate-300 flex items-center gap-3 text-xs">
+                        <img src="assets/images/avatar-1.jpg" alt="Bpk. Denny Kurniawan" class="w-10 h-10 object-cover border border-slate-900 shrink-0">
+                        <div>
+                            <strong class="text-slate-900 block">Bpk. Denny Kurniawan</strong>
+                            <span class="font-mono text-[11px] text-emerald-700">Bintaro, Tangerang Selatan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-[#F4F6F8] border border-slate-900 flex flex-col justify-between overflow-hidden group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-slate-900 border-b border-slate-900">
+                            <img src="assets/images/service-laundry.jpg" alt="Dokumentasi Laundry & Deep Clean Sneaker Depok" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-slate-950/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+                                FOTO SERVIS // LAUNDRY & SHOE CARE
+                            </div>
+                            <div class="absolute bottom-2.5 right-2.5 bg-slate-900 text-sky-400 font-mono text-[10px] font-bold px-2 py-0.5">
+                                GRATIS JEMPUT
+                            </div>
+                        </div>
+                        <div class="p-6 pb-4">
+                            <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-300">
+                                <div class="flex text-amber-500 text-xs gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="font-mono text-[10px] text-emerald-700 font-bold">TERVERIFIKASI</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                "Langganan rutin untuk tempat kos. Laundry kiloan Rp 9.000/kg sudah termasuk jemput-antar gratis, disetrika uap rapi, serta pencucian sepatu suede New Balance hasilnya sangat memuaskan."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 bg-white border-t border-slate-300 flex items-center gap-3 text-xs">
+                        <img src="assets/images/avatar-3.jpg" alt="Kevin Pratama" class="w-10 h-10 object-cover border border-slate-900 shrink-0">
+                        <div>
+                            <strong class="text-slate-900 block">Kevin Pratama</strong>
+                            <span class="font-mono text-[11px] text-slate-700">Margonda, Depok</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION (6 ITEMS) -->
+    <section id="faq" class="py-20 bg-[#F4F6F8]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <span class="font-mono text-sky-600 font-bold text-xs uppercase tracking-widest block mb-1">// 06. DOKUMENTASI LAYANAN & TANYA JAWAB</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+            </div>
+
+            <div class="space-y-3">
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>01. Apakah terdapat biaya tambahan untuk transportasi atau kunjungan teknisi?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        <strong>Bebas 100% biaya transportasi/kunjungan</strong> untuk seluruh wilayah layanan kami (Jakarta, Tangerang, Depok, Bekasi, Bandung, Surabaya) dengan nilai pemesanan minimum Rp 75.000 (setara cuci 1 unit AC).
+                    </div>
+                </div>
+
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>02. Bagaimana prosedur klaim Garansi 30 Hari apabila AC kembali bocor/kurang dingin?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        Cukup balas pesan WhatsApp tiket digital Anda. Tim teknisi posko terdekat akan dijadwalkan ulang dalam waktu maksimal 1x24 jam untuk melakukan perbaikan tanpa biaya tambahan sepeser pun.
+                    </div>
+                </div>
+
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>03. Berapa lama waktu pengeringan sofa atau kasur pasca Deep Cleaning?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        Ekstraktor vakum daya hisap tinggi dikombinasikan dengan pengering Turbo Blower memastikan tingkat kekeringan mencapai 85–90% saat pengerjaan selesai. Dalam 2–3 jam di ruangan berventilasi/AC, permukaan kering 100%.
+                    </div>
+                </div>
+
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>04. Bagaimana cara memastikan teknisi tidak memanipulasi pengisian freon AC?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        SOP wajib DinginKilat melarang teknisi menyarankan tambah freon tanpa bukti pengecekan Manifold Gauge (PSI) dan pengukuran Ampere di hadapan pelanggan. Selama pipa tertutup tidak bocor, AC cukup dicuci jet-steam agar kembali dingin.
+                    </div>
+                </div>
+
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>05. Apakah layanan Laundry Kiloan & Sepatu dicampur dengan pakaian pelanggan lain?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        Tidak pernah. Kami menerapkan protokol <strong>1 Mesin 1 Pelanggan (One Machine One Customer)</strong> dengan air terfiltrasi UV dan deterjen cair hipoalergenik, sehingga higienis dan bebas risiko pakaian tertukar atau luntur.
+                    </div>
+                </div>
+
+                <div class="border border-slate-900 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-slate-50 flex items-center justify-between font-bold text-slate-900 text-sm">
+                        <span>06. Metode pembayaran apa saja yang diterima setelah pengerjaan selesai?</span>
+                        <i class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-slate-600 bg-[#F4F6F8] border-t border-slate-200 leading-relaxed">
+                        Pembayaran dilakukan setelah pekerjaan tuntas dan Anda memeriksa hasilnya (Pay After Service). Kami menerima pembayaran via QRIS resmi perusahaan, Transfer Bank (BCA, Mandiri, BRI, BNI), maupun Tunai kepada teknisi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-slate-950 text-slate-400 border-t-2 border-slate-900 text-sm">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-slate-800 bg-slate-900/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider">
+                            <span class="inline-flex items-center gap-2 bg-slate-950 text-sky-400 border border-slate-700 px-3 py-1.5 font-semibold">
+                                <i class="fa-solid fa-bolt text-sky-400"></i>
+                                <span>SLA Tiba ≤ 60 Menit</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-slate-950 text-emerald-400 border border-slate-700 px-3 py-1.5 font-semibold">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Garansi Dingin & Bersih 30 Hari</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-slate-950 text-slate-200 border border-slate-700 px-3 py-1.5 font-semibold">
+                                <i class="fa-solid fa-id-card-clip text-sky-400"></i>
+                                <span>Teknisi Resmi BNSP</span>
+                            </span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                            AC Bocor, Kasur Berdebu, atau Sepatu Kotor? Teknisi Posko Terdekat Siap Meluncur.
+                        </h2>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Pesan layanan panggilan tanpa biaya transportasi untuk wilayah Jabodetabek, Bandung, dan Surabaya. Pembayaran dilakukan setelah pekerjaan tuntas dan lolos uji temperatur/kebersihan (Pay After Service).
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3.5 lg:justify-end">
+                        <a href="#booking-instan"
+                           class="inline-flex items-center justify-center gap-2.5 bg-sky-600 hover:bg-sky-500 text-white font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Hitung Biaya & Booking</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Dispatch%20DinginKilat%20%26%20Kinclong,%20saya%20ingin%20panggil%20teknisi/kurir%20ke%20rumah."
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2.5 bg-slate-950 hover:bg-emerald-600 text-white border border-slate-700 hover:border-emerald-500 font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base text-emerald-400"></i>
+                            <span>Panggil via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group">
+                        <img src="assets/logo.svg" alt="Emblem DinginKilat & Kinclong" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-sky-500/40">
+                        <div>
+                            <span class="font-extrabold text-base sm:text-lg text-white tracking-tight block leading-none">
+                                DINGIN<span class="text-sky-400">KILAT</span> &amp; KINCLONG
+                            </span>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 block mt-1">
+                                HVAC CRYO-WASH • HYDROVACUUM
+                            </span>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Unit layanan pemeliharaan residensial & komersial terpadu: Cuci AC bertekanan terukur PSI, ekstraksi tungau Hydrovacuum Jerman, serta Laundry & Shoe Care sistem 1 Mesin 1 Pelanggan.
+                    </p>
+
+                    <div class="pt-1">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-slate-500 block mb-2.5">Kanal Edukasi & Dokumentasi</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram DinginKilat & Kinclong"
+                               class="w-9 h-9 bg-slate-900 hover:bg-sky-500 text-slate-300 hover:text-slate-950 border border-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok DinginKilat & Kinclong"
+                               class="w-9 h-9 bg-slate-900 hover:bg-sky-500 text-slate-300 hover:text-slate-950 border border-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp DinginKilat & Kinclong"
+                               class="w-9 h-9 bg-slate-900 hover:bg-emerald-500 text-slate-300 hover:text-slate-950 border border-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube DinginKilat & Kinclong"
+                               class="w-9 h-9 bg-slate-900 hover:bg-sky-500 text-slate-300 hover:text-slate-950 border border-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-sky-500 pl-3">
+                        Navigasi Cepat
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">01</span>
+                                <span>Beranda Utama</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-layanan" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">02</span>
+                                <span>Layanan & Katalog SOP</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">03</span>
+                                <span>Kalkulator Tarif & Dispatch</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#area-layanan" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">04</span>
+                                <span>Cara Pemesanan & Posko</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#ulasan" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">05</span>
+                                <span>Galeri & Ulasan Foto Servis</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="text-slate-400 hover:text-sky-400 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-sky-500">06</span>
+                                <span>FAQ & Klaim Garansi</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Layanan Unggulan -->
+                <nav aria-label="Layanan Unggulan" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-sky-500 pl-3">
+                        Layanan Unggulan
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors flex items-center justify-between">
+                                <span>Cuci AC Split 0.5 – 2 PK</span>
+                                <span class="font-mono text-[11px] text-slate-500">Rp 75rb/unit</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors flex items-center justify-between">
+                                <span>Isi Freon R32 / R410A Murni</span>
+                                <span class="font-mono text-[11px] text-slate-500">Rp 150rb/unit</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors flex items-center justify-between">
+                                <span>Deep Cleaning Sofa Basah</span>
+                                <span class="font-mono text-[11px] text-slate-500">Rp 60rb/seat</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors flex items-center justify-between">
+                                <span>Hydrovacuum Tungau Kasur</span>
+                                <span class="font-mono text-[11px] text-slate-500">Rp 135rb/unit</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#booking-instan" class="text-slate-400 hover:text-sky-400 transition-colors flex items-center justify-between">
+                                <span>Cuci Sepatu & Laundry Uap</span>
+                                <span class="font-mono text-[11px] text-slate-500">Mulai Rp 9rb</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Highlighted Special Package Link -->
+                    <div class="pt-1">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20B2B%20DinginKilat,%20kami%20ingin%20penawaran%20Kontrak%20Maintenance%20AC%20Kantor/Ruko."
+                           target="_blank" rel="noopener noreferrer"
+                           class="block p-3 bg-slate-900 hover:bg-slate-800 border border-sky-500/40 transition-colors group">
+                            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-sky-400 font-bold">
+                                <span>★ KEMITRAAN B2B</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-0.5 transition-transform"></i>
+                            </div>
+                            <div class="text-xs font-bold text-white mt-0.5">Kontrak Maintenance AC Kantor</div>
+                            <div class="text-[11px] text-slate-400">Jadwal berkala & invoice termin bulanan</div>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-sky-500 pl-3">
+                        Posko Pusat & Dispatch
+                    </h3>
+                    <ul class="space-y-3.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Hub Dispatch & Workshop Pusat:</strong>
+                                <span class="text-slate-400 leading-relaxed block">Jl. Tebet Raya No. 64B, Tebet Timur, Jakarta Selatan 12820 (beserta 45+ Posko Kecamatan)</span>
+                                <a href="https://maps.google.com/?q=Jl.+Tebet+Raya+No.+64B+Jakarta+Selatan" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1 font-mono text-[11px] text-sky-400 hover:underline mt-1 font-semibold">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">WhatsApp Dispatch 60 Menit:</strong>
+                                <a href="https://wa.me/6281234567890?text=Halo%20Dispatch%20DinginKilat,%20saya%20ingin%20pesan%20layanan." target="_blank" rel="noopener noreferrer"
+                                   class="font-mono text-slate-300 hover:text-sky-400 transition-colors">+62 812-3456-7890</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Surel Layanan & Korporat:</strong>
+                                <a href="mailto:dispatch@dinginkilat.id" class="font-mono text-slate-300 hover:text-sky-400 transition-colors">dispatch@dinginkilat.id</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Jam Operasional Teknisi & Kurir:</strong>
+                                <span class="text-slate-400 block">Senin – Minggu: 07.00 – 21.00 WIB</span>
+                                <span class="font-mono text-[10px] text-emerald-400">(Termasuk Hari Libur Nasional)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-slate-800 bg-slate-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-slate-500 mr-1 whitespace-nowrap">Pay After Service:</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">QRIS</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">BCA</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">BRI</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">Mandiri</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">GoPay</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">OVO</span>
+                    <span class="font-mono text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Policy Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-slate-500 text-center lg:text-right">
+                    <p>© 2026 DinginKilat &amp; Kinclong Home Service. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4 font-mono text-[11px]">
+                        <!-- TODO: Hubungkan ke dokumen Syarat & Ketentuan Layanan Panggilan -->
+                        <a href="#" class="hover:text-sky-400 transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Hubungkan ke dokumen Kebijakan Privasi Pelanggan -->
+                        <a href="#" class="hover:text-sky-400 transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-sky-400 transition-colors whitespace-nowrap">Kebijakan Garansi / Pembatalan</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="#booking-instan"
+       class="fixed bottom-6 right-6 z-50 bg-slate-900 hover:bg-sky-600 text-white border border-sky-400/50 px-5 py-3.5 shadow-2xl flex items-center gap-3 transition-colors">
+        <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i>
+        <div class="text-left leading-tight">
+            <span class="block font-mono text-[10px] uppercase tracking-wider text-sky-400">SLA 60 Menit</span>
+            <span class="text-xs font-mono font-bold uppercase">Panggil Teknisi</span>
+        </div>
+    </a>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "DinginKilat & Kinclong Home Service",
+            tagline: "Layanan Teknis Cuci AC, Hydrovacuum & Laundry Panggilan 60 Menit",
+            address: "Jl. Tebet Raya No. 64B, Tebet Timur, Jakarta Selatan 12820",
+            mapsUrl: "https://maps.google.com/?q=Jl.+Tebet+Raya+No.+64B+Jakarta+Selatan",
+            whatsappNumber: "6281234567890",
+            whatsappDisplay: "+62 812-3456-7890",
+            email: "dispatch@dinginkilat.id",
+            operationalHours: "Senin – Minggu: 07.00 – 21.00 WIB",
+            socials: {
+                instagram: "https://instagram.com",
+                tiktok: "https://tiktok.com",
+                whatsapp: "https://wa.me/6281234567890",
+                youtube: "https://youtube.com"
+            }
+        };
+
+        (function() {
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Service Showcase Tabs
+            const tabBtns = document.querySelectorAll('.service-tab-btn');
+            const tabPanels = document.querySelectorAll('.service-panel');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => {
+                        b.classList.remove('bg-cyan-600', 'text-white', 'shadow-lg', 'shadow-cyan-600/25');
+                        b.classList.add('bg-sky-50', 'text-slate-700', 'border', 'border-sky-200');
+                    });
+                    btn.classList.remove('bg-sky-50', 'text-slate-700', 'border', 'border-sky-200');
+                    btn.classList.add('bg-cyan-600', 'text-white', 'shadow-lg', 'shadow-cyan-600/25');
+
+                    const targetId = btn.dataset.tab;
+                    tabPanels.forEach(panel => {
+                        if (panel.id === targetId) {
+                            panel.classList.remove('hidden');
+                        } else {
+                            panel.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Cart & Calculator Logic
+            const serviceRows = document.querySelectorAll('.service-row');
+            const selectedCartList = document.getElementById('selectedCartList');
+            const promoCheckbox = document.getElementById('promoCheckbox');
+            const totalOrderPrice = document.getElementById('totalOrderPrice');
+            const resetCartBtn = document.getElementById('resetCartBtn');
+            const dispatchWaBtn = document.getElementById('dispatchWaBtn');
+
+            function formatRp(val) {
+                return 'Rp ' + Math.max(0, Math.round(val)).toLocaleString('id-ID');
+            }
+
+            function updateCartSummary() {
+                let subtotal = 0;
+                const items = [];
+
+                serviceRows.forEach(row => {
+                    const qtyEl = row.querySelector('.qty-val');
+                    const qty = Number(qtyEl.textContent) || 0;
+                    const price = Number(row.dataset.price);
+                    const name = row.dataset.name;
+                    const unit = row.dataset.unit;
+
+                    if (qty > 0) {
+                        const rowTotal = qty * price;
+                        subtotal += rowTotal;
+                        items.push({ name, qty, unit, price, rowTotal });
+                        row.classList.add('border-sky-300', 'bg-sky-50/60');
+                        row.classList.remove('border-slate-200', 'bg-white');
+                    } else {
+                        row.classList.remove('border-sky-300', 'bg-sky-50/60');
+                        row.classList.add('border-slate-200', 'bg-white');
+                    }
+                });
+
+                if (items.length === 0) {
+                    selectedCartList.innerHTML = `<div class="text-slate-400 text-center py-3">Belum ada layanan dipilih. Klik tombol <strong>(+)</strong> untuk menambahkan unit.</div>`;
+                } else {
+                    selectedCartList.innerHTML = items.map(item => `
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-1.5 last:border-0 last:pb-0">
+                            <div>
+                                <span class="font-bold text-white">${item.name}</span>
+                                <span class="text-sky-400 ml-1">(${item.qty} ${item.unit})</span>
+                            </div>
+                            <span class="font-bold text-slate-200">${formatRp(item.rowTotal)}</span>
+                        </div>
+                    `).join('');
+                }
+
+                const discount = (promoCheckbox.checked && subtotal >= 50000) ? 15000 : 0;
+                const finalTotal = Math.max(0, subtotal - discount);
+                totalOrderPrice.textContent = formatRp(finalTotal);
+
+                return { items, subtotal, discount, finalTotal };
+            }
+
+            // Attach +/- handlers
+            serviceRows.forEach(row => {
+                const minusBtn = row.querySelector('.qty-minus');
+                const plusBtn = row.querySelector('.qty-plus');
+                const qtyEl = row.querySelector('.qty-val');
+
+                minusBtn.addEventListener('click', () => {
+                    let current = Number(qtyEl.textContent) || 0;
+                    if (current > 0) {
+                        qtyEl.textContent = current - 1;
+                        updateCartSummary();
+                    }
+                });
+
+                plusBtn.addEventListener('click', () => {
+                    let current = Number(qtyEl.textContent) || 0;
+                    qtyEl.textContent = current + 1;
+                    updateCartSummary();
+                });
+            });
+
+            promoCheckbox.addEventListener('change', updateCartSummary);
+
+            resetCartBtn.addEventListener('click', () => {
+                serviceRows.forEach(row => {
+                    row.querySelector('.qty-val').textContent = '0';
+                });
+                updateCartSummary();
+            });
+
+            // Send Order to WhatsApp
+            dispatchWaBtn.addEventListener('click', () => {
+                const summary = updateCartSummary();
+                const name = document.getElementById('custName').value.trim() || 'Pelanggan DinginKilat & Kinclong';
+                const city = document.getElementById('custCity').value;
+                const schedule = document.getElementById('custSchedule').value;
+                const address = document.getElementById('custAddress').value.trim() || 'Mohon shareloc via WhatsApp';
+
+                const itemLines = summary.items.length > 0
+                    ? summary.items.map(i => `• ${i.name} (${i.qty} ${i.unit}) = ${formatRp(i.rowTotal)}`).join('\n')
+                    : '• Konsultasi & Panggil Teknisi/Kurir';
+
+                const promoLine = summary.discount > 0 ? `*Voucher Pelanggan Baru:* -Rp 15.000\n` : '';
+
+                const text = [
+                    `Halo Admin Dispatch *DinginKilat & Kinclong*, saya ingin memesan layanan panggilan:`,
+                    ``,
+                    `*Rincian Layanan:*`,
+                    itemLines,
+                    `----------------------------------`,
+                    promoLine + `*Total Estimasi:* ${formatRp(summary.finalTotal)}`,
+                    ``,
+                    `*Nama:* ${name}`,
+                    `*Kota/Cabang:* ${city}`,
+                    `*Jadwal Kedatangan:* ${schedule}`,
+                    `*Alamat & Patokan:* ${address}`,
+                    ``,
+                    `Mohon konfirmasi teknisi/kurir terdekat. Terima kasih.`
+                ].join('\n');
+
+                window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+            });
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const icon = btn.querySelector('i');
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Initial render
+            updateCartSummary();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="posBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#022C22"/>
+    </linearGradient>
+    <linearGradient id="posEm" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#posBg)" stroke="url(#posEm)" stroke-width="2.2"/>
+  <!-- POS Terminal / Receipt Silhouette -->
+  <path d="M18 14H46C47.6569 14 49 15.3431 49 17V47L44.5 44L40 47L35.5 44L32 47L28.5 44L24 47L19.5 44L15 47V17C15 15.3431 16.3431 14 18 14Z" fill="#064E3B" fill-opacity="0.45" stroke="url(#posEm)" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- Barcode / Tabular Lines -->
+  <line x1="22" y1="23" x2="36" y2="23" stroke="#F8FAFC" stroke-width="2.6" stroke-linecap="round"/>
+  <line x1="22" y1="30" x2="42" y2="30" stroke="#34D399" stroke-width="2.4" stroke-linecap="round"/>
+  <line x1="22" y1="37" x2="31" y2="37" stroke="#94A3B8" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="40" cy="37" r="3" fill="#34D399"/>
+</svg>

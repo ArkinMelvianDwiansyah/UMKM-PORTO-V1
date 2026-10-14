@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawHaus Pet Mart, Grooming &amp; Stay — Katalog Pakan Hewan, Salon Grooming &amp; Pet Hotel</title>
+    <meta name="description" content="Toko Pakan Kucing & Anjing Terlengkap, Pasir Gumpal, Vitamin Bulu, Salon Grooming Medicated & Pet Hotel VIP Full AC dengan CCTV 24 Jam. Pengiriman Instan GoSend/GrabExpress.">
+
+    <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        cream: {
+                            DEFAULT: '#FFFDF8',
+                            soft: '#F7F3E8',
+                            border: '#E6DFCE'
+                        },
+                        terracotta: {
+                            DEFAULT: '#E85D2A',
+                            dark: '#C94718',
+                            light: '#FFF0EA'
+                        },
+                        charcoal: {
+                            DEFAULT: '#141413',
+                            muted: '#4A4944'
+                        },
+                        sage: {
+                            DEFAULT: '#2A6F57',
+                            dark: '#1D523F',
+                            light: '#EAF5F0'
+                        },
+                        mustard: {
+                            DEFAULT: '#F4B942',
+                            light: '#FEF7E6'
+                        }
+                    },
+                    boxShadow: {
+                        'tactile-sm': '2px 2px 0px #141413',
+                        'tactile': '4px 4px 0px #141413',
+                        'tactile-lg': '6px 6px 0px #141413',
+                        'tactile-orange': '4px 4px 0px #E85D2A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFDF8;
+            color: #141413;
+        }
+        .tactile-card {
+            border: 1.5px solid #141413;
+            box-shadow: 4px 4px 0px #141413;
+            transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tactile-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #141413;
+        }
+        .tactile-btn {
+            border: 1.5px solid #141413;
+            box-shadow: 3px 3px 0px #141413;
+            transition: all 0.15s ease;
+        }
+        .tactile-btn:hover {
+            transform: translate(-1.5px, -1.5px);
+            box-shadow: 4.5px 4.5px 0px #141413;
+        }
+        .tactile-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #141413;
+        }
+        .dot-grid-bg {
+            background-image: radial-gradient(#141413 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F3E8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #141413;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E85D2A;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- TOP PORTFOLIO DEMO BAR -->
+    <div class="bg-charcoal text-cream text-xs py-2.5 px-4 border-b border-stone-800 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap overflow-x-auto">
+            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <a href="../../index.html" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-terracotta text-cream font-semibold px-3.5 py-1 rounded-full transition-colors duration-200 border border-stone-700 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span>Kembali ke Katalog Portofolio</span>
+                </a>
+                <span class="hidden lg:inline-flex items-center gap-2 text-stone-300 font-medium whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-terracotta shrink-0"></span>
+                    <span>Demo #14: Pet Shop Ritel, Kalkulator Grooming &amp; Reservasi Pet Hotel</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+                <button onclick="fillStarterBundle()" class="bg-sage hover:bg-sage-dark text-white px-3 py-1 rounded-full transition font-semibold flex items-center gap-1.5 text-[11px] border border-emerald-400/30 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Simulasi Paket Anabul + Grooming</span>
+                </button>
+                <span class="hidden xl:inline text-stone-400 font-mono text-[11px] whitespace-nowrap">Same-Day GoSend/GrabExpress</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP ANNOUNCEMENT TICKER -->
+    <div class="bg-terracotta text-white text-xs py-2 px-4 border-b-[1.5px] border-charcoal font-semibold">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap">
+            <div class="flex items-center gap-2 whitespace-nowrap truncate">
+                <span class="bg-charcoal text-mustard font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shrink-0">SAME-DAY DELIVERY</span>
+                <span class="truncate">Order Pakan &amp; Pasir sebelum pukul 17.00 WIB dikirim hari ini via GoSend / GrabExpress Instant!</span>
+            </div>
+            <div class="hidden lg:flex items-center gap-4 text-[11px] shrink-0 whitespace-nowrap">
+                <span class="inline-flex items-center gap-1.5 whitespace-nowrap"><i class="fa-solid fa-shield-dog"></i> Pakan 100% Original</span>
+                <span>•</span>
+                <span class="inline-flex items-center gap-1.5 whitespace-nowrap"><i class="fa-solid fa-video"></i> Pet Hotel CCTV 24 Jam</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER & DUAL-MODE NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b-[1.5px] border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4 flex-nowrap">
+            <!-- Local SVG Logo -->
+            <a href="#" class="flex items-center gap-3 shrink-0 group">
+                <img src="assets/logo.svg" alt="PawHaus Pet Mart, Grooming & Stay" class="h-11 w-auto shrink-0 transition-transform group-hover:scale-[1.02]">
+            </a>
+
+            <!-- DUAL-MODE NAVIGATION SWITCHER + QUICK LINKS -->
+            <div class="hidden lg:flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <div class="flex items-center bg-cream-soft p-1 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm shrink-0">
+                    <button id="navModeMart" onclick="switchMode('mart')" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 bg-charcoal text-cream whitespace-nowrap">
+                        <i class="fa-solid fa-bag-shopping text-terracotta"></i>
+                        <span>Katalog Pakan</span>
+                        <span class="bg-terracotta text-white font-mono text-[10px] px-1.5 py-0.5 rounded">Same-Day</span>
+                    </button>
+                    <button id="navModeGrooming" onclick="switchMode('grooming')" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 text-charcoal hover:bg-cream whitespace-nowrap">
+                        <i class="fa-solid fa-scissors text-sage"></i>
+                        <span>Grooming &amp; Hotel</span>
+                        <span class="bg-sage text-white font-mono text-[10px] px-1.5 py-0.5 rounded">VIP AC</span>
+                    </button>
+                </div>
+                <a href="#ulasan-pelanggan" class="px-2.5 py-1.5 text-xs font-extrabold text-charcoal hover:text-terracotta transition whitespace-nowrap shrink-0">Ulasan Foto</a>
+                <a href="#faq" class="px-2.5 py-1.5 text-xs font-extrabold text-charcoal hover:text-terracotta transition whitespace-nowrap shrink-0">FAQ</a>
+            </div>
+
+            <!-- Right Actions: Subscription Toggle & Cart Button -->
+            <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+                <button onclick="toggleGlobalSubscription()" id="headerSubBtn" class="hidden 2xl:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-sage-light text-sage border-[1.5px] border-charcoal font-bold text-xs tactile-btn whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-repeat"></i>
+                    <span id="headerSubLabel">Langganan: OFF (-10%)</span>
+                </button>
+
+                <button onclick="openCartDrawer()" class="relative inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-bold text-xs sm:text-sm tactile-btn whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span>Keranjang</span>
+                    <span id="cartCountBadge" class="bg-charcoal text-mustard font-mono text-xs font-bold px-2 py-0.5 rounded-md border border-white/20">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dual-Mode Switcher Bar -->
+        <div class="lg:hidden px-4 pb-3 flex gap-2">
+            <button id="mobileModeMart" onclick="switchMode('mart')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-bag-shopping text-terracotta"></i>
+                <span>Belanja Pakan</span>
+            </button>
+            <button id="mobileModeGrooming" onclick="switchMode('grooming')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-cream-soft text-charcoal flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-scissors text-sage"></i>
+                <span>Grooming &amp; Hotel</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: NEO-EDITORIAL TACTILE POP RETAIL -->
+    <section class="relative overflow-hidden border-b-[1.5px] border-charcoal bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <!-- Left Editorial Column (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2 bg-mustard-light border-[1.5px] border-charcoal px-3.5 py-1.5 rounded-full shadow-tactile-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-terracotta"></span>
+                        <span class="font-mono text-xs font-semibold uppercase tracking-wider text-charcoal">ONE-STOP PET CARE &amp; RETAIL HUB • KEMANG, BSD &amp; KELAPA GADING</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[54px] text-charcoal leading-[1.06] tracking-tight">
+                        Nutrisi Terbaik, Salon Grooming Medis &amp; <span class="underline decoration-terracotta decoration-4 underline-offset-4">Pet Hotel VIP</span> dalam Satu Atap.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-charcoal-muted leading-relaxed max-w-2xl">
+                        Belanja pakan eceran <strong class="text-charcoal">Repack 1kg</strong>, <strong class="text-charcoal">Freshpack 2kg</strong>, hingga <strong class="text-charcoal">Karung Grosir 20kg</strong> diantar kurir instan dalam 60 menit — atau jadwalkan perawatan mandi jamur &amp; menginap kamar AC ber-CCTV untuk anabul kesayangan Anda.
+                    </p>
+
+                    <!-- Hero Dual Action CTA -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-1">
+                        <a href="#katalog-pakan" onclick="switchMode('mart')" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-bold text-sm sm:text-base tactile-btn">
+                            <i class="fa-solid fa-box-open"></i>
+                            <span>Belanja Pakan &amp; Pasir (Same-Day)</span>
+                        </a>
+                        <a href="#kalkulator-grooming" onclick="switchMode('grooming')" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-sage hover:bg-sage-dark text-white font-display font-bold text-sm sm:text-base tactile-btn">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Hitung Biaya Grooming &amp; Pet Hotel</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Metrics Grid -->
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-3">
+                        <div class="bg-cream-soft p-3.5 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm">
+                            <div class="font-display font-extrabold text-xl sm:text-2xl text-charcoal">45 Menit</div>
+                            <div class="text-xs text-charcoal-muted font-medium mt-0.5">Rata-rata Pickup GoSend/Grab Instant</div>
+                        </div>
+                        <div class="bg-cream-soft p-3.5 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm">
+                            <div class="font-display font-extrabold text-xl sm:text-2xl text-sage">100% Steril</div>
+                            <div class="text-xs text-charcoal-muted font-medium mt-0.5">Air Hangat Water Heater &amp; UV Sanitizer</div>
+                        </div>
+                        <div class="bg-cream-soft p-3.5 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm">
+                            <div class="font-display font-extrabold text-xl sm:text-2xl text-terracotta">Hemat 10%</div>
+                            <div class="text-xs text-charcoal-muted font-medium mt-0.5">Program Langganan Pakan &amp; Pasir Rutin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Tactile Collage Card (5 cols) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="bg-cream-soft p-3 sm:p-4 rounded-2xl tactile-card relative">
+                        <div class="relative rounded-xl overflow-hidden border-[1.5px] border-charcoal aspect-[4/3]">
+                            <img src="assets/images/hero-cat-dog.jpg" alt="Anabul Sehat PawHaus Pet Mart" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-charcoal text-cream font-mono text-[11px] font-semibold px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>3 Cabang Buka Setiap Hari (08.00 - 21.00)</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom 2 Mini Feature Cards inside Hero Card -->
+                        <div class="grid grid-cols-2 gap-3 mt-3">
+                            <div class="bg-cream p-3 rounded-xl border-[1.5px] border-charcoal flex items-center gap-3">
+                                <img src="assets/images/grooming-salon.jpg" alt="Salon Grooming" class="w-12 h-12 rounded-lg object-cover border border-charcoal shrink-0">
+                                <div>
+                                    <div class="text-xs font-extrabold text-charcoal">Salon Grooming</div>
+                                    <div class="text-[11px] text-sage font-bold">Mulai Rp 65.000</div>
+                                </div>
+                            </div>
+                            <div class="bg-cream p-3 rounded-xl border-[1.5px] border-charcoal flex items-center gap-3">
+                                <img src="assets/images/pet-hotel-room.jpg" alt="Pet Hotel VIP AC" class="w-12 h-12 rounded-lg object-cover border border-charcoal shrink-0">
+                                <div>
+                                    <div class="text-xs font-extrabold text-charcoal">Pet Hotel VIP AC</div>
+                                    <div class="text-[11px] text-terracotta font-bold">Mulai Rp 75.000/mlm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: KATALOG BELANJA PAKAN, PASIR, VITAMIN & KANDANG -->
+    <section id="katalog-pakan" class="py-12 lg:py-16 border-b-[1.5px] border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header + Subscription Banner -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+                <div>
+                    <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-terracotta mb-2">
+                        <i class="fa-solid fa-store"></i>
+                        <span>MODE 01 • KATALOG PAKAN &amp; KEBUTUHAN HARIAN</span>
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight">
+                        Pilih Kemasan Eceran, Freshpack, atau Grosir
+                    </h2>
+                    <p class="text-sm sm:text-base text-charcoal-muted mt-1">
+                        Klik ukuran kemasan (<span class="font-mono font-semibold text-charcoal">Repack 1kg</span>, <span class="font-mono font-semibold text-charcoal">Freshpack 2kg</span>, atau <span class="font-mono font-semibold text-charcoal">Karung Grosir 20kg</span>) untuk melihat harga langsung.
+                    </p>
+                </div>
+
+                <!-- Interactive Langganan Bulanan (Hemat 10%) Switch Box -->
+                <div class="bg-sage-light border-[1.5px] border-charcoal p-4 rounded-2xl shadow-tactile flex items-center justify-between gap-4 sm:min-w-[380px]">
+                    <div class="space-y-0.5">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-sage text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase">AUTO-REFILL</span>
+                            <span class="font-display font-bold text-sm text-charcoal">Langganan Rutin Bulanan (Hemat 10%)</span>
+                        </div>
+                        <p class="text-xs text-charcoal-muted">Diskon otomatis 10% semua pakan &amp; pasir + pengingat WA bulanan.</p>
+                    </div>
+                    <button id="subToggleSwitch" onclick="toggleGlobalSubscription()" type="button" role="switch" aria-checked="false" class="w-14 h-8 rounded-full bg-cream border-[1.5px] border-charcoal p-1 transition-colors duration-200 relative shrink-0">
+                        <span id="subToggleKnob" class="block w-5 h-5 rounded-full bg-charcoal transition-transform duration-200 translate-x-0"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Bar: Category Pills + Search -->
+            <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 bg-cream-soft p-3.5 rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm">
+                <div class="flex flex-wrap items-center gap-2" id="categoryButtons">
+                    <button onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream transition">
+                        Semua Produk (8)
+                    </button>
+                    <button onclick="filterCategory('kucing')" data-cat="kucing" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition">
+                        Pakan Kucing
+                    </button>
+                    <button onclick="filterCategory('anjing')" data-cat="anjing" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition">
+                        Pakan Anjing
+                    </button>
+                    <button onclick="filterCategory('pasir')" data-cat="pasir" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition">
+                        Pasir &amp; Higienis
+                    </button>
+                    <button onclick="filterCategory('vitamin')" data-cat="vitamin" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition">
+                        Vitamin &amp; Obat Kutu
+                    </button>
+                    <button onclick="filterCategory('aksesoris')" data-cat="aksesoris" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition">
+                        Kandang &amp; Aksesoris
+                    </button>
+                </div>
+
+                <div class="relative min-w-[240px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-charcoal-muted text-xs"></i>
+                    <input id="productSearchInput" oninput="renderProducts()" type="text" placeholder="Cari Royal Canin, Bolt, Pasir, Obat Kutu..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-cream border-[1.5px] border-charcoal text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-terracotta">
+                </div>
+            </div>
+
+            <!-- Dynamic Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE KALKULATOR GROOMING & PENITIPAN PET HOTEL -->
+    <section id="kalkulator-grooming" class="py-14 lg:py-20 bg-cream-soft border-b-[1.5px] border-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="max-w-3xl mb-10">
+                <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-sage mb-2">
+                    <i class="fa-solid fa-spa"></i>
+                    <span>MODE 02 • SALON GROOMING STERIL &amp; PET HOTEL VIP</span>
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight">
+                    Kalkulator Reservasi Grooming &amp; Penitipan Pet Hotel
+                </h2>
+                <p class="text-sm sm:text-base text-charcoal-muted mt-1.5">
+                    Pilih jenis ukuran anabul dan layanan perawatan. Estimasi tarif dihitung transparan dan dapat langsung digabungkan ke Keranjang WhatsApp bersama belanjaan pakan Anda.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Interactive Configurator (7 cols) -->
+                <div class="lg:col-span-7 bg-cream p-6 sm:p-8 rounded-2xl tactile-card space-y-6">
+                    <!-- Step 1: Pilih Jenis & Ukuran Hewan -->
+                    <div>
+                        <label class="block font-display font-bold text-sm uppercase tracking-wider text-charcoal mb-3">
+                            1. Pilih Jenis &amp; Ukuran Hewan Kesayangan
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="petSizeSelector">
+                            <button type="button" onclick="selectPetType('kucing_kecil')" data-pet="kucing_kecil" class="pet-type-btn p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-cream hover:bg-mustard-light">
+                                <div>
+                                    <div class="font-display font-bold text-sm text-charcoal">Kucing Kecil / Kitten</div>
+                                    <div class="text-xs text-charcoal-muted">Berat di bawah 2.5 kg</div>
+                                </div>
+                                <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-cream-soft border border-charcoal">1.0x</span>
+                            </button>
+
+                            <button type="button" onclick="selectPetType('kucing_dewasa')" data-pet="kucing_dewasa" class="pet-type-btn p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-mustard-light shadow-tactile-sm">
+                                <div>
+                                    <div class="font-display font-bold text-sm text-charcoal">Kucing Dewasa</div>
+                                    <div class="text-xs text-charcoal-muted">Persia / British / Domestik (2.5–6 kg)</div>
+                                </div>
+                                <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-charcoal text-mustard">Populer</span>
+                            </button>
+
+                            <button type="button" onclick="selectPetType('anjing_small')" data-pet="anjing_small" class="pet-type-btn p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-cream hover:bg-mustard-light">
+                                <div>
+                                    <div class="font-display font-bold text-sm text-charcoal">Anjing Small (&lt; 10 kg)</div>
+                                    <div class="text-xs text-charcoal-muted">Pomeranian, Toy Poodle, Shih Tzu</div>
+                                </div>
+                                <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-cream-soft border border-charcoal">Small</span>
+                            </button>
+
+                            <button type="button" onclick="selectPetType('anjing_medium')" data-pet="anjing_medium" class="pet-type-btn p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-cream hover:bg-mustard-light">
+                                <div>
+                                    <div class="font-display font-bold text-sm text-charcoal">Anjing Medium (10–25 kg)</div>
+                                    <div class="text-xs text-charcoal-muted">Corgi, Beagle, French Bulldog</div>
+                                </div>
+                                <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-cream-soft border border-charcoal">Medium</span>
+                            </button>
+
+                            <button type="button" onclick="selectPetType('anjing_large')" data-pet="anjing_large" class="pet-type-btn sm:col-span-2 p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-cream hover:bg-mustard-light">
+                                <div>
+                                    <div class="font-display font-bold text-sm text-charcoal">Anjing Large (&gt; 25 kg)</div>
+                                    <div class="text-xs text-charcoal-muted">Golden Retriever, Siberian Husky, Samoyed, Malamute (2 Groomer Khusus)</div>
+                                </div>
+                                <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-cream-soft border border-charcoal">Large Breed</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Pilih Paket Layanan Grooming / Pet Hotel -->
+                    <div>
+                        <label class="block font-display font-bold text-sm uppercase tracking-wider text-charcoal mb-3">
+                            2. Pilih Layanan Salon Grooming atau Penitipan Pet Hotel
+                        </label>
+                        <div class="space-y-2.5" id="serviceSelector">
+                            <button type="button" onclick="selectGroomService('mandi_sehat')" data-srv="mandi_sehat" class="srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-cream hover:bg-sage-light">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-sage text-white flex items-center justify-center shrink-0 mt-0.5 border border-charcoal">
+                                        <i class="fa-solid fa-shower text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-charcoal">Mandi Sehat Aromatherapy &amp; Blow Dry</div>
+                                        <div class="text-xs text-charcoal-muted">Shampoo organik, potong kuku, pembersihan telinga, cukur bulu telapak kaki &amp; parfum tahan lama.</div>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <div class="font-mono font-bold text-sm text-charcoal" id="pricePreview_mandi_sehat">Rp 75.000</div>
+                                    <div class="text-[10px] text-charcoal-muted">Durasi ~60 mnt</div>
+                                </div>
+                            </button>
+
+                            <button type="button" onclick="selectGroomService('mandi_jamur')" data-srv="mandi_jamur" class="srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-sage-light shadow-tactile-sm">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-terracotta text-white flex items-center justify-center shrink-0 mt-0.5 border border-charcoal">
+                                        <i class="fa-solid fa-kit-medical text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-charcoal">Mandi Jamur &amp; Kutu Medicated Treatment</div>
+                                        <div class="text-xs text-charcoal-muted">Degreaser anti-lemak ekor, berendam sulfur/medicated shampoo 15 menit, sisir kutu &amp; obat tetes telinga.</div>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <div class="font-mono font-bold text-sm text-terracotta" id="pricePreview_mandi_jamur">Rp 110.000</div>
+                                    <div class="text-[10px] text-charcoal-muted">Durasi ~90 mnt</div>
+                                </div>
+                            </button>
+
+                            <button type="button" onclick="selectGroomService('full_grooming')" data-srv="full_grooming" class="srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-cream hover:bg-sage-light">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-charcoal text-mustard flex items-center justify-center shrink-0 mt-0.5 border border-charcoal">
+                                        <i class="fa-solid fa-scissors text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-charcoal">Full Grooming + Cukur Styling (Lion / Teddy Cut)</div>
+                                        <div class="text-xs text-charcoal-muted">Paket lengkap mandi spa + rapikan bulu seluruh badan sesuai gaya potongan atau cukur gundul sehat.</div>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <div class="font-mono font-bold text-sm text-charcoal" id="pricePreview_full_grooming">Rp 155.000</div>
+                                    <div class="text-[10px] text-charcoal-muted">Durasi ~120 mnt</div>
+                                </div>
+                            </button>
+
+                            <button type="button" onclick="selectGroomService('hotel_vip')" data-srv="hotel_vip" class="srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-cream hover:bg-sage-light">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-mustard text-charcoal flex items-center justify-center shrink-0 mt-0.5 border border-charcoal">
+                                        <i class="fa-solid fa-hotel text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-bold text-sm text-charcoal">Pet Hotel Kamar VIP AC + Akses Live CCTV 24 Jam</div>
+                                        <div class="text-xs text-charcoal-muted">Kamar privat kayu steril (bukan kandang besi), AC 24 jam, sesi bermain 2x sehari, laporan video WA pagi &amp; malam.</div>
+                                    </div>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <div class="font-mono font-bold text-sm text-charcoal" id="pricePreview_hotel_vip">Rp 95.000/mlm</div>
+                                    <div class="text-[10px] text-sage font-bold">Pantau dari HP</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Jumlah Ekor, Jumlah Malam, Tanggal & Jemput Pet Taxi -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t-[1.5px] border-cream-border">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-charcoal mb-1.5">Jumlah Ekor</label>
+                            <div class="flex items-center border-[1.5px] border-charcoal rounded-xl bg-cream overflow-hidden">
+                                <button type="button" onclick="adjustPetCount(-1)" class="px-3.5 py-2 font-bold hover:bg-cream-soft">-</button>
+                                <input id="groomPetCount" type="number" value="1" min="1" max="10" readonly class="w-full text-center font-mono font-bold text-sm bg-transparent">
+                                <button type="button" onclick="adjustPetCount(1)" class="px-3.5 py-2 font-bold hover:bg-cream-soft">+</button>
+                            </div>
+                        </div>
+
+                        <div id="nightsInputWrapper">
+                            <label class="block text-xs font-bold uppercase text-charcoal mb-1.5">Durasi Menginap (Malam)</label>
+                            <div class="flex items-center border-[1.5px] border-charcoal rounded-xl bg-cream overflow-hidden">
+                                <button type="button" onclick="adjustHotelNights(-1)" class="px-3.5 py-2 font-bold hover:bg-cream-soft">-</button>
+                                <input id="groomHotelNights" type="number" value="2" min="1" max="30" readonly class="w-full text-center font-mono font-bold text-sm bg-transparent">
+                                <button type="button" onclick="adjustHotelNights(1)" class="px-3.5 py-2 font-bold hover:bg-cream-soft">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-charcoal mb-1.5">Tanggal Kedatangan</label>
+                            <input id="groomBookingDate" type="date" onchange="updateGroomingCalculator()" class="w-full px-3 py-2 rounded-xl border-[1.5px] border-charcoal bg-cream font-mono text-xs font-semibold">
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Add-on Jemput Pet Taxi & Nama Anabul -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="flex items-center gap-3 p-3.5 rounded-xl border-[1.5px] border-charcoal bg-cream-soft cursor-pointer">
+                            <input id="petTaxiCheckbox" type="checkbox" onchange="updateGroomingCalculator()" class="w-4 h-4 accent-terracotta">
+                            <div class="text-xs">
+                                <div class="font-bold text-charcoal">Antar-Jemput Pet Taxi Ber-AC (+Rp 35.000)</div>
+                                <div class="text-charcoal-muted">Radius 7 km dari cabang PawHaus</div>
+                            </div>
+                        </label>
+
+                        <div>
+                            <input id="petNameNoteInput" type="text" placeholder="Nama Anabul & Catatan (Misal: Mochi - Takut Hairdryer)" class="w-full h-full px-3.5 py-3 rounded-xl border-[1.5px] border-charcoal bg-cream text-xs font-medium focus:outline-none focus:ring-2 focus:ring-terracotta">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Live Summary & Add to WhatsApp Cart Card (5 cols) -->
+                <div class="lg:col-span-5 bg-charcoal text-cream p-6 sm:p-7 rounded-2xl border-[1.5px] border-charcoal shadow-tactile-orange space-y-5 sticky top-24">
+                    <div class="flex items-center justify-between border-b border-stone-700 pb-4">
+                        <div>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-mustard">ESTIMASI BIAYA RESERVASI</span>
+                            <h3 class="font-display font-bold text-xl text-white mt-0.5" id="calcSummaryTitle">Mandi Jamur &amp; Kutu Medicated</h3>
+                        </div>
+                        <span class="bg-sage text-white font-mono text-xs font-bold px-2.5 py-1 rounded-lg border border-white/20" id="calcSummaryPetBadge">Kucing Dewasa</span>
+                    </div>
+
+                    <!-- Photo Preview of Grooming / Hotel -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="rounded-xl overflow-hidden border border-stone-700 relative h-28">
+                            <img src="assets/images/grooming-salon.jpg" alt="Ruang Grooming" class="w-full h-full object-cover">
+                            <span class="absolute bottom-1.5 left-1.5 bg-charcoal/85 text-[10px] font-mono px-2 py-0.5 rounded text-cream">Ruang Grooming Kaca</span>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-stone-700 relative h-28">
+                            <img src="assets/images/pet-hotel-room.jpg" alt="Kamar VIP Pet Hotel" class="w-full h-full object-cover">
+                            <span class="absolute bottom-1.5 left-1.5 bg-charcoal/85 text-[10px] font-mono px-2 py-0.5 rounded text-mustard">Kamar Kabin Kayu AC</span>
+                        </div>
+                    </div>
+
+                    <!-- Line Items Breakdown -->
+                    <div class="space-y-2.5 text-xs border-y border-stone-700 py-4 font-mono">
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Tarif Dasar Layanan:</span>
+                            <span id="calcBaseRateText" class="text-white font-semibold">Rp 110.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Jumlah Ekor &amp; Durasi:</span>
+                            <span id="calcMultiplierText" class="text-white font-semibold">1 Ekor</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-stone-400">Layanan Pet Taxi Antar-Jemput:</span>
+                            <span id="calcTaxiText" class="text-stone-300">Tidak Pakai (Rp 0)</span>
+                        </div>
+                        <div class="flex justify-between items-baseline pt-2 border-t border-stone-800 text-sm">
+                            <span class="font-sans font-bold text-stone-200">Total Biaya Perawatan:</span>
+                            <span id="calcTotalText" class="font-display font-extrabold text-2xl text-mustard">Rp 110.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Vet & Hygiene Checklist -->
+                    <div class="bg-stone-900/90 p-3.5 rounded-xl border border-stone-700 text-xs text-stone-300 space-y-1.5">
+                        <div class="font-bold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                            <span>Garansi Standar Higienis PawHaus:</span>
+                        </div>
+                        <p class="text-[11px] text-stone-400 leading-relaxed">
+                            Meja stainless disterilisasi UV setiap selesai 1 pasien. Untuk Pet Hotel VIP sudah termasuk air minum mineral matang, litter box pasir zeolit/bentonite bersih &amp; akses link CCTV pribadi.
+                        </p>
+                    </div>
+
+                    <button type="button" onclick="addGroomingToCart()" class="w-full py-4 px-5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-extrabold text-sm uppercase tracking-wider transition flex items-center justify-center gap-2.5 border-[1.5px] border-white/20 shadow-lg">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Tambahkan Jadwal ke Keranjang WA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: GALLERY & MENGAPA PAWHAUS DIPERCAYA 4.200+ PET PARENTS -->
+    <section class="py-12 lg:py-16 bg-cream border-b-[1.5px] border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-cream-soft p-6 rounded-2xl tactile-card flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold bg-mustard px-2.5 py-1 rounded border border-charcoal mb-4">01 / TIMBANGAN DIGITAL AKURAT</span>
+                        <h3 class="font-display font-bold text-xl text-charcoal mb-2">Repack Higienis Kedap Udara</h3>
+                        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
+                            Kemasan Repack 1kg menggunakan plastik ziplock tebal food-grade bersegel rapat dengan label tanggal kadaluarsa asli dari karung utama. Tidak tengik dan bebas semut.
+                        </p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-3 pt-4 border-t border-cream-border">
+                        <img src="assets/images/cat-portrait.jpg" alt="Kucing Sehat" class="w-11 h-11 rounded-full object-cover border border-charcoal">
+                        <div class="text-xs">
+                            <div class="font-bold text-charcoal">"Bulu Mochi makin gembul &amp; jarang rontok!"</div>
+                            <div class="text-charcoal-muted">— Kak Nadya, Pelanggan Langganan BSD</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft p-6 rounded-2xl tactile-card flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold bg-sage text-white px-2.5 py-1 rounded border border-charcoal mb-4">02 / TANPA OBAT BIUS</span>
+                        <h3 class="font-display font-bold text-xl text-charcoal mb-2">Groomer Bersertifikat &amp; Ruang Kaca</h3>
+                        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
+                            Seluruh proses mandi dan cukur dilakukan di ruang kaca terbuka yang bisa dilihat langsung dari ruang tunggu ber-AC. 100% bebas kekerasan dan tanpa penenang.
+                        </p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-3 pt-4 border-t border-cream-border">
+                        <img src="assets/images/dog-portrait.jpg" alt="Anjing Grooming" class="w-11 h-11 rounded-full object-cover border border-charcoal">
+                        <div class="text-xs">
+                            <div class="font-bold text-charcoal">"Potongan Teddy Bear Poodle-nya rapi banget!"</div>
+                            <div class="text-charcoal-muted">— Kak Hendra, Kelapa Gading</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft p-6 rounded-2xl tactile-card flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold bg-terracotta text-white px-2.5 py-1 rounded border border-charcoal mb-4">03 / KURIR TOKO &amp; INSTANT</span>
+                        <h3 class="font-display font-bold text-xl text-charcoal mb-2">Beli Karung 20kg &amp; Pasir 25L Tanpa Repot</h3>
+                        <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
+                            Tidak perlu angkat beban berat sendiri. Pesan pasir gumpal 25 liter atau karung grosir 20kg via website, kurir kami antar sampai depan pintu rumah Anda hari ini juga.
+                        </p>
+                    </div>
+                    <div class="mt-5 flex items-center justify-between pt-4 border-t border-cream-border text-xs font-mono font-bold text-sage">
+                        <span>BUKA SENIN - MINGGU</span>
+                        <span>08:00 - 21:00 WIB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: ULASAN PENGUNJUNG & DOKUMENTASI FOTO ANABUL PELANGGAN -->
+    <section id="ulasan-pelanggan" class="py-14 lg:py-20 bg-cream-soft border-b-[1.5px] border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-terracotta mb-2">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span>VERIFIED PET PARENTS • DOKUMENTASI NYATA PELANGGAN</span>
+                    </div>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight">
+                        Foto Hasil Grooming, Kamar Pet Hotel &amp; Review Pakan
+                    </h2>
+                    <p class="text-sm sm:text-base text-charcoal-muted mt-1">
+                        Lebih dari 4.200 pemilik kucing dan anjing di Jakarta Selatan, BSD &amp; Kelapa Gading mempercayakan kebutuhan anabulnya di PawHaus.
+                    </p>
+                </div>
+                <div class="bg-cream px-4 py-3 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm flex items-center gap-3 shrink-0">
+                    <div class="text-mustard text-base flex items-center gap-0.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="text-xs">
+                        <div class="font-display font-extrabold text-charcoal">4.9 / 5.0 Rating Google</div>
+                        <div class="text-charcoal-muted">1.480+ Ulasan Terverifikasi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Customer Photo Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Review Card 1 -->
+                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/cat-portrait.jpg" alt="Foto Review Kucing Mochi" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-charcoal text-mustard font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-white/20">
+                                Foto Langganan Royal Canin
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Verified Buyer</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Langganan Royal Canin Hair &amp; Skin Freshpack 2kg + Pasir Bentonite tiap bulan hemat 10%. Diantar GoSend cuma 40 menit sampai rumah, segel resmi dan bulu Mochi sekarang super gembul!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-1.jpg" alt="Kak Nadya Putri" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Kak Nadya Putri</div>
+                            <div class="text-[11px] text-charcoal-muted">Mommy Mochi (Persian Peaknose)</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 2 -->
+                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/grooming-salon.jpg" alt="Foto Hasil Full Grooming" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-sage text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Foto Hasil Full Grooming
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Salon Grooming</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Ambil paket Full Grooming + Teddy Bear Cut buat Bobi. Ruang groomingnya kaca transparan jadi tenang lihat prosesnya, air hangat, dan wangi shampo tahan sampai 2 minggu!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-2.jpg" alt="Kak Hendra" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Kak Hendra Kusuma</div>
+                            <div class="text-[11px] text-charcoal-muted">Owner Bobi (Toy Poodle 4kg)</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 3 -->
+                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/pet-hotel-room.jpg" alt="Foto Kamar VIP Pet Hotel" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-terracotta text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Foto Kamar VIP Pet Hotel
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Pet Hotel 5 Malam</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Titip 2 kucing British Shorthair selama liburan keluarga 5 malam. Kamarnya kabin kayu ber-AC dingin, bersih, dan kita dikasih akses link CCTV 24 jam + laporan video WA tiap pagi &amp; malam."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-3.jpg" alt="Kak Clarissa" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Kak Clarissa Wijaya</div>
+                            <div class="text-[11px] text-charcoal-muted">Luna &amp; Simba (British Shorthair)</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 4 -->
+                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/dog-portrait.jpg" alt="Foto Anjing Sehat" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-mustard text-charcoal font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Foto Karung Grosir &amp; Medicated
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Langganan Grosir</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Beli Pedigree Karung 20kg + Obat Tetes Kutu &amp; jemput Pet Taxi buat mandi jamur Max. Kurir toko ramah banget bantu angkat karung sampai ke garasi rumah."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-4.jpg" alt="Kak Dimas" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Bpk. Dimas Prasetyo</div>
+                            <div class="text-[11px] text-charcoal-muted">Owner Max (Golden Retriever)</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE FAQ ACCORDION -->
+    <section id="faq" class="py-14 lg:py-20 bg-cream border-b-[1.5px] border-charcoal">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-sage mb-2">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>PUSAT INFORMASI PELANGGAN • FAQ PAWHAUS</span>
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-charcoal tracking-tight">
+                    Pertanyaan yang Sering Ditanyakan
+                </h2>
+                <p class="text-sm sm:text-base text-charcoal-muted mt-1">
+                    Informasi lengkap seputar pengiriman pakan Same-Day, standar kebersihan Grooming, dan syarat penitipan Pet Hotel VIP.
+                </p>
+            </div>
+
+            <div class="space-y-3.5" id="faqAccordion14">
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(0)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>1. Apakah kemasan Repack 1kg dijamin 100% asli dan higienis?</span>
+                        <i id="faqIcon14_0" class="fa-solid fa-minus text-terracotta transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_0" class="px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Ya, 100% dijamin asli tanpa campuran. Seluruh produk Repack 1kg ditimbang dengan timbangan digital terkalibrasi langsung dari karung Breeder/Master Bag resmi distributor, dikemas dalam plastik Ziplock food-grade tebal kedap udara, dan ditempel stiker nomor batch serta tanggal kadaluarsa (Expired Date) asli.
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(1)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>2. Apa saja syarat menitipkan kucing atau anjing di Pet Hotel VIP PawHaus?</span>
+                        <i id="faqIcon14_1" class="fa-solid fa-plus text-charcoal transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_1" class="hidden px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Demi menjaga kesehatan bersama seluruh tamu anabul, hewan yang menginap wajib dalam kondisi sehat (tidak sedang demam/muntah/diare menular), sudah diberikan obat tetes kutu atau bebas kutu (jika ditemukan kutu saat check-in akan dilakukan mandi medicated/tetes kutu terlebih dahulu), dan diutamakan sudah vaksin dasar.
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(2)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>3. Bagaimana cara kerja diskon 10% pada mode Langganan Bulanan?</span>
+                        <i id="faqIcon14_2" class="fa-solid fa-plus text-charcoal transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_2" class="hidden px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Ketika Anda mengaktifkan tombol <strong>Langganan Bulanan (Hemat 10%)</strong> di katalog, seluruh harga pakan, pasir, dan vitamin otomatis terpotong 10% tanpa syarat minimum pembelian. Admin WhatsApp kami akan mencatat jadwal rutin bulanan Anda dan mengirimkan pengingat H-3 sebelum pakan anabul di rumah habis.
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(3)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>4. Jam berapa batas pemesanan untuk pengiriman GoSend / GrabExpress hari yang sama?</span>
+                        <i id="faqIcon14_3" class="fa-solid fa-plus text-charcoal transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_3" class="hidden px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Pemesanan yang dikonfirmasi melalui WhatsApp sebelum pukul <strong>19.30 WIB</strong> untuk kurir Instant (GoSend Instant / GrabExpress Instant / Kurir Toko PawHaus) akan langsung dikirimkan pada hari yang sama dan tiba dalam estimasi 45–90 menit.
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(4)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>5. Apakah layanan Grooming di PawHaus aman untuk kucing galak atau sensitif?</span>
+                        <i id="faqIcon14_4" class="fa-solid fa-plus text-charcoal transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_4" class="hidden px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Sangat aman. Groomer kami memiliki sertifikasi <em>Fear-Free Handling</em> dan 100% tidak pernah menggunakan obat bius/penenang. Kami menggunakan air hangat bertekanan lembut dan blower low-noise agar anabul tidak stres.
+                    </div>
+                </div>
+
+                <div class="bg-cream-soft rounded-2xl border-[1.5px] border-charcoal shadow-tactile-sm overflow-hidden">
+                    <button type="button" onclick="toggleFaq14(5)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-charcoal">
+                        <span>6. Bagaimana prosedur layanan Antar-Jemput Pet Taxi Ber-AC?</span>
+                        <i id="faqIcon14_5" class="fa-solid fa-plus text-charcoal transition-transform"></i>
+                    </button>
+                    <div id="faqBody14_5" class="hidden px-5 pb-5 text-xs sm:text-sm text-charcoal-muted leading-relaxed border-t border-cream-border pt-3">
+                        Cukup centang opsi <strong>Antar-Jemput Pet Taxi Ber-AC (+Rp 35.000)</strong> pada Kalkulator Grooming/Hotel. Armada mobil ber-AC kami yang dilengkapi pet cargo steril akan menjemput anabul di rumah Anda sesuai jam perjanjian dan mengantarkannya kembali setelah selesai perawatan.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-charcoal text-cream border-t-2 border-charcoal">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-stone-800 bg-stone-900/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-charcoal border border-mustard/40 text-mustard font-mono text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-bolt text-[10px]"></i>
+                                <span>Konfirmasi Instan 60 Menit</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-charcoal border border-emerald-400/40 text-emerald-400 font-mono text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-shield-dog text-[10px]"></i>
+                                <span>Pembayaran Aman &amp; Segel Resmi</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-charcoal border border-terracotta/50 text-terracotta font-mono text-[11px] font-bold uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-video text-[10px]"></i>
+                                <span>Layanan Terverifikasi &amp; CCTV 24 Jam</span>
+                            </span>
+                        </div>
+
+                        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                            Stok Pakan Anabul Menipis atau Butuh <span class="text-mustard">Kamar Pet Hotel VIP</span> Akhir Pekan Ini?
+                        </h2>
+                        <p class="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed">
+                            Pesan pakan Repack 1kg, Freshpack 2kg, maupun Karung Grosir 20kg untuk diantar kurir instan hari ini juga, atau jadwalkan penjemputan Pet Taxi Ber-AC untuk mandi jamur dan penitipan anabul Anda.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3.5">
+                        <button type="button" onclick="openCartDrawer()" class="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-extrabold text-xs uppercase tracking-wider border border-white/20 transition whitespace-nowrap">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                            <span>Buka Keranjang &amp; Reservasi</span>
+                        </button>
+                        <a href="https://wa.me/6281288997766?text=Halo%20Admin%20PawHaus%20Pet%20Mart%20%26%20Stay%2C%20saya%20ingin%20pesan%20pakan%20same-day%20dan%20tanya%20jadwal%20grooming." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-sage hover:bg-sage-dark text-white font-display font-extrabold text-xs uppercase tracking-wider border border-white/20 transition whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chat Admin PawHaus WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group focus:outline-none">
+                        <img src="assets/logo.svg" alt="PawHaus Pet Mart, Grooming & Stay" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0">
+                        <div>
+                            <div class="font-display font-extrabold text-2xl tracking-tight text-white leading-none">
+                                PAW<span class="text-terracotta">HAUS</span>
+                            </div>
+                            <div class="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-mustard mt-1">
+                                PET MART &bull; GROOMING &bull; STAY
+                            </div>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                        Pusat belanja pakan hewan kesayangan 100% original, salon grooming medicated bebas obat bius dengan ruang kaca terbuka, serta Pet Hotel kabin kayu ber-AC &amp; Live CCTV 24 jam.
+                    </p>
+
+                    <div class="pt-1">
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-mustard font-bold mb-2.5">Komunitas Pet Parents &amp; Sosial Media</p>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com/pawhaus.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram PawHaus" class="w-9 h-9 rounded-lg border border-stone-700 bg-stone-800 hover:bg-terracotta hover:text-white hover:border-terracotta text-cream flex items-center justify-center transition">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com/@pawhaus.id" target="_blank" rel="noopener noreferrer" aria-label="TikTok PawHaus" class="w-9 h-9 rounded-lg border border-stone-700 bg-stone-800 hover:bg-terracotta hover:text-white hover:border-terracotta text-cream flex items-center justify-center transition">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281288997766" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp PawHaus" class="w-9 h-9 rounded-lg border border-stone-700 bg-stone-800 hover:bg-sage hover:text-white hover:border-sage text-cream flex items-center justify-center transition">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com/@pawhauspetmart" target="_blank" rel="noopener noreferrer" aria-label="YouTube PawHaus" class="w-9 h-9 rounded-lg border border-stone-700 bg-stone-800 hover:bg-terracotta hover:text-white hover:border-terracotta text-cream flex items-center justify-center transition">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-mustard font-bold mb-4">Navigasi Cepat</h3>
+                    <nav aria-label="Navigasi Cepat">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-stone-300">
+                            <li>
+                                <a href="#" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>Beranda</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-pakan" onclick="switchMode('mart')" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>Layanan &amp; Katalog Pakan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#kalkulator-grooming" onclick="switchMode('grooming')" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>Simulasi Jadwal &amp; Harga</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-pakan" onclick="openCartDrawer()" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>Cara Pemesanan &amp; Kurir Instan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ulasan-pelanggan" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>Ulasan &amp; Foto Pelanggan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="hover:text-terracotta transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-terracotta"></i>
+                                    <span>FAQ &amp; Kontak</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Layanan & Kategori -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-mustard font-bold mb-4">Katalog &amp; Perawatan</h3>
+                    <nav aria-label="Layanan dan Kategori" class="space-y-3">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-stone-300">
+                            <li>
+                                <a href="#katalog-pakan" onclick="filterCategory('kucing')" class="hover:text-mustard transition-colors block">
+                                    Pakan Kucing Royal Canin, Bolt &amp; Whiskas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-pakan" onclick="filterCategory('anjing')" class="hover:text-mustard transition-colors block">
+                                    Dry Food Anjing Pedigree Repack &amp; Karung
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-pakan" onclick="filterCategory('pasir')" class="hover:text-mustard transition-colors block">
+                                    Pasir Gumpal Bentonite 25L &amp; Vitamin Bulu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#kalkulator-grooming" onclick="switchMode('grooming')" class="hover:text-mustard transition-colors block">
+                                    Salon Grooming Jamur Medicated &amp; Styling
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#kalkulator-grooming" onclick="switchMode('grooming')" class="hover:text-mustard transition-colors block">
+                                    Pet Hotel Kamar VIP AC + Live CCTV 24 Jam
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="pt-2">
+                            <button type="button" onclick="fillStarterBundle()" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-stone-800 border border-mustard/50 hover:bg-terracotta hover:text-white hover:border-terracotta text-mustard text-xs font-bold transition w-full justify-between text-left">
+                                <span><i class="fa-solid fa-bolt mr-1.5"></i>Paket Langganan Hemat 10% + Grooming</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-mustard font-bold mb-4">Lokasi &amp; Jam Operasional</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-stone-300">
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-stone-800 border border-stone-700 text-terracotta flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </span>
+                            <div>
+                                <p class="text-white font-medium leading-relaxed">Jl. Kemang Raya No. 48, Bangka, Jakarta Selatan 12730 (Cabang Ruko Golden Boulevard BSD &amp; Kelapa Gading)</p>
+                                <a href="https://maps.google.com/?q=Jl.+Kemang+Raya+No.+48+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-mustard hover:underline font-mono text-[11px] mt-1">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-stone-800 border border-stone-700 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-stone-400">Order Pakan &amp; Booking Grooming</span>
+                                <a href="https://wa.me/6281288997766" target="_blank" rel="noopener noreferrer" class="text-white hover:text-mustard font-mono font-bold transition">
+                                    +62 812-8899-7766
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-stone-800 border border-stone-700 text-mustard flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-stone-400">Email Kemitraan &amp; Layanan Pelanggan</span>
+                                <a href="mailto:halo@pawhaus.id" class="text-white hover:text-mustard font-mono transition">
+                                    halo@pawhaus.id
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-stone-800 border border-stone-700 text-terracotta flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-stone-400">Jam Operasional Toko &amp; Salon</span>
+                                <p class="text-white font-medium">Senin – Minggu: 08.00 – 21.00 WIB</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-stone-800 bg-stone-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-stone-400 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 rounded bg-stone-800 border border-stone-700 text-stone-200 font-mono text-[11px] font-bold whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Legal Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-stone-400 text-center sm:text-right">
+                    <p>&copy; 2026 PawHaus Pet Mart, Grooming &amp; Stay. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
+                        <!-- TODO: Replace with dedicated terms modal or page -->
+                        <a href="#" class="hover:text-mustard transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Replace with dedicated privacy policy modal or page -->
+                        <a href="#" class="hover:text-mustard transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-mustard transition-colors whitespace-nowrap">Garansi Pakan &amp; Pet Hotel</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CARE GUIDE & PRODUCT DETAIL MODAL -->
+    <div id="careModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-charcoal/70 backdrop-blur-xs p-4">
+        <div class="bg-cream rounded-2xl max-w-lg w-full p-6 tactile-card relative">
+            <button onclick="closeCareModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg border border-charcoal bg-cream-soft flex items-center justify-center font-bold hover:bg-terracotta hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="font-mono text-[11px] font-bold uppercase text-sage mb-1" id="careModalCategory">PANDUAN NUTRISI &amp; TAKARAN</div>
+            <h3 class="font-display font-extrabold text-xl text-charcoal mb-3" id="careModalTitle">Detail Produk</h3>
+            <p class="text-xs sm:text-sm text-charcoal-muted leading-relaxed mb-4" id="careModalDesc"></p>
+            <div class="bg-cream-soft p-4 rounded-xl border-[1.5px] border-charcoal space-y-2 text-xs">
+                <div class="font-bold text-charcoal">Anjuran Pemakaian &amp; Penyimpanan:</div>
+                <p id="careModalGuide" class="text-charcoal-muted leading-relaxed"></p>
+            </div>
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeCareModal()" class="px-5 py-2.5 rounded-xl bg-charcoal text-cream font-bold text-xs">Tutup Panduan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE-OVER CART DRAWER WITH INSTANT COURIER ESTIMATOR -->
+    <div id="cartDrawerBackdrop" onclick="closeCartDrawer()" class="fixed inset-0 bg-charcoal/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-200"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream border-l-2 border-charcoal z-50 translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-5 bg-charcoal text-cream flex items-center justify-between border-b border-stone-800">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-terracotta flex items-center justify-center text-white font-bold">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base text-white">Keranjang PawHaus</h3>
+                    <p class="text-[11px] text-stone-400">Belanja Pakan + Reservasi Grooming/Hotel</p>
+                </div>
+            </div>
+            <button onclick="closeCartDrawer()" class="w-8 h-8 rounded-lg bg-stone-800 hover:bg-terracotta text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body (Scrollable) -->
+        <div class="flex-1 overflow-y-auto p-5 space-y-5">
+            <!-- Cart Items Container -->
+            <div id="cartItemsList" class="space-y-3">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Instant Courier Estimator -->
+            <div class="bg-cream-soft p-4 rounded-xl border-[1.5px] border-charcoal space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="font-display font-bold text-xs uppercase tracking-wider text-charcoal">
+                        <i class="fa-solid fa-motorcycle text-terracotta mr-1"></i> Estimator Kurir Instan
+                    </span>
+                    <span class="font-mono text-[11px] font-bold text-sage">Same-Day 60 Menit</span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2">
+                    <select id="courierMethodSelect" onchange="renderCart()" class="w-full px-3 py-2 rounded-lg border-[1.5px] border-charcoal bg-cream text-xs font-bold">
+                        <option value="gosend_instant" data-cost="18000">GoSend Instant (1-2 Jam Sampai) — Rp 18.000</option>
+                        <option value="grab_instant" data-cost="19000">GrabExpress Instant (Prioritas) — Rp 19.000</option>
+                        <option value="kurir_toko" data-cost="12000">Kurir Mobil/Motor Toko PawHaus (Bisa Karung 20kg) — Rp 12.000</option>
+                        <option value="pickup" data-cost="0">Ambil Sendiri / Datang ke Cabang PawHaus — GRATIS</option>
+                    </select>
+                </div>
+
+                <!-- Customer Details for WA -->
+                <div class="space-y-2 pt-2 border-t border-cream-border">
+                    <input id="custName" type="text" placeholder="Nama Pemilik (Misal: Kak Nadya)" class="w-full px-3 py-2 rounded-lg border border-charcoal bg-cream text-xs font-medium">
+                    <input id="custAddress" type="text" placeholder="Alamat Pengiriman / Cabang Tujuan (Kemang / BSD / Gading)" class="w-full px-3 py-2 rounded-lg border border-charcoal bg-cream text-xs font-medium">
+                    <select id="custPayment" class="w-full px-3 py-2 rounded-lg border border-charcoal bg-cream text-xs font-medium">
+                        <option value="QRIS PawHaus (Bebas Biaya Admin)">Metode Bayar: QRIS Instan (Otomatis Proses)</option>
+                        <option value="Transfer BCA / Mandiri">Metode Bayar: Transfer Bank BCA / Mandiri</option>
+                        <option value="COD Kurir Toko / Bayar di Kasir">Metode Bayar: COD Kurir Toko / Bayar Saat Datang</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer Totals & Checkout -->
+        <div class="p-5 bg-cream-soft border-t-[1.5px] border-charcoal space-y-3">
+            <div class="space-y-1 text-xs font-mono">
+                <div class="flex justify-between text-charcoal-muted">
+                    <span>Subtotal Produk &amp; Layanan:</span>
+                    <span id="cartSubtotalText" class="font-bold text-charcoal">Rp 0</span>
+                </div>
+                <div id="cartSubDiscountRow" class="hidden justify-between text-sage font-bold">
+                    <span>Hemat Langganan Bulanan (10%):</span>
+                    <span id="cartSubDiscountText">-Rp 0</span>
+                </div>
+                <div class="flex justify-between text-charcoal-muted">
+                    <span>Ongkir Kurir Instan:</span>
+                    <span id="cartShippingText" class="font-bold text-charcoal">Rp 18.000</span>
+                </div>
+                <div class="flex justify-between items-baseline pt-2 border-t border-charcoal text-sm">
+                    <span class="font-sans font-extrabold text-charcoal">Total Pembayaran:</span>
+                    <span id="cartGrandTotalText" class="font-display font-extrabold text-xl text-terracotta">Rp 0</span>
+                </div>
+            </div>
+
+            <button onclick="checkoutWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-sage hover:bg-sage-dark text-white font-display font-extrabold text-sm tactile-btn flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Kirim Pesanan &amp; Jadwal ke WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastNotice" class="fixed bottom-5 right-5 z-50 hidden bg-charcoal text-cream px-4 py-3 rounded-xl border-[1.5px] border-terracotta shadow-tactile flex items-center gap-2.5 text-xs font-bold">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Produk ditambahkan ke keranjang!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "PawHaus Pet Mart, Grooming & Stay",
+            address: "Jl. Kemang Raya No. 48, Bangka, Jakarta Selatan 12730",
+            mapsUrl: "https://maps.google.com/?q=Jl.+Kemang+Raya+No.+48+Jakarta+Selatan",
+            whatsappNumber: "6281288997766",
+            whatsappDisplay: "+62 812-8899-7766",
+            email: "halo@pawhaus.id",
+            operationalHours: "Senin – Minggu: 08.00 – 21.00 WIB",
+            socials: {
+                instagram: "https://instagram.com/pawhaus.id",
+                tiktok: "https://tiktok.com/@pawhaus.id",
+                whatsapp: "https://wa.me/6281288997766",
+                youtube: "https://youtube.com/@pawhauspetmart"
+            }
+        };
+
+        // 1. PRODUCT DATABASE WITH REPACK 1KG, FRESHPACK 2KG, KARUNG GROSIR 20KG OPTIONS
+        const products = [
+            {
+                id: 'royal-canin-hair-skin',
+                name: 'Royal Canin Hair & Skin Care Adult Cat',
+                category: 'kucing',
+                badge: 'BEST SELLER BULU LEBAT',
+                badgeColor: 'bg-terracotta text-white',
+                image: 'assets/images/prod-royal-canin.jpg',
+                sku: 'RC-HSK-01',
+                desc: 'Formula khusus asam lemak Omega-3 & Omega-6 untuk mengatasi bulu kusam dan rontok dalam 21 hari pemakaian rutin.',
+                guide: 'Takaran harian: Kucing 3kg (45 gram/hari), Kucing 5kg (65 gram/hari). Selalu sediakan air minum matang di dekat mangkuk pakan.',
+                variants: [
+                    { label: 'Repack 1kg', price: 118000, unitWeight: '1 kg Ziplock' },
+                    { label: 'Freshpack 2kg', price: 245000, unitWeight: '2 kg Segel Resmi' },
+                    { label: 'Karung Grosir 20kg', price: 2150000, unitWeight: '20 kg Breeder Bag' }
+                ]
+            },
+            {
+                id: 'bolt-tuna-cat',
+                name: 'Bolt Adult Tuna Donut / Ikan Kibble',
+                category: 'kucing',
+                badge: 'FAVORIT EKONOMIS',
+                badgeColor: 'bg-mustard text-charcoal',
+                image: 'assets/images/prod-bolt-tuna.jpg',
+                sku: 'BLT-TNA-02',
+                desc: 'Pakan kering kucing dewasa rasa ikan tuna segar. Kaya taurine untuk penglihatan tajam dan formula pH terkontrol mencegah FLUTD.',
+                guide: 'Simpan di wadah kedap udara setelah dibuka. Cocok dicampur sedikit wet food untuk menambah nafsu makan anabul.',
+                variants: [
+                    { label: 'Repack 1kg', price: 24000, unitWeight: '1 kg Botol/Ziplock' },
+                    { label: 'Freshpack 2kg', price: 47000, unitWeight: '2 kg Bundle Segel' },
+                    { label: 'Karung Grosir 20kg', price: 425000, unitWeight: '20 kg Karung Utuh' }
+                ]
+            },
+            {
+                id: 'whiskas-pouch-tuna',
+                name: 'Whiskas Pouch Adult Tuna & Whitefish (Wet Food)',
+                category: 'kucing',
+                badge: 'TINGGI PROTEIN & AIR',
+                badgeColor: 'bg-sage text-white',
+                image: 'assets/images/prod-whiskas-wet.jpg',
+                sku: 'WHS-PCH-03',
+                desc: 'Makanan basah potongan daging ikan tuna asli dalam kuah kaldu gurih untuk menjaga hidrasi saluran kemih kucing.',
+                guide: 'Sajikan 1-2 pouch per hari. Sisa pouch yang sudah dibuka wajib dimasukkan ke kulkas maksimal 48 jam.',
+                variants: [
+                    { label: 'Repack 1kg', price: 78000, unitWeight: 'Paket 12 Pouch (1kg)' },
+                    { label: 'Freshpack 2kg', price: 149000, unitWeight: 'Box 24 Pouch (2kg)' },
+                    { label: 'Karung Grosir 20kg', price: 1350000, unitWeight: 'Karton Grosir 240 Pouch' }
+                ]
+            },
+            {
+                id: 'pasir-bentonite-25l',
+                name: 'Pasir Gumpal Bentonite Wangi Kopi & Lavender 25L',
+                category: 'pasir',
+                badge: 'DAYA GUMPAL KERAS',
+                badgeColor: 'bg-charcoal text-mustard',
+                image: 'assets/images/prod-cat-litter.jpg',
+                sku: 'LTR-BNT-04',
+                desc: 'Pasir bentonite import bebas debu 99% (Low Dust), langsung menggumpal kuat dalam 3 detik dan mengunci bau amonia.',
+                guide: 'Tuang ketebalan 6-8 cm di litter box. Serok gumpalan setiap pagi dan sore hari.',
+                variants: [
+                    { label: 'Repack 1kg', price: 12000, unitWeight: 'Kemasan Trial 1.5L' },
+                    { label: 'Freshpack 2kg', price: 45000, unitWeight: 'Sak Reguler 10L' },
+                    { label: 'Karung Grosir 20kg', price: 98000, unitWeight: 'Karung Jumbo 25L (20kg)' }
+                ]
+            },
+            {
+                id: 'obat-tetes-kutu-rev',
+                name: 'Obat Tetes Kutu, Tungau & Cacing Spot-On Pipet',
+                category: 'vitamin',
+                badge: 'REKOMENDASI DOKTER HEWAN',
+                badgeColor: 'bg-terracotta text-white',
+                image: 'assets/images/prod-flea-drops.jpg',
+                sku: 'MED-REV-05',
+                desc: 'Tetes tengkuk praktis membasmi kutu loncat, kutu telinga (ear mites), scabies ringan, dan cacing gelang selama 30 hari penuh.',
+                guide: 'Sibakkan bulu di pangkal tengkuk leher belakang (area yang tidak terjangkau jilatan), teteskan langsung ke kulit. Jangan dimandikan 3 hari setelah tetes.',
+                variants: [
+                    { label: 'Repack 1kg', price: 95000, unitWeight: '1 Pipet Dosis Tunggal' },
+                    { label: 'Freshpack 2kg', price: 265000, unitWeight: '1 Box Segel (3 Pipet)' },
+                    { label: 'Karung Grosir 20kg', price: 1490000, unitWeight: 'Paket Klinik 6 Box (18 Pipet)' }
+                ]
+            },
+            {
+                id: 'kandang-lipat-besi',
+                name: 'Kandang Lipat Besi Tebal 2 Tingkat + Roda & Tray',
+                category: 'aksesoris',
+                badge: 'BESI TEMPA ANTI KARAT',
+                badgeColor: 'bg-charcoal text-cream',
+                image: 'assets/images/prod-pet-cage.jpg',
+                sku: 'ACC-CGE-06',
+                desc: 'Kandang lipat powder coating anti karat dilengkapi tangga tingkat, tatakan kotoran bawah mudah ditarik, dan 4 roda pengunci.',
+                guide: 'Dapat dilipat rata dalam 1 menit saat tidak digunakan. Muat untuk 2-3 kucing dewasa atau anjing small-medium.',
+                variants: [
+                    { label: 'Repack 1kg', price: 245000, unitWeight: 'Ukuran M (60x42x50cm)' },
+                    { label: 'Freshpack 2kg', price: 420000, unitWeight: 'Ukuran L 2 Tingkat (78x52x68cm)' },
+                    { label: 'Karung Grosir 20kg', price: 790000, unitWeight: 'Ukuran XL Villa 3 Tingkat (92x60x130cm)' }
+                ]
+            },
+            {
+                id: 'vitamin-nutriplus-gel',
+                name: 'Vitamin Bulu & Penambah Nafsu Makan Nutri-Plus Gel',
+                category: 'vitamin',
+                badge: 'BOOSTER IMUN & BULU',
+                badgeColor: 'bg-sage text-white',
+                image: 'assets/images/prod-vitamin-gel.jpg',
+                sku: 'VIT-NPG-07',
+                desc: 'Suplemen energi tinggi berbentuk pasta gel lezat untuk kucing & anjing masa pemulihan sakit, hamil/menyusui, dan pelebat bulu.',
+                guide: 'Berikan 1-2 cm gel langsung ke mulut atau oleskan di hidung/mangkuk makan setiap hari.',
+                variants: [
+                    { label: 'Repack 1kg', price: 38000, unitWeight: 'Share Jar Steril 30gr' },
+                    { label: 'Freshpack 2kg', price: 132000, unitWeight: 'Tube Asli Segel 120.5gr' },
+                    { label: 'Karung Grosir 20kg', price: 720000, unitWeight: 'Paket Breeder 6 Tube' }
+                ]
+            },
+            {
+                id: 'pedigree-adult-beef',
+                name: 'Pedigree Adult Beef & Vegetables Dry Dog Food',
+                category: 'anjing',
+                badge: 'NUTRISI LENGKAP ANJING',
+                badgeColor: 'bg-mustard text-charcoal',
+                image: 'assets/images/prod-dog-pedigree.jpg',
+                sku: 'PDG-BEF-08',
+                desc: 'Kibble renyah rasa daging sapi panggang & sayuran dengan kalsium tulang kuat serta serat prebiotik pencernaan sehat.',
+                guide: 'Sesuaikan porsi dengan bobot anjing (Small: 120-180gr/hari, Medium: 250-380gr/hari, Large: 450-600gr/hari).',
+                variants: [
+                    { label: 'Repack 1kg', price: 42000, unitWeight: '1 kg Ziplock' },
+                    { label: 'Freshpack 2kg', price: 118000, unitWeight: '3 kg Freshpack Segel' },
+                    { label: 'Karung Grosir 20kg', price: 675000, unitWeight: '20 kg Karung Besar' }
+                ]
+            }
+        ];
+
+        // Track selected variant index per product
+        const selectedVariants = {};
+        products.forEach(p => { selectedVariants[p.id] = 0; });
+
+        let currentCategory = 'all';
+        let isGlobalSubscription = false;
+
+        // Grooming & Hotel State
+        const petRates = {
+            kucing_kecil: { name: 'Kucing Kecil / Kitten', mult: 0.85 },
+            kucing_dewasa: { name: 'Kucing Dewasa', mult: 1.0 },
+            anjing_small: { name: 'Anjing Small (<10kg)', mult: 1.15 },
+            anjing_medium: { name: 'Anjing Medium (10-25kg)', mult: 1.45 },
+            anjing_large: { name: 'Anjing Large (>25kg)', mult: 1.9 }
+        };
+
+        const groomServices = {
+            mandi_sehat: { name: 'Mandi Sehat Aromatherapy & Blow Dry', basePrice: 75000, isHotel: false },
+            mandi_jamur: { name: 'Mandi Jamur & Kutu Medicated', basePrice: 110000, isHotel: false },
+            full_grooming: { name: 'Full Grooming + Cukur Styling', basePrice: 155000, isHotel: false },
+            hotel_vip: { name: 'Pet Hotel Kamar VIP AC + Live CCTV', basePrice: 95000, isHotel: true }
+        };
+
+        let selectedPetKey = 'kucing_dewasa';
+        let selectedServiceKey = 'mandi_jamur';
+
+        // Cart Array
+        let cart = [
+            {
+                uid: 'royal-canin-hair-skin__1',
+                type: 'product',
+                productId: 'royal-canin-hair-skin',
+                name: 'Royal Canin Hair & Skin Care Adult Cat',
+                variantLabel: 'Freshpack 2kg',
+                unitWeight: '2 kg Segel Resmi',
+                unitPrice: 245000,
+                qty: 1
+            }
+        ];
+
+        function formatRupiah(num) {
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        // Switch Navigation Mode Smoothly
+        function switchMode(mode) {
+            const martBtn = document.getElementById('navModeMart');
+            const groomBtn = document.getElementById('navModeGrooming');
+            const mMartBtn = document.getElementById('mobileModeMart');
+            const mGroomBtn = document.getElementById('mobileModeGrooming');
+
+            if (mode === 'mart') {
+                martBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 bg-charcoal text-cream whitespace-nowrap';
+                groomBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 text-charcoal hover:bg-cream whitespace-nowrap';
+                mMartBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream flex items-center justify-center gap-1.5';
+                mGroomBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-cream-soft text-charcoal flex items-center justify-center gap-1.5';
+                document.getElementById('katalog-pakan').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                groomBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 bg-charcoal text-cream whitespace-nowrap';
+                martBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 text-charcoal hover:bg-cream whitespace-nowrap';
+                mGroomBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream flex items-center justify-center gap-1.5';
+                mMartBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-cream-soft text-charcoal flex items-center justify-center gap-1.5';
+                document.getElementById('kalkulator-grooming').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleFaq14(idx) {
+            for (let i = 0; i < 6; i++) {
+                const body = document.getElementById('faqBody14_' + i);
+                const icon = document.getElementById('faqIcon14_' + i);
+                if (!body || !icon) continue;
+                if (i === idx) {
+                    const isHidden = body.classList.contains('hidden');
+                    body.classList.toggle('hidden', !isHidden);
+                    icon.className = isHidden ? 'fa-solid fa-minus text-terracotta transition-transform' : 'fa-solid fa-plus text-charcoal transition-transform';
+                } else {
+                    body.classList.add('hidden');
+                    icon.className = 'fa-solid fa-plus text-charcoal transition-transform';
+                }
+            }
+        }
+
+        // Toggle Global Monthly Subscription (10% OFF)
+        function toggleGlobalSubscription() {
+            isGlobalSubscription = !isGlobalSubscription;
+            const sw = document.getElementById('subToggleSwitch');
+            const knob = document.getElementById('subToggleKnob');
+            const headerLbl = document.getElementById('headerSubLabel');
+            const headerBtn = document.getElementById('headerSubBtn');
+
+            if (isGlobalSubscription) {
+                sw.className = 'w-14 h-8 rounded-full bg-sage border-[1.5px] border-charcoal p-1 transition-colors duration-200 relative shrink-0';
+                knob.className = 'block w-5 h-5 rounded-full bg-white transition-transform duration-200 translate-x-6';
+                headerLbl.textContent = 'Langganan: AKTIF (-10%)';
+                headerBtn.className = 'hidden xl:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-sage text-white border-[1.5px] border-charcoal font-bold text-xs tactile-btn whitespace-nowrap shrink-0';
+                showToast('Mode Langganan Bulanan Aktif: Diskon 10% diterapkan ke seluruh katalog!');
+            } else {
+                sw.className = 'w-14 h-8 rounded-full bg-cream border-[1.5px] border-charcoal p-1 transition-colors duration-200 relative shrink-0';
+                knob.className = 'block w-5 h-5 rounded-full bg-charcoal transition-transform duration-200 translate-x-0';
+                headerLbl.textContent = 'Langganan: OFF (-10%)';
+                headerBtn.className = 'hidden xl:inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-sage-light text-sage border-[1.5px] border-charcoal font-bold text-xs tactile-btn whitespace-nowrap shrink-0';
+                showToast('Mode Harga Eceran Reguler Aktif');
+            }
+            renderProducts();
+            renderCart();
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream transition';
+                } else {
+                    btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-bold border-[1.5px] border-charcoal bg-cream text-charcoal hover:bg-mustard-light transition';
+                }
+            });
+            renderProducts();
+        }
+
+        function selectVariant(productId, idx) {
+            selectedVariants[productId] = idx;
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const query = (document.getElementById('productSearchInput').value || '').toLowerCase();
+
+            const filtered = products.filter(p => {
+                const matchCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+
+            grid.innerHTML = filtered.map(p => {
+                const vIdx = selectedVariants[p.id] || 0;
+                const activeVar = p.variants[vIdx];
+                const finalPrice = isGlobalSubscription ? Math.round(activeVar.price * 0.9) : activeVar.price;
+
+                const variantButtons = p.variants.map((v, i) => {
+                    const isSelected = i === vIdx;
+                    return `
+                        <button type="button" onclick="selectVariant('${p.id}', ${i})"
+                            class="px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-semibold border border-charcoal transition ${
+                                isSelected
+                                    ? 'bg-charcoal text-mustard shadow-tactile-sm'
+                                    : 'bg-cream-soft text-charcoal hover:bg-mustard-light'
+                            }">
+                            ${v.label}
+                        </button>
+                    `;
+                }).join('');
+
+                return `
+                    <article class="bg-cream rounded-2xl tactile-card flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <!-- Product Image -->
+                            <div class="relative h-48 bg-cream-soft border-b-[1.5px] border-charcoal overflow-hidden group">
+                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <span class="absolute top-3 left-3 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal ${p.badgeColor}">
+                                    ${p.badge}
+                                </span>
+                                <button type="button" onclick="openCareModal('${p.id}')" title="Panduan Nutrisi & Pemakaian" class="absolute bottom-2.5 right-2.5 bg-cream/95 hover:bg-charcoal hover:text-cream text-charcoal text-[11px] font-bold px-2.5 py-1 rounded-lg border border-charcoal transition flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>Info Takaran</span>
+                                </button>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-4 space-y-3">
+                                <div class="flex items-center justify-between text-[11px] font-mono text-charcoal-muted">
+                                    <span>SKU: ${p.sku}</span>
+                                    <span class="text-sage font-bold">${activeVar.unitWeight}</span>
+                                </div>
+
+                                <h3 class="font-display font-bold text-base text-charcoal leading-snug line-clamp-2 min-h-[2.6rem]">
+                                    ${p.name}
+                                </h3>
+
+                                <!-- Weight / Pack Selector (Repack 1kg, Freshpack 2kg, Karung Grosir 20kg) -->
+                                <div>
+                                    <div class="text-[10px] font-mono uppercase tracking-wider text-charcoal-muted mb-1.5">Pilih Ukuran Kemasan:</div>
+                                    <div class="grid grid-cols-1 gap-1.5">
+                                        ${variantButtons}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer: Price & Add to Cart -->
+                        <div class="p-4 pt-0 space-y-3">
+                            <div class="pt-3 border-t border-cream-border flex items-baseline justify-between">
+                                <div>
+                                    ${isGlobalSubscription ? `
+                                        <span class="text-[11px] font-mono line-through text-charcoal-muted block">${formatRupiah(activeVar.price)}</span>
+                                        <span class="font-display font-extrabold text-xl text-sage">${formatRupiah(finalPrice)}</span>
+                                    ` : `
+                                        <span class="text-[10px] font-mono text-charcoal-muted block">Harga Kemasan</span>
+                                        <span class="font-display font-extrabold text-xl text-charcoal">${formatRupiah(finalPrice)}</span>
+                                    `}
+                                </div>
+                                ${isGlobalSubscription ? `<span class="bg-sage-light text-sage border border-sage font-mono text-[10px] font-bold px-2 py-0.5 rounded">Hemat 10%</span>` : ''}
+                            </div>
+
+                            <button type="button" onclick="addProductToCart('${p.id}')" class="w-full py-2.5 px-3 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-bold text-xs tactile-btn flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Tambah ke Keranjang</span>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function openCareModal(productId) {
+            const p = products.find(item => item.id === productId);
+            if (!p) return;
+            document.getElementById('careModalTitle').textContent = p.name;
+            document.getElementById('careModalDesc').textContent = p.desc;
+            document.getElementById('careModalGuide').textContent = p.guide;
+            const modal = document.getElementById('careModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCareModal() {
+            const modal = document.getElementById('careModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function addProductToCart(productId) {
+            const p = products.find(item => item.id === productId);
+            if (!p) return;
+            const vIdx = selectedVariants[productId] || 0;
+            const v = p.variants[vIdx];
+            const uid = `${productId}__${vIdx}`;
+
+            const existing = cart.find(c => c.uid === uid);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    uid,
+                    type: 'product',
+                    productId: p.id,
+                    name: p.name,
+                    variantLabel: v.label,
+                    unitWeight: v.unitWeight,
+                    unitPrice: v.price,
+                    qty: 1
+                });
+            }
+            renderCart();
+            showToast(`${p.name} (${v.label}) masuk keranjang!`);
+        }
+
+        // 2. GROOMING & PET HOTEL CALCULATOR LOGIC
+        function selectPetType(petKey) {
+            selectedPetKey = petKey;
+            document.querySelectorAll('.pet-type-btn').forEach(btn => {
+                if (btn.dataset.pet === petKey) {
+                    btn.className = 'pet-type-btn ' + (petKey === 'anjing_large' ? 'sm:col-span-2 ' : '') + 'p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-mustard-light shadow-tactile-sm';
+                } else {
+                    btn.className = 'pet-type-btn ' + (petKey === 'anjing_large' ? 'sm:col-span-2 ' : '') + 'p-3.5 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between bg-cream hover:bg-mustard-light';
+                }
+            });
+            updateGroomingCalculator();
+        }
+
+        function selectGroomService(srvKey) {
+            selectedServiceKey = srvKey;
+            document.querySelectorAll('.srv-btn').forEach(btn => {
+                if (btn.dataset.srv === srvKey) {
+                    btn.className = 'srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-sage-light shadow-tactile-sm';
+                } else {
+                    btn.className = 'srv-btn w-full p-4 rounded-xl border-[1.5px] border-charcoal text-left transition flex items-center justify-between gap-4 bg-cream hover:bg-sage-light';
+                }
+            });
+            updateGroomingCalculator();
+        }
+
+        function adjustPetCount(delta) {
+            const el = document.getElementById('groomPetCount');
+            let val = parseInt(el.value || '1', 10) + delta;
+            if (val < 1) val = 1;
+            if (val > 10) val = 10;
+            el.value = val;
+            updateGroomingCalculator();
+        }
+
+        function adjustHotelNights(delta) {
+            const el = document.getElementById('groomHotelNights');
+            let val = parseInt(el.value || '1', 10) + delta;
+            if (val < 1) val = 1;
+            if (val > 30) val = 30;
+            el.value = val;
+            updateGroomingCalculator();
+        }
+
+        function updateGroomingCalculator() {
+            const petInfo = petRates[selectedPetKey];
+            const srvInfo = groomServices[selectedServiceKey];
+            const petCount = parseInt(document.getElementById('groomPetCount').value || '1', 10);
+            const nights = parseInt(document.getElementById('groomHotelNights').value || '1', 10);
+            const useTaxi = document.getElementById('petTaxiCheckbox').checked;
+
+            // Update previews on service buttons based on selected pet size
+            Object.keys(groomServices).forEach(k => {
+                const s = groomServices[k];
+                const rate = Math.round((s.basePrice * petInfo.mult) / 5000) * 5000;
+                const lblEl = document.getElementById('pricePreview_' + k);
+                if (lblEl) {
+                    lblEl.textContent = formatRupiah(rate) + (s.isHotel ? '/mlm' : '');
+                }
+            });
+
+            const unitRate = Math.round((srvInfo.basePrice * petInfo.mult) / 5000) * 5000;
+            const effectiveNights = srvInfo.isHotel ? nights : 1;
+            const taxiFee = useTaxi ? 35000 : 0;
+            const total = (unitRate * petCount * effectiveNights) + taxiFee;
+
+            document.getElementById('calcSummaryTitle').textContent = srvInfo.name;
+            document.getElementById('calcSummaryPetBadge').textContent = petInfo.name;
+            document.getElementById('calcBaseRateText').textContent = formatRupiah(unitRate) + (srvInfo.isHotel ? ' / malam' : ' / ekor');
+            document.getElementById('calcMultiplierText').textContent = srvInfo.isHotel
+                ? `${petCount} Ekor × ${effectiveNights} Malam`
+                : `${petCount} Ekor (Sesi Grooming)`;
+            document.getElementById('calcTaxiText').textContent = useTaxi ? 'Ya (+Rp 35.000)' : 'Tidak Pakai (Rp 0)';
+            document.getElementById('calcTotalText').textContent = formatRupiah(total);
+        }
+
+        function addGroomingToCart() {
+            const petInfo = petRates[selectedPetKey];
+            const srvInfo = groomServices[selectedServiceKey];
+            const petCount = parseInt(document.getElementById('groomPetCount').value || '1', 10);
+            const nights = parseInt(document.getElementById('groomHotelNights').value || '1', 10);
+            const useTaxi = document.getElementById('petTaxiCheckbox').checked;
+            const bookDate = document.getElementById('groomBookingDate').value || 'Besok Pagi';
+            const petNote = document.getElementById('petNameNoteInput').value.trim();
+
+            const unitRate = Math.round((srvInfo.basePrice * petInfo.mult) / 5000) * 5000;
+            const effectiveNights = srvInfo.isHotel ? nights : 1;
+            const taxiFee = useTaxi ? 35000 : 0;
+            const totalPrice = (unitRate * petCount * effectiveNights) + taxiFee;
+
+            const detailDesc = srvInfo.isHotel
+                ? `${petInfo.name} (${petCount} Ekor × ${effectiveNights} Malam) • Tgl: ${bookDate}${useTaxi ? ' + Jemput Pet Taxi' : ''}${petNote ? ' • ' + petNote : ''}`
+                : `${petInfo.name} (${petCount} Ekor) • Tgl: ${bookDate}${useTaxi ? ' + Jemput Pet Taxi' : ''}${petNote ? ' • ' + petNote : ''}`;
+
+            cart.push({
+                uid: 'groom__' + Date.now(),
+                type: 'service',
+                name: `[RESERVASI] ${srvInfo.name}`,
+                variantLabel: detailDesc,
+                unitWeight: 'Layanan Terjadwal',
+                unitPrice: totalPrice,
+                qty: 1
+            });
+
+            renderCart();
+            openCartDrawer();
+            showToast('Jadwal Grooming / Pet Hotel ditambahkan ke Keranjang!');
+        }
+
+        // 3. CART DRAWER & WHATSAPP CHECKOUT
+        function openCartDrawer() {
+            const bd = document.getElementById('cartDrawerBackdrop');
+            const dr = document.getElementById('cartDrawer');
+            bd.classList.remove('hidden');
+            setTimeout(() => {
+                bd.classList.remove('opacity-0');
+                dr.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeCartDrawer() {
+            const bd = document.getElementById('cartDrawerBackdrop');
+            const dr = document.getElementById('cartDrawer');
+            bd.classList.add('opacity-0');
+            dr.classList.add('translate-x-full');
+            setTimeout(() => bd.classList.add('hidden'), 250);
+        }
+
+        function updateCartQty(uid, delta) {
+            const idx = cart.findIndex(c => c.uid === uid);
+            if (idx === -1) return;
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const listEl = document.getElementById('cartItemsList');
+            const badgeEl = document.getElementById('cartCountBadge');
+
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+            badgeEl.textContent = totalQty;
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-10 bg-cream-soft rounded-xl border border-dashed border-charcoal p-6">
+                        <i class="fa-solid fa-paw text-2xl text-charcoal-muted mb-2"></i>
+                        <p class="font-display font-bold text-sm text-charcoal">Keranjang Masih Kosong</p>
+                        <p class="text-xs text-charcoal-muted mt-1">Pilih pakan Repack/Freshpack/Karung atau tambahkan jadwal Grooming &amp; Pet Hotel.</p>
+                    </div>
+                `;
+            } else {
+                listEl.innerHTML = cart.map(item => {
+                    const isProd = item.type === 'product';
+                    const effectiveUnitPrice = (isProd && isGlobalSubscription) ? Math.round(item.unitPrice * 0.9) : item.unitPrice;
+                    const lineTotal = effectiveUnitPrice * item.qty;
+                    return `
+                        <div class="p-3.5 rounded-xl bg-cream-soft border-[1.5px] border-charcoal flex items-start justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="font-display font-bold text-xs text-charcoal">${item.name}</div>
+                                <div class="font-mono text-[11px] text-sage font-semibold">${item.variantLabel}</div>
+                                <div class="font-mono font-bold text-xs text-terracotta">${formatRupiah(lineTotal)}</div>
+                            </div>
+                            <div class="flex items-center border border-charcoal rounded-lg bg-cream shrink-0">
+                                <button onclick="updateCartQty('${item.uid}', -1)" class="px-2 py-1 text-xs font-bold hover:bg-cream-soft">-</button>
+                                <span class="px-2 font-mono text-xs font-bold">${item.qty}</span>
+                                <button onclick="updateCartQty('${item.uid}', 1)" class="px-2 py-1 text-xs font-bold hover:bg-cream-soft">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Calculate totals
+            let rawSubtotal = 0;
+            let subDiscount = 0;
+            cart.forEach(item => {
+                const rawLine = item.unitPrice * item.qty;
+                rawSubtotal += rawLine;
+                if (item.type === 'product' && isGlobalSubscription) {
+                    subDiscount += Math.round(rawLine * 0.1);
+                }
+            });
+
+            const courierSel = document.getElementById('courierMethodSelect');
+            const shippingCost = cart.length > 0 ? parseInt(courierSel.options[courierSel.selectedIndex].dataset.cost || '0', 10) : 0;
+            const grandTotal = rawSubtotal - subDiscount + shippingCost;
+
+            document.getElementById('cartSubtotalText').textContent = formatRupiah(rawSubtotal);
+            const discRow = document.getElementById('cartSubDiscountRow');
+            if (subDiscount > 0) {
+                discRow.classList.remove('hidden');
+                discRow.classList.add('flex');
+                document.getElementById('cartSubDiscountText').textContent = '-' + formatRupiah(subDiscount);
+            } else {
+                discRow.classList.add('hidden');
+                discRow.classList.remove('flex');
+            }
+            document.getElementById('cartShippingText').textContent = formatRupiah(shippingCost);
+            document.getElementById('cartGrandTotalText').textContent = formatRupiah(grandTotal);
+        }
+
+        function fillStarterBundle() {
+            isGlobalSubscription = true;
+            const sw = document.getElementById('subToggleSwitch');
+            const knob = document.getElementById('subToggleKnob');
+            sw.className = 'w-14 h-8 rounded-full bg-sage border-[1.5px] border-charcoal p-1 transition-colors duration-200 relative shrink-0';
+            knob.className = 'block w-5 h-5 rounded-full bg-white transition-transform duration-200 translate-x-6';
+
+            cart = [
+                {
+                    uid: 'royal-canin-hair-skin__1',
+                    type: 'product',
+                    productId: 'royal-canin-hair-skin',
+                    name: 'Royal Canin Hair & Skin Care Adult Cat',
+                    variantLabel: 'Freshpack 2kg',
+                    unitWeight: '2 kg Segel Resmi',
+                    unitPrice: 245000,
+                    qty: 1
+                },
+                {
+                    uid: 'pasir-bentonite-25l__2',
+                    type: 'product',
+                    productId: 'pasir-bentonite-25l',
+                    name: 'Pasir Gumpal Bentonite Wangi Kopi & Lavender 25L',
+                    variantLabel: 'Karung Grosir 20kg',
+                    unitWeight: 'Karung Jumbo 25L (20kg)',
+                    unitPrice: 98000,
+                    qty: 1
+                },
+                {
+                    uid: 'groom__demo',
+                    type: 'service',
+                    name: '[RESERVASI] Mandi Jamur & Kutu Medicated',
+                    variantLabel: 'Kucing Dewasa (1 Ekor) • Jemput Pet Taxi Ber-AC',
+                    unitWeight: 'Layanan Terjadwal',
+                    unitPrice: 145000,
+                    qty: 1
+                }
+            ];
+            renderProducts();
+            renderCart();
+            openCartDrawer();
+            showToast('Simulasi Paket Langganan Pakan + Grooming dimuat!');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Keranjang masih kosong, silakan pilih produk atau layanan terlebih dahulu.');
+                return;
+            }
+            const name = document.getElementById('custName').value.trim() || 'Pelanggan PawHaus';
+            const addr = document.getElementById('custAddress').value.trim() || 'Kemang / Konfirmasi via Chat';
+            const pay = document.getElementById('custPayment').value;
+            const courierSel = document.getElementById('courierMethodSelect');
+            const courierName = courierSel.options[courierSel.selectedIndex].text;
+            const shippingCost = parseInt(courierSel.options[courierSel.selectedIndex].dataset.cost || '0', 10);
+
+            let rawSubtotal = 0;
+            let subDiscount = 0;
+            let lines = [];
+
+            cart.forEach((item, i) => {
+                const rawLine = item.unitPrice * item.qty;
+                rawSubtotal += rawLine;
+                let finalLine = rawLine;
+                if (item.type === 'product' && isGlobalSubscription) {
+                    const d = Math.round(rawLine * 0.1);
+                    subDiscount += d;
+                    finalLine -= d;
+                }
+                lines.push(`${i + 1}. *${item.name}*\n   Varian: ${item.variantLabel} (x${item.qty}) = *${formatRupiah(finalLine)}*`);
+            });
+
+            const grandTotal = rawSubtotal - subDiscount + shippingCost;
+
+            const text = [
+                `Halo Admin *PawHaus Pet Mart, Grooming & Stay*, saya ingin memesan:`,
+                ``,
+                ...lines,
+                ``,
+                `Status Langganan: *${isGlobalSubscription ? 'YA - Langganan Rutin Bulanan (Hemat 10%)' : 'Belanja Reguler'}*`,
+                `Kurir / Pengiriman: *${courierName}*`,
+                `Total Pembayaran: *${formatRupiah(grandTotal)}*`,
+                ``,
+                `*Data Pemesan:*`,
+                `Nama: ${name}`,
+                `Alamat / Cabang: ${addr}`,
+                `Metode Pembayaran: ${pay}`,
+                ``,
+                `Mohon konfirmasi ketersediaan stok & jadwalnya. Terima kasih!`
+            ].join('\n');
+
+            window.open(`https://wa.me/6281288997766?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toastNotice');
+            document.getElementById('toastMessage').textContent = msg;
+            t.classList.remove('hidden');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
+        }
+
+        // Init Default Date & Render
+        window.addEventListener('DOMContentLoaded', () => {
+            const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+            document.getElementById('groomBookingDate').value = tomorrow;
+            renderProducts();
+            updateGroomingCalculator();
+            renderCart();
+        });
+    </script>
+</body>
+</html>

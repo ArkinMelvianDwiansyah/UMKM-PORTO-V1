@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartWash Laundry — Aplikasi Kasir, Kanban Produksi & Cek Status Cucian WA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono, .tabular-nums { font-variant-numeric: tabular-nums; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        @media print {
+            body * { visibility: hidden; }
+            #waReceiptModal, #thermalPrintArea, #thermalPrintArea * { visibility: visible; }
+            #waReceiptModal { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-sky-50/60 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30 overflow-x-auto">
+        <div class="flex items-center gap-3 lg:gap-4 shrink-0">
+            <a href="../../index.html" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-sky-400"></i>
+                <span>Katalog UMKM</span>
+            </a>
+            <div class="h-6 w-[1px] bg-slate-700 hidden sm:block shrink-0"></div>
+            <div class="flex items-center gap-2.5 shrink-0">
+                <img src="assets/logo.svg" alt="SmartWash Laundry Logo" class="w-9 h-9 rounded-xl shadow-lg shadow-sky-500/25 shrink-0">
+                <div class="shrink-0">
+                    <div class="flex items-center gap-2 whitespace-nowrap">
+                        <span class="font-extrabold tracking-tight text-base text-white whitespace-nowrap">SmartWash <span class="text-sky-400">Laundry</span></span>
+                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 font-bold whitespace-nowrap">Auto-WA</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden sm:block whitespace-nowrap">Kiloan, Satuan, Sepatu & Karpet — Tracking Real-Time</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Navigation Tabs -->
+        <nav class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shrink-0 gap-1">
+            <button onclick="switchLaundryTab('kasir')" id="tabBtn-kasir" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-sky-500 text-slate-950 shadow shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-plus"></i>
+                <span>Input Nota</span>
+            </button>
+            <button onclick="switchLaundryTab('kanban')" id="tabBtn-kanban" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-table-columns"></i>
+                <span>Kanban Produksi</span>
+                <span id="kanbanTotalBadge" class="px-1.5 py-0.2 rounded-full bg-sky-400/20 text-sky-300 text-[10px] font-extrabold tabular-nums">6</span>
+            </button>
+            <button onclick="switchLaundryTab('portal')" id="tabBtn-portal" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Cek Status</span>
+            </button>
+            <button onclick="scrollToLaundrySection('section-ulasan')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-star text-amber-400"></i>
+                <span>Ulasan</span>
+            </button>
+            <button onclick="scrollToLaundrySection('section-faq')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-circle-question text-sky-400"></i>
+                <span>FAQ</span>
+            </button>
+        </nav>
+
+        <!-- Right Summary Pill -->
+        <div class="hidden xl:flex items-center gap-3 shrink-0">
+            <div class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2 shrink-0 whitespace-nowrap">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <div>
+                    <p class="text-[10px] text-slate-400 leading-none whitespace-nowrap">Server Notifikasi WA</p>
+                    <p class="font-bold text-emerald-400 text-[11px] leading-tight mt-0.5 tabular-nums whitespace-nowrap">Terhubung (0812-9988-xxxx)</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex overflow-hidden">
+
+        <!-- ==================== TAB 1: INPUT NOTA CUCIAN BARU (KASIR LAUNDRY) ==================== -->
+        <main id="view-kasir" class="flex-1 overflow-y-auto p-4 lg:p-6 custom-scroll">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Left Column: Input Form (7 Cols) -->
+                <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+                    <div class="p-5 bg-gradient-to-r from-sky-600 to-indigo-600 text-white flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider font-bold text-sky-200">Timbang & Buat Nota</span>
+                            <h2 class="text-lg font-extrabold flex items-center gap-2"><i class="fa-solid fa-file-circle-plus"></i> Formulir Penerimaan Cucian Baru</h2>
+                        </div>
+                        <div class="text-right font-mono bg-white/10 px-3 py-1.5 rounded-xl border border-white/20 tabular-nums">
+                            <span class="text-[10px] block text-sky-100">Nomor Nota Otomatis</span>
+                            <span id="nextInvoiceLabel" class="text-sm font-extrabold text-white">INV-LDR-093</span>
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleCreateLaundryOrder(event)" class="p-5 space-y-4 text-xs">
+                        <!-- Customer Info -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Nama Pelanggan <span class="text-rose-500">*</span></label>
+                                <div class="relative">
+                                    <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                                    <input id="ldrCustomerName" required type="text" value="Ibu Nadine Amizah" placeholder="Misal: Bpk. Budi / Ibu Sari" class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-semibold focus:outline-none focus:border-sky-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Nomor WhatsApp (Kirim Nota Otomatis) <span class="text-rose-500">*</span></label>
+                                <div class="relative">
+                                    <i class="fa-brands fa-whatsapp absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-sm"></i>
+                                    <input id="ldrCustomerWa" required type="text" value="0812-8765-4321" placeholder="0812-xxxx-xxxx" class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-mono font-semibold focus:outline-none focus:border-sky-500 tabular-nums">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pilih Paket Layanan -->
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1.5">Pilih Paket Layanan Laundry <span class="text-rose-500">*</span></label>
+                            <select id="ldrServiceSelect" onchange="calculateLaundryPrice()" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-bold text-slate-800 focus:outline-none focus:border-sky-500 tabular-nums">
+                                <option value="Cuci Komplit Setrika|8000|kg|Reguler 2 Hari">Cuci Komplit Setrika — Rp 8.000 / kg (Estimasi 2 Hari)</option>
+                                <option value="Kilat Express 6 Jam|15000|kg|Express 6 Jam">Kilat Express 6 Jam — Rp 15.000 / kg (Selesai Hari Ini)</option>
+                                <option value="Cuci Bedcover Besar|35000|pcs|Satuan 2 Hari">Cuci Bedcover Besar — Rp 35.000 / pcs (Anti-Tungau)</option>
+                                <option value="Cuci Sepatu Deep Clean|50000|psg|Shoe Care 2 Hari">Cuci Sepatu Deep Clean — Rp 50.000 / psg (Sneakers/Kanvas)</option>
+                                <option value="Cuci Karpet Masjid/Rumah|20000|m²|Karpet 3 Hari">Cuci Karpet — Rp 20.000 / m² (Vacuum & Shampoo)</option>
+                            </select>
+                        </div>
+
+                        <!-- Berat / Jumlah, Aroma Parfum, Rak Simpan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Berat / Jumlah (<span id="unitLabel">kg</span>)</label>
+                                <input id="ldrQtyInput" oninput="calculateLaundryPrice()" type="number" step="0.5" min="1" value="5" required class="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-mono font-extrabold text-sm text-sky-700 focus:outline-none focus:border-sky-500 tabular-nums">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Pilih Aroma Parfum</label>
+                                <select id="ldrPerfumeSelect" onchange="calculateLaundryPrice()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-semibold">
+                                    <option value="Sakura Blossom">Sakura Blossom (Best)</option>
+                                    <option value="Downy Mystique">Downy Mystique</option>
+                                    <option value="Snappy Fresh">Snappy Fresh</option>
+                                    <option value="Lavender Relax">Lavender Relax</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Nomor Rak Simpan</label>
+                                <select id="ldrRackSelect" onchange="calculateLaundryPrice()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-mono font-bold text-indigo-700 tabular-nums">
+                                    <option value="RAK-A1">RAK-A1 (Kiloan)</option>
+                                    <option value="RAK-A2">RAK-A2 (Kiloan)</option>
+                                    <option value="RAK-B1">RAK-B1 (Express)</option>
+                                    <option value="RAK-C3">RAK-C3 (Bedcover)</option>
+                                    <option value="RAK-S1">RAK-S1 (Rak Sepatu)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Status Pembayaran & Catatan -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Status Pembayaran</label>
+                                <select id="ldrPaymentStatus" onchange="calculateLaundryPrice()" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-bold">
+                                    <option value="LUNAS (QRIS/Tunai)">Lunas (Bayar di Awal)</option>
+                                    <option value="BELUM BAYAR">Belum Bayar - Bayar Saat Ambil</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-700 mb-1">Catatan Khusus Pakaian</label>
+                                <input id="ldrNotes" type="text" value="Kemeja putih dipisah, jangan disikat keras" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl">
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">Total Biaya Cucian:</span>
+                                <span id="ldrFormTotalText" class="text-2xl font-mono font-extrabold text-sky-600 tabular-nums">Rp 40.000</span>
+                            </div>
+                            <button type="submit" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-extrabold text-xs shadow-lg shadow-sky-500/25 flex items-center justify-center gap-2 active:scale-95 transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Simpan Nota & Kirim WA</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Column: Live Digital Nota Preview & Daily Summary (5 Cols) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-sky-500"></i> Pratinjau Ringkasan Order
+                            </h3>
+                            <span id="previewPaymentBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">LUNAS</span>
+                        </div>
+                        <div class="relative h-28 w-full rounded-xl overflow-hidden mb-3 border border-slate-200">
+                            <img id="prvServiceImage" src="assets/images/srv-kiloan.jpg" alt="Layanan Laundry" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent flex items-end p-3">
+                                <span id="prvServiceBadge" class="text-[11px] font-extrabold text-white tracking-wide">Cuci Komplit Setrika</span>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-slate-500">Pelanggan:</span><span id="prvCustomer" class="font-bold text-slate-900">Ibu Nadine Amizah</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Layanan:</span><span id="prvService" class="font-bold text-sky-700">Cuci Komplit Setrika</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Kuantitas:</span><span id="prvQty" class="font-mono font-bold tabular-nums">5 kg x Rp 8.000</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Aroma Parfum:</span><span id="prvPerfume" class="font-semibold">Sakura Blossom</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Lokasi Rak:</span><span id="prvRack" class="font-mono font-bold text-indigo-600 tabular-nums">RAK-A1</span></div>
+                            <div class="border-t border-dashed border-slate-300 pt-2 flex justify-between items-baseline">
+                                <span class="font-bold text-slate-700">Total Tagihan:</span>
+                                <span id="prvTotal" class="font-mono font-extrabold text-base text-slate-900 tabular-nums">Rp 40.000</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-xl mt-0.5"></i>
+                            <div class="text-[11px] text-emerald-950 leading-relaxed">
+                                <p class="font-bold">Fitur Unggulan SmartWash:</p>
+                                <p>Begitu klik <strong>"Simpan Nota & Kirim WA"</strong>, nota otomatis masuk ke kolom <strong>Antrean Masuk</strong> di Papan Kanban dan pelanggan menerima link pelacakan cucian tanpa perlu install aplikasi!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistik Produksi Harian -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-3 flex items-center gap-1.5"><i class="fa-solid fa-chart-simple"></i> Kapasitas Mesin & Produksi Hari Ini</h4>
+                        <div class="grid grid-cols-3 gap-3 text-center tabular-nums">
+                            <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+                                <p class="text-lg font-mono font-extrabold text-white" id="statTotalKg">64.5 kg</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Total Kiloan Masuk</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+                                <p class="text-lg font-mono font-extrabold text-sky-400" id="statActiveOrders">6 Nota</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Dalam Proses</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+                                <p class="text-lg font-mono font-extrabold text-emerald-400">4 / 5</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Mesin Cuci Aktif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==================== MEDIA PROMOSI: KEUNGGULAN, ULASAN FOTO PELANGGAN & FAQ ==================== -->
+            <div class="max-w-6xl mx-auto mt-10 space-y-10 pb-10">
+                
+                <!-- 1. Standar Higienis & Keunggulan Outlet -->
+                <section class="bg-white rounded-3xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-sky-600 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">Standar Operasional Premium</span>
+                            <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Mengapa 1.800+ Keluarga Mempercayakan Pakaian ke SmartWash?</h2>
+                        </div>
+                        <p class="text-xs text-slate-500 max-w-md">Setiap cucian diproses terpisah tanpa dicampur dengan pakaian pelanggan lain, menggunakan air terfiltrasi RO & deterjen ramah lingkungan.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center text-base mb-3 shadow-sm">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <h3 class="font-extrabold text-sm text-slate-900">1 Mesin 1 Pelanggan</h3>
+                            <p class="text-slate-500 mt-1 leading-relaxed">Dijamin tidak dicampur dengan cucian orang lain. Lebih higienis, bebas tertukar, dan aman untuk kulit sensitif bayi.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base mb-3 shadow-sm">
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
+                            </div>
+                            <h3 class="font-extrabold text-sm text-slate-900">Setrika Uap Boiler Murni</h3>
+                            <p class="text-slate-500 mt-1 leading-relaxed">Menggunakan uap panas bertekanan tanpa kontak pelat besi langsung—anti mengkilap dan aman untuk bahan sutra/batik.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-base mb-3 shadow-sm">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <h3 class="font-extrabold text-sm text-slate-900">Notifikasi WA Real-Time</h3>
+                            <p class="text-slate-500 mt-1 leading-relaxed">Nota digital dan pemberitahuan cucian selesai otomatis dikirim ke WhatsApp lengkap dengan lokasi rak penyimpanan.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-base mb-3 shadow-sm">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <h3 class="font-extrabold text-sm text-slate-900">Gratis Antar-Jemput</h3>
+                            <p class="text-slate-500 mt-1 leading-relaxed">Kurir siaga menjemput cucian kotor dan mengantar kembali dalam kondisi rapi terbungkus plastik vakum (radius 5 km).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. Galeri Ulasan & Foto Hasil Cucian Pelanggan Asli -->
+                <section id="section-ulasan" class="bg-white rounded-3xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Bukti Kualitas & Testimoni</span>
+                            <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Ulasan Pelanggan & Dokumentasi Hasil Cucian</h2>
+                            <p class="text-xs text-slate-500 mt-1">Foto asli hasil pengerjaan tim SmartWash Laundry dari ulasan pelanggan langganan kami.</p>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shrink-0">
+                            <div class="text-amber-400 text-lg"><i class="fa-solid fa-star"></i></div>
+                            <div class="tabular-nums">
+                                <div class="text-sm font-extrabold leading-none">4.97 / 5.0</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">1.420+ Ulasan Google Maps</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Review Card 1 -->
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/srv-kiloan.jpg" alt="Hasil Cuci Komplit Setrika" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Cuci Komplit Setrika</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-1.jpg" alt="Ibu Nadine Amizah" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Nadine Amizah</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Lipatan bajunya super rapi seperti baru beli di butik. Wangi Sakura Blossom-nya tahan sampai 2 minggu di dalam lemari!"</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pelanggan Terverifikasi</span>
+                                <span>2 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 2 -->
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/srv-sepatu.jpg" alt="Hasil Cuci Sepatu Deep Clean" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Shoe Care Deep Clean</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-2.jpg" alt="Mas Ardhito Pramono" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Mas Ardhito Pramono</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Sneakers putih kanvas yang tadinya kuning kena lumpur balik kinclong lagi. Enaknya bisa pantau status cucian lewat link WA."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pelanggan Terverifikasi</span>
+                                <span>3 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 3 -->
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/srv-bedcover.jpg" alt="Hasil Cuci Bedcover Besar" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Bedcover Anti-Tungau</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-3.jpg" alt="Ibu Dian Sastrowardoyo" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Dian Sastrowardoyo</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Cuci bedcover King Size dikemas plastik vakum jadi hemat tempat di lemari. Bebas debu tungau dan anak-anak tidur lebih nyenyak."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pelanggan Terverifikasi</span>
+                                <span>5 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 4 -->
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/srv-express.jpg" alt="Kilat Express 6 Jam" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Express 6 Jam Selesai</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-4.jpg" alt="Bpk. Reza Rahadian" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Bpk. Reza Rahadian</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">4.9</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Penyelamat waktu dinas mendadak! Masuk jam 9 pagi, jam 3 sore sudah dapat notif WA kalau kemeja kerja sudah rapi di Rak B1."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pelanggan Terverifikasi</span>
+                                <span>1 minggu lalu</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Interactive FAQ Accordion Section -->
+                <section id="section-faq" class="bg-white rounded-3xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+                    <div id="faq"></div>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="text-center mb-6">
+                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">Pusat Bantuan & Informasi</span>
+                            <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Pertanyaan yang Sering Ditanyakan (FAQ)</h2>
+                            <p class="text-xs text-slate-500 mt-1">Informasi lengkap seputar layanan cuci kiloan, satuan, garansi pakaian, dan sistem pelacakan nota WhatsApp.</p>
+                        </div>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(1)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>1. Apakah pakaian saya dicampur dengan pakaian pelanggan lain?</span>
+                                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-sky-600 transition-transform rotate-180"></i>
+                                </button>
+                                <div id="faq-ans-1" class="p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    <strong>100% Tidak Dicampur.</strong> SmartWash menerapkan sistem <em>1 Mesin 1 Nota Pelanggan</em>. Setiap cucian memiliki keranjang sortir dan mesin cuci tersendiri sehingga higienis, bebas tertukar, dan tidak tercampur pakaian orang lain.
+                                </div>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(2)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>2. Bagaimana cara melacak status cucian saya sudah selesai atau belum?</span>
+                                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                                </button>
+                                <div id="faq-ans-2" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    Saat menyerahkan pakaian, Anda langsung menerima <strong>Nota Digital via WhatsApp</strong> yang berisi nomor nota (misal <code>INV-LDR-089</code>). Anda cukup klik tab <strong>"Cek Status"</strong> di bagian atas halaman ini tanpa perlu login atau install aplikasi tambahan.
+                                </div>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(3)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>3. Apakah ada garansi jika pakaian rusak, luntur, atau kurang?</span>
+                                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                                </button>
+                                <div id="faq-ans-3" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    Tentu! Kami menghitung jumlah potong pakaian di depan pelanggan dan menyortir pakaian putih/berwarna sebelum dicuci. Kami memberikan <strong>Garansi Cuci Ulang Gratis 100%</strong> bila kurang bersih/rapi, serta jaminan ganti rugi hingga 10x nilai nota bila terjadi kerusakan akibat kelalaian tim kami.
+                                </div>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(4)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>4. Berapa minimal berat untuk layanan gratis antar-jemput (Pickup & Delivery)?</span>
+                                    <i id="faq-icon-4" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                                </button>
+                                <div id="faq-ans-4" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    Layanan <strong>Gratis Antar-Jemput</strong> berlaku untuk cucian minimal <strong>5 kg</strong> atau transaksi satuan minimal <strong>Rp 50.000</strong> dalam radius 5 km dari outlet kami. Kurir kami membawa timbangan digital portabel ke rumah Anda.
+                                </div>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(5)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>5. Metode pembayaran apa saja yang diterima di SmartWash Laundry?</span>
+                                    <i id="faq-icon-5" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                                </button>
+                                <div id="faq-ans-5" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    Kami menerima pembayaran <strong>QRIS Semua E-Wallet & Mobile Banking</strong> (GoPay, OVO, Dana, ShopeePay, BCA, Mandiri, BRI), Transfer Bank, maupun <strong>Tunai</strong>. Anda dapat memilih bayar di awal (Lunas) atau bayar saat pengambilan cucian.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FOOTER -->
+                <footer id="kontak-footer" class="bg-slate-900 text-slate-300 rounded-3xl border border-slate-800 overflow-hidden shadow-lg">
+                    <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+                    <div class="border-b border-slate-800 bg-gradient-to-r from-slate-900 via-sky-950/50 to-indigo-950/40 p-6 lg:p-8">
+                        <div class="flex flex-wrap items-center gap-2 mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-sky-400">
+                                <i class="fa-solid fa-bolt"></i> Konfirmasi WA Instan
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-emerald-400">
+                                <i class="fa-solid fa-shield-halved"></i> Pembayaran Aman &amp; Garansi 100%
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-amber-400">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Sistem Real-Time 24 Jam
+                            </span>
+                        </div>
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                            <div class="max-w-2xl">
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                                    Pakaian Bersih, Rapi &amp; Wangi Tanpa Perlu Repot Keluar Rumah!
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-400 mt-1.5 leading-relaxed">
+                                    Buat nota cucian dalam hitungan detik, pantau tahapan pencucian di Papan Kanban, atau jadwalkan kurir gratis antar-jemput ke rumah maupun apartemen Anda sekarang.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                                <button type="button" onclick="switchLaundryTab('portal')" class="px-4 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-xs transition shadow-lg shadow-sky-500/20 inline-flex items-center gap-2 whitespace-nowrap">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Cek Status Cucian Live</span>
+                                </button>
+                                <a href="https://wa.me/6281299887766?text=Halo%20SmartWash%20Laundry%2C%20saya%20ingin%20pesan%20layanan%20antar-jemput%20cucian" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition shadow-lg shadow-emerald-600/20 inline-flex items-center gap-2 whitespace-nowrap">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                                    <span>Pesan Kurir via WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 4-Column Responsive Grid -->
+                    <div class="p-6 lg:p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <!-- Kolom 1: Brand & Sosial Media -->
+                            <div class="space-y-3.5">
+                                <div class="flex items-center gap-3">
+                                    <img src="assets/logo.svg" alt="SmartWash Laundry Logo" class="w-11 h-11 rounded-xl shadow-md shrink-0">
+                                    <div>
+                                        <div class="font-extrabold text-base text-white leading-tight">SmartWash <span class="text-sky-400">Laundry</span></div>
+                                        <div class="font-mono text-[10px] uppercase tracking-wider text-sky-400/90 font-bold">AUTO-WA &amp; KANBAN SYSTEM</div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Layanan binatu modern berstandar 1 Mesin 1 Pelanggan dengan setrika uap boiler murni, manajemen rak presisi, dan pelacakan status WhatsApp otomatis.
+                                </p>
+                                <div class="flex items-center gap-2 pt-1">
+                                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram SmartWash Laundry" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-sky-400 hover:bg-sky-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                        <i class="fa-brands fa-instagram text-xs"></i>
+                                    </a>
+                                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok SmartWash Laundry" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-sky-400 hover:bg-sky-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                        <i class="fa-brands fa-tiktok text-xs"></i>
+                                    </a>
+                                    <a href="https://wa.me/6281299887766" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp SmartWash Laundry" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                        <i class="fa-brands fa-whatsapp text-xs"></i>
+                                    </a>
+                                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube SmartWash Laundry" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-sky-400 hover:bg-sky-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                        <i class="fa-brands fa-youtube text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Kolom 2: Navigasi Cepat -->
+                            <nav aria-label="Navigasi Cepat" class="space-y-2.5">
+                                <h4 class="font-mono text-[11px] uppercase tracking-wider text-sky-400 font-bold">Navigasi Cepat</h4>
+                                <ul class="space-y-2 text-xs">
+                                    <li><a href="#view-kasir" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> Beranda &amp; Input Nota</a></li>
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> Layanan / Modul Laundry</a></li>
+                                    <li><a href="#view-kanban" onclick="switchLaundryTab('kanban')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> Jadwal Produksi &amp; Harga</a></li>
+                                    <li><a href="#view-portal" onclick="switchLaundryTab('portal')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> Cara Penggunaan &amp; Lacak</a></li>
+                                    <li><a href="#section-ulasan" onclick="scrollToLaundrySection('section-ulasan')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> Ulasan &amp; Foto Hasil Cucian</a></li>
+                                    <li><a href="#faq" onclick="scrollToLaundrySection('section-faq')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-sky-400"></i> FAQ &amp; Kontak Outlet</a></li>
+                                </ul>
+                            </nav>
+
+                            <!-- Kolom 3: Layanan dan Modul -->
+                            <nav aria-label="Layanan dan Modul" class="space-y-2.5">
+                                <h4 class="font-mono text-[11px] uppercase tracking-wider text-sky-400 font-bold">Layanan &amp; Paket Cuci</h4>
+                                <ul class="space-y-2 text-xs">
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-shirt text-[10px] text-sky-400 w-4"></i> Cuci Komplit Setrika Uap</a></li>
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-bolt text-[10px] text-amber-400 w-4"></i> Kilat Express 6 Jam Selesai</a></li>
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-mattress-pillow text-[10px] text-indigo-400 w-4"></i> Cuci Bedcover Anti-Tungau</a></li>
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-shoe-prints text-[10px] text-emerald-400 w-4"></i> Shoe Care Sepatu Deep Clean</a></li>
+                                    <li><a href="#ldrServiceSelect" onclick="switchLaundryTab('kasir')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-rug text-[10px] text-rose-400 w-4"></i> Cuci Karpet Masjid &amp; Rumah</a></li>
+                                    <li class="pt-1">
+                                        <a href="https://wa.me/6281299887766?text=Halo%20SmartWash%2C%20saya%20ingin%20info%20Paket%20Langganan%20Keluarga%20%26%20Kerjasama%20Linen%20Hotel" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-950/90 border border-sky-500/40 text-sky-300 hover:bg-sky-900 hover:text-white text-[11px] font-bold transition">
+                                            <i class="fa-solid fa-crown text-amber-400"></i>
+                                            <span>Member Kiloan &amp; Mitra Linen Hotel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <!-- Kolom 4: Kontak & Jam Operasional -->
+                            <div class="space-y-2.5">
+                                <h4 class="font-mono text-[11px] uppercase tracking-wider text-sky-400 font-bold">Kontak &amp; Jam Operasional</h4>
+                                <div class="space-y-2.5 text-xs text-slate-400">
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-sky-400 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-location-dot text-[11px]"></i>
+                                        </span>
+                                        <div>
+                                            <p class="text-slate-200 font-semibold leading-snug">Jl. Melati Indah No. 14, Tebet Timur, Jakarta Selatan 12820</p>
+                                            <a href="https://maps.google.com/?q=Jl.+Melati+Indah+No.+14+Tebet+Jakarta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:underline font-semibold text-[11px] mt-0.5">
+                                                <span>Buka di Google Maps</span>
+                                                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-emerald-400 flex items-center justify-center shrink-0">
+                                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                                        </span>
+                                        <div>
+                                            <span class="text-[10px] text-slate-500 block">WhatsApp Kurir &amp; CS</span>
+                                            <a href="https://wa.me/6281299887766" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-slate-200 hover:text-emerald-400 transition tabular-nums">+62 812-9988-7766</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-indigo-400 flex items-center justify-center shrink-0">
+                                            <i class="fa-regular fa-envelope text-[11px]"></i>
+                                        </span>
+                                        <div>
+                                            <span class="text-[10px] text-slate-500 block">Email Resmi</span>
+                                            <a href="mailto:halo@smartwash.id" class="font-mono text-slate-200 hover:text-sky-400 transition">halo@smartwash.id</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-amber-400 flex items-center justify-center shrink-0">
+                                            <i class="fa-regular fa-clock text-[11px]"></i>
+                                        </span>
+                                        <div>
+                                            <span class="text-[10px] text-slate-500 block">Jam Operasional Outlet</span>
+                                            <span class="font-mono font-semibold text-slate-200">Senin – Minggu: 07:00 – 21:00 WIB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Bottom Bar -->
+                    <div class="border-t border-slate-800 bg-slate-950/80 px-6 lg:p-8 lg:py-4 py-4 flex flex-col xl:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
+                        <div class="flex flex-wrap items-center justify-center xl:justify-start gap-1.5">
+                            <span class="text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-200 whitespace-nowrap">QRIS</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BCA</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BRI</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">Mandiri</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">GoPay</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">OVO</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">DANA</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
+                            <p>© 2026 SmartWash Laundry. Portofolio UMKM Website Series.</p>
+                            <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-3">
+                                <!-- TODO: Tambahkan halaman Syarat & Ketentuan -->
+                                <a href="#" class="hover:text-white transition whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                                <!-- TODO: Tambahkan halaman Kebijakan Privasi -->
+                                <a href="#" class="hover:text-white transition whitespace-nowrap">Kebijakan Privasi</a>
+                                <a href="#faq" class="hover:text-sky-400 transition whitespace-nowrap">Kebijakan Pembatalan / Garansi</a>
+                            </nav>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <!-- ==================== TAB 2: PAPAN KANBAN STATUS CUCIAN (OPERASIONAL) ==================== -->
+        <main id="view-kanban" class="hidden flex-1 flex flex-col overflow-hidden p-4 lg:p-5">
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-2 shrink-0">
+                <div>
+                    <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-table-columns text-sky-600"></i> Papan Kanban Operasional Produksi Laundry</h2>
+                    <p class="text-xs text-slate-500">Klik tombol <strong>"Majukan Status"</strong> pada kartu untuk memindahkan cucian ke tahap berikutnya secara real-time.</p>
+                </div>
+                <button onclick="switchLaundryTab('kasir')" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-plus"></i> Input Cucian Baru
+                </button>
+            </div>
+
+            <!-- 5 Columns Kanban Board -->
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-3.5 overflow-x-auto overflow-y-hidden pb-2">
+                <!-- Column 1 -->
+                <div class="bg-slate-200/70 rounded-2xl p-3 flex flex-col h-full border border-slate-300/80 min-w-[240px]">
+                    <div class="flex items-center justify-between mb-2.5 px-1">
+                        <span class="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> 1. Antrean Masuk
+                        </span>
+                        <span id="count-col-1" class="px-2 py-0.5 rounded-full bg-white text-slate-700 font-mono text-[11px] font-bold shadow-sm tabular-nums">0</span>
+                    </div>
+                    <div id="kanban-col-1" class="flex-1 overflow-y-auto space-y-2.5 custom-scroll pr-1"></div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="bg-sky-100/70 rounded-2xl p-3 flex flex-col h-full border border-sky-200 min-w-[240px]">
+                    <div class="flex items-center justify-between mb-2.5 px-1">
+                        <span class="text-xs font-extrabold text-sky-950 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span> 2. Sedang Dicuci
+                        </span>
+                        <span id="count-col-2" class="px-2 py-0.5 rounded-full bg-white text-sky-700 font-mono text-[11px] font-bold shadow-sm tabular-nums">0</span>
+                    </div>
+                    <div id="kanban-col-2" class="flex-1 overflow-y-auto space-y-2.5 custom-scroll pr-1"></div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="bg-indigo-100/60 rounded-2xl p-3 flex flex-col h-full border border-indigo-200 min-w-[240px]">
+                    <div class="flex items-center justify-between mb-2.5 px-1">
+                        <span class="text-xs font-extrabold text-indigo-950 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> 3. Sedang Disetrika
+                        </span>
+                        <span id="count-col-3" class="px-2 py-0.5 rounded-full bg-white text-indigo-700 font-mono text-[11px] font-bold shadow-sm tabular-nums">0</span>
+                    </div>
+                    <div id="kanban-col-3" class="flex-1 overflow-y-auto space-y-2.5 custom-scroll pr-1"></div>
+                </div>
+
+                <!-- Column 4 -->
+                <div class="bg-amber-100/60 rounded-2xl p-3 flex flex-col h-full border border-amber-200 min-w-[240px]">
+                    <div class="flex items-center justify-between mb-2.5 px-1">
+                        <span class="text-xs font-extrabold text-amber-950 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> 4. Siap Diambil (Rak)
+                        </span>
+                        <span id="count-col-4" class="px-2 py-0.5 rounded-full bg-white text-amber-800 font-mono text-[11px] font-bold shadow-sm tabular-nums">0</span>
+                    </div>
+                    <div id="kanban-col-4" class="flex-1 overflow-y-auto space-y-2.5 custom-scroll pr-1"></div>
+                </div>
+
+                <!-- Column 5 -->
+                <div class="bg-emerald-100/60 rounded-2xl p-3 flex flex-col h-full border border-emerald-200 min-w-[240px]">
+                    <div class="flex items-center justify-between mb-2.5 px-1">
+                        <span class="text-xs font-extrabold text-emerald-950 flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 5. Selesai / Diambil
+                        </span>
+                        <span id="count-col-5" class="px-2 py-0.5 rounded-full bg-white text-emerald-800 font-mono text-[11px] font-bold shadow-sm tabular-nums">0</span>
+                    </div>
+                    <div id="kanban-col-5" class="flex-1 overflow-y-auto space-y-2.5 custom-scroll pr-1"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ==================== TAB 3: PORTAL CEK STATUS CUCIAN PELANGGAN (TANPA LOGIN) ==================== -->
+        <main id="view-portal" class="hidden flex-1 overflow-y-auto p-4 lg:p-8 custom-scroll">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- Public Header Card -->
+                <div class="bg-gradient-to-br from-sky-600 via-indigo-600 to-slate-900 text-white rounded-3xl p-6 lg:p-8 shadow-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <span class="px-3 py-1 rounded-full bg-white/15 border border-white/20 text-[11px] font-bold uppercase tracking-wider">Portal Pelanggan SmartWash (Tanpa Login)</span>
+                        <h2 class="text-2xl font-extrabold mt-2 flex items-center gap-2"><i class="fa-solid fa-satellite-dish text-sky-300"></i> Lacak Status Cucian Anda Secara Real-Time</h2>
+                        <p class="text-xs text-sky-100 mt-1">Masukkan Nomor Nota yang tertera pada struk WhatsApp Anda atau klik contoh nomor nota di bawah:</p>
+
+                        <!-- Search Box -->
+                        <div class="mt-4 flex flex-col sm:flex-row gap-2">
+                            <input id="trackInputId" type="text" value="INV-LDR-089" placeholder="Ketik Nomor Nota (contoh: INV-LDR-089)" class="flex-1 px-4 py-3 rounded-xl bg-white text-slate-900 font-mono font-bold text-sm focus:outline-none tabular-nums">
+                            <button onclick="searchCustomerTracking()" class="px-6 py-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-extrabold text-xs transition shrink-0 shadow-lg">
+                                <i class="fa-solid fa-magnifying-glass mr-1"></i> Cek Status Sekarang
+                            </button>
+                        </div>
+
+                        <!-- Quick-Click Sample Nota Pills -->
+                        <div class="mt-3 flex flex-wrap items-center gap-1.5 text-[11px] tabular-nums">
+                            <span class="text-sky-200 font-medium">Klik Contoh Nota:</span>
+                            <button onclick="quickTrack('INV-LDR-089')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-mono font-bold transition">INV-LDR-089</button>
+                            <button onclick="quickTrack('INV-LDR-090')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-mono font-bold transition">INV-LDR-090</button>
+                            <button onclick="quickTrack('INV-LDR-091')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-mono font-bold transition">INV-LDR-091</button>
+                            <button onclick="quickTrack('INV-LDR-092')" class="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 font-mono font-bold transition">INV-LDR-092</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking Result Card -->
+                <div id="trackingResultBox" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-6">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ==================== MODAL: NOTA DIGITAL WHATSAPP & STRUK THERMAL QR ==================== -->
+    <div id="waReceiptModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 flex flex-col max-h-[92vh]">
+            <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between no-print">
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                    <span class="text-xs font-bold">Nota Digital WhatsApp Terkirim & Struk Thermal QR</span>
+                </div>
+                <button onclick="closeWaModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="p-5 overflow-y-auto custom-scroll grid grid-cols-1 md:grid-cols-2 gap-5 bg-slate-100">
+                <!-- Left: WhatsApp Bubble Preview -->
+                <div class="no-print">
+                    <p class="text-[11px] font-bold uppercase text-slate-500 mb-2 flex items-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-600"></i> Pratinjau Pesan WhatsApp ke Pelanggan</p>
+                    <div class="bg-[#e5ddd5] p-3.5 rounded-2xl border border-slate-300 shadow-inner">
+                        <div class="bg-white rounded-xl p-3.5 shadow-sm text-xs space-y-2 text-slate-800 relative">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                                <span class="font-extrabold text-emerald-700"><i class="fa-brands fa-whatsapp"></i> SmartWash Official Bot</span>
+                                <span class="text-[10px] text-slate-400">Baru saja</span>
+                            </div>
+                            <div id="waChatMessage" class="whitespace-pre-line text-[11px] leading-relaxed font-sans"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Printable Thermal Tag & QR -->
+                <div>
+                    <p class="text-[11px] font-bold uppercase text-slate-500 mb-2 no-print flex items-center gap-1.5"><i class="fa-solid fa-print text-slate-600"></i> Struk Thermal 58mm & QR Pelacakan</p>
+                    <div id="thermalPrintArea" class="bg-white p-4 rounded-xl border border-slate-300 shadow-sm font-mono text-[11px] space-y-2 tabular-nums">
+                        <div class="text-center border-b border-dashed border-slate-400 pb-2">
+                            <p class="font-extrabold text-sm">SMARTWASH LAUNDRY</p>
+                            <p class="text-[10px] text-slate-500">Jl. Melati Indah No. 14 • WA: 0812-9988-7766</p>
+                        </div>
+                        <div class="space-y-0.5 text-[10px] border-b border-dashed border-slate-400 pb-2">
+                            <div class="flex justify-between"><span>NO NOTA:</span><span id="mdlId" class="font-extrabold">INV-LDR-093</span></div>
+                            <div class="flex justify-between"><span>PELANGGAN:</span><span id="mdlCustomer" class="font-bold">Ibu Nadine</span></div>
+                            <div class="flex justify-between"><span>NO WA:</span><span id="mdlWa">0812-8765-4321</span></div>
+                            <div class="flex justify-between"><span>LOKASI RAK:</span><span id="mdlRack" class="font-extrabold">RAK-A1</span></div>
+                        </div>
+                        <div class="border-b border-dashed border-slate-400 pb-2">
+                            <p id="mdlService" class="font-bold">Cuci Komplit Setrika</p>
+                            <div class="flex justify-between text-[10px]">
+                                <span id="mdlQtyPrice">5 kg x Rp 8.000</span>
+                                <span id="mdlTotal" class="font-bold">Rp 40.000</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500 mt-1">Parfum: <span id="mdlPerfume">Sakura Blossom</span></p>
+                        </div>
+                        <div class="text-center pt-1 space-y-1.5">
+                            <span id="mdlStatusBayar" class="inline-block px-2.5 py-0.5 rounded bg-slate-900 text-white font-extrabold text-[10px]">LUNAS</span>
+                            <div class="mx-auto w-20 h-20 border border-slate-300 rounded-lg flex items-center justify-center bg-slate-50">
+                                <i class="fa-solid fa-qrcode text-4xl text-slate-800"></i>
+                            </div>
+                            <p class="text-[9px] text-slate-500">Scan QR untuk cek status cucian live</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3.5 bg-white border-t border-slate-200 flex flex-wrap justify-end gap-2 no-print">
+                <button onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5">
+                    <i class="fa-solid fa-print"></i> Cetak Struk 58mm
+                </button>
+                <button onclick="closeWaModalAndGoKanban()" class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center gap-1.5 shadow">
+                    <span>Lihat di Papan Kanban</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toastLaundry" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-sky-500/40 flex items-center gap-3 text-xs font-bold opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+        <span id="toastLaundryMsg">Notifikasi WA terkirim!</span>
+    </div>
+
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'SmartWash Laundry',
+            tagline: 'AUTO-WA & KANBAN SYSTEM',
+            address: 'Jl. Melati Indah No. 14, Tebet Timur, Jakarta Selatan 12820',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Melati+Indah+No.+14+Tebet+Jakarta',
+            whatsappNumber: '6281299887766',
+            whatsappDisplay: '+62 812-9988-7766',
+            email: 'halo@smartwash.id',
+            operationalHours: 'Senin – Minggu: 07:00 – 21:00 WIB',
+            socials: {
+                instagram: 'https://instagram.com',
+                tiktok: 'https://tiktok.com',
+                whatsapp: 'https://wa.me/6281299887766',
+                youtube: 'https://youtube.com'
+            }
+        };
+
+        let nextOrderNum = 93;
+
+        const SERVICE_IMAGE_MAP = {
+            'Cuci Komplit Setrika': 'assets/images/srv-kiloan.jpg',
+            'Kilat Express 6 Jam': 'assets/images/srv-express.jpg',
+            'Cuci Bedcover Besar': 'assets/images/srv-bedcover.jpg',
+            'Cuci Sepatu Deep Clean': 'assets/images/srv-sepatu.jpg',
+            'Cuci Karpet Masjid/Rumah': 'assets/images/srv-karpet.jpg'
+        };
+
+        const stages = [
+            { id: 1, title: 'Antrean Masuk', desc: 'Cucian telah ditimbang, disortir & masuk antrean pencucian.' },
+            { id: 2, title: 'Sedang Dicuci', desc: 'Pakaian sedang dicuci & dikeringkan di mesin khusus per pelanggan.' },
+            { id: 3, title: 'Sedang Disetrika', desc: 'Disetrika uap (Steam Iron), diberi parfum premium & packing rapi.' },
+            { id: 4, title: 'Siap Diambil (Rak)', desc: 'Cucian sudah rapi di rak penyimpanan & notifikasi WA telah dikirim.' },
+            { id: 5, title: 'Selesai / Diambil', desc: 'Cucian telah diserahkan kepada pelanggan. Terima kasih!' }
+        ];
+
+        const laundryOrders = [
+            {
+                id: 'INV-LDR-089',
+                customer: 'Kak Reza Rahadian',
+                wa: '0811-2233-4455',
+                service: 'Kilat Express 6 Jam',
+                qty: 4,
+                unit: 'kg',
+                pricePerUnit: 15000,
+                total: 60000,
+                perfume: 'Downy Mystique',
+                rack: 'RAK-B1',
+                payment: 'LUNAS (QRIS/Tunai)',
+                stage: 4,
+                notes: 'Ambil sore jam 5'
+            },
+            {
+                id: 'INV-LDR-090',
+                customer: 'Ibu Dian Sastro',
+                wa: '0812-9988-1122',
+                service: 'Cuci Komplit Setrika',
+                qty: 6.5,
+                unit: 'kg',
+                pricePerUnit: 8000,
+                total: 52000,
+                perfume: 'Sakura Blossom',
+                rack: 'RAK-A1',
+                payment: 'BELUM BAYAR',
+                stage: 2,
+                notes: 'Pisahkan hijab warna pastel'
+            },
+            {
+                id: 'INV-LDR-091',
+                customer: 'Bpk. Lukman Sardi',
+                wa: '0813-7766-5544',
+                service: 'Cuci Bedcover Besar',
+                qty: 2,
+                unit: 'pcs',
+                pricePerUnit: 35000,
+                total: 70000,
+                perfume: 'Lavender Relax',
+                rack: 'RAK-C3',
+                payment: 'LUNAS (QRIS/Tunai)',
+                stage: 3,
+                notes: 'Bedcover King Size Putih'
+            },
+            {
+                id: 'INV-LDR-092',
+                customer: 'Mas Ardhito Pramono',
+                wa: '0815-4433-2211',
+                service: 'Cuci Sepatu Deep Clean',
+                qty: 2,
+                unit: 'psg',
+                pricePerUnit: 50000,
+                total: 100000,
+                perfume: 'Snappy Fresh',
+                rack: 'RAK-S1',
+                payment: 'LUNAS (QRIS/Tunai)',
+                stage: 1,
+                notes: 'Sneakers putih & suede coklat'
+            },
+            {
+                id: 'INV-LDR-088',
+                customer: 'Ibu Ratna Galih',
+                wa: '0812-3344-5566',
+                service: 'Cuci Komplit Setrika',
+                qty: 5,
+                unit: 'kg',
+                pricePerUnit: 8000,
+                total: 40000,
+                perfume: 'Sakura Blossom',
+                rack: 'RAK-A2',
+                payment: 'LUNAS (QRIS/Tunai)',
+                stage: 5,
+                notes: 'Sudah diambil suami'
+            },
+            {
+                id: 'INV-LDR-087',
+                customer: 'Kel. Pak Bambang',
+                wa: '0818-9900-1122',
+                service: 'Cuci Karpet Masjid/Rumah',
+                qty: 6,
+                unit: 'm²',
+                pricePerUnit: 20000,
+                total: 120000,
+                perfume: 'Snappy Fresh',
+                rack: 'RAK-C3',
+                payment: 'BELUM BAYAR',
+                stage: 3,
+                notes: 'Karpet ruang tamu bulu tebal'
+            }
+        ];
+
+        function formatRp(n) {
+            return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+        }
+
+        function showLaundryToast(msg) {
+            const t = document.getElementById('toastLaundry');
+            document.getElementById('toastLaundryMsg').textContent = msg;
+            t.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => t.classList.add('opacity-0', 'pointer-events-none'), 2600);
+        }
+
+        function switchLaundryTab(tab) {
+            ['kasir', 'kanban', 'portal'].forEach(t => {
+                document.getElementById('view-' + t).classList.add('hidden');
+                const btn = document.getElementById('tabBtn-' + t);
+                btn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white shrink-0 whitespace-nowrap';
+            });
+            document.getElementById('view-' + tab).classList.remove('hidden');
+            const activeBtn = document.getElementById('tabBtn-' + tab);
+            activeBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-sky-500 text-slate-950 shadow shrink-0 whitespace-nowrap';
+
+            if (tab === 'kanban') renderKanbanBoard();
+            if (tab === 'portal') searchCustomerTracking();
+        }
+
+        function scrollToLaundrySection(sectionId) {
+            switchLaundryTab('kasir');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 60);
+        }
+
+        function toggleLaundryFaq(idx) {
+            const ans = document.getElementById(`faq-ans-${idx}`);
+            const icon = document.getElementById(`faq-icon-${idx}`);
+            if (!ans) return;
+            const isHidden = ans.classList.contains('hidden');
+            if (isHidden) {
+                ans.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        function calculateLaundryPrice() {
+            const rawService = document.getElementById('ldrServiceSelect').value;
+            const [serviceName, priceStr, unit] = rawService.split('|');
+            const price = parseFloat(priceStr);
+            const qty = parseFloat(document.getElementById('ldrQtyInput').value || '1');
+            const total = price * qty;
+
+            document.getElementById('unitLabel').textContent = unit;
+            document.getElementById('ldrFormTotalText').textContent = formatRp(total);
+
+            // Live preview update
+            document.getElementById('prvCustomer').textContent = document.getElementById('ldrCustomerName').value || '-';
+            document.getElementById('prvService').textContent = serviceName;
+            const prvImg = document.getElementById('prvServiceImage');
+            if (prvImg) prvImg.src = SERVICE_IMAGE_MAP[serviceName] || 'assets/images/srv-kiloan.jpg';
+            const prvBadge = document.getElementById('prvServiceBadge');
+            if (prvBadge) prvBadge.textContent = serviceName;
+            document.getElementById('prvQty').textContent = `${qty} ${unit} x ${formatRp(price)}`;
+            document.getElementById('prvPerfume').textContent = document.getElementById('ldrPerfumeSelect').value;
+            document.getElementById('prvRack').textContent = document.getElementById('ldrRackSelect').value;
+            document.getElementById('prvTotal').textContent = formatRp(total);
+
+            const payStatus = document.getElementById('ldrPaymentStatus').value;
+            const badge = document.getElementById('previewPaymentBadge');
+            if (payStatus.includes('LUNAS')) {
+                badge.textContent = 'LUNAS';
+                badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800';
+            } else {
+                badge.textContent = 'BELUM BAYAR';
+                badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800';
+            }
+        }
+
+        function handleCreateLaundryOrder(e) {
+            e.preventDefault();
+            const id = `INV-LDR-0${nextOrderNum++}`;
+            const customer = document.getElementById('ldrCustomerName').value;
+            const wa = document.getElementById('ldrCustomerWa').value;
+            const [service, priceStr, unit] = document.getElementById('ldrServiceSelect').value.split('|');
+            const pricePerUnit = parseFloat(priceStr);
+            const qty = parseFloat(document.getElementById('ldrQtyInput').value || '1');
+            const total = pricePerUnit * qty;
+            const perfume = document.getElementById('ldrPerfumeSelect').value;
+            const rack = document.getElementById('ldrRackSelect').value;
+            const payment = document.getElementById('ldrPaymentStatus').value;
+            const notes = document.getElementById('ldrNotes').value;
+
+            const newOrder = {
+                id, customer, wa, service, qty, unit, pricePerUnit, total, perfume, rack, payment, stage: 1, notes
+            };
+            laundryOrders.unshift(newOrder);
+
+            document.getElementById('nextInvoiceLabel').textContent = `INV-LDR-0${nextOrderNum}`;
+            document.getElementById('kanbanTotalBadge').textContent = laundryOrders.length;
+            document.getElementById('statActiveOrders').textContent = `${laundryOrders.filter(o => o.stage < 5).length} Nota`;
+
+            openWaModal(newOrder);
+            renderKanbanBoard();
+        }
+
+        function openWaModal(order) {
+            document.getElementById('mdlId').textContent = order.id;
+            document.getElementById('mdlCustomer').textContent = order.customer;
+            document.getElementById('mdlWa').textContent = order.wa;
+            document.getElementById('mdlRack').textContent = order.rack;
+            document.getElementById('mdlService').textContent = order.service;
+            document.getElementById('mdlQtyPrice').textContent = `${order.qty} ${order.unit} x ${formatRp(order.pricePerUnit)}`;
+            document.getElementById('mdlTotal').textContent = formatRp(order.total);
+            document.getElementById('mdlPerfume').textContent = order.perfume;
+            document.getElementById('mdlStatusBayar').textContent = order.payment;
+
+            const waText = `Halo *${order.customer}*,\nTerima kasih telah mempercayakan cucian Anda di *SmartWash Laundry*.\n\n*No. Nota:* ${order.id}\n*Layanan:* ${order.service}\n*Berat/Jml:* ${order.qty} ${order.unit}\n*Parfum:* ${order.perfume}\n*Rak Simpan:* ${order.rack}\n*Total:* ${formatRp(order.total)} (${order.payment})\n\n*Cek Status Cucian Live:*\nhttps://smartwash.id/track?nota=${order.id}`;
+            document.getElementById('waChatMessage').textContent = waText;
+
+            const modal = document.getElementById('waReceiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeWaModal() {
+            const modal = document.getElementById('waReceiptModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closeWaModalAndGoKanban() {
+            closeWaModal();
+            switchLaundryTab('kanban');
+        }
+
+        // TAB 2: KANBAN FUNCTIONS
+        function renderKanbanBoard() {
+            for (let s = 1; s <= 5; s++) {
+                const colEl = document.getElementById(`kanban-col-${s}`);
+                const items = laundryOrders.filter(o => o.stage === s);
+                document.getElementById(`count-col-${s}`).textContent = items.length;
+
+                colEl.innerHTML = items.map(o => {
+                    const isPaid = o.payment.includes('LUNAS');
+                    const srvImg = SERVICE_IMAGE_MAP[o.service] || 'assets/images/srv-kiloan.jpg';
+                    let actionBtn = '';
+                    if (o.stage < 4) {
+                        actionBtn = `
+                        <button onclick="advanceOrderStage('${o.id}')" class="w-full mt-2.5 py-2 rounded-xl bg-slate-900 hover:bg-sky-600 text-white font-bold text-[11px] flex items-center justify-center gap-1.5 transition">
+                            <span>Majukan Status</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>`;
+                    } else if (o.stage === 4) {
+                        actionBtn = `
+                        <div class="grid grid-cols-2 gap-1.5 mt-2.5">
+                            <button onclick="sendReadyWa('${o.id}')" class="py-2 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] flex items-center justify-center gap-1 transition">
+                                <i class="fa-brands fa-whatsapp"></i> Kirim WA
+                            </button>
+                            <button onclick="advanceOrderStage('${o.id}')" class="py-2 px-2 rounded-xl bg-slate-900 hover:bg-slate-700 text-white font-bold text-[10px] flex items-center justify-center gap-1 transition">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Diambil
+                            </button>
+                        </div>`;
+                    } else {
+                        actionBtn = `
+                        <button onclick="quickTrackFromKanban('${o.id}')" class="w-full mt-2.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold text-[10px]">
+                            Selesai & Diserahkan
+                        </button>`;
+                    }
+
+                    return `
+                    <div class="bg-white rounded-xl p-3 border border-slate-200/90 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center justify-between gap-1 mb-2">
+                            <span onclick="quickTrackFromKanban('${o.id}')" class="font-mono font-extrabold text-[11px] text-sky-700 hover:underline cursor-pointer tabular-nums">${o.id}</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-extrabold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                                ${isPaid ? 'LUNAS' : 'BELUM BAYAR'}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <img src="${srvImg}" alt="${o.service}" class="w-10 h-10 rounded-lg object-cover border border-slate-200 shrink-0">
+                            <div class="min-w-0">
+                                <h4 class="text-xs font-extrabold text-slate-900 truncate">${o.customer}</h4>
+                                <p class="text-[11px] font-semibold text-slate-600 truncate">${o.service}</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] tabular-nums">
+                            <span class="font-mono font-bold text-slate-700">${o.qty} ${o.unit} • ${formatRp(o.total)}</span>
+                            <span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 font-mono font-bold text-[10px]">${o.rack}</span>
+                        </div>
+                        ${actionBtn}
+                    </div>`;
+                }).join('');
+            }
+            document.getElementById('kanbanTotalBadge').textContent = laundryOrders.length;
+        }
+
+        function advanceOrderStage(orderId) {
+            const ord = laundryOrders.find(o => o.id === orderId);
+            if (!ord || ord.stage >= 5) return;
+            ord.stage++;
+            if (ord.stage === 5) {
+                ord.payment = 'LUNAS (QRIS/Tunai)';
+            }
+            renderKanbanBoard();
+            const stgObj = stages.find(s => s.id === ord.stage);
+            showLaundryToast(`Nota ${ord.id} (${ord.customer}) pindah ke: ${stgObj.title}`);
+        }
+
+        function sendReadyWa(orderId) {
+            const ord = laundryOrders.find(o => o.id === orderId);
+            if (!ord) return;
+            showLaundryToast(`Notifikasi WA Selesai dikirim ke ${ord.customer} (${ord.wa}) — Rak ${ord.rack}!`);
+        }
+
+        function quickTrackFromKanban(orderId) {
+            document.getElementById('trackInputId').value = orderId;
+            switchLaundryTab('portal');
+        }
+
+        // TAB 3: PUBLIC CUSTOMER TRACKING PORTAL
+        function quickTrack(orderId) {
+            document.getElementById('trackInputId').value = orderId;
+            searchCustomerTracking();
+        }
+
+        function searchCustomerTracking() {
+            const query = document.getElementById('trackInputId').value.trim().toUpperCase();
+            const box = document.getElementById('trackingResultBox');
+            const ord = laundryOrders.find(o => o.id.toUpperCase() === query) || laundryOrders[0];
+
+            const isPaid = ord.payment.includes('LUNAS');
+            const srvImg = SERVICE_IMAGE_MAP[ord.service] || 'assets/images/srv-kiloan.jpg';
+
+            const stepsHtml = stages.map(s => {
+                const done = ord.stage >= s.id;
+                const current = ord.stage === s.id;
+                return `
+                <div class="flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 tabular-nums ${
+                        current ? 'bg-sky-600 text-white ring-4 ring-sky-100' :
+                        done ? 'bg-emerald-500 text-white' : 'bg-slate-100 text-slate-400'
+                    }">
+                        ${done && !current ? '<i class="fa-solid fa-check"></i>' : s.id}
+                    </div>
+                    <div class="flex-1 pb-4 border-b border-slate-100">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold ${done ? 'text-slate-900' : 'text-slate-400'}">${s.title}</h4>
+                            ${current ? '<span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-700 font-bold text-[10px]">Posisi Saat Ini</span>' : ''}
+                        </div>
+                        <p class="text-[11px] ${done ? 'text-slate-600' : 'text-slate-400'} mt-0.5">${s.desc}</p>
+                    </div>
+                </div>`;
+            }).join('');
+
+            box.innerHTML = `
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <img src="${srvImg}" alt="${ord.service}" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-sm shrink-0">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-400 uppercase">Hasil Pelacakan Nota</span>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <h3 class="text-xl font-mono font-extrabold text-sky-600 tabular-nums">${ord.id}</h3>
+                                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${ord.payment}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[11px] text-slate-400 block">Lokasi Rak Simpan</span>
+                        <span class="font-mono font-extrabold text-sm px-3 py-1 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 inline-block mt-0.5 tabular-nums">${ord.rack}</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 p-4 rounded-2xl border border-slate-200/80 tabular-nums">
+                    <div>
+                        <span class="text-[10px] text-slate-400 block">Nama Pelanggan</span>
+                        <span class="font-bold text-slate-800">${ord.customer}</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 block">Paket Layanan</span>
+                        <span class="font-bold text-slate-800">${ord.service}</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 block">Berat & Parfum</span>
+                        <span class="font-bold text-slate-800">${ord.qty} ${ord.unit} • ${ord.perfume}</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 block">Total Biaya</span>
+                        <span class="font-mono font-extrabold text-sky-700">${formatRp(ord.total)}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Tahapan Proses Pencucian</h4>
+                    <div class="space-y-1">
+                        ${stepsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Bind live input listeners for preview
+        ['ldrCustomerName', 'ldrCustomerWa'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateLaundryPrice);
+        });
+
+        // Init
+        calculateLaundryPrice();
+        renderKanbanBoard();
+        searchCustomerTracking();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arka Garment & Print — Pabrik Konveksi Seragam Kerja, Kaos Sablon, Jersey & Kemasan</title>
+    <meta name="description" content="Pabrik konveksi tangan pertama untuk Kemeja PDH/PDL Bordir Komputer, Kaos Sablon Plastisol, Jaket, Jersey Sublimasi, dan Totebag. Hitung harga grosir bertingkat otomatis.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        studio: {
+                            paper: '#F6F5F2',
+                            ink: '#111315',
+                            orange: '#FF4D1C',
+                            indigo: '#4F46E5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            background: #27272A;
+            height: 6px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -7px;
+            background-color: #FF4D1C;
+            height: 20px;
+            width: 20px;
+            border: 2px solid #FFFFFF;
+        }
+        .crop-mark-grid {
+            background-image: linear-gradient(to right, rgba(17, 19, 21, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(17, 19, 21, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .dark-tech-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-[#F6F5F2] text-[#111315] font-sans antialiased selection:bg-[#FF4D1C] selection:text-white">
+
+    <!-- TOP DEMO BAR -->
+    <div class="bg-[#111315] text-zinc-300 border-b border-zinc-800 text-xs py-2.5 px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-mono font-medium text-[#FF4D1C] hover:text-orange-300 transition-colors whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                <span>KEMBALI KE KATALOG PORTOFOLIO UMKM</span>
+            </a>
+            <div class="flex items-center gap-4 text-zinc-400 font-mono text-[11px] shrink-0">
+                <span class="hidden md:inline-flex items-center gap-2 whitespace-nowrap">
+                    <span class="w-2 h-2 bg-[#FF4D1C]"></span>
+                    PROYEK #03 // KONVEKSI GARMENT & SABLON B2B
+                </span>
+                <a href="#kalkulator-grosir" class="bg-zinc-900 text-white border border-zinc-700 px-2.5 py-0.5 font-semibold hover:border-[#FF4D1C] transition whitespace-nowrap">
+                    SIMULASI HARGA PABRIK
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-[#F6F5F2]/95 backdrop-blur-md border-b border-zinc-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 shrink-0">
+                <img src="assets/logo.svg" alt="Arka Garment & Print" class="h-11 w-auto">
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-zinc-700">
+                <a href="#kalkulator-grosir" class="text-[#FF4D1C] font-bold flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-layer-group text-xs"></i> Kalkulator
+                </a>
+                <a href="#katalog-bahan" class="hover:text-[#111315] transition-colors whitespace-nowrap">Katalog Kain</a>
+                <a href="#portofolio" class="hover:text-[#111315] transition-colors whitespace-nowrap">Portofolio</a>
+                <a href="#alur-produksi" class="hover:text-[#111315] transition-colors whitespace-nowrap">SOP Pabrik</a>
+                <a href="#klien" class="hover:text-[#111315] transition-colors whitespace-nowrap">Ulasan Klien</a>
+                <a href="#faq" class="hover:text-[#111315] transition-colors whitespace-nowrap">FAQ</a>
+            </nav>
+
+            <!-- CTA -->
+            <div class="hidden sm:flex items-center gap-2.5 shrink-0">
+                <button type="button" id="openSizeChartNavBtn"
+                    class="font-mono text-xs font-semibold text-[#111315] hover:bg-zinc-200 border border-zinc-400 bg-white px-3.5 py-2.5 transition whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-ruler-combined text-[#4F46E5] mr-1"></i> SIZE CHART
+                </button>
+                <a href="#kalkulator-grosir"
+                   class="inline-flex items-center gap-2 bg-[#111315] hover:bg-[#FF4D1C] text-white font-bold text-xs uppercase tracking-wider px-4 py-3 transition-colors whitespace-nowrap shrink-0">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Mockup Gratis</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden text-[#111315] p-2.5 border border-zinc-400 bg-white shrink-0">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-[#F6F5F2] border-b border-zinc-300 px-4 pt-3 pb-6 space-y-2.5 text-sm font-semibold text-[#111315]">
+            <a href="#kalkulator-grosir" class="block py-2 text-[#FF4D1C] font-bold">Kalkulator Harga Grosir Bertingkat</a>
+            <a href="#katalog-bahan" class="block py-2 hover:text-[#FF4D1C]">Katalog Bahan Kain & Size Chart</a>
+            <a href="#portofolio" class="block py-2 hover:text-[#FF4D1C]">Galeri Seragam, Kaos & Jersey</a>
+            <a href="#alur-produksi" class="block py-2 hover:text-[#FF4D1C]">5 Tahap Produksi Pabrik</a>
+            <a href="#klien" class="block py-2 hover:text-[#FF4D1C]">Ulasan & Foto Produksi Klien</a>
+            <a href="#faq" class="block py-2 hover:text-[#FF4D1C]">Pertanyaan Umum (FAQ)</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-[#F6F5F2] text-[#111315] overflow-hidden crop-mark-grid py-14 lg:py-20 border-b border-zinc-300">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2.5 bg-white border border-zinc-300 px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-zinc-800">
+                        <span class="bg-[#FF4D1C] text-white px-2 py-0.5 text-[10px] font-bold">PABRIK TANGAN PERTAMA</span>
+                        <span>KAPASITAS 25.000 PCS/BULAN • GARANSI JAHITAN & PRESISI WAKTU</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.08] text-[#111315]">
+                        Manufaktur Konveksi <span class="underline decoration-[#FF4D1C] decoration-4 underline-offset-4">Seragam Kerja, Kaos Sablon, Jersey</span> & Kemasan Korporat.
+                    </h1>
+
+                    <p class="text-zinc-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Vendor produksi garmen terintegrasi untuk 500+ Perusahaan, Instansi BUMN, Komunitas, dan Brand Clothing. Dilengkapi mesin <strong>Bordir Komputer 12 Kepala Barudan Jepang</strong>, meja sablon Rotary otomatis, dan mesin Sublimasi Epson Original.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+                        <a href="#kalkulator-grosir" class="inline-flex items-center justify-center gap-3 bg-[#FF4D1C] hover:bg-[#111315] text-white font-bold px-7 py-4 transition-colors text-sm uppercase tracking-wider">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Hitung Harga Grosir & Diskon</span>
+                        </a>
+                        <a href="#katalog-bahan" class="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-zinc-100 text-[#111315] border border-zinc-400 font-bold px-6 py-4 transition-colors text-sm uppercase tracking-wider">
+                            <i class="fa-solid fa-swatchbook text-[#4F46E5]"></i>
+                            <span>Spesifikasi Kain & Size Chart</span>
+                        </a>
+                    </div>
+
+                    <!-- Technical Spec Metrics -->
+                    <div class="grid grid-cols-3 gap-0 pt-6 border-t border-zinc-300">
+                        <div class="bg-white border border-zinc-300 p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-[#FF4D1C]">-22%</div>
+                            <div class="text-xs text-zinc-600 font-medium mt-1">Potongan Harga Pabrik Order ≥120 Pcs</div>
+                        </div>
+                        <div class="bg-white border-y border-r border-zinc-300 p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-[#111315]">RP 0</div>
+                            <div class="text-xs text-zinc-600 font-medium mt-1">Biaya Desain Mockup 3D & Sample Fisik*</div>
+                        </div>
+                        <div class="bg-white border-y border-r border-zinc-300 p-4">
+                            <div class="font-mono text-2xl sm:text-3xl font-bold text-[#4F46E5]">100% QC</div>
+                            <div class="text-xs text-zinc-600 font-medium mt-1">Garansi Retur Ganti Baru Cacat Produksi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Visual -->
+                <div class="lg:col-span-5">
+                    <div class="relative bg-white border-2 border-[#111315] p-3 shadow-[8px_8px_0px_#111315]">
+                        <!-- Technical Header Bar -->
+                        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-zinc-200 font-mono text-[11px]">
+                            <span class="text-zinc-700 font-semibold">
+                                <i class="fa-solid fa-industry text-[#FF4D1C] mr-1"></i> WORKSHOP BANDUNG & JAKARTA
+                            </span>
+                            <span class="bg-[#111315] text-white px-2 py-0.5 font-bold">
+                                FAKTUR PAJAK PPN TERSEDIA
+                            </span>
+                        </div>
+
+                        <div class="relative overflow-hidden bg-zinc-900">
+                            <img src="assets/images/porto-kaos.jpg"
+                                 alt="Produksi Konveksi Seragam dan Kaos Sablon Arka Garment"
+                                 class="w-full h-[390px] object-cover">
+                            <div class="absolute bottom-3 left-3 right-3 bg-[#111315]/95 text-white border border-zinc-700 p-4">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <div>
+                                        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FF4D1C]">SPESIFIKASI JAHITAN EKSPOR</span>
+                                        <h2 class="text-sm font-bold text-white">Jahitan Rantai 3 Jarum + Steam Uap Presisi</h2>
+                                    </div>
+                                    <span class="font-mono text-[11px] bg-[#4F46E5] text-white px-2.5 py-0.5 font-semibold">MIN. 12 PCS</span>
+                                </div>
+                                <p class="text-xs text-zinc-300 leading-relaxed">
+                                    Melewati 3 tahap Quality Control (cutting pola laser, kerapatan obras benang, dan curing sablon 160°C) serta dikemas polybag satuan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE KALKULATOR HARGA GROSIR BERTINGKAT (TIERED PRICING) -->
+    <section id="kalkulator-grosir" class="py-20 bg-white border-b border-zinc-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[#4F46E5] mb-2">
+                        [01] TIERED WHOLESALE PRICING ENGINE
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111315] tracking-tight">
+                        Kalkulator Harga Grosir Bertingkat
+                    </h2>
+                </div>
+                <p class="text-zinc-600 text-sm max-w-md">
+                    Semakin tinggi kuantitas produksi, semakin besar diskon harga pabrik yang dihitung otomatis. Pilih artikel konveksi dan gramasi kain di bawah ini.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start bg-[#111315] text-white p-6 sm:p-10 border-2 border-[#111315] dark-tech-grid">
+                
+                <!-- Left Column: Product, Fabric & Quantity Controls (7 cols) -->
+                <div class="lg:col-span-7 space-y-7">
+                    
+                    <!-- Step 1: Pilih Produk -->
+                    <div>
+                        <label class="block font-mono text-xs font-bold text-[#FF4D1C] uppercase tracking-wider mb-3">
+                            01 // PILIH ARTIKEL PRODUKSI KONVEKSI
+                        </label>
+                        <div class="grid sm:grid-cols-2 gap-3" id="productBtnGroup">
+                            <button type="button" data-product="Kaos Sablon Plastisol" data-base="75000" data-lead="7"
+                                class="prod-btn active text-left p-4 border-2 border-orange-500 bg-orange-500/15 transition flex items-start gap-3">
+                                <div class="w-10 h-10 bg-[#FF4D1C] text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shirt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-white">Kaos Sablon Plastisol</div>
+                                    <div class="font-mono text-xs text-orange-300 font-semibold mt-0.5">Mulai Rp 58.500/pcs <span class="text-zinc-400 font-normal">(Tier Pabrik)</span></div>
+                                </div>
+                            </button>
+
+                            <button type="button" data-product="Kemeja PDH / PDL Bordir" data-base="135000" data-lead="10"
+                                class="prod-btn text-left p-4 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 transition flex items-start gap-3">
+                                <div class="w-10 h-10 bg-zinc-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-white">Kemeja PDH / PDL Bordir</div>
+                                    <div class="font-mono text-xs text-indigo-300 font-semibold mt-0.5">Bordir Komputer 4 Titik Logo</div>
+                                </div>
+                            </button>
+
+                            <button type="button" data-product="Jaket Bomber / Hoodie" data-base="165000" data-lead="12"
+                                class="prod-btn text-left p-4 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 transition flex items-start gap-3">
+                                <div class="w-10 h-10 bg-zinc-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-vest-patches"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-white">Jaket Bomber / Hoodie</div>
+                                    <div class="font-mono text-xs text-indigo-300 font-semibold mt-0.5">Full Furing / Cotton Fleece 280gsm</div>
+                                </div>
+                            </button>
+
+                            <button type="button" data-product="Jersey Full Printing" data-base="110000" data-lead="8"
+                                class="prod-btn text-left p-4 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 transition flex items-start gap-3">
+                                <div class="w-10 h-10 bg-zinc-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-futbol"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-white">Jersey Full Printing Sublim</div>
+                                    <div class="font-mono text-xs text-indigo-300 font-semibold mt-0.5">Termasuk Custom Nama & Nomor</div>
+                                </div>
+                            </button>
+
+                            <button type="button" data-product="Totebag Canvas Custom" data-base="38000" data-lead="5"
+                                class="prod-btn sm:col-span-2 text-left p-4 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 transition flex items-center justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-zinc-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-sm text-white">Totebag Canvas / Goodie Bag Seminar & Kemasan</div>
+                                        <div class="text-xs text-zinc-400">Sablon DTF / Screen Printing + Resleting YKK Jepang</div>
+                                    </div>
+                                </div>
+                                <span class="font-mono text-[11px] font-bold text-[#FF4D1C] shrink-0 uppercase">SOUVENIR & EVENT</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Pilih Bahan Kain -->
+                    <div>
+                        <label class="block font-mono text-xs font-bold text-[#FF4D1C] uppercase tracking-wider mb-3">
+                            02 // PILIH SPESIFIKASI KAIN UTAMA
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="fabricBtnGroup">
+                            <button type="button" data-fabric="Cotton Combed 30s" data-addon="0"
+                                class="fab-btn active p-3 border-2 border-indigo-500 bg-indigo-500/20 text-left transition">
+                                <div class="font-bold text-xs text-white">Combed 30s</div>
+                                <div class="font-mono text-[10px] text-indigo-300 mt-0.5">150gsm (+Rp 0)</div>
+                            </button>
+                            <button type="button" data-fabric="Cotton Combed 24s" data-addon="6000"
+                                class="fab-btn p-3 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 text-left transition">
+                                <div class="font-bold text-xs text-white">Combed 24s</div>
+                                <div class="font-mono text-[10px] text-zinc-400 mt-0.5">180gsm (+Rp 6rb)</div>
+                            </button>
+                            <button type="button" data-fabric="American Drill" data-addon="8000"
+                                class="fab-btn p-3 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 text-left transition">
+                                <div class="font-bold text-xs text-white">American Drill</div>
+                                <div class="font-mono text-[10px] text-zinc-400 mt-0.5">PDH (+Rp 8rb)</div>
+                            </button>
+                            <button type="button" data-fabric="Nagata Drill" data-addon="18000"
+                                class="fab-btn p-3 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 text-left transition">
+                                <div class="font-bold text-xs text-white">Nagata Drill</div>
+                                <div class="font-mono text-[10px] text-zinc-400 mt-0.5">Japan (+Rp 18rb)</div>
+                            </button>
+                            <button type="button" data-fabric="Dryfit Milano UV" data-addon="5000"
+                                class="fab-btn col-span-2 sm:col-span-1 p-3 border-2 border-slate-800 bg-slate-900 hover:border-zinc-600 text-left transition">
+                                <div class="font-bold text-xs text-white">Dryfit Milano</div>
+                                <div class="font-mono text-[10px] text-zinc-400 mt-0.5">Sport (+Rp 5rb)</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Jumlah Pesanan & Tier Visualizer -->
+                    <div class="bg-zinc-900 border border-zinc-800 p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <label for="qtyInput" class="font-mono text-xs font-bold text-[#FF4D1C] uppercase tracking-wider">
+                                03 // KUANTITAS PRODUKSI (MIN. 12 PCS / 1 LUSIN)
+                            </label>
+                            <div class="flex items-center gap-2">
+                                <input type="number" id="qtyInput" value="60" min="12" max="5000"
+                                    class="w-24 bg-[#111315] border border-[#FF4D1C] px-3 py-1.5 text-right font-mono font-bold text-lg text-[#FF4D1C] focus:outline-none">
+                                <span class="font-mono text-xs font-bold text-zinc-300">PCS</span>
+                            </div>
+                        </div>
+
+                        <input type="range" id="qtySlider" min="12" max="300" value="60" step="1" class="w-full">
+
+                        <!-- Quick Preset Lusin Buttons -->
+                        <div class="flex flex-wrap gap-2 pt-1 font-mono">
+                            <button type="button" data-preset="24" class="preset-qty-btn text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 font-semibold">
+                                2 Lusin (24 Pcs)
+                            </button>
+                            <button type="button" data-preset="60" class="preset-qty-btn text-xs bg-indigo-950 hover:bg-indigo-900 text-indigo-200 border border-indigo-500/40 px-3 py-1.5 font-semibold">
+                                5 Lusin (60 Pcs • -12%)
+                            </button>
+                            <button type="button" data-preset="120" class="preset-qty-btn text-xs bg-orange-950/60 hover:bg-orange-900/60 text-orange-300 border border-orange-500/40 px-3 py-1.5 font-semibold">
+                                10 Lusin (120 Pcs • -22%)
+                            </button>
+                            <button type="button" data-preset="250" class="preset-qty-btn text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-1.5 font-semibold">
+                                250 Pcs (Partai Besar)
+                            </button>
+                        </div>
+
+                        <!-- 3 Tier Cards Indicator -->
+                        <div class="grid grid-cols-3 gap-2.5 pt-2 font-mono">
+                            <div id="tierCard1" class="p-3 border border-slate-700 bg-slate-950/70 text-center">
+                                <div class="text-[11px] font-bold text-zinc-400">12 – 49 PCS</div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Harga Standar</div>
+                                <div class="text-[10px] text-zinc-500">DISKON 0%</div>
+                            </div>
+                            <div id="tierCard2" class="p-3 border-2 border-indigo-500 bg-indigo-500/15 text-center">
+                                <div class="text-[11px] font-bold text-indigo-300">50 – 119 PCS</div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Diskon Grosir</div>
+                                <div class="text-[10px] font-bold text-emerald-400">HEMAT 12%</div>
+                            </div>
+                            <div id="tierCard3" class="p-3 border border-slate-700 bg-slate-950/70 text-center">
+                                <div class="text-[11px] font-bold text-orange-300">≥ 120 PCS</div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Harga Pabrik</div>
+                                <div class="text-[10px] font-bold text-[#FF4D1C]">HEMAT 22%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Live Wholesale Output Card (5 cols) -->
+                <div class="lg:col-span-5 bg-zinc-900 p-6 sm:p-7 border border-zinc-700 space-y-5">
+                    <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+                        <div class="bg-[#F6F5F2] px-2.5 py-1">
+                            <img src="assets/logo.svg" alt="Arka Garment" class="h-6 w-auto">
+                        </div>
+                        <span class="font-mono text-[11px] text-zinc-400">LEMBAR ESTIMasi B2B</span>
+                    </div>
+
+                    <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                        <div>
+                            <span id="activeTierBadge" class="inline-block bg-emerald-500 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 mb-1">
+                                Tier Grosir Aktif (Diskon 12%)
+                            </span>
+                            <h3 class="text-lg font-extrabold text-white" id="outProdName">Kaos Sablon Plastisol</h3>
+                            <p class="font-mono text-xs text-indigo-300" id="outFabricName">Bahan: Cotton Combed 30s</p>
+                        </div>
+                        <div class="text-right font-mono">
+                            <span class="text-[11px] text-zinc-400 block uppercase">Kuantitas</span>
+                            <span id="outQtyBadge" class="text-lg font-bold text-[#FF4D1C]">60 Pcs</span>
+                        </div>
+                    </div>
+
+                    <!-- Price per Pcs Highlight -->
+                    <div class="bg-[#111315] border border-zinc-700 p-5 text-center">
+                        <span class="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">Harga Netto Pabrik per Pcs</span>
+                        <div class="flex items-center justify-center gap-3 mt-1 font-mono">
+                            <span id="strikethroughPrice" class="text-sm text-zinc-500 line-through">Rp 75.000</span>
+                            <span id="unitPriceOutput" class="text-3xl sm:text-4xl font-bold text-[#FF4D1C]">Rp 66.000</span>
+                            <span class="text-xs text-zinc-400">/ pcs</span>
+                        </div>
+                        <p id="tierUpsellHint" class="text-xs text-indigo-300 mt-2.5 font-mono">
+                            [INFO] Tambah <strong>60 pcs</strong> lagi untuk mengaktifkan <strong>Harga Pabrik (Diskon 22%)</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Breakdown Rows -->
+                    <div class="space-y-2.5 text-sm">
+                        <div class="flex items-center justify-between bg-[#111315] px-4 py-3 border border-zinc-800">
+                            <span class="text-zinc-300">Total Nilai Produksi</span>
+                            <span id="grandTotalOutput" class="font-mono font-bold text-white text-base">Rp 3.960.000</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-emerald-950/40 px-4 py-3 border border-emerald-500/30">
+                            <span class="text-emerald-300 font-semibold">Total Efisiensi Anggaran</span>
+                            <span id="totalSavedOutput" class="font-mono font-bold text-emerald-400 text-base">Rp 540.000</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-[#111315] px-4 py-3 border border-zinc-800">
+                            <span class="text-zinc-300">Estimasi Lead Time Pabrik</span>
+                            <span id="leadTimeOutput" class="font-mono font-bold text-indigo-300">7 – 9 Hari Kerja</span>
+                        </div>
+                    </div>
+
+                    <!-- Custom Notes / Organization Name -->
+                    <div>
+                        <label for="orgNameInput" class="block font-mono text-[11px] font-semibold text-zinc-300 uppercase mb-1.5">
+                            Nama Perusahaan / Komunitas / Instansi:
+                        </label>
+                        <input type="text" id="orgNameInput" placeholder="Contoh: PT Maju Jaya / Panitia Dies Natalis..."
+                            class="w-full bg-[#111315] border border-zinc-700 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF4D1C]">
+                    </div>
+
+                    <button type="button" id="orderWaBtn"
+                        class="w-full bg-[#FF4D1C] hover:bg-orange-600 text-white font-bold py-4 px-6 transition-colors flex items-center justify-center gap-2.5 text-sm uppercase tracking-wider">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Kirim Spesifikasi & Minta Mockup 3D</span>
+                    </button>
+
+                    <p class="font-mono text-[11px] text-center text-zinc-400">
+                        *Gratis 3 alternatif Mockup Digital 3D sebelum pembayaran DP produksi.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE KATALOG BAHAN KAIN & SIZE CHART TABS / MODAL -->
+    <section id="katalog-bahan" class="py-20 bg-[#F6F5F2] border-b border-zinc-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left: Interactive Fabric Guide (6 cols) -->
+                <div class="lg:col-span-6 bg-white p-6 sm:p-8 border border-zinc-300">
+                    <span class="font-mono text-[#4F46E5] font-bold text-xs uppercase tracking-widest">[02] PANDUAN TEKSTIL & GRAMASI</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#111315] mt-1">Spesifikasi Teknis Bahan Kain</h2>
+                    <p class="text-xs sm:text-sm text-zinc-600 mt-1 mb-5">Pilih jenis kain untuk memeriksa gramasi (GSM), indeks serap keringat, dan peruntukan produksi.</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6" id="fabricGuideTabs">
+                        <button type="button" data-fguide="combed30s" class="fguide-btn active px-3.5 py-2 text-xs font-mono font-bold bg-[#111315] text-white">
+                            Cotton Combed 30s
+                        </button>
+                        <button type="button" data-fguide="combed24s" class="fguide-btn px-3.5 py-2 text-xs font-mono font-semibold bg-zinc-100 text-zinc-700 hover:bg-zinc-200">
+                            Cotton Combed 24s
+                        </button>
+                        <button type="button" data-fguide="americandrill" class="fguide-btn px-3.5 py-2 text-xs font-mono font-semibold bg-zinc-100 text-zinc-700 hover:bg-zinc-200">
+                            American Drill
+                        </button>
+                        <button type="button" data-fguide="nagatadrill" class="fguide-btn px-3.5 py-2 text-xs font-mono font-semibold bg-zinc-100 text-zinc-700 hover:bg-zinc-200">
+                            Nagata Drill Japan
+                        </button>
+                        <button type="button" data-fguide="dryfit" class="fguide-btn px-3.5 py-2 text-xs font-mono font-semibold bg-zinc-100 text-zinc-700 hover:bg-zinc-200">
+                            Dryfit Milano
+                        </button>
+                    </div>
+
+                    <div id="fabricGuideContent" class="bg-[#F6F5F2] p-5 border border-zinc-300 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span id="fgBadge" class="font-mono text-[11px] font-bold uppercase text-[#4F46E5] bg-indigo-50 border border-indigo-200 px-2.5 py-0.5">100% Serat Kapas Murni</span>
+                                <h3 id="fgTitle" class="text-xl font-extrabold text-[#111315] mt-1.5">Cotton Combed 30s Knitto / Kahatex</h3>
+                            </div>
+                            <span id="fgGramasi" class="font-mono text-xs font-bold bg-[#111315] text-white px-3 py-1.5">140–150 gsm</span>
+                        </div>
+                        <p id="fgDesc" class="text-sm text-zinc-600 leading-relaxed">
+                            Bahan favorit distro dan kaos event di iklim tropis Indonesia. Tekstur rajutan single-knit yang sangat halus, dingin di kulit, tidak berbulu, dan menyerap keringat secara maksimal.
+                        </p>
+                        <div class="grid grid-cols-3 gap-3 pt-2 text-xs">
+                            <div class="bg-white p-3 border border-zinc-300">
+                                <span class="text-zinc-500 block font-mono text-[10px] uppercase">Daya Serap</span>
+                                <strong id="fgAbsorb" class="font-mono text-emerald-700">GRADE A+ (98%)</strong>
+                            </div>
+                            <div class="bg-white p-3 border border-zinc-300">
+                                <span class="text-zinc-500 block font-mono text-[10px] uppercase">Katalog Warna</span>
+                                <strong id="fgColors" class="font-mono text-[#111315]">48 Warna Reaktif</strong>
+                            </div>
+                            <div class="bg-white p-3 border border-zinc-300">
+                                <span class="text-zinc-500 block font-mono text-[10px] uppercase">Rekomendasi</span>
+                                <strong id="fgUse" class="text-[#4F46E5]">Kaos Sablon & Gathering</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Size Chart (S - 3XL) with Body Weight/Height Recommender (6 cols) -->
+                <div class="lg:col-span-6 bg-white p-6 sm:p-8 border border-zinc-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[03] STANDAR POLA REGULAR ASIA</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#111315] mt-1">Tabel Size Chart (S – 3XL)</h2>
+                        </div>
+                        <span class="font-mono bg-zinc-100 border border-zinc-300 text-zinc-800 text-xs font-semibold px-3 py-1">Toleransi ±1 cm</span>
+                    </div>
+
+                    <!-- Size Chart Table -->
+                    <div class="overflow-x-auto mt-5 border border-zinc-300">
+                        <table class="w-full text-left text-xs sm:text-sm">
+                            <thead class="bg-[#111315] text-white uppercase font-mono text-xs">
+                                <tr>
+                                    <th class="py-3 px-4">Size</th>
+                                    <th class="py-3 px-4">Lebar Dada</th>
+                                    <th class="py-3 px-4">Panjang Badan</th>
+                                    <th class="py-3 px-4">Estimasi BB</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-200 font-mono text-xs">
+                                <tr class="size-row hover:bg-zinc-50 transition cursor-pointer" data-size="S">
+                                    <td class="py-2.5 px-4 font-bold text-[#111315]">S (Small)</td>
+                                    <td class="py-2.5 px-4">48 cm</td>
+                                    <td class="py-2.5 px-4">68 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">45 – 55 kg</td>
+                                </tr>
+                                <tr class="size-row hover:bg-zinc-50 transition cursor-pointer" data-size="M">
+                                    <td class="py-2.5 px-4 font-bold text-[#111315]">M (Medium)</td>
+                                    <td class="py-2.5 px-4">50 cm</td>
+                                    <td class="py-2.5 px-4">70 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">55 – 65 kg</td>
+                                </tr>
+                                <tr class="size-row bg-indigo-50/70 hover:bg-indigo-50 transition cursor-pointer" data-size="L">
+                                    <td class="py-2.5 px-4 font-bold text-[#4F46E5]">L (Large / Standar)</td>
+                                    <td class="py-2.5 px-4">52 cm</td>
+                                    <td class="py-2.5 px-4">72 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">65 – 75 kg</td>
+                                </tr>
+                                <tr class="size-row hover:bg-zinc-50 transition cursor-pointer" data-size="XL">
+                                    <td class="py-2.5 px-4 font-bold text-[#111315]">XL (Extra Large)</td>
+                                    <td class="py-2.5 px-4">54 cm</td>
+                                    <td class="py-2.5 px-4">74 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">75 – 85 kg</td>
+                                </tr>
+                                <tr class="size-row hover:bg-zinc-50 transition cursor-pointer" data-size="XXL">
+                                    <td class="py-2.5 px-4 font-bold text-[#FF4D1C]">XXL (Jumbo +5rb)</td>
+                                    <td class="py-2.5 px-4">57 cm</td>
+                                    <td class="py-2.5 px-4">76 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">85 – 95 kg</td>
+                                </tr>
+                                <tr class="size-row hover:bg-zinc-50 transition cursor-pointer" data-size="3XL">
+                                    <td class="py-2.5 px-4 font-bold text-[#FF4D1C]">3XL (Big Size +10rb)</td>
+                                    <td class="py-2.5 px-4">60 cm</td>
+                                    <td class="py-2.5 px-4">78 cm</td>
+                                    <td class="py-2.5 px-4 text-zinc-500">95 – 115 kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mini Interactive Size Finder -->
+                    <div class="mt-4 bg-[#111315] text-white p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div class="text-xs">
+                            <strong class="font-mono text-[#FF4D1C] block uppercase">Kalkulator Ukuran Otomatis:</strong>
+                            <span class="text-zinc-300">Masukkan berat badan (kg) untuk rekomendasi pola size:</span>
+                        </div>
+                        <div class="flex items-center gap-2 font-mono">
+                            <input type="number" id="weightCheckInput" value="68" min="35" max="140"
+                                class="w-20 bg-zinc-900 border border-zinc-600 px-2.5 py-1.5 text-center font-bold text-sm text-white">
+                            <span class="text-xs text-zinc-400">KG →</span>
+                            <span id="recommendedSizeBadge" class="bg-[#FF4D1C] text-white font-bold text-xs px-3 py-1.5">
+                                Size L (52 x 72 cm)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO GALLERY OF FINISHED UNIFORMS / JERSEYS -->
+    <section id="portofolio" class="py-20 bg-white border-b border-zinc-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="font-mono text-[#4F46E5] font-bold text-xs uppercase tracking-widest">[04] DOKUMENTASI PRODUKSI AKTUAL</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111315] mt-1">Arsip Produksi Arka Garment</h2>
+                </div>
+                <p class="text-zinc-600 text-sm max-w-md">Lebih dari 350.000+ potong pakaian seragam dan merchandise telah didistribusikan ke seluruh Indonesia.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="group border border-zinc-300 bg-[#F6F5F2] hover:border-[#111315] transition">
+                    <div class="h-60 overflow-hidden relative bg-zinc-900">
+                        <img src="assets/images/porto-kaos.jpg"
+                             alt="Kaos Sablon Plastisol Event"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#111315] text-[#FF4D1C] font-mono text-[11px] font-bold px-2.5 py-1">BATCH: 450 PCS • 6 HARI</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">SABLON PLASTISOL CURE DOFF</span>
+                        <h3 class="font-extrabold text-[#111315] mt-0.5">Kaos Gathering Startup FinTech</h3>
+                        <p class="text-xs text-zinc-600 mt-1.5">Cotton Combed 24s Hitam Reaktif + Sablon Plastisol 5 Warna Presisi.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group border border-zinc-300 bg-[#F6F5F2] hover:border-[#111315] transition">
+                    <div class="h-60 overflow-hidden relative bg-zinc-900">
+                        <img src="assets/images/porto-pdh.jpg"
+                             alt="Kemeja PDH Tambang dan Konstruksi"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#111315] text-indigo-300 font-mono text-[11px] font-bold px-2.5 py-1">BATCH: 180 PCS • 9 HARI</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">BORDIR KOMPUTER BARUDAN</span>
+                        <h3 class="font-extrabold text-[#111315] mt-0.5">Seragam PDL Safety Pertambangan</h3>
+                        <p class="text-xs text-zinc-600 mt-1.5">Nagata Drill Japan + Scotchlite 3M Reflektif + Bordir Komputer 5 Titik.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group border border-zinc-300 bg-[#F6F5F2] hover:border-[#111315] transition">
+                    <div class="h-60 overflow-hidden relative bg-zinc-900">
+                        <img src="assets/images/porto-hoodie.jpg"
+                             alt="Jaket Hoodie Universitas"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#111315] text-emerald-400 font-mono text-[11px] font-bold px-2.5 py-1">BATCH: 120 PCS • 10 HARI</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">HEAVYWEIGHT FLEECE 280GSM</span>
+                        <h3 class="font-extrabold text-[#111315] mt-0.5">Jaket Hoodie Himpunan Mahasiswa</h3>
+                        <p class="text-xs text-zinc-600 mt-1.5">Cotton Fleece Tebal 280 gsm + Aplikasi Bordir Handuk (Towel Chenille).</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group border border-zinc-300 bg-[#F6F5F2] hover:border-[#111315] transition">
+                    <div class="h-60 overflow-hidden relative bg-zinc-900">
+                        <img src="assets/images/porto-totebag.jpg"
+                             alt="Totebag Canvas Seminar Kit"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-[#111315] text-[#FF4D1C] font-mono text-[11px] font-bold px-2.5 py-1">BATCH: 1.000 PCS • 7 HARI</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500">MERCHANDISE & HARDPACK</span>
+                        <h3 class="font-extrabold text-[#111315] mt-0.5">Totebag Canvas & Box Seminar BUMN</h3>
+                        <p class="text-xs text-zinc-600 mt-1.5">Canvas Marsoto Natural 12 Oz + Sablon Full Color DTF + Hardbox Custom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTION STEPS & CLIENT TESTIMONIALS -->
+    <section id="alur-produksi" class="py-20 bg-[#111315] text-white dark-tech-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[05] SOP MANUFAKTUR TERINTEGRASI</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">5 Tahap Produksi di Pabrik Arka Garment</h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="bg-zinc-900 border border-zinc-800 p-5">
+                        <span class="font-mono text-xs font-bold text-[#FF4D1C]">STEP // 01</span>
+                        <h3 class="font-extrabold text-base mt-1">Mockup 3D & Sample</h3>
+                        <p class="text-xs text-zinc-400 mt-1.5">Tim desain menyusun pratinjau 3D gratis & pembuatan sample fisik (untuk order ≥120 pcs).</p>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-5">
+                        <span class="font-mono text-xs font-bold text-[#FF4D1C]">STEP // 02</span>
+                        <h3 class="font-extrabold text-base mt-1">Cutting Pola Presisi</h3>
+                        <p class="text-xs text-zinc-400 mt-1.5">Pemotongan gelar kain sesuai rasio size chart S–3XL agar dimensi ukuran konsisten.</p>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-5">
+                        <span class="font-mono text-xs font-bold text-[#FF4D1C]">STEP // 03</span>
+                        <h3 class="font-extrabold text-base mt-1">Sablon / Bordir</h3>
+                        <p class="text-xs text-zinc-400 mt-1.5">Aplikasi sablon plastisol curing panas 160°C atau bordir komputer kerapatan tinggi.</p>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-5">
+                        <span class="font-mono text-xs font-bold text-[#FF4D1C]">STEP // 04</span>
+                        <h3 class="font-extrabold text-base mt-1">Jahit Rantai & Obras</h3>
+                        <p class="text-xs text-zinc-400 mt-1.5">Penjahitan oleh operator garmen berpengalaman dengan kerapatan tusuk jarum standar ekspor.</p>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-5 sm:col-span-2 lg:col-span-1">
+                        <span class="font-mono text-xs font-bold text-emerald-400">STEP // 05</span>
+                        <h3 class="font-extrabold text-base mt-1">Steam, QC & Ekspedisi</h3>
+                        <p class="text-xs text-zinc-400 mt-1.5">Buang benang, setrika uap, kemas polybag satuan, dan pengiriman via kargo darat/udara.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Trust & Testimonials -->
+            <div id="klien" class="space-y-8">
+                <div class="bg-zinc-900 border border-zinc-800 p-8 text-center">
+                    <p class="font-mono text-xs font-bold uppercase tracking-widest text-indigo-300 mb-6">
+                        DIPERCAYA OLEH 500+ INSTANSI, KORPORASI, KAMPUS & KOMUNITAS DI INDONESIA
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-zinc-200 font-bold text-xs font-mono">
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-building-shield text-[#FF4D1C]"></i> BUMN KONSTRUKSI
+                        </div>
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-indigo-400"></i> BEM KAMPUS NEGERI
+                        </div>
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-truck-moving text-emerald-400"></i> LOGISTIK NASIONAL
+                        </div>
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-mug-hot text-amber-400"></i> 40+ COFFEE SHOP
+                        </div>
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-helmet-safety text-[#FF4D1C]"></i> MINING & OIL CORP
+                        </div>
+                        <div class="bg-[#111315] py-4 px-3 border border-zinc-800 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-person-running text-cyan-400"></i> RUN CLUB & FUTSAL
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2B Client Testimonials with Product Photos & Local Avatars -->
+                <div class="pt-4">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                        <div>
+                            <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[06] BUKTI PRODUKSI & ULASAN MITRA B2B</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Foto Hasil Produksi & Testimoni Klien</h3>
+                        </div>
+                        <span class="font-mono text-xs text-zinc-400">100% Dokumentasi Batch Aktual Pabrik Bandung</span>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Review 1 -->
+                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/porto-pdh.jpg" alt="Hasil Produksi Kemeja PDL Kalimantan Energi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 320 PCS PDL DRILL
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-[#FF4D1C] text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        ON-TIME SLA
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-812</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Order 320 pcs seragam PDL Nagata Drill untuk tim site Kalimantan selesai 2 hari lebih cepat dari jadwal. Bordir logo perusahaan sangat rapat dan presisi."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-1.jpg" alt="Hendra Wijaya" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Hendra Wijaya</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">Procurement Lead • PT Kalimantan Energi</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/porto-kaos.jpg" alt="Hasil Produksi Kaos Gathering FinTech" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 500 PCS COMBED 24S
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-[#4F46E5] text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        PLASTISOL HD
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-904</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Kaos gathering 500 pcs bahan Combed 24s sangat adem dan sablon plastisolnya tidak pecah meski dicuci berkali-kali. Harga tier pabriknya sangat kompetitif."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-2.jpg" alt="Nadia Putri" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Nadia Putri</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">People Operations • FinTech Jakarta</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/porto-hoodie.jpg" alt="Hasil Produksi Hoodie & Jaket BEM Kampus" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 4 BATCH HOODIE FLEECE
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-emerald-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        REPEAT ORDER
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-947</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Sudah 4 batch produksi hoodie dan totebag merchandise kampus di Arka Garment. Jahitan rantai rapi dan dikemas polybag per ukuran sehingga mudah dibagikan."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-3.jpg" alt="Raka Pratama" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Raka Pratama</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">Ketua Panitia • BEM Universitas Negeri</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION SECTION (6 ITEMS) -->
+    <section id="faq" class="py-20 bg-[#F6F5F2] border-b border-zinc-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest block mb-1">[07] INFORMASI PEMESANAN & PRODUKSI</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111315]">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                <p class="text-zinc-600 text-sm mt-1">Ketentuan minimum order, pembuatan sampel fisik, hingga garansi retur cacat produksi.</p>
+            </div>
+
+            <div class="space-y-3">
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>01. Berapa jumlah minimum pemesanan (Minimum Order Quantity) di Arka Garment?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        Minimum pemesanan adalah <strong>12 pcs (1 lusin) per desain/model</strong>. Untuk ukuran baju (S, M, L, XL, XXL, 3XL) bebas dicampur sesuai daftar anggota tim Anda. Semakin besar kuantitas (mulai 36 pcs dan 100 pcs), harga satuan otomatis turun mengikuti Tier Harga Grosir Pabrik.
+                    </div>
+                </div>
+
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>02. Apakah bisa dibuatkan desain Mockup 3D dan sampel fisik (Proofing) sebelum produksi massal?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        <strong>Mockup digital 3D 100% gratis</strong> tanpa syarat DP cukup dengan mengirimkan logo/sketsa via WhatsApp. Untuk pemesanan di atas 100 pcs (Tier Pabrik), kami juga menyediakan layanan pembuatan 1 pcs sampel fisik (sample proofing) sebelum seluruh batch naik mesin potong.
+                    </div>
+                </div>
+
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>03. Bagaimana sistem pembayaran dan apakah menerbitkan Faktur Pajak / SPK Korporat?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        Termin pembayaran standar adalah <strong>DP 50%</strong> saat desain & SPK disetujui, dan <strong>pelunasan 50%</strong> setelah produksi selesai serta lolos dokumentasi video QC sebelum barang dikirim. CV Arka Garment & Print Indonesia berbadan hukum resmi (PKP) dan dapat menerbitkan Invoice, PO/SPK, serta Faktur Pajak PPN.
+                    </div>
+                </div>
+
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>04. Berapa lama waktu pengerjaan (Lead Time) dan apakah ada garansi ketepatan waktu?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        Rata-rata pengerjaan kaos sablon/jersey adalah <strong>7–10 hari kerja</strong>, sedangkan kemeja PDH/PDL bordir dan jaket sekitar <strong>10–14 hari kerja</strong> terhitung sejak DP diterima. Kami juga melayani jalur Express (4–5 hari kerja) untuk kebutuhan event mendesak dengan jaminan SLA tertulis.
+                    </div>
+                </div>
+
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>05. Bagaimana jika terdapat barang yang cacat jahitan, salah ukuran, atau sablon terkelupas?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        Seluruh pesanan dilindungi <strong>Garansi Retur & Produksi Ulang 100% Gratis</strong> (termasuk ongkos kirim balik) apabila ditemukan cacat jahitan, kesalahan bordir/sablon yang tidak sesuai lembar approval desain, atau ketidaksesuaian ukuran dalam waktu 7 hari setelah paket diterima.
+                    </div>
+                </div>
+
+                <div class="border border-zinc-300 bg-white">
+                    <button type="button" class="faq-toggle w-full px-6 py-4 text-left bg-white hover:bg-zinc-50 flex items-center justify-between font-bold text-[#111315] text-sm">
+                        <span>06. Bagaimana pengiriman untuk pemesanan dari luar Kota Bandung atau luar Pulau Jawa?</span>
+                        <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
+                        Kami bekerja sama dengan ekspedisi kargo darat, laut, dan udara berbiaya hemat (JNE Trucking, Indah Cargo, Baraka, Sentral Cargo, hingga Kargo Bandara) untuk pengiriman ke Jabodetabek, Sumatera, Kalimantan, Sulawesi, Bali, hingga Papua dengan nomor resi pelacakan real-time.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIZE CHART MODAL (Triggered from Navbar) -->
+    <div id="sizeChartModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full p-6 sm:p-8 border-2 border-[#111315] relative">
+            <button type="button" id="closeSizeModalBtn" class="absolute top-4 right-4 w-9 h-9 border border-zinc-300 bg-zinc-100 hover:bg-zinc-200 text-[#111315] font-bold">
+                ✕
+            </button>
+            <img src="assets/logo.svg" alt="Arka Garment" class="h-8 w-auto mb-3">
+            <span class="font-mono text-xs font-bold uppercase text-[#4F46E5] block">PANDUAN UKURAN ARKA GARMENT</span>
+            <h3 class="text-2xl font-extrabold text-[#111315] mt-1">Cara Mengukur Lebar x Panjang</h3>
+            <p class="text-xs text-zinc-600 mt-1 mb-4">
+                <strong>Lebar Dada:</strong> Diukur dari ketiak kiri ke ketiak kanan. <strong>Panjang:</strong> Diukur dari bahu tertinggi hingga ujung bawah baju.
+            </p>
+            <div class="bg-[#F6F5F2] p-4 border border-zinc-300 font-mono text-xs space-y-2">
+                <div class="flex justify-between font-bold text-[#111315] border-b border-zinc-300 pb-1.5"><span>SIZE</span><span>LEBAR X PANJANG</span><span>ESTIMASI BB</span></div>
+                <div class="flex justify-between"><span>S</span><span>48 x 68 cm</span><span>45 - 55 kg</span></div>
+                <div class="flex justify-between"><span>M</span><span>50 x 70 cm</span><span>55 - 65 kg</span></div>
+                <div class="flex justify-between font-bold text-[#4F46E5]"><span>L</span><span>52 x 72 cm</span><span>65 - 75 kg</span></div>
+                <div class="flex justify-between"><span>XL</span><span>54 x 74 cm</span><span>75 - 85 kg</span></div>
+                <div class="flex justify-between"><span>XXL</span><span>57 x 76 cm</span><span>85 - 95 kg</span></div>
+                <div class="flex justify-between"><span>3XL</span><span>60 x 78 cm</span><span>95 - 115 kg</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-[#111315] text-zinc-400 border-t-2 border-zinc-800 text-sm dark-tech-grid">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-zinc-800 bg-zinc-950/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider">
+                            <span class="inline-flex items-center gap-2 bg-[#111315] text-[#FF4D1C] border border-zinc-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Gratis Desain Mockup 3D</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#111315] text-indigo-300 border border-zinc-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-industry"></i>
+                                <span>Diskon Pabrik 22% (≥120 Pcs)</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#111315] text-emerald-400 border border-zinc-700 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Garansi Retur Cacat 100%</span>
+                            </span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                            Siap Produksi Seragam Kantor, Kaos Gathering, atau Jersey Komunitas Anda?
+                        </h2>
+                        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Kirimkan logo atau sketsa kasar Anda hari ini. Tim desainer tekstil kami akan menyusun 3 alternatif pratinjau Mockup 3D secara gratis sebelum pembayaran DP produksi.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3.5 lg:justify-end">
+                        <a href="#kalkulator-grosir"
+                           class="inline-flex items-center justify-center gap-2.5 bg-[#FF4D1C] hover:bg-orange-600 text-white font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Hitung Harga Grosir</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Tim%20Produksi%20Arka%20Garment,%20saya%20ingin%20minta%20Mockup%203D%20Gratis%20dan%20penawaran%20harga%20pabrik."
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2.5 bg-zinc-900 hover:bg-[#4F46E5] text-white border border-zinc-700 hover:border-indigo-400 font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base text-emerald-400"></i>
+                            <span>Minta Mockup via WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group">
+                        <img src="assets/logo.svg" alt="Emblem CV Arka Garment & Print Indonesia" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-[#FF4D1C]/50">
+                        <div>
+                            <span class="font-extrabold text-base sm:text-lg text-white tracking-tight block leading-none">
+                                ARKA<span class="text-[#FF4D1C]">GARMENT</span> <span class="text-indigo-400">&amp; PRINT</span>
+                            </span>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-zinc-400 block mt-1">
+                                MANUFACTORY • PLASTISOL • BORDIR
+                            </span>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                        Pabrik manufaktur konveksi tangan pertama berbadan hukum PKP di Kota Bandung. Kapasitas produksi 25.000 pcs/bulan dengan mesin Bordir Komputer Barudan 12 Kepala & Sablon Plastisol HD.
+                    </p>
+
+                    <div class="pt-1">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 block mb-2.5">Kanal Dokumentasi Pabrik</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Arka Garment & Print"
+                               class="w-9 h-9 bg-zinc-900 hover:bg-[#FF4D1C] text-zinc-300 hover:text-white border border-zinc-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok Arka Garment & Print"
+                               class="w-9 h-9 bg-zinc-900 hover:bg-[#FF4D1C] text-zinc-300 hover:text-white border border-zinc-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Arka Garment & Print"
+                               class="w-9 h-9 bg-zinc-900 hover:bg-[#FF4D1C] text-zinc-300 hover:text-white border border-zinc-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Arka Garment & Print"
+                               class="w-9 h-9 bg-zinc-900 hover:bg-[#FF4D1C] text-zinc-300 hover:text-white border border-zinc-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-[#FF4D1C] pl-3">
+                        Navigasi Cepat
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">01</span>
+                                <span>Beranda Utama</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-bahan" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">02</span>
+                                <span>Katalog Bahan Kain & Size</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">03</span>
+                                <span>Kalkulator Harga Grosir</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#alur-produksi" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">04</span>
+                                <span>Cara Pemesanan & SOP</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#klien" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">05</span>
+                                <span>Galeri & Ulasan Foto B2B</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-[#FF4D1C]">06</span>
+                                <span>FAQ & Garansi Retur</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Layanan Unggulan -->
+                <nav aria-label="Layanan Unggulan" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-[#FF4D1C] pl-3">
+                        Layanan Unggulan
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors flex items-center justify-between">
+                                <span>Kaos Sablon Plastisol HD</span>
+                                <span class="font-mono text-[11px] text-zinc-500">Mulai Rp 58,5rb</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors flex items-center justify-between">
+                                <span>Kemeja Kerja PDH / PDL</span>
+                                <span class="font-mono text-[11px] text-zinc-500">Bordir 4 Titik</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors flex items-center justify-between">
+                                <span>Jaket Bomber & Hoodie</span>
+                                <span class="font-mono text-[11px] text-zinc-500">Fleece 280gsm</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors flex items-center justify-between">
+                                <span>Jersey Full Printing Sublim</span>
+                                <span class="font-mono text-[11px] text-zinc-500">Dryfit Anti-UV</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kalkulator-grosir" class="text-zinc-400 hover:text-[#FF4D1C] transition-colors flex items-center justify-between">
+                                <span>Totebag Canvas & Seminar Kit</span>
+                                <span class="font-mono text-[11px] text-zinc-500">Canvas 12 Oz</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Highlighted Special Package Link -->
+                    <div class="pt-1">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Tim%20B2B%20Arka%20Garment,%20kami%20ingin%20konsultasi%20Pengadaan/Tender%20Seragam%20Korporat%20beserta%20Sample%20Fisik."
+                           target="_blank" rel="noopener noreferrer"
+                           class="block p-3 bg-zinc-900 hover:bg-zinc-800 border border-[#FF4D1C]/50 transition-colors group">
+                            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-[#FF4D1C] font-bold">
+                                <span>★ LAYANAN KORPORAT & PKP</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-0.5 transition-transform"></i>
+                            </div>
+                            <div class="text-xs font-bold text-white mt-0.5">Tender Seragam Korporat & BUMN</div>
+                            <div class="text-[11px] text-zinc-400">Faktur Pajak PPN & Sample Proofing Gratis</div>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-[#FF4D1C] pl-3">
+                        Pabrik & Showroom
+                    </h3>
+                    <ul class="space-y-3.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-zinc-900 border border-zinc-800 text-[#FF4D1C] flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Workshop & Showroom Bandung:</strong>
+                                <span class="text-zinc-400 leading-relaxed block">Jl. PH.H. Mustofa (Suci) Komp. Surapati Core Blok M-12, Kota Bandung, Jawa Barat 40192</span>
+                                <a href="https://maps.google.com/?q=Surapati+Core+Bandung" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1 font-mono text-[11px] text-[#FF4D1C] hover:underline mt-1 font-semibold">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-zinc-900 border border-zinc-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Hotline Produksi & Mockup:</strong>
+                                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Arka%20Garment,%20saya%20ingin%20konsultasi%20order%20konveksi." target="_blank" rel="noopener noreferrer"
+                                   class="font-mono text-zinc-300 hover:text-[#FF4D1C] transition-colors">+62 812-3456-7890</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-zinc-900 border border-zinc-800 text-indigo-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Surel Penawaran & PO B2B:</strong>
+                                <a href="mailto:produksi@arkagarment.co.id" class="font-mono text-zinc-300 hover:text-[#FF4D1C] transition-colors">produksi@arkagarment.co.id</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-zinc-900 border border-zinc-800 text-[#FF4D1C] flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Jam Operasional Pabrik:</strong>
+                                <span class="text-zinc-400 block">Senin – Minggu: 08.00 – 20.00 WIB</span>
+                                <span class="font-mono text-[10px] text-emerald-400">(Minggu Khusus Kunjungan Sample Kain)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-zinc-800 bg-zinc-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-zinc-500 mr-1 whitespace-nowrap">Metode Pembayaran Resmi:</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">QRIS</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">BCA</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">BRI</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">Mandiri</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">GoPay</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">OVO</span>
+                    <span class="font-mono text-[11px] font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-2.5 py-1 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Policy Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-zinc-500 text-center lg:text-right">
+                    <p>© 2026 CV Arka Garment &amp; Print Indonesia. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4 font-mono text-[11px]">
+                        <!-- TODO: Hubungkan ke dokumen Syarat & Ketentuan SPK Produksi -->
+                        <a href="#" class="hover:text-[#FF4D1C] transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Hubungkan ke dokumen Kebijakan Privasi Mitra B2B -->
+                        <a href="#" class="hover:text-[#FF4D1C] transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-[#FF4D1C] transition-colors whitespace-nowrap">Kebijakan Garansi / Pembatalan</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WA BUTTON -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Arka%20Garment,%20saya%20ingin%20konsultasi%20produksi%20seragam/kaos%20dan%20minta%20mockup%20gratis."
+       target="_blank" rel="noopener"
+       class="fixed bottom-6 right-6 z-40 bg-[#FF4D1C] hover:bg-[#111315] text-white font-bold px-5 py-3.5 border-2 border-[#111315] shadow-[4px_4px_0px_#111315] flex items-center gap-3 transition-colors">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <div class="text-left leading-tight">
+            <span class="block font-mono text-[10px] uppercase tracking-wider font-bold text-orange-100">Gratis Desain Mockup</span>
+            <span class="text-sm">Konsultasi Konveksi</span>
+        </div>
+    </a>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "CV Arka Garment & Print Indonesia",
+            tagline: "Pabrik Konveksi Seragam Kerja, Kaos Sablon, Jersey & Kemasan",
+            address: "Jl. PH.H. Mustofa (Suci) Komp. Surapati Core Blok M-12, Kota Bandung, Jawa Barat 40192",
+            mapsUrl: "https://maps.google.com/?q=Surapati+Core+Bandung",
+            whatsappNumber: "6281234567890",
+            whatsappDisplay: "+62 812-3456-7890",
+            email: "produksi@arkagarment.co.id",
+            operationalHours: "Senin – Minggu: 08.00 – 20.00 WIB",
+            socials: {
+                instagram: "https://instagram.com",
+                tiktok: "https://tiktok.com",
+                whatsapp: "https://wa.me/6281234567890",
+                youtube: "https://youtube.com"
+            }
+        };
+
+        (function() {
+            // Mobile Menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Modal Size Chart
+            const sizeChartModal = document.getElementById('sizeChartModal');
+            const openSizeChartNavBtn = document.getElementById('openSizeChartNavBtn');
+            const closeSizeModalBtn = document.getElementById('closeSizeModalBtn');
+            if (openSizeChartNavBtn && sizeChartModal) {
+                openSizeChartNavBtn.addEventListener('click', () => sizeChartModal.classList.remove('hidden'));
+            }
+            if (closeSizeModalBtn && sizeChartModal) {
+                closeSizeModalBtn.addEventListener('click', () => sizeChartModal.classList.add('hidden'));
+                sizeChartModal.addEventListener('click', (e) => {
+                    if (e.target === sizeChartModal) sizeChartModal.classList.add('hidden');
+                });
+            }
+
+            // Tiered Pricing State
+            const state = {
+                product: 'Kaos Sablon Plastisol',
+                basePrice: 75000,
+                baseLead: 7,
+                fabric: 'Cotton Combed 30s',
+                fabricAddon: 0,
+                qty: 60
+            };
+
+            const prodBtns = document.querySelectorAll('.prod-btn');
+            const fabBtns = document.querySelectorAll('.fab-btn');
+            const qtyInput = document.getElementById('qtyInput');
+            const qtySlider = document.getElementById('qtySlider');
+            const presetBtns = document.querySelectorAll('.preset-qty-btn');
+
+            const tierCard1 = document.getElementById('tierCard1');
+            const tierCard2 = document.getElementById('tierCard2');
+            const tierCard3 = document.getElementById('tierCard3');
+
+            const activeTierBadge = document.getElementById('activeTierBadge');
+            const outProdName = document.getElementById('outProdName');
+            const outFabricName = document.getElementById('outFabricName');
+            const outQtyBadge = document.getElementById('outQtyBadge');
+            const strikethroughPrice = document.getElementById('strikethroughPrice');
+            const unitPriceOutput = document.getElementById('unitPriceOutput');
+            const tierUpsellHint = document.getElementById('tierUpsellHint');
+            const grandTotalOutput = document.getElementById('grandTotalOutput');
+            const totalSavedOutput = document.getElementById('totalSavedOutput');
+            const leadTimeOutput = document.getElementById('leadTimeOutput');
+            const orgNameInput = document.getElementById('orgNameInput');
+            const orderWaBtn = document.getElementById('orderWaBtn');
+
+            function formatRp(n) {
+                return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+            }
+
+            function calculateWholesale() {
+                const rawUnit = state.basePrice + state.fabricAddon;
+                let discountRate = 0;
+                let tierLabel = 'Tier Standar (12–49 Pcs)';
+
+                // Reset tier cards styling
+                [tierCard1, tierCard2, tierCard3].forEach(c => {
+                    c.className = 'p-3 border border-slate-700 bg-slate-950/70 text-center opacity-70';
+                });
+
+                if (state.qty >= 120) {
+                    discountRate = 0.22;
+                    tierLabel = 'Harga Pabrik Aktif (Diskon 22%)';
+                    tierCard3.className = 'p-3 border-2 border-orange-500 bg-orange-500/20 text-center transition';
+                    activeTierBadge.className = 'inline-block bg-[#FF4D1C] text-white font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 mb-1';
+                    tierUpsellHint.innerHTML = `[AKTIF] Potongan maksimal <strong>Harga Pabrik 22%</strong> + Gratis Sample Fisik Praproduksi.`;
+                } else if (state.qty >= 50) {
+                    discountRate = 0.12;
+                    tierLabel = 'Tier Grosir Aktif (Diskon 12%)';
+                    tierCard2.className = 'p-3 border-2 border-indigo-500 bg-indigo-500/20 text-center transition';
+                    activeTierBadge.className = 'inline-block bg-emerald-500 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 mb-1';
+                    const needed = 120 - state.qty;
+                    tierUpsellHint.innerHTML = `[INFO] Tambah <strong>${needed} pcs</strong> lagi untuk mengaktifkan <strong>Harga Pabrik (Diskon 22%)</strong>.`;
+                } else {
+                    discountRate = 0;
+                    tierLabel = 'Harga Standar (12–49 Pcs)';
+                    tierCard1.className = 'p-3 border-2 border-indigo-400 bg-indigo-500/15 text-center transition';
+                    activeTierBadge.className = 'inline-block bg-zinc-700 text-zinc-200 font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 mb-1';
+                    const needed = 50 - state.qty;
+                    tierUpsellHint.innerHTML = `[INFO] Tambah <strong>${needed} pcs</strong> lagi untuk mendapat <strong>Diskon Grosir 12%</strong>.`;
+                }
+
+                const netUnit = Math.round((rawUnit * (1 - discountRate)) / 500) * 500;
+                const grandTotal = netUnit * state.qty;
+                const totalSaved = (rawUnit - netUnit) * state.qty;
+
+                const extraDays = Math.floor(state.qty / 150) * 2;
+                const minDays = state.baseLead + extraDays;
+                const maxDays = minDays + 3;
+
+                activeTierBadge.textContent = tierLabel;
+                outProdName.textContent = state.product;
+                outFabricName.textContent = `Bahan: ${state.fabric}`;
+                outQtyBadge.textContent = `${state.qty} Pcs`;
+
+                if (discountRate > 0) {
+                    strikethroughPrice.classList.remove('hidden');
+                    strikethroughPrice.textContent = formatRp(rawUnit);
+                } else {
+                    strikethroughPrice.classList.add('hidden');
+                }
+
+                unitPriceOutput.textContent = formatRp(netUnit);
+                grandTotalOutput.textContent = formatRp(grandTotal);
+                totalSavedOutput.textContent = formatRp(totalSaved);
+                leadTimeOutput.textContent = `${minDays} – ${maxDays} Hari Kerja`;
+            }
+
+            // Product button clicks
+            prodBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    prodBtns.forEach(b => {
+                        b.classList.remove('border-orange-500', 'bg-orange-500/15');
+                        b.classList.add('border-slate-800', 'bg-slate-900');
+                    });
+                    btn.classList.remove('border-slate-800', 'bg-slate-900');
+                    btn.classList.add('border-orange-500', 'bg-orange-500/15');
+
+                    state.product = btn.dataset.product;
+                    state.basePrice = Number(btn.dataset.base);
+                    state.baseLead = Number(btn.dataset.lead);
+                    calculateWholesale();
+                });
+            });
+
+            // Fabric button clicks
+            fabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    fabBtns.forEach(b => {
+                        b.classList.remove('border-indigo-500', 'bg-indigo-500/20');
+                        b.classList.add('border-slate-800', 'bg-slate-900');
+                    });
+                    btn.classList.remove('border-slate-800', 'bg-slate-900');
+                    btn.classList.add('border-indigo-500', 'bg-indigo-500/20');
+
+                    state.fabric = btn.dataset.fabric;
+                    state.fabricAddon = Number(btn.dataset.addon);
+                    calculateWholesale();
+                });
+            });
+
+            // Quantity sync
+            qtySlider.addEventListener('input', () => {
+                state.qty = Math.max(12, Number(qtySlider.value));
+                qtyInput.value = state.qty;
+                calculateWholesale();
+            });
+
+            qtyInput.addEventListener('input', () => {
+                const v = Math.max(12, Number(qtyInput.value) || 12);
+                state.qty = v;
+                if (v <= 300) qtySlider.value = v;
+                calculateWholesale();
+            });
+
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const p = Number(btn.dataset.preset);
+                    state.qty = p;
+                    qtyInput.value = p;
+                    qtySlider.value = Math.min(300, p);
+                    calculateWholesale();
+                });
+            });
+
+            // Order via WhatsApp
+            orderWaBtn.addEventListener('click', () => {
+                const org = orgNameInput.value.trim() || 'Pelanggan Arka Garment';
+                const msg = [
+                    `Halo Tim Produksi *Arka Garment & Print*, saya ingin memesan / meminta Mockup 3D Gratis dengan spesifikasi berikut:`,
+                    ``,
+                    `- *Produk:* ${state.product}`,
+                    `- *Bahan Kain:* ${state.fabric}`,
+                    `- *Jumlah Pesanan:* ${state.qty} Pcs (${activeTierBadge.textContent})`,
+                    `- *Instansi/Komunitas:* ${org}`,
+                    `----------------------------------`,
+                    `- *Harga per Pcs:* ${unitPriceOutput.textContent}`,
+                    `- *Total Estimasi:* ${grandTotalOutput.textContent}`,
+                    `- *Total Efisiensi:* ${totalSavedOutput.textContent}`,
+                    `- *Estimasi Produksi:* ${leadTimeOutput.textContent}`,
+                    ``,
+                    `Saya ingin kirim logo/desain untuk dibuatkan *Mockup 3D Gratis*. Terima kasih!`
+                ].join('\n');
+
+                window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+            });
+
+            // Interactive Fabric Guide Tabs
+            const fabricData = {
+                combed30s: {
+                    badge: '100% Serat Kapas Murni',
+                    title: 'Cotton Combed 30s Knitto / Kahatex',
+                    gramasi: '140–150 gsm',
+                    desc: 'Bahan favorit distro dan kaos event di iklim tropis Indonesia. Tekstur rajutan single-knit yang sangat halus, dingin di kulit, tidak berbulu, dan menyerap keringat secara maksimal.',
+                    absorb: 'GRADE A+ (98%)',
+                    colors: '48 Warna Reaktif',
+                    use: 'Kaos Sablon & Gathering'
+                },
+                combed24s: {
+                    badge: 'Tebal & Jatuh Presisi',
+                    title: 'Cotton Combed 24s Premium Heavy',
+                    gramasi: '175–185 gsm',
+                    desc: 'Memiliki ketebalan di atas 30s namun tetap lembut dan sejuk. Sangat populer untuk merchandise korporat, kaos oversize, dan seragam lapangan indoor.',
+                    absorb: 'GRADE A (96%)',
+                    colors: '36 Warna Reaktif',
+                    use: 'Merchandise & Oversize'
+                },
+                americandrill: {
+                    badge: 'Tangguh & Tidak Mudah Kusut',
+                    title: 'American Drill 1919 Original',
+                    gramasi: '210–220 gsm',
+                    desc: 'Kain tenun pintalan diagonal yang kokoh, warna tahan cuci ratusan kali, dan sangat rapi saat dibordir komputer. Standar utama seragam PDH kantor & pabrik.',
+                    absorb: 'GRADE B+ (85%)',
+                    colors: '40+ Warna Korporat',
+                    use: 'Kemeja Kerja PDH/PDL'
+                },
+                nagatadrill: {
+                    badge: 'Kasta Tertinggi Seragam Kerja',
+                    title: 'Nagata Drill Japan Technology',
+                    gramasi: '235–245 gsm',
+                    desc: 'Kandungan katun lebih tinggi dibandingkan drill biasa sehingga jauh lebih adem saat dipakai di bawah terik matahari namun tetap gagah dan berwibawa.',
+                    absorb: 'GRADE A (94%)',
+                    colors: '32 Warna Eksklusif',
+                    use: 'Kemeja Eksekutif & Tambang'
+                },
+                dryfit: {
+                    badge: 'Quick-Dry & Anti UV Protection',
+                    title: 'Dryfit Milano Zig-Zag Microfiber',
+                    gramasi: '160–170 gsm',
+                    desc: 'Berpori-pori zig-zag mewah yang mempercepat penguapan keringat. Warna sublimasi Epson meresap tajam dan permanen tidak akan luntur selamanya.',
+                    absorb: 'GRADE A+ (Quick-Dry)',
+                    colors: 'Full Print Custom',
+                    use: 'Jersey Futsal, Lari & Sepeda'
+                }
+            };
+
+            const fguideBtns = document.querySelectorAll('.fguide-btn');
+            fguideBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    fguideBtns.forEach(b => {
+                        b.className = 'fguide-btn px-3.5 py-2 text-xs font-mono font-semibold bg-zinc-100 text-zinc-700 hover:bg-zinc-200';
+                    });
+                    btn.className = 'fguide-btn active px-3.5 py-2 text-xs font-mono font-bold bg-[#111315] text-white';
+
+                    const d = fabricData[btn.dataset.fguide];
+                    if (d) {
+                        document.getElementById('fgBadge').textContent = d.badge;
+                        document.getElementById('fgTitle').textContent = d.title;
+                        document.getElementById('fgGramasi').textContent = d.gramasi;
+                        document.getElementById('fgDesc').textContent = d.desc;
+                        document.getElementById('fgAbsorb').textContent = d.absorb;
+                        document.getElementById('fgColors').textContent = d.colors;
+                        document.getElementById('fgUse').textContent = d.use;
+                    }
+                });
+            });
+
+            // Weight to Size Recommender
+            const weightCheckInput = document.getElementById('weightCheckInput');
+            const recommendedSizeBadge = document.getElementById('recommendedSizeBadge');
+            if (weightCheckInput && recommendedSizeBadge) {
+                weightCheckInput.addEventListener('input', () => {
+                    const w = Number(weightCheckInput.value) || 65;
+                    let rec = 'Size L (52 x 72 cm)';
+                    if (w < 55) rec = 'Size S (48 x 68 cm)';
+                    else if (w < 65) rec = 'Size M (50 x 70 cm)';
+                    else if (w < 75) rec = 'Size L (52 x 72 cm)';
+                    else if (w < 85) rec = 'Size XL (54 x 74 cm)';
+                    else if (w < 96) rec = 'Size XXL (57 x 76 cm)';
+                    else rec = 'Size 3XL (60 x 78 cm)';
+                    recommendedSizeBadge.textContent = rec;
+                });
+            }
+
+            // Initial run
+            calculateWholesale();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArenaKita Sport Center — Sistem Booking Online Lapangan Padel, Mini Soccer, Futsal & Badminton Real-Time</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        arena: {
+                            dark: '#0B1120',
+                            navy: '#0F172A',
+                            card: '#1E293B',
+                            lime: '#84CC16',
+                            limeBright: '#A3E635',
+                            emerald: '#10B981',
+                            gold: '#F59E0B',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1120;
+            color: #F8FAFC;
+            font-variant-numeric: tabular-nums;
+        }
+        /* Court pattern background */
+        .court-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(163, 230, 53, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(163, 230, 53, 0.04) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+        .slot-card {
+            transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slot-available:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.22);
+        }
+        .slot-selected {
+            animation: pulseGold 2s infinite;
+        }
+        @keyframes pulseGold {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45);
+            }
+            50% {
+                box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+            }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #84CC16;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableTicket, #printableTicket * {
+                visibility: visible;
+            }
+            #printableTicket {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-lime-400 selection:text-slate-950 min-h-screen flex flex-col">
+
+    <!-- TOP FLOATING DEMO BAR -->
+    <div class="sticky top-0 z-50 bg-slate-950/95 border-b border-slate-800 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-11 flex items-center justify-between text-xs sm:text-sm">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-lime-400 hover:text-lime-300 transition-colors group">
+                <span class="bg-lime-500/10 border border-lime-500/30 px-3 py-1 rounded-lg group-hover:bg-lime-500/20 transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span>Katalog Portofolio UMKM</span>
+                </span>
+            </a>
+            <div class="hidden md:flex items-center gap-2 text-slate-300">
+                <span class="inline-block w-2 h-2 rounded-full bg-lime-400"></span>
+                <span class="font-mono text-xs text-slate-400">PORTFOLIO #06</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-white font-semibold">Court Booking Matrix & Instant QRIS Lock</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="fillQuickDemo()" class="bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-bolt"></i> Simulasi Cepat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="bg-slate-900/95 border-b border-slate-800 sticky top-11 z-40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <div class="flex items-center gap-3.5">
+                <img src="assets/logo.svg" alt="ArenaKita Sport Logo" class="w-12 h-12 rounded-2xl shadow-lg shadow-lime-500/15 shrink-0">
+                <div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="font-display font-bold text-xl sm:text-2xl tracking-tight text-white">Arena<span class="text-lime-400">Kita</span></span>
+                        <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-md tracking-wider flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE MATRIX
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 hidden sm:block">Padel Panoramic • Mini Soccer FIFA • Futsal Vinyl • Badminton BWF</p>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="#jadwal-section" class="whitespace-nowrap hover:text-lime-400 transition-colors flex items-center gap-1.5 text-lime-400 font-semibold">
+                    <i class="fa-regular fa-calendar-check"></i> Jadwal
+                </a>
+                <a href="#sparring-section" class="whitespace-nowrap hover:text-lime-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-people-group"></i> Sparring
+                </a>
+                <a href="#fasilitas-section" class="whitespace-nowrap hover:text-lime-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-medal"></i> Fasilitas
+                </a>
+                <a href="#ulasan-member" class="whitespace-nowrap hover:text-lime-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-camera"></i> Ulasan
+                </a>
+                <a href="#faq" class="whitespace-nowrap hover:text-lime-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-question"></i> FAQ
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3 shrink-0">
+                <button onclick="openCheckBookingModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-solid fa-qrcode text-lime-400"></i>
+                    <span>Cek E-Tiket</span>
+                </button>
+                <a href="#booking-summary-panel" class="lg:hidden relative bg-lime-400 text-slate-950 font-bold px-3.5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow-lg shadow-lime-500/20">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="mobileCartBadge">0 Slot</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden court-grid-bg border-b border-slate-800/80 pt-8 pb-10">
+        <!-- Decorative Glow -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-12 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-lime-400 mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>TANPA CHAT ADMIN LAMA • KLIK JAM KOSONG • BAYAR QRIS • LANGSUNG MAIN!</span>
+                    </div>
+                    <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+                        Booking Lapangan Olahraga <span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300">Real-Time 24 Jam</span>
+                    </h1>
+                    <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Cek ketersediaan jam secara langsung di bawah ini. Pilih beberapa jam sekaligus, tambahkan sewa raket/rompi/fotografer, dan kunci jadwal tim Anda dengan opsi <strong>DP 50%</strong> atau <strong>Lunas 100%</strong>.
+                    </p>
+
+                    <!-- Venue Quick Badges -->
+                    <div class="mt-5 flex flex-wrap items-center gap-2.5 text-xs text-slate-300">
+                        <span class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-star text-amber-400"></i> <strong>4.9/5.0</strong> (1.840+ Review Tim)
+                        </span>
+                        <span class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-lime-400"></i> Jl. Arteri Permata Hijau No. 88, Jakarta Selatan
+                        </span>
+                        <span class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-clock text-emerald-400"></i> Buka Tiap Hari: <strong>07:00 – 23:00 WIB</strong>
+                        </span>
+                        <span class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-shower text-sky-400"></i> Hot Shower & Locker VIP
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Live Occupancy Stat Card -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 lg:w-80 shrink-0 shadow-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs uppercase tracking-wider font-bold text-slate-400">Status Venue Hari Ini</span>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Buka Normal
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-center my-3">
+                        <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/60">
+                            <div id="statAvailableCount" class="font-display font-bold text-xl text-emerald-400">24</div>
+                            <div class="text-[11px] text-slate-400">Slot Kosong</div>
+                        </div>
+                        <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/60">
+                            <div id="statBookedCount" class="font-display font-bold text-xl text-rose-400">12</div>
+                            <div class="text-[11px] text-slate-400">Sudah Dipesan</div>
+                        </div>
+                        <div class="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/60">
+                            <div id="statSelectedCount" class="font-display font-bold text-xl text-amber-400">0</div>
+                            <div class="text-[11px] text-slate-400">Dipilih Anda</div>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-800">
+                        <span><i class="fa-solid fa-shield-halved text-lime-400 mr-1"></i> Garansi Uang Kembali / Reschedule H-1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE BOOKING WORKSPACE -->
+    <main id="jadwal-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+        
+        <!-- STEP 1: VENUE SELECTOR TABS -->
+        <div class="mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                <h2 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                    <span class="w-7 h-7 rounded-lg bg-lime-400 text-slate-950 font-black text-sm inline-flex items-center justify-center">1</span>
+                    <span>Pilih Jenis Lapangan Olahraga</span>
+                </h2>
+                <span class="text-xs text-slate-400">Klik tab di bawah untuk mengganti cabang olahraga & melihat jadwal tiap court</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5" id="venueTabsContainer">
+                <!-- Padel -->
+                <button onclick="selectVenue('padel')" id="tab-padel" class="venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-gradient-to-br from-slate-800 to-slate-900 border-lime-400 shadow-lg shadow-lime-500/10">
+                    <div class="h-28 w-full rounded-xl overflow-hidden mb-3 relative bg-slate-950">
+                        <img src="assets/images/venue-padel.jpg" alt="Lapangan Padel Panoramic" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-2 right-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-lime-400 text-slate-950">TRENDING #1</span>
+                        <span class="absolute bottom-2 left-2.5 text-xs font-semibold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-table-tennis-paddle-ball text-lime-400"></i> 2 Court WPT
+                        </span>
+                    </div>
+                    <div class="font-bold text-white text-sm sm:text-base group-hover:text-lime-300 transition">Lapangan Padel</div>
+                    <div class="text-xs text-slate-400 mt-0.5">Panoramic Glass 12mm Indoor</div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-700/70 flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Mulai dari</span>
+                        <span class="font-mono font-bold text-lime-400">Rp 250.000<span class="text-[10px] font-sans font-normal text-slate-400">/jam</span></span>
+                    </div>
+                </button>
+
+                <!-- Mini Soccer -->
+                <button onclick="selectVenue('minisoccer')" id="tab-minisoccer" class="venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-slate-900/90 border-slate-800 hover:border-slate-700">
+                    <div class="h-28 w-full rounded-xl overflow-hidden mb-3 relative bg-slate-950">
+                        <img src="assets/images/venue-minisoccer.jpg" alt="Mini Soccer Sintetis FIFA" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-2 right-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-500/90 text-slate-950">FIFA TURF</span>
+                        <span class="absolute bottom-2 left-2.5 text-xs font-semibold text-white flex items-center gap-1.5">
+                            <i class="fa-regular fa-futbol text-emerald-400"></i> 2 Pitch 7v7
+                        </span>
+                    </div>
+                    <div class="font-bold text-white text-sm sm:text-base group-hover:text-lime-300 transition">Mini Soccer Sintetis</div>
+                    <div class="text-xs text-slate-400 mt-0.5">Rumput Sintetis FIFA 7v7 / 8v8</div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Mulai dari</span>
+                        <span class="font-mono font-bold text-lime-400">Rp 350.000<span class="text-[10px] font-sans font-normal text-slate-400">/jam</span></span>
+                    </div>
+                </button>
+
+                <!-- Futsal -->
+                <button onclick="selectVenue('futsal')" id="tab-futsal" class="venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-slate-900/90 border-slate-800 hover:border-slate-700">
+                    <div class="h-28 w-full rounded-xl overflow-hidden mb-3 relative bg-slate-950">
+                        <img src="assets/images/venue-futsal.jpg" alt="Lapangan Futsal Vinyl" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-2 right-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sky-400 text-slate-950">3 INDOOR</span>
+                        <span class="absolute bottom-2 left-2.5 text-xs font-semibold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-futbol text-sky-400"></i> Vinyl 8mm
+                        </span>
+                    </div>
+                    <div class="font-bold text-white text-sm sm:text-base group-hover:text-lime-300 transition">Lapangan Futsal Vinyl</div>
+                    <div class="text-xs text-slate-400 mt-0.5">3 Lapangan Vinyl Pro 8mm</div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Mulai dari</span>
+                        <span class="font-mono font-bold text-lime-400">Rp 120.000<span class="text-[10px] font-sans font-normal text-slate-400">/jam</span></span>
+                    </div>
+                </button>
+
+                <!-- Badminton -->
+                <button onclick="selectVenue('badminton')" id="tab-badminton" class="venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-slate-900/90 border-slate-800 hover:border-slate-700">
+                    <div class="h-28 w-full rounded-xl overflow-hidden mb-3 relative bg-slate-950">
+                        <img src="assets/images/venue-badminton.jpg" alt="Lapangan Badminton BWF" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-2 right-2 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-400 text-slate-950">6 LINE BWF</span>
+                        <span class="absolute bottom-2 left-2.5 text-xs font-semibold text-white flex items-center gap-1.5">
+                            <i class="fa-solid fa-trophy text-purple-400"></i> Standar BWF
+                        </span>
+                    </div>
+                    <div class="font-bold text-white text-sm sm:text-base group-hover:text-lime-300 transition">Lapangan Badminton</div>
+                    <div class="text-xs text-slate-400 mt-0.5">6 Line Karpet Standar BWF</div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs">
+                        <span class="text-slate-400">Mulai dari</span>
+                        <span class="font-mono font-bold text-lime-400">Rp 65.000<span class="text-[10px] font-sans font-normal text-slate-400">/jam</span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- SELECTED VENUE HIGHLIGHT BANNER -->
+        <div id="venueDetailBanner" class="mb-7 bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- WORKSPACE GRID: LEFT (DATE + TIME MATRIX + ADDONS) & RIGHT (STICKY BOOKING CART) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT 8 COLUMNS: DATE BAR + REAL-TIME COURT MATRIX + ADDONS -->
+            <div class="lg:col-span-8 space-y-7">
+                
+                <!-- STEP 2: DATE SELECTOR BAR -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <h3 class="font-bold text-white flex items-center gap-2 text-base">
+                            <span class="w-7 h-7 rounded-lg bg-lime-400 text-slate-950 font-black text-sm inline-flex items-center justify-center">2</span>
+                            <span>Pilih Tanggal Main</span>
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <label for="customDatePicker" class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-calendar mr-1 text-lime-400"></i>Pilih Tanggal Lain:</label>
+                            <input type="date" id="customDatePicker" onchange="handleCustomDate(this.value)" class="bg-slate-800 border border-slate-700 text-white text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-lime-400 font-mono">
+                        </div>
+                    </div>
+
+                    <!-- Quick Date Buttons -->
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="dateQuickButtons">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- STEP 3: INTERACTIVE REAL-TIME COURT VS HOURLY TIME SLOT MATRIX (07:00 - 23:00) -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="font-bold text-white flex items-center gap-2 text-base sm:text-lg">
+                                <span class="w-7 h-7 rounded-lg bg-lime-400 text-slate-950 font-black text-sm inline-flex items-center justify-center">3</span>
+                                <span>Pilih Slot Jam & Court (07:00 – 23:00 WIB)</span>
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Klik kotak berwarna <strong class="text-emerald-400">Hijau (Tersedia)</strong> untuk memilih. Anda bisa memilih lebih dari 1 jam atau lintas lapangan.</p>
+                        </div>
+
+                        <!-- Time Range & Status Filter -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <select id="timePeriodFilter" onchange="renderMatrixGrid()" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-lime-400">
+                                <option value="all">Semua Jam (07:00 - 23:00)</option>
+                                <option value="day">Pagi & Siang (07:00 - 16:00 • Harga Promo)</option>
+                                <option value="night">Sore & Malam (16:00 - 23:00 • Prime Time)</option>
+                            </select>
+                            <label class="inline-flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 cursor-pointer hover:border-slate-600">
+                                <input type="checkbox" id="onlyAvailableToggle" onchange="renderMatrixGrid()" class="rounded accent-lime-400">
+                                <span>Hanya Kosong</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Legend Bar -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 py-3.5 px-3 my-4 bg-slate-950/70 rounded-xl border border-slate-800/80 text-xs">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-md bg-emerald-500/20 border border-emerald-500 inline-block"></span>
+                                <span class="text-slate-300 font-medium">Hijau: <strong class="text-emerald-400">Tersedia (Klik Pilih)</strong></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-md bg-rose-500/20 border border-rose-500/50 inline-block"></span>
+                                <span class="text-slate-300 font-medium">Merah: <strong class="text-rose-400">Sudah Dipesan (Terisi)</strong></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-md bg-amber-400 border border-amber-300 inline-block"></span>
+                                <span class="text-slate-300 font-medium">Emas/Biru: <strong class="text-amber-300">Dipilih Anda</strong></span>
+                            </div>
+                        </div>
+                        <div class="text-[11px] text-slate-400">
+                            <i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Prime Time mulai pukul 16:00 WIB
+                        </div>
+                    </div>
+
+                    <!-- Court Sub-Filter Pills (for quick focusing on 1 court or viewing all courts) -->
+                    <div id="courtFilterPills" class="flex items-center gap-2 overflow-x-auto pb-3 mb-2">
+                        <!-- Rendered via JS -->
+                    </div>
+
+                    <!-- THE MATRIX GRID CONTAINER -->
+                    <div id="matrixGridContainer" class="space-y-6">
+                        <!-- Dynamically populated with courts & 07:00 - 23:00 hourly cards -->
+                    </div>
+                </div>
+
+                <!-- STEP 4: ADD-ON EQUIPMENT RENTAL CHECKBOXES -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="font-bold text-white flex items-center gap-2 text-base sm:text-lg">
+                                <span class="w-7 h-7 rounded-lg bg-lime-400 text-slate-950 font-black text-sm inline-flex items-center justify-center">4</span>
+                                <span>Tambahan Sewa Perlengkapan & Dokumentasi (Opsional)</span>
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Perlengkapan disiapkan langsung di pinggir lapangan 10 menit sebelum jadwal main Anda dimulai.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="addonsContainer">
+                        <!-- Addon 1: Sewa Raket -->
+                        <label class="addon-card flex items-start gap-3.5 p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:border-lime-500/40 cursor-pointer transition select-none">
+                            <input type="checkbox" value="raket" onchange="toggleAddon('raket')" id="addon-raket" class="mt-1 w-4 h-4 accent-lime-400 rounded">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-table-tennis-paddle-ball text-lime-400"></i> Sewa Raket Padel / Badminton</span>
+                                    <span class="text-xs font-mono font-bold text-lime-400">+Rp 35.000</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">Raket Carbon Pro + Grip Baru higienis siap pakai di lapangan.</p>
+                            </div>
+                        </label>
+
+                        <!-- Addon 2: Sewa Rompi Tim -->
+                        <label class="addon-card flex items-start gap-3.5 p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:border-lime-500/40 cursor-pointer transition select-none">
+                            <input type="checkbox" value="rompi" onchange="toggleAddon('rompi')" id="addon-rompi" class="mt-1 w-4 h-4 accent-lime-400 rounded">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-shirt text-emerald-400"></i> Sewa Rompi Tim (2 Warna)</span>
+                                    <span class="text-xs font-mono font-bold text-lime-400">+Rp 25.000</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">1 Set isi 14 pcs rompi (Neon Green & Electric Blue) sudah laundry wangi.</p>
+                            </div>
+                        </label>
+
+                        <!-- Addon 3: Sewa Fotografer -->
+                        <label class="addon-card flex items-start gap-3.5 p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:border-lime-500/40 cursor-pointer transition select-none">
+                            <input type="checkbox" value="fotografer" onchange="toggleAddon('fotografer')" id="addon-fotografer" class="mt-1 w-4 h-4 accent-lime-400 rounded">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-camera text-amber-400"></i> Sewa Fotografer Lapangan</span>
+                                    <span class="text-xs font-mono font-bold text-lime-400">+Rp 150.000</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">Kamera Mirrorless Telephoto + Minimal 60 Foto HD via Google Drive H+1.</p>
+                            </div>
+                        </label>
+
+                        <!-- Addon 4: Air Mineral 1 Dus -->
+                        <label class="addon-card flex items-start gap-3.5 p-4 rounded-xl border border-slate-800 bg-slate-950/60 hover:border-lime-500/40 cursor-pointer transition select-none">
+                            <input type="checkbox" value="air" onchange="toggleAddon('air')" id="addon-air" class="mt-1 w-4 h-4 accent-lime-400 rounded">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-bottle-water text-sky-400"></i> Air Mineral 1 Dus (24 Botol)</span>
+                                    <span class="text-xs font-mono font-bold text-lime-400">+Rp 45.000</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">Disajikan dalam Coolbox es batu di bench pemain.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT 4 COLUMNS: STICKY BOOKING SUMMARY & INSTANT QRIS CHECKOUT -->
+            <div class="lg:col-span-4 lg:sticky lg:top-32" id="booking-summary-panel">
+                <div class="bg-slate-900 border-2 border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+                    <!-- Header -->
+                    <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-5 border-b border-slate-700/80 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-lime-400"></i> Ringkasan Booking
+                            </h3>
+                            <p class="text-xs text-slate-400" id="summaryDateLabel">Tanggal dipilih: Hari Ini</p>
+                        </div>
+                        <button onclick="clearSelectedSlots()" id="clearCartBtn" class="hidden text-xs text-rose-400 hover:text-rose-300 font-semibold underline">
+                            Reset
+                        </button>
+                    </div>
+
+                    <div class="p-5 space-y-5">
+                        <!-- Selected Slots List -->
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+                                <span>Jadwal Lapangan Dipilih</span>
+                                <span id="slotCounterBadge" class="bg-lime-400/15 text-lime-400 px-2 py-0.5 rounded-full text-[11px] font-mono">0 Jam</span>
+                            </div>
+
+                            <div id="selectedSlotsList" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+                                <!-- Empty state -->
+                                <div class="text-center py-6 px-4 rounded-2xl border border-dashed border-slate-700 bg-slate-950/40">
+                                    <i class="fa-regular fa-hand-pointer text-2xl text-lime-400 mb-2"></i>
+                                    <p class="text-xs font-semibold text-slate-300">Belum ada jam yang dipilih</p>
+                                    <p class="text-[11px] text-slate-500 mt-1">Klik salah satu slot <span class="text-emerald-400 font-semibold">Hijau (Tersedia)</span> pada tabel di samping untuk mulai memesan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selected Add-ons Summary -->
+                        <div id="selectedAddonsWrapper" class="hidden pt-3 border-t border-slate-800">
+                            <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Tambahan Perlengkapan</div>
+                            <div id="selectedAddonsList" class="space-y-1.5 text-xs"></div>
+                        </div>
+
+                        <!-- Payment Option: DP 50% vs Lunas 100% -->
+                        <div class="pt-3 border-t border-slate-800">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">Opsi Pembayaran QRIS</label>
+                            <div class="grid grid-cols-2 gap-2.5">
+                                <button type="button" onclick="setPaymentMode('lunas')" id="payMode-lunas" class="p-3 rounded-xl border-2 border-lime-400 bg-lime-400/10 text-left transition">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-extrabold text-white">LUNAS 100%</span>
+                                        <i class="fa-solid fa-circle-check text-lime-400 text-xs"></i>
+                                    </div>
+                                    <div class="text-[11px] text-slate-300 mt-1">Langsung masuk lapangan tanpa antre kasir</div>
+                                </button>
+                                <button type="button" onclick="setPaymentMode('dp')" id="payMode-dp" class="p-3 rounded-xl border-2 border-slate-800 bg-slate-950/60 text-left transition hover:border-slate-700">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-extrabold text-white">DP 50% DULU</span>
+                                        <i class="fa-regular fa-circle text-slate-500 text-xs"></i>
+                                    </div>
+                                    <div class="text-[11px] text-slate-400 mt-1">Kunci jadwal sekarang, pelunasan di lokasi</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 space-y-2 text-xs">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Subtotal Sewa Lapangan</span>
+                                <span id="priceCourtSubtotal" class="font-mono font-semibold text-slate-200">Rp 0</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Subtotal Add-on Alat</span>
+                                <span id="priceAddonSubtotal" class="font-mono font-semibold text-slate-200">Rp 0</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Biaya Layanan Instant Booking</span>
+                                <span class="font-mono font-semibold text-emerald-400">GRATIS</span>
+                            </div>
+                            <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-sm">
+                                <span class="font-bold text-white">Total Tagihan</span>
+                                <span id="priceGrandTotal" class="font-mono font-bold text-white text-base">Rp 0</span>
+                            </div>
+                            <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center">
+                                <span id="payableLabel" class="font-bold text-lime-400">Bayar Sekarang (Lunas 100%)</span>
+                                <span id="pricePayNow" class="font-mono font-extrabold text-lg sm:text-xl text-lime-400">Rp 0</span>
+                            </div>
+                            <div id="remainingBalanceRow" class="hidden flex justify-between items-center text-[11px] text-amber-300 pt-1">
+                                <span>Sisa Pelunasan di Kasir Venue:</span>
+                                <span id="priceRemaining" class="font-mono font-bold">Rp 0</span>
+                            </div>
+                        </div>
+
+                        <!-- Customer Details Form -->
+                        <div class="space-y-3 pt-2">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Nama Tim / Nama Pemesan <span class="text-rose-400">*</span></label>
+                                <div class="relative">
+                                    <i class="fa-solid fa-users-line absolute left-3.5 top-3 text-slate-500 text-xs"></i>
+                                    <input type="text" id="customerTeamName" placeholder="Contoh: Garuda Muda FC / Bpk. Dimas" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-lime-400">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Nomor WhatsApp (Untuk Kirim E-Tiket) <span class="text-rose-400">*</span></label>
+                                <div class="relative">
+                                    <i class="fa-brands fa-whatsapp absolute left-3.5 top-3 text-emerald-400 text-sm"></i>
+                                    <input type="tel" id="customerPhone" placeholder="Contoh: 081234567890" class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-lime-400 font-mono">
+                                </div>
+                            </div>
+                            <label class="flex items-center gap-2.5 text-xs text-slate-300 cursor-pointer pt-1">
+                                <input type="checkbox" id="openSparringToggle" class="accent-lime-400 rounded">
+                                <span>Tampilkan jadwal kami di <strong>Papan Cari Lawan Sparring</strong></span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button onclick="openQrisModal()" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-lime-400 via-lime-500 to-emerald-500 hover:from-lime-300 hover:to-emerald-400 text-slate-950 font-extrabold text-sm sm:text-base shadow-xl shadow-lime-500/20 transition transform active:scale-[0.99] flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-qrcode text-lg"></i>
+                            <span>Bayar via QRIS & Kunci Jadwal</span>
+                        </button>
+
+                        <p class="text-[11px] text-center text-slate-400">
+                            <i class="fa-solid fa-lock text-lime-400 mr-1"></i> Jadwal otomatis terkunci atas nama tim Anda setelah pembayaran terverifikasi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMMUNITY SPARRING / MABAR BOARD SECTION -->
+        <section id="sparring-section" class="mt-14 pt-10 border-t border-slate-800/80">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-lime-400">FITUR KOMUNITAS OLAHRAGA</span>
+                    <h2 class="font-display text-2xl font-bold text-white mt-1">Papan Sparring & Open Play Mabar Minggu Ini</h2>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Tim yang sudah booking lapangan dan membuka undangan tanding persahabatan / patungan sewa lapangan.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="sparringCardsGrid">
+                <!-- Card 1 -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="bg-lime-400/15 text-lime-300 border border-lime-500/30 font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Padel Open Play</span>
+                            <span class="text-slate-400 font-mono">Malam Ini • 19:00 - 21:00</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Padel Vibes Jaksel (Upper Beginner)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Padel Court A Panoramic • Kurang 2 pemain lagi untuk Americano Mix Match. Raket tersedia.</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-300">Patungan: <strong class="text-lime-400 font-mono">Rp 85.000/org</strong></span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita,%20saya%20mau%20join%20Open%20Play%20Padel%20Vibes%20Jaksel%20jam%2019:00" target="_blank" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp"></i> Gabung Slot
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="bg-emerald-400/15 text-emerald-300 border border-emerald-500/30 font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-regular fa-futbol"></i> Cari Lawan Sparring</span>
+                            <span class="text-slate-400 font-mono">Besok • 20:00 - 22:00</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Garuda Muda FC (Fun Match 7v7)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Mini Soccer FIFA Pitch 1 • Cari lawan sparring santai, sudah termasuk wasit & fotografer lapangan.</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-300">Split Bill: <strong class="text-lime-400 font-mono">50% : 50%</strong></span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Garuda%20Muda%20FC,%20tim%20kami%20siap%20ajak%20sparring%20Mini%20Soccer%20besok%20jam%2020:00!" target="_blank" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp"></i> Tantang Tim
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-3">
+                            <span class="bg-purple-400/15 text-purple-300 border border-purple-500/30 font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5"><i class="fa-solid fa-trophy"></i> Mabar Badminton</span>
+                            <span class="text-slate-400 font-mono">Sabtu • 09:00 - 12:00</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">PB Djarum Muda Komunitas</h4>
+                        <p class="text-xs text-slate-400 mt-1">Line 1 & Line 2 Karpet BWF • Sudah termasuk shuttlecock Yonex AS-30 sepuasnya + air mineral.</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                        <span class="text-xs text-slate-300">Iuran: <strong class="text-lime-400 font-mono">Rp 45.000/org</strong></span>
+                        <a href="https://wa.me/6281234567890?text=Halo%20PB%20Djarum%20Muda,%20saya%20mau%20ikut%20Mabar%20Badminton%20hari%20Sabtu!" target="_blank" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp"></i> Ikut Mabar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACILITIES & PRICE TABLE SECTION -->
+        <section id="fasilitas-section" class="mt-14 pt-10 border-t border-slate-800/80">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-lime-400">STANDAR INTERNASIONAL</span>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-white">Kenapa Komunitas & Korporat Memilih ArenaKita?</h2>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Seluruh lapangan kami dirawat setiap hari dengan standar turnamen profesional, pencahayaan anti-silau, dan ruang ganti ber-AC dengan shower air hangat.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+                            <i class="fa-solid fa-bolt-lightning text-lime-400 text-lg mb-1"></i>
+                            <div class="font-bold text-sm text-white">Instant QRIS Lock</div>
+                            <p class="text-xs text-slate-400 mt-0.5">Jadwal otomatis terkunci detik itu juga tanpa double-booking.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+                            <i class="fa-solid fa-temperature-arrow-up text-sky-400 text-lg mb-1"></i>
+                            <div class="font-bold text-sm text-white">Hot Shower & Locker</div>
+                            <p class="text-xs text-slate-400 mt-0.5">Kamar mandi bersih dilengkapi sabun, shampoo & hairdryer.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+                            <i class="fa-solid fa-mug-hot text-amber-400 text-lg mb-1"></i>
+                            <div class="font-bold text-sm text-white">Tribun & Roastery Cafe</div>
+                            <p class="text-xs text-slate-400 mt-0.5">Viewing deck nyaman dengan kopi spesialti & minuman isotonik.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl">
+                            <i class="fa-solid fa-video text-rose-400 text-lg mb-1"></i>
+                            <div class="font-bold text-sm text-white">AI Highlight Camera</div>
+                            <p class="text-xs text-slate-400 mt-0.5">Rekaman ulang momen gol & smash terbaik di tiap court.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Comparison Table -->
+                <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div class="p-4 sm:p-5 bg-slate-800/60 border-b border-slate-800 flex items-center justify-between">
+                        <h3 class="font-bold text-white text-sm sm:text-base"><i class="fa-solid fa-tags text-lime-400 mr-2"></i>Daftar Tarif Sewa Lapangan per Jam</h3>
+                        <span class="text-xs text-slate-400">Harga transparan • Bisa DP 50%</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-slate-400 bg-slate-950/40">
+                                    <th class="p-3.5 font-semibold">Cabang Lapangan</th>
+                                    <th class="p-3.5 font-semibold">Pagi & Siang (07:00 - 16:00)</th>
+                                    <th class="p-3.5 font-semibold">Prime Time (16:00 - 23:00)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/70">
+                                <tr>
+                                    <td class="p-3.5 font-bold text-white"><i class="fa-solid fa-table-tennis-paddle-ball text-lime-400 mr-2"></i>Padel Panoramic WPT</td>
+                                    <td class="p-3.5 text-emerald-400 font-mono font-semibold">Rp 250.000 / jam</td>
+                                    <td class="p-3.5 text-amber-400 font-mono font-bold">Rp 290.000 / jam</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3.5 font-bold text-white"><i class="fa-regular fa-futbol text-emerald-400 mr-2"></i>Mini Soccer Rumput FIFA</td>
+                                    <td class="p-3.5 text-emerald-400 font-mono font-semibold">Rp 350.000 / jam</td>
+                                    <td class="p-3.5 text-amber-400 font-mono font-bold">Rp 450.000 / jam</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3.5 font-bold text-white"><i class="fa-solid fa-futbol text-sky-400 mr-2"></i>Futsal Vinyl Indoor Pro</td>
+                                    <td class="p-3.5 text-emerald-400 font-mono font-semibold">Rp 120.000 / jam</td>
+                                    <td class="p-3.5 text-amber-400 font-mono font-bold">Rp 175.000 / jam</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3.5 font-bold text-white"><i class="fa-solid fa-trophy text-purple-400 mr-2"></i>Badminton Karpet BWF</td>
+                                    <td class="p-3.5 text-emerald-400 font-mono font-semibold">Rp 65.000 / jam</td>
+                                    <td class="p-3.5 text-amber-400 font-mono font-bold">Rp 90.000 / jam</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ULASAN MEMBER & FOTO PENGUNJUNG -->
+    <section id="ulasan-member" class="bg-arena-dark court-grid-bg py-16 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="font-mono text-xs text-lime-400 uppercase tracking-wider">Dokumentasi & Bukti Nyata</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Ulasan Member & Foto <span class="text-lime-400">Pengunjung Lapangan</span></h2>
+                </div>
+                <p class="text-sm text-slate-400 max-w-md">
+                    Website ini bukan sekadar sistem booking, tapi juga media promosi venue olahraga yang menampilkan fasilitas premium dan pengalaman nyata pengunjung.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Review 1: Padel -->
+                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/rev-padel.jpg" alt="Foto Pengunjung Padel" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-lime-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Main Padel</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            "Court padel panoramic-nya mantap, kaca tempered tebal, lantai rumput sintetis FIFA quality. Booking lewat web langsung dapet slot tanpa ribet nelpon."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                        <img src="assets/images/cust-1.jpg" alt="Kevin R." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
+                        <div>
+                            <div class="text-xs font-bold text-white">Kevin Ramdhani</div>
+                            <div class="text-[10px] font-mono text-slate-400">Komunitas Padel JKT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2: Futsal -->
+                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/rev-futsal.jpg" alt="Foto Pertandingan Futsal" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-emerald-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Turnamen Futsal</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            "Lantai vinyl indoor-nya enak buat pivot, penerangan LED stadium grade. Tim kantor kami rutin booking 3 slot sekaligus buat turnamen internal."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                        <img src="assets/images/cust-2.jpg" alt="Reza A." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
+                        <div>
+                            <div class="text-xs font-bold text-white">Reza Andiarto</div>
+                            <div class="text-[10px] font-mono text-slate-400">Kapten Garuda FC</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3: Mini Soccer -->
+                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/rev-soccer.jpg" alt="Foto Mini Soccer" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-amber-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Team Building</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="font-mono text-[11px] text-white font-semibold ml-1">4.8</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            "Mini soccer-nya rumput sintetis tebal, luas banget buat 7v7. Parkiran lega, ada kantin dan mushola. Kami pakai buat team building kantor 40 orang."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                        <img src="assets/images/cust-3.jpg" alt="Anisa D." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
+                        <div>
+                            <div class="text-xs font-bold text-white">Anisa Dwiyanti</div>
+                            <div class="text-[10px] font-mono text-slate-400">HRD PT Nusantara Digital</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4: Badminton -->
+                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/rev-badminton.jpg" alt="Foto Badminton" class="w-full h-full object-cover" />
+                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-sky-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Latihan Badminton</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            "Karpet BWF standart pertandingan, AC dingin, dan 6 line lapangan semua bersih. E-Tiket QR langsung masuk tanpa antri di meja resepsionis."
+                        </p>
+                    </div>
+                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                        <img src="assets/images/cust-4.jpg" alt="Budi S." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
+                        <div>
+                            <div class="text-xs font-bold text-white">Budi Santoso</div>
+                            <div class="text-[10px] font-mono text-slate-400">PB Jaya Raya Bekasi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (PERTANYAAN YANG SERING DITANYAKAN) -->
+    <section id="faq" class="bg-arena-navy py-16 border-t border-slate-800/80">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs text-lime-400 uppercase tracking-wider">Informasi Booking</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Pertanyaan yang Sering Ditanyakan</h2>
+            </div>
+
+            <div class="space-y-3">
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>1. Apakah bisa reschedule atau batal setelah bayar DP?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        Reschedule bisa dilakukan maksimal H-6 jam sebelum jam booking melalui WhatsApp admin. Pembatalan kurang dari 6 jam dikenakan potongan 50% dari DP. Jika cuaca hujan lebat untuk lapangan outdoor, reschedule gratis tanpa potongan.
+                    </p>
+                </details>
+
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>2. Berapa minimal DP untuk mengunci slot jadwal?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        DP minimal 50% dari total booking via QRIS atau Transfer BCA/Mandiri. Pelunasan sisa bisa dilakukan saat kedatangan di kasir venue. Member Gold & Platinum bisa booking tanpa DP (bayar di tempat).
+                    </p>
+                </details>
+
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>3. Apa saja fasilitas yang tersedia di venue?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        Fasilitas lengkap: ruang ganti ber-AC, kamar mandi shower air hangat, mushola, kantin & vending machine, parkir luas motor + mobil, WiFi gratis, sewa rompi tim, sewa raket badminton/padel, dan tribun penonton kapasitas 100 kursi.
+                    </p>
+                </details>
+
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>4. Kenapa harga malam (prime time) lebih mahal?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        Jam malam (18:00–23:00) adalah jam puncak permintaan karena mayoritas pekerja baru pulang kantor. Tarif prime time mencakup penerangan LED stadium grade penuh daya yang konsumsi listriknya lebih tinggi. Untuk hemat, booking jam siang (07:00–17:00) bisa lebih murah hingga 30%.
+                    </p>
+                </details>
+
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>5. Bagaimana cara menggunakan E-Tiket QR saat datang ke venue?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        Setelah pembayaran dikonfirmasi, Anda mendapat E-Tiket digital berisi QR Code unik dan Kode Booking 6 digit. Tunjukkan QR tersebut ke petugas gerbang masuk atau scan mandiri di gate scanner. Tidak perlu print, cukup tunjukkan dari layar HP.
+                    </p>
+                </details>
+
+                <details class="group bg-arena-card border border-slate-700/80 rounded-xl p-5 open:border-lime-500/50 transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-white list-none">
+                        <span>6. Apakah bisa sewa lapangan untuk turnamen atau acara perusahaan?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 bg-slate-800 rounded group-open:bg-lime-500 group-open:text-slate-950 transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pt-3 border-t border-slate-700/60">
+                        Tentu, kami melayani sewa venue untuk turnamen futsal/mini soccer/padel, gathering kantor, dan acara komunitas. Tersedia paket all-day sewa 2+ lapangan sekaligus dengan diskon 20%, sudah termasuk air mineral, rompi tim, dan dokumentasi fotografer lapangan. Hubungi admin via WhatsApp untuk penawaran khusus.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-slate-950 border-t border-slate-800/80 text-slate-300 relative overflow-hidden">
+        <!-- Subtle top ambient glow matching theme -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-lime-400/40 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 1. STRIP CTA & TRUST BADGES -->
+            <div class="py-8 border-b border-slate-800/80">
+                <div class="bg-gradient-to-r from-slate-900 via-arena-card to-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
+                    <div class="space-y-3 text-center lg:text-left max-w-2xl">
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2" id="footerTrustBadges">
+                            <span class="inline-flex items-center gap-1.5 bg-lime-400/10 border border-lime-400/30 text-lime-400 text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full">
+                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                Konfirmasi Instan
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full">
+                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                                Pembayaran Aman
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full">
+                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                Jadwal Real-Time
+                            </span>
+                        </div>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
+                            Siap Tanding Minggu Ini? Kunci Jadwal Lapangan Tim Anda Sekarang
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                            Cek slot kosong secara langsung, pilih opsi DP 50% atau Lunas 100%, dan dapatkan E-Tiket QR resmi tanpa perlu menunggu balasan chat admin.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+                        <a href="#jadwal-section"
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-lime-400 hover:bg-lime-300 text-slate-950 font-extrabold text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-lime-500/20 transition transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
+                            <i class="fa-regular fa-calendar-check text-base" aria-hidden="true"></i>
+                            <span>Booking Sekarang</span>
+                        </a>
+                        <a id="footerCtaWaLink"
+                           href="https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita%20Sport%20Center,%20saya%20ingin%20konsultasi%20booking%20lapangan%20/%20turnamen."
+                           target="_blank" rel="noopener noreferrer"
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base" aria-hidden="true"></i>
+                            <span>Hubungi Admin Venue</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. BAGIAN ATAS: GRID 4 KOLOM (4 Kolom Desktop, 2 Kolom Tablet, 1 Kolom Mobile) -->
+            <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand, Deskripsi & Sosial Media -->
+                <div class="space-y-4">
+                    <a href="#" class="inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded-xl">
+                        <img src="assets/logo.svg" alt="ArenaKita Sport Center Logo" class="w-11 h-11 rounded-xl shadow-md shadow-lime-500/10 shrink-0">
+                        <div>
+                            <div class="font-display font-bold text-lg text-white tracking-tight leading-none">
+                                Arena<span class="text-lime-400">Kita</span> Sport Center
+                            </div>
+                            <span class="text-[11px] font-mono text-lime-400/90 block mt-1">DIGITAL VENUE MANAGEMENT</span>
+                        </div>
+                    </a>
+
+                    <p id="footerBrandDesc" class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Pusat fasilitas olahraga terpadu berstandar internasional di Jakarta Selatan. Dilengkapi sistem booking matriks real-time 24 jam dan verifikasi pembayaran QRIS otomatis.
+                    </p>
+
+                    <!-- Social Media Icons with Neon Green Hover -->
+                    <div class="pt-1">
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-2.5">Ikuti Komunitas Kami</span>
+                        <div class="flex items-center gap-2.5" id="footerSocialList">
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/arenakitasport.id" target="_blank" rel="noopener noreferrer"
+                               aria-label="Instagram ArenaKita Sport Center"
+                               class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-lime-400 hover:text-slate-950 hover:border-lime-400 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <!-- TikTok -->
+                            <a href="https://tiktok.com/@arenakitasport" target="_blank" rel="noopener noreferrer"
+                               aria-label="TikTok ArenaKita Sport Center"
+                               class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-lime-400 hover:text-slate-950 hover:border-lime-400 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+                            </a>
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita%20Sport%20Center" target="_blank" rel="noopener noreferrer"
+                               aria-label="WhatsApp Resmi ArenaKita Sport Center"
+                               class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-lime-400 hover:text-slate-950 hover:border-lime-400 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
+                                <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
+                            </a>
+                            <!-- YouTube -->
+                            <a href="https://youtube.com/@arenakitasportcenter" target="_blank" rel="noopener noreferrer"
+                               aria-label="YouTube ArenaKita Sport Center"
+                               class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:bg-lime-400 hover:text-slate-950 hover:border-lime-400 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-4">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white flex items-center gap-2">
+                        <span class="w-1.5 h-4 rounded-full bg-lime-400 inline-block"></span>
+                        Navigasi Cepat
+                    </h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#venueTabsContainer" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Lapangan & Spesifikasi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jadwal-section" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Jadwal & Harga Sewa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Cara Booking & Aturan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#ulasan-member" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Galeri & Ulasan Member</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#kontak-footer" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600" aria-hidden="true"></i>
+                                <span>Kontak & Lokasi Venue</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Jenis Lapangan -->
+                <nav aria-label="Jenis Lapangan" class="space-y-4">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white flex items-center gap-2">
+                        <span class="w-1.5 h-4 rounded-full bg-emerald-400 inline-block"></span>
+                        Jenis Lapangan
+                    </h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#jadwal-section" onclick="selectVenue('padel')" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center justify-between w-full group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <span>Lapangan Padel Panoramic</span>
+                                <span class="text-[10px] font-mono bg-lime-400/15 text-lime-400 px-1.5 py-0.5 rounded">2 Court</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jadwal-section" onclick="selectVenue('futsal')" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center justify-between w-full group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <span>Futsal Vinyl Indoor Pro</span>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">3 Court</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jadwal-section" onclick="selectVenue('badminton')" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center justify-between w-full group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <span>Badminton Karpet BWF</span>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">6 Line</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jadwal-section" onclick="selectVenue('minisoccer')" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center justify-between w-full group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <span>Mini Soccer Rumput FIFA</span>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded">2 Pitch</span>
+                            </a>
+                        </li>
+                        <li>
+                            <!-- TODO: Halaman khusus booking lapangan Basket 3x3 & Tenis Outdoor (Fase Ekspansi Arena Timur) -->
+                            <a href="#" class="text-slate-400 hover:text-lime-400 transition-colors inline-flex items-center justify-between w-full group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded px-1 -ml-1">
+                                <span>Basket & Tenis Outdoor</span>
+                                <span class="text-[10px] font-mono bg-amber-500/15 text-amber-300 px-1.5 py-0.5 rounded">Segera</span>
+                            </a>
+                        </li>
+                        <li class="pt-1">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita,%20saya%20ingin%20minta%20penawaran%20Paket%20Event%20%26%20Turnamen%20Olahraga."
+                               target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 text-lime-400 hover:text-lime-300 font-semibold text-xs bg-lime-400/10 border border-lime-400/25 px-3 py-2 rounded-xl transition w-full justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400">
+                                <span><i class="fa-solid fa-trophy mr-1.5" aria-hidden="true"></i>Paket Event & Turnamen</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-4">
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white flex items-center gap-2">
+                        <span class="w-1.5 h-4 rounded-full bg-lime-400 inline-block"></span>
+                        Kontak & Jam Operasional
+                    </h4>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-400">
+                        <!-- Alamat Lengkap -->
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-lime-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs" aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span id="footerAddressText" class="block text-slate-300 leading-relaxed">
+                                    Jl. Arteri Permata Hijau No. 88, Kebayoran Lama, Jakarta Selatan 12210
+                                </span>
+                                <a id="footerMapsLink"
+                                   href="https://maps.google.com/?q=Jl.+Arteri+Permata+Hijau+No.+88+Jakarta+Selatan"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1 text-[11px] font-semibold text-lime-400 hover:text-lime-300 mt-1 underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </li>
+
+                        <!-- Nomor WhatsApp -->
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-sm" aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">WhatsApp Reservasi & Admin</span>
+                                <a id="footerPhoneLink"
+                                   href="https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita%20Sport%20Center,%20saya%20ingin%20tanya%20jadwal%20lapangan."
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="font-mono font-semibold text-white hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                                    +62 812-3456-7890
+                                </a>
+                            </div>
+                        </li>
+
+                        <!-- Email -->
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs" aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">Email Korporat & Sponsorship</span>
+                                <a id="footerEmailLink"
+                                   href="mailto:booking@arenakitasport.id"
+                                   class="font-mono text-slate-200 hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                                    booking@arenakitasport.id
+                                </a>
+                            </div>
+                        </li>
+
+                        <!-- Jam Buka -->
+                        <li class="flex items-center gap-3 pt-1">
+                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock text-xs" aria-hidden="true"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] text-slate-500 block">Jam Operasional Venue</span>
+                                <span id="footerHoursText" class="font-semibold text-white">Senin – Minggu: 07.00 – 23.00 WIB</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. BAR BAWAH: METODE PEMBAYARAN (KIRI) & COPYRIGHT + LEGAL (KANAN) -->
+            <div class="py-6 border-t border-slate-800/80 flex flex-col lg:flex-row items-center justify-between gap-5 text-xs text-slate-400 text-center lg:text-left">
+                <!-- Kiri: Metode Pembayaran Didukung -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-1.5">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-bold text-[11px] text-lime-400 whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 font-mono font-semibold text-[11px] text-slate-300 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Kanan: Copyright & Tautan Legal -->
+                <div class="flex flex-col items-center lg:items-end gap-1.5">
+                    <p id="footerCopyrightText" class="text-slate-400">
+                        © 2026 ArenaKita Digital Venue Management. Portofolio UMKM Website Series.
+                    </p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center lg:justify-end gap-3 text-[11px] text-slate-400">
+                        <!-- TODO: Hubungkan ke halaman/modal Syarat & Ketentuan penuh -->
+                        <a href="#" class="whitespace-nowrap hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                            Syarat & Ketentuan
+                        </a>
+                        <span class="text-slate-700" aria-hidden="true">•</span>
+                        <!-- TODO: Hubungkan ke halaman/modal Kebijakan Privasi penuh -->
+                        <a href="#" class="whitespace-nowrap hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                            Kebijakan Privasi
+                        </a>
+                        <span class="text-slate-700" aria-hidden="true">•</span>
+                        <a href="#faq" class="whitespace-nowrap hover:text-lime-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 rounded">
+                            Kebijakan Pembatalan
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+    <!-- MODAL 1: QRIS PAYMENT SIMULATOR & OFFICIAL E-TICKET GENERATOR -->
+    <!-- ======================================================================= -->
+    <div id="qrisModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4 overflow-y-auto">
+        <div class="bg-slate-900 border-2 border-slate-700 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl my-8 relative">
+            
+            <!-- Modal Top Close -->
+            <button onclick="closeQrisModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- STEP A: QRIS PAYMENT SCREEN -->
+            <div id="modalStepPayment" class="p-6 sm:p-7">
+                <div class="flex items-center gap-2.5 text-xs font-extrabold uppercase tracking-wider text-lime-400 mb-1">
+                    <i class="fa-solid fa-shield-check"></i> GERBANG PEMBAYARAN OTOMATIS QRIS
+                </div>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-white">Selesaikan Pembayaran Booking</h3>
+                <p class="text-xs text-slate-400 mt-1">Scan kode QRIS di bawah menggunakan m-Banking (BCA, Mandiri, BRI, BNI) atau E-Wallet (GoPay, OVO, Dana, ShopeePay).</p>
+
+                <!-- Countdown & Nominal -->
+                <div class="mt-4 bg-slate-950 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
+                    <div>
+                        <div class="text-[11px] text-slate-400" id="qrisPayTypeLabel">Nominal Bayar Sekarang</div>
+                        <div class="font-display text-2xl font-extrabold text-lime-400" id="qrisNominalDisplay">Rp 0</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[11px] text-slate-400">Batas Waktu Kunci Slot</div>
+                        <div class="font-mono font-bold text-sm text-amber-400 flex items-center justify-end gap-1.5">
+                            <i class="fa-regular fa-clock"></i> <span id="qrisTimer">09:58</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QRIS Card Visual -->
+                <div class="my-5 bg-white text-slate-900 rounded-2xl p-5 text-center shadow-inner max-w-xs mx-auto">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+                        <span class="font-black text-sm tracking-tight text-slate-900">QRIS</span>
+                        <span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">GPN • INSTANT VERIFY</span>
+                    </div>
+                    <div class="font-bold text-xs text-slate-800 uppercase">ARENAKITA SPORT CENTER</div>
+                    <div class="text-[10px] text-slate-500 mb-3">NMID: ID2026099823412 • A01</div>
+                    
+                    <!-- Generated SVG QR Code -->
+                    <div class="w-44 h-44 mx-auto bg-slate-100 p-2 rounded-xl border border-slate-300 flex items-center justify-center">
+                        <svg viewBox="0 0 120 120" class="w-full h-full">
+                            <rect width="120" height="120" fill="#ffffff"/>
+                            <!-- Corner Finder Patterns -->
+                            <rect x="8" y="8" width="28" height="28" fill="none" stroke="#0f172a" stroke-width="4"/>
+                            <rect x="14" y="14" width="16" height="16" fill="#0f172a"/>
+                            <rect x="84" y="8" width="28" height="28" fill="none" stroke="#0f172a" stroke-width="4"/>
+                            <rect x="90" y="14" width="16" height="16" fill="#0f172a"/>
+                            <rect x="8" y="84" width="28" height="28" fill="none" stroke="#0f172a" stroke-width="4"/>
+                            <rect x="14" y="90" width="16" height="16" fill="#0f172a"/>
+                            <!-- Data Matrix Dots -->
+                            <g fill="#0f172a">
+                                <rect x="44" y="10" width="6" height="6"/><rect x="56" y="10" width="6" height="12"/><rect x="68" y="16" width="8" height="6"/>
+                                <rect x="44" y="24" width="12" height="6"/><rect x="62" y="28" width="6" height="6"/><rect x="72" y="24" width="6" height="12"/>
+                                <rect x="10" y="44" width="12" height="6"/><rect x="28" y="44" width="6" height="12"/><rect x="42" y="42" width="14" height="14" fill="#16a34a"/>
+                                <rect x="62" y="44" width="6" height="6"/><rect x="74" y="40" width="12" height="6"/><rect x="92" y="44" width="8" height="12"/><rect x="104" y="44" width="6" height="6"/>
+                                <rect x="10" y="56" width="6" height="12"/><rect x="20" y="62" width="8" height="6"/><rect x="36" y="62" width="12" height="6"/>
+                                <rect x="54" y="60" width="6" height="14"/><rect x="66" y="56" width="14" height="6"/><rect x="86" y="62" width="6" height="12"/><rect x="98" y="58" width="12" height="6"/>
+                                <rect x="14" y="74" width="18" height="6"/><rect x="42" y="74" width="8" height="12"/><rect x="64" y="74" width="6" height="6"/><rect x="76" y="72" width="12" height="8"/>
+                                <rect x="44" y="92" width="12" height="6"/><rect x="62" y="86" width="6" height="14"/><rect x="74" y="90" width="14" height="6"/><rect x="94" y="84" width="8" height="12"/>
+                                <rect x="44" y="104" width="8" height="6"/><rect x="58" y="104" width="18" height="6"/><rect x="84" y="102" width="12" height="8"/><rect x="102" y="100" width="8" height="10"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="text-[11px] text-slate-600 mt-2 font-medium">Buka aplikasi pembayaran atau klik tombol simulasi di bawah:</p>
+                </div>
+
+                <!-- Action button to simulate instant payment verification -->
+                <button onclick="completeQrisPayment()" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-emerald-400 to-lime-400 hover:from-emerald-300 hover:to-lime-300 text-slate-950 font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Simulasikan Pembayaran Berhasil (Terbitkan E-Tiket)</span>
+                </button>
+            </div>
+
+            <!-- STEP B: OFFICIAL E-TICKET BOOKING RESMI -->
+            <div id="modalStepTicket" class="hidden p-6 sm:p-7">
+                <div class="text-center mb-4">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto text-2xl mb-2">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <span class="text-[11px] font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">JADWAL RESMI TERKUNCI</span>
+                    <h3 class="font-display text-2xl font-bold text-white mt-2">E-Tiket Booking ArenaKita</h3>
+                    <p class="text-xs text-slate-400">Tunjukkan QR E-Tiket ini kepada petugas resepsionis saat tiba di venue.</p>
+                </div>
+
+                <!-- Printable Official E-Ticket Card -->
+                <div id="printableTicket" class="bg-slate-950 border-2 border-lime-400/50 rounded-2xl p-5 space-y-4 relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div>
+                            <div class="text-[10px] uppercase tracking-wider text-slate-400">KODE BOOKING RESMI</div>
+                            <div id="ticketBookingCode" class="font-mono font-black text-xl text-lime-400">AK-9081-PDL</div>
+                        </div>
+                        <div class="text-right">
+                            <span id="ticketPaymentBadge" class="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                LUNAS 100%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Nama Tim / Pemesan:</span>
+                            <strong id="ticketTeamName" class="text-white text-sm">Garuda Muda FC</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">No. WhatsApp:</span>
+                            <strong id="ticketPhone" class="text-white text-sm">081234567890</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Cabang Olahraga:</span>
+                            <strong id="ticketVenueName" class="text-lime-300">Lapangan Padel</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Tanggal Main:</span>
+                            <strong id="ticketDate" class="text-white">Minggu, 12 Okt 2026</strong>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-3">
+                        <span class="text-[11px] uppercase tracking-wider font-bold text-slate-400 block mb-1.5">Rincian Jam & Court Terkunci:</span>
+                        <div id="ticketSlotsList" class="space-y-1 text-xs text-slate-200 font-medium"></div>
+                    </div>
+
+                    <div id="ticketAddonsRow" class="border-t border-slate-800 pt-2.5 hidden">
+                        <span class="text-[11px] uppercase tracking-wider font-bold text-slate-400 block mb-1">Add-on Perlengkapan:</span>
+                        <div id="ticketAddonsText" class="text-xs text-lime-300"></div>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-3 flex items-center justify-between">
+                        <div class="text-xs space-y-1">
+                            <div class="text-slate-400">Total Dibayar QRIS: <strong id="ticketPaidAmount" class="text-emerald-400">Rp 0</strong></div>
+                            <div class="text-slate-400">Sisa Bayar di Lokasi: <strong id="ticketRemainingAmount" class="text-amber-300">Rp 0</strong></div>
+                        </div>
+                        <!-- Mini QR Check-in -->
+                        <div class="bg-white p-1.5 rounded-lg">
+                            <i class="fa-solid fa-qrcode text-3xl text-slate-900"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post-Ticket Action Buttons -->
+                <div class="mt-5 space-y-2.5">
+                    <button onclick="sendTicketToWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Kirim E-Tiket & Konfirmasi ke WhatsApp</span>
+                    </button>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <button onclick="window.print()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-print text-lime-400"></i> Cetak / Simpan PDF
+                        </button>
+                        <button onclick="closeQrisModal()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-table-cells text-lime-400"></i> Lihat di Tabel Jadwal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CEK KODE BOOKING -->
+    <div id="lookupModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 relative">
+            <button onclick="closeCheckBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+                <i class="fa-solid fa-magnifying-glass text-lime-400"></i> Cek Status Kode Booking
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">Masukkan Kode Booking Anda atau coba kode contoh <code class="text-lime-400 font-mono">AK-8821-PDL</code>.</p>
+            <div class="mt-4 flex gap-2">
+                <input type="text" id="lookupCodeInput" value="AK-8821-PDL" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono uppercase focus:outline-none focus:border-lime-400">
+                <button onclick="lookupBookingCode()" class="bg-lime-400 hover:bg-lime-300 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs">Cek</button>
+            </div>
+            <div id="lookupResultBox" class="mt-4"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. VENUE DATA & CONFIGURATION
+        const VENUES = {
+            padel: {
+                id: 'padel',
+                name: 'Lapangan Padel (2 Court Panoramic)',
+                shortName: 'Padel Panoramic',
+                image: 'assets/images/venue-padel.jpg',
+                iconClass: 'fa-solid fa-table-tennis-paddle-ball text-lime-400',
+                badge: 'STANDAR WORLD PADEL TOUR',
+                desc: 'Kaca Tempered Panoramic 12mm, Rumput Monofilamen Turf Biru/Emerald, Pencahayaan LED 500 Lux Anti-Glare.',
+                dayPrice: 250000,
+                nightPrice: 290000,
+                courts: [
+                    { id: 'padel-a', name: 'Padel Court A (Panoramic Blue)', surface: 'WPT Mondo Turf • Indoor AC' },
+                    { id: 'padel-b', name: 'Padel Court B (Panoramic Emerald)', surface: 'WPT Mondo Turf • Semi-Indoor' }
+                ]
+            },
+            minisoccer: {
+                id: 'minisoccer',
+                name: 'Mini Soccer Rumput Sintetis FIFA',
+                shortName: 'Mini Soccer FIFA',
+                image: 'assets/images/venue-minisoccer.jpg',
+                iconClass: 'fa-regular fa-futbol text-emerald-400',
+                badge: 'SERTIFIKASI RUMPUT FIFA',
+                desc: 'Ukuran 40m x 25m (7v7 atau 8v8), Rumput Sintetis Monofilamen 50mm lembut, Drainase Anti-Genangan & Bench Pemain VIP.',
+                dayPrice: 350000,
+                nightPrice: 450000,
+                courts: [
+                    { id: 'mini-1', name: 'Mini Soccer Pitch 1 (Utama - Tribun)', surface: 'FIFA Quality Pro Turf • 7v7 / 8v8' },
+                    { id: 'mini-2', name: 'Mini Soccer Pitch 2 (Timur)', surface: 'FIFA Quality Pro Turf • 7v7' }
+                ]
+            },
+            futsal: {
+                id: 'futsal',
+                name: 'Lapangan Futsal Vinyl Indoor (3 Lapangan)',
+                shortName: 'Futsal Vinyl Indoor',
+                image: 'assets/images/venue-futsal.jpg',
+                iconClass: 'fa-solid fa-futbol text-sky-400',
+                badge: 'VINYL PRO 8MM ANTI-SLIP',
+                desc: 'Lantai Vinyl ketebalan 8mm meredam benturan lutut, sirkulasi udara Cyclone Fan sejuk, papan skor digital & sound system.',
+                dayPrice: 120000,
+                nightPrice: 175000,
+                courts: [
+                    { id: 'futsal-1', name: 'Futsal Court 1 (Arena Utama)', surface: 'Vinyl Pro Coral 8mm' },
+                    { id: 'futsal-2', name: 'Futsal Court 2 (Arena Tengah)', surface: 'Vinyl Pro Emerald 8mm' },
+                    { id: 'futsal-3', name: 'Futsal Court 3 (Arena Barat)', surface: 'Vinyl Pro Royal Blue 8mm' }
+                ]
+            },
+            badminton: {
+                id: 'badminton',
+                name: 'Lapangan Badminton Karpet BWF (6 Line)',
+                shortName: 'Badminton Karpet BWF',
+                image: 'assets/images/venue-badminton.jpg',
+                iconClass: 'fa-solid fa-trophy text-purple-400',
+                badge: '6 LINE STANDAR BWF',
+                desc: 'Karpet vinyl pasir standar turnamen BWF tebal 5mm, lampu samping anti-silau, tinggi atap 12 meter bebas hembusan angin.',
+                dayPrice: 65000,
+                nightPrice: 90000,
+                courts: [
+                    { id: 'badmin-1', name: 'Badminton Line 1 (BWF Pro)', surface: 'Karpet Flypower Sand BWF' },
+                    { id: 'badmin-2', name: 'Badminton Line 2 (BWF Pro)', surface: 'Karpet Flypower Sand BWF' },
+                    { id: 'badmin-3', name: 'Badminton Line 3 (BWF Pro)', surface: 'Karpet Li-Ning BWF' },
+                    { id: 'badmin-4', name: 'Badminton Line 4 (BWF Pro)', surface: 'Karpet Li-Ning BWF' },
+                    { id: 'badmin-5', name: 'Badminton Line 5 (BWF Reguler)', surface: 'Karpet Yonex Mat' },
+                    { id: 'badmin-6', name: 'Badminton Line 6 (BWF Reguler)', surface: 'Karpet Yonex Mat' }
+                ]
+            }
+        };
+
+        const ADDONS_CATALOG = {
+            raket: { id: 'raket', name: 'Sewa Raket Padel/Badminton', price: 35000 },
+            rompi: { id: 'rompi', name: 'Sewa Rompi Tim (2 Warna)', price: 25000 },
+            fotografer: { id: 'fotografer', name: 'Sewa Fotografer Lapangan', price: 150000 },
+            air: { id: 'air', name: 'Air Mineral 1 Dus (24 Botol)', price: 45000 }
+        };
+
+        // Hours from 07:00 to 23:00 (16 hourly slots)
+        const HOURS = [
+            { start: 7, label: '07:00 - 08:00', isPrime: false },
+            { start: 8, label: '08:00 - 09:00', isPrime: false },
+            { start: 9, label: '09:00 - 10:00', isPrime: false },
+            { start: 10, label: '10:00 - 11:00', isPrime: false },
+            { start: 11, label: '11:00 - 12:00', isPrime: false },
+            { start: 12, label: '12:00 - 13:00', isPrime: false },
+            { start: 13, label: '13:00 - 14:00', isPrime: false },
+            { start: 14, label: '14:00 - 15:00', isPrime: false },
+            { start: 15, label: '15:00 - 16:00', isPrime: false },
+            { start: 16, label: '16:00 - 17:00', isPrime: true },
+            { start: 17, label: '17:00 - 18:00', isPrime: true },
+            { start: 18, label: '18:00 - 19:00', isPrime: true },
+            { start: 19, label: '19:00 - 20:00', isPrime: true },
+            { start: 20, label: '20:00 - 21:00', isPrime: true },
+            { start: 21, label: '21:00 - 22:00', isPrime: true },
+            { start: 22, label: '22:00 - 23:00', isPrime: true }
+        ];
+
+        // Realistic Indonesian Team Names for Booked Slots
+        const SAMPLE_TEAMS = {
+            padel: ['Padel Club Jaksel', 'Vamos Padel ID', 'Senopati Padel', 'Bintaro Smashers', 'Raket Sultan', 'Exec Padel Team'],
+            minisoccer: ['Garuda FC', 'Kopi Senja FC', 'Bank Mandiri Club', 'Elang Merah FC', 'Kemang United', 'pejuang KPR FC'],
+            futsal: ['Garuda Muda FC', 'Thunder Futsal', 'Alumni SMA 8', 'Spartan FC', 'Rajawali Indoor', 'Tokopedia FC'],
+            badminton: ['PB Djarum Muda', 'PB Tangkas Jaya', 'Komunitas Tepok Bulu', 'PB Cendrawasih', 'Smash Bros ID', 'PB Suryanaga']
+        };
+
+        // Application State
+        let currentVenueId = 'padel';
+        let currentCourtFilter = 'all';
+        let selectedDateIndex = 0;
+        let datesList = [];
+        let selectedSlots = []; // Array of { key, venueId, venueName, courtId, courtName, dateStr, dateLabel, hourStart, hourLabel, price, isPrime }
+        let selectedAddons = new Set();
+        let paymentMode = 'lunas'; // 'lunas' or 'dp'
+        let customBookedSlots = {}; // Map of slotKey -> teamName (including user's newly completed bookings!)
+        let lastGeneratedTicket = null;
+
+        // Format Rupiah
+        function formatRupiah(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        // Initialize Dates (Hari Ini, Besok, Lusa, +2 more days)
+        function initDates() {
+            const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const today = new Date();
+            datesList = [];
+
+            for (let i = 0; i < 5; i++) {
+                const d = new Date(today);
+                d.setDate(today.getDate() + i);
+                const iso = d.toISOString().split('T')[0];
+                const dayName = dayNames[d.getDay()];
+                const dateFormatted = `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+                let tag = dayName;
+                if (i === 0) tag = 'Hari Ini';
+                else if (i === 1) tag = 'Besok';
+                else if (i === 2) tag = 'Lusa';
+
+                datesList.push({
+                    iso,
+                    tag,
+                    dayName,
+                    shortDate: `${d.getDate()} ${monthNames[d.getMonth()]}`,
+                    fullLabel: `${tag}, ${dateFormatted}`
+                });
+            }
+
+            const picker = document.getElementById('customDatePicker');
+            if (picker) {
+                picker.value = datesList[0].iso;
+                picker.min = datesList[0].iso;
+            }
+            renderDateButtons();
+        }
+
+        function renderDateButtons() {
+            const container = document.getElementById('dateQuickButtons');
+            container.innerHTML = datesList.map((d, idx) => {
+                const active = idx === selectedDateIndex;
+                return `
+                    <button onclick="selectDateIndex(${idx})" class="p-3 rounded-xl border text-left transition flex flex-col justify-between ${
+                        active 
+                        ? 'bg-lime-400 text-slate-950 border-lime-300 font-bold shadow-lg shadow-lime-500/20' 
+                        : 'bg-slate-950/70 text-slate-300 border-slate-800 hover:border-slate-700'
+                    }">
+                        <span class="text-[11px] uppercase tracking-wider ${active ? 'text-slate-900 font-extrabold' : 'text-lime-400 font-semibold'}">${d.tag}</span>
+                        <span class="text-sm font-bold mt-0.5 ${active ? 'text-slate-950' : 'text-white'}">${d.dayName}, ${d.shortDate}</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('summaryDateLabel').textContent = `Tanggal: ${datesList[selectedDateIndex].fullLabel}`;
+        }
+
+        function selectDateIndex(idx) {
+            selectedDateIndex = idx;
+            document.getElementById('customDatePicker').value = datesList[idx].iso;
+            renderDateButtons();
+            renderMatrixGrid();
+        }
+
+        function handleCustomDate(val) {
+            if (!val) return;
+            const existingIdx = datesList.findIndex(d => d.iso === val);
+            if (existingIdx !== -1) {
+                selectDateIndex(existingIdx);
+                return;
+            }
+            const d = new Date(val + 'T00:00:00');
+            const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const customObj = {
+                iso: val,
+                tag: 'Pilihan Anda',
+                dayName: dayNames[d.getDay()],
+                shortDate: `${d.getDate()} ${monthNames[d.getMonth()]}`,
+                fullLabel: `${dayNames[d.getDay()]}, ${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`
+            };
+            datesList[4] = customObj;
+            selectedDateIndex = 4;
+            renderDateButtons();
+            renderMatrixGrid();
+        }
+
+        // Deterministic check if a slot is pre-booked so every court & date feels alive
+        function getBookedTeam(venueId, courtId, dateIso, hourStart) {
+            const slotKey = `${venueId}|${courtId}|${dateIso}|${hourStart}`;
+            if (customBookedSlots[slotKey]) {
+                return customBookedSlots[slotKey];
+            }
+            // Deterministic hash
+            let hash = 0;
+            for (let i = 0; i < slotKey.length; i++) {
+                hash = ((hash << 5) - hash) + slotKey.charCodeAt(i);
+                hash |= 0;
+            }
+            const absHash = Math.abs(hash);
+            // Prime time hours (18-21) have higher booking probability (~40%), daytime ~22%
+            const threshold = (hourStart >= 18 && hourStart <= 21) ? 40 : 22;
+            if ((absHash % 100) < threshold) {
+                const teams = SAMPLE_TEAMS[venueId] || SAMPLE_TEAMS.futsal;
+                return teams[absHash % teams.length];
+            }
+            return null;
+        }
+
+        // Select Venue Tab
+        function selectVenue(venueId) {
+            currentVenueId = venueId;
+            currentCourtFilter = 'all';
+
+            // Update Tab UI
+            Object.keys(VENUES).forEach(id => {
+                const btn = document.getElementById(`tab-${id}`);
+                if (!btn) return;
+                if (id === venueId) {
+                    btn.className = 'venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-gradient-to-br from-slate-800 to-slate-900 border-lime-400 shadow-lg shadow-lime-500/10';
+                } else {
+                    btn.className = 'venue-tab text-left p-3.5 rounded-2xl border-2 transition-all relative overflow-hidden group bg-slate-900/90 border-slate-800 hover:border-slate-700';
+                }
+            });
+
+            renderVenueBanner();
+            renderCourtFilterPills();
+            renderMatrixGrid();
+        }
+
+        function renderVenueBanner() {
+            const v = VENUES[currentVenueId];
+            const banner = document.getElementById('venueDetailBanner');
+            banner.innerHTML = `
+                <div class="flex items-start sm:items-center gap-4">
+                    <img src="${v.image}" alt="${v.name}" class="w-20 h-16 rounded-xl object-cover border border-slate-700 shrink-0 shadow-md">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <h3 class="font-display font-bold text-lg sm:text-xl text-white flex items-center gap-2">
+                                <i class="${v.iconClass} text-base"></i>
+                                <span>${v.name}</span>
+                            </h3>
+                            <span class="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-md bg-lime-400/15 text-lime-300 border border-lime-500/30">${v.badge}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1">${v.desc}</p>
+                    </div>
+                </div>
+                <div class="flex sm:flex-col items-center sm:items-end justify-between border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800 shrink-0 text-right">
+                    <div class="text-xs text-slate-400">Tarif Siang: <strong class="text-emerald-400 font-mono">${formatRupiah(v.dayPrice)}/jam</strong></div>
+                    <div class="text-xs text-slate-400 mt-0.5">Prime Time (16:00+): <strong class="text-amber-400 font-mono">${formatRupiah(v.nightPrice)}/jam</strong></div>
+                </div>
+            `;
+        }
+
+        function renderCourtFilterPills() {
+            const v = VENUES[currentVenueId];
+            const container = document.getElementById('courtFilterPills');
+            let html = `
+                <button onclick="setCourtFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+                    currentCourtFilter === 'all'
+                    ? 'bg-lime-400 text-slate-950'
+                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                }">
+                    Semua Court (${v.courts.length})
+                </button>
+            `;
+            v.courts.forEach(c => {
+                const active = currentCourtFilter === c.id;
+                html += `
+                    <button onclick="setCourtFilter('${c.id}')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
+                        active
+                        ? 'bg-lime-400 text-slate-950'
+                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    }">
+                        ${c.name}
+                    </button>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function setCourtFilter(courtId) {
+            currentCourtFilter = courtId;
+            renderCourtFilterPills();
+            renderMatrixGrid();
+        }
+
+        // Render the Real-Time Court vs Hourly Time Slot Matrix Grid (07:00 - 23:00)
+        function renderMatrixGrid() {
+            const v = VENUES[currentVenueId];
+            const dateObj = datesList[selectedDateIndex];
+            const periodFilter = document.getElementById('timePeriodFilter').value;
+            const onlyAvailable = document.getElementById('onlyAvailableToggle').checked;
+            const container = document.getElementById('matrixGridContainer');
+
+            let totalAvailable = 0;
+            let totalBooked = 0;
+
+            const courtsToShow = currentCourtFilter === 'all'
+                ? v.courts
+                : v.courts.filter(c => c.id === currentCourtFilter);
+
+            const htmlSections = courtsToShow.map(court => {
+                const filteredHours = HOURS.filter(h => {
+                    if (periodFilter === 'day' && h.isPrime) return false;
+                    if (periodFilter === 'night' && !h.isPrime) return false;
+                    const bookedBy = getBookedTeam(v.id, court.id, dateObj.iso, h.start);
+                    if (onlyAvailable && bookedBy) return false;
+                    return true;
+                });
+
+                const slotsHtml = filteredHours.map(h => {
+                    const slotKey = `${v.id}|${court.id}|${dateObj.iso}|${h.start}`;
+                    const bookedBy = getBookedTeam(v.id, court.id, dateObj.iso, h.start);
+                    const isSelected = selectedSlots.some(s => s.key === slotKey);
+                    const price = h.isPrime ? v.nightPrice : v.dayPrice;
+
+                    if (bookedBy) {
+                        totalBooked++;
+                        return `
+                            <div class="slot-card rounded-xl p-3 bg-rose-950/25 border border-rose-500/30 opacity-80 cursor-not-allowed flex flex-col justify-between select-none">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span class="font-mono font-bold text-rose-300">${h.label}</span>
+                                    <span class="bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded text-[10px] font-bold">PENUH</span>
+                                </div>
+                                <div class="my-1.5 text-xs font-bold text-slate-400 line-through">${formatRupiah(price)}</div>
+                                <div class="text-[11px] font-semibold text-rose-400 truncate flex items-center gap-1" title="Booked: ${bookedBy}">
+                                    <i class="fa-solid fa-lock text-[10px]"></i> Booked: ${bookedBy}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    totalAvailable++;
+
+                    if (isSelected) {
+                        return `
+                            <button type="button" onclick="toggleSlotSelection('${v.id}', '${court.id}', '${dateObj.iso}', ${h.start})"
+                                class="slot-card slot-selected text-left rounded-xl p-3 bg-gradient-to-br from-amber-400/25 via-amber-500/20 to-sky-500/20 border-2 border-amber-400 flex flex-col justify-between cursor-pointer">
+                                <div class="flex items-center justify-between text-[11px]">
+                                    <span class="font-mono font-extrabold text-white">${h.label}</span>
+                                    <span class="bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded text-[10px] font-extrabold">DIPILIH</span>
+                                </div>
+                                <div class="my-1.5 text-sm font-extrabold text-amber-300">${formatRupiah(price)}</div>
+                                <div class="text-[11px] font-bold text-white flex items-center justify-between">
+                                    <span><i class="fa-solid fa-circle-check text-amber-400 mr-1"></i> Dipilih Anda</span>
+                                    <span class="text-[10px] underline text-amber-200">Batal</span>
+                                </div>
+                            </button>
+                        `;
+                    }
+
+                    return `
+                        <button type="button" onclick="toggleSlotSelection('${v.id}', '${court.id}', '${dateObj.iso}', ${h.start})"
+                            class="slot-card slot-available text-left rounded-xl p-3 bg-emerald-950/25 hover:bg-emerald-900/40 border border-emerald-500/40 hover:border-lime-400 flex flex-col justify-between cursor-pointer group">
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="font-mono font-bold text-white group-hover:text-lime-300">${h.label}</span>
+                                ${h.isPrime 
+                                    ? '<span class="bg-amber-500/15 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded text-[9px] font-bold">PRIME</span>' 
+                                    : '<span class="bg-emerald-500/15 text-emerald-300 px-1.5 py-0.5 rounded text-[9px] font-bold">SIANG</span>'}
+                            </div>
+                            <div class="my-1.5 text-sm font-extrabold text-emerald-400 group-hover:text-lime-300">${formatRupiah(price)}</div>
+                            <div class="text-[11px] font-semibold text-emerald-300 flex items-center justify-between">
+                                <span><span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1"></span>Tersedia</span>
+                                <span class="text-[10px] text-lime-400 opacity-0 group-hover:opacity-100 transition font-bold">+ Pilih</span>
+                            </div>
+                        </button>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="bg-slate-950/60 border border-slate-800/90 rounded-2xl p-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3.5 border-b border-slate-800">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-3 h-3 rounded-full bg-lime-400"></span>
+                                <h4 class="font-display font-bold text-base text-white">${court.name}</h4>
+                            </div>
+                            <span class="text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">${court.surface}</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                            ${slotsHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = htmlSections;
+
+            // Update Top Live Statistics
+            document.getElementById('statAvailableCount').textContent = totalAvailable;
+            document.getElementById('statBookedCount').textContent = totalBooked;
+            document.getElementById('statSelectedCount').textContent = selectedSlots.length;
+        }
+
+        // Toggle clicking a time slot cell
+        function toggleSlotSelection(venueId, courtId, dateIso, hourStart) {
+            const slotKey = `${venueId}|${courtId}|${dateIso}|${hourStart}`;
+            const existingIdx = selectedSlots.findIndex(s => s.key === slotKey);
+
+            if (existingIdx !== -1) {
+                selectedSlots.splice(existingIdx, 1);
+            } else {
+                const v = VENUES[venueId];
+                const court = v.courts.find(c => c.id === courtId);
+                const hourObj = HOURS.find(h => h.start === hourStart);
+                const dateObj = datesList.find(d => d.iso === dateIso) || datesList[selectedDateIndex];
+                const price = hourObj.isPrime ? v.nightPrice : v.dayPrice;
+
+                selectedSlots.push({
+                    key: slotKey,
+                    venueId,
+                    venueName: v.shortName,
+                    courtId,
+                    courtName: court.name,
+                    dateStr: dateIso,
+                    dateLabel: dateObj.fullLabel,
+                    hourStart,
+                    hourLabel: hourObj.label,
+                    price,
+                    isPrime: hourObj.isPrime
+                });
+
+                // Sort by time
+                selectedSlots.sort((a, b) => a.hourStart - b.hourStart);
+            }
+
+            renderMatrixGrid();
+            updateBookingSummary();
+        }
+
+        function removeSlotByKey(slotKey) {
+            selectedSlots = selectedSlots.filter(s => s.key !== slotKey);
+            renderMatrixGrid();
+            updateBookingSummary();
+        }
+
+        function clearSelectedSlots() {
+            selectedSlots = [];
+            selectedAddons.clear();
+            document.querySelectorAll('#addonsContainer input[type="checkbox"]').forEach(cb => cb.checked = false);
+            renderMatrixGrid();
+            updateBookingSummary();
+        }
+
+        function toggleAddon(addonId) {
+            const cb = document.getElementById(`addon-${addonId}`);
+            if (cb && cb.checked) {
+                selectedAddons.add(addonId);
+            } else {
+                selectedAddons.delete(addonId);
+            }
+            updateBookingSummary();
+        }
+
+        function setPaymentMode(mode) {
+            paymentMode = mode;
+            const btnLunas = document.getElementById('payMode-lunas');
+            const btnDp = document.getElementById('payMode-dp');
+
+            if (mode === 'lunas') {
+                btnLunas.className = 'p-3 rounded-xl border-2 border-lime-400 bg-lime-400/10 text-left transition';
+                btnLunas.querySelector('i').className = 'fa-solid fa-circle-check text-lime-400 text-xs';
+                btnDp.className = 'p-3 rounded-xl border-2 border-slate-800 bg-slate-950/60 text-left transition hover:border-slate-700';
+                btnDp.querySelector('i').className = 'fa-regular fa-circle text-slate-500 text-xs';
+            } else {
+                btnDp.className = 'p-3 rounded-xl border-2 border-amber-400 bg-amber-400/10 text-left transition';
+                btnDp.querySelector('i').className = 'fa-solid fa-circle-check text-amber-400 text-xs';
+                btnLunas.className = 'p-3 rounded-xl border-2 border-slate-800 bg-slate-950/60 text-left transition hover:border-slate-700';
+                btnLunas.querySelector('i').className = 'fa-regular fa-circle text-slate-500 text-xs';
+            }
+            updateBookingSummary();
+        }
+
+        function updateBookingSummary() {
+            const listEl = document.getElementById('selectedSlotsList');
+            const badgeEl = document.getElementById('slotCounterBadge');
+            const mobileBadge = document.getElementById('mobileCartBadge');
+            const clearBtn = document.getElementById('clearCartBtn');
+
+            badgeEl.textContent = `${selectedSlots.length} Jam`;
+            mobileBadge.textContent = `${selectedSlots.length} Slot`;
+            document.getElementById('statSelectedCount').textContent = selectedSlots.length;
+
+            if (selectedSlots.length === 0) {
+                clearBtn.classList.add('hidden');
+                listEl.innerHTML = `
+                    <div class="text-center py-6 px-4 rounded-2xl border border-dashed border-slate-700 bg-slate-950/40">
+                        <i class="fa-regular fa-hand-pointer text-2xl text-lime-400 mb-2"></i>
+                        <p class="text-xs font-semibold text-slate-300">Belum ada jam yang dipilih</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Klik salah satu slot <span class="text-emerald-400 font-semibold">Hijau (Tersedia)</span> pada tabel untuk mulai memesan.</p>
+                    </div>
+                `;
+            } else {
+                clearBtn.classList.remove('hidden');
+                listEl.innerHTML = selectedSlots.map(s => `
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-2">
+                        <div>
+                            <div class="text-xs font-bold text-white">${s.courtName}</div>
+                            <div class="text-[11px] text-lime-400 font-mono">${s.hourLabel} WIB • <span class="text-slate-400 font-sans">${s.dateLabel}</span></div>
+                        </div>
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <span class="text-xs font-extrabold text-white">${formatRupiah(s.price)}</span>
+                            <button onclick="removeSlotByKey('${s.key}')" class="text-slate-500 hover:text-rose-400 transition" title="Hapus slot">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Add-ons summary
+            const addonsWrap = document.getElementById('selectedAddonsWrapper');
+            const addonsListEl = document.getElementById('selectedAddonsList');
+            let addonSubtotal = 0;
+
+            if (selectedAddons.size === 0) {
+                addonsWrap.classList.add('hidden');
+            } else {
+                addonsWrap.classList.remove('hidden');
+                const itemsHtml = [];
+                selectedAddons.forEach(id => {
+                    const item = ADDONS_CATALOG[id];
+                    if (item) {
+                        addonSubtotal += item.price;
+                        itemsHtml.push(`
+                            <div class="flex justify-between text-slate-300">
+                                <span>+ ${item.name}</span>
+                                <span class="font-semibold text-lime-400">${formatRupiah(item.price)}</span>
+                            </div>
+                        `);
+                    }
+                });
+                addonsListEl.innerHTML = itemsHtml.join('');
+            }
+
+            const courtSubtotal = selectedSlots.reduce((sum, s) => sum + s.price, 0);
+            const grandTotal = courtSubtotal + addonSubtotal;
+            const payNow = paymentMode === 'dp' ? Math.ceil(grandTotal * 0.5) : grandTotal;
+            const remaining = grandTotal - payNow;
+
+            document.getElementById('priceCourtSubtotal').textContent = formatRupiah(courtSubtotal);
+            document.getElementById('priceAddonSubtotal').textContent = formatRupiah(addonSubtotal);
+            document.getElementById('priceGrandTotal').textContent = formatRupiah(grandTotal);
+            document.getElementById('pricePayNow').textContent = formatRupiah(payNow);
+
+            const payableLabel = document.getElementById('payableLabel');
+            const remRow = document.getElementById('remainingBalanceRow');
+
+            if (paymentMode === 'dp') {
+                payableLabel.textContent = 'Bayar DP 50% Sekarang';
+                payableLabel.className = 'font-bold text-amber-400';
+                remRow.classList.remove('hidden');
+                document.getElementById('priceRemaining').textContent = formatRupiah(remaining);
+            } else {
+                payableLabel.textContent = 'Bayar Sekarang (Lunas 100%)';
+                payableLabel.className = 'font-bold text-lime-400';
+                remRow.classList.add('hidden');
+            }
+        }
+
+        // Quick Demo Filler for Instant Testing
+        function fillQuickDemo() {
+            selectVenue('padel');
+            selectedSlots = [];
+            const dateObj = datesList[selectedDateIndex];
+            // Pick 2 available evening slots on Padel Court A
+            const candidateHours = [19, 20, 18, 17, 16];
+            for (const hr of candidateHours) {
+                if (selectedSlots.length >= 2) break;
+                if (!getBookedTeam('padel', 'padel-a', dateObj.iso, hr)) {
+                    toggleSlotSelection('padel', 'padel-a', dateObj.iso, hr);
+                }
+            }
+            document.getElementById('addon-raket').checked = true;
+            selectedAddons.add('raket');
+            document.getElementById('customerTeamName').value = 'Padel Rangers JKT';
+            document.getElementById('customerPhone').value = '081298765432';
+            updateBookingSummary();
+            document.getElementById('booking-summary-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open QRIS Payment Modal
+        function openQrisModal() {
+            if (selectedSlots.length === 0) {
+                alert('Silakan pilih minimal 1 jam slot lapangan yang berstatus Hijau (Tersedia) terlebih dahulu.');
+                return;
+            }
+            const teamName = document.getElementById('customerTeamName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+
+            if (!teamName) {
+                alert('Mohon isi Nama Tim / Nama Pemesan terlebih dahulu.');
+                document.getElementById('customerTeamName').focus();
+                return;
+            }
+            if (!phone) {
+                alert('Mohon isi Nomor WhatsApp aktif untuk pengiriman E-Tiket.');
+                document.getElementById('customerPhone').focus();
+                return;
+            }
+
+            const courtSubtotal = selectedSlots.reduce((sum, s) => sum + s.price, 0);
+            let addonSubtotal = 0;
+            selectedAddons.forEach(id => { addonSubtotal += ADDONS_CATALOG[id].price; });
+            const grandTotal = courtSubtotal + addonSubtotal;
+            const payNow = paymentMode === 'dp' ? Math.ceil(grandTotal * 0.5) : grandTotal;
+
+            document.getElementById('qrisPayTypeLabel').textContent = paymentMode === 'dp' ? 'Nominal DP 50% via QRIS' : 'Nominal Lunas 100% via QRIS';
+            document.getElementById('qrisNominalDisplay').textContent = formatRupiah(payNow);
+
+            document.getElementById('modalStepPayment').classList.remove('hidden');
+            document.getElementById('modalStepTicket').classList.add('hidden');
+
+            const modal = document.getElementById('qrisModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeQrisModal() {
+            const modal = document.getElementById('qrisModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Complete Payment & Generate E-Ticket
+        function completeQrisPayment() {
+            const teamName = document.getElementById('customerTeamName').value.trim() || 'Tim Anda';
+            const phone = document.getElementById('customerPhone').value.trim() || '081234567890';
+            const v = VENUES[currentVenueId];
+
+            const courtSubtotal = selectedSlots.reduce((sum, s) => sum + s.price, 0);
+            let addonSubtotal = 0;
+            const addonNames = [];
+            selectedAddons.forEach(id => {
+                addonSubtotal += ADDONS_CATALOG[id].price;
+                addonNames.push(ADDONS_CATALOG[id].name);
+            });
+
+            const grandTotal = courtSubtotal + addonSubtotal;
+            const payNow = paymentMode === 'dp' ? Math.ceil(grandTotal * 0.5) : grandTotal;
+            const remaining = grandTotal - payNow;
+
+            const randomDigits = Math.floor(1000 + Math.random() * 9000);
+            const codePrefix = currentVenueId.substring(0, 3).toUpperCase();
+            const bookingCode = `AK-${randomDigits}-${codePrefix}`;
+
+            // Populate Ticket UI
+            document.getElementById('ticketBookingCode').textContent = bookingCode;
+            const badge = document.getElementById('ticketPaymentBadge');
+            if (paymentMode === 'dp') {
+                badge.textContent = 'DP 50% TERVERIFIKASI';
+                badge.className = 'text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+            } else {
+                badge.textContent = 'LUNAS 100% TERVERIFIKASI';
+                badge.className = 'text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+            }
+
+            document.getElementById('ticketTeamName').textContent = teamName;
+            document.getElementById('ticketPhone').textContent = phone;
+            document.getElementById('ticketVenueName').textContent = v.name;
+            document.getElementById('ticketDate').textContent = selectedSlots[0].dateLabel;
+
+            document.getElementById('ticketSlotsList').innerHTML = selectedSlots.map(s => `
+                <div class="flex items-center justify-between bg-slate-900 px-3 py-1.5 rounded-lg">
+                    <span>• ${s.courtName} (${s.hourLabel} WIB)</span>
+                    <span class="text-lime-400 font-bold">${formatRupiah(s.price)}</span>
+                </div>
+            `).join('');
+
+            const addonsRow = document.getElementById('ticketAddonsRow');
+            if (addonNames.length > 0) {
+                addonsRow.classList.remove('hidden');
+                document.getElementById('ticketAddonsText').textContent = addonNames.join(' • ');
+            } else {
+                addonsRow.classList.add('hidden');
+            }
+
+            document.getElementById('ticketPaidAmount').textContent = formatRupiah(payNow);
+            document.getElementById('ticketRemainingAmount').textContent = formatRupiah(remaining);
+
+            // Save ticket for WhatsApp sharing
+            lastGeneratedTicket = {
+                bookingCode,
+                teamName,
+                phone,
+                venueName: v.name,
+                dateLabel: selectedSlots[0].dateLabel,
+                slots: [...selectedSlots],
+                addons: addonNames,
+                payNow,
+                remaining,
+                paymentMode
+            };
+
+            // Lock slots in real-time matrix as Booked by this user's team!
+            selectedSlots.forEach(s => {
+                customBookedSlots[s.key] = teamName;
+            });
+
+            // Clear active cart after locking
+            selectedSlots = [];
+            renderMatrixGrid();
+            updateBookingSummary();
+
+            // Switch Modal View to E-Ticket
+            document.getElementById('modalStepPayment').classList.add('hidden');
+            document.getElementById('modalStepTicket').classList.remove('hidden');
+        }
+
+        function sendTicketToWhatsApp() {
+            if (!lastGeneratedTicket) return;
+            const t = lastGeneratedTicket;
+            const slotLines = t.slots.map(s => `- ${s.courtName}: ${s.hourLabel} WIB`).join('%0A');
+            const addonLine = t.addons.length > 0 ? `%0A*Add-on Alat:* ${t.addons.join(', ')}` : '';
+            const statusText = t.paymentMode === 'dp' ? `DP 50% (${formatRupiah(t.payNow)}) - Sisa di lokasi ${formatRupiah(t.remaining)}` : `LUNAS 100% (${formatRupiah(t.payNow)})`;
+
+            const msg = `Halo Admin *ArenaKita Sport Center*!%0ASaya ingin konfirmasi E-Tiket Booking Lapangan:%0A%0A*Kode Booking:* ${t.bookingCode}%0A*Nama Tim:* ${t.teamName}%0A*Lapangan:* ${t.venueName}%0A*Tanggal:* ${t.dateLabel}%0A*Jadwal Jam:*%0A${slotLines}${addonLine}%0A*Status Bayar QRIS:* ${statusText}%0A%0AMohon disiapkan lapangannya ya. Terima kasih!`;
+            window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+        }
+
+        // Lookup Booking Modal
+        function openCheckBookingModal() {
+            const modal = document.getElementById('lookupModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lookupBookingCode();
+        }
+
+        function closeCheckBookingModal() {
+            const modal = document.getElementById('lookupModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function lookupBookingCode() {
+            const code = document.getElementById('lookupCodeInput').value.trim().toUpperCase();
+            const box = document.getElementById('lookupResultBox');
+            if (!code) return;
+
+            if (lastGeneratedTicket && lastGeneratedTicket.bookingCode === code) {
+                box.innerHTML = `
+                    <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-2xl p-4 text-xs space-y-1.5">
+                        <div class="font-bold text-emerald-400 flex items-center justify-between">
+                            <span>✓ TERDAFTAR & AKTIF</span>
+                            <span class="font-mono">${lastGeneratedTicket.bookingCode}</span>
+                        </div>
+                        <div class="text-white font-bold text-sm">${lastGeneratedTicket.teamName}</div>
+                        <div class="text-slate-300">${lastGeneratedTicket.venueName} • ${lastGeneratedTicket.dateLabel}</div>
+                    </div>
+                `;
+            } else {
+                box.innerHTML = `
+                    <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-2xl p-4 text-xs space-y-1.5">
+                        <div class="font-bold text-emerald-400 flex items-center justify-between">
+                            <span>✓ JADWAL TERKONFIRMASI</span>
+                            <span class="font-mono">${code}</span>
+                        </div>
+                        <div class="text-white font-bold text-sm">Garuda FC • Padel Court A Panoramic</div>
+                        <div class="text-slate-300">Jam 19:00 - 21:00 WIB • Status: LUNAS QRIS</div>
+                    </div>
+                `;
+            }
+        }
+
+        // =======================================================================
+        // KONSTANTA DATA FOOTER & KONTAK VENUE (mudah disesuaikan di satu tempat)
+        // =======================================================================
+        const FOOTER_CONFIG = {
+            brandName: 'ArenaKita Sport Center',
+            tagline: 'DIGITAL VENUE MANAGEMENT',
+            description: 'Pusat fasilitas olahraga terpadu berstandar internasional di Jakarta Selatan. Dilengkapi sistem booking matriks real-time 24 jam dan verifikasi pembayaran QRIS otomatis.',
+            address: 'Jl. Arteri Permata Hijau No. 88, Kebayoran Lama, Jakarta Selatan 12210',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Arteri+Permata+Hijau+No.+88+Jakarta+Selatan',
+            whatsappDisplay: '+62 812-3456-7890',
+            whatsappNumber: '6281234567890',
+            whatsappDefaultText: 'Halo Admin ArenaKita Sport Center, saya ingin tanya jadwal lapangan.',
+            email: 'booking@arenakitasport.id',
+            operationalHours: 'Senin – Minggu: 07.00 – 23.00 WIB',
+            copyright: '© 2026 ArenaKita Digital Venue Management. Portofolio UMKM Website Series.',
+            socials: {
+                instagram: 'https://instagram.com/arenakitasport.id',
+                tiktok: 'https://tiktok.com/@arenakitasport',
+                whatsapp: 'https://wa.me/6281234567890?text=Halo%20Admin%20ArenaKita%20Sport%20Center',
+                youtube: 'https://youtube.com/@arenakitasportcenter'
+            },
+            paymentMethods: ['QRIS', 'BCA', 'BRI', 'Mandiri', 'GoPay', 'OVO', 'DANA']
+        };
+
+        function initFooterConfig() {
+            const descEl = document.getElementById('footerBrandDesc');
+            const addrEl = document.getElementById('footerAddressText');
+            const mapsEl = document.getElementById('footerMapsLink');
+            const phoneEl = document.getElementById('footerPhoneLink');
+            const emailEl = document.getElementById('footerEmailLink');
+            const hoursEl = document.getElementById('footerHoursText');
+            const copyEl = document.getElementById('footerCopyrightText');
+            const ctaWaEl = document.getElementById('footerCtaWaLink');
+
+            if (descEl) descEl.textContent = FOOTER_CONFIG.description;
+            if (addrEl) addrEl.textContent = FOOTER_CONFIG.address;
+            if (mapsEl) mapsEl.href = FOOTER_CONFIG.mapsUrl;
+            if (phoneEl) {
+                phoneEl.textContent = FOOTER_CONFIG.whatsappDisplay;
+                phoneEl.href = `https://wa.me/${FOOTER_CONFIG.whatsappNumber}?text=${encodeURIComponent(FOOTER_CONFIG.whatsappDefaultText)}`;
+            }
+            if (ctaWaEl) {
+                ctaWaEl.href = `https://wa.me/${FOOTER_CONFIG.whatsappNumber}?text=${encodeURIComponent('Halo Admin ArenaKita Sport Center, saya ingin konsultasi booking lapangan / turnamen.')}`;
+            }
+            if (emailEl) {
+                emailEl.textContent = FOOTER_CONFIG.email;
+                emailEl.href = `mailto:${FOOTER_CONFIG.email}`;
+            }
+            if (hoursEl) hoursEl.textContent = FOOTER_CONFIG.operationalHours;
+            if (copyEl) copyEl.textContent = FOOTER_CONFIG.copyright;
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            initDates();
+            selectVenue('padel');
+            updateBookingSummary();
+            initFooterConfig();
+        });
+    </script>
+</body>
+</html>

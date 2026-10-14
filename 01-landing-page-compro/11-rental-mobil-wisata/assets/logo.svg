@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 56" fill="none">
+  <!-- Emblem: Editorial Compass & Winding Road Monogram -->
+  <rect x="2" y="2" width="52" height="52" rx="10" fill="#122B22" stroke="#C85A32" stroke-width="1.5"/>
+  <!-- Outer Compass Ring -->
+  <circle cx="28" cy="28" r="19" stroke="#F7F4EE" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.5"/>
+  <circle cx="28" cy="28" r="15" stroke="#C85A32" stroke-width="1.5"/>
+  <!-- Cardinal Marks -->
+  <path d="M28 9V13M28 43V47M9 28H13M43 28H47" stroke="#F7F4EE" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Winding Mountain Road & Compass Needle -->
+  <path d="M18 38C21 31 25 30 28 24C31 18 34 17 37 14" stroke="#F7F4EE" stroke-width="2.2" stroke-linecap="round"/>
+  <polygon points="28,13 32,26 28,23 24,26" fill="#C85A32"/>
+  <circle cx="28" cy="28" r="2.5" fill="#F7F4EE"/>
+  <!-- Wordmark with generous right breathing room -->
+  <text x="66" y="29" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#122B22" letter-spacing="-0.2">Jelajah<tspan fill="#C85A32">Nusa</tspan></text>
+  <text x="67" y="44" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="9" font-weight="700" fill="#4A5D54" letter-spacing="1.8">TRANSPORT &amp; HERITAGE TOUR</text>
+</svg>

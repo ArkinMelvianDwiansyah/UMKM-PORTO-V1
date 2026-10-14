@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="rkBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="rkGold" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#rkBg)" stroke="#334155" stroke-width="2"/>
+  <!-- Calendar / Booking Frame -->
+  <rect x="14" y="16" width="36" height="34" rx="7" stroke="url(#rkGold)" stroke-width="2.5"/>
+  <path d="M23 12V19M41 12V19" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="14" y1="25" x2="50" y2="25" stroke="#334155" stroke-width="2"/>
+  <!-- Checkmark & Editorial R Star -->
+  <path d="M24 37.5L29.5 43L40.5 32" stroke="#34D399" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

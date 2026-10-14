@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bklGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#0F172A" stroke="url(#bklGrad)" stroke-width="2.2"/>
+  <!-- Precision Hex Nut & Wrench Mark -->
+  <polygon points="32,13 48,22.5 48,41.5 32,51 16,41.5 16,22.5" stroke="url(#bklGrad)" stroke-width="2.8" fill="#451A03" fill-opacity="0.4"/>
+  <circle cx="32" cy="32" r="7.5" stroke="#F8FAFC" stroke-width="2.6"/>
+  <path d="M27 37L19 45" stroke="#FBBF24" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

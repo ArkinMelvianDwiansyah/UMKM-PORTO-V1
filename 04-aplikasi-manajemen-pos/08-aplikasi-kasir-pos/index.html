@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KasirPintar Pro — Sistem POS Kasir, QR Meja & Inventori Stok</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono, .tabular-nums { font-variant-numeric: tabular-nums; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Thermal Receipt Styling */
+        .receipt-paper {
+            font-family: 'IBM Plex Mono', monospace;
+            font-variant-numeric: tabular-nums;
+            background: #fff;
+            position: relative;
+        }
+        .receipt-paper::before, .receipt-paper::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background-size: 16px 16px;
+        }
+        @media print {
+            body * { visibility: hidden; }
+            #receiptModal, #receiptPrintable, #receiptPrintable * {
+                visibility: visible;
+            }
+            #receiptModal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-4 border-b border-slate-800 shrink-0 z-30">
+        <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+            <a href="../../index.html" class="whitespace-nowrap shrink-0 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700">
+                <i class="fa-solid fa-arrow-left text-emerald-400"></i>
+                <span>Katalog Portofolio</span>
+            </a>
+            <div class="h-6 w-[1px] bg-slate-700 hidden sm:block shrink-0"></div>
+            <div class="flex items-center gap-2.5 shrink-0">
+                <img src="assets/logo.svg" alt="KasirPintar Pro Logo" class="w-9 h-9 rounded-xl shadow-lg shadow-emerald-500/20 shrink-0">
+                <div class="whitespace-nowrap">
+                    <div class="flex items-center gap-2 whitespace-nowrap">
+                        <span class="font-extrabold tracking-tight text-base text-white whitespace-nowrap">KasirPintar <span class="text-emerald-400">Pro</span></span>
+                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold whitespace-nowrap">v4.2 Cloud</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 hidden 2xl:block whitespace-nowrap">Cabang Utama: Kopi &amp; Mart Nusantara</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Navigation Pills (Single-Line Guaranteed) -->
+        <nav class="hidden md:flex items-center bg-slate-800/90 p-1 rounded-xl border border-slate-700/80 shrink-0 whitespace-nowrap">
+            <button onclick="switchTab('pos')" id="topTab-pos" class="tab-btn whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-emerald-500 text-slate-950 shadow">
+                <i class="fa-solid fa-desktop"></i> <span>Kasir (POS)</span>
+            </button>
+            <button onclick="switchTab('stok')" id="topTab-stok" class="tab-btn whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-boxes-stacked"></i> <span>Stok Barang</span>
+                <span id="lowStockBadgeTop" class="px-1.5 py-0.2 bg-amber-500 text-slate-950 rounded-full text-[10px] font-extrabold tabular-nums">2</span>
+            </button>
+            <button onclick="switchTab('laporan')" id="topTab-laporan" class="tab-btn whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white">
+                <i class="fa-solid fa-chart-pie"></i> <span>Laporan Laba</span>
+            </button>
+            <a href="#ulasan-mitra" onclick="switchTab('pos')" class="whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-emerald-400">
+                <i class="fa-solid fa-camera"></i> <span>Ulasan</span>
+            </a>
+            <a href="#faq" onclick="switchTab('pos')" class="whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-emerald-400">
+                <i class="fa-solid fa-circle-question"></i> <span>FAQ</span>
+            </a>
+        </nav>
+
+        <!-- Right Status: Cashier Shift & Live Clock -->
+        <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+            <div class="hidden xl:flex items-center gap-2.5 bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-xl shrink-0 whitespace-nowrap">
+                <div class="relative shrink-0">
+                    <img src="assets/images/cashier-avatar.jpg" alt="Rina Wulandari" class="w-7 h-7 rounded-lg object-cover border border-emerald-400/50">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 absolute -bottom-0.5 -right-0.5 ring-2 ring-slate-900"></span>
+                </div>
+                <div class="text-left whitespace-nowrap">
+                    <p class="text-[10px] text-slate-400 leading-none whitespace-nowrap">Shift Kasir Pagi</p>
+                    <p class="text-xs font-bold text-slate-100 leading-tight mt-0.5 whitespace-nowrap">Rina Wulandari</p>
+                </div>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-right font-mono tabular-nums shrink-0 whitespace-nowrap">
+                <div id="liveClock" class="text-xs font-bold text-emerald-400 whitespace-nowrap">10:42:19 WIB</div>
+                <div id="liveDate" class="text-[10px] text-slate-400 whitespace-nowrap">12 Okt 2026</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <div class="flex-1 flex overflow-hidden">
+        <!-- LEFT SIDEBAR NAVIGATION -->
+        <aside class="w-16 lg:w-56 bg-slate-900 text-slate-300 border-r border-slate-800 flex flex-col justify-between shrink-0">
+            <div class="p-2 lg:p-3 space-y-1.5">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1 hidden lg:block">Menu Operasional</p>
+                <button onclick="switchTab('pos')" id="sideTab-pos" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-bold transition bg-emerald-600/20 text-emerald-400 border border-emerald-500/30">
+                    <i class="fa-solid fa-cash-register text-base w-5 text-center"></i>
+                    <span class="hidden lg:inline">Layar Kasir (POS)</span>
+                </button>
+                <button onclick="switchTab('stok')" id="sideTab-stok" class="w-full flex items-center justify-between px-3 py-3 rounded-xl text-xs font-semibold transition hover:bg-slate-800 text-slate-400">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-boxes-stacked text-base w-5 text-center"></i>
+                        <span class="hidden lg:inline">Stok & Inventori</span>
+                    </div>
+                    <span id="lowStockBadgeSide" class="hidden lg:inline-block px-2 py-0.5 text-[10px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full tabular-nums">2 Menipis</span>
+                </button>
+                <button onclick="switchTab('laporan')" id="sideTab-laporan" class="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-semibold transition hover:bg-slate-800 text-slate-400">
+                    <i class="fa-solid fa-chart-line text-base w-5 text-center"></i>
+                    <span class="hidden lg:inline">Laporan Laba Rugi</span>
+                </button>
+
+                <div class="pt-4 hidden lg:block">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-1">Perangkat Terhubung</p>
+                    <div class="mt-1 mx-2 p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/70 space-y-2 text-[11px]">
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-print text-emerald-400"></i> Printer 58mm</span>
+                            <span class="text-emerald-400 font-bold">Ready</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-barcode text-emerald-400"></i> Barcode USB</span>
+                            <span class="text-emerald-400 font-bold">Aktif</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-qrcode text-emerald-400"></i> QRIS Dinamis</span>
+                            <span class="text-emerald-400 font-bold">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 border-t border-slate-800 hidden lg:block">
+                <div class="p-3 rounded-xl bg-gradient-to-br from-indigo-950 to-slate-900 border border-indigo-500/30">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-bold text-indigo-300"><i class="fa-solid fa-qrcode mr-1"></i> QR Order Meja</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed">12 Meja Aktif terhubung ke layar dapur otomatis.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ==================== TAB 1: LAYAR KASIR (POS TOUCHSCREEN) ==================== -->
+        <main id="view-pos" class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+            <!-- Left/Center Product Catalog -->
+            <div class="flex-1 flex flex-col overflow-hidden bg-slate-100">
+                <!-- Search & Barcode Bar -->
+                <div class="p-3 lg:p-4 bg-white border-b border-slate-200 flex flex-wrap items-center gap-2.5 justify-between">
+                    <div class="relative flex-1 min-w-[220px]">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input id="posSearchInput" oninput="renderPosProducts()" type="text" placeholder="Cari nama menu, produk, atau ketik kode SKU (misal: KOP-01)..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
+                    </div>
+                    <button onclick="simulateBarcodeScan()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm shadow-indigo-500/20 active:scale-95 transition whitespace-nowrap">
+                        <i class="fa-solid fa-barcode text-sm"></i>
+                        <span>Simulasi Scan Barcode</span>
+                    </button>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="px-3 lg:px-4 py-2.5 bg-white/70 border-b border-slate-200 flex items-center gap-2 overflow-x-auto custom-scroll shrink-0" id="categoryFilterBar">
+                    <button onclick="setCategory('Semua')" data-cat="Semua" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white shadow-sm shrink-0 transition">Semua Produk</button>
+                    <button onclick="setCategory('Kopi & Minuman')" data-cat="Kopi & Minuman" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 shrink-0 transition"><i class="fa-solid fa-mug-hot mr-1.5 text-amber-600"></i>Kopi & Minuman</button>
+                    <button onclick="setCategory('Makanan Utama')" data-cat="Makanan Utama" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 shrink-0 transition"><i class="fa-solid fa-bowl-food mr-1.5 text-orange-600"></i>Makanan Utama</button>
+                    <button onclick="setCategory('Snack & Roti')" data-cat="Snack & Roti" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 shrink-0 transition"><i class="fa-solid fa-bread-slice mr-1.5 text-yellow-600"></i>Snack & Roti</button>
+                    <button onclick="setCategory('Sembako/Retail')" data-cat="Sembako/Retail" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 shrink-0 transition"><i class="fa-solid fa-basket-shopping mr-1.5 text-emerald-600"></i>Sembako/Retail</button>
+                </div>
+
+                <!-- Product Grid + Promotional Mitra Reviews & FAQ -->
+                <div class="flex-1 overflow-y-auto p-3 lg:p-4 custom-scroll space-y-8">
+                    <div id="posProductGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                        <!-- Dynamically populated by JS -->
+                    </div>
+
+                    <!-- ULASAN MITRA OUTLET & DOKUMENTASI FOTO PRODUK/PENGGUNA -->
+                    <section id="ulasan-mitra" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="font-mono text-[11px] font-bold text-emerald-600 uppercase tracking-wider">BUKTI IMPLEMENTASI OUTLET UMKM</span>
+                                <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Ulasan &amp; Foto Outlet Pengguna KasirPintar Pro</h3>
+                            </div>
+                            <span class="font-mono text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-lg">1.450+ Outlet Aktif</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            <!-- Mitra 1 -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/prod-kop-01.jpg" alt="Outlet Kopi Senja" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Foto Produk • Coffee Shop</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Sejak pakai KasirPintar Pro, antrean kasir kopi kami jauh lebih cepat. Cetak struk 58mm dan potong stok biji kopi berjalan otomatis."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-1.jpg" alt="Raka Pratama" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Raka Pratama</div>
+                                        <div class="text-[10px] text-slate-500">Owner Kopi Senja • Bandung</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 2 -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/prod-mkn-01.jpg" alt="Resto Sambal Nusantara" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Foto Menu • Resto &amp; Cafe</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Fitur Dine-In nomor meja dan laporan laba rugi harian sangat membantu saya memantau 3 cabang rumah makan dari HP tanpa harus nongkrong di kasir."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-2.jpg" alt="Hj. Dewi Sartika" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Hj. Dewi Sartika</div>
+                                        <div class="text-[10px] text-slate-500">RM Dapur Sunda • Bekasi</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 3 -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/prod-snk-01.jpg" alt="Bakery & Pastry" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-indigo-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Foto Produk • Bakery</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Karyawan baru cuma butuh 10 menit langsung lancar pakai layar kasirnya. Rekapan uang tunai laci vs QRIS setiap pergantian shift selalu klop."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-3.jpg" alt="Clarissa Tan" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Clarissa Tan</div>
+                                        <div class="text-[10px] text-slate-500">Artisan Bakery • Surabaya</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 4 -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/prod-rtl-01.jpg" alt="Minimarket & Mart" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Foto Toko • Minimarket</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Support scanner barcode USB dan notifikasi stok menipis bikin toko sembako modern kami tidak pernah kehabisan barang laris lagi."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-4.jpg" alt="Budi Hartono" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">H. Budi Hartono</div>
+                                        <div class="text-[10px] text-slate-500">Berkah Mart • Yogyakarta</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ SISTEM KASIR POS -->
+                    <section id="faq" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                        <div class="mb-4 pb-3 border-b border-slate-100">
+                            <span class="font-mono text-[11px] font-bold text-indigo-600 uppercase tracking-wider">INFORMASI TEKNIS &amp; PERANGKAT KASIR</span>
+                            <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Pertanyaan yang Sering Ditanyakan (FAQ)</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <details class="group bg-slate-50 border border-slate-200 rounded-xl p-3.5 open:bg-white transition" open>
+                                <summary class="flex items-center justify-between cursor-pointer font-bold text-xs text-slate-900 list-none">
+                                    <span>1. Apakah aplikasi kasir ini mendukung printer struk Bluetooth &amp; USB 58mm/80mm?</span>
+                                    <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-emerald-600 group-open:text-white">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-200">
+                                    Ya, 100% kompatibel dengan seluruh printer thermal ukuran 58mm maupun 80mm baik koneksi Bluetooth (HP/Tablet Android) maupun kabel USB/LAN pada PC Kasir.
+                                </p>
+                            </details>
+                            <details class="group bg-slate-50 border border-slate-200 rounded-xl p-3.5 open:bg-white transition" open>
+                                <summary class="flex items-center justify-between cursor-pointer font-bold text-xs text-slate-900 list-none">
+                                    <span>2. Apakah stok barang otomatis berkurang saat kasir mencetak struk?</span>
+                                    <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-emerald-600 group-open:text-white">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-200">
+                                    Otomatis berkurang real-time! Begitu transaksi selesai dibayar, sisa stok langsung terpotong dan muncul peringatan kuning apabila stok berada di bawah batas minimum.
+                                </p>
+                            </details>
+                            <details class="group bg-slate-50 border border-slate-200 rounded-xl p-3.5 open:bg-white transition">
+                                <summary class="flex items-center justify-between cursor-pointer font-bold text-xs text-slate-900 list-none">
+                                    <span>3. Apakah pemilik toko bisa memantau omset harian dari rumah lewat HP?</span>
+                                    <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-emerald-600 group-open:text-white">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-200">
+                                    Sangat bisa. Semua transaksi kasir tersinkronisasi ke Cloud sehingga Owner dapat memantau grafik omset per jam, laba bersih HPP, hingga riwayat struk secara live dari smartphone.
+                                </p>
+                            </details>
+                            <details class="group bg-slate-50 border border-slate-200 rounded-xl p-3.5 open:bg-white transition">
+                                <summary class="flex items-center justify-between cursor-pointer font-bold text-xs text-slate-900 list-none">
+                                    <span>4. Apakah ada biaya langganan bulanan yang mahal per cabang?</span>
+                                    <span class="font-mono text-xs px-2 py-0.5 bg-slate-200 rounded group-open:bg-emerald-600 group-open:text-white">+</span>
+                                </summary>
+                                <p class="mt-2.5 text-xs text-slate-600 leading-relaxed pt-2 border-t border-slate-200">
+                                    Kami menyediakan opsi sistem beli putus (sekali bayar hak milik penuh UMKM Anda) tanpa biaya bulanan per meja/per kasir yang membebani operasional.
+                                </p>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- FOOTER -->
+                    <footer id="kontak-footer" class="bg-slate-900 text-slate-300 rounded-2xl border border-slate-800 overflow-hidden shadow-lg">
+                        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+                        <div class="border-b border-slate-800 bg-gradient-to-r from-slate-900 via-emerald-950/50 to-slate-900 p-6 lg:p-8">
+                            <div class="flex flex-wrap items-center gap-2 mb-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-emerald-400">
+                                    <i class="fa-solid fa-bolt"></i> Konfirmasi Instan
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-indigo-400">
+                                    <i class="fa-solid fa-shield-halved"></i> Pembayaran Aman QRIS
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-[11px] font-bold text-amber-400">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Sistem Real-Time 24 Jam
+                                </span>
+                            </div>
+                            <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-5">
+                                <div class="max-w-xl">
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                                        Tingkatkan Kecepatan Kasir &amp; Akurasi Stok Toko Anda Sekarang
+                                    </h3>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                                        Kelola pesanan Dine-In, Takeaway, potongan stok bahan baku otomatis, hingga laporan laba rugi harian dari smartphone tanpa biaya langganan bulanan yang memberatkan.
+                                    </p>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                                    <button onclick="simulateBarcodeScan()" class="px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition shadow-lg shadow-emerald-500/20 inline-flex items-center gap-2 whitespace-nowrap">
+                                        <i class="fa-solid fa-cash-register"></i>
+                                        <span>Uji Transaksi Kasir</span>
+                                    </button>
+                                    <a href="https://wa.me/6281288997766?text=Halo%20Tim%20KasirPintar%20Pro%2C%20saya%20ingin%20konsultasi%20sistem%20POS%20untuk%20usaha%20saya" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-extrabold text-xs transition inline-flex items-center gap-2 whitespace-nowrap">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+                                        <span>Konsultasi via WhatsApp</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. 4-Column Responsive Grid -->
+                        <div class="p-6 lg:p-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <!-- Kolom 1: Brand & Sosial Media -->
+                                <div class="space-y-3.5">
+                                    <div class="flex items-center gap-3">
+                                        <img src="assets/logo.svg" alt="KasirPintar Pro Logo" class="w-11 h-11 rounded-xl shadow-md shrink-0">
+                                        <div>
+                                            <div class="font-extrabold text-base text-white leading-tight">KasirPintar <span class="text-emerald-400">Pro</span></div>
+                                            <div class="font-mono text-[10px] uppercase tracking-wider text-emerald-400/90 font-bold">CLOUD POS &amp; INVENTORY</div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-400 leading-relaxed">
+                                        Sistem Point of Sale (POS) layar sentuh, QR meja mandiri, dan manajemen stok HPP real-time untuk kafe, restoran, dan minimarket UMKM Indonesia.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-1">
+                                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram KasirPintar Pro" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                            <i class="fa-brands fa-instagram text-xs"></i>
+                                        </a>
+                                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok KasirPintar Pro" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                            <i class="fa-brands fa-tiktok text-xs"></i>
+                                        </a>
+                                        <a href="https://wa.me/6281288997766" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp KasirPintar Pro" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                            <i class="fa-brands fa-whatsapp text-xs"></i>
+                                        </a>
+                                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube KasirPintar Pro" class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 hover:border-emerald-400 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition">
+                                            <i class="fa-brands fa-youtube text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Kolom 2: Navigasi Cepat -->
+                                <nav aria-label="Navigasi Cepat" class="space-y-2.5">
+                                    <h4 class="font-mono text-[11px] uppercase tracking-wider text-emerald-400 font-bold">Navigasi Cepat</h4>
+                                    <ul class="space-y-2 text-xs">
+                                        <li><a href="#posProductGrid" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> Beranda &amp; Katalog Kasir</a></li>
+                                        <li><a href="#view-stok" onclick="switchTab('stok')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> Layanan / Modul Stok</a></li>
+                                        <li><a href="#view-laporan" onclick="switchTab('laporan')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> Jadwal Shift &amp; Laporan Harga</a></li>
+                                        <li><a href="#posSearchInput" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> Cara Penggunaan &amp; Barcode</a></li>
+                                        <li><a href="#ulasan-mitra" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> Ulasan &amp; Foto Outlet Mitra</a></li>
+                                        <li><a href="#faq" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[9px] text-emerald-400"></i> FAQ &amp; Kontak Teknis</a></li>
+                                    </ul>
+                                </nav>
+
+                                <!-- Kolom 3: Layanan dan Modul -->
+                                <nav aria-label="Layanan dan Modul" class="space-y-2.5">
+                                    <h4 class="font-mono text-[11px] uppercase tracking-wider text-emerald-400 font-bold">Layanan &amp; Modul POS</h4>
+                                    <ul class="space-y-2 text-xs">
+                                        <li><a href="#posProductGrid" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-desktop text-[10px] text-emerald-400 w-4"></i> Kasir Touchscreen &amp; Struk 58mm</a></li>
+                                        <li><a href="#posProductGrid" onclick="switchTab('pos')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-qrcode text-[10px] text-indigo-400 w-4"></i> QR Order Meja Dine-In</a></li>
+                                        <li><a href="#view-stok" onclick="switchTab('stok')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-boxes-stacked text-[10px] text-amber-400 w-4"></i> Inventori Stok &amp; Alert Minimum</a></li>
+                                        <li><a href="#posSearchInput" onclick="simulateBarcodeScan()" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-barcode text-[10px] text-emerald-400 w-4"></i> Integrasi Scanner Barcode USB</a></li>
+                                        <li><a href="#view-laporan" onclick="switchTab('laporan')" class="text-slate-400 hover:text-white transition flex items-center gap-2"><i class="fa-solid fa-chart-pie text-[10px] text-indigo-400 w-4"></i> Laporan Laba Bersih &amp; HPP</a></li>
+                                        <li class="pt-1">
+                                            <a href="https://wa.me/6281288997766?text=Halo%20KasirPintar%20Pro%2C%20saya%20ingin%20info%20Paket%20Enterprise%20Multi-Cabang%20%2B%20Hardware%20Kasir" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900 hover:text-white text-[11px] font-bold transition">
+                                                <i class="fa-solid fa-store text-amber-400"></i>
+                                                <span>Paket Bundling Hardware &amp; Multi-Cabang</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                                <!-- Kolom 4: Kontak & Jam Operasional -->
+                                <div class="space-y-2.5">
+                                    <h4 class="font-mono text-[11px] uppercase tracking-wider text-emerald-400 font-bold">Kontak &amp; Jam Operasional</h4>
+                                    <div class="space-y-2.5 text-xs text-slate-400">
+                                        <div class="flex items-start gap-2.5">
+                                            <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                                                <i class="fa-solid fa-location-dot text-[11px]"></i>
+                                            </span>
+                                            <div>
+                                                <p class="text-slate-200 font-semibold leading-snug">Jl. Jend. Sudirman No. 88, Tanah Abang, Jakarta Pusat 10220</p>
+                                                <a href="https://maps.google.com/?q=Jl.+Jend.+Sudirman+No.+88+Jakarta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-emerald-400 hover:underline font-semibold text-[11px] mt-0.5">
+                                                    <span>Buka di Google Maps</span>
+                                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-emerald-400 flex items-center justify-center shrink-0">
+                                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                                            </span>
+                                            <div>
+                                                <span class="text-[10px] text-slate-500 block">WhatsApp Support Teknis</span>
+                                                <a href="https://wa.me/6281288997766" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-slate-200 hover:text-emerald-400 transition tabular-nums">+62 812-8899-7766</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-indigo-400 flex items-center justify-center shrink-0">
+                                                <i class="fa-regular fa-envelope text-[11px]"></i>
+                                            </span>
+                                            <div>
+                                                <span class="text-[10px] text-slate-500 block">Email Kemitraan</span>
+                                                <a href="mailto:halo@kasirpintarpro.id" class="font-mono text-slate-200 hover:text-indigo-400 transition">halo@kasirpintarpro.id</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-amber-400 flex items-center justify-center shrink-0">
+                                                <i class="fa-regular fa-clock text-[11px]"></i>
+                                            </span>
+                                            <div>
+                                                <span class="text-[10px] text-slate-500 block">Jam Operasional Layanan</span>
+                                                <span class="font-mono font-semibold text-slate-200">Senin – Minggu: 08:00 – 22:00 WIB</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Bottom Bar -->
+                        <div class="border-t border-slate-800 bg-slate-950/80 px-6 lg:px-8 py-4 flex flex-col xl:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
+                            <div class="flex flex-wrap items-center justify-center xl:justify-start gap-1.5">
+                                <span class="text-slate-500 mr-1 whitespace-nowrap"> Pembayaran Terintegrasi:</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-200 whitespace-nowrap">QRIS</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BCA</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">BRI</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">Mandiri</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">GoPay</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">OVO</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-slate-300 whitespace-nowrap">DANA</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-right">
+                                <p>© 2026 KasirPintar Pro. Portofolio UMKM Website Series.</p>
+                                <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-3">
+                                    <!-- TODO: Tambahkan halaman Syarat & Ketentuan -->
+                                    <a href="#" class="hover:text-white transition whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                                    <!-- TODO: Tambahkan halaman Kebijakan Privasi -->
+                                    <a href="#" class="hover:text-white transition whitespace-nowrap">Kebijakan Privasi</a>
+                                    <a href="#faq" class="hover:text-emerald-400 transition whitespace-nowrap">Kebijakan Pembatalan / Garansi</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <!-- Right Panel: Active Order Cart & Payment -->
+            <div class="w-full lg:w-[400px] xl:w-[430px] bg-white border-l border-slate-200 flex flex-col h-[52vh] lg:h-auto shrink-0 shadow-xl z-20">
+                <!-- Order Header & Type Selector -->
+                <div class="p-3.5 border-b border-slate-200 bg-slate-50/70">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono text-xs font-bold tabular-nums" id="activeOrderNumber">#ORD-8824</span>
+                            <span class="text-xs font-bold text-slate-700">Keranjang Kasir</span>
+                        </div>
+                        <button onclick="clearCart()" class="text-xs text-rose-600 hover:text-rose-700 font-semibold flex items-center gap-1">
+                            <i class="fa-regular fa-trash-can"></i> Kosongkan
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="orderTypeSelect" class="col-span-1 text-xs font-bold bg-white border border-slate-300 rounded-lg px-2.5 py-2 focus:outline-none focus:border-emerald-500">
+                            <option value="Dine-In Meja 04">Dine-In Meja 04</option>
+                            <option value="Dine-In Meja 08">Dine-In Meja 08</option>
+                            <option value="Takeaway / Bungkus">Takeaway / Bungkus</option>
+                            <option value="GoFood / GrabFood">GoFood / GrabFood</option>
+                        </select>
+                        <input id="customerNameInput" type="text" placeholder="Nama Pelanggan (Opsional)" value="Bpk. Hendra" class="col-span-1 text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-2 focus:outline-none focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <!-- Cart Item List -->
+                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-3 space-y-2 custom-scroll">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Calculation, Promo, Tax, & Payment Panel -->
+                <div class="p-3.5 bg-slate-50 border-t border-slate-200 space-y-2.5 text-xs">
+                    <!-- Promo & PPN Row -->
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-1.5 flex-1">
+                            <i class="fa-solid fa-tag text-emerald-600"></i>
+                            <select id="promoSelect" onchange="updateCartTotals()" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs font-semibold">
+                                <option value="0">Tanpa Diskon / Promo</option>
+                                <option value="0.1">Promo Member UMKM (-10%)</option>
+                                <option value="10000">Voucher Potongan Rp 10.000</option>
+                            </select>
+                        </div>
+                        <label class="flex items-center gap-1.5 cursor-pointer bg-white border border-slate-300 px-2.5 py-1.5 rounded-lg font-semibold">
+                            <input type="checkbox" id="ppnToggle" onchange="updateCartTotals()" checked class="accent-emerald-600 rounded">
+                            <span>PPN 10%</span>
+                        </label>
+                    </div>
+
+                    <!-- Summary Totals -->
+                    <div class="space-y-1 pt-1 border-t border-slate-200/80">
+                        <div class="flex justify-between text-slate-500">
+                            <span>Subtotal (<span id="cartCountText" class="tabular-nums">0</span> item)</span>
+                            <span id="subtotalText" class="font-mono font-semibold text-slate-700 tabular-nums">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between text-emerald-600" id="discountRow">
+                            <span>Diskon Promo</span>
+                            <span id="discountText" class="font-mono font-semibold tabular-nums">- Rp 0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-500">
+                            <span>Pajak PPN (10%)</span>
+                            <span id="taxText" class="font-mono font-semibold text-slate-700 tabular-nums">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-baseline text-sm font-extrabold text-slate-900 pt-1 border-t border-slate-200">
+                            <span>TOTAL TAGIHAN</span>
+                            <span id="grandTotalText" class="font-mono text-lg text-emerald-600 tabular-nums">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Cash Denominations -->
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[11px] font-bold text-slate-500">Metode & Nominal Uang Diterima:</span>
+                            <span id="paymentMethodBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">TUNAI / CASH</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 mb-2">
+                            <button onclick="setQuickCash('pas')" class="py-1.5 px-2 rounded-lg bg-white hover:bg-emerald-50 border border-slate-300 font-bold text-[11px] text-slate-700 transition">Uang Pas</button>
+                            <button onclick="setQuickCash(50000)" class="py-1.5 px-2 rounded-lg bg-white hover:bg-emerald-50 border border-slate-300 font-mono font-bold text-[11px] text-slate-700 transition tabular-nums">50.000</button>
+                            <button onclick="setQuickCash(100000)" class="py-1.5 px-2 rounded-lg bg-white hover:bg-emerald-50 border border-slate-300 font-mono font-bold text-[11px] text-slate-700 transition tabular-nums">100.000</button>
+                            <button onclick="setQuickCash('qris')" class="py-1.5 px-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-300 font-bold text-[11px] text-indigo-700 transition"><i class="fa-solid fa-qrcode mr-1"></i>QRIS</button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 items-center bg-white p-2 rounded-xl border border-slate-300">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block">Uang Diterima (Rp)</span>
+                                <input id="cashReceivedInput" oninput="calculateChange()" type="number" class="w-full font-mono font-bold text-sm text-slate-900 focus:outline-none tabular-nums" value="100000">
+                            </div>
+                            <div class="text-right border-l border-slate-200 pl-2">
+                                <span class="text-[10px] text-slate-400 block">Kembalian</span>
+                                <span id="changeAmountText" class="font-mono font-extrabold text-sm text-emerald-600 tabular-nums">Rp 0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pay & Print Button -->
+                    <button onclick="processCheckout()" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 active:scale-[0.99] transition">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Bayar & Cetak Struk (58mm)</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- ==================== TAB 2: MANAJEMEN STOK & PRODUK ==================== -->
+        <main id="view-stok" class="hidden flex-1 overflow-y-auto p-4 lg:p-6 custom-scroll bg-slate-100">
+            <div class="max-w-7xl mx-auto space-y-5">
+                <!-- Header & Action -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Gudang & Inventori Real-Time</span>
+                        <h1 class="text-xl font-extrabold text-slate-900 mt-0.5 flex items-center gap-2"><i class="fa-solid fa-boxes-stacked text-emerald-600"></i> Manajemen Stok, HPP & Katalog Produk</h1>
+                        <p class="text-xs text-slate-500 mt-1">Stok otomatis berkurang setiap kasir mencetak transaksi. Peringatan otomatis muncul saat stok di bawah batas minimum.</p>
+                    </div>
+                    <button onclick="openAddProductModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-2 shadow-md shadow-emerald-600/20 shrink-0 self-start sm:self-auto">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Tambah Stok / Produk Baru</span>
+                    </button>
+                </div>
+
+                <!-- Inventory Table Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-700">Daftar Master Barang (<span id="totalSkuCount" class="tabular-nums">12</span> SKU)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Stok Aman (≥ 10)
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-semibold border border-amber-200">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> Stok Menipis (&lt; 10)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-[11px] font-bold uppercase text-slate-500 border-b border-slate-200">
+                                    <th class="py-3 px-4">Kode SKU</th>
+                                    <th class="py-3 px-4">Nama Barang</th>
+                                    <th class="py-3 px-4">Kategori</th>
+                                    <th class="py-3 px-4 text-right">Harga Beli (HPP)</th>
+                                    <th class="py-3 px-4 text-right">Harga Jual</th>
+                                    <th class="py-3 px-4 text-right">Margin/Unit</th>
+                                    <th class="py-3 px-4 text-center">Sisa Stok</th>
+                                    <th class="py-3 px-4 text-center">Status</th>
+                                    <th class="py-3 px-4 text-right">Aksi Cepat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventoryTableBody" class="divide-y divide-slate-200 text-xs">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ==================== TAB 3: LAPORAN PENJUALAN & LABA RUGI ==================== -->
+        <main id="view-laporan" class="hidden flex-1 overflow-y-auto p-4 lg:p-6 custom-scroll bg-slate-100">
+            <div class="max-w-7xl mx-auto space-y-5">
+                <!-- KPI Summary Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Omset Hari Ini</span>
+                            <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></span>
+                        </div>
+                        <p id="kpiOmset" class="text-2xl font-extrabold text-slate-900 font-mono mt-2 tabular-nums">Rp 2.845.000</p>
+                        <p class="text-[11px] text-emerald-600 font-semibold mt-1"><i class="fa-solid fa-arrow-trend-up"></i> +18.4% dibanding kemarin</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Total Transaksi</span>
+                            <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-receipt"></i></span>
+                        </div>
+                        <p id="kpiTransaksi" class="text-2xl font-extrabold text-slate-900 font-mono mt-2 tabular-nums">42 Nota</p>
+                        <p class="text-[11px] text-slate-500 mt-1 tabular-nums">Rata-rata Rp 67.700 / transaksi</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Estimasi Laba Bersih</span>
+                            <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-coins"></i></span>
+                        </div>
+                        <p id="kpiLaba" class="text-2xl font-extrabold text-emerald-600 font-mono mt-2 tabular-nums">Rp 1.192.000</p>
+                        <p class="text-[11px] text-slate-500 mt-1">Margin Kotor Rata-rata: <strong class="text-slate-700 tabular-nums">41.9%</strong></p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Produk Terlaris</span>
+                            <span class="w-8 h-8 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+                        </div>
+                        <p class="text-base font-extrabold text-slate-900 mt-2 truncate">Es Kopi Susu Gula Aren</p>
+                        <p class="text-[11px] text-rose-600 font-semibold mt-1 tabular-nums">Terjual 38 Cup Hari Ini</p>
+                    </div>
+                </div>
+
+                <!-- Hourly Sales Chart & Payment Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    <div class="lg:col-span-2 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-chart-column text-emerald-600"></i> Grafik Penjualan Per Jam (Hari Ini)</h3>
+                                <p class="text-xs text-slate-500">Jam sibuk (Peak Hours) terdeteksi pukul 12:00 - 14:00 & 18:00 - 20:00</p>
+                            </div>
+                            <span class="text-xs font-mono bg-slate-100 px-2.5 py-1 rounded-lg font-semibold text-slate-600">Real-time Live</span>
+                        </div>
+                        <!-- Visual Bar Chart -->
+                        <div class="h-48 flex items-end gap-2 sm:gap-3 pt-6 pb-2 px-2 border-b border-slate-200 tabular-nums">
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono text-slate-500">180rb</span>
+                                <div class="w-full bg-emerald-200 hover:bg-emerald-500 transition rounded-t-lg h-12"></div>
+                                <span class="text-[10px] font-semibold text-slate-500">08:00</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono text-slate-500">340rb</span>
+                                <div class="w-full bg-emerald-300 hover:bg-emerald-500 transition rounded-t-lg h-20"></div>
+                                <span class="text-[10px] font-semibold text-slate-500">10:00</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono font-bold text-emerald-700">680rb</span>
+                                <div class="w-full bg-emerald-500 rounded-t-lg h-36 shadow-md shadow-emerald-500/20"></div>
+                                <span class="text-[10px] font-bold text-slate-800">12:00</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono text-slate-500">490rb</span>
+                                <div class="w-full bg-emerald-400 hover:bg-emerald-500 transition rounded-t-lg h-28"></div>
+                                <span class="text-[10px] font-semibold text-slate-500">14:00</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono text-slate-500">410rb</span>
+                                <div class="w-full bg-emerald-300 hover:bg-emerald-500 transition rounded-t-lg h-24"></div>
+                                <span class="text-[10px] font-semibold text-slate-500">16:00</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1.5">
+                                <span class="text-[10px] font-mono font-bold text-indigo-700">745rb</span>
+                                <div class="w-full bg-indigo-500 rounded-t-lg h-40 shadow-md shadow-indigo-500/20"></div>
+                                <span class="text-[10px] font-bold text-slate-800">18:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ringkasan Metode Pembayaran -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-credit-card text-indigo-600"></i> Rekap Metode Bayar</h3>
+                            <p class="text-xs text-slate-500 mb-4">Cocokkan dengan laci kasir & mutasi QRIS</p>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold"><i class="fa-solid fa-money-bill-wave"></i></span>
+                                        <div>
+                                            <p class="font-bold text-slate-800">Uang Tunai (Laci Kasir)</p>
+                                            <p class="text-[11px] text-slate-400 tabular-nums">19 Transaksi</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-mono font-bold text-slate-900 tabular-nums">Rp 1.240.000</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold"><i class="fa-solid fa-qrcode"></i></span>
+                                        <div>
+                                            <p class="font-bold text-slate-800">QRIS Statis / Dinamis</p>
+                                            <p class="text-[11px] text-slate-400 tabular-nums">23 Transaksi</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-mono font-bold text-slate-900 tabular-nums">Rp 1.605.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 font-medium">Status Settlement QRIS:</span>
+                            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">Otomatis H+1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+                        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice text-emerald-600"></i> Riwayat Transaksi Terakhir (Bisa Cetak Ulang Struk)</h3>
+                        <span class="text-xs text-slate-500">Menampilkan transaksi terbaru</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-[11px] font-bold uppercase text-slate-500 border-b border-slate-200">
+                                    <th class="py-3 px-4">No. Struk</th>
+                                    <th class="py-3 px-4">Waktu</th>
+                                    <th class="py-3 px-4">Pelanggan / Tipe</th>
+                                    <th class="py-3 px-4">Rincian Pesanan</th>
+                                    <th class="py-3 px-4">Metode Bayar</th>
+                                    <th class="py-3 px-4 text-right">Total Nota</th>
+                                    <th class="py-3 px-4 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentTransactionsBody" class="divide-y divide-slate-200 text-xs">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================== MODAL 1: STRUK THERMAL 58MM ==================== -->
+    <div id="receiptModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden border border-slate-200 flex flex-col max-h-[92vh]">
+            <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between no-print">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-print text-emerald-400"></i>
+                    <span class="text-xs font-bold">Pratinjau Struk Thermal 58mm</span>
+                </div>
+                <button onclick="closeReceiptModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Printable Thermal Paper Area -->
+            <div class="p-5 overflow-y-auto custom-scroll flex-1 bg-slate-100 flex justify-center">
+                <div id="receiptPrintable" class="receipt-paper w-[280px] bg-white p-4 shadow-md border border-slate-200 text-[11px] text-slate-900 leading-relaxed">
+                    <div class="text-center border-b border-dashed border-slate-400 pb-3">
+                        <p class="font-extrabold text-sm tracking-tight">KOPI & MART NUSANTARA</p>
+                        <p class="text-[10px] text-slate-600">Jl. Jend. Sudirman No. 88, Jakarta</p>
+                        <p class="text-[10px] text-slate-600">Telp/WA: 0812-8899-7766</p>
+                    </div>
+                    <div class="py-2 border-b border-dashed border-slate-400 text-[10px] space-y-0.5">
+                        <div class="flex justify-between"><span>No Nota:</span><span id="rcpNo" class="font-bold">#ORD-8824</span></div>
+                        <div class="flex justify-between"><span>Waktu:</span><span id="rcpTime">12/10/2026 10:45</span></div>
+                        <div class="flex justify-between"><span>Kasir:</span><span>Rina Wulandari</span></div>
+                        <div class="flex justify-between"><span>Tipe:</span><span id="rcpType" class="font-bold">Dine-In Meja 04</span></div>
+                        <div class="flex justify-between"><span>Pelanggan:</span><span id="rcpCustomer">Bpk. Hendra</span></div>
+                    </div>
+                    <div id="rcpItemsList" class="py-2 border-b border-dashed border-slate-400 space-y-1.5">
+                        <!-- Items injected by JS -->
+                    </div>
+                    <div class="py-2 border-b border-dashed border-slate-400 space-y-1 text-[10px]">
+                        <div class="flex justify-between"><span>Subtotal</span><span id="rcpSubtotal">Rp 0</span></div>
+                        <div class="flex justify-between"><span>Diskon</span><span id="rcpDiscount">- Rp 0</span></div>
+                        <div class="flex justify-between"><span>PPN (10%)</span><span id="rcpTax">Rp 0</span></div>
+                        <div class="flex justify-between font-extrabold text-xs pt-1"><span>TOTAL</span><span id="rcpGrandTotal">Rp 0</span></div>
+                        <div class="flex justify-between pt-1"><span>Bayar (<span id="rcpMethod">TUNAI</span>)</span><span id="rcpPaid">Rp 0</span></div>
+                        <div class="flex justify-between font-bold"><span>Kembali</span><span id="rcpChange">Rp 0</span></div>
+                    </div>
+                    <div class="pt-3 text-center space-y-2">
+                        <div class="mx-auto w-24 h-24 border border-slate-300 rounded-lg p-1.5 flex flex-col items-center justify-center bg-slate-50">
+                            <i class="fa-solid fa-qrcode text-5xl text-slate-800"></i>
+                            <span class="text-[8px] font-bold tracking-widest mt-1">LUNAS-TERVERIFIKASI</span>
+                        </div>
+                        <p class="text-[10px] font-semibold">Terima Kasih Atas Kunjungan Anda!</p>
+                        <p class="text-[9px] text-slate-500">Password WiFi: <strong class="text-slate-700">kopinusantara88</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3.5 bg-white border-t border-slate-200 flex gap-2 no-print">
+                <button onclick="window.print()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow">
+                    <i class="fa-solid fa-print"></i> Cetak Printer Thermal
+                </button>
+                <button onclick="closeReceiptModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+                    Selesai
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: TAMBAH STOK / PRODUK BARU ==================== -->
+    <div id="addProductModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
+            <div class="px-5 py-4 bg-slate-900 text-white flex items-center justify-between">
+                <h3 class="text-sm font-extrabold flex items-center gap-2"><i class="fa-solid fa-box-open text-emerald-400"></i> Tambah Produk / Stok Baru</h3>
+                <button onclick="closeAddProductModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="handleAddNewProduct(event)" class="p-5 space-y-3.5 text-xs">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="font-bold text-slate-700 block mb-1">Kode SKU / Barcode</label>
+                        <input id="newSku" required type="text" placeholder="Misal: SNK-09" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-mono uppercase">
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-700 block mb-1">Kategori</label>
+                        <select id="newCat" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-semibold">
+                            <option value="Kopi & Minuman">Kopi & Minuman</option>
+                            <option value="Makanan Utama">Makanan Utama</option>
+                            <option value="Snack & Roti">Snack & Roti</option>
+                            <option value="Sembako/Retail">Sembako/Retail</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-bold text-slate-700 block mb-1">Nama Produk / Menu</label>
+                    <input id="newName" required type="text" placeholder="Contoh: Roti Bakar Coklat Keju Lumer" class="w-full px-3 py-2 border border-slate-300 rounded-xl">
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="font-bold text-slate-700 block mb-1">HPP / Beli (Rp)</label>
+                        <input id="newHpp" required type="number" value="12000" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-mono">
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-700 block mb-1">Harga Jual (Rp)</label>
+                        <input id="newPrice" required type="number" value="22000" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-mono">
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-700 block mb-1">Stok Awal</label>
+                        <input id="newStock" required type="number" value="25" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-mono">
+                    </div>
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeAddProductModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold">Batal</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow">Simpan ke Database POS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastBox" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-emerald-500/40 flex items-center gap-3 text-xs font-bold opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage">Produk ditambahkan!</span>
+    </div>
+
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'KasirPintar Pro',
+            tagline: 'CLOUD POS & INVENTORY',
+            address: 'Jl. Jend. Sudirman No. 88, Tanah Abang, Jakarta Pusat 10220',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Jend.+Sudirman+No.+88+Jakarta',
+            whatsappNumber: '6281288997766',
+            whatsappDisplay: '+62 812-8899-7766',
+            email: 'halo@kasirpintarpro.id',
+            operationalHours: 'Senin – Minggu: 08:00 – 22:00 WIB',
+            socials: {
+                instagram: 'https://instagram.com',
+                tiktok: 'https://tiktok.com',
+                whatsapp: 'https://wa.me/6281288997766',
+                youtube: 'https://youtube.com'
+            }
+        };
+
+        // Master Products Data (12 Authentic Indonesian Cafe & Minimarket Items)
+        const products = [
+            { id: 1, sku: 'KOP-01', name: 'Es Kopi Susu Gula Aren', category: 'Kopi & Minuman', hpp: 9500, price: 22000, stock: 42, image: 'assets/images/prod-kop-01.jpg', icon: 'fa-mug-hot', color: 'from-amber-500 to-orange-600' },
+            { id: 2, sku: 'KOP-02', name: 'Matcha Latte Uji Premium', category: 'Kopi & Minuman', hpp: 12000, price: 26000, stock: 28, image: 'assets/images/prod-kop-02.jpg', icon: 'fa-leaf', color: 'from-emerald-500 to-green-600' },
+            { id: 3, sku: 'KOP-03', name: 'Ice Americano Arabika Gayo', category: 'Kopi & Minuman', hpp: 7000, price: 18000, stock: 35, image: 'assets/images/prod-kop-03.jpg', icon: 'fa-glass-water', color: 'from-stone-600 to-slate-800' },
+            { id: 4, sku: 'MKN-01', name: 'Nasi Goreng Kampung Spesial', category: 'Makanan Utama', hpp: 16000, price: 32000, stock: 18, image: 'assets/images/prod-mkn-01.jpg', icon: 'fa-bowl-rice', color: 'from-orange-500 to-red-600' },
+            { id: 5, sku: 'MKN-02', name: 'Ricebowl Chicken Teriyaki', category: 'Makanan Utama', hpp: 15000, price: 29000, stock: 7, image: 'assets/images/prod-mkn-02.jpg', icon: 'fa-drumstick-bite', color: 'from-amber-600 to-yellow-600' },
+            { id: 6, sku: 'MKN-03', name: 'Mie Tek-Tek Kuah Pedas', category: 'Makanan Utama', hpp: 11000, price: 24000, stock: 22, image: 'assets/images/prod-mkn-03.jpg', icon: 'fa-utensils', color: 'from-rose-500 to-red-700' },
+            { id: 7, sku: 'SNK-01', name: 'Croissant Butter Almond', category: 'Snack & Roti', hpp: 10500, price: 23000, stock: 6, image: 'assets/images/prod-snk-01.jpg', icon: 'fa-bread-slice', color: 'from-yellow-500 to-amber-600' },
+            { id: 8, sku: 'SNK-02', name: 'Kentang Goreng Truffle Mayo', category: 'Snack & Roti', hpp: 9000, price: 20000, stock: 30, image: 'assets/images/prod-snk-02.jpg', icon: 'fa-fire-burner', color: 'from-amber-400 to-orange-500' },
+            { id: 9, sku: 'SNK-03', name: 'Pisang Goreng Tanduk Keju', category: 'Snack & Roti', hpp: 8500, price: 19000, stock: 19, image: 'assets/images/prod-snk-03.jpg', icon: 'fa-cheese', color: 'from-yellow-400 to-amber-500' },
+            { id: 10, sku: 'RTL-01', name: 'Biji Kopi House Blend 250gr', category: 'Sembako/Retail', hpp: 48000, price: 75000, stock: 14, image: 'assets/images/prod-rtl-01.jpg', icon: 'fa-bag-shopping', color: 'from-indigo-500 to-purple-600' },
+            { id: 11, sku: 'RTL-02', name: 'Susu UHT Full Cream 1 Liter', category: 'Sembako/Retail', hpp: 16500, price: 21500, stock: 40, image: 'assets/images/prod-rtl-02.jpg', icon: 'fa-bottle-droplet', color: 'from-sky-500 to-blue-600' },
+            { id: 12, sku: 'RTL-03', name: 'Minyak Goreng Sawit 2 Liter', category: 'Sembako/Retail', hpp: 31000, price: 36500, stock: 25, image: 'assets/images/prod-rtl-03.jpg', icon: 'fa-jug-detergent', color: 'from-teal-500 to-emerald-600' }
+        ];
+
+        let activeCategory = 'Semua';
+        let paymentMethod = 'TUNAI';
+        let orderCounter = 8824;
+
+        // Pre-loaded realistic cart
+        let cart = [
+            { id: 1, qty: 2 },
+            { id: 4, qty: 1 },
+            { id: 7, qty: 1 }
+        ];
+
+        // Recent transactions history
+        const transactions = [
+            {
+                no: '#ORD-8823',
+                time: '10:30 WIB',
+                customer: 'Ibu Clarissa',
+                type: 'Takeaway / Bungkus',
+                method: 'QRIS',
+                total: 74800,
+                paid: 74800,
+                change: 0,
+                subtotal: 68000,
+                discount: 0,
+                tax: 6800,
+                items: [
+                    { name: 'Es Kopi Susu Gula Aren', qty: 2, price: 22000 },
+                    { name: 'Mie Tek-Tek Kuah Pedas', qty: 1, price: 24000 }
+                ]
+            },
+            {
+                no: '#ORD-8822',
+                time: '10:12 WIB',
+                customer: 'Mas Dimas (Driver)',
+                type: 'GoFood / GrabFood',
+                method: 'QRIS',
+                total: 93500,
+                paid: 93500,
+                change: 0,
+                subtotal: 85000,
+                discount: 0,
+                tax: 8500,
+                items: [
+                    { name: 'Nasi Goreng Kampung Spesial', qty: 2, price: 32000 },
+                    { name: 'Susu UHT Full Cream 1 Liter', qty: 1, price: 21000 }
+                ]
+            },
+            {
+                no: '#ORD-8821',
+                time: '09:48 WIB',
+                customer: 'Bpk. Anton',
+                type: 'Dine-In Meja 02',
+                method: 'TUNAI',
+                total: 48400,
+                paid: 50000,
+                change: 1600,
+                subtotal: 44000,
+                discount: 0,
+                tax: 4400,
+                items: [
+                    { name: 'Matcha Latte Uji Premium', qty: 1, price: 26000 },
+                    { name: 'Ice Americano Arabika Gayo', qty: 1, price: 18000 }
+                ]
+            }
+        ];
+
+        function formatRp(num) {
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        function showToast(msg) {
+            const box = document.getElementById('toastBox');
+            document.getElementById('toastMessage').textContent = msg;
+            box.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                box.classList.add('opacity-0', 'pointer-events-none');
+            }, 2400);
+        }
+
+        // Tab Switching
+        function switchTab(tab) {
+            ['pos', 'stok', 'laporan'].forEach(t => {
+                document.getElementById('view-' + t).classList.add('hidden');
+                const topBtn = document.getElementById('topTab-' + t);
+                const sideBtn = document.getElementById('sideTab-' + t);
+                if (topBtn) {
+                    topBtn.className = 'tab-btn whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-300 hover:text-white';
+                }
+                if (sideBtn) {
+                    sideBtn.className = 'w-full flex items-center justify-between px-3 py-3 rounded-xl text-xs font-semibold transition hover:bg-slate-800 text-slate-400';
+                }
+            });
+
+            document.getElementById('view-' + tab).classList.remove('hidden');
+            const activeTop = document.getElementById('topTab-' + tab);
+            const activeSide = document.getElementById('sideTab-' + tab);
+            if (activeTop) {
+                activeTop.className = 'tab-btn whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-emerald-500 text-slate-950 shadow';
+            }
+            if (activeSide) {
+                activeSide.className = 'w-full flex items-center justify-between px-3 py-3 rounded-xl text-xs font-bold transition bg-emerald-600/20 text-emerald-400 border border-emerald-500/30';
+            }
+
+            if (tab === 'stok') renderInventoryTable();
+            if (tab === 'laporan') renderTransactionsTable();
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = 'cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white shadow-sm shrink-0 transition';
+                } else {
+                    btn.className = 'cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 shrink-0 transition';
+                }
+            });
+            renderPosProducts();
+        }
+
+        function renderPosProducts() {
+            const query = document.getElementById('posSearchInput').value.toLowerCase().trim();
+            const grid = document.getElementById('posProductGrid');
+            const filtered = products.filter(p => {
+                const matchCat = activeCategory === 'Semua' || p.category === activeCategory;
+                const matchQ = p.name.toLowerCase().includes(query) || p.sku.toLowerCase().includes(query);
+                return matchCat && matchQ;
+            });
+
+            grid.innerHTML = filtered.map(p => {
+                const isLow = p.stock < 10;
+                return `
+                <div onclick="addToCart(${p.id})" class="group bg-white rounded-2xl p-2.5 border border-slate-200 hover:border-emerald-500 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between active:scale-[0.98]">
+                    <div>
+                        <div class="relative h-28 w-full rounded-xl overflow-hidden mb-2.5 bg-slate-100 border border-slate-200/70">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-x-1.5 top-1.5 flex items-center justify-between gap-1">
+                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-900/85 text-white backdrop-blur-sm tabular-nums">${p.sku}</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm tabular-nums ${isLow ? 'bg-amber-500/95 text-slate-950' : 'bg-emerald-600/90 text-white'}">
+                                    Stok: ${p.stock}
+                                </span>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-semibold">${p.category}</p>
+                        <h4 class="text-xs font-extrabold text-slate-800 line-clamp-2 mt-0.5 leading-snug">${p.name}</h4>
+                    </div>
+                    <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+                        <span class="font-mono font-extrabold text-sm text-emerald-600 tabular-nums">${formatRp(p.price)}</span>
+                        <span class="w-6 h-6 rounded-lg bg-emerald-50 group-hover:bg-emerald-500 text-emerald-600 group-hover:text-white flex items-center justify-center text-xs transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </div>
+                </div>`;
+            }).join('');
+
+            updateLowStockBadges();
+        }
+
+        function addToCart(productId) {
+            const prod = products.find(p => p.id === productId);
+            if (!prod || prod.stock <= 0) {
+                showToast('Stok produk habis!');
+                return;
+            }
+            const existing = cart.find(c => c.id === productId);
+            if (existing) {
+                if (existing.qty < prod.stock) existing.qty++;
+            } else {
+                cart.push({ id: productId, qty: 1 });
+            }
+            renderCart();
+        }
+
+        function changeQty(productId, delta) {
+            const idx = cart.findIndex(c => c.id === productId);
+            if (idx === -1) return;
+            const prod = products.find(p => p.id === productId);
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            } else if (prod && cart[idx].qty > prod.stock) {
+                cart[idx].qty = prod.stock;
+            }
+            renderCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            renderCart();
+        }
+
+        function simulateBarcodeScan() {
+            const randomProd = products[Math.floor(Math.random() * products.length)];
+            addToCart(randomProd.id);
+            showToast(`Barcode Scanned: [${randomProd.sku}] ${randomProd.name}`);
+        }
+
+        function getCartCalculation() {
+            let subtotal = 0;
+            let totalItems = 0;
+            cart.forEach(item => {
+                const p = products.find(prod => prod.id === item.id);
+                if (p) {
+                    subtotal += p.price * item.qty;
+                    totalItems += item.qty;
+                }
+            });
+
+            const promoVal = parseFloat(document.getElementById('promoSelect').value || '0');
+            let discount = 0;
+            if (promoVal === 0.1) discount = subtotal * 0.1;
+            else if (promoVal > 1) discount = Math.min(subtotal, promoVal);
+
+            const afterDisc = Math.max(0, subtotal - discount);
+            const includeTax = document.getElementById('ppnToggle').checked;
+            const tax = includeTax ? Math.round(afterDisc * 0.1) : 0;
+            const grandTotal = afterDisc + tax;
+
+            return { subtotal, totalItems, discount, tax, grandTotal };
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-44 flex flex-col items-center justify-center text-slate-400 text-center">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-2 text-slate-300"></i>
+                        <p class="text-xs font-bold text-slate-500">Keranjang Kasir Kosong</p>
+                        <p class="text-[11px]">Klik produk di sebelah kiri atau scan barcode</p>
+                    </div>`;
+            } else {
+                container.innerHTML = cart.map(item => {
+                    const p = products.find(prod => prod.id === item.id);
+                    if (!p) return '';
+                    return `
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-2.5">
+                        <img src="${p.image}" alt="${p.name}" class="w-10 h-10 rounded-lg object-cover border border-slate-200 shrink-0">
+                        <div class="min-w-0 flex-1">
+                            <p class="text-xs font-bold text-slate-800 truncate">${p.name}</p>
+                            <p class="text-[11px] font-mono text-slate-500 tabular-nums">${formatRp(p.price)} x ${item.qty} = <strong class="text-slate-800">${formatRp(p.price * item.qty)}</strong></p>
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <button onclick="changeQty(${p.id}, -1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 hover:bg-rose-50 hover:border-rose-300 text-slate-700 font-bold text-xs flex items-center justify-center">-</button>
+                            <span class="w-6 text-center font-mono font-bold text-xs tabular-nums">${item.qty}</span>
+                            <button onclick="changeQty(${p.id}, 1)" class="w-6 h-6 rounded-lg bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">+</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+            updateCartTotals();
+        }
+
+        function updateCartTotals() {
+            const { subtotal, totalItems, discount, tax, grandTotal } = getCartCalculation();
+            document.getElementById('cartCountText').textContent = totalItems;
+            document.getElementById('subtotalText').textContent = formatRp(subtotal);
+            document.getElementById('discountText').textContent = '- ' + formatRp(discount);
+            document.getElementById('taxText').textContent = formatRp(tax);
+            document.getElementById('grandTotalText').textContent = formatRp(grandTotal);
+            calculateChange();
+        }
+
+        function setQuickCash(val) {
+            const { grandTotal } = getCartCalculation();
+            const input = document.getElementById('cashReceivedInput');
+            const badge = document.getElementById('paymentMethodBadge');
+            if (val === 'pas') {
+                paymentMethod = 'TUNAI';
+                input.value = grandTotal;
+                badge.textContent = 'TUNAI / UANG PAS';
+                badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800';
+            } else if (val === 'qris') {
+                paymentMethod = 'QRIS DINAMIS';
+                input.value = grandTotal;
+                badge.textContent = 'QRIS DINAMIS';
+                badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800';
+            } else {
+                paymentMethod = 'TUNAI';
+                input.value = val;
+                badge.textContent = 'TUNAI / CASH';
+                badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800';
+            }
+            calculateChange();
+        }
+
+        function calculateChange() {
+            const { grandTotal } = getCartCalculation();
+            const received = parseFloat(document.getElementById('cashReceivedInput').value || '0');
+            const change = received - grandTotal;
+            const changeEl = document.getElementById('changeAmountText');
+            if (change >= 0) {
+                changeEl.textContent = formatRp(change);
+                changeEl.className = 'font-mono font-extrabold text-sm text-emerald-600 tabular-nums';
+            } else {
+                changeEl.textContent = 'Kurang ' + formatRp(Math.abs(change));
+                changeEl.className = 'font-mono font-extrabold text-sm text-rose-600 tabular-nums';
+            }
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) {
+                showToast('Pilih minimal 1 produk untuk membuat transaksi!');
+                return;
+            }
+            const { subtotal, discount, tax, grandTotal } = getCartCalculation();
+            const received = parseFloat(document.getElementById('cashReceivedInput').value || '0');
+            const paidAmount = Math.max(received, grandTotal);
+            const changeAmount = paidAmount - grandTotal;
+
+            // Deduct stock
+            const receiptItems = [];
+            cart.forEach(item => {
+                const p = products.find(prod => prod.id === item.id);
+                if (p) {
+                    p.stock = Math.max(0, p.stock - item.qty);
+                    receiptItems.push({ name: p.name, qty: item.qty, price: p.price });
+                }
+            });
+
+            const orderNo = `#ORD-${orderCounter++}`;
+            const nowStr = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB';
+            const orderType = document.getElementById('orderTypeSelect').value;
+            const customer = document.getElementById('customerNameInput').value || 'Pelanggan Umum';
+
+            const txObj = {
+                no: orderNo,
+                time: nowStr,
+                customer,
+                type: orderType,
+                method: paymentMethod,
+                total: grandTotal,
+                paid: paidAmount,
+                change: changeAmount,
+                subtotal,
+                discount,
+                tax,
+                items: receiptItems
+            };
+
+            transactions.unshift(txObj);
+            openReceiptModal(txObj);
+
+            // Reset for next order
+            document.getElementById('activeOrderNumber').textContent = `#ORD-${orderCounter}`;
+            renderPosProducts();
+        }
+
+        function openReceiptModal(tx) {
+            document.getElementById('rcpNo').textContent = tx.no;
+            document.getElementById('rcpTime').textContent = '12/10/2026 ' + tx.time;
+            document.getElementById('rcpType').textContent = tx.type;
+            document.getElementById('rcpCustomer').textContent = tx.customer;
+            document.getElementById('rcpSubtotal').textContent = formatRp(tx.subtotal);
+            document.getElementById('rcpDiscount').textContent = '- ' + formatRp(tx.discount);
+            document.getElementById('rcpTax').textContent = formatRp(tx.tax);
+            document.getElementById('rcpGrandTotal').textContent = formatRp(tx.total);
+            document.getElementById('rcpMethod').textContent = tx.method;
+            document.getElementById('rcpPaid').textContent = formatRp(tx.paid);
+            document.getElementById('rcpChange').textContent = formatRp(tx.change);
+
+            document.getElementById('rcpItemsList').innerHTML = tx.items.map(i => `
+                <div>
+                    <div class="font-bold text-slate-800">${i.name}</div>
+                    <div class="flex justify-between text-[10px] text-slate-600 tabular-nums">
+                        <span>${i.qty} x ${formatRp(i.price)}</span>
+                        <span class="font-semibold text-slate-900">${formatRp(i.qty * i.price)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const modal = document.getElementById('receiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReceiptModal() {
+            const modal = document.getElementById('receiptModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // TAB 2: INVENTORY FUNCTIONS
+        function updateLowStockBadges() {
+            const lowCount = products.filter(p => p.stock < 10).length;
+            document.getElementById('lowStockBadgeTop').textContent = lowCount;
+            document.getElementById('lowStockBadgeSide').textContent = `${lowCount} Menipis`;
+            document.getElementById('totalSkuCount').textContent = products.length;
+        }
+
+        function renderInventoryTable() {
+            const tbody = document.getElementById('inventoryTableBody');
+            tbody.innerHTML = products.map(p => {
+                const margin = p.price - p.hpp;
+                const isLow = p.stock < 10;
+                return `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-3 px-4 font-mono font-bold text-slate-700 tabular-nums">${p.sku}</td>
+                    <td class="py-3 px-4 font-bold text-slate-900">
+                        <div class="flex items-center gap-2.5">
+                            <img src="${p.image}" alt="${p.name}" class="w-9 h-9 rounded-lg object-cover border border-slate-200 shrink-0">
+                            <span>${p.name}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-4"><span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">${p.category}</span></td>
+                    <td class="py-3 px-4 text-right font-mono text-slate-600 tabular-nums">${formatRp(p.hpp)}</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-slate-900 tabular-nums">${formatRp(p.price)}</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-emerald-600 tabular-nums">+${formatRp(margin)}</td>
+                    <td class="py-3 px-4 text-center font-mono font-extrabold text-sm tabular-nums ${isLow ? 'text-amber-600' : 'text-slate-800'}">${p.stock}</td>
+                    <td class="py-3 px-4 text-center">
+                        ${isLow 
+                            ? '<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-bold text-[11px]"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Stok Menipis!</span>'
+                            : '<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[11px]"><i class="fa-solid fa-check mr-1"></i>Stok Aman</span>'}
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                        <button onclick="quickRestock(${p.id})" class="px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-[11px] transition tabular-nums">
+                            + Restock 15
+                        </button>
+                    </td>
+                </tr>`;
+            }).join('');
+            updateLowStockBadges();
+        }
+
+        function quickRestock(id) {
+            const p = products.find(item => item.id === id);
+            if (p) {
+                p.stock += 15;
+                renderInventoryTable();
+                renderPosProducts();
+                showToast(`Stok ${p.name} berhasil ditambah +15 unit!`);
+            }
+        }
+
+        function openAddProductModal() {
+            const modal = document.getElementById('addProductModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAddProductModal() {
+            const modal = document.getElementById('addProductModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleAddNewProduct(e) {
+            e.preventDefault();
+            const sku = document.getElementById('newSku').value.toUpperCase();
+            const category = document.getElementById('newCat').value;
+            const name = document.getElementById('newName').value;
+            const hpp = parseInt(document.getElementById('newHpp').value, 10) || 10000;
+            const price = parseInt(document.getElementById('newPrice').value, 10) || 20000;
+            const stock = parseInt(document.getElementById('newStock').value, 10) || 20;
+
+            const defaultImgMap = {
+                'Kopi & Minuman': 'assets/images/prod-kop-01.jpg',
+                'Makanan Utama': 'assets/images/prod-mkn-01.jpg',
+                'Snack & Roti': 'assets/images/prod-snk-01.jpg',
+                'Sembako/Retail': 'assets/images/prod-rtl-01.jpg'
+            };
+
+            products.unshift({
+                id: Date.now(),
+                sku,
+                name,
+                category,
+                hpp,
+                price,
+                stock,
+                image: defaultImgMap[category] || 'assets/images/prod-kop-01.jpg',
+                icon: 'fa-star',
+                color: 'from-emerald-500 to-teal-600'
+            });
+
+            closeAddProductModal();
+            renderInventoryTable();
+            renderPosProducts();
+            showToast(`Produk "${name}" berhasil ditambahkan ke Katalog POS!`);
+            e.target.reset();
+        }
+
+        // TAB 3: REPORTS & TRANSACTIONS
+        function renderTransactionsTable() {
+            const tbody = document.getElementById('recentTransactionsBody');
+            tbody.innerHTML = transactions.map((tx, idx) => `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-3 px-4 font-mono font-bold text-emerald-700 tabular-nums">${tx.no}</td>
+                    <td class="py-3 px-4 text-slate-500 font-mono tabular-nums">${tx.time}</td>
+                    <td class="py-3 px-4">
+                        <div class="font-bold text-slate-900">${tx.customer}</div>
+                        <div class="text-[11px] text-slate-500">${tx.type}</div>
+                    </td>
+                    <td class="py-3 px-4 text-slate-600">
+                        ${tx.items.map(i => `${i.qty}x ${i.name}`).join(', ')}
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2.5 py-1 rounded-lg font-bold text-[11px] ${tx.method.includes('QRIS') ? 'bg-indigo-100 text-indigo-800' : 'bg-emerald-100 text-emerald-800'}">${tx.method}</span>
+                    </td>
+                    <td class="py-3 px-4 text-right font-mono font-extrabold text-slate-900 tabular-nums">${formatRp(tx.total)}</td>
+                    <td class="py-3 px-4 text-right">
+                        <button onclick="reprintTransaction(${idx})" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-700 text-white font-bold text-[11px] inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-print"></i> Cetak Ulang
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function reprintTransaction(idx) {
+            const tx = transactions[idx];
+            if (tx) openReceiptModal(tx);
+        }
+
+        // Live Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('liveClock').textContent = now.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB';
+        }
+        setInterval(updateClock, 1000);
+
+        // Init
+        renderPosProducts();
+        renderCart();
+        renderInventoryTable();
+        renderTransactionsTable();
+    </script>
+</body>
+</html>

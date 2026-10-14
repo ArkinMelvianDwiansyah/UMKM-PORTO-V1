@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenyumLuxe Dental &amp; Derma Clinic — Klinik Gigi Spesialis, Veneer &amp; Estetika Medis</title>
+    <meta name="description" content="Klinik gigi spesialis dan estetika kulit berstandar Swiss Medical. Layanan Scaling Airflow, Bleaching Laser, Behel Spesialis Ortodonti, Porcelain Veneer, dan Pico Laser.">
+
+    <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans + IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        ivory: {
+                            DEFAULT: '#FAF9F6',
+                            warm: '#F3EFEA',
+                            border: '#E5DFD5'
+                        },
+                        teal: {
+                            DEFAULT: '#0D3B3E',
+                            light: '#165256',
+                            dark: '#072426',
+                            soft: '#EBF2F2'
+                        },
+                        champagne: {
+                            DEFAULT: '#C2A675',
+                            dark: '#9E8150',
+                            light: '#EFE8DA'
+                        },
+                        slateText: {
+                            DEFAULT: '#1B2A2B',
+                            muted: '#5C6F70'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF9F6;
+            color: #1B2A2B;
+        }
+        /* Before After Comparison Slider Custom Styles */
+        .ba-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        .ba-after-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            overflow: hidden;
+        }
+        .ba-divider-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #FAF9F6;
+            transform: translateX(-50%);
+            pointer-events: none;
+            box-shadow: 0 0 12px rgba(13, 59, 62, 0.45);
+        }
+        .ba-handle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            background-color: #0D3B3E;
+            border: 2px solid #C2A675;
+            color: #FAF9F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(7, 36, 38, 0.35);
+            pointer-events: none;
+        }
+        /* Before image subtle clinical warm tint so comparison is visually distinct */
+        .before-clinical-filter {
+            filter: sepia(0.28) saturate(0.88) brightness(0.94) contrast(0.96);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-teal selection:text-ivory">
+
+    <!-- TOP DEMO NAVIGATION BAR -->
+    <div class="bg-teal-dark text-ivory border-b border-teal-light text-xs py-2.5 px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-medium text-ivory hover:text-champagne transition-colors whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-[11px] text-champagne"></i>
+                <span>Kembali ke Katalog Portofolio UMKM</span>
+            </a>
+            <div class="flex items-center gap-4 text-ivory/80 shrink-0">
+                <span class="hidden md:inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-champagne"></span>
+                    Demo #12 &bull; Swiss Clinical Minimalist &amp; Quiet Luxury
+                </span>
+                <a href="#simulasi-biaya" class="bg-champagne text-teal-dark px-3 py-1 text-[11px] font-bold tracking-wide uppercase hover:bg-champagne-light transition whitespace-nowrap shrink-0">
+                    Simulasi Cicilan 0%
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-6">
+                <!-- Local SVG Brand Logo -->
+                <a href="#" class="flex items-center shrink-0 focus:outline-none">
+                    <img src="assets/logo.svg" alt="SenyumLuxe Dental & Derma Aesthetic" class="h-11 w-auto block">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slateText">
+                    <a href="#layanan-klinis" class="hover:text-teal transition-colors whitespace-nowrap">Layanan</a>
+                    <a href="#transformasi-senyum" class="hover:text-teal transition-colors whitespace-nowrap">Hasil Pasien</a>
+                    <a href="#simulasi-biaya" class="hover:text-teal transition-colors inline-flex items-center gap-1.5 font-semibold text-teal whitespace-nowrap">
+                        <i class="fa-solid fa-calculator text-champagne-dark text-xs"></i>
+                        <span>Simulasi Biaya</span>
+                    </a>
+                    <a href="#jadwal-dokter" class="hover:text-teal transition-colors whitespace-nowrap">Jadwal Dokter</a>
+                    <a href="#ulasan-pasien" class="hover:text-teal transition-colors whitespace-nowrap">Ulasan</a>
+                    <a href="#faq" class="hover:text-teal transition-colors whitespace-nowrap">FAQ</a>
+                </nav>
+
+                <!-- Right CTA -->
+                <div class="hidden sm:flex items-center gap-3 shrink-0">
+                    <a href="#jadwal-dokter" class="hidden 2xl:inline-block text-xs font-mono uppercase tracking-wider text-slateText-muted hover:text-teal px-2 py-2 whitespace-nowrap">
+                        Kemang &bull; BSD &bull; Bandung
+                    </a>
+                    <a href="#simulasi-biaya" class="inline-flex items-center gap-2 bg-teal hover:bg-teal-light text-ivory text-xs font-semibold uppercase tracking-widest px-5 py-3.5 transition-all whitespace-nowrap shrink-0">
+                        <span>Reservasi</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] text-champagne"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 border border-ivory-border text-teal hover:bg-ivory-warm shrink-0">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenuPanel" class="hidden lg:hidden bg-ivory border-b border-ivory-border px-4 pt-3 pb-6 space-y-3">
+            <a href="#layanan-klinis" class="block py-2 text-sm font-medium border-b border-ivory-border">Layanan</a>
+            <a href="#transformasi-senyum" class="block py-2 text-sm font-medium border-b border-ivory-border">Hasil Pasien (Before &amp; After)</a>
+            <a href="#simulasi-biaya" class="block py-2 text-sm font-semibold text-teal border-b border-ivory-border">Simulasi Biaya &amp; Cicilan 0%</a>
+            <a href="#jadwal-dokter" class="block py-2 text-sm font-medium border-b border-ivory-border">Jadwal Dokter</a>
+            <a href="#ulasan-pasien" class="block py-2 text-sm font-medium border-b border-ivory-border">Ulasan Pasien</a>
+            <a href="#faq" class="block py-2 text-sm font-medium">FAQ</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: SWISS CLINICAL MINIMALIST -->
+    <section class="relative border-b border-ivory-border overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                
+                <!-- Left Column (7 Cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-ivory-warm border border-ivory-border text-teal text-xs font-mono uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-champagne-dark"></span>
+                        <span>KEMENKES RI TERAKREDITASI PARIPURNA &bull; PAINLESS PROTOCOL</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-[58px] text-teal leading-[1.06] font-semibold">
+                        Arsitektur Senyum Proporsional &amp; <span class="italic font-normal text-champagne-dark">Kesehatan Kulit Presisi.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slateText-muted leading-relaxed max-w-2xl">
+                        Menggabungkan keahlian <strong class="text-slateText font-semibold">Dokter Gigi Spesialis (Sp.KG, Sp.Ort, Sp.Pros)</strong> dan <strong class="text-slateText font-semibold">Dokter Spesialis Dermatologi (Sp.DVE)</strong> dengan teknologi pemindaian intraoral 3D tanpa cetak konvensional yang menimbulkan rasa mual.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#simulasi-biaya" class="inline-flex items-center gap-3 bg-teal hover:bg-teal-light text-ivory text-xs sm:text-sm font-semibold uppercase tracking-wider px-7 py-4 transition-all">
+                            <span>Hitung Estimasi &amp; Cicilan 0%</span>
+                            <i class="fa-solid fa-arrow-right text-champagne text-xs"></i>
+                        </a>
+                        <a href="#transformasi-senyum" class="inline-flex items-center gap-3 bg-ivory hover:bg-ivory-warm text-teal border border-teal/30 text-xs sm:text-sm font-semibold uppercase tracking-wider px-6 py-4 transition-all">
+                            <i class="fa-solid fa-sliders text-champagne-dark"></i>
+                            <span>Lihat Before – After Klinis</span>
+                        </a>
+                    </div>
+
+                    <!-- Clinical Trust Pillars -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-ivory-border">
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-semibold text-teal">100% Autoclave</p>
+                            <p class="text-xs text-slateText-muted mt-0.5">Sterilisasi Medis Kelas B Eropa</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-semibold text-champagne-dark">Cicilan 0%</p>
+                            <p class="text-xs text-slateText-muted mt-0.5">Hingga 12 Bulan Tanpa Bunga</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-semibold text-teal">Garansi Resmi</p>
+                            <p class="text-xs text-slateText-muted mt-0.5">Sertifikat Veneer &amp; Implan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Architectural Clinic Frame (5 Cols) -->
+                <div class="lg:col-span-5">
+                    <div class="bg-ivory-warm border border-ivory-border p-4 relative">
+                        <div class="relative aspect-[4/5] overflow-hidden border border-ivory-border">
+                            <img src="assets/images/hero-clinic.jpg" alt="Ruang perawatan SenyumLuxe Dental & Derma Clinic" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-teal-dark/80 via-transparent to-transparent"></div>
+
+                            <div class="absolute top-4 left-4 bg-ivory/95 backdrop-blur-sm border border-ivory-border px-3 py-1.5 text-[11px] font-mono text-teal font-medium">
+                                SWISS AIRFLOW PROPHYLAXIS MASTER
+                            </div>
+
+                            <div class="absolute bottom-4 left-4 right-4 bg-ivory/95 backdrop-blur-md border border-ivory-border p-4">
+                                <div class="flex items-center justify-between text-[11px] font-mono text-champagne-dark font-semibold uppercase mb-1">
+                                    <span>DIGITAL SMILE DESIGN 3D</span>
+                                    <span>KONSULTASI AWAL TERJADWAL</span>
+                                </div>
+                                <p class="font-serif text-xl text-teal font-semibold">Simulasi bentuk gigi &amp; warna veneer di layar sebelum tindakan dimulai.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: CURATED CLINICAL TREATMENTS -->
+    <section id="layanan-klinis" class="py-16 lg:py-24 border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-ivory-border">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">01 / PROTOKOL PERAWATAN UNGGULAN</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold">Solusi Dental Spesialis &amp; Estetika Derma</h2>
+                </div>
+                <p class="text-sm text-slateText-muted max-w-md">
+                    Setiap prosedur dilakukan di ruang privat bertekanan negatif (HEPA Filter) dengan daftar harga transparan sebelum tindakan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+                <!-- Card 1 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="aspect-[4/3] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-scaling.jpg" alt="Swiss Painless Scaling Airflow" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-champagne-dark font-semibold">PREVENTIVE DENTAL</span>
+                            <h3 class="font-serif text-2xl text-teal font-semibold mt-1">Scaling Airflow &amp; Stain Removal</h3>
+                            <p class="text-xs text-slateText-muted leading-relaxed mt-2">
+                                Pembersihan karang gigi dan noda kopi/teh menggunakan semprotan mikro-bubuk Erythritol hangat tanpa ngilu pada gusi sensitif.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-ivory-border flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] font-mono uppercase text-slateText-muted">Tarif All-In 2 Rahang</span>
+                            <span class="font-mono text-sm font-semibold text-teal">Rp 450.000</span>
+                        </div>
+                        <button type="button" onclick="selectTreatmentInCalc('scaling')" class="text-xs font-semibold text-teal hover:text-champagne-dark uppercase tracking-wider inline-flex items-center gap-1">
+                            <span>Simulasi</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="aspect-[4/3] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-veneer.jpg" alt="Ultra-Thin Porcelain Veneer E-Max" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-champagne-dark font-semibold">AESTHETIC PROSTHODONTICS</span>
+                            <h3 class="font-serif text-2xl text-teal font-semibold mt-1">Ultra-Thin Veneer &amp; Laser Whitening</h3>
+                            <p class="text-xs text-slateText-muted leading-relaxed mt-2">
+                                Lapisan porselen lithium disilicate 0.3mm dengan translusensi email alami serta pencerahan warna gigi hingga 6 tingkat dalam 45 menit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-ivory-border flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] font-mono uppercase text-slateText-muted">Laser Whitening / Veneer</span>
+                            <span class="font-mono text-sm font-semibold text-teal">Mulai Rp 2.400.000</span>
+                        </div>
+                        <button type="button" onclick="selectTreatmentInCalc('whitening')" class="text-xs font-semibold text-teal hover:text-champagne-dark uppercase tracking-wider inline-flex items-center gap-1">
+                            <span>Simulasi</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="aspect-[4/3] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-ortho.jpg" alt="Orthodontic Braces & Clear Aligner" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-champagne-dark font-semibold">ORTHODONTIC SPECIALIST</span>
+                            <h3 class="font-serif text-2xl text-teal font-semibold mt-1">Behel Self-Ligating &amp; Clear Aligner</h3>
+                            <p class="text-xs text-slateText-muted leading-relaxed mt-2">
+                                Koreksi susunan gigi berjejal atau maju oleh dokter spesialis ortodonti (Sp.Ort) dengan pilihan bracket Sapphire transparan atau Aligner.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-ivory-border flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] font-mono uppercase text-slateText-muted">Paket 2 Rahang Lengkap</span>
+                            <span class="font-mono text-sm font-semibold text-teal">Mulai Rp 6.800.000</span>
+                        </div>
+                        <button type="button" onclick="selectTreatmentInCalc('behel_ceramic')" class="text-xs font-semibold text-teal hover:text-champagne-dark uppercase tracking-wider inline-flex items-center gap-1">
+                            <span>Simulasi</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="aspect-[4/3] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-laser.jpg" alt="Korean Glass Skin Pico Laser" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-champagne-dark font-semibold">DERMA AESTHETIC CLINIC</span>
+                            <h3 class="font-serif text-2xl text-teal font-semibold mt-1">Korean Pico Laser &amp; Skin Booster</h3>
+                            <p class="text-xs text-slateText-muted leading-relaxed mt-2">
+                                Terapi laser picosecond FDA-approved untuk memudarkan hiperpigmentasi, melasma, pori besar, dan merangsang kolagen kulit wajah tanpa waktu pemulihan lama.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-ivory-border flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] font-mono uppercase text-slateText-muted">Per Sesi Dokter Sp.DVE</span>
+                            <span class="font-mono text-sm font-semibold text-teal">Rp 1.650.000</span>
+                        </div>
+                        <button type="button" onclick="selectTreatmentInCalc('pico_laser')" class="text-xs font-semibold text-teal hover:text-champagne-dark uppercase tracking-wider inline-flex items-center gap-1">
+                            <span>Simulasi</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE BEFORE-AFTER SMILE & SKIN COMPARISON SLIDER -->
+    <section id="transformasi-senyum" class="py-16 lg:py-24 bg-ivory-warm border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Left Column: Case Study Selector & Clinical Notes (5 Cols) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">02 / DOKUMENTASI KLINIS TERVERIFIKASI</p>
+                        <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold leading-tight">
+                            Komparasi Visual <span class="italic font-normal text-champagne-dark">Before &amp; After</span>
+                        </h2>
+                        <p class="text-sm text-slateText-muted mt-2 leading-relaxed">
+                            Geser garis pembagi ke kiri atau kanan untuk mengamati perubahan rona warna gigi, harmoni garis gusi, serta tekstur kulit pasien kami secara natural tanpa tampak palsu (*no bulky chalk-white teeth*).
+                        </p>
+                    </div>
+
+                    <!-- Case Selector Buttons -->
+                    <div class="space-y-2.5">
+                        <button type="button" onclick="selectComparisonCase(0)" id="caseBtn0" class="w-full text-left p-4 border transition-all bg-teal text-ivory border-teal">
+                            <div class="flex items-center justify-between text-xs font-mono uppercase mb-1">
+                                <span class="text-champagne">KASUS KLINIS #01 &bull; ESTETIKA DENTAL</span>
+                                <span>45 MENIT</span>
+                            </div>
+                            <p class="font-serif text-lg font-semibold">Laser Teeth Whitening + Direct Composite Contouring</p>
+                        </button>
+
+                        <button type="button" onclick="selectComparisonCase(1)" id="caseBtn1" class="w-full text-left p-4 border transition-all bg-ivory text-slateText border-ivory-border hover:border-teal">
+                            <div class="flex items-center justify-between text-xs font-mono uppercase mb-1">
+                                <span class="text-champagne-dark">KASUS KLINIS #02 &bull; REHABILITASI SENYUM</span>
+                                <span>2 KUNJUNGAN</span>
+                            </div>
+                            <p class="font-serif text-lg font-semibold">8 Unit Minimal-Prep Porcelain Veneer E-Max</p>
+                        </button>
+
+                        <button type="button" onclick="selectComparisonCase(2)" id="caseBtn2" class="w-full text-left p-4 border transition-all bg-ivory text-slateText border-ivory-border hover:border-teal">
+                            <div class="flex items-center justify-between text-xs font-mono uppercase mb-1">
+                                <span class="text-champagne-dark">KASUS KLINIS #03 &bull; DERMA LASER</span>
+                                <span>3 SESI TERAPI</span>
+                            </div>
+                            <p class="font-serif text-lg font-semibold">PicoWay Resolve Laser &amp; Salmon DNA Skin Booster</p>
+                        </button>
+                    </div>
+
+                    <!-- Clinical Shade Metadata Box -->
+                    <div class="bg-ivory border border-ivory-border p-5 space-y-2 text-xs">
+                        <div class="flex items-center justify-between border-b border-ivory-border pb-2">
+                            <span class="font-mono uppercase text-slateText-muted">Indikator Awal (Before):</span>
+                            <strong id="caseBeforeMetric" class="font-mono text-slateText">Vita Shade A3.5 (Diskolorasi Ekstrinsik Kopi)</strong>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-ivory-border pb-2">
+                            <span class="font-mono uppercase text-slateText-muted">Hasil Akhir (After):</span>
+                            <strong id="caseAfterMetric" class="font-mono text-teal">Vita Shade B1 Natural Bright</strong>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-mono uppercase text-slateText-muted">Dokter Penanggung Jawab:</span>
+                            <strong id="caseDoctorName" class="text-teal">drg. Clarissa Haryanto, Sp.KG</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Drag Slider (7 Cols) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-ivory border border-ivory-border p-3 sm:p-4">
+                        <div id="baContainer" class="ba-slider-wrapper aspect-[16/11] border border-ivory-border cursor-ew-resize">
+                            <!-- Base Layer: BEFORE Image (Full Width) -->
+                            <img id="baBeforeImg" src="assets/images/smile-before.jpg" alt="Sebelum Perawatan" class="w-full h-full object-cover before-clinical-filter pointer-events-none">
+
+                            <!-- Clipped Overlay Layer: AFTER Image -->
+                            <div id="baAfterLayer" class="ba-after-layer">
+                                <img id="baAfterImg" src="assets/images/smile-after.jpg" alt="Sesudah Perawatan" class="h-full max-w-none object-cover pointer-events-none">
+                            </div>
+
+                            <!-- Badges -->
+                            <span class="absolute top-4 left-4 bg-teal-dark/90 text-ivory font-mono text-[11px] uppercase tracking-wider px-3 py-1 border border-ivory/20 z-10">
+                                SESUDAH (AFTER)
+                            </span>
+                            <span class="absolute top-4 right-4 bg-ivory/95 text-slateText font-mono text-[11px] uppercase tracking-wider px-3 py-1 border border-ivory-border z-10">
+                                SEBELUM (BEFORE)
+                            </span>
+
+                            <!-- Divider Line & Handle -->
+                            <div id="baDivider" class="ba-divider-line z-20">
+                                <div class="ba-handle-circle">
+                                    <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accessible Range Control Bar Below Image -->
+                        <div class="mt-4 px-2 flex items-center gap-4">
+                            <span class="font-mono text-[11px] uppercase text-teal font-semibold whitespace-nowrap">100% Sesudah</span>
+                            <input id="baRangeInput" type="range" min="5" max="95" value="50" aria-label="Geser perbandingan sebelum dan sesudah" class="w-full accent-teal cursor-pointer">
+                            <span class="font-mono text-[11px] uppercase text-slateText-muted whitespace-nowrap">100% Sebelum</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: KALKULATOR SIMULASI CICILAN PERAWATAN & ESTIMASI BIAYA -->
+    <section id="simulasi-biaya" class="py-16 lg:py-24 border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                
+                <!-- Left Column: Treatment & Payment Plan Configurator (7 Cols) -->
+                <div class="lg:col-span-7 bg-ivory-warm border border-ivory-border p-6 sm:p-8 lg:p-10">
+                    <div class="border-b border-ivory-border pb-5 mb-6">
+                        <span class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold">03 / TRANSPARANSI FINANSIAL MEDIS</span>
+                        <h2 class="font-serif text-3xl text-teal font-semibold mt-1">Kalkulator Estimasi Biaya &amp; Simulasi Cicilan 0%</h2>
+                        <p class="text-xs sm:text-sm text-slateText-muted mt-1">
+                            Pilih jenis tindakan medis, jumlah unit/sesi, serta skema pembayaran lunas (hemat 10%) atau cicilan 0% rekanan bank &amp; pembiayaan klinik.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- 1. Select Treatment -->
+                        <div>
+                            <label for="calcTreatmentSelect" class="block text-xs font-mono uppercase tracking-wider text-slateText font-semibold mb-2">
+                                1. Pilih Jenis Perawatan Gigi / Estetika
+                            </label>
+                            <select id="calcTreatmentSelect" onchange="onTreatmentChange()" class="w-full bg-ivory border border-ivory-border px-4 py-3.5 text-sm font-semibold text-teal focus:outline-none focus:border-teal">
+                                <!-- Populated by JS -->
+                            </select>
+                            <p id="calcTreatmentDesc" class="text-xs text-slateText-muted mt-2"></p>
+                        </div>
+
+                        <!-- 2. Quantity / Unit Stepper -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <label id="calcQtyLabel" for="calcQtyInput" class="block text-xs font-mono uppercase tracking-wider text-slateText font-semibold">
+                                        2. Jumlah Paket / Unit
+                                    </label>
+                                    <span id="calcUnitBadge" class="text-[11px] font-mono text-champagne-dark font-semibold">Paket 2 Rahang</span>
+                                </div>
+                                <div class="flex items-center border border-ivory-border bg-ivory">
+                                    <button type="button" onclick="adjustTreatmentQty(-1)" aria-label="Kurangi Jumlah" class="w-12 h-11 flex items-center justify-center text-teal hover:bg-ivory-warm font-bold">
+                                        <i class="fa-solid fa-minus text-xs"></i>
+                                    </button>
+                                    <input id="calcQtyInput" type="number" min="1" max="20" value="1" oninput="updateClinicCalc()" class="w-full h-11 text-center bg-transparent font-mono text-base font-bold text-teal focus:outline-none">
+                                    <button type="button" onclick="adjustTreatmentQty(1)" aria-label="Tambah Jumlah" class="w-12 h-11 flex items-center justify-center text-teal hover:bg-ivory-warm font-bold">
+                                        <i class="fa-solid fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 3. Select Clinic Branch -->
+                            <div>
+                                <label for="calcBranchSelect" class="block text-xs font-mono uppercase tracking-wider text-slateText font-semibold mb-2">
+                                    3. Cabang Klinik Tujuan
+                                </label>
+                                <select id="calcBranchSelect" onchange="updateClinicCalc()" class="w-full h-11 bg-ivory border border-ivory-border px-3.5 text-sm font-medium text-teal focus:outline-none focus:border-teal">
+                                    <option value="SenyumLuxe Kemang, Jakarta Selatan">Cabang Kemang — Jakarta Selatan</option>
+                                    <option value="SenyumLuxe BSD City, Tangerang">Cabang BSD City — Tangerang</option>
+                                    <option value="SenyumLuxe Ir. H. Juanda (Dago), Bandung">Cabang Dago — Bandung</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 4. Payment Mode Selector -->
+                        <div>
+                            <label class="block text-xs font-mono uppercase tracking-wider text-slateText font-semibold mb-2">
+                                4. Skema Pembayaran / Tenor Cicilan 0%
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                <button type="button" onclick="setPaymentPlan('lunas')" id="planBtn-lunas" class="p-3 border text-left transition-all bg-teal text-ivory border-teal">
+                                    <span class="block font-mono text-[10px] uppercase text-champagne font-semibold">HEMAT 10%</span>
+                                    <span class="font-bold text-xs block mt-0.5">Bayar Lunas</span>
+                                </button>
+                                <button type="button" onclick="setPaymentPlan('cicil3')" id="planBtn-cicil3" class="p-3 border text-left transition-all bg-ivory text-slateText border-ivory-border hover:border-teal">
+                                    <span class="block font-mono text-[10px] uppercase text-champagne-dark font-semibold">BUNGA 0%</span>
+                                    <span class="font-bold text-xs block mt-0.5">Cicilan 3 Bulan</span>
+                                </button>
+                                <button type="button" onclick="setPaymentPlan('cicil6')" id="planBtn-cicil6" class="p-3 border text-left transition-all bg-ivory text-slateText border-ivory-border hover:border-teal">
+                                    <span class="block font-mono text-[10px] uppercase text-champagne-dark font-semibold">BUNGA 0%</span>
+                                    <span class="font-bold text-xs block mt-0.5">Cicilan 6 Bulan</span>
+                                </button>
+                                <button type="button" onclick="setPaymentPlan('cicil12')" id="planBtn-cicil12" class="p-3 border text-left transition-all bg-ivory text-slateText border-ivory-border hover:border-teal">
+                                    <span class="block font-mono text-[10px] uppercase text-champagne-dark font-semibold">BUNGA 0%</span>
+                                    <span class="font-bold text-xs block mt-0.5">Cicilan 12 Bulan</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Clinical Estimate Summary Card (5 Cols) -->
+                <div class="lg:col-span-5 bg-teal text-ivory border border-teal-light p-6 sm:p-8 sticky top-28">
+                    <div class="border-b border-ivory/15 pb-4 mb-5 flex items-center justify-between">
+                        <div>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-champagne">RINGKASAN RENCANA PERAWATAN</span>
+                            <h3 id="summaryTreatName" class="font-serif text-2xl text-ivory mt-0.5">Pembersihan Karang Gigi Airflow</h3>
+                        </div>
+                        <i class="fa-solid fa-notes-medical text-champagne text-xl"></i>
+                    </div>
+
+                    <div class="space-y-3 text-sm border-b border-ivory/15 pb-5 mb-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-ivory/75">Harga Normal Tindakan</span>
+                            <span id="summaryUnitPrice" class="font-mono">Rp 450.000</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-ivory/75">Kuantitas / Cakupan</span>
+                            <span id="summaryQtyText" class="font-mono">1 Paket (2 Rahang)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-ivory/75">Biaya Registrasi &amp; Kamera Intraoral</span>
+                            <span class="font-mono text-champagne">GRATIS (Rp 0)</span>
+                        </div>
+                        <div id="summaryLunasDiscountRow" class="flex items-center justify-between bg-teal-dark/70 border border-champagne/40 px-3 py-2 text-champagne">
+                            <span class="text-xs font-medium">Potongan Pembayaran Lunas (10%)</span>
+                            <span id="summaryDiscountAmount" class="font-mono font-semibold">-Rp 45.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Primary Highlighted Payment Output -->
+                    <div class="bg-teal-dark border border-ivory/15 p-4 mb-6">
+                        <div class="flex items-baseline justify-between">
+                            <span id="summaryPrimaryLabel" class="text-xs font-mono uppercase tracking-wider text-champagne">Estimasi Bayar Lunas</span>
+                            <span id="summaryPrimaryValue" class="font-mono text-2xl sm:text-3xl font-semibold text-ivory">Rp 405.000</span>
+                        </div>
+                        <p id="summarySecondaryNote" class="text-xs text-ivory/70 mt-1 font-mono">
+                            Total Harga Normal: Rp 450.000 (Hemat Rp 45.000)
+                        </p>
+                    </div>
+
+                    <button type="button" onclick="bookTreatmentViaWA()" class="w-full bg-champagne hover:bg-champagne-light text-teal-dark font-bold text-xs sm:text-sm uppercase tracking-wider py-4 px-6 transition flex items-center justify-center gap-2.5">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Klaim Estimasi &amp; Jadwalkan via WhatsApp</span>
+                    </button>
+
+                    <p class="text-[11px] text-ivory/60 text-center mt-3">
+                        Pembayaran dilakukan di klinik setelah pemeriksaan langsung bersama dokter.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: JADWAL PRAKTIK DOKTER GIGI & ESTETIKA PER CABANG -->
+    <section id="jadwal-dokter" class="py-16 lg:py-24 bg-ivory-warm border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-ivory-border">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">04 / DEWAN MEDIS &amp; JADWAL PRAKTIK</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold">Tim Dokter Spesialis &amp; Status Praktik Cabang</h2>
+                </div>
+
+                <!-- Branch Filter Tabs -->
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="filterDoctorsByBranch('all')" id="docBranch-all" class="doc-branch-btn bg-teal text-ivory border border-teal px-4 py-2 text-xs font-mono uppercase font-semibold">
+                        Semua Cabang
+                    </button>
+                    <button type="button" onclick="filterDoctorsByBranch('Kemang')" id="docBranch-Kemang" class="doc-branch-btn bg-ivory text-slateText border border-ivory-border px-4 py-2 text-xs font-mono uppercase font-semibold">
+                        Kemang (Jaksel)
+                    </button>
+                    <button type="button" onclick="filterDoctorsByBranch('BSD')" id="docBranch-BSD" class="doc-branch-btn bg-ivory text-slateText border border-ivory-border px-4 py-2 text-xs font-mono uppercase font-semibold">
+                        BSD Serpong
+                    </button>
+                    <button type="button" onclick="filterDoctorsByBranch('Bandung')" id="docBranch-Bandung" class="doc-branch-btn bg-ivory text-slateText border border-ivory-border px-4 py-2 text-xs font-mono uppercase font-semibold">
+                        Dago Bandung
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor Cards Grid -->
+            <div id="doctorGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CLINICAL STERILIZATION & LOUNGE GALLERY -->
+    <section id="standar-sterilisasi" class="py-16 lg:py-24 border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-5 space-y-5">
+                    <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold">05 / KEAMANAN BIOMEDIS</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold leading-tight">
+                        Ruang Tunggu <span class="italic font-normal text-champagne-dark">Quiet Luxury</span> &amp; Sterilisasi 7 Tahap.
+                    </h2>
+                    <p class="text-sm text-slateText-muted leading-relaxed">
+                        Kami memahami kecemasan banyak pasien saat berkunjung ke dokter gigi. Karena itu, SenyumLuxe merancang interior bebas aroma obat rumah sakit dengan aromaterapi botani, sembari menerapkan protokol sterilisasi instrumen bedah berstandar rumah sakit internasional.
+                    </p>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slateText pt-2">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-teal mt-1"></i>
+                            <span><strong>Pouch Instrumen Individual:</strong> Setiap mata bur dan instrumen disegel dalam kantong steril berindikator suhu yang dibuka di hadapan pasien.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-teal mt-1"></i>
+                            <span><strong>Aerosol Suction Ekstraoral:</strong> Menyedot percikan mikro-droplet 99.97% selama prosedur scaling maupun preparasi veneer.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-teal mt-1"></i>
+                            <span><strong>Digital X-Ray Radiasi Rendah:</strong> Sensor periapikal instan di kursi perawatan tanpa harus berpindah gedung.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-ivory-warm border border-ivory-border p-3">
+                        <div class="aspect-[4/3] overflow-hidden border border-ivory-border">
+                            <img src="assets/images/interior-lounge.jpg" alt="Private Lounge SenyumLuxe Clinic" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-3 px-1">
+                            <span class="font-mono text-[10px] uppercase text-champagne-dark font-semibold">PRIVATE RECEPTION &amp; LOUNGE</span>
+                            <p class="font-serif text-lg text-teal font-semibold">Area Tunggu Privat Bebas Antrean Padat</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-ivory-warm border border-ivory-border p-3">
+                        <div class="aspect-[4/3] overflow-hidden border border-ivory-border">
+                            <img src="assets/images/interior-steril.jpg" alt="Ruang Sterilisasi Autoclave Kelas B" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-3 px-1">
+                            <span class="font-mono text-[10px] uppercase text-champagne-dark font-semibold">CSSD STERILIZATION LAB</span>
+                            <p class="font-serif text-lg text-teal font-semibold">Autoclave Vacuum Class-B &amp; Ultrasonic Cleaner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: ULASAN PASIEN & FOTO DOKUMENTASI HASIL PERAWATAN -->
+    <section id="ulasan-pasien" class="py-16 lg:py-24 bg-ivory-warm border-b border-ivory-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-ivory-border">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">06 / TESTIMONI PASIEN &amp; HASIL PERAWATAN</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold">Ulasan Terverifikasi &amp; Foto Dokumentasi Pasien</h2>
+                </div>
+                <p class="text-sm text-slateText-muted max-w-md">
+                    Cerita nyata pasien SenyumLuxe setelah menjalani prosedur Porcelain Veneer, Scaling Airflow, Orthodontic Aligner, dan Korean Pico Laser.
+                </p>
+            </div>
+
+            <!-- 4 Patient Photo Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <!-- Patient Review 1 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/smile-after.jpg" alt="Hasil Porcelain Veneer Pasien SenyumLuxe" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                PORCELAIN VENEER E-MAX &bull; CABANG KEMANG
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-1.jpg" alt="Anindya Larasati" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Anindya Larasati (News Anchor)</h3>
+                                    <p class="text-xs text-slateText-muted">Jakarta Selatan &bull; <span class="text-champagne-dark font-semibold">Porcelain Veneer 8 Gigi Atas</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Ketakutan terbesar saya saat ingin veneer adalah hasilnya terlalu putih kapur dan tebal. Di SenyumLuxe, drg. Clarissa mendesain Digital Smile Design terlebih dahulu dengan warna BL3 natural yang punya gradasi translusen di ujung gigi. Teman-teman hanya berkomentar wajah terlihat jauh lebih segar!"
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 2 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-scaling.jpg" alt="Dokumentasi Scaling & Bleaching Pasien" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                SCALING &amp; BLEACHING &bull; CABANG BSD
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-2.jpg" alt="Bagus Pramono" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Bagus Pramono (Coffee Roaster)</h3>
+                                    <p class="text-xs text-slateText-muted">BSD Serpong &bull; <span class="text-champagne-dark font-semibold">Scaling &amp; Bleaching Laser</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Sebagai penikmat kopi espresso setiap hari, noda di sela gigi bawah saya cukup membandel. Prosedur Swiss Airflow menggunakan air hangat benar-benar tidak ngilu sama sekali, dilanjut Laser Whitening 45 menit yang menaikkan warna gigi saya 4 tingkat."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 3 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-laser.jpg" alt="Dokumentasi Korean Pico Laser Pasien" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                KOREAN PICO LASER &bull; CABANG BANDUNG
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-3.jpg" alt="Meuthia Syahirah" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Meuthia Syahirah</h3>
+                                    <p class="text-xs text-slateText-muted">Dago Bandung &bull; <span class="text-champagne-dark font-semibold">Korean Pico Laser &amp; Skin Booster</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Sudah ambil paket 3 sesi Korean Pico Laser bersama dr. Nadira Sp.DVE menggunakan cicilan 0%. Bekas jerawat kehitaman dan flek matahari di tulang pipi memudar drastis tanpa kulit mengelupas parah. Besoknya sudah bisa langsung pakai riasan tipis ke kantor."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 4 -->
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-ortho.jpg" alt="Dokumentasi Orthodontic Clear Aligner Pasien" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                ORTHODONTIC CLEAR ALIGNER &bull; CABANG BSD
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-4.jpg" alt="Kevin Danuarta" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Kevin Danuarta (Konsultan Hukum)</h3>
+                                    <p class="text-xs text-slateText-muted">Tangerang Selatan &bull; <span class="text-champagne-dark font-semibold">Orthodontic Clear Aligner &amp; Sapphire</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Proses cetak gigi di SenyumLuxe sudah full 3D intraoral scanner, tidak perlu lagi gigit adonan cetak yang bikin mual. Simulasi pergerakan gigi per minggu ditunjukkan di layar oleh drg. Adrian Sp.Ort dengan sangat detail."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: PERTANYAAN YANG SERING DITANYAKAN (FAQ ACCORDION) -->
+    <section id="faq" class="py-16 lg:py-24 border-b border-ivory-border">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">07 / EDUKASI &amp; INFORMASI PASIEN</p>
+                <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold">Pertanyaan yang Sering Ditanyakan (FAQ)</h2>
+                <p class="text-sm text-slateText-muted mt-2">
+                    Jawaban klinis seputar rasa nyaman tindakan, garansi perawatan, sterilisasi alat medis, serta fasilitas cicilan 0% dan asuransi.
+                </p>
+            </div>
+
+            <div class="space-y-3">
+                <!-- FAQ 1 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(0)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>1. Apakah pembersihan karang gigi (Scaling Airflow) terasa sakit atau ngilu?</span>
+                        <i id="clinicFaqIcon0" class="fa-solid fa-minus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody0" class="px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Teknologi <strong>Swiss Airflow Prophylaxis</strong> di klinik kami menggunakan pancaran air hangat bersuhu tubuh (37&deg;C) dan partikel mikro Erythritol 14 mikron, sehingga meminimalkan gesekan logam ultrasonik pada permukaan akar gigi yang sensitif. Lebih dari 95% pasien melaporkan prosedur bebas ngilu tanpa perlu anestesi suntik.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(1)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>2. Berapa lama masa garansi resmi untuk Porcelain Veneer dan tambal gigi estetis?</span>
+                        <i id="clinicFaqIcon1" class="fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Setiap pasien <strong>Ultra-Thin Porcelain Veneer E-Max</strong> menerima kartu garansi digital &amp; fisik selama <strong>5 tahun penuh</strong> terhadap risiko lepas atau retak struktural, sedangkan perawatan <strong>Direct Composite Veneer &amp; Tambal Laser</strong> dilindungi garansi pemeliharaan selama 1 tahun.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(2)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>3. Bagaimana cara menggunakan fasilitas Cicilan 0% untuk Behel, Veneer, atau Paket Laser?</span>
+                        <i id="clinicFaqIcon2" class="fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Fasilitas <strong>Cicilan 0% tenor 3, 6, hingga 12 bulan</strong> berlaku untuk transaksi minimal Rp 2.000.000 menggunakan kartu kredit bank rekanan (BCA, Mandiri, BNI, BRI, CIMB Niaga, Permata) maupun skema pembayaran bertahap internal klinik khusus perawatan Ortodonti (Behel).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(3)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>4. Bagaimana standar sterilisasi alat medis di SenyumLuxe untuk mencegah infeksi silang?</span>
+                        <i id="clinicFaqIcon3" class="fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Seluruh instrumen melewati 7 tahap dekontaminasi di ruang CSSD khusus: perendaman enzimatik, pencucian gelombang ultrasonik, pengemasan *individual sterile pouch*, hingga pemanasan uap bertekanan vakum di mesin <strong>Autoclave Kelas B standar Eropa (134&deg;C)</strong>. Segel instrumen selalu dibuka baru di hadapan pasien.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(4)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>5. Apakah SenyumLuxe menerima pembayaran dengan Asuransi Kesehatan Swasta / Korporat?</span>
+                        <i id="clinicFaqIcon4" class="fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody4" class="hidden px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Ya, kami menerima sistem <strong>Cashless (Gesek Kartu)</strong> untuk jaringan agregator asuransi <strong>AdMedika, Fullerton Health, Mandiri Inhealth, Halodoc Corporate, dan Garda Medika</strong>, serta menerbitkan kuitansi medis resmi beserta odontogram lengkap untuk klaim *reimbursement* kantor.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="bg-ivory-warm border border-ivory-border">
+                    <button type="button" onclick="toggleClinicFaq(5)" class="w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-teal text-sm">
+                        <span>6. Apakah perawatan Korean Pico Laser menyebabkan kulit wajah mengelupas atau kemerahan lama?</span>
+                        <i id="clinicFaqIcon5" class="fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="clinicFaqBody5" class="hidden px-6 pb-5 text-xs sm:text-sm text-slateText-muted space-y-2 border-t border-ivory-border pt-4">
+                        <p>Berbeda dengan laser ablatif lama, <strong>Korean Pico Laser</strong> bekerja dengan gelombang *picosecond photoacoustic* yang memecah pigmen di lapisan dermis tanpa membakar lapisan luar epidermis. Kemerahan ringan (*pinkish glow*) hanya berlangsung 2–4 jam dan pasien dapat beraktivitas normal keesokan harinya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-teal-dark text-ivory border-t border-teal-light/40">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-ivory/10 bg-teal/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-dark/80 border border-champagne/30 text-champagne font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-bolt text-[10px]"></i>
+                                <span>Konfirmasi Instan</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-dark/80 border border-champagne/30 text-champagne font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span>Pembayaran Aman &amp; Cicilan 0%</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-dark/80 border border-champagne/30 text-champagne font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-user-doctor text-[10px]"></i>
+                                <span>Layanan Terverifikasi Kemenkes RI</span>
+                            </span>
+                        </div>
+
+                        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-ivory font-semibold leading-tight">
+                            Wujudkan Senyum Proporsional &amp; <span class="italic font-normal text-champagne">Kulit Sehat Bercahaya</span> Tanpa Rasa Cemas.
+                        </h2>
+                        <p class="text-xs sm:text-sm text-ivory/75 max-w-2xl leading-relaxed">
+                            Konsultasikan rencana perawatan gigi spesialis atau dermatologi estetika Anda secara privat. Dapatkan simulasi Digital Smile Design 3D dan fasilitas cicilan 0% hingga 12 bulan di cabang Kemang, BSD, maupun Bandung.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3.5">
+                        <a href="#simulasi-biaya" class="inline-flex items-center justify-center gap-2.5 bg-champagne hover:bg-champagne-dark text-teal-dark font-semibold text-xs uppercase tracking-widest px-6 py-4 transition whitespace-nowrap">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Simulasi Biaya &amp; Cicilan</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Resepsionis%20SenyumLuxe%20Dental%20%26%20Derma%20Clinic%2C%20saya%20ingin%20konsultasi%20dan%20cek%20jadwal%20dokter%20spesialis." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-teal-dark hover:bg-teal-light text-ivory border border-champagne/40 font-semibold text-xs uppercase tracking-widest px-6 py-4 transition whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-champagne text-sm"></i>
+                            <span>Chat Resepsionis WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group focus:outline-none">
+                        <img src="assets/logo.svg" alt="SenyumLuxe Dental & Derma" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-champagne/40">
+                        <div>
+                            <div class="font-serif text-2xl font-semibold text-ivory tracking-wide leading-none">
+                                Senyum<span class="italic font-normal text-champagne">Luxe</span>
+                            </div>
+                            <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-champagne/90 mt-1">
+                                DENTAL &amp; DERMA AESTHETIC
+                            </div>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-ivory/75 leading-relaxed">
+                        Klinik Gigi Spesialis &amp; Dermatologi Estetika berstandar Swiss Clinical Minimalist. Mengutamakan protokol bebas ngilu, sterilisasi Autoclave Kelas B Eropa, serta transparansi biaya medis.
+                    </p>
+
+                    <div class="pt-1">
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-champagne/80 mb-2.5">Kanal Edukasi &amp; Sosial Media</p>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com/senyumluxe.clinic" target="_blank" rel="noopener noreferrer" aria-label="Instagram SenyumLuxe Clinic" class="w-9 h-9 border border-ivory/20 bg-teal/40 hover:bg-champagne hover:text-teal-dark hover:border-champagne text-ivory flex items-center justify-center transition">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com/@senyumluxe.clinic" target="_blank" rel="noopener noreferrer" aria-label="TikTok SenyumLuxe Clinic" class="w-9 h-9 border border-ivory/20 bg-teal/40 hover:bg-champagne hover:text-teal-dark hover:border-champagne text-ivory flex items-center justify-center transition">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp SenyumLuxe Clinic" class="w-9 h-9 border border-ivory/20 bg-teal/40 hover:bg-champagne hover:text-teal-dark hover:border-champagne text-ivory flex items-center justify-center transition">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com/@senyumluxeclinic" target="_blank" rel="noopener noreferrer" aria-label="YouTube SenyumLuxe Clinic" class="w-9 h-9 border border-ivory/20 bg-teal/40 hover:bg-champagne hover:text-teal-dark hover:border-champagne text-ivory flex items-center justify-center transition">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-champagne font-semibold mb-4">Navigasi Cepat</h3>
+                    <nav aria-label="Navigasi Cepat">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-ivory/80">
+                            <li>
+                                <a href="#" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>Beranda</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#layanan-klinis" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>Layanan &amp; Koleksi Perawatan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#simulasi-biaya" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>Simulasi Jadwal &amp; Harga</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#jadwal-dokter" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>Cara Pemesanan &amp; Dokter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ulasan-pasien" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>Ulasan &amp; Foto Pelanggan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="hover:text-champagne transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-champagne/70"></i>
+                                    <span>FAQ &amp; Kontak</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Layanan & Kategori -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-champagne font-semibold mb-4">Layanan Spesialis</h3>
+                    <nav aria-label="Layanan dan Kategori" class="space-y-3">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-ivory/80">
+                            <li>
+                                <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('scaling')" class="hover:text-champagne transition-colors block">
+                                    Swiss Airflow Scaling &amp; Stain Removal
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('veneer_porcelain')" class="hover:text-champagne transition-colors block">
+                                    Ultra-Thin Porcelain Veneer E-Max
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('behel_ceramic')" class="hover:text-champagne transition-colors block">
+                                    Orthodontic Sapphire &amp; Clear Aligner
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('whitening')" class="hover:text-champagne transition-colors block">
+                                    In-Office Laser Teeth Whitening
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('pico_laser')" class="hover:text-champagne transition-colors block">
+                                    Korean Glass Skin Pico Laser Sp.DVE
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="pt-2">
+                            <a href="#simulasi-biaya" onclick="selectTreatmentInCalc('veneer_porcelain'); setPaymentPlan('cicil12');" class="inline-flex items-center gap-2 px-3.5 py-2.5 bg-teal border border-champagne/50 hover:bg-champagne hover:text-teal-dark text-champagne text-xs font-semibold transition w-full justify-between">
+                                <span><i class="fa-solid fa-sparkles mr-1.5"></i>Paket Smile Makeover Cicilan 0%</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-champagne font-semibold mb-4">Kontak &amp; Jam Praktik</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-ivory/80">
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-teal border border-champagne/30 text-champagne flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </span>
+                            <div>
+                                <p class="text-ivory font-medium leading-relaxed">Jl. Kemang Raya No. 48A, Bangka, Kec. Mampang Prapatan, Jakarta Selatan 12730 (Cabang BSD &amp; Dago Bandung)</p>
+                                <a href="https://maps.google.com/?q=Jl.+Kemang+Raya+No.+48A+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-champagne hover:underline font-mono text-[11px] mt-1">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 bg-teal border border-champagne/30 text-champagne flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-ivory/50">Reservasi &amp; Konsultasi WA</span>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-ivory hover:text-champagne font-mono font-semibold transition">
+                                    +62 812-3456-7890
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 bg-teal border border-champagne/30 text-champagne flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-ivory/50">Email Rekam Medis &amp; Asuransi</span>
+                                <a href="mailto:concierge@senyumluxe.id" class="text-ivory hover:text-champagne font-mono transition">
+                                    concierge@senyumluxe.id
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-teal border border-champagne/30 text-champagne flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-ivory/50">Jam Operasional Klinik</span>
+                                <p class="text-ivory font-medium">Senin – Minggu: 09.00 – 21.00 WIB</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-ivory/15 bg-teal-dark/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-ivory/50 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 bg-teal/60 border border-ivory/15 text-ivory/90 font-mono text-[11px] font-semibold whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Legal Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-ivory/60 text-center sm:text-right">
+                    <p>&copy; 2026 SenyumLuxe Dental &amp; Derma Clinic. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
+                        <!-- TODO: Replace with dedicated terms modal or page -->
+                        <a href="#" class="hover:text-champagne transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Replace with dedicated privacy policy modal or page -->
+                        <a href="#" class="hover:text-champagne transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-champagne transition-colors whitespace-nowrap">Kebijakan Garansi Medis</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "SenyumLuxe Dental & Derma Clinic",
+            address: "Jl. Kemang Raya No. 48A, Bangka, Kec. Mampang Prapatan, Jakarta Selatan 12730",
+            mapsUrl: "https://maps.google.com/?q=Jl.+Kemang+Raya+No.+48A+Jakarta+Selatan",
+            whatsappNumber: "6281234567890",
+            whatsappDisplay: "+62 812-3456-7890",
+            email: "concierge@senyumluxe.id",
+            operationalHours: "Senin – Minggu: 09.00 – 21.00 WIB",
+            socials: {
+                instagram: "https://instagram.com/senyumluxe.clinic",
+                tiktok: "https://tiktok.com/@senyumluxe.clinic",
+                whatsapp: "https://wa.me/6281234567890",
+                youtube: "https://youtube.com/@senyumluxeclinic"
+            }
+        };
+
+        const WA_NUMBER = FOOTER_CONFIG.whatsappNumber;
+
+        // 1. Before-After Cases Data
+        const COMPARISON_CASES = [
+            {
+                beforeImg: "assets/images/smile-before.jpg",
+                afterImg: "assets/images/smile-after.jpg",
+                beforeMetric: "Vita Shade A3.5 (Diskolorasi Ekstrinsik Kopi & Teh)",
+                afterMetric: "Vita Shade B1 Natural Bright (Kenaikan 5 Tingkat)",
+                doctor: "drg. Clarissa Haryanto, Sp.KG"
+            },
+            {
+                beforeImg: "assets/images/smile-before.jpg",
+                afterImg: "assets/images/smile-after.jpg",
+                beforeMetric: "Diastema Sentral & Asimetri Insisal Rahang Atas",
+                afterMetric: "8 Unit Porcelain Veneer E-Max Shade BL3 Translusen",
+                doctor: "drg. Clarissa Haryanto, Sp.KG"
+            },
+            {
+                beforeImg: "assets/images/treatment-laser.jpg",
+                afterImg: "assets/images/smile-after.jpg",
+                beforeMetric: "Hiperpigmentasi Pasca-Inflamasi & Pori Tampak Jelas",
+                afterMetric: "Tekstur Kulit Halus Merata & Luminositas Meningkat",
+                doctor: "dr. Nadira Kusuma, Sp.DVE, FINSDV"
+            }
+        ];
+
+        // 2. Treatments Data for Calculator
+        const TREATMENTS = [
+            {
+                id: "scaling",
+                name: "Pembersihan Karang Gigi / Swiss Airflow Scaling",
+                price: 450000,
+                unitName: "Paket (Rahang Atas + Bawah)",
+                defaultQty: 1,
+                maxQty: 4,
+                desc: "Sudah termasuk pemolesan stain kopi/teh pada seluruh permukaan gigi atas dan bawah serta aplikasi topical fluoride."
+            },
+            {
+                id: "whitening",
+                name: "Laser Teeth Whitening (In-Office 45 Menit)",
+                price: 2400000,
+                unitName: "Pasien (Full Smile Zone)",
+                defaultQty: 1,
+                maxQty: 2,
+                desc: "Pencerahan gigi menggunakan gel desensitizing khusus dan aktivasi sinar dingin LED medis. Gratis scaling ringan sebelum tindakan."
+            },
+            {
+                id: "behel_metal",
+                name: "Pemasangan Behel Orthodontic Metal Self-Ligating",
+                price: 6800000,
+                unitName: "Paket 2 Rahang Lengkap",
+                defaultQty: 1,
+                maxQty: 2,
+                desc: "Ditangani langsung oleh Dokter Gigi Spesialis Ortodonti (Sp.Ort). Minim gesekan dan waktu kontrol lebih efisien."
+            },
+            {
+                id: "behel_ceramic",
+                name: "Pemasangan Behel Ceramic / Sapphire Aesthetic",
+                price: 9500000,
+                unitName: "Paket 2 Rahang Transparan",
+                defaultQty: 1,
+                maxQty: 2,
+                desc: "Bracket kristal safir bening yang menyatu dengan warna alami gigi dan tidak berubah warna selama masa perawatan."
+            },
+            {
+                id: "veneer_direct",
+                name: "Direct Composite Veneer Nano-Hybrid",
+                price: 950000,
+                unitName: "Gigi (Selesai 1 Kunjungan)",
+                defaultQty: 4,
+                maxQty: 16,
+                desc: "Pelapisan estetika langsung pada permukaan gigi menggunakan resin komposit nano Jepang untuk merapikan bentuk dan celah gigi."
+            },
+            {
+                id: "veneer_porcelain",
+                name: "Ultra-Thin Porcelain Veneer E-Max (Lab Eropa)",
+                price: 4200000,
+                unitName: "Gigi (Garansi Resmi 5 Tahun)",
+                defaultQty: 4,
+                maxQty: 16,
+                desc: "Porselen tipis 0.3mm dengan kekuatan kunyah tinggi, kilau menyerupai email asli, dan ketahanan warna permanen."
+            },
+            {
+                id: "pico_laser",
+                name: "Korean Glass Skin Pico Laser + Skin Booster",
+                price: 1650000,
+                unitName: "Sesi Wajah Penuh",
+                defaultQty: 1,
+                maxQty: 6,
+                desc: "Tindakan oleh dr. Spesialis Dermatologi (Sp.DVE) untuk mencerahkan flek, mengecilkan pori, dan meremajakan tekstur kulit."
+            }
+        ];
+
+        // 3. Doctors Schedule Data
+        const DOCTORS = [
+            {
+                name: "drg. Clarissa Haryanto, Sp.KG",
+                role: "Spesialis Konservasi Gigi & Aesthetic Veneer",
+                branch: "Kemang",
+                branchFull: "Cabang Kemang, Jakarta Selatan",
+                schedule: "Senin, Rabu, Jumat & Sabtu (10.00 – 19.00 WIB)",
+                status: "Praktik Hari Ini — 2 Slot Tersedia",
+                availableToday: true,
+                strNumber: "STR: 31.2.2.100.3.21.084912",
+                image: "assets/images/doctor-1.jpg"
+            },
+            {
+                name: "drg. Adrian Pramudito, Sp.Ort",
+                role: "Spesialis Ortodonti (Behel & Clear Aligner)",
+                branch: "BSD",
+                branchFull: "Cabang BSD City, Tangerang",
+                schedule: "Selasa, Kamis, Sabtu & Minggu (11.00 – 20.00 WIB)",
+                status: "Praktik Hari Ini — 3 Slot Tersedia",
+                availableToday: true,
+                strNumber: "STR: 36.1.2.200.4.20.059301",
+                image: "assets/images/doctor-2.jpg"
+            },
+            {
+                name: "dr. Nadira Kusuma, Sp.DVE, FINSDV",
+                role: "Spesialis Dermatologi, Venereologi & Estetika Laser",
+                branch: "Bandung",
+                branchFull: "Cabang Ir. H. Juanda (Dago), Bandung",
+                schedule: "Senin – Sabtu (09.30 – 18.00 WIB)",
+                status: "Praktik Hari Ini — 1 Slot Tersedia",
+                availableToday: true,
+                strNumber: "STR: 32.2.1.601.3.22.091445",
+                image: "assets/images/doctor-3.jpg"
+            }
+        ];
+
+        let selectedPaymentPlan = "lunas";
+        let currentDocBranch = "all";
+
+        function formatIDR(num) {
+            return "Rp " + Math.round(num).toLocaleString("id-ID");
+        }
+
+        // Before-After Comparison Slider Logic
+        function updateSliderPosition(percent) {
+            const clamped = Math.max(5, Math.min(95, percent));
+            const afterLayer = document.getElementById("baAfterLayer");
+            const divider = document.getElementById("baDivider");
+            const rangeInput = document.getElementById("baRangeInput");
+            const container = document.getElementById("baContainer");
+            const afterImg = document.getElementById("baAfterImg");
+
+            if (container && afterImg) {
+                afterImg.style.width = container.offsetWidth + "px";
+            }
+            afterLayer.style.width = clamped + "%";
+            divider.style.left = clamped + "%";
+            rangeInput.value = clamped;
+        }
+
+        function selectComparisonCase(idx) {
+            const c = COMPARISON_CASES[idx];
+            if (!c) return;
+
+            [0, 1, 2].forEach(i => {
+                const btn = document.getElementById("caseBtn" + i);
+                if (i === idx) {
+                    btn.className = "w-full text-left p-4 border transition-all bg-teal text-ivory border-teal";
+                } else {
+                    btn.className = "w-full text-left p-4 border transition-all bg-ivory text-slateText border-ivory-border hover:border-teal";
+                }
+            });
+
+            document.getElementById("baBeforeImg").src = c.beforeImg;
+            document.getElementById("baAfterImg").src = c.afterImg;
+            document.getElementById("caseBeforeMetric").textContent = c.beforeMetric;
+            document.getElementById("caseAfterMetric").textContent = c.afterMetric;
+            document.getElementById("caseDoctorName").textContent = c.doctor;
+            updateSliderPosition(50);
+        }
+
+        // Calculator Functions
+        function populateTreatments() {
+            const select = document.getElementById("calcTreatmentSelect");
+            select.innerHTML = TREATMENTS.map(t => `
+                <option value="${t.id}">${t.name} — ${formatIDR(t.price)} / ${t.unitName}</option>
+            `).join("");
+            onTreatmentChange();
+        }
+
+        function selectTreatmentInCalc(treatId) {
+            const select = document.getElementById("calcTreatmentSelect");
+            select.value = treatId;
+            onTreatmentChange();
+            document.getElementById("simulasi-biaya").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function onTreatmentChange() {
+            const treatId = document.getElementById("calcTreatmentSelect").value;
+            const treat = TREATMENTS.find(t => t.id === treatId) || TREATMENTS[0];
+            document.getElementById("calcQtyInput").value = treat.defaultQty;
+            document.getElementById("calcQtyInput").max = treat.maxQty;
+            document.getElementById("calcUnitBadge").textContent = treat.unitName;
+            document.getElementById("calcTreatmentDesc").textContent = treat.desc;
+            updateClinicCalc();
+        }
+
+        function adjustTreatmentQty(delta) {
+            const treatId = document.getElementById("calcTreatmentSelect").value;
+            const treat = TREATMENTS.find(t => t.id === treatId) || TREATMENTS[0];
+            const input = document.getElementById("calcQtyInput");
+            let val = parseInt(input.value, 10) || 1;
+            val = Math.max(1, Math.min(treat.maxQty, val + delta));
+            input.value = val;
+            updateClinicCalc();
+        }
+
+        function setPaymentPlan(plan) {
+            selectedPaymentPlan = plan;
+            ["lunas", "cicil3", "cicil6", "cicil12"].forEach(p => {
+                const btn = document.getElementById("planBtn-" + p);
+                if (p === plan) {
+                    btn.className = "p-3 border text-left transition-all bg-teal text-ivory border-teal";
+                } else {
+                    btn.className = "p-3 border text-left transition-all bg-ivory text-slateText border-ivory-border hover:border-teal";
+                }
+            });
+            updateClinicCalc();
+        }
+
+        function updateClinicCalc() {
+            const treatId = document.getElementById("calcTreatmentSelect").value;
+            const treat = TREATMENTS.find(t => t.id === treatId) || TREATMENTS[0];
+            let qty = parseInt(document.getElementById("calcQtyInput").value, 10) || 1;
+            qty = Math.max(1, Math.min(treat.maxQty, qty));
+
+            const baseTotal = treat.price * qty;
+            const discountRow = document.getElementById("summaryLunasDiscountRow");
+
+            document.getElementById("summaryTreatName").textContent = treat.name;
+            document.getElementById("summaryUnitPrice").textContent = formatIDR(treat.price);
+            document.getElementById("summaryQtyText").textContent = `${qty} ${treat.unitName}`;
+
+            if (selectedPaymentPlan === "lunas") {
+                const discount = Math.round(baseTotal * 0.10);
+                const finalLunas = baseTotal - discount;
+                discountRow.classList.remove("hidden");
+                discountRow.classList.add("flex");
+                document.getElementById("summaryDiscountAmount").textContent = "-" + formatIDR(discount);
+                document.getElementById("summaryPrimaryLabel").textContent = "Total Bayar Lunas (Hemat 10%)";
+                document.getElementById("summaryPrimaryValue").textContent = formatIDR(finalLunas);
+                document.getElementById("summarySecondaryNote").textContent = `Harga Normal: ${formatIDR(baseTotal)} (Anda Hemat ${formatIDR(discount)})`;
+            } else {
+                const months = selectedPaymentPlan === "cicil3" ? 3 : (selectedPaymentPlan === "cicil6" ? 6 : 12);
+                const monthly = Math.round(baseTotal / months);
+                discountRow.classList.add("hidden");
+                discountRow.classList.remove("flex");
+                document.getElementById("summaryPrimaryLabel").textContent = `Cicilan 0% (${months}x Per Bulan)`;
+                document.getElementById("summaryPrimaryValue").textContent = `${formatIDR(monthly)} / bln`;
+                document.getElementById("summarySecondaryNote").textContent = `Total Biaya Tindakan: ${formatIDR(baseTotal)} (Bunga Rp 0)`;
+            }
+        }
+
+        function bookTreatmentViaWA() {
+            const treatId = document.getElementById("calcTreatmentSelect").value;
+            const treat = TREATMENTS.find(t => t.id === treatId) || TREATMENTS[0];
+            const qty = document.getElementById("calcQtyInput").value;
+            const branch = document.getElementById("calcBranchSelect").value;
+            const primaryLabel = document.getElementById("summaryPrimaryLabel").textContent;
+            const primaryVal = document.getElementById("summaryPrimaryValue").textContent;
+
+            const msg = `Halo Resepsionis *SenyumLuxe Dental & Derma Clinic*, saya ingin menjadwalkan konsultasi & perawatan:\n\n` +
+                `- *Tindakan:* ${treat.name}\n` +
+                `- *Jumlah/Cakupan:* ${qty} ${treat.unitName}\n` +
+                `- *Cabang Klinik:* ${branch}\n` +
+                `- *Skema Pembayaran:* ${primaryLabel} (${primaryVal})\n\n` +
+                `Mohon informasi slot jadwal dokter terdekat minggu ini. Terima kasih.`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        // Render Doctors Schedule
+        function filterDoctorsByBranch(branch) {
+            currentDocBranch = branch;
+            ["all", "Kemang", "BSD", "Bandung"].forEach(b => {
+                const btn = document.getElementById("docBranch-" + b);
+                if (b === branch) {
+                    btn.className = "doc-branch-btn bg-teal text-ivory border border-teal px-4 py-2 text-xs font-mono uppercase font-semibold";
+                } else {
+                    btn.className = "doc-branch-btn bg-ivory text-slateText border border-ivory-border px-4 py-2 text-xs font-mono uppercase font-semibold";
+                }
+            });
+            renderDoctors();
+        }
+
+        function renderDoctors() {
+            const grid = document.getElementById("doctorGrid");
+            const filtered = currentDocBranch === "all"
+                ? DOCTORS
+                : DOCTORS.filter(d => d.branch === currentDocBranch);
+
+            grid.innerHTML = filtered.map(doc => `
+                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[4/4] overflow-hidden border-b border-ivory-border bg-ivory-warm">
+                            <img src="${doc.image}" alt="${doc.name}" class="w-full h-full object-cover object-top">
+                            <div class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                ${doc.branchFull}
+                            </div>
+                            <div class="absolute bottom-3 left-3 right-3 bg-ivory/95 backdrop-blur-sm border border-ivory-border px-3 py-1.5 flex items-center gap-2 text-xs font-medium text-teal">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                                <span>${doc.status}</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <p class="font-mono text-[10px] text-slateText-muted uppercase">${doc.strNumber}</p>
+                            <h3 class="font-serif text-2xl text-teal font-semibold mt-1">${doc.name}</h3>
+                            <p class="text-xs font-semibold text-champagne-dark mt-0.5">${doc.role}</p>
+
+                            <div class="mt-4 pt-4 border-t border-ivory-border text-xs text-slateText-muted space-y-1">
+                                <span class="font-mono uppercase text-[10px] text-slateText block font-semibold">Jadwal Praktik Rutin:</span>
+                                <p>${doc.schedule}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="bookDoctorViaWA('${doc.name}', '${doc.branchFull}')" class="w-full py-3 px-4 bg-teal hover:bg-teal-light text-ivory text-xs font-semibold uppercase tracking-wider transition flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-champagne"></i>
+                            <span>Buat Janji Temu Dokter</span>
+                        </button>
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        function bookDoctorViaWA(docName, branchName) {
+            const msg = `Halo Resepsionis *SenyumLuxe Clinic*, saya ingin membuat janji temu konsultasi dengan *${docName}* di *${branchName}*. Mohon info jam kosong terdekat. Terima kasih.`;
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        function toggleClinicFaq(index) {
+            for (let i = 0; i < 6; i++) {
+                const body = document.getElementById("clinicFaqBody" + i);
+                const icon = document.getElementById("clinicFaqIcon" + i);
+                if (!body || !icon) continue;
+                if (i === index) {
+                    const isHidden = body.classList.contains("hidden");
+                    body.classList.toggle("hidden", !isHidden);
+                    icon.className = isHidden ? "fa-solid fa-minus text-champagne-dark text-xs shrink-0 ml-4" : "fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4";
+                } else {
+                    body.classList.add("hidden");
+                    icon.className = "fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4";
+                }
+            }
+        }
+
+        // Initialize Events
+        document.addEventListener("DOMContentLoaded", () => {
+            populateTreatments();
+            renderDoctors();
+
+            // Setup Before-After Slider Interactions
+            const baContainer = document.getElementById("baContainer");
+            const baRange = document.getElementById("baRangeInput");
+            let isDragging = false;
+
+            const handlePointerMove = (clientX) => {
+                const rect = baContainer.getBoundingClientRect();
+                const offsetX = clientX - rect.left;
+                const pct = (offsetX / rect.width) * 100;
+                updateSliderPosition(pct);
+            };
+
+            baContainer.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                handlePointerMove(e.clientX);
+            });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) handlePointerMove(e.clientX);
+            });
+            window.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
+
+            baContainer.addEventListener("touchstart", (e) => {
+                if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX);
+            }, { passive: true });
+            baContainer.addEventListener("touchmove", (e) => {
+                if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX);
+            }, { passive: true });
+
+            baRange.addEventListener("input", (e) => {
+                updateSliderPosition(parseFloat(e.target.value));
+            });
+
+            window.addEventListener("resize", () => {
+                updateSliderPosition(parseFloat(baRange.value));
+            });
+
+            // Initial slider sync
+            setTimeout(() => updateSliderPosition(50), 60);
+
+            // Mobile menu
+            document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+                document.getElementById("mobileMenuPanel").classList.toggle("hidden");
+            });
+        });
+    </script>
+</body>
+</html>

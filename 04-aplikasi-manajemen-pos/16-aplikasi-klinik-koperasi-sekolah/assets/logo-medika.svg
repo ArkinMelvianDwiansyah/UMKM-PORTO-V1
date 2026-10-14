@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 235 44" fill="none">
+  <rect x="2" y="2" width="40" height="40" rx="8" fill="#0D9488"/>
+  <path d="M22 11V33M11 22H33" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round"/>
+  <circle cx="22" cy="22" r="4" fill="#0F172A"/>
+  <text x="50" y="23" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="16.5" letter-spacing="-0.01em" fill="#0F172A">SIM<tspan fill="#0D9488">Klinik</tspan></text>
+  <text x="50" y="35" font-family="Consolas, monospace" font-weight="600" font-size="8" letter-spacing="0.06em" fill="#475569">EMR SOAP &amp; APOTEK</text>
+</svg>

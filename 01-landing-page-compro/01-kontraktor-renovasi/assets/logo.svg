@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="310" height="56" viewBox="0 0 310 56" fill="none">
+  <!-- Architectural Monogram Block -->
+  <rect x="2" y="4" width="48" height="48" fill="#18181B" stroke="#D97706" stroke-width="1.5"/>
+  <!-- Blueprint Crosshairs -->
+  <line x1="2" y1="28" x2="50" y2="28" stroke="#27272A" stroke-width="1"/>
+  <line x1="26" y1="4" x2="26" y2="52" stroke="#27272A" stroke-width="1"/>
+  <!-- Isometric Structural Pillars & Roof Pitch (N + B Monogram) -->
+  <path d="M11 43V16L26 7L41 16V43" stroke="#F7F5F0" stroke-width="2.5" stroke-linejoin="miter"/>
+  <path d="M11 43L26 23L41 43" stroke="#D97706" stroke-width="2.5" stroke-linejoin="miter"/>
+  <path d="M18 43V26L26 21L34 26V43" fill="#D97706" fill-opacity="0.2" stroke="#D97706" stroke-width="1.75"/>
+  <rect x="23.5" y="33" width="5" height="10" fill="#F7F5F0"/>
+  <!-- Corner Dimension Ticks -->
+  <path d="M6 10H10M6 10V14" stroke="#D97706" stroke-width="1.2"/>
+  <path d="M46 10H42M46 10V14" stroke="#D97706" stroke-width="1.2"/>
+  <!-- Wordmark -->
+  <text x="60" y="28" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.02em" fill="#18181B">NUSA<tspan fill="#B45309">BANGUN</tspan> <tspan font-size="13" font-weight="700" fill="#57534E">KARYA</tspan></text>
+  <!-- Technical Divider & Subtitle -->
+  <line x1="60" y1="35" x2="298" y2="35" stroke="#D6D3CD" stroke-width="1"/>
+  <text x="60" y="46.5" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="0.08em" fill="#57534E">ARSITEKTUR • SIPIL • SNI ISO</text>
+</svg>

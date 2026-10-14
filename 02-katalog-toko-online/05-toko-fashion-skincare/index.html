@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azzahra & GlowLokal Atelier — Butik Fashion Muslimah, Hijab, Sepatu Lokal & Skincare BPOM</title>
+    <meta name="description" content="Butik Online Fashion Muslimah Modern, Hijab Premium, Koko Kurta, Sepatu Lokal & Skincare Resmi BPOM. Beli >= 3 Pcs otomatis dapat Harga Reseller Hemat 15%.">
+
+    <!-- Google Fonts: Plus Jakarta Sans, Cormorant Garamond & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        rosegold: {
+                            50: '#FDF7F8',
+                            100: '#F9EBEE',
+                            200: '#F1D4DB',
+                            300: '#E3AEC0',
+                            400: '#C97A96',
+                            500: '#A93860',
+                            600: '#8E2043',
+                            700: '#731936',
+                            800: '#5A132A',
+                            900: '#420E1F',
+                        },
+                        blush: {
+                            50: '#FAF8F5',
+                            100: '#F3EFEA',
+                            200: '#E5DDD3',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #121212;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6CEC2;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8E2043;
+        }
+        .atelier-grid-bg {
+            background-image: linear-gradient(to right, rgba(18, 18, 18, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(18, 18, 18, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .product-card-transition {
+            transition: all 0.25s ease;
+        }
+        .product-card-transition:hover {
+            transform: translateY(-3px);
+        }
+        @keyframes cartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+        .animate-cart-pulse {
+            animation: cartPulse 0.35s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-rosegold-600 selection:text-white">
+
+    <!-- TOP FLOATING PORTFOLIO DEMO BAR -->
+    <div class="bg-[#121212] text-stone-200 text-xs py-2.5 px-4 border-b border-stone-800 relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="inline-flex items-center gap-2 font-mono text-rose-300 hover:text-white font-semibold transition-colors">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>KEMBALI KE KATALOG PORTOFOLIO UMKM</span>
+                </a>
+                <span class="hidden md:inline-flex items-center gap-1.5 text-stone-400 font-mono text-[11px]">
+                    | PROYEK #05 // BUTIK FASHION MUSLIMAH & SKINCARE BPOM
+                </span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+                <button onclick="activateDemoResellerBundle()" class="bg-rosegold-600 hover:bg-rosegold-700 text-white px-3 py-1 font-mono text-[11px] font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-tags text-rose-200"></i>
+                    <span>SIMULASI 3 PCS (HARGA RESELLER -15%)</span>
+                </button>
+                <button onclick="openSizeGuideModal()" class="hidden sm:inline-flex items-center gap-1 font-mono text-[11px] text-stone-300 hover:text-white underline">
+                    <i class="fa-solid fa-ruler-combined"></i> PANDUAN UKURAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMO & VOUCHER BANNER -->
+    <div class="bg-rosegold-600 text-white text-xs py-2 px-4 text-center font-medium border-b border-stone-900/15">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <span class="inline-flex items-center gap-2">
+                <span class="bg-[#121212] text-rose-200 font-mono font-bold px-2 py-0.5 text-[10px] uppercase tracking-wider">PRIVILEGE RESELLER</span>
+                <span>Belanja Minimal <strong>3 Pcs (Bebas Campur Artikel)</strong> Otomatis Aktif <strong>Harga Grosir Hemat 15%</strong></span>
+            </span>
+            <span class="hidden md:inline opacity-60">•</span>
+            <span class="inline-flex items-center gap-1.5 font-mono text-[11px]">
+                <span>KODE VOUCHER RP 20.000:</span>
+                <button onclick="applyVoucherQuick('UMKMAJU')" class="bg-[#121212] hover:bg-stone-800 border border-white/30 px-2 py-0.5 font-mono font-bold text-amber-200 transition" title="Klik untuk pakai voucher">
+                    UMKMAJU
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-stone-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 shrink-0">
+                <img src="assets/logo.svg" alt="Azzahra & GlowLokal Atelier" class="h-11 w-auto shrink-0">
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-5 text-xs font-bold uppercase tracking-wider text-stone-700 whitespace-nowrap">
+                <a href="#katalog-section" class="whitespace-nowrap hover:text-rosegold-600 transition">Koleksi</a>
+                <a href="#program-reseller" class="whitespace-nowrap hover:text-rosegold-600 transition">Reseller -15%</a>
+                <a href="#ulasan-pelanggan" class="whitespace-nowrap hover:text-rosegold-600 transition">Ulasan Foto</a>
+                <a href="#faq" class="whitespace-nowrap hover:text-rosegold-600 transition">FAQ</a>
+            </nav>
+
+            <!-- Center Mode Switch: Harga Ecer vs Reseller Preview -->
+            <div class="hidden xl:flex items-center bg-white p-1 border border-stone-300 shrink-0 whitespace-nowrap">
+                <button id="modeEcerBtn" onclick="setPriceDisplayMode('ecer')" class="whitespace-nowrap px-3 py-1.5 font-mono text-[11px] font-bold transition bg-[#121212] text-white">
+                    HARGA ECER
+                </button>
+                <button id="modeResellerBtn" onclick="setPriceDisplayMode('reseller')" class="whitespace-nowrap px-3 py-1.5 font-mono text-[11px] font-bold transition text-rosegold-600 hover:text-rosegold-800">
+                    GROSIR RESELLER (-15%)
+                </button>
+            </div>
+
+            <!-- Right Actions: Size Guide & Cart Drawer Trigger -->
+            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                <button onclick="openSizeGuideModal()" class="whitespace-nowrap hidden md:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-mono font-semibold text-xs transition">
+                    <i class="fa-solid fa-ruler-horizontal text-rosegold-600"></i>
+                    <span>SIZE GUIDE</span>
+                </button>
+
+                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-3 bg-[#121212] hover:bg-rosegold-600 text-white font-bold px-4 py-2.5 transition">
+                    <div class="relative flex items-center gap-1.5">
+                        <i class="fa-solid fa-bag-shopping text-base text-rose-300"></i>
+                        <span id="cartCountBadge" class="bg-rosegold-600 text-white font-mono text-[11px] font-bold min-w-[22px] h-5 px-1.5 inline-flex items-center justify-center">0</span>
+                    </div>
+                    <div class="text-left hidden sm:block leading-tight border-l border-stone-700 pl-3">
+                        <span id="headerCartTierLabel" class="block font-mono text-[10px] uppercase tracking-wider text-stone-400">TAS BELANJA</span>
+                        <span id="headerCartTotal" class="block font-mono text-xs font-bold text-rose-200">Rp 0</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden atelier-grid-bg pt-10 pb-16 lg:py-16 border-b border-stone-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex flex-wrap items-center gap-2.5 bg-white border border-stone-300 px-3.5 py-1.5 font-mono text-xs">
+                        <span class="bg-rosegold-600 text-white text-[10px] font-bold px-2 py-0.5 uppercase">LOOKBOOK RAYA & DAILY</span>
+                        <span class="font-semibold text-stone-700">MODEST ATELIER • SKINCARE TERSERTIFIKASI BPOM RI</span>
+                    </div>
+
+                    <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-[#121212] leading-[1.06]">
+                        Siluet Anggun, Syar'i & <span class="italic text-rosegold-600">Kulit Sehat Terawat</span> Setiap Hari.
+                    </h1>
+
+                    <p class="text-stone-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
+                        Kurasi koleksi <strong>Abaya Armani Silk</strong>, <strong>Hijab Voal & Pashmina</strong>, <strong>Koko Kurta</strong>, <strong>Sepatu Pengrajin Lokal</strong>, hingga <strong>Skincare BPOM & Halal MUI</strong>. Belanja satuan maupun kemitraan Reseller (minimal 3 pcs otomatis diskon 15%).
+                    </p>
+
+                    <!-- Reseller & BPOM Highlight Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-stone-300 bg-white">
+                        <div class="p-4 border-b sm:border-b-0 sm:border-r border-stone-200">
+                            <div class="font-mono text-xs font-bold text-rosegold-600 uppercase">RESELLER -15%</div>
+                            <div class="text-xs font-bold text-stone-900 mt-0.5">Otomatis Beli &ge; 3 Pcs</div>
+                            <div class="text-[11px] text-stone-500">Bebas campur semua produk</div>
+                        </div>
+                        <div class="p-4 border-b sm:border-b-0 sm:border-r border-stone-200">
+                            <div class="font-mono text-xs font-bold text-emerald-800 uppercase">TERDAFTAR BPOM RI</div>
+                            <div class="text-xs font-bold text-stone-900 mt-0.5">Nomor NIE Terverifikasi</div>
+                            <div class="text-[11px] text-stone-500">Aman untuk Bumil & Busui</div>
+                        </div>
+                        <div class="p-4">
+                            <div class="font-mono text-xs font-bold text-[#121212] uppercase">COD & DROPSHIP</div>
+                            <div class="text-xs font-bold text-stone-900 mt-0.5">Ekspedisi Seluruh RI</div>
+                            <div class="text-[11px] text-stone-500">Pengiriman atas nama toko</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                        <a href="#katalog-produk" class="inline-flex items-center gap-2.5 bg-rosegold-600 hover:bg-[#121212] text-white font-bold px-6 py-3.5 transition text-xs uppercase tracking-wider">
+                            <span>Eksplorasi Koleksi Butik</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <button onclick="openSizeGuideModal()" class="inline-flex items-center gap-2 bg-white hover:bg-stone-100 text-[#121212] border border-stone-400 font-bold px-5 py-3.5 transition text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-ruler-combined text-rosegold-600"></i>
+                            <span>Panduan Ukuran & Kalkulator BB</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Lookbook Showcase -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white p-3.5 border-2 border-[#121212] shadow-[8px_8px_0px_#121212]">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="relative overflow-hidden aspect-[3/4] bg-stone-900 border border-stone-200">
+                                <img src="assets/images/prod-01-abaya-silk.jpg" 
+                                     alt="Azzahra Modest Fashion" 
+                                     class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-3 left-3 right-3 text-white">
+                                    <span class="bg-rosegold-600 font-mono text-[9px] font-bold px-2 py-0.5 uppercase">MODEST WEAR</span>
+                                    <p class="font-serif font-bold text-lg mt-1 leading-tight">Mahreen Silk Abaya</p>
+                                    <p class="font-mono text-[10px] text-stone-300">5 Pilihan Warna</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3 flex flex-col justify-between">
+                                <div class="relative overflow-hidden aspect-[4/3] bg-stone-900 border border-stone-200 flex-1">
+                                    <img src="assets/images/prod-07-serum-niacinamide.jpg" 
+                                         alt="GlowLokal Skincare BPOM" 
+                                         class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                    <div class="absolute top-2.5 left-2.5">
+                                        <span class="bg-emerald-800 text-white font-mono text-[9px] font-bold px-2 py-0.5">BPOM NA18241900812</span>
+                                    </div>
+                                    <div class="absolute bottom-2.5 left-2.5 right-2.5 text-white">
+                                        <p class="font-bold text-xs">10% Niacinamide Serum</p>
+                                        <p class="font-mono text-[10px] text-emerald-200">Halal MUI & Derm Tested</p>
+                                    </div>
+                                </div>
+                                <div class="bg-[#FAF8F5] border border-stone-300 p-3.5">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-rosegold-600">PAKET RESELLER</span>
+                                        <span class="bg-[#121212] text-white font-mono text-[10px] font-bold px-2 py-0.5">-15%</span>
+                                    </div>
+                                    <p class="text-xs text-stone-700 leading-snug">Campur <strong>3 item apa saja</strong> (Gamis + Hijab + Serum), otomatis aktif <strong>Harga Grosir</strong>.</p>
+                                    <button onclick="activateDemoResellerBundle()" class="mt-2.5 w-full bg-rosegold-600 hover:bg-[#121212] text-white font-mono font-bold text-[11px] uppercase py-2 transition">
+                                        + Simulasi Bundling 3 Pcs
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CATALOG SECTION -->
+    <main id="katalog-produk" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <!-- Section Header + Tiered Reseller Toggle -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 font-mono text-rosegold-600 font-bold text-xs uppercase tracking-widest mb-1">
+                    [01] KOLEKSI BUTIK & SKINCARE BPOM
+                </div>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl text-[#121212]">Pilih Warna, Ukuran & Varian</h2>
+                <p class="text-stone-600 text-sm mt-1">Klik swatch warna dan ukuran langsung pada kartu produk sebelum memasukkan ke tas belanja.</p>
+            </div>
+
+            <!-- Interactive Tiered Reseller Toggle Box -->
+            <div class="bg-white border border-stone-300 p-3.5 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-[#121212] text-rose-200 font-mono flex items-center justify-center font-bold text-xs">
+                        -15%
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-[#121212] flex items-center gap-1.5">
+                            <span>Mode Tampilan Harga Reseller</span>
+                            <span id="resellerActiveBadge" class="font-mono bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 hidden">AKTIF</span>
+                        </div>
+                        <p class="text-[11px] text-stone-500">Otomatis aktif di tas belanja saat total item &ge; 3 pcs</p>
+                    </div>
+                </div>
+                <label class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="resellerToggleCheckbox" onchange="toggleResellerMode(this.checked)" class="sr-only peer">
+                    <div class="relative w-12 h-6 bg-stone-300 peer-focus:outline-none peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:h-5 after:w-5 after:transition-all peer-checked:bg-rosegold-600"></div>
+                    <span class="ml-2 font-mono text-xs font-bold text-stone-800 uppercase">Tampilkan Grosir</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- CATEGORY FILTER TABS + SEARCH & SORT -->
+        <div class="bg-white p-4 sm:p-5 border border-stone-300 mb-8 space-y-4">
+            <!-- Category Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1.5" id="categoryTabs">
+                <button onclick="filterCategory('all')" data-cat="all" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-rosegold-600 text-white">
+                    <i class="fa-solid fa-table-cells-large"></i> Semua Produk
+                </button>
+                <button onclick="filterCategory('gamis')" data-cat="gamis" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-person-dress text-rosegold-600"></i> Gamis & Dress
+                </button>
+                <button onclick="filterCategory('hijab')" data-cat="hijab" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-layer-group text-rosegold-600"></i> Hijab & Pashmina
+                </button>
+                <button onclick="filterCategory('koko')" data-cat="koko" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-shirt text-stone-700"></i> Kemeja & Koko
+                </button>
+                <button onclick="filterCategory('skincare')" data-cat="skincare" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-pump-soap text-emerald-700"></i> Skincare BPOM
+                </button>
+                <button onclick="filterCategory('parfum')" data-cat="parfum" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-spray-can-sparkles text-amber-700"></i> Parfum Lokal
+                </button>
+                <button onclick="filterCategory('sepatu')" data-cat="sepatu" class="cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300">
+                    <i class="fa-solid fa-shoe-prints text-rosegold-600"></i> Sepatu & Sandal
+                </button>
+            </div>
+
+            <!-- Search & Sort Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 pt-2 border-t border-stone-200">
+                <div class="md:col-span-7 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"></i>
+                    <input type="text" id="searchInput" oninput="renderProducts()" placeholder="Cari Gamis Silk, Pashmina, Koko Toyobo, Serum Niacinamide, Parfum, Sepatu..." 
+                           class="w-full pl-11 pr-10 py-2.5 bg-blush-50 border border-stone-300 text-sm focus:outline-none focus:border-rosegold-600 focus:bg-white transition">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+                <div class="md:col-span-5 flex items-center gap-3">
+                    <span class="font-mono text-xs font-semibold text-stone-500 shrink-0 uppercase"><i class="fa-solid fa-sort text-rosegold-600 mr-1"></i>Urutkan:</span>
+                    <select id="sortSelect" onchange="renderProducts()" class="w-full py-2.5 px-3.5 bg-blush-50 border border-stone-300 text-sm font-semibold text-stone-800 focus:outline-none focus:border-rosegold-600">
+                        <option value="featured">Koleksi Unggulan & Terlaris</option>
+                        <option value="price-asc">Harga: Termurah ke Termahal</option>
+                        <option value="price-desc">Harga: Termahal ke Termurah</option>
+                        <option value="name-asc">Nama Produk (A - Z)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid Status Bar -->
+        <div class="flex flex-wrap items-center justify-between text-xs sm:text-sm text-stone-600 mb-5 px-1 gap-2">
+            <div>Menampilkan <strong id="productCountText" class="font-mono text-[#121212]">12</strong> artikel kurasi terbaik</div>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 text-emerald-800 font-semibold">
+                    <i class="fa-solid fa-circle-check"></i> Ready Stock Siap Dikirim Hari Ini
+                </span>
+            </div>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamically populated by JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden bg-white p-12 text-center border border-stone-300 my-6">
+            <div class="w-14 h-14 bg-rosegold-50 text-rosegold-600 flex items-center justify-center mx-auto mb-4 text-xl">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h3 class="font-serif font-bold text-2xl text-stone-900">Produk Tidak Ditemukan</h3>
+            <p class="text-stone-500 text-sm max-w-md mx-auto mt-1 mb-5">Silakan gunakan kata kunci lain atau tampilkan seluruh koleksi produk kami.</p>
+            <button onclick="resetFilters()" class="bg-rosegold-600 hover:bg-[#121212] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 transition">
+                Tampilkan Semua Produk
+            </button>
+        </div>
+    </main>
+
+    <!-- RESELLER & DROPSHIPPER BENEFIT SECTION + REVIEWS -->
+    <section id="program-reseller" class="py-16 bg-[#121212] text-white border-y border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="inline-flex items-center gap-2 font-mono text-rose-300 text-xs font-bold uppercase tracking-widest">
+                        [02] PROGRAM KEMITRAAN RESELLER & DROPSHIP
+                    </span>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl">Belanja Minimal 3 Pcs Langsung Aktif Harga Reseller Hemat 15%</h2>
+                    <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+                        Tanpa syarat stok ratusan potong. Cukup pesan minimal 3 pcs (bebas campur Gamis, Hijab, Koko, Skincare BPOM, atau Sepatu), sistem keranjang kami otomatis memotong harga sebesar <strong>15%</strong>. Mendukung pengiriman dengan label nama toko Anda (Dropship).
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="activateDemoResellerBundle()" class="bg-rosegold-600 hover:bg-rosegold-500 text-white font-bold text-xs uppercase tracking-wider px-5 py-3.5 transition flex items-center gap-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Simulasikan Order Reseller 3 Pcs</span>
+                        </button>
+                        <button onclick="openSizeGuideModal()" class="bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 font-bold text-xs uppercase tracking-wider px-5 py-3.5 transition">
+                            Tabel Ukuran Standar Butik
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 grid grid-cols-2 gap-3.5">
+                    <div class="bg-stone-900 border border-stone-800 p-4">
+                        <div class="font-mono text-rose-300 font-bold text-base mb-1">100% ORIGINAL</div>
+                        <div class="text-xs font-bold text-white">Jahitan Standar Butik</div>
+                        <p class="text-[11px] text-stone-400 mt-1">QC ketat, garansi tukar baru jika terdapat cacat produksi.</p>
+                    </div>
+                    <div class="bg-stone-900 border border-stone-800 p-4">
+                        <div class="font-mono text-emerald-400 font-bold text-base mb-1">BPOM RESMI</div>
+                        <div class="text-xs font-bold text-white">Nomor NIE Terverifikasi</div>
+                        <p class="text-[11px] text-stone-400 mt-1">Bebas merkuri & hidrokuinon, bersertifikat Halal MUI.</p>
+                    </div>
+                    <div class="bg-stone-900 border border-stone-800 p-4">
+                        <div class="font-mono text-amber-300 font-bold text-base mb-1">KATALOG FOTO</div>
+                        <div class="text-xs font-bold text-white">Siap Pakai Promosi</div>
+                        <p class="text-[11px] text-stone-400 mt-1">Reseller bebas mengunduh foto lookbook resolusi tinggi.</p>
+                    </div>
+                    <div class="bg-stone-900 border border-stone-800 p-4">
+                        <div class="font-mono text-sky-300 font-bold text-base mb-1">CEK ONGKIR</div>
+                        <div class="text-xs font-bold text-white">Transparan & Akurat</div>
+                        <p class="text-[11px] text-stone-400 mt-1">Mendukung J&T, JNE, SiCepat & GoSend Instant di keranjang.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer & Reseller Testimonials with Real Product/OOTD Photos + Local Avatars -->
+            <div id="ulasan-pelanggan" class="pt-8 border-t border-stone-800">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="font-mono text-xs text-rose-300 uppercase tracking-widest">[03] ULASAN FOTO PELANGGAN & MITRA RESELLER</span>
+                        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-white mt-0.5">Foto Asli Pemakaian & Review 4.200+ Pembeli</h3>
+                    </div>
+                    <div class="font-mono text-xs bg-stone-900 border border-stone-700 px-3.5 py-2 text-amber-300">
+                        RATING 4.96 / 5.0 • VERIFIED PHOTO REVIEWS
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Photo Review 1 -->
+                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/prod-01-abaya-silk.jpg" alt="Foto OOTD Abaya Mahreen Silk" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto OOTD • Abaya Silk</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Abaya Mahreen Silk-nya jatuh banget dan adem dipakai seharian waktu acara keluarga. Beli sekalian sama Pashmina dan Serum langsung dapat potongan reseller 15%."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-1.jpg" alt="Nabila Putri" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Nabila Putri</div>
+                                <div class="font-mono text-[10px] text-stone-400">Bandung • Paket 3 Pcs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 2 -->
+                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/prod-08-skincare-bundle.jpg" alt="Foto Review Skincare BPOM" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-emerald-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Skincare BPOM</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Sudah 6 bulan jadi reseller aktif Azzahra & GlowLokal di Surabaya. Sistem dropshipnya rapi, foto lookbook-nya eksklusif, dan skincare-nya resmi terdaftar BPOM."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-2.jpg" alt="Aisyah Rahma" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Aisyah Rahma</div>
+                                <div class="font-mono text-[10px] text-stone-400">Surabaya • Mitra Reseller</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 3 -->
+                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/prod-05-koko-kurta.jpg" alt="Foto Koko Kurta Toyobo" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pembeli • Koko Kurta</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Koko Kurta Toyobo dan Sepatu Mary Jane-nya nyaman sekali. Fitur panduan ukuran BB/TB di website sangat membantu memilih size yang pas tanpa takut kekecilan."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-3.jpg" alt="Farhan Hakim" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Farhan Hakim</div>
+                                <div class="font-mono text-[10px] text-stone-400">Jakarta Selatan • Verified</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 4 -->
+                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/prod-03-pashmina.jpg" alt="Foto Hijab & Pashmina" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Hijab Voal</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Pesan 15 pcs Hijab Voal Ultrafine untuk seragam pengajian ibu-ibu komplek. Dikemas hardbox satu per satu, bahannya tegak di dahi dan warnanya persis katalog."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-1.jpg" alt="Hj. Rina Maryam" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Hj. Rina Maryam</div>
+                                <div class="font-mono text-[10px] text-stone-400">Depok • Order Seragam</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERTANYAAN YANG SERING DITANYAKAN (FAQ) -->
+    <section id="faq" class="py-16 bg-[#FAF8F5] border-b border-stone-300">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs text-rosegold-600 font-bold uppercase tracking-widest">[04] INFORMASI BELANJA & KEMITRAAN</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl text-[#121212] mt-1">Pertanyaan yang Sering Ditanyakan (FAQ)</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>1. Bagaimana cara mendapatkan potongan Harga Reseller 15%?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Tanpa biaya pendaftaran! Cukup masukkan minimal 3 pcs produk apa saja (bebas campur Gamis, Hijab, Koko, Skincare, atau Sepatu) ke dalam Tas Belanja, maka sistem otomatis memotong harga sebesar 15%.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition" open>
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>2. Apakah bisa tukar ukuran (size) jika baju/sepatu kurang pas?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Bisa! Kami memberikan garansi tukar ukuran maksimal 3 hari setelah barang diterima selama hangtag masih terpasang dan produk belum dicuci. Jika terdapat cacat produksi, ongkir penukaran 100% kami tanggung.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>3. Apakah semua produk Skincare GlowLokal aman & terdaftar BPOM?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        100% Terdaftar BPOM RI dan Halal MUI. Nomor izin edar (NIE) BPOM tertera jelas pada setiap kartu produk di katalog ini, bebas merkuri/hidrokuinon, serta aman untuk ibu hamil dan menyusui.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>4. Apakah melayani pengiriman Dropship atas nama toko saya?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Ya, sangat bisa. Saat mengisi formulir checkout WhatsApp di keranjang, cukup cantumkan Nama Toko & Nomor HP Pengirim di kolom catatan, maka resi paket akan dicetak tanpa label Azzahra.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>5. Kapan pesanan dikirim setelah transfer / konfirmasi WA?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Seluruh pesanan yang terkonfirmasi sebelum pukul 16.00 WIB dikirim pada hari yang sama melalui J&T, JNE, atau SiCepat. Untuk layanan GoSend Instant area Jabodetabek langsung diproses dalam 60 menit.
+                    </p>
+                </details>
+
+                <details class="group bg-white border border-stone-300 p-5 open:border-[#121212] transition">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-sm text-[#121212] list-none">
+                        <span>6. Apakah menerima pesanan seragam pengajian / keluarga besar?</span>
+                        <span class="font-mono text-xs px-2 py-0.5 border border-stone-300 group-open:bg-[#121212] group-open:text-white transition">+</span>
+                    </summary>
+                    <p class="mt-3 text-xs text-stone-600 leading-relaxed pt-3 border-t border-stone-200">
+                        Menerima! Untuk pemesanan seragam di atas 12 potong (1 lusin), Anda berhak mendapatkan diskon tambahan grosir VIP dan layanan potong panjang gamis sesuai tinggi badan masing-masing anggota.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-[#0A0A0A] text-stone-400 pb-20 lg:pb-0 border-t-2 border-stone-900 text-sm">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-stone-900 bg-[#121212]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] uppercase tracking-wider">
+                            <span class="inline-flex items-center gap-2 bg-[#0A0A0A] text-emerald-400 border border-stone-800 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-certificate"></i>
+                                <span>Skincare Terdaftar BPOM &amp; Halal</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#0A0A0A] text-rose-300 border border-stone-800 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-tags"></i>
+                                <span>Harga Reseller Hemat 15% (≥3 Pcs)</span>
+                            </span>
+                            <span class="inline-flex items-center gap-2 bg-[#0A0A0A] text-amber-200 border border-stone-800 px-3 py-1.5 font-bold">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Garansi Tukar Size 3 Hari</span>
+                            </span>
+                        </div>
+
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+                            Tampil Anggun Syar'i atau Mulai Bisnis Reseller Tanpa Modal Stok Ratusan Potong.
+                        </h2>
+                        <p class="text-stone-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Campur minimal 3 artikel apa saja di Tas Belanja untuk mengaktifkan potongan otomatis 15%. Mendukung pengiriman COD maupun Dropship resi tanpa label di seluruh Indonesia.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3.5 lg:justify-end">
+                        <a href="#katalog-produk"
+                           class="inline-flex items-center justify-center gap-2.5 bg-rosegold-600 hover:bg-rosegold-500 text-white font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>Belanja Koleksi Butik</span>
+                        </a>
+                        <a href="https://wa.me/6281234567890?text=Halo%20CS%20Azzahra%20%26%20GlowLokal,%20saya%20ingin%20konsultasi%20produk%20atau%20pendaftaran%20Reseller/Dropship."
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center gap-2.5 bg-[#0A0A0A] hover:bg-stone-800 text-white border border-stone-700 hover:border-rose-300 font-mono uppercase tracking-wider font-bold text-xs sm:text-sm px-6 py-4 transition-colors whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-base text-emerald-400"></i>
+                            <span>Chat CS &amp; Reseller WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group">
+                        <img src="assets/logo.svg" alt="Emblem Azzahra & GlowLokal Atelier" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-rosegold-500/50">
+                        <div>
+                            <span class="font-serif font-bold text-xl text-white tracking-tight block leading-none">
+                                AZZAHRA <span class="italic text-rose-300">&amp; GlowLokal</span>
+                            </span>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-stone-400 block mt-1">
+                                MODEST ATELIER • DERMA BPOM RI
+                            </span>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-stone-400 leading-relaxed">
+                        Butik kurasi Modest Fashion Muslimah, Hijab Voal Ultrafine, Koko Kurta Toyobo, Sepatu Pengrajin Lokal, dan Rangkaian Skincare Terdaftar BPOM RI &amp; Halal MUI.
+                    </p>
+
+                    <div class="pt-1">
+                        <span class="font-mono text-[10px] uppercase tracking-widest text-stone-500 block mb-2.5">Kanal Lookbook &amp; Live Shopping</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Azzahra & GlowLokal"
+                               class="w-9 h-9 bg-stone-900 hover:bg-rosegold-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok Azzahra & GlowLokal"
+                               class="w-9 h-9 bg-stone-900 hover:bg-rosegold-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Azzahra & GlowLokal"
+                               class="w-9 h-9 bg-stone-900 hover:bg-emerald-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Azzahra & GlowLokal"
+                               class="w-9 h-9 bg-stone-900 hover:bg-rosegold-600 text-stone-300 hover:text-white border border-stone-800 flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <nav aria-label="Navigasi Cepat" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-rosegold-500 pl-3">
+                        Navigasi Cepat
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-rose-400">01</span>
+                                <span>Beranda Lookbook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-produk" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-rose-400">02</span>
+                                <span>Katalog Koleksi &amp; BPOM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <button type="button" onclick="openSizeGuideModal()" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2 text-left">
+                                <span class="font-mono text-[10px] text-rose-400">03</span>
+                                <span>Kalkulator Fit &amp; Size Chart</span>
+                            </button>
+                        </li>
+                        <li>
+                            <a href="#program-reseller" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-rose-400">04</span>
+                                <span>Cara Pemesanan &amp; Reseller</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#ulasan-pelanggan" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-rose-400">05</span>
+                                <span>Galeri OOTD &amp; Ulasan Foto</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="text-stone-400 hover:text-rose-300 transition-colors inline-flex items-center gap-2">
+                                <span class="font-mono text-[10px] text-rose-400">06</span>
+                                <span>FAQ &amp; Garansi Tukar Size</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Kolom 3: Layanan Unggulan -->
+                <nav aria-label="Layanan Unggulan" class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-rosegold-500 pl-3">
+                        Koleksi Unggulan
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li>
+                            <a href="#katalog-produk" onclick="filterCategory('gamis')" class="text-stone-400 hover:text-rose-300 transition-colors flex items-center justify-between">
+                                <span>Abaya Gamis &amp; One Set Linen</span>
+                                <span class="font-mono text-[11px] text-stone-500">Busui Friendly</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-produk" onclick="filterCategory('hijab')" class="text-stone-400 hover:text-rose-300 transition-colors flex items-center justify-between">
+                                <span>Hijab Voal &amp; Pashmina</span>
+                                <span class="font-mono text-[11px] text-stone-500">Mulai Rp 49rb</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-produk" onclick="filterCategory('koko')" class="text-stone-400 hover:text-rose-300 transition-colors flex items-center justify-between">
+                                <span>Kemeja Koko Kurta Toyobo</span>
+                                <span class="font-mono text-[11px] text-stone-500">Katun Jepang</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-produk" onclick="filterCategory('skincare')" class="text-stone-400 hover:text-rose-300 transition-colors flex items-center justify-between">
+                                <span>Skincare GlowLokal BPOM</span>
+                                <span class="font-mono text-[11px] text-stone-500">Halal &amp; Derm</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#katalog-produk" onclick="filterCategory('sepatu')" class="text-stone-400 hover:text-rose-300 transition-colors flex items-center justify-between">
+                                <span>Sepatu Flat &amp; Heels Lokal</span>
+                                <span class="font-mono text-[11px] text-stone-500">Size 37 – 40</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Highlighted Special Package Link -->
+                    <div class="pt-1">
+                        <button type="button" onclick="activateDemoResellerBundle()"
+                           class="w-full text-left p-3 bg-stone-900 hover:bg-stone-800 border border-rose-400/40 transition-colors group">
+                            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-rose-300 font-bold">
+                                <span>★ PRIVILEGE MITRA</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-0.5 transition-transform"></i>
+                            </div>
+                            <div class="text-xs font-bold text-white mt-0.5">Program Reseller Resmi (-15%)</div>
+                            <div class="text-[11px] text-stone-400">Aktif otomatis beli ≥3 pcs &amp; bisa Dropship</div>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xs font-bold uppercase tracking-widest text-white border-l-2 border-rosegold-500 pl-3">
+                        Butik &amp; Layanan CS
+                    </h3>
+                    <ul class="space-y-3.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-rose-300 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Flagship Atelier &amp; Gudang:</strong>
+                                <span class="text-stone-400 leading-relaxed block">Jl. Ir. H. Juanda (Dago) No. 112, Kec. Coblong, Kota Bandung, Jawa Barat 40132</span>
+                                <a href="https://maps.google.com/?q=Jl.+Ir.+H.+Juanda+No.+112+Bandung" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-1 font-mono text-[11px] text-rose-300 hover:underline mt-1 font-semibold">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">WhatsApp CS &amp; Admin Grosir:</strong>
+                                <a href="https://wa.me/6281234567890?text=Halo%20CS%20Azzahra%20%26%20GlowLokal,%20saya%20ingin%20bertanya%20tentang%20produk." target="_blank" rel="noopener noreferrer"
+                                   class="font-mono text-stone-300 hover:text-rose-300 transition-colors">+62 812-3456-7890</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-rose-300 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Surel Kemitraan &amp; Kolaborasi:</strong>
+                                <a href="mailto:atelier@azzahraglowlokal.id" class="font-mono text-stone-300 hover:text-rose-300 transition-colors">atelier@azzahraglowlokal.id</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-8 h-8 bg-stone-900 border border-stone-800 text-amber-200 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </span>
+                            <div>
+                                <strong class="text-white block">Jam Operasional Butik &amp; Pickup:</strong>
+                                <span class="text-stone-400 block">Senin – Minggu: 08.30 – 20.30 WIB</span>
+                                <span class="font-mono text-[10px] text-emerald-400">(Order &lt;16.00 WIB Dikirim Hari yang Sama)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-stone-900 bg-black">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-stone-500 mr-1 whitespace-nowrap">Metode Pembayaran &amp; COD:</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">QRIS</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">BCA</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">BRI</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">Mandiri</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">GoPay</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">OVO</span>
+                    <span class="font-mono text-[11px] font-bold bg-stone-900 border border-stone-800 text-stone-300 px-2.5 py-1 whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Policy Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-stone-500 text-center lg:text-right">
+                    <p>© 2026 Azzahra &amp; GlowLokal Atelier. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4 font-mono text-[11px]">
+                        <!-- TODO: Hubungkan ke dokumen Syarat & Ketentuan Belanja & Reseller -->
+                        <a href="#" class="hover:text-rose-300 transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Hubungkan ke dokumen Kebijakan Privasi Pelanggan -->
+                        <a href="#" class="hover:text-rose-300 transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-rose-300 transition-colors whitespace-nowrap">Kebijakan Garansi / Pembatalan</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE STICKY BOTTOM BAR -->
+    <div id="mobileStickyCart" class="fixed bottom-4 inset-x-4 z-30 lg:hidden hidden">
+        <button onclick="toggleCartDrawer(true)" class="w-full bg-[#121212] text-white p-3.5 shadow-2xl border border-stone-700 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-rosegold-600 flex items-center justify-center font-mono font-bold text-sm" id="mobileCartQty">0</div>
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">Tas Belanja & Cek Ongkir</div>
+                    <div id="mobileResellerHint" class="text-[11px] text-rose-300">Klik untuk checkout via WhatsApp</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div id="mobileCartTotal" class="font-mono text-sm font-bold text-rose-300">Rp 0</div>
+                <div class="text-[10px] text-stone-300">Pesan WA <i class="fa-solid fa-arrow-right ml-0.5"></i></div>
+            </div>
+        </button>
+    </div>
+
+    <!-- ==========================================
+         INTERACTIVE SIZE GUIDE MODAL
+         ========================================== -->
+    <div id="sizeGuideModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
+        <div class="bg-white max-w-2xl w-full overflow-hidden shadow-2xl border-2 border-[#121212] max-h-[90vh] flex flex-col">
+            <div class="p-4 sm:p-5 bg-[#121212] text-white flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="bg-[#FAF8F5] px-2 py-1">
+                        <img src="assets/logo.svg" alt="Azzahra" class="h-6 w-auto">
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-xl">Panduan Ukuran (Size Guide) & Kalkulator Fit</h3>
+                        <p class="font-mono text-[10px] text-stone-400 uppercase">STANDAR UKURAN BUTIK AZZAHRA MODEST & SEPATU LOKAL</p>
+                    </div>
+                </div>
+                <button onclick="closeSizeGuideModal()" class="w-8 h-8 bg-stone-800 hover:bg-stone-700 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-6 flex-1">
+                <!-- Interactive Weight/Height Fit Finder -->
+                <div class="bg-blush-50 border border-stone-300 p-4">
+                    <h4 class="font-mono font-bold text-xs uppercase tracking-wider text-rosegold-600 mb-3">
+                        KALKULATOR REKOMENDASI UKURAN OTOMATIS
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+                        <div>
+                            <label class="block font-mono text-[11px] font-bold text-stone-600 mb-1">BERAT BADAN (KG)</label>
+                            <input type="number" id="fitWeight" value="58" min="35" max="120" oninput="calculateRecommendedSize()" class="w-full px-3 py-2 bg-white border border-stone-300 text-sm font-mono font-bold">
+                        </div>
+                        <div>
+                            <label class="block font-mono text-[11px] font-bold text-stone-600 mb-1">TINGGI BADAN (CM)</label>
+                            <input type="number" id="fitHeight" value="160" min="140" max="195" oninput="calculateRecommendedSize()" class="w-full px-3 py-2 bg-white border border-stone-300 text-sm font-mono font-bold">
+                        </div>
+                        <div class="bg-white border border-rosegold-600 p-2.5 text-center">
+                            <span class="block font-mono text-[10px] text-stone-500 font-semibold uppercase">Rekomendasi Fit:</span>
+                            <span id="fitResultText" class="font-mono text-sm font-bold text-rosegold-600">Size M (LD 100 cm)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gamis & Koko Table -->
+                <div>
+                    <h4 class="font-bold text-sm text-stone-900 mb-2">1. Tabel Ukuran Gamis, Tunik & Kemeja Koko (cm)</h4>
+                    <div class="overflow-x-auto border border-stone-300">
+                        <table class="w-full text-xs text-left font-mono">
+                            <thead class="bg-[#121212] text-white font-bold uppercase">
+                                <tr>
+                                    <th class="p-3">Ukuran</th>
+                                    <th class="p-3">Lingkar Dada (LD)</th>
+                                    <th class="p-3">Panjang Baju (Gamis/Koko)</th>
+                                    <th class="p-3">Estimasi Berat Badan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr>
+                                    <td class="p-3 font-bold text-rosegold-600">S</td>
+                                    <td class="p-3">94 cm</td>
+                                    <td class="p-3">135 cm / 72 cm</td>
+                                    <td class="p-3">42 – 52 kg</td>
+                                </tr>
+                                <tr class="bg-blush-50">
+                                    <td class="p-3 font-bold text-rosegold-600">M</td>
+                                    <td class="p-3">100 cm</td>
+                                    <td class="p-3">138 cm / 74 cm</td>
+                                    <td class="p-3">53 – 62 kg</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-rosegold-600">L</td>
+                                    <td class="p-3">106 cm</td>
+                                    <td class="p-3">140 cm / 76 cm</td>
+                                    <td class="p-3">63 – 73 kg</td>
+                                </tr>
+                                <tr class="bg-blush-50">
+                                    <td class="p-3 font-bold text-rosegold-600">XL</td>
+                                    <td class="p-3">114 cm</td>
+                                    <td class="p-3">142 cm / 78 cm</td>
+                                    <td class="p-3">74 – 88 kg</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-rosegold-600">All Size</td>
+                                    <td class="p-3">Fit hingga 110 cm</td>
+                                    <td class="p-3">138 cm (Tali Samping)</td>
+                                    <td class="p-3">48 – 75 kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Shoe Size Table -->
+                <div>
+                    <h4 class="font-bold text-sm text-stone-900 mb-2">2. Panduan Insole Sepatu & Sandal Lokal</h4>
+                    <div class="grid grid-cols-4 gap-2 text-center font-mono text-xs">
+                        <div class="p-2.5 border border-stone-300 bg-blush-50">
+                            <div class="font-bold text-stone-900">Size S (37)</div>
+                            <div class="text-stone-500 text-[11px]">23.0 cm</div>
+                        </div>
+                        <div class="p-2.5 border border-stone-300 bg-blush-50">
+                            <div class="font-bold text-stone-900">Size M (38)</div>
+                            <div class="text-stone-500 text-[11px]">23.5 cm</div>
+                        </div>
+                        <div class="p-2.5 border border-stone-300 bg-blush-50">
+                            <div class="font-bold text-stone-900">Size L (39)</div>
+                            <div class="text-stone-500 text-[11px]">24.5 cm</div>
+                        </div>
+                        <div class="p-2.5 border border-stone-300 bg-blush-50">
+                            <div class="font-bold text-stone-900">Size XL (40)</div>
+                            <div class="text-stone-500 text-[11px]">25.0 cm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-blush-50 border-t border-stone-300 flex justify-end">
+                <button onclick="closeSizeGuideModal()" class="bg-rosegold-600 hover:bg-[#121212] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 transition">
+                    Mengerti & Lanjut Belanja
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         QUICK VIEW PRODUCT MODAL
+         ========================================== -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
+        <div class="bg-white max-w-2xl w-full overflow-hidden shadow-2xl border-2 border-[#121212] max-h-[92vh] flex flex-col md:flex-row">
+            <!-- Left Image -->
+            <div class="md:w-5/12 relative bg-stone-900 h-60 md:h-auto">
+                <img id="qvImage" src="" alt="Produk" class="w-full h-full object-cover">
+                <span id="qvBadge" class="absolute top-3 left-3 bg-[#121212] text-white font-mono text-[10px] font-bold px-2.5 py-1 uppercase">Best Seller</span>
+            </div>
+
+            <!-- Right Details -->
+            <div class="md:w-7/12 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto space-y-4">
+                <div>
+                    <div class="flex items-start justify-between gap-2">
+                        <span id="qvCategory" class="font-mono text-[11px] font-bold uppercase tracking-wider text-rosegold-600">Kategori</span>
+                        <button onclick="closeQuickViewModal()" class="text-stone-400 hover:text-stone-800">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+                    <h3 id="qvTitle" class="font-serif font-bold text-2xl text-stone-900 mt-0.5">Nama Produk</h3>
+
+                    <!-- Certification / BPOM Badge if present -->
+                    <div id="qvBpomContainer" class="mt-2 hidden">
+                        <span id="qvBpomBadge" class="inline-flex items-center gap-1.5 font-mono bg-emerald-50 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2.5 py-1">
+                            <i class="fa-solid fa-shield-check"></i> BPOM Resmi & Halal MUI
+                        </span>
+                    </div>
+
+                    <!-- Dual Price Box -->
+                    <div class="mt-3 p-3 bg-blush-50 border border-stone-300 flex items-center justify-between font-mono">
+                        <div>
+                            <span class="block text-[10px] text-stone-500 uppercase font-bold">Harga Satuan (Ecer)</span>
+                            <span id="qvPriceEcer" class="text-base font-bold text-stone-800">Rp 245.000</span>
+                        </div>
+                        <div class="text-right border-l border-stone-300 pl-3">
+                            <span class="block text-[10px] text-rosegold-600 uppercase font-bold">Harga Reseller (&ge;3 Pcs)</span>
+                            <span id="qvPriceReseller" class="text-lg font-bold text-rosegold-600">Rp 208.250</span>
+                        </div>
+                    </div>
+
+                    <p id="qvDesc" class="text-xs sm:text-sm text-stone-600 mt-3 leading-relaxed"></p>
+
+                    <!-- Swatch Selection inside Quick View -->
+                    <div class="mt-4">
+                        <label class="block text-xs font-bold text-stone-700 mb-1.5">Pilihan Warna / Varian: <span id="qvSelectedColorText" class="font-mono text-rosegold-600 font-bold"></span></label>
+                        <div id="qvColorSwatches" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <!-- Size Selection inside Quick View -->
+                    <div class="mt-4">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="text-xs font-bold text-stone-700">Pilihan Ukuran / Tipe: <span id="qvSelectedSizeText" class="font-mono text-rosegold-600 font-bold"></span></label>
+                            <button onclick="closeQuickViewModal(); openSizeGuideModal();" class="font-mono text-[11px] text-rosegold-600 hover:underline font-semibold">Lihat Size Chart</button>
+                        </div>
+                        <div id="qvSizeOptions" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Actions -->
+                <div class="pt-3 border-t border-stone-200 flex items-center gap-3">
+                    <div class="flex items-center border border-stone-300 overflow-hidden font-mono">
+                        <button onclick="adjustQvQty(-1)" class="px-3 py-2 bg-stone-100 hover:bg-stone-200 font-bold text-sm">-</button>
+                        <input type="number" id="qvQtyInput" value="1" min="1" class="w-12 text-center font-bold text-sm py-2 focus:outline-none">
+                        <button onclick="adjustQvQty(1)" class="px-3 py-2 bg-stone-100 hover:bg-stone-200 font-bold text-sm">+</button>
+                    </div>
+                    <button onclick="confirmAddFromQuickView()" class="flex-1 bg-rosegold-600 hover:bg-[#121212] text-white font-bold py-2.5 px-4 transition flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Masukkan ke Tas Belanja</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE-OVER SHOPPING CART DRAWER + CEK ONGKIR
+         ========================================== -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden"></div>
+
+    <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col border-l-2 border-[#121212]">
+        <!-- Drawer Header -->
+        <div class="p-4 sm:p-5 bg-[#121212] text-white flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="bg-[#FAF8F5] px-2.5 py-1">
+                    <img src="assets/logo.svg" alt="Azzahra & GlowLokal" class="h-7 w-auto">
+                </div>
+                <div>
+                    <h3 class="font-serif font-bold text-xl leading-tight">Tas Belanja & Cek Ongkir</h3>
+                    <p class="font-mono text-[10px] text-stone-400 uppercase">WHATSAPP CHECKOUT SYSTEM</p>
+                </div>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 bg-stone-800 hover:bg-stone-700 text-stone-300 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Tiered Reseller Status Banner -->
+        <div id="cartResellerBanner" class="bg-blush-100 border-b border-stone-300 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-tags text-rosegold-600"></i>
+                <span id="cartResellerStatusText" class="font-semibold text-stone-800">Beli 3 pcs untuk klaim otomatis <strong>Harga Reseller Hemat 15%</strong>!</span>
+            </div>
+            <span id="cartResellerCountPill" class="font-mono bg-rosegold-100 text-rosegold-800 font-bold px-2.5 py-0.5 text-[11px] shrink-0">0 / 3 Pcs</span>
+        </div>
+
+        <!-- Scrollable Drawer Content -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-6">
+            <!-- Cart Items -->
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-stone-500">Daftar Artikel Pilihan</h4>
+                    <button onclick="clearCart()" id="clearCartBtn" class="font-mono text-xs text-red-600 hover:underline font-semibold hidden">Kosongkan</button>
+                </div>
+                <div id="cartItemsContainer" class="space-y-3"></div>
+            </div>
+
+            <!-- VOUCHER PROMO BOX -->
+            <div class="bg-blush-50 p-4 border border-stone-300">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="font-mono text-xs font-bold uppercase tracking-wider text-stone-800">
+                        <i class="fa-solid fa-ticket text-rosegold-600 mr-1"></i> Voucher Diskon Toko
+                    </label>
+                    <button onclick="applyVoucherQuick('UMKMAJU')" class="font-mono text-[11px] bg-white border border-stone-300 hover:border-rosegold-600 text-rosegold-700 font-bold px-2.5 py-0.5 transition">
+                        Pakai Kode: UMKMAJU (-Rp 20.000)
+                    </button>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="voucherInput" placeholder="Masukkan kode promo (UMKMAJU)" class="flex-1 px-3 py-2 text-xs font-mono font-bold uppercase bg-white border border-stone-300 focus:outline-none focus:border-rosegold-600">
+                    <button onclick="handleApplyVoucher()" class="bg-[#121212] hover:bg-rosegold-600 text-white font-mono font-bold text-xs uppercase px-4 py-2 transition">
+                        Terapkan
+                    </button>
+                </div>
+                <p id="voucherFeedback" class="text-[11px] mt-1.5 font-semibold hidden"></p>
+            </div>
+
+            <!-- SIMULATOR CEK ONGKIR & DATA PENERIMA -->
+            <div class="bg-blush-50 p-4 sm:p-5 border border-stone-300 space-y-4">
+                <div class="flex items-center justify-between border-b border-stone-300 pb-2.5">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-truck-fast text-rosegold-600"></i>
+                        <h4 class="font-serif font-bold text-lg text-stone-900">Cek Ongkir & Alamat Pengiriman</h4>
+                    </div>
+                    <span class="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5">SIMULATOR TARIF</span>
+                </div>
+
+                <!-- Kota Tujuan & Ekspedisi -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Kota Tujuan (Tarif Ongkir)</label>
+                        <select id="shippingCity" onchange="updateCartUI()" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 font-semibold text-stone-800 focus:outline-none focus:border-rosegold-600">
+                            <option value="10000" data-city="Jakarta & Bodetabek">Jakarta & Bodetabek — Rp 10.000</option>
+                            <option value="12000" data-city="Bandung & Jawa Barat">Bandung & Jawa Barat — Rp 12.000</option>
+                            <option value="18000" data-city="Surabaya / Semarang / DIY">Surabaya / Jateng / DIY — Rp 18.000</option>
+                            <option value="32000" data-city="Medan / Makassar / Luar Jawa">Medan / Makassar / Luar Jawa — Rp 32.000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Pilih Ekspedisi Kurir</label>
+                        <select id="shippingCourier" onchange="updateCartUI()" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 font-semibold text-stone-800 focus:outline-none focus:border-rosegold-600">
+                            <option value="J&T Express (Reguler)">J&T Express (Bisa COD)</option>
+                            <option value="JNE Reguler / YES">JNE Reguler / YES</option>
+                            <option value="SiCepat BEST / Halu">SiCepat BEST / Halu</option>
+                            <option value="GoSend / GrabExpress Instant">GoSend Instant (Jadetabek)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Customer Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Nama Penerima <span class="text-red-500">*</span></label>
+                        <input type="text" id="custName" value="Nabila Putri" placeholder="Nama lengkap penerima" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-rosegold-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">No. WhatsApp Aktif <span class="text-red-500">*</span></label>
+                        <input type="tel" id="custPhone" value="081388990011" placeholder="0813xxxx" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-rosegold-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Alamat Lengkap & Kode Pos <span class="text-red-500">*</span></label>
+                    <textarea id="custAddress" rows="2" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 focus:outline-none focus:border-rosegold-600">Jl. Dago Asri No. 19, Coblong, Kota Bandung, Jawa Barat 40135</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Metode Pembayaran</label>
+                        <select id="custPayment" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300 font-semibold text-stone-800">
+                            <option value="QRIS Resmi (Bebas Admin)">QRIS Resmi (Bebas Admin)</option>
+                            <option value="Transfer Bank BCA / Mandiri / BRI">Transfer BCA / Mandiri / BRI</option>
+                            <option value="COD (Bayar di Tempat ke Kurir)">COD (Bayar di Tempat)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Opsi Dropship (Opsional)</label>
+                        <input type="text" id="custDropship" placeholder="Nama Toko Pengirim (Dropship)" class="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-stone-300">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer: Breakdown & WhatsApp CTA -->
+        <div class="p-4 sm:p-5 bg-white border-t border-stone-300 space-y-3 shrink-0">
+            <div class="space-y-1.5 text-xs font-mono">
+                <div class="flex justify-between text-stone-600">
+                    <span>Subtotal Harga Ecer (<span id="summaryTotalQty">0</span> pcs):</span>
+                    <span id="summaryNormalSubtotal" class="font-semibold text-stone-800">Rp 0</span>
+                </div>
+                <div id="summaryResellerRow" class="flex justify-between text-rosegold-600 font-bold hidden">
+                    <span>Potongan Harga Reseller 15% (&ge; 3 Pcs):</span>
+                    <span id="summaryResellerDiscount">- Rp 0</span>
+                </div>
+                <div id="summaryVoucherRow" class="flex justify-between text-emerald-700 font-bold hidden">
+                    <span>Potongan Voucher (<span id="summaryVoucherCode">UMKMAJU</span>):</span>
+                    <span id="summaryVoucherDiscount">- Rp 20.000</span>
+                </div>
+                <div class="flex justify-between text-stone-600">
+                    <span>Ongkos Kirim (<span id="summaryCourierLabel">J&T Express</span>):</span>
+                    <span id="summaryShippingCost" class="font-bold text-stone-800">Rp 10.000</span>
+                </div>
+                <div class="flex justify-between items-baseline pt-2 border-t border-stone-200">
+                    <span class="text-sm font-bold text-stone-900 uppercase">Total Pembayaran:</span>
+                    <span id="summaryGrandTotal" class="text-lg sm:text-xl font-bold text-rosegold-600">Rp 0</span>
+                </div>
+            </div>
+
+            <button onclick="openWaReceiptPreview()" class="w-full bg-rosegold-600 hover:bg-[#121212] text-white font-bold py-3.5 px-5 transition flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Pesan Sekarang via WhatsApp</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==========================================
+         WHATSAPP RECEIPT PREVIEW MODAL
+         ========================================== -->
+    <div id="receiptModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
+        <div class="bg-white max-w-lg w-full overflow-hidden shadow-2xl border-2 border-[#121212] flex flex-col max-h-[92vh]">
+            <div class="p-4 sm:p-5 bg-[#121212] text-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="bg-[#FAF8F5] px-2 py-1">
+                        <img src="assets/logo.svg" alt="Azzahra & GlowLokal" class="h-6 w-auto">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm font-mono uppercase">Nota Belanja Azzahra & GlowLokal</h3>
+                        <p class="text-[11px] text-stone-400">Rincian warna, ukuran, ongkir & diskon siap dikirim ke WA</p>
+                    </div>
+                </div>
+                <button onclick="closeReceiptModal()" class="w-8 h-8 bg-stone-800 hover:bg-stone-700 text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1 bg-blush-50">
+                <div class="bg-white border border-stone-300 p-4">
+                    <div class="flex items-center justify-between border-b border-dashed border-stone-300 pb-3 mb-3">
+                        <div>
+                            <div class="font-serif font-bold text-lg text-stone-900">AZZAHRA & GLOWLOKAL STORE</div>
+                            <div class="text-[11px] text-stone-500">Order ID: <span id="receiptOrderId" class="font-mono font-bold text-stone-800">AZG-9012</span></div>
+                        </div>
+                        <span id="receiptTierBadge" class="font-mono bg-rosegold-100 text-rosegold-700 text-[10px] font-bold px-2.5 py-1">HARGA RESELLER</span>
+                    </div>
+                    <pre id="receiptPreviewText" class="text-xs font-mono text-stone-800 whitespace-pre-wrap leading-relaxed overflow-x-auto"></pre>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t border-stone-300 flex flex-col sm:flex-row gap-2.5">
+                <button onclick="copyReceiptText()" id="copyReceiptBtn" class="sm:w-1/3 py-3 px-4 border border-stone-300 hover:bg-stone-100 text-stone-700 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Salin Nota</span>
+                </button>
+                <a id="waCheckoutUrl" href="#" target="_blank" rel="noopener noreferrer" class="sm:w-2/3 bg-rosegold-600 hover:bg-[#121212] text-white font-bold py-3 px-5 flex items-center justify-center gap-2 text-xs uppercase tracking-wider transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Kirim Pesanan ke WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastBox" class="fixed bottom-6 right-6 z-50 hidden">
+        <div class="bg-[#121212] text-white px-4 py-3 shadow-2xl border border-stone-700 flex items-center gap-3">
+            <div class="w-8 h-8 bg-rosegold-600 flex items-center justify-center text-white shrink-0">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="text-xs">
+                <div id="toastTitle" class="font-bold text-white">Berhasil Ditambahkan</div>
+                <div id="toastSubtitle" class="text-stone-300">Produk masuk ke tas belanja.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+         ========================================== -->
+    <script>
+        // Centralized Footer & Contact Configuration
+        const FOOTER_CONFIG = {
+            brandName: 'Azzahra & GlowLokal',
+            tagline: 'Modest Atelier & Botanical Dermacare',
+            whatsappNumber: '6281299887766',
+            whatsappDisplay: '0812-9988-7766 (Admin CS & Reseller)',
+            email: 'halo@azzahraglow.id',
+            address: 'Butik Azzahra & GlowLokal Atelier, Jl. Ir. H. Juanda (Dago) No. 118, Coblong, Kota Bandung, Jawa Barat 40132',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Ir.+H.+Juanda+No.+118+Dago+Bandung',
+            operationalHours: 'Senin – Minggu: 09.00 – 21.00 WIB (Pengiriman Setiap Hari)',
+            socials: {
+                instagram: 'https://instagram.com/azzahraglow.id',
+                tiktok: 'https://tiktok.com/@azzahraglow.id',
+                whatsapp: 'https://wa.me/6281299887766?text=Halo%20Admin%20Azzahra%20%26%20GlowLokal%2C%20saya%20ingin%20konsultasi%20produk%20Modest%20Fashion%20%2F%20Skincare%20BPOM',
+                youtube: 'https://youtube.com/@azzahraglowatelier'
+            }
+        };
+
+        // Color Swatch Map
+        const colorHexMap = {
+            "Sage Green": "#84a98c",
+            "Dusty Pink": "#d88c9a",
+            "Mocca": "#a68a71",
+            "Black": "#1e293b",
+            "Broken White": "#f8f5f0",
+            "Rose Gold": "#e5989b"
+        };
+
+        // 12 Rich Fashion & Skincare BPOM Products with Local Photography Assets
+        const products = [
+            {
+                id: 1,
+                name: "Abaya Gamis Silk Arabian 'Mahreen Series'",
+                category: "gamis",
+                categoryLabel: "Gamis & Dress",
+                price: 245000,
+                featured: true,
+                badge: "Best Seller #1",
+                bpom: null,
+                colors: ["Sage Green", "Dusty Pink", "Mocca", "Black", "Broken White"],
+                sizes: ["S", "M", "L", "XL"],
+                image: "assets/images/prod-01-abaya-silk.jpg",
+                desc: "Abaya mewah berbahan Armani Silk original yang sejuk, jatuh tidak menerawang, dilengkapi resleting depan (Busui Friendly) & lengan manset kancing (Wudhu Friendly)."
+            },
+            {
+                id: 2,
+                name: "One Set Tunik & Kulot Linen 'Nadhira Daily'",
+                category: "gamis",
+                categoryLabel: "Gamis & Dress",
+                price: 195000,
+                featured: true,
+                badge: "Setelan Favorit",
+                bpom: null,
+                colors: ["Dusty Pink", "Sage Green", "Mocca", "Broken White", "Black"],
+                sizes: ["S", "M", "L", "XL", "All Size"],
+                image: "assets/images/prod-02-oneset-linen.jpg",
+                desc: "Setelan atasan tunik asimetris dan celana kulot highwaist bahan Polo Linen airflow anti kusut. Sangat nyaman untuk aktivitas harian, kuliah, maupun arisan."
+            },
+            {
+                id: 3,
+                name: "Pashmina Ceruty Babydoll Plisket Premium",
+                category: "hijab",
+                categoryLabel: "Hijab & Pashmina",
+                price: 49000,
+                featured: true,
+                badge: "Essential Hijab",
+                bpom: null,
+                colors: ["Dusty Pink", "Sage Green", "Mocca", "Black", "Broken White"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-03-pashmina.jpg",
+                desc: "Pashmina ukuran panjang 180x75cm berbahan Ceruty Babydoll import dengan tekstur plisket lidi rapat, mudah dibentuk mengikuti wajah tanpa perlu disetrika."
+            },
+            {
+                id: 4,
+                name: "Hijab Segiempat Voal Ultrafine Laser Cut 'Senja'",
+                category: "hijab",
+                categoryLabel: "Hijab & Pashmina",
+                price: 75000,
+                featured: false,
+                badge: "Free Hardbox",
+                bpom: null,
+                colors: ["Sage Green", "Dusty Pink", "Mocca", "Broken White"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-04-hijab-voal.jpg",
+                desc: "Hijab segiempat motif eksklusif berbahan Voal Ultrafine yang langsung tegak paripurna di dahi, adem, tidak kedap telinga, dikemas dalam Hardbox cantik."
+            },
+            {
+                id: 5,
+                name: "Kemeja Koko Kurta Katun Toyobo 'Al-Fatih'",
+                category: "koko",
+                categoryLabel: "Kemeja & Koko",
+                price: 165000,
+                featured: true,
+                badge: "Katun Jepang",
+                bpom: null,
+                colors: ["Sage Green", "Mocca", "Black", "Broken White"],
+                sizes: ["S", "M", "L", "XL"],
+                image: "assets/images/prod-05-koko-kurta.jpg",
+                desc: "Koko Kurta lengan 3/4 berbahan Katun Toyobo Fodu asli Jepang yang tebal namun dingin di kulit. Dilengkapi 1 saku dada dan 2 saku samping dalam."
+            },
+            {
+                id: 6,
+                name: "Koko Kemko Kombinasi Tenun Etnik Nusantara",
+                category: "koko",
+                categoryLabel: "Kemeja & Koko",
+                price: 185000,
+                featured: false,
+                badge: "Bisa Seragam",
+                bpom: null,
+                colors: ["Mocca", "Black", "Sage Green", "Broken White"],
+                sizes: ["S", "M", "L", "XL"],
+                image: "assets/images/prod-06-koko-tenun.jpg",
+                desc: "Kemeja Koko kerah shanghai elegan dengan aksen tenun ikat asli di bagian dada. Cocok untuk ibadah Jumat, Hari Raya, maupun acara resmi kantor."
+            },
+            {
+                id: 7,
+                name: "GlowLokal 10% Niacinamide + Centella Serum",
+                category: "skincare",
+                categoryLabel: "Skincare BPOM",
+                price: 115000,
+                featured: true,
+                badge: "Terlaris BPOM",
+                bpom: "BPOM NA18241900812 • Halal MUI",
+                colors: ["Dusty Pink", "Sage Green"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-07-serum-niacinamide.jpg",
+                desc: "Serum pencerah wajah dengan 10% Niacinamide Pharma Grade & Ekstrak Centella Asiatica lokal. Efektif memudarkan bekas jerawat & mencerahkan dalam 14 hari."
+            },
+            {
+                id: 8,
+                name: "Paket Glowing Barrier 4-in-1 Skincare Series",
+                category: "skincare",
+                categoryLabel: "Skincare BPOM",
+                price: 280000,
+                featured: true,
+                badge: "Paket Lengkap",
+                bpom: "BPOM NA18240102941 • Halal MUI",
+                colors: ["Dusty Pink", "Sage Green", "Broken White"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-08-skincare-bundle.jpg",
+                desc: "Rangkaian lengkap 4 produk: Gentle Facial Wash, Hydrating Essence Toner, UV Day Cream SPF 35 PA+++ & Ceramide Night Cream. Aman untuk Bumil & Busui."
+            },
+            {
+                id: 9,
+                name: "Moisturizer 5X Ceramide + Rose Water Gel",
+                category: "skincare",
+                categoryLabel: "Skincare BPOM",
+                price: 98000,
+                featured: false,
+                badge: "Skin Barrier",
+                bpom: "BPOM NA18240105519 • Halal MUI",
+                colors: ["Dusty Pink", "Broken White"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-09-moisturizer-gel.jpg",
+                desc: "Pelembap tekstur water-gel ringan yang cepat meresap tanpa rasa lengket. Mengandung 5 tipe Ceramide dan Air Mawar organik untuk menenangkan kulit kemerahan."
+            },
+            {
+                id: 10,
+                name: "Extrait de Parfum 'Vanilla Rose & Oud' 50ml",
+                category: "parfum",
+                categoryLabel: "Parfum Lokal",
+                price: 135000,
+                featured: true,
+                badge: "Tahan 16 Jam",
+                bpom: "BPOM NA18240601190 • Halal Sholat",
+                colors: ["Dusty Pink", "Mocca", "Black"],
+                sizes: ["All Size"],
+                image: "assets/images/prod-10-parfum-oud.jpg",
+                desc: "Parfum lokal konsentrasi Extrait de Parfum dengan perpaduan elegan Bulgarian Rose, Madagascar Vanilla & sentuhan hangat Kayu Oud. Aman dipakai beribadah."
+            },
+            {
+                id: 11,
+                name: "Flat Shoes Mary Jane 'Clemira Soft Leather'",
+                category: "sepatu",
+                categoryLabel: "Sepatu & Sandal",
+                price: 179000,
+                featured: true,
+                badge: "Bantalan Empuk",
+                bpom: null,
+                colors: ["Black", "Mocca", "Broken White", "Dusty Pink"],
+                sizes: ["S", "M", "L", "XL"],
+                image: "assets/images/prod-11-flat-shoes.jpg",
+                desc: "Sepatu flat Mary Jane handmade pengrajin lokal dengan kulit vegan super lembut dan insole busa tebal anti pegal. Ukuran S(37), M(38), L(39), XL(40)."
+            },
+            {
+                id: 12,
+                name: "Sandal Heels Mules Pesta 5cm 'Aurelia Pearl'",
+                category: "sepatu",
+                categoryLabel: "Sepatu & Sandal",
+                price: 210000,
+                featured: false,
+                badge: "Koleksi Pesta",
+                bpom: null,
+                colors: ["Broken White", "Dusty Pink", "Mocca", "Black"],
+                sizes: ["S", "M", "L", "XL"],
+                image: "assets/images/prod-12-heels-pearl.jpg",
+                desc: "Heels tinggi 5cm yang stabil dengan detail mutiara jahit tangan. Sol karet non-slip tidak licin di lantai keramik. Ukuran S(37), M(38), L(39), XL(40)."
+            }
+        ];
+
+        // State Management
+        let activeCategory = 'all';
+        let highlightResellerMode = false;
+        let selectedOptions = {}; // { [productId]: { color, size } }
+        let currentQvProductId = null;
+        let appliedVoucher = null; // 'UMKMAJU' -> 20000
+
+        // Initialize Default Selected Swatches & Sizes per Product
+        products.forEach(p => {
+            selectedOptions[p.id] = {
+                color: p.colors[0],
+                size: p.sizes[0]
+            };
+        });
+
+        // Initial Cart Items
+        let cart = [
+            {
+                cartId: 'init-1',
+                productId: 1,
+                name: "Abaya Gamis Silk Arabian 'Mahreen Series'",
+                price: 245000,
+                qty: 1,
+                color: "Sage Green",
+                size: "M",
+                image: "assets/images/prod-01-abaya-silk.jpg"
+            },
+            {
+                cartId: 'init-2',
+                productId: 7,
+                name: "GlowLokal 10% Niacinamide + Centella Serum",
+                price: 115000,
+                qty: 1,
+                color: "Dusty Pink",
+                size: "All Size",
+                image: "assets/images/prod-07-serum-niacinamide.jpg"
+            }
+        ];
+
+        function formatRupiah(amount) {
+            return 'Rp ' + Math.round(amount).toLocaleString('id-ID');
+        }
+
+        function getResellerPrice(normalPrice) {
+            return Math.round(normalPrice * 0.85); // 15% OFF
+        }
+
+        // Toggle Ecer vs Reseller Display Mode
+        function setPriceDisplayMode(mode) {
+            highlightResellerMode = (mode === 'reseller');
+            document.getElementById('resellerToggleCheckbox').checked = highlightResellerMode;
+            updateModeButtonsUI();
+            renderProducts();
+        }
+
+        function toggleResellerMode(checked) {
+            highlightResellerMode = checked;
+            updateModeButtonsUI();
+            renderProducts();
+        }
+
+        function updateModeButtonsUI() {
+            const ecerBtn = document.getElementById('modeEcerBtn');
+            const resBtn = document.getElementById('modeResellerBtn');
+            const badge = document.getElementById('resellerActiveBadge');
+
+            if (highlightResellerMode) {
+                resBtn.className = "px-3.5 py-1.5 font-mono text-xs font-bold transition bg-rosegold-600 text-white";
+                ecerBtn.className = "px-3.5 py-1.5 font-mono text-xs font-bold transition text-stone-600 hover:text-stone-900";
+                badge.classList.remove('hidden');
+            } else {
+                ecerBtn.className = "px-3.5 py-1.5 font-mono text-xs font-bold transition bg-[#121212] text-white";
+                resBtn.className = "px-3.5 py-1.5 font-mono text-xs font-bold transition text-rosegold-600 hover:text-rosegold-800";
+                badge.classList.add('hidden');
+            }
+        }
+
+        // Category Filter
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = "cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-rosegold-600 text-white";
+                } else {
+                    btn.className = "cat-btn shrink-0 inline-flex items-center gap-2 px-4 py-2.5 font-bold text-xs sm:text-sm transition bg-blush-50 hover:bg-blush-100 text-stone-700 border border-stone-300";
+                }
+            });
+            renderProducts();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            renderProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sortSelect').value = 'featured';
+            filterCategory('all');
+        }
+
+        // Select Swatch or Size on Product Card
+        function selectCardColor(productId, color) {
+            selectedOptions[productId].color = color;
+            renderProducts();
+        }
+
+        function selectCardSize(productId, size) {
+            selectedOptions[productId].size = size;
+            renderProducts();
+        }
+
+        // Render Product Cards
+        function renderProducts() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const sortBy = document.getElementById('sortSelect').value;
+            const clearBtn = document.getElementById('clearSearchBtn');
+
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            let filtered = products.filter(p => {
+                const matchCat = activeCategory === 'all' || p.category === activeCategory;
+                const matchQuery = !query ||
+                    p.name.toLowerCase().includes(query) ||
+                    p.desc.toLowerCase().includes(query) ||
+                    p.categoryLabel.toLowerCase().includes(query) ||
+                    (p.bpom && p.bpom.toLowerCase().includes(query));
+                return matchCat && matchQuery;
+            });
+
+            if (sortBy === 'price-asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'name-asc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else {
+                filtered.sort((a, b) => (b.featured === a.featured) ? a.id - b.id : (b.featured ? 1 : -1));
+            }
+
+            document.getElementById('productCountText').textContent = filtered.length;
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(p => {
+                const opt = selectedOptions[p.id];
+                const resellerPrice = getResellerPrice(p.price);
+
+                return `
+                <article class="bg-white border ${highlightResellerMode ? 'border-rosegold-600 ring-1 ring-rosegold-600' : 'border-stone-300'} overflow-hidden flex flex-col product-card-transition group">
+                    <!-- Product Image -->
+                    <div class="relative h-64 overflow-hidden bg-stone-900">
+                        <img src="${p.image}" 
+                             alt="${p.name}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+
+                        <!-- Top Badges -->
+                        <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                            <span class="bg-[#121212] text-white font-mono text-[10px] font-bold uppercase px-2.5 py-1">
+                                ${p.badge}
+                            </span>
+                            <button onclick="openQuickViewModal(${p.id})" class="bg-white/95 hover:bg-rosegold-600 hover:text-white text-stone-900 font-mono text-[11px] font-bold px-2.5 py-1 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> Quick View
+                            </button>
+                        </div>
+
+                        <!-- BPOM / Halal Badge if Skincare/Parfum -->
+                        ${p.bpom ? `
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <span class="inline-flex items-center gap-1.5 bg-emerald-800/95 text-white font-mono text-[10px] font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-certificate"></i> ${p.bpom}
+                            </span>
+                        </div>
+                        ` : `
+                        <div class="absolute bottom-3 left-3">
+                            <span class="bg-white/95 text-stone-900 font-mono text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+                                ${p.categoryLabel}
+                            </span>
+                        </div>
+                        `}
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-stone-900 group-hover:text-rosegold-600 transition line-clamp-1">${p.name}</h3>
+                            <p class="text-xs text-stone-500 mt-1 line-clamp-2 leading-relaxed">${p.desc}</p>
+
+                            <!-- Dual Pricing Display: Harga Ecer vs Harga Reseller -->
+                            <div class="mt-3 p-2.5 font-mono ${highlightResellerMode ? 'bg-rosegold-50 border border-rosegold-600' : 'bg-blush-50 border border-stone-200'} flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[10px] text-stone-500 font-semibold uppercase">Harga Ecer (1-2 Pcs)</span>
+                                    <span class="text-sm font-bold ${highlightResellerMode ? 'line-through text-stone-400' : 'text-stone-900'}">${formatRupiah(p.price)}</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="inline-block bg-rosegold-600 text-white text-[9px] font-bold px-1.5 py-0.5 uppercase">Reseller -15% (&ge;3 Pcs)</span>
+                                    <span class="block text-base font-bold text-rosegold-600">${formatRupiah(resellerPrice)}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Color Swatches & Size Selector -->
+                        <div class="space-y-3 pt-2 border-t border-stone-200">
+                            <!-- Color Swatches -->
+                            <div>
+                                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                                    <span class="font-mono font-bold text-stone-500 uppercase">Warna:</span>
+                                    <span class="font-mono font-bold text-stone-900">${opt.color}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    ${p.colors.map(c => {
+                                        const isSelected = opt.color === c;
+                                        const hex = colorHexMap[c] || '#cbd5e1';
+                                        return `
+                                            <button type="button" 
+                                                    onclick="selectCardColor(${p.id}, '${c}')"
+                                                    title="${c}"
+                                                    style="background-color: ${hex};"
+                                                    class="w-6 h-6 rounded-full border ${c === 'Broken White' ? 'border-stone-400' : 'border-transparent'} ${isSelected ? 'ring-2 ring-offset-2 ring-rosegold-600 scale-110' : 'opacity-75 hover:opacity-100'} transition"></button>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Size Selector Pills -->
+                            <div>
+                                <div class="flex items-center justify-between text-[11px] mb-1.5">
+                                    <span class="font-mono font-bold text-stone-500 uppercase">Ukuran:</span>
+                                    <button onclick="openSizeGuideModal()" class="font-mono text-[10px] text-rosegold-600 hover:underline font-semibold">Size Chart</button>
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 font-mono">
+                                    ${p.sizes.map(sz => {
+                                        const isSelected = opt.size === sz;
+                                        return `
+                                            <button type="button"
+                                                    onclick="selectCardSize(${p.id}, '${sz}')"
+                                                    class="px-2.5 py-1 text-[11px] font-bold transition ${isSelected ? 'bg-[#121212] text-white' : 'bg-stone-100 hover:bg-stone-200 text-stone-700'}">
+                                                ${sz}
+                                            </button>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Add to Cart Button -->
+                            <button onclick="addFromCard(${p.id})" class="w-full py-2.5 px-4 bg-rosegold-600 hover:bg-[#121212] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>+ Tas (${opt.color} / ${opt.size})</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                `;
+            }).join('');
+        }
+
+        // Add Item from Card
+        function addFromCard(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const opt = selectedOptions[productId];
+            addItemToCart(product, 1, opt.color, opt.size);
+        }
+
+        // Quick View Modal Logic
+        function openQuickViewModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            currentQvProductId = productId;
+
+            document.getElementById('qvImage').src = product.image;
+            document.getElementById('qvBadge').textContent = product.badge;
+            document.getElementById('qvCategory').textContent = product.categoryLabel;
+            document.getElementById('qvTitle').textContent = product.name;
+            document.getElementById('qvPriceEcer').textContent = formatRupiah(product.price);
+            document.getElementById('qvPriceReseller').textContent = formatRupiah(getResellerPrice(product.price));
+            document.getElementById('qvDesc').textContent = product.desc;
+            document.getElementById('qvQtyInput').value = 1;
+
+            const bpomBox = document.getElementById('qvBpomContainer');
+            if (product.bpom) {
+                bpomBox.classList.remove('hidden');
+                document.getElementById('qvBpomBadge').innerHTML = `<i class="fa-solid fa-shield-check"></i> ${product.bpom}`;
+            } else {
+                bpomBox.classList.add('hidden');
+            }
+
+            renderQvOptions();
+
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function renderQvOptions() {
+            const product = products.find(p => p.id === currentQvProductId);
+            if (!product) return;
+            const opt = selectedOptions[product.id];
+
+            document.getElementById('qvSelectedColorText').textContent = opt.color;
+            document.getElementById('qvSelectedSizeText').textContent = opt.size;
+
+            document.getElementById('qvColorSwatches').innerHTML = product.colors.map(c => {
+                const isSelected = opt.color === c;
+                const hex = colorHexMap[c] || '#cbd5e1';
+                return `
+                    <button type="button" onclick="selectQvColor('${c}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 border text-xs font-bold transition ${isSelected ? 'border-rosegold-600 bg-rosegold-50 text-rosegold-800' : 'border-stone-300 bg-white text-stone-700'}">
+                        <span class="w-3.5 h-3.5 rounded-full border border-stone-300" style="background-color:${hex}"></span>
+                        <span>${c}</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('qvSizeOptions').innerHTML = product.sizes.map(sz => {
+                const isSelected = opt.size === sz;
+                return `
+                    <button type="button" onclick="selectQvSize('${sz}')" class="px-3.5 py-1.5 border font-mono text-xs font-bold transition ${isSelected ? 'bg-[#121212] text-white border-[#121212]' : 'bg-stone-100 text-stone-700 border-stone-300'}">
+                        ${sz}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectQvColor(color) {
+            selectedOptions[currentQvProductId].color = color;
+            renderQvOptions();
+            renderProducts();
+        }
+
+        function selectQvSize(size) {
+            selectedOptions[currentQvProductId].size = size;
+            renderQvOptions();
+            renderProducts();
+        }
+
+        function adjustQvQty(delta) {
+            const input = document.getElementById('qvQtyInput');
+            let val = parseInt(input.value) || 1;
+            input.value = Math.max(1, val + delta);
+        }
+
+        function confirmAddFromQuickView() {
+            const product = products.find(p => p.id === currentQvProductId);
+            if (!product) return;
+            const qty = parseInt(document.getElementById('qvQtyInput').value) || 1;
+            const opt = selectedOptions[product.id];
+            addItemToCart(product, qty, opt.color, opt.size);
+            closeQuickViewModal();
+            toggleCartDrawer(true);
+        }
+
+        function closeQuickViewModal() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Size Guide Modal Logic
+        function openSizeGuideModal() {
+            const modal = document.getElementById('sizeGuideModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            calculateRecommendedSize();
+        }
+
+        function closeSizeGuideModal() {
+            const modal = document.getElementById('sizeGuideModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function calculateRecommendedSize() {
+            const weight = parseFloat(document.getElementById('fitWeight').value) || 58;
+            let rec = "Size M (LD 100 cm)";
+            if (weight < 53) {
+                rec = "Size S (LD 94 cm)";
+            } else if (weight <= 62) {
+                rec = "Size M (LD 100 cm)";
+            } else if (weight <= 73) {
+                rec = "Size L (LD 106 cm)";
+            } else {
+                rec = "Size XL (LD 114 cm)";
+            }
+            document.getElementById('fitResultText').textContent = rec;
+        }
+
+        // Core Cart Management
+        function addItemToCart(product, qty, color, size) {
+            const existingIdx = cart.findIndex(item =>
+                item.productId === product.id &&
+                item.color === color &&
+                item.size === size
+            );
+
+            if (existingIdx > -1) {
+                cart[existingIdx].qty += qty;
+            } else {
+                cart.push({
+                    cartId: 'item-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6),
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    qty: qty,
+                    color: color,
+                    size: size,
+                    image: product.image
+                });
+            }
+
+            updateCartUI();
+            showToast(`${qty}x ${product.name}`, `Varian: ${color} • Ukuran: ${size}`);
+
+            const btn = document.getElementById('headerCartBtn');
+            btn.classList.remove('animate-cart-pulse');
+            void btn.offsetWidth;
+            btn.classList.add('animate-cart-pulse');
+        }
+
+        function adjustCartQty(cartId, delta) {
+            const idx = cart.findIndex(i => i.cartId === cartId);
+            if (idx === -1) return;
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(cartId) {
+            cart = cart.filter(i => i.cartId !== cartId);
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        // Voucher Promo Logic
+        function applyVoucherQuick(code) {
+            document.getElementById('voucherInput').value = code;
+            handleApplyVoucher();
+            toggleCartDrawer(true);
+        }
+
+        function handleApplyVoucher() {
+            const code = document.getElementById('voucherInput').value.trim().toUpperCase();
+            const feedback = document.getElementById('voucherFeedback');
+            feedback.classList.remove('hidden');
+
+            if (code === 'UMKMAJU' || code === 'BERKAH20' || code === 'GLOW20') {
+                appliedVoucher = { code: code, discount: 20000 };
+                feedback.className = "text-[11px] mt-1.5 font-bold text-emerald-700";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> Voucher ${code} berhasil dipasang! Potongan Rp 20.000 aktif.`;
+                showToast(`Voucher ${code} Aktif!`, "Potongan Rp 20.000 berhasil diterapkan.");
+            } else {
+                appliedVoucher = null;
+                feedback.className = "text-[11px] mt-1.5 font-bold text-red-600";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Kode tidak valid. Gunakan kode: UMKMAJU`;
+            }
+            updateCartUI();
+        }
+
+        // Calculate Cart Totals (with >= 3 pcs 15% Reseller Discount + Ongkir + Voucher)
+        function getCartTotals() {
+            let totalQty = 0;
+            let normalSubtotal = 0;
+
+            cart.forEach(item => {
+                totalQty += item.qty;
+                normalSubtotal += item.price * item.qty;
+            });
+
+            const qualifiesReseller = totalQty >= 3;
+            const resellerDiscount = qualifiesReseller ? Math.round(normalSubtotal * 0.15) : 0;
+            const subtotalAfterReseller = normalSubtotal - resellerDiscount;
+
+            const voucherDiscount = (appliedVoucher && totalQty > 0) ? Math.min(appliedVoucher.discount, subtotalAfterReseller) : 0;
+
+            const citySelect = document.getElementById('shippingCity');
+            const shippingCost = totalQty > 0 ? (parseInt(citySelect.value) || 10000) : 0;
+            const cityName = citySelect.options[citySelect.selectedIndex]?.getAttribute('data-city') || 'Jakarta';
+            const courierName = document.getElementById('shippingCourier').value;
+
+            const grandTotal = Math.max(0, subtotalAfterReseller - voucherDiscount + shippingCost);
+
+            return {
+                totalQty,
+                normalSubtotal,
+                qualifiesReseller,
+                resellerDiscount,
+                voucherDiscount,
+                shippingCost,
+                cityName,
+                courierName,
+                grandTotal
+            };
+        }
+
+        function updateCartUI() {
+            const calc = getCartTotals();
+
+            // Update Header & Mobile Sticky Bar
+            document.getElementById('cartCountBadge').textContent = calc.totalQty;
+            document.getElementById('headerCartTotal').textContent = formatRupiah(calc.grandTotal);
+            document.getElementById('headerCartTierLabel').textContent = calc.qualifiesReseller ? "RESELLER (-15%)" : "TAS BELANJA";
+
+            document.getElementById('mobileCartQty').textContent = calc.totalQty;
+            document.getElementById('mobileCartTotal').textContent = formatRupiah(calc.grandTotal);
+
+            const mobileBar = document.getElementById('mobileStickyCart');
+            if (calc.totalQty > 0) {
+                mobileBar.classList.remove('hidden');
+            } else {
+                mobileBar.classList.add('hidden');
+            }
+
+            // Reseller Progress Banner inside Cart
+            const banner = document.getElementById('cartResellerBanner');
+            const statusText = document.getElementById('cartResellerStatusText');
+            const countPill = document.getElementById('cartResellerCountPill');
+
+            if (calc.qualifiesReseller) {
+                banner.className = "bg-emerald-50 border-b border-emerald-200 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0";
+                statusText.innerHTML = `<span class="text-emerald-800 font-bold">[HARGA RESELLER AKTIF] Anda Hemat ${formatRupiah(calc.resellerDiscount)} (15%)</span>`;
+                countPill.className = "font-mono bg-emerald-700 text-white font-bold px-2.5 py-0.5 text-[11px] shrink-0";
+                countPill.textContent = `${calc.totalQty} Pcs ✓`;
+                document.getElementById('mobileResellerHint').textContent = `Harga Reseller 15% Aktif (-${formatRupiah(calc.resellerDiscount)})`;
+            } else {
+                const needed = Math.max(0, 3 - calc.totalQty);
+                banner.className = "bg-blush-100 border-b border-stone-300 px-4 py-2.5 text-xs flex items-center justify-between gap-2 shrink-0";
+                statusText.innerHTML = `Tambah <strong>${needed} pcs lagi</strong> untuk otomatis dapat <strong>Harga Reseller Hemat 15%</strong>!`;
+                countPill.className = "font-mono bg-rosegold-100 text-rosegold-800 font-bold px-2.5 py-0.5 text-[11px] shrink-0";
+                countPill.textContent = `${calc.totalQty} / 3 Pcs`;
+                document.getElementById('mobileResellerHint').textContent = `Tambah ${needed} pcs lagi untuk Diskon Reseller 15%`;
+            }
+
+            // Render Cart Items
+            const container = document.getElementById('cartItemsContainer');
+            const clearBtn = document.getElementById('clearCartBtn');
+
+            if (cart.length === 0) {
+                clearBtn.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="text-center py-8 bg-blush-50 border border-dashed border-stone-300 p-4">
+                        <i class="fa-solid fa-bag-shopping text-3xl text-stone-300 mb-2"></i>
+                        <p class="text-sm font-bold text-stone-700">Tas Belanja Masih Kosong</p>
+                        <p class="text-xs text-stone-500 mt-1 mb-4">Beli minimal 3 pcs produk apa saja otomatis dapat Harga Reseller Hemat 15%.</p>
+                        <button onclick="activateDemoResellerBundle()" class="text-xs bg-rosegold-600 text-white font-bold px-3.5 py-2 hover:bg-[#121212] transition">
+                            + Isi Contoh Paket 3 Pcs (Harga Reseller)
+                        </button>
+                    </div>
+                `;
+            } else {
+                clearBtn.classList.remove('hidden');
+                container.innerHTML = cart.map(item => {
+                    const unitEffectivePrice = calc.qualifiesReseller ? getResellerPrice(item.price) : item.price;
+                    return `
+                    <div class="bg-white p-3.5 border border-stone-300 flex gap-3 items-start">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover shrink-0 bg-stone-100 border border-stone-200">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <h5 class="font-bold text-xs sm:text-sm text-stone-900 truncate">${item.name}</h5>
+                                <button onclick="removeCartItem('${item.cartId}')" class="text-stone-400 hover:text-red-600 text-xs">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mt-1 font-mono">
+                                <span class="text-[10px] bg-blush-50 text-rosegold-700 border border-stone-300 px-2 py-0.5 font-semibold">Warna: ${item.color}</span>
+                                <span class="text-[10px] bg-stone-100 text-stone-700 border border-stone-300 px-2 py-0.5 font-semibold">Size: ${item.size}</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-stone-200">
+                                <div class="font-mono">
+                                    <span class="text-xs font-bold text-rosegold-600">${formatRupiah(unitEffectivePrice * item.qty)}</span>
+                                    ${calc.qualifiesReseller ? `
+                                        <span class="block text-[10px] text-emerald-700 font-semibold">Harga Reseller @ ${formatRupiah(unitEffectivePrice)}</span>
+                                    ` : `
+                                        <span class="block text-[10px] text-stone-400">Harga Ecer @ ${formatRupiah(item.price)}</span>
+                                    `}
+                                </div>
+                                <div class="flex items-center gap-1.5 font-mono">
+                                    <button onclick="adjustCartQty('${item.cartId}', -1)" class="w-7 h-7 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs">-</button>
+                                    <span class="w-7 text-center text-xs font-bold">${item.qty}</span>
+                                    <button onclick="adjustCartQty('${item.cartId}', 1)" class="w-7 h-7 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // Summary Breakdown
+            document.getElementById('summaryTotalQty').textContent = calc.totalQty;
+            document.getElementById('summaryNormalSubtotal').textContent = formatRupiah(calc.normalSubtotal);
+
+            const resRow = document.getElementById('summaryResellerRow');
+            if (calc.qualifiesReseller) {
+                resRow.classList.remove('hidden');
+                document.getElementById('summaryResellerDiscount').textContent = '- ' + formatRupiah(calc.resellerDiscount);
+            } else {
+                resRow.classList.add('hidden');
+            }
+
+            const vRow = document.getElementById('summaryVoucherRow');
+            if (calc.voucherDiscount > 0) {
+                vRow.classList.remove('hidden');
+                document.getElementById('summaryVoucherCode').textContent = appliedVoucher.code;
+                document.getElementById('summaryVoucherDiscount').textContent = '- ' + formatRupiah(calc.voucherDiscount);
+            } else {
+                vRow.classList.add('hidden');
+            }
+
+            document.getElementById('summaryCourierLabel').textContent = calc.courierName.split(' ')[0];
+            document.getElementById('summaryShippingCost').textContent = formatRupiah(calc.shippingCost);
+            document.getElementById('summaryGrandTotal').textContent = formatRupiah(calc.grandTotal);
+        }
+
+        // Toggle Slide-Over Cart Drawer
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            if (open) {
+                backdrop.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('hidden');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Demo Helper: Fill 3 Pcs Reseller Bundle
+        function activateDemoResellerBundle() {
+            cart = [
+                {
+                    cartId: 'res-1',
+                    productId: 1,
+                    name: "Abaya Gamis Silk Arabian 'Mahreen Series'",
+                    price: 245000,
+                    qty: 1,
+                    color: "Sage Green",
+                    size: "M",
+                    image: "assets/images/prod-01-abaya-silk.jpg"
+                },
+                {
+                    cartId: 'res-2',
+                    productId: 3,
+                    name: "Pashmina Ceruty Babydoll Plisket Premium",
+                    price: 49000,
+                    qty: 1,
+                    color: "Dusty Pink",
+                    size: "All Size",
+                    image: "assets/images/prod-03-pashmina.jpg"
+                },
+                {
+                    cartId: 'res-3',
+                    productId: 7,
+                    name: "GlowLokal 10% Niacinamide + Centella Serum",
+                    price: 115000,
+                    qty: 1,
+                    color: "Dusty Pink",
+                    size: "All Size",
+                    image: "assets/images/prod-07-serum-niacinamide.jpg"
+                }
+            ];
+            updateCartUI();
+            toggleCartDrawer(true);
+            showToast("Paket 3 Pcs Reseller Aktif!", "Diskon Grosir/Reseller 15% otomatis diterapkan.");
+        }
+
+        // Open WhatsApp Receipt Preview Modal
+        function openWaReceiptPreview() {
+            if (cart.length === 0) {
+                showToast("Tas Belanja Kosong", "Silakan pilih produk terlebih dahulu.");
+                return;
+            }
+
+            const calc = getCartTotals();
+            const custName = document.getElementById('custName').value.trim() || "Pelanggan Azzahra";
+            const custPhone = document.getElementById('custPhone').value.trim() || "-";
+            const custAddress = document.getElementById('custAddress').value.trim() || "-";
+            const custPayment = document.getElementById('custPayment').value;
+            const custDropship = document.getElementById('custDropship').value.trim();
+
+            const orderId = 'AZG-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('receiptOrderId').textContent = orderId;
+            document.getElementById('receiptTierBadge').textContent = calc.qualifiesReseller ? "HARGA RESELLER (-15%)" : "HARGA ECERAN";
+
+            let lines = [];
+            lines.push(`*ORDER BARU — AZZAHRA & GLOWLOKAL STORE*`);
+            lines.push(`No. Order: *${orderId}*`);
+            lines.push(`Status Harga: *${calc.qualifiesReseller ? 'Grosir / Reseller (Hemat 15%)' : 'Eceran Reguler'}*`);
+            lines.push(`====================================`);
+            lines.push(`*DAFTAR PRODUK DIPESAN:*`);
+
+            cart.forEach((item, idx) => {
+                const unitPrice = calc.qualifiesReseller ? getResellerPrice(item.price) : item.price;
+                lines.push(`${idx + 1}. *${item.name}*`);
+                lines.push(`   • Varian: ${item.color} | Ukuran: ${item.size}`);
+                lines.push(`   • Qty: ${item.qty} pcs x ${formatRupiah(unitPrice)} = *${formatRupiah(unitPrice * item.qty)}*`);
+            });
+
+            lines.push(`------------------------------------`);
+            lines.push(`Subtotal Harga Ecer (${calc.totalQty} pcs): ${formatRupiah(calc.normalSubtotal)}`);
+            if (calc.qualifiesReseller) {
+                lines.push(`Potongan Reseller 15% (>=3 Pcs): -${formatRupiah(calc.resellerDiscount)}`);
+            }
+            if (calc.voucherDiscount > 0) {
+                lines.push(`Voucher (${appliedVoucher.code}): -${formatRupiah(calc.voucherDiscount)}`);
+            }
+            lines.push(`Ongkir (${calc.courierName} - ${calc.cityName}): ${formatRupiah(calc.shippingCost)}`);
+            lines.push(`*TOTAL BAYAR: ${formatRupiah(calc.grandTotal)}*`);
+            lines.push(`====================================`);
+            lines.push(`*DATA PENGIRIMAN:*`);
+            lines.push(`- Penerima: ${custName}`);
+            lines.push(`- No. WA: ${custPhone}`);
+            lines.push(`- Alamat: ${custAddress}`);
+            lines.push(`- Pembayaran: ${custPayment}`);
+            if (custDropship) {
+                lines.push(`- Dropship Pengirim: ${custDropship}`);
+            }
+            lines.push(`====================================`);
+            lines.push(`Halo Admin Azzahra & GlowLokal, mohon info total resi & pembayaran untuk pesanan saya di atas. Terima kasih.`);
+
+            const fullMessage = lines.join('\n');
+            document.getElementById('receiptPreviewText').textContent = fullMessage;
+            document.getElementById('waCheckoutUrl').href = `https://wa.me/6281234567890?text=${encodeURIComponent(fullMessage)}`;
+
+            const modal = document.getElementById('receiptModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReceiptModal() {
+            const modal = document.getElementById('receiptModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function copyReceiptText() {
+            const txt = document.getElementById('receiptPreviewText').textContent;
+            navigator.clipboard.writeText(txt).then(() => {
+                const btn = document.getElementById('copyReceiptBtn');
+                btn.innerHTML = `<i class="fa-solid fa-check text-emerald-600"></i> <span>Tersalin!</span>`;
+                setTimeout(() => {
+                    btn.innerHTML = `<i class="fa-regular fa-copy"></i> <span>Salin Nota</span>`;
+                }, 2000);
+            });
+        }
+
+        // Toast Helper
+        let toastTimeout = null;
+        function showToast(title, subtitle) {
+            const box = document.getElementById('toastBox');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastSubtitle').textContent = subtitle;
+            box.classList.remove('hidden');
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                box.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>

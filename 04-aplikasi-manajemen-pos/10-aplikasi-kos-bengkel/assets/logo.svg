@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="kpBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="kpInd" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#kpBg)" stroke="#4F46E5" stroke-width="2.2"/>
+  <!-- Modular Dual ERP Blocks (Kos + Bengkel) -->
+  <rect x="14" y="14" width="16" height="16" rx="4" fill="url(#kpInd)"/>
+  <rect x="34" y="14" width="16" height="16" rx="4" stroke="#F59E0B" stroke-width="2.5" fill="#F59E0B" fill-opacity="0.18"/>
+  <rect x="14" y="34" width="16" height="16" rx="4" stroke="#818CF8" stroke-width="2.2"/>
+  <rect x="34" y="34" width="16" height="16" rx="4" fill="#F59E0B"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="clnTeal" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2DD4BF"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#042F2E" stroke="url(#clnTeal)" stroke-width="2.2"/>
+  <!-- Dental & Aesthetic Crown Contour -->
+  <path d="M21 23C21 17.5 25.5 15 29 17.5C31 19 33 19 35 17.5C38.5 15 43 17.5 43 23C43 30 40.5 36 38.5 45C37.8 48 35.2 48 34.2 44.5L33 40C32.5 38.5 31.5 38.5 31 40L29.8 44.5C28.8 48 26.2 48 25.5 45C23.5 36 21 30 21 23Z" stroke="url(#clnTeal)" stroke-width="3" stroke-linejoin="round" fill="#0F766E" fill-opacity="0.25"/>
+  <!-- Medical Aesthetic Sparkle Cross -->
+  <path d="M46 13V21M42 17H50" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

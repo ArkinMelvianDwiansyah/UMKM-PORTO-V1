@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 48" fill="none">
+  <rect x="2" y="4" width="40" height="40" rx="9" fill="#0F172A"/>
+  <path d="M22 11L33 17.5V30.5L22 37L11 30.5V17.5L22 11Z" stroke="#38BDF8" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M22 11V24M22 24L33 17.5M22 24L11 17.5" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="22" cy="24" r="3.2" fill="#F8FAFC"/>
+  <text x="50" y="25" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="19" letter-spacing="-0.02em" fill="#0F172A">Nusa<tspan fill="#0D9488">ERP</tspan></text>
+  <text x="50" y="38" font-family="Consolas, monospace" font-weight="600" font-size="8.5" letter-spacing="0.08em" fill="#64748B">ENTERPRISE SUITE v4.2</text>
+</svg>

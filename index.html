@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arkin Studio — Katalog Portofolio Website, Toko Online, Booking & Aplikasi UMKM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          colors: {
+            paper: '#F6F3EC',
+            surface: '#FDFBF7',
+            ink: '#161615',
+            muted: '#63615B',
+            line: '#DDD7CC',
+            accent: '#C84B31',
+            forest: '#1B3B2B',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F6F3EC;
+      color: #161615;
+    }
+    .porto-card {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+    .porto-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 32px -12px rgba(22, 22, 21, 0.12);
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-ink selection:text-paper">
+
+  <!-- Top Editorial Utility Strip -->
+  <div class="bg-ink text-paper text-[11px] font-mono tracking-wider uppercase py-2.5 px-4 sm:px-8 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> EDISI PORTOFOLIO UMKM INDONESIA 2026</span>
+        <span class="hidden sm:inline text-stone-500">|</span>
+        <span class="hidden sm:inline text-stone-300">16 SISTEM LIVE DEMO MANDIRI • 100% ASET LOKAL</span>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="update%20porto%20UMKM.md" target="_blank" class="hover:text-amber-300 transition underline underline-offset-4">DOKUMEN PRD LENGKAP</a>
+        <a href="#paket-investasi" class="hover:text-amber-300 transition">DAFTAR PAKET HARGA</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Navigation -->
+  <header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-line">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-6">
+      <a href="#" class="flex items-center shrink-0">
+        <img src="assets/logo.svg" alt="Arkin Studio Logo" class="h-11 w-auto" />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-ink">
+        <a href="#katalog" class="whitespace-nowrap hover:text-accent transition">Katalog 16 Demo</a>
+        <a href="#arsitektur" class="whitespace-nowrap hover:text-accent transition">4 Kategori Sistem</a>
+        <a href="#ulasan-klien" class="whitespace-nowrap hover:text-accent transition">Ulasan & Foto Klien</a>
+        <a href="#paket-investasi" class="whitespace-nowrap hover:text-accent transition">Paket Harga</a>
+        <a href="#faq" class="whitespace-nowrap hover:text-accent transition">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="https://wa.me/6281234567890?text=Halo%20Arkin%20Studio%2C%20saya%20melihat%20Katalog%2016%20Portofolio%20Website%20UMKM%20dan%20ingin%20berkonsultasi."
+           target="_blank"
+           class="whitespace-nowrap bg-ink hover:bg-accent text-surface font-semibold text-xs sm:text-sm px-5 py-3 rounded-lg flex items-center gap-2.5 transition">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Konsultasi Proyek</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Editorial Hero Section -->
+  <section class="border-b border-line bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-14 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+        <div class="lg:col-span-8">
+          <div class="inline-flex items-center gap-2.5 px-3 py-1 border border-line bg-paper text-[11px] font-mono uppercase tracking-widest text-muted mb-6">
+            <span>ARSITEKTUR DIGITAL USAHA LOKAL</span>
+            <span>—</span>
+            <span class="text-ink font-semibold">4 KATEGORI • 16 INDUSTRI</span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-ink leading-[1.06]">
+            Katalog Portofolio Website & Aplikasi Operasional <span class="font-serif italic font-normal text-accent">Khusus UMKM Indonesia.</span>
+          </h1>
+          <p class="mt-6 text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+            Setiap purwarupa di bawah ini dirancang dengan identitas visual yang berbeda untuk masing-masing industri—dilengkapi kalkulator harga otomatis, keranjang belanja WhatsApp, kalender reservasi slot jam, hingga aplikasi kasir POS dan rekam medis.
+          </p>
+        </div>
+
+        <!-- Architectural Metrics Box -->
+        <div class="lg:col-span-4 border border-line bg-paper p-6">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted pb-3 border-b border-line flex justify-between">
+            <span>RINGKASAN EKOSISTEM</span>
+            <span class="text-ink font-semibold">V3.2 LOCAL</span>
+          </div>
+          <div class="grid grid-cols-2 gap-y-5 gap-x-4 pt-5">
+            <div>
+              <div class="text-3xl font-extrabold font-mono text-ink">16</div>
+              <div class="text-xs text-muted mt-0.5">Demo Website & App</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold font-mono text-forest">100%</div>
+              <div class="text-xs text-muted mt-0.5">Aset Foto & Logo Lokal</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold font-mono text-accent">04</div>
+              <div class="text-xs text-muted mt-0.5">Tingkatan Solusi</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold font-mono text-ink">WA</div>
+              <div class="text-xs text-muted mt-0.5">Checkout & Reminder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Directory Section -->
+  <section id="katalog" class="py-14 max-w-7xl mx-auto px-4 sm:px-8">
+
+    <!-- Filter Bar -->
+    <div class="bg-surface border border-line p-4 mb-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2" id="categoryTabs">
+        <button onclick="filterPortfolio('all')" data-cat="all"
+                class="cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface transition">
+          Semua Karya (16)
+        </button>
+        <button onclick="filterPortfolio('cat1')" data-cat="cat1"
+                class="cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink transition">
+          01 / Landing Page & Compro (5)
+        </button>
+        <button onclick="filterPortfolio('cat2')" data-cat="cat2"
+                class="cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink transition">
+          02 / Katalog & Toko Online (4)
+        </button>
+        <button onclick="filterPortfolio('cat3')" data-cat="cat3"
+                class="cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink transition">
+          03 / Sistem Booking (3)
+        </button>
+        <button onclick="filterPortfolio('cat4')" data-cat="cat4"
+                class="cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink transition">
+          04 / Aplikasi Manajemen & POS (4)
+        </button>
+      </div>
+
+      <div class="relative min-w-[270px]">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-muted text-xs"></i>
+        <input id="searchInput" oninput="searchPortfolio()" type="text"
+               placeholder="Cari industri (kontraktor, mebel, gigi, villa, pos)..."
+               class="w-full pl-9 pr-4 py-2.5 bg-paper border border-line text-xs text-ink placeholder-muted focus:outline-none focus:border-ink" />
+      </div>
+    </div>
+
+    <!-- 16 Portfolio Cards Grid -->
+    <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+      <!-- 01: KONTRAKTOR & RENOVASI -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat1" data-keywords="kontraktor renovasi rumah interior arsitek bangunan kitchen set rab">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-01-kontraktor.jpg" alt="NusaBangun Kontraktor" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              01 / LANDING PAGE COMPRO
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #01
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold">Konstruksi • Renovasi • Interior</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">NusaBangun — Kontraktor & Renovasi Rumah</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema editorial arsitektur dengan Kalkulator Estimasi RAB per m² (Bangun Baru, Renovasi Atap, Kitchen Set HPL) dan galeri Before–After.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>Kalkulator RAB Material & Tukang per m²</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>Filter Proyek & Form Klaim Survei Gratis</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="01-landing-page-compro/01-kontraktor-renovasi/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('01-landing-page-compro/01-kontraktor-renovasi/index.html', 'NusaBangun Kontraktor & Interior')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02: SERVICE AC, CLEANING & LAUNDRY -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat1" data-keywords="service ac cuci ac cleaning service laundry sepatu panggilan rumah">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-02-ac-laundry.jpg" alt="DinginKilat Service AC" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              01 / LANDING PAGE COMPRO
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #02
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-sky-700 font-semibold">Jasa Panggilan Rumah • Teknisi 60 Menit</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">DinginKilat — Service AC, Cleaning & Shoe Care</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema bersih teknisi panggilan dengan kalkulator biaya cuci AC, isi freon, hydrovacuum kasur, dan kurir antar-jemput cuci sepatu.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky-700"></span><span>Kalkulator Multi-Layanan & Panggil Teknisi WA</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky-700"></span><span>Garansi Dingin 30 Hari & Cakupan 6 Kota</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="01-landing-page-compro/02-service-ac-laundry/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('01-landing-page-compro/02-service-ac-laundry/index.html', 'DinginKilat Home Service')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03: KONVEKSI, SABLON & PERCETAKAN -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat1" data-keywords="konveksi seragam kaos sablon jersey percetakan pdh pdl jaket">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-03-konveksi.jpg" alt="Arka Garment Konveksi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              01 / LANDING PAGE COMPRO
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #03
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-indigo-700 font-semibold">Manufaktur Garment • Sablon • B2B</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">Arka Garment — Konveksi Seragam & Sablon</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema industrial studio dengan Kalkulator Harga Grosir Bertingkat (otomatis diskon 12% & 22%), spesifikasi gramasi kain, dan size recommender.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-700"></span><span>Kalkulator Tiered Pricing Pabrik per Lusin/Pcs</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-700"></span><span>Spesifikasi Kain Combed/Drill & Size Chart</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="01-landing-page-compro/03-konveksi-percetakan/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('01-landing-page-compro/03-konveksi-percetakan/index.html', 'Arka Garment & Print')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11 (NEW): RENTAL MOBIL & TOUR WISATA -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat1" data-keywords="rental mobil lepas kunci sewa hiace bus pariwisata open trip tour travel">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-11-rental-mobil.jpg" alt="JelajahNusa Rental Mobil & Tour" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              01 / LANDING PAGE COMPRO
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #11 • BARU
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-forest font-semibold">Sewa Armada • Lepas Kunci • Open Trip</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">JelajahNusa — Rental Mobil & Paket Wisata</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema majalah perjalanan hangat dengan Kalkulator Sewa Armada (Lepas Kunci vs All-In Sopir+BBM), diskon sewa $\ge 3$ hari, dan itinerary wisata.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-forest"></span><span>Kalkulator Sewa Avanza, Zenix, Hiace & Alphard</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-forest"></span><span>Paket Open Trip Jogja/Bali/Bromo + Order WA</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="01-landing-page-compro/11-rental-mobil-wisata/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('01-landing-page-compro/11-rental-mobil-wisata/index.html', 'JelajahNusa Transport & Tour')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12 (NEW): KLINIK GIGI & AESTHETIC -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat1" data-keywords="klinik gigi dental care veneer behel scaling klinik kecantikan dokter">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-12-klinik-gigi.jpg" alt="SenyumLuxe Dental Clinic" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              01 / LANDING PAGE COMPRO
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #12 • BARU
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-teal-800 font-semibold">Dental Care • Orthodonti • Derma Clinic</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">SenyumLuxe — Klinik Gigi & Aesthetic</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema Swiss Clinical Minimalist dengan Slider Perbandingan Before–After interaktif, simulasi cicilan perawatan 0%, dan jadwal dokter per cabang.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-800"></span><span>Interactive Before–After Smile & Skin Slider</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-800"></span><span>Simulasi Biaya Scaling, Behel, Veneer & Laser</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="01-landing-page-compro/12-klinik-gigi-kecantikan/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('01-landing-page-compro/12-klinik-gigi-kecantikan/index.html', 'SenyumLuxe Dental & Derma Clinic')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04: KATERING, AQIQAH & FROZEN FOOD -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat2" data-keywords="katering nasi box aqiqah tumpeng kuliner kue frozen food dimsum">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-04-katering.jpg" alt="Dapur Berkah Catering" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              02 / KATALOG & TOKO WA
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #04
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-orange-700 font-semibold">Kuliner • Nasi Kotak • Aqiqah • Frozen Food</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">Dapur Berkah — Katalog Katering & Kuliner</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Katalog kuliner Nusantara dengan kustomisasi pilihan nasi/sambal, diskon otomatis pesanan acara $\ge 50$ box, dan checkout nota ke WA.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-orange-700"></span><span>Pilih Varian Nasi/Sambal & Slide-Over Cart</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-orange-700"></span><span>Hitung DP 50% & Jadwal Pengantaran Acara</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="02-katalog-toko-online/04-katering-kuliner/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('02-katalog-toko-online/04-katering-kuliner/index.html', 'Dapur Berkah Nusantara')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05: BUTIK FASHION, HIJAB & SKINCARE -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat2" data-keywords="fashion hijab gamis baju sepatu skincare kosmetik parfum reseller">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-05-fashion.jpg" alt="Azzahra Fashion & Skincare" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              02 / KATALOG & TOKO WA
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #05
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-rose-700 font-semibold">Modest Wear • Skincare BPOM • Reseller</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">Azzahra & GlowLokal — Butik Fashion & Skincare</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Lookbook butik modern dengan pilihan warna/ukuran, harga otomatis grosir/reseller (-15% beli $\ge 3$ pcs), dan simulasi ongkir ekspedisi.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-rose-700"></span><span>Color Swatch, Size Recommender & Badge BPOM</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-rose-700"></span><span>Otomatis Harga Reseller & Cek Ongkir JNE/J&T</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="02-katalog-toko-online/05-toko-fashion-skincare/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('02-katalog-toko-online/05-toko-fashion-skincare/index.html', 'Azzahra & GlowLokal Store')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13 (NEW): MEBEL & FURNITUR JEPARA -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat2" data-keywords="mebel furnitur jepara kayu jati sofa meja makan lemari custom">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-13-mebel-jepara.jpg" alt="KayuArta Mebel Jepara" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              02 / KATALOG & TOKO WA
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #13 • BARU
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-amber-800 font-semibold">Mebel Jati Jepara • Custom Interior • Kargo</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">KayuArta — Katalog Mebel & Furnitur Jepara</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema Scandinavian–Javanese Craft dengan pilihan finishing kayu (*Natural Teak, Walnut, Salak*), ukuran dimensi, dan kalkulator ekspedisi truk mebel.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-amber-800"></span><span>Pilih Finishing Kayu & Grade Jati TPK Perhutani</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-amber-800"></span><span>Kalkulator Ongkir Kargo Truk Mebel ($m^3$) ke WA</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="02-katalog-toko-online/13-mebel-furnitur-jepara/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('02-katalog-toko-online/13-mebel-furnitur-jepara/index.html', 'KayuArta Jepara Furniture')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14 (NEW): PET SHOP, GROOMING & PET HOTEL -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat2" data-keywords="pet shop makanan kucing anjing pasir kucing grooming pet hotel klinik hewan">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-14-petshop.jpg" alt="PawHaus Pet Shop & Grooming" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              02 / KATALOG & TOKO WA
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #14 • BARU
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold">Pet Shop • Salon Grooming • Pet Hotel</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">PawHaus — Katalog Pakan, Grooming & Pet Hotel</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema Neo-Editorial Pop Retail dengan pilihan kemasan pakan (*Repack 1kg, Freshpack, Karung Grosir*) serta kalkulator booking mandi jamur & Pet Hotel.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>Katalog Pakan Ecer/Karung + Langganan Bulanan</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>Kalkulator Booking Grooming & Kamar Pet Hotel</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="02-katalog-toko-online/14-petshop-grooming-hewan/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('02-katalog-toko-online/14-petshop-grooming-hewan/index.html', 'PawHaus Pet Mart & Grooming')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06: BOOKING LAPANGAN OLAHRAGA -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat3" data-keywords="booking lapangan futsal badminton mini soccer padel olahraga gor">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-06-lapangan.jpg" alt="ArenaKita Sport Booking" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              03 / SISTEM BOOKING
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #06
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-emerald-700 font-semibold">Padel • Mini Soccer • Futsal • Badminton</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">ArenaKita — Booking Lapangan Olahraga</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Matriks ketersediaan jam lapangan (07:00–23:00) real-time dengan pembeda tarif siang vs malam prime time, sewa alat, dan E-Tiket QRIS.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-700"></span><span>Matriks Jam Kosong Interaktif & Nama Tim Booked</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-emerald-700"></span><span>Simulasi DP 50% QRIS & E-Tiket Check-in GOR</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="03-sistem-booking-reservasi/06-booking-lapangan-olahraga/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('03-sistem-booking-reservasi/06-booking-lapangan-olahraga/index.html', 'ArenaKita Sport Center')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 07: BOOKING BARBERSHOP, KLINIK & STUDIO -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat3" data-keywords="booking salon barbershop klinik gigi kecantikan self photo studio">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-07-salon-klinik.jpg" alt="ReservasiKu Multi-Booking" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              03 / SISTEM BOOKING
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #07 • 3-IN-1
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-teal-700 font-semibold">Barbershop • Klinik Gigi • Self-Photo Studio</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">ReservasiKu — Sistem Booking Jadwal 3-in-1</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Dilengkapi pengalih 3 industri sekaligus: Pilih layanan, pilih Capster/Dokter/Studio, pilih slot jam, dan terbitkan Kartu Antrean Digital.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-700"></span><span>Wizard 4-Tahap + Kalkulasi Durasi Menit Otomatis</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-700"></span><span>3 Mode Bisnis: Barbershop, Klinik & Photo Studio</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="03-sistem-booking-reservasi/07-booking-salon-klinik-studio/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('03-sistem-booking-reservasi/07-booking-salon-klinik-studio/index.html', 'ReservasiKu 3-in-1 Booking')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15 (NEW): BOOKING VILLA, GLAMPING & HOMESTAY -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat3" data-keywords="booking villa puncak glamping bandung bali homestay resort penginapan">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-15-villa-glamping.jpg" alt="LembahPinus Villa & Glamping" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              03 / SISTEM BOOKING
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #15 • BARU
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-forest font-semibold">Private Pool Villa • Glamping • Homestay</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">LembahPinus — Booking Villa & Glamping</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Tema Boutique Eco-Resort dengan mesin hitung otomatis tarif *Weekday vs Weekend*, kalender tanggal kosong per unit, dan paket tambahan BBQ.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-forest"></span><span>Kalkulasi Check-In/Out Weekday vs Weekend</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-forest"></span><span>Add-on BBQ/Extra Bed & E-Voucher Check-In QR</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="03-sistem-booking-reservasi/15-booking-villa-glamping/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('03-sistem-booking-reservasi/15-booking-villa-glamping/index.html', 'LembahPinus Villa & Glamping')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 08: APLIKASI KASIR POS & STOK -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat4" data-keywords="aplikasi kasir pos stok gudang cafe resto minimarket struk thermal">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-08-kasir-pos.jpg" alt="KasirPintar Pro POS" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              04 / APLIKASI WEB & POS
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #08
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-indigo-700 font-semibold">Point of Sales • Stok Gudang • Laba Rugi</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">KasirPintar Pro — Aplikasi Kasir & Stok</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Aplikasi web kasir *touchscreen* untuk Cafe, Resto & Minimarket dengan cetak struk thermal 58mm, manajemen stok opname, dan grafik omset.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-700"></span><span>Layar Kasir + Hitung Kembalian Tunai & QRIS</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-indigo-700"></span><span>Cetak Struk 58mm, Restock Gudang & Laporan HPP</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="04-aplikasi-manajemen-pos/08-aplikasi-kasir-pos/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Aplikasi
+            </a>
+            <button onclick="openPreviewModal('04-aplikasi-manajemen-pos/08-aplikasi-kasir-pos/index.html', 'KasirPintar Pro POS')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Preview Cepat
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 09: APLIKASI MANAJEMEN LAUNDRY -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat4" data-keywords="aplikasi laundry kiloan satuan sepatu nota wa cek resi cucian kanban">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-09-laundry-app.jpg" alt="SmartWash Laundry App" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              04 / APLIKASI WEB & POS
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #09
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-sky-700 font-semibold">Kasir Laundry • Kanban Rak • Cek Resi</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">SmartWash — Aplikasi Manajemen Laundry</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Sistem operasional laundry kiloan & sepatu: Input nota cepat, papan Kanban 5 tahap produksi, kirim nota WA, dan halaman lacak resi pelanggan.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky-700"></span><span>Kanban: Masuk $\rightarrow$ Cuci $\rightarrow$ Setrika $\rightarrow$ Rak $\rightarrow$ Selesai</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky-700"></span><span>Portal Cek Status Cucian Pelanggan Tanpa Login</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="04-aplikasi-manajemen-pos/09-aplikasi-manajemen-laundry/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Aplikasi
+            </a>
+            <button onclick="openPreviewModal('04-aplikasi-manajemen-pos/09-aplikasi-manajemen-laundry/index.html', 'SmartWash Laundry Management')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Preview Cepat
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10: APLIKASI MANAJEMEN KOS & BENGKEL -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat4" data-keywords="aplikasi kos kosan kontrakan tagihan penghuni bengkel servis mobil motor plat nomor">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-10-kos-bengkel.jpg" alt="KelolaPro Kos & Bengkel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              04 / APLIKASI WEB & POS
+            </div>
+            <div class="absolute top-3 right-3 bg-ink text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #10 • 2-IN-1
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-rose-700 font-semibold">Manajemen Kos-Kosan • Bengkel Plat Nomor</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">KelolaPro — Aplikasi Kos-kosan & Bengkel</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Denah visual 20 kamar kos (Kosong/Lunas/Nunggak + Tagihan WA) serta Sistem Bengkel dengan riwayat servis per Plat Nomor & komisi mekanik.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-rose-700"></span><span>Denah Kamar Kos Interaktif + Reminder Jatuh Tempo</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-rose-700"></span><span>Cek Riwayat Servis Plat Nomor & Bagi Hasil Mekanik</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="04-aplikasi-manajemen-pos/10-aplikasi-kos-bengkel/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Aplikasi
+            </a>
+            <button onclick="openPreviewModal('04-aplikasi-manajemen-pos/10-aplikasi-kos-bengkel/index.html', 'KelolaPro Kos & Bengkel')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Preview Cepat
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 16 (NEW): APLIKASI KLINIK/APOTEK, SPP SEKOLAH & KOPERASI -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat4" data-keywords="aplikasi klinik apotek rekam medis soap stok obat expired sekolah spp bimbel koperasi simpan pinjam">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-16-klinik-koperasi.jpg" alt="NusaERP Klinik Sekolah Koperasi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              04 / APLIKASI WEB & POS
+            </div>
+            <div class="absolute top-3 right-3 bg-forest text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              #16 • BARU (3-IN-1)
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-teal-800 font-semibold">Rekam Medis Klinik • SPP Sekolah • Koperasi</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">NusaERP — Sistem Klinik/Apotek, SPP & Koperasi</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              3 Aplikasi Enterprise UMKM: Rekam Medis SOAP + E-Resep pemotong stok obat Apotek, Tagihan SPP Sekolah via WA, & Simulasi Pinjaman Koperasi.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-800"></span><span>Input Rekam Medis SOAP + Alert Obat Expired</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-800"></span><span>Broadcast WA SPP Wali Murid & Tabel Cicilan KSP</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="04-aplikasi-manajemen-pos/16-aplikasi-klinik-koperasi-sekolah/index.html"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Aplikasi
+            </a>
+            <button onclick="openPreviewModal('04-aplikasi-manajemen-pos/16-aplikasi-klinik-koperasi-sekolah/index.html', 'NusaERP Klinik, Sekolah & Koperasi')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Preview Cepat
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 4 Pillar Architecture Section -->
+  <section id="arsitektur" class="py-16 border-t border-line bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="max-w-2xl mb-12">
+        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">STANDAR KUALITAS SISTEM</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2">Dirancang Bukan Sekadar Brosur, Melainkan Mesin Konversi & Operasional.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-line bg-paper">
+        <div class="p-7 border-b lg:border-b-0 md:border-r border-line">
+          <div class="font-mono text-xs text-muted">PILAR 01</div>
+          <h3 class="text-lg font-bold text-ink mt-2">Bespoke Brand Identity</h3>
+          <p class="text-xs text-muted mt-2 leading-relaxed">Setiap industri memiliki palet warna, tipografi editorial, dan logo vektor SVG khusus—bebas dari tampilan template generik.</p>
+        </div>
+        <div class="p-7 border-b lg:border-b-0 lg:border-r border-line">
+          <div class="font-mono text-xs text-muted">PILAR 02</div>
+          <h3 class="text-lg font-bold text-ink mt-2">100% Local Asset Storage</h3>
+          <p class="text-xs text-muted mt-2 leading-relaxed">Seluruh foto produk, interior, armada, dan ikon logo tersimpan lokal di dalam folder <code>assets/</code> masing-masing proyek.</p>
+        </div>
+        <div class="p-7 border-b md:border-b-0 md:border-r border-line">
+          <div class="font-mono text-xs text-muted">PILAR 03</div>
+          <h3 class="text-lg font-bold text-ink mt-2">Interactive Calculators</h3>
+          <p class="text-xs text-muted mt-2 leading-relaxed">Dilengkapi kalkulator RAB per m², harga grosir otomatis, ongkir kargo mebel, hingga simulasi cicilan koperasi.</p>
+        </div>
+        <div class="p-7">
+          <div class="font-mono text-xs text-muted">PILAR 04</div>
+          <h3 class="text-lg font-bold text-ink mt-2">WhatsApp & Print Ready</h3>
+          <p class="text-xs text-muted mt-2 leading-relaxed">Format nota belanja langsung terhubung ke WhatsApp Admin dan mendukung cetak struk kasir thermal 58mm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paket Investasi Section -->
+  <section id="paket-investasi" class="py-16 border-t border-line bg-paper">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-forest font-semibold">ESTIMASI PAKET KLIEN</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2">Struktur Paket Layanan Pembuatan Website UMKM</h2>
+        </div>
+        <p class="text-xs text-muted max-w-md">Harga di bawah adalah acuan paket jual kepada klien UMKM Anda, sudah termasuk kustomisasi profil, domain .com/.id, dan integrasi WhatsApp.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-surface border border-line p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono uppercase text-muted">TIER 01 • JASA & COMPRO</div>
+            <h3 class="text-xl font-bold text-ink mt-1">Landing Page</h3>
+            <div class="mt-4 font-mono text-2xl font-bold text-ink">Rp 950.000</div>
+            <p class="text-[11px] text-muted mt-1">Kontraktor, Service AC, Konveksi, Rental Mobil, Klinik</p>
+            <ul class="mt-5 pt-5 border-t border-line space-y-2.5 text-xs text-ink">
+              <li>• Desain Eksklusif Responsif HP</li>
+              <li>• Kalkulator Estimasi Harga Jasa</li>
+              <li>• Galeri Portofolio & Testimoni</li>
+              <li>• Integrasi Peta & SEO Lokal</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20memesan%20Paket%20Tier%201%20Landing%20Page%20UMKM" target="_blank"
+             class="mt-6 block w-full py-3 bg-ink hover:bg-accent text-surface text-xs font-semibold text-center transition">
+            Pesan Paket Tier 01
+          </a>
+        </div>
+
+        <div class="bg-surface border-2 border-ink p-6 flex flex-col justify-between relative">
+          <span class="absolute -top-3 right-4 bg-accent text-surface text-[10px] font-mono uppercase font-semibold px-2.5 py-0.5">Terpopuler</span>
+          <div>
+            <div class="text-[11px] font-mono uppercase text-accent font-semibold">TIER 02 • RITEL & PRODUK</div>
+            <h3 class="text-xl font-bold text-ink mt-1">Katalog & Toko WA</h3>
+            <div class="mt-4 font-mono text-2xl font-bold text-ink">Rp 1.750.000</div>
+            <p class="text-[11px] text-muted mt-1">Katering, Fashion/Hijab, Skincare, Mebel Jepara, Pet Shop</p>
+            <ul class="mt-5 pt-5 border-t border-line space-y-2.5 text-xs text-ink">
+              <li>• Katalog Produk & Filter Kategori</li>
+              <li>• Pilih Varian & Harga Grosir Otomatis</li>
+              <li>• Slide-Over Keranjang Belanja</li>
+              <li>• Rekap Nota Pesanan ke WhatsApp</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20memesan%20Paket%20Tier%202%20Katalog%20Toko%20Online%20WA" target="_blank"
+             class="mt-6 block w-full py-3 bg-accent hover:bg-ink text-surface text-xs font-semibold text-center transition">
+            Pesan Paket Tier 02
+          </a>
+        </div>
+
+        <div class="bg-surface border border-line p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono uppercase text-muted">TIER 03 • SLOT & JADWAL</div>
+            <h3 class="text-xl font-bold text-ink mt-1">Sistem Booking</h3>
+            <div class="mt-4 font-mono text-2xl font-bold text-ink">Rp 2.850.000</div>
+            <p class="text-[11px] text-muted mt-1">GOR Futsal/Padel, Barbershop, Studio Foto, Villa & Glamping</p>
+            <ul class="mt-5 pt-5 border-t border-line space-y-2.5 text-xs text-ink">
+              <li>• Matriks Jam & Kalender Real-Time</li>
+              <li>• Tarif Weekday vs Weekend/Malam</li>
+              <li>• Simulasi Pembayaran DP QRIS</li>
+              <li>• E-Tiket QR Code & Reminder WA</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20memesan%20Paket%20Tier%203%20Sistem%20Booking%20Online" target="_blank"
+             class="mt-6 block w-full py-3 bg-ink hover:bg-accent text-surface text-xs font-semibold text-center transition">
+            Pesan Paket Tier 03
+          </a>
+        </div>
+
+        <div class="bg-surface border border-line p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono uppercase text-muted">TIER 04 • ERP & INTERNAL</div>
+            <h3 class="text-xl font-bold text-ink mt-1">Aplikasi Manajemen</h3>
+            <div class="mt-4 font-mono text-2xl font-bold text-ink">Rp 3.900.000</div>
+            <p class="text-[11px] text-muted mt-1">Kasir POS, Laundry, Kos-kosan, Bengkel, Klinik, SPP & Koperasi</p>
+            <ul class="mt-5 pt-5 border-t border-line space-y-2.5 text-xs text-ink">
+              <li>• Kasir POS & Cetak Struk 58mm</li>
+              <li>• Kanban Produksi & Cek Resi</li>
+              <li>• Denah Kamar Kos / Rekam Medis SOAP</li>
+              <li>• Laporan Laba Rugi & Stok Opname</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20memesan%20Paket%20Tier%204%20Aplikasi%20Web%20Manajemen%20%2F%20POS" target="_blank"
+             class="mt-6 block w-full py-3 bg-ink hover:bg-accent text-surface text-xs font-semibold text-center transition">
+            Pesan Paket Tier 04
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ulasan Pemilik Usaha & Foto Dokumentasi Proyek Klien -->
+  <section id="ulasan-klien" class="py-16 border-b border-line bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">DOKUMENTASI & BUKTI NYATA</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-ink">Ulasan Pemilik Usaha & <span class="font-serif italic font-normal">Foto Implementasi Klien.</span></h2>
+        </div>
+        <p class="text-xs sm:text-sm text-muted max-w-md">
+          Website dan aplikasi yang kami bangun bukan sekadar alat transaksi, melainkan media promosi utama yang menaikkan citra dan omset usaha klien.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Review Card 1 -->
+        <div class="bg-paper border border-line flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-line">
+              <img src="assets/images/thumb-01-kontraktor.jpg" alt="Proyek Klien Kontraktor" class="w-full h-full object-cover" />
+              <span class="absolute bottom-2 left-2 bg-ink/90 text-surface text-[10px] font-mono px-2.5 py-1">Foto Proyek Klien • Kontraktor</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[11px] text-ink font-semibold ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-ink leading-relaxed">
+                "Sejak pakai landing page dengan kalkulator RAB per m², calon klien yang masuk ke WhatsApp jauh lebih serius karena sudah tahu estimasi biaya bangun rumahnya."
+              </p>
+            </div>
+          </div>
+          <div class="px-5 py-3.5 border-t border-line bg-surface flex items-center gap-3">
+            <img src="assets/images/avatar-client-1.jpg" alt="Ir. Hendra Wijaya" class="w-9 h-9 rounded-full object-cover border border-line" />
+            <div>
+              <div class="text-xs font-bold text-ink">Ir. Hendra Wijaya</div>
+              <div class="text-[10px] font-mono text-muted">Owner NusaBangun • BSD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Card 2 -->
+        <div class="bg-paper border border-line flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-line">
+              <img src="assets/images/thumb-04-katering.jpg" alt="Pesanan Katering Klien" class="w-full h-full object-cover" />
+              <span class="absolute bottom-2 left-2 bg-ink/90 text-surface text-[10px] font-mono px-2.5 py-1">Foto Produk Klien • Katering</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[11px] text-ink font-semibold ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-ink leading-relaxed">
+                "Dulu admin kewalahan balas harga nasi box satu-satu. Sekarang pelanggan tinggal pilih menu, pilih sambal, otomatis keluar diskon 50 box dan nota rapi ke WA."
+              </p>
+            </div>
+          </div>
+          <div class="px-5 py-3.5 border-t border-line bg-surface flex items-center gap-3">
+            <img src="assets/images/avatar-client-2.jpg" alt="Hj. Siti Rahmawati" class="w-9 h-9 rounded-full object-cover border border-line" />
+            <div>
+              <div class="text-xs font-bold text-ink">Hj. Siti Rahmawati</div>
+              <div class="text-[10px] font-mono text-muted">Dapur Berkah • Bekasi</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Card 3 -->
+        <div class="bg-paper border border-line flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-line">
+              <img src="assets/images/thumb-06-lapangan.jpg" alt="Venue Lapangan Olahraga" class="w-full h-full object-cover" />
+              <span class="absolute bottom-2 left-2 bg-ink/90 text-surface text-[10px] font-mono px-2.5 py-1">Foto Pengunjung • GOR Padel</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[11px] text-ink font-semibold ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-ink leading-relaxed">
+                "Tidak ada lagi jadwal bentrok di lapangan futsal & padel kami. Member bisa cek jam kosong sendiri, bayar DP QRIS, dan langsung dapat E-Tiket QR."
+              </p>
+            </div>
+          </div>
+          <div class="px-5 py-3.5 border-t border-line bg-surface flex items-center gap-3">
+            <img src="assets/images/avatar-client-3.jpg" alt="Kevin Pratama" class="w-9 h-9 rounded-full object-cover border border-line" />
+            <div>
+              <div class="text-xs font-bold text-ink">Kevin Pratama</div>
+              <div class="text-[10px] font-mono text-muted">ArenaKita Sport • Jakarta</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Card 4 -->
+        <div class="bg-paper border border-line flex flex-col justify-between overflow-hidden">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-line">
+              <img src="assets/images/thumb-15-villa-glamping.jpg" alt="Tamu Menginap Villa" class="w-full h-full object-cover" />
+              <span class="absolute bottom-2 left-2 bg-ink/90 text-surface text-[10px] font-mono px-2.5 py-1">Dokumentasi Tamu • Glamping</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[11px] text-ink font-semibold ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-ink leading-relaxed">
+                "Tampilan websitenya sekelas resort bintang lima! Tamu bisa lihat foto suasana villa, ulasan pengunjung, sekaligus hitung tarif weekday/weekend tanpa potongan OTA."
+              </p>
+            </div>
+          </div>
+          <div class="px-5 py-3.5 border-t border-line bg-surface flex items-center gap-3">
+            <img src="assets/images/avatar-client-4.jpg" alt="Clarissa Tan" class="w-9 h-9 rounded-full object-cover border border-line" />
+            <div>
+              <div class="text-xs font-bold text-ink">Clarissa Tan</div>
+              <div class="text-[10px] font-mono text-muted">LembahPinus • Lembang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pertanyaan yang Sering Ditanyakan (FAQ) -->
+  <section id="faq" class="py-16 border-b border-line bg-paper">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8">
+      <div class="text-center mb-10">
+        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">INFORMASI PEMESANAN</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink">Pertanyaan yang Sering Ditanyakan <span class="font-serif italic font-normal">(FAQ)</span></h2>
+      </div>
+
+      <div class="space-y-3">
+        <details class="group bg-surface border border-line p-5 open:border-ink transition" open>
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
+            <span>1. Apakah desain, warna, logo, dan foto produk bisa disesuaikan 100% dengan usaha saya?</span>
+            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
+            Ya, 100% bisa disesuaikan. Seluruh 16 portofolio di atas adalah contoh sistem yang siap dikustomisasi mengikuti nama brand, palet warna, katalog produk/jasa, daftar harga, foto usaha asli, serta nomor WhatsApp admin bisnis Anda.
+          </p>
+        </details>
+
+        <details class="group bg-surface border border-line p-5 open:border-ink transition">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
+            <span>2. Apakah website ini hanya untuk booking/belanja atau bisa sekaligus untuk media promosi usaha?</span>
+            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
+            Setiap website dirancang dengan fungsi ganda: sebagai <strong>Media Promosi & Company Profile Kredibel</strong> (menampilkan keunggulan usaha, galeri hasil kerja, foto ulasan pelanggan asli, FAQ, dan peta lokasi) sekaligus <strong>Mesin Konversi Penjualan</strong> (kalkulator harga, keranjang belanja WA, atau sistem booking jadwal).
+          </p>
+        </details>
+
+        <details class="group bg-surface border border-line p-5 open:border-ink transition">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
+            <span>3. Berapa lama waktu pengerjaan website sampai siap online?</span>
+            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
+            Untuk Tier 01 (Landing Page) dan Tier 02 (Katalog Toko Online WA) membutuhkan waktu 3–5 hari kerja. Untuk Tier 03 (Sistem Booking) dan Tier 04 (Aplikasi Manajemen / Kasir POS) membutuhkan waktu 5–10 hari kerja tergantung kelengkapan data produk dari klien.
+          </p>
+        </details>
+
+        <details class="group bg-surface border border-line p-5 open:border-ink transition">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
+            <span>4. Apakah sudah termasuk domain (.com / .id), hosting cepat, dan garansi maintenance?</span>
+            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
+            Betul. Semua paket sudah termasuk gratis domain (.com / .my.id) dan cloud hosting selama 1 tahun pertama, sertifikat keamanan SSL (HTTPS), panduan penggunaan bagi admin, serta garansi teknis & revisi minor selama 3 bulan.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Device Simulator Preview Modal -->
+  <div id="previewModal" class="fixed inset-0 z-50 hidden bg-ink/90 backdrop-blur-sm flex flex-col">
+    <div class="h-16 bg-surface border-b border-line px-4 sm:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-forest"></span>
+        <h4 id="modalTitle" class="text-sm font-bold text-ink truncate max-w-xs sm:max-w-md">Live Preview</h4>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="setViewport('desktop')" id="btnDesktop" class="px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface">
+          Desktop
+        </button>
+        <button onclick="setViewport('mobile')" id="btnMobile" class="px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line">
+          HP (412px)
+        </button>
+        <a id="modalFullLink" href="#" target="_blank" class="px-3 py-1.5 text-xs font-mono font-semibold bg-accent text-surface ml-2">
+          Buka Penuh ↗
+        </a>
+        <button onclick="closePreviewModal()" class="ml-2 w-8 h-8 bg-paper border border-line hover:bg-ink hover:text-surface text-ink flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+    <div class="flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+      <div id="iframeWrapper" class="w-full h-full bg-white overflow-hidden shadow-2xl border border-line transition-all duration-300">
+        <iframe id="previewIframe" src="about:blank" class="w-full h-full border-0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="kontak-footer" class="border-t border-line bg-surface text-ink">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <!-- 1. Strip CTA & Trust Badges -->
+      <div class="py-8 border-b border-line">
+        <div class="bg-paper border border-line p-6 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div class="space-y-2.5 text-center lg:text-left max-w-2xl">
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-surface border border-line text-ink text-[11px] font-mono font-semibold px-2.5 py-1">
+                <i class="fa-solid fa-bolt text-accent" aria-hidden="true"></i> Siap Online 3–7 Hari
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-surface border border-line text-forest text-[11px] font-mono font-semibold px-2.5 py-1">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Gratis Domain & Hosting 1 Tahun
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-surface border border-line text-ink text-[11px] font-mono font-semibold px-2.5 py-1">
+                <i class="fa-solid fa-sliders text-accent" aria-hidden="true"></i> Kustomisasi 100% Sesuai Brand
+              </span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
+              Tertarik Menggunakan Salah Satu Sistem Website di Atas untuk Usaha Anda?
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+              Pilih nomor portofolio (#01 s/d #16) yang paling sesuai dengan bidang bisnis Anda, lalu konsultasikan penyesuaian fitur, warna, dan katalog harga bersama tim kami.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+            <a href="https://wa.me/6281234567890?text=Halo%20Arkin%20Studio,%20saya%20tertarik%20membuat%20website%20UMKM%20dari%20katalog%20portofolio."
+               target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent hover:bg-ink text-surface font-semibold text-xs sm:text-sm px-6 py-3.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
+              <span>Konsultasi & Pesan Sekarang</span>
+            </a>
+            <a href="#katalog"
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-surface hover:bg-paper text-ink border border-line font-semibold text-xs sm:text-sm px-5 py-3.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink">
+              <span>Lihat 16 Portofolio</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Grid 4 Kolom -->
+      <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-xs sm:text-sm">
+        <!-- Kolom 1: Brand -->
+        <div class="space-y-4">
+          <a href="#" class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+            <img src="assets/logo.svg" alt="Arkin Studio — Katalog Digital UMKM" class="h-10 w-auto" />
+          </a>
+          <p id="hubFooterDesc" class="text-xs sm:text-sm text-muted leading-relaxed">
+            Studio pengembangan website dan aplikasi operasional UMKM Indonesia. Menghadirkan solusi Landing Page, Toko Online WhatsApp, Sistem Booking Real-Time, hingga Aplikasi Kasir POS.
+          </p>
+          <div class="flex items-center gap-2.5 pt-1">
+            <a href="https://instagram.com/arkinstudio.id" target="_blank" rel="noopener noreferrer" aria-label="Instagram Arkin Studio"
+               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://tiktok.com/@arkinstudio.id" target="_blank" rel="noopener noreferrer" aria-label="TikTok Arkin Studio"
+               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Arkin Studio"
+               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            </a>
+            <a href="https://youtube.com/@arkinstudio" target="_blank" rel="noopener noreferrer" aria-label="YouTube Arkin Studio"
+               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi Cepat -->
+        <nav aria-label="Navigasi Cepat" class="space-y-4">
+          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Navigasi Cepat</h4>
+          <ul class="space-y-2.5 text-muted">
+            <li><a href="#" class="hover:text-accent transition-colors">Beranda</a></li>
+            <li><a href="#katalog" class="hover:text-accent transition-colors">Katalog 16 Portofolio</a></li>
+            <li><a href="#paket-harga" class="hover:text-accent transition-colors">Estimasi Paket & Investasi</a></li>
+            <li><a href="#ulasan-klien" class="hover:text-accent transition-colors">Ulasan & Foto Klien</a></li>
+            <li><a href="#faq" class="hover:text-accent transition-colors">Pertanyaan Umum (FAQ)</a></li>
+            <li><a href="#kontak-footer" class="hover:text-accent transition-colors">Kontak Studio</a></li>
+          </ul>
+        </nav>
+
+        <!-- Kolom 3: Kategori Sistem Website -->
+        <nav aria-label="Kategori Sistem Website" class="space-y-4">
+          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Kategori Sistem UMKM</h4>
+          <ul class="space-y-2.5 text-muted">
+            <li><a href="#katalog" onclick="filterPortfolio('cat1')" class="hover:text-accent transition-colors">01 / Landing Page & Kalkulator Jasa</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat2')" class="hover:text-accent transition-colors">02 / Katalog Produk & Toko Online WA</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat3')" class="hover:text-accent transition-colors">03 / Sistem Booking & Jadwal Real-Time</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat4')" class="hover:text-accent transition-colors">04 / Aplikasi Kasir POS & Operasional</a></li>
+            <li><a href="03-sistem-booking-reservasi/06-booking-lapangan-olahraga/index.html" class="hover:text-accent transition-colors font-semibold text-ink">Demo Populer: ArenaKita Sport (#06)</a></li>
+          </ul>
+        </nav>
+
+        <!-- Kolom 4: Kontak & Jam Operasional -->
+        <div class="space-y-4">
+          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Kontak & Jam Operasional</h4>
+          <ul class="space-y-3 text-muted">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-accent mt-1 w-4 text-center" aria-hidden="true"></i>
+              <div>
+                <span id="hubFooterAddr" class="block text-ink">Jl. Kemang Raya No. 45, Mampang Prapatan, Jakarta Selatan 12730</span>
+                <a href="https://maps.google.com/?q=Kemang+Raya+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-accent underline">Buka Google Maps ↗</a>
+              </div>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-brands fa-whatsapp text-forest w-4 text-center" aria-hidden="true"></i>
+              <a id="hubFooterWa" href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="font-mono font-semibold text-ink hover:text-accent transition-colors">+62 812-3456-7890</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-regular fa-envelope text-accent w-4 text-center" aria-hidden="true"></i>
+              <a id="hubFooterEmail" href="mailto:halo@arkinstudio.id" class="font-mono text-ink hover:text-accent transition-colors">halo@arkinstudio.id</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-regular fa-clock text-ink w-4 text-center" aria-hidden="true"></i>
+              <span id="hubFooterHours">Senin – Sabtu: 08.00 – 21.00 WIB</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. Bar Bawah -->
+      <div class="py-6 border-t border-line flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-muted text-center lg:text-left">
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-1.5">
+          <span class="font-mono text-[11px] uppercase mr-1">Pembayaran:</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono font-bold text-[11px] text-ink">QRIS</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">BCA</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">BRI</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">Mandiri</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">GoPay</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">OVO</span>
+          <span class="px-2 py-0.5 bg-paper border border-line font-mono text-[11px] text-ink">DANA</span>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+          <div class="font-mono">© 2026 ARKIN STUDIO — 16 PORTOFOLIO MANDIRI UMKM INDONESIA.</div>
+          <nav aria-label="Tautan Legal" class="flex flex-wrap items-center justify-center gap-3">
+            <!-- TODO: Halaman Syarat & Ketentuan -->
+            <a href="#" class="hover:text-ink transition-colors">Syarat & Ketentuan</a>
+            <span>•</span>
+            <!-- TODO: Halaman Kebijakan Privasi -->
+            <a href="#" class="hover:text-ink transition-colors">Kebijakan Privasi</a>
+            <span>•</span>
+            <a href="#faq" class="hover:text-ink transition-colors">Garansi & Revisi</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterPortfolio(category) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === category) {
+          btn.className = 'cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface transition';
+        } else {
+          btn.className = 'cat-btn px-4 py-2.5 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink transition';
+        }
+      });
+
+      document.querySelectorAll('.porto-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function searchPortfolio() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.porto-card').forEach(card => {
+        const text = (card.innerText + ' ' + (card.dataset.keywords || '')).toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    function openPreviewModal(url, title) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('previewIframe').src = url;
+      document.getElementById('modalFullLink').href = url;
+      document.getElementById('previewModal').classList.remove('hidden');
+      setViewport('mobile');
+    }
+
+    function closePreviewModal() {
+      document.getElementById('previewModal').classList.add('hidden');
+      document.getElementById('previewIframe').src = 'about:blank';
+    }
+
+    function setViewport(mode) {
+      const wrapper = document.getElementById('iframeWrapper');
+      const btnD = document.getElementById('btnDesktop');
+      const btnM = document.getElementById('btnMobile');
+      if (mode === 'mobile') {
+        wrapper.style.maxWidth = '420px';
+        wrapper.style.height = '94%';
+        wrapper.style.borderRadius = '24px';
+        wrapper.style.borderWidth = '8px';
+        btnM.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface';
+        btnD.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line';
+      } else {
+        wrapper.style.maxWidth = '100%';
+        wrapper.style.height = '100%';
+        wrapper.style.borderRadius = '4px';
+        wrapper.style.borderWidth = '1px';
+        btnD.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface';
+        btnM.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line';
+      }
+    }
+  </script>
+</body>
+</html>

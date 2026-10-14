@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KayuArta Jepara Heritage &amp; Living — Katalog Mebel Kayu Jati TPK &amp; Custom Interior</title>
+    <meta name="description" content="Katalog furnitur kayu jati solid Jepara berstandar ekspor. Meja makan, sofa jati, kursi rotan cafe, lemari pakaian, dan custom ukuran langsung dari bengkel kriya Jepara.">
+
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        sand: {
+                            DEFAULT: '#F4F0EA',
+                            card: '#FAF8F5',
+                            dark: '#EAE3D9',
+                            line: '#DCD5C9'
+                        },
+                        teak: {
+                            DEFAULT: '#231912',
+                            light: '#38291E',
+                            muted: '#6E5A4B'
+                        },
+                        brass: {
+                            DEFAULT: '#A67C52',
+                            hover: '#8E663E',
+                            soft: '#EFE6DC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F4F0EA;
+            color: #231912;
+        }
+        .lookbook-grid {
+            border-color: #DCD5C9;
+        }
+        .swatch-ring-active {
+            outline: 2px solid #231912;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-teak selection:text-sand">
+
+    <!-- TOP PORTFOLIO DEMO BAR -->
+    <div class="bg-teak text-sand border-b border-teak-light text-xs py-2.5 px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-sand hover:text-brass transition-colors whitespace-nowrap shrink-0">
+                <i class="fa-solid fa-arrow-left text-[11px] text-brass"></i>
+                <span>Kembali ke Katalog Portofolio UMKM</span>
+            </a>
+            <div class="flex items-center gap-4 text-sand/80 shrink-0">
+                <span class="hidden md:inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-brass"></span>
+                    Demo #13 &bull; Scandinavian–Javanese Architectural Craft
+                </span>
+                <button type="button" onclick="toggleCartDrawer(true)" class="bg-brass text-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wider hover:bg-brass-hover transition whitespace-nowrap shrink-0">
+                    Simulasi Ongkir Truk
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER & CART TRIGGER -->
+    <header class="sticky top-0 z-40 bg-sand/95 backdrop-blur-md border-b border-sand-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-6">
+                <!-- Local Vector Logo -->
+                <a href="#" class="flex items-center shrink-0 focus:outline-none">
+                    <img src="assets/logo.svg" alt="KayuArta Jepara Heritage & Living" class="h-11 w-auto block">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-teak">
+                    <a href="#katalog-koleksi" class="hover:text-brass transition-colors whitespace-nowrap">Koleksi Mebel</a>
+                    <a href="#custom-order" class="hover:text-brass transition-colors whitespace-nowrap">Kustom Kayu</a>
+                    <button type="button" onclick="toggleCartDrawer(true)" class="hover:text-brass transition-colors inline-flex items-center gap-1.5 font-semibold whitespace-nowrap">
+                        <i class="fa-solid fa-truck-moving text-brass text-xs"></i>
+                        <span>Cek Ongkir</span>
+                    </button>
+                    <a href="#ulasan-pembeli" class="hover:text-brass transition-colors whitespace-nowrap">Ulasan Pembeli</a>
+                    <a href="#faq" class="hover:text-brass transition-colors whitespace-nowrap">FAQ</a>
+                </nav>
+
+                <!-- Cart & Action Buttons -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="#custom-order" class="hidden xl:inline-flex items-center gap-2 border border-teak text-teak hover:bg-teak hover:text-sand text-xs font-bold uppercase tracking-wider px-4 py-3 transition whitespace-nowrap shrink-0">
+                        <i class="fa-solid fa-ruler-combined text-brass"></i>
+                        <span>Custom Ukuran</span>
+                    </a>
+
+                    <button type="button" onclick="toggleCartDrawer(true)" class="inline-flex items-center gap-2.5 bg-teak hover:bg-teak-light text-sand text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-3 transition whitespace-nowrap shrink-0">
+                        <i class="fa-solid fa-truck-ramp-box text-brass"></i>
+                        <span class="hidden sm:inline">Daftar Pesanan</span>
+                        <span id="headerCartCount" class="bg-brass text-white font-mono text-[11px] px-2 py-0.5">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 border border-sand-line text-teak hover:bg-sand-dark shrink-0">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenuPanel" class="hidden lg:hidden bg-sand border-b border-sand-line px-4 pt-3 pb-6 space-y-3">
+            <a href="#katalog-koleksi" class="block py-2 text-sm font-semibold border-b border-sand-line">Koleksi Mebel</a>
+            <a href="#custom-order" class="block py-2 text-sm font-semibold border-b border-sand-line">Kustom Kayu &amp; Ukuran</a>
+            <button type="button" onclick="toggleCartDrawer(true)" class="block w-full text-left py-2 text-sm font-semibold text-brass border-b border-sand-line">Cek Ongkir Truk Mebel</button>
+            <a href="#ulasan-pembeli" class="block py-2 text-sm font-semibold border-b border-sand-line">Ulasan Pembeli &amp; Real Pict</a>
+            <a href="#faq" class="block py-2 text-sm font-semibold">FAQ</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: ARCHITECTURAL FURNITURE LOOKBOOK -->
+    <section class="border-b border-sand-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <!-- Top Spec Strip -->
+            <div class="grid grid-cols-2 md:grid-cols-4 border border-sand-line bg-sand-card mb-10 divide-y md:divide-y-0 md:divide-x divide-sand-line text-xs font-mono">
+                <div class="p-3.5 flex items-center justify-between">
+                    <span class="text-teak-muted">ORIGIN</span>
+                    <strong class="text-teak">TAHUNAN, JEPARA</strong>
+                </div>
+                <div class="p-3.5 flex items-center justify-between">
+                    <span class="text-teak-muted">KILN-DRIED MC</span>
+                    <strong class="text-teak">10% – 12% EXPORT</strong>
+                </div>
+                <div class="p-3.5 flex items-center justify-between">
+                    <span class="text-teak-muted">LEGALITAS KAYU</span>
+                    <strong class="text-brass">SVLK / PERHUTANI TPK</strong>
+                </div>
+                <div class="p-3.5 flex items-center justify-between">
+                    <span class="text-teak-muted">PENGIRIMAN</span>
+                    <strong class="text-teak">TRUK EKSPEDISI MEBEL</strong>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <!-- Left Column (6 Cols) -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-sand-dark border border-sand-line text-teak text-xs font-mono uppercase tracking-widest">
+                        <span>KOLEKSI ARSITEKTURAL 2025 &bull; DIRECT ARTISAN PRICE</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-[54px] text-teak leading-[1.08]">
+                        Kriya Kayu Jati Jepara dengan <span class="italic font-normal text-brass">Garis Ruang Modern.</span>
+                    </h1>
+
+                    <p class="text-base text-teak-muted leading-relaxed">
+                        Dikerjakan langsung di bengkel kayu kami di Desa Tahunan, Jepara. Menggabungkan teknik sambungan purus-lubang tradisional (*mortise &amp; tenon joinery*) dengan proporsi desain Skandinavia yang hangat. Pilih tingkat kekeringan kayu <strong class="text-teak">Jati TPK Perhutani Grade A</strong> dan sesuaikan warna *finishing* di setiap unit.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#katalog-koleksi" class="inline-flex items-center gap-3 bg-teak hover:bg-teak-light text-sand text-xs sm:text-sm font-bold uppercase tracking-wider px-7 py-4 transition">
+                            <span>Jelajahi 12 Koleksi Mebel</span>
+                            <i class="fa-solid fa-arrow-down text-brass text-xs"></i>
+                        </a>
+                        <button type="button" onclick="toggleCartDrawer(true)" class="inline-flex items-center gap-3 bg-sand-card hover:bg-sand-dark text-teak border border-sand-line text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-4 transition">
+                            <i class="fa-solid fa-calculator text-brass"></i>
+                            <span>Cek Ongkir Truk Mebel</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Lookbook Hero Frame (6 Cols) -->
+                <div class="lg:col-span-6">
+                    <div class="bg-sand-card border border-sand-line p-3 sm:p-4">
+                        <div class="relative aspect-[16/11] overflow-hidden border border-sand-line">
+                            <img src="assets/images/hero-living.jpg" alt="Interior Ruang Makan & Ruang Tamu Kayu Jati Jepara" class="w-full h-full object-cover">
+                            <div class="absolute bottom-4 left-4 right-4 bg-sand-card/95 backdrop-blur-md border border-sand-line p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <span class="font-mono text-[10px] uppercase tracking-widest text-brass font-semibold">SERI UNGGULAN: PENDOPO DINING</span>
+                                    <p class="font-serif text-lg text-teak font-semibold">Meja Makan Solid Jati TPK Tanpa Sambungan Laminasi</p>
+                                </div>
+                                <span class="font-mono text-xs bg-teak text-sand px-3 py-1.5 whitespace-nowrap">
+                                    GARANSI 10 TAHUN
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE CATALOG WITH ROOM FILTER, STATUS FILTER & WOOD CUSTOMIZER -->
+    <section id="katalog-koleksi" class="py-16 lg:py-24 border-b border-sand-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-sand-line">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-2">01 / KATALOG KOLEKSI &amp; KONFIGURATOR KAYU</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teak">Pilih Warna Finishing &amp; Grade Kayu di Setiap Produk</h2>
+                </div>
+                <div class="bg-sand-card border border-sand-line p-3.5 text-xs flex flex-wrap items-center gap-4">
+                    <span class="font-mono uppercase font-semibold text-teak">Pilihan Warna Finishing:</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full inline-block border border-teak/30" style="background:#C68B59"></span>Natural Teak</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full inline-block border border-teak/30" style="background:#7A4B2A"></span>Walnut Brown</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full inline-block border border-teak/30" style="background:#3B2314"></span>Salak Dark</span>
+                    <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full inline-block border border-teak/30" style="background:#D9C3A9"></span>Bleached Oak</span>
+                </div>
+            </div>
+
+            <!-- Filter Bar: Room Category + Stock Status -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 my-8">
+                <!-- Room Filter Buttons -->
+                <div class="flex flex-wrap gap-2" id="roomFilterContainer">
+                    <button type="button" onclick="setRoomFilter('all')" data-room="all" class="room-filter-btn bg-teak text-sand border border-teak px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition">
+                        Semua Koleksi (11)
+                    </button>
+                    <button type="button" onclick="setRoomFilter('Ruang Tamu')" data-room="Ruang Tamu" class="room-filter-btn bg-sand-card text-teak border border-sand-line hover:bg-sand-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition">
+                        Ruang Tamu
+                    </button>
+                    <button type="button" onclick="setRoomFilter('Ruang Makan')" data-room="Ruang Makan" class="room-filter-btn bg-sand-card text-teak border border-sand-line hover:bg-sand-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition">
+                        Ruang Makan
+                    </button>
+                    <button type="button" onclick="setRoomFilter('Kamar Tidur')" data-room="Kamar Tidur" class="room-filter-btn bg-sand-card text-teak border border-sand-line hover:bg-sand-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition">
+                        Kamar Tidur
+                    </button>
+                    <button type="button" onclick="setRoomFilter('Kursi Cafe & Hotel')" data-room="Kursi Cafe & Hotel" class="room-filter-btn bg-sand-card text-teak border border-sand-line hover:bg-sand-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition">
+                        Kursi Cafe &amp; Hotel
+                    </button>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="flex items-center gap-2">
+                    <label for="statusFilterSelect" class="text-xs font-mono uppercase text-teak-muted whitespace-nowrap">Status Produksi:</label>
+                    <select id="statusFilterSelect" onchange="setStatusFilter(this.value)" class="bg-sand-card border border-sand-line px-3.5 py-2.5 text-xs font-mono font-semibold text-teak focus:outline-none focus:border-brass">
+                        <option value="all">Semua Status (Ready &amp; Pre-Order)</option>
+                        <option value="Ready Stock Siap Kirim">Ready Stock Siap Kirim</option>
+                        <option value="Pre-Order Custom 14 Hari">Pre-Order Custom 14 Hari</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Lookbook Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PERBANDINGAN GRADE KAYU JATI & PROSES KILN-DRY WORKSHOP -->
+    <section id="standar-kayu" class="py-16 lg:py-24 bg-sand-dark border-b border-sand-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <p class="font-mono text-xs uppercase tracking-widest text-brass font-semibold">02 / TRANSPARANSI MATERIAL KAYU</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teak">Perbedaan Jati TPK Perhutani Grade A vs Grade B</h2>
+                    <p class="text-sm text-teak-muted leading-relaxed">
+                        Di KayuArta Jepara, kami tidak pernah mencampur kayu jati muda berkadar air tinggi. Anda bebas menentukan sendiri spesifikasi bahan baku sesuai anggaran hunian maupun proyek komersial Anda.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-sand-card border border-sand-line p-5">
+                            <span class="font-mono text-[10px] uppercase bg-teak text-sand px-2 py-0.5">GRADE A &bull; TPK PERHUTANI</span>
+                            <h3 class="font-serif text-xl text-teak font-semibold mt-2">100% Teras Jati Tua Lepas Putih</h3>
+                            <ul class="mt-3 space-y-2 text-xs text-teak-muted">
+                                <li>&bull; Umur pohon tebangan resmi 40–60 tahun.</li>
+                                <li>&bull; Bebas gubal putih (*0% sapwood*), tahan rayap alami seumur hidup.</li>
+                                <li>&bull; Serat padat beraturan &amp; minyak alami jati tinggi.</li>
+                                <li>&bull; <strong>Garansi Konstruksi Resmi 10 Tahun.</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-sand-card border border-sand-line p-5">
+                            <span class="font-mono text-[10px] uppercase bg-brass text-white px-2 py-0.5">GRADE B &bull; JATI RAKYAT TUA</span>
+                            <h3 class="font-serif text-xl text-teak font-semibold mt-2">Ekonomis untuk Proyek Cafe &amp; Kos</h3>
+                            <ul class="mt-3 space-y-2 text-xs text-teak-muted">
+                                <li>&bull; Kayu jati kampung pilihan berumur 20–25 tahun.</li>
+                                <li>&bull; Sudah melewati oven pengering (*Kiln-Dry MC 12%*) selama 14 hari.</li>
+                                <li>&bull; Diobat anti-bubuk (*Lentrek treatment*) sebelum perakitan.</li>
+                                <li>&bull; <strong>Garansi Konstruksi Resmi 3 Tahun.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bengkel-jepara" class="lg:col-span-6">
+                    <div class="bg-sand-card border border-sand-line p-4">
+                        <div class="aspect-[16/10] overflow-hidden border border-sand-line">
+                            <img src="assets/images/workshop-artisan.jpg" alt="Pengerjaan mebel di bengkel kayu Jepara" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <span class="font-mono text-[10px] uppercase text-brass font-semibold">WORKSHOP DESA TAHUNAN, JEPARA</span>
+                                <p class="font-serif text-xl text-teak font-semibold">Laporan Foto &amp; Video Progress Pengerjaan Setiap Minggu</p>
+                            </div>
+                            <span class="font-mono text-xs border border-sand-line bg-sand px-3 py-1.5 text-teak">
+                                QC 4 TAHAP
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: CUSTOM SIZE & PROJECT REQUEST FORM TO WHATSAPP -->
+    <section id="custom-order" class="py-16 lg:py-24 border-b border-sand-line">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-sand-card border border-sand-line p-6 sm:p-10">
+                <div class="border-b border-sand-line pb-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <span class="font-mono text-xs uppercase tracking-widest text-brass font-semibold">03 / LAYANAN CUSTOM BESPOKE &amp; B2B</span>
+                        <h2 class="font-serif text-3xl text-teak mt-1">Formulir Request Ukuran Custom &amp; Gambar Kerja</h2>
+                    </div>
+                    <p class="text-xs text-teak-muted max-w-xs font-mono">
+                        Punya referensi desain dari Pinterest atau gambar kerja arsitek? Kirimkan dimensi spesifik Anda ke kepala tukang kami.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                    <div class="sm:col-span-2">
+                        <label for="custItemType" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Jenis Mebel / Proyek</label>
+                        <input id="custItemType" type="text" placeholder="Contoh: Meja Makan Solid 8 Kursi / 30 Kursi Cafe" value="Meja Makan Jati Solid Custom" class="w-full bg-sand border border-sand-line px-4 py-3 text-sm text-teak focus:outline-none focus:border-brass">
+                    </div>
+
+                    <div>
+                        <label for="custGrade" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Pilihan Grade Kayu</label>
+                        <select id="custGrade" class="w-full bg-sand border border-sand-line px-3.5 py-3 text-sm text-teak font-medium focus:outline-none focus:border-brass">
+                            <option value="Jati TPK Perhutani Grade A">Jati TPK Perhutani Grade A</option>
+                            <option value="Jati Rakyat Tua Grade B">Jati Rakyat Tua Grade B</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="custFinish" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Warna Finishing</label>
+                        <select id="custFinish" class="w-full bg-sand border border-sand-line px-3.5 py-3 text-sm text-teak font-medium focus:outline-none focus:border-brass">
+                            <option value="Natural Teak Matte">Natural Teak Matte</option>
+                            <option value="Walnut Brown">Walnut Brown</option>
+                            <option value="Salak Dark Espresso">Salak Dark Espresso</option>
+                            <option value="Bleached Oak">Bleached Oak</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label for="custLength" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Panjang (P cm)</label>
+                        <input id="custLength" type="number" value="240" class="w-full bg-sand border border-sand-line px-4 py-3 font-mono text-sm text-teak focus:outline-none focus:border-brass">
+                    </div>
+                    <div>
+                        <label for="custWidth" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Lebar (L cm)</label>
+                        <input id="custWidth" type="number" value="100" class="w-full bg-sand border border-sand-line px-4 py-3 font-mono text-sm text-teak focus:outline-none focus:border-brass">
+                    </div>
+                    <div>
+                        <label for="custHeight" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Tinggi (T cm)</label>
+                        <input id="custHeight" type="number" value="76" class="w-full bg-sand border border-sand-line px-4 py-3 font-mono text-sm text-teak focus:outline-none focus:border-brass">
+                    </div>
+                    <div>
+                        <label for="custCity" class="block text-xs font-mono uppercase text-teak font-semibold mb-2">Kota Pengiriman</label>
+                        <input id="custCity" type="text" value="Jakarta Selatan" class="w-full bg-sand border border-sand-line px-4 py-3 text-sm text-teak focus:outline-none focus:border-brass">
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-sand-line">
+                    <p class="text-xs text-teak-muted">
+                        <i class="fa-solid fa-compass-drafting text-brass mr-1.5"></i>Gratis pembuatan gambar kerja 3D SketchUp sebelum kayu dipotong.
+                    </p>
+                    <button type="button" onclick="sendCustomRequestWA()" class="bg-teak hover:bg-teak-light text-sand text-xs font-bold uppercase tracking-wider px-7 py-4 transition inline-flex items-center justify-center gap-2.5">
+                        <i class="fa-brands fa-whatsapp text-brass text-base"></i>
+                        <span>Konsultasi Ukuran Custom via WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: ULASAN PEMBELI & FOTO REAL PICT TERPASANG DI RUMAH KLIEN -->
+    <section id="ulasan-pembeli" class="py-16 lg:py-24 bg-sand-dark border-b border-sand-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-sand-line">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-2">04 / ARSIP INSTALASI &amp; TESTIMONI KLIEN</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-teak">Ulasan Pembeli &amp; Foto Real Pict Terpasang di Rumah Klien</h2>
+                </div>
+                <p class="text-sm text-teak-muted max-w-md">
+                    Dokumentasi asli pengiriman tim ekspedisi truk kami saat mebel kayu jati selesai dirakit di kediaman klien, kafe, dan resort.
+                </p>
+            </div>
+
+            <!-- 4 Buyer Real-Pict Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <!-- Buyer Card 1 -->
+                <article class="bg-sand-card border border-sand-line flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-sand-line">
+                            <img src="assets/images/prod-meja-makan.jpg" alt="Real Pict Meja Makan Jati TPK di Rumah Ibu Clarissa Pondok Indah" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teak/90 text-sand font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                Real Pict Terpasang di Rumah Klien
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-brass text-white font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-sand-line">
+                                <img src="assets/images/cust-1.jpg" alt="Ibu Clarissa Wijaya" class="w-12 h-12 rounded-full object-cover border border-brass shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teak">Ibu Clarissa Wijaya — Pondok Indah</h3>
+                                    <p class="text-xs text-teak-muted">Jakarta Selatan &bull; <span class="text-brass font-semibold">Meja Makan Solid Jati TPK Grade A (240 cm)</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-teak leading-relaxed">
+                                "Setiap minggu dikirimi video saat kayu di-oven sampai tahap amplas halus di Jepara. Begitu truk mebel sampai di Pondok Indah, kru ekspedisi langsung bantu angkat dan pasang di ruang makan. Serat Jati TPK Grade A-nya rapat sekali dan finishing Natural Matte-nya sangat mewah!"
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Buyer Card 2 -->
+                <article class="bg-sand-card border border-sand-line flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-sand-line">
+                            <img src="assets/images/prod-sofa-jati.jpg" alt="Real Pict Sofa Jati Kalingga di Rumah Bpk Hendra BSD City" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teak/90 text-sand font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                Real Pict Terpasang di Rumah Klien
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-brass text-white font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-sand-line">
+                                <img src="assets/images/cust-2.jpg" alt="Bpk. Hendra Kusuma" class="w-12 h-12 rounded-full object-cover border border-brass shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teak">Bpk. Hendra Kusuma — BSD City</h3>
+                                    <p class="text-xs text-teak-muted">Tangerang &bull; <span class="text-brass font-semibold">Sofa 3-Seater Jati Kalingga + Credenza TV</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-teak leading-relaxed">
+                                "Pesan satu set ruang tamu dengan warna Walnut Brown. Sambungan kayunya presisi tanpa paku tembak yang terlihat, dan bantal busa densitas tingginya sangat empuk. Ongkir truk ekspedisi ke BSD jauh lebih hemat dibanding beli di showroom mal."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Buyer Card 3 -->
+                <article class="bg-sand-card border border-sand-line flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-sand-line">
+                            <img src="assets/images/prod-kursi-rotan.jpg" alt="Real Pict Kursi Cafe Rotan Jati di Kopi Senja Bandung" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teak/90 text-sand font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                Real Pict Terpasang di Rumah Klien
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-brass text-white font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-sand-line">
+                                <img src="assets/images/cust-4.jpg" alt="Kopi Senja Roastery" class="w-12 h-12 rounded-full object-cover border border-brass shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teak">Kopi Senja Roastery — Bandung</h3>
+                                    <p class="text-xs text-teak-muted">Proyek Komersial &bull; <span class="text-brass font-semibold">36 Unit Lounge Chair Jati &amp; Rotan Alami</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-teak leading-relaxed">
+                                "Order 36 kursi cafe dan 12 meja kopi untuk pembukaan cabang baru di Jalan Riau Bandung. Pengerjaan tepat 14 hari kerja sesuai kontrak, anyaman rotan alaminya rapi dan kencang, serta dikirim 1 truk penuh langsung dari Tahunan Jepara."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Buyer Card 4 -->
+                <article class="bg-sand-card border border-sand-line flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-sand-line">
+                            <img src="assets/images/prod-dipan-tempat-tidur.jpg" alt="Real Pict Dipan Jati Floating di Villa Canggu Bali" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teak/90 text-sand font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                Real Pict Terpasang di Rumah Klien
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-brass text-white font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-sand-line">
+                                <img src="assets/images/cust-3.jpg" alt="Ibu Tari Prameswari" class="w-12 h-12 rounded-full object-cover border border-brass shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teak">Ibu Tari Prameswari — Canggu</h3>
+                                    <p class="text-xs text-teak-muted">Bali &bull; <span class="text-brass font-semibold">4 Set Dipan King Platform + Lemari Louvre</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-teak leading-relaxed">
+                                "Mengisi 4 kamar boutique villa di Canggu dengan custom ukuran dari KayuArta. Kayu benar-benar kering oven sehingga tidak memuai atau retak meski cuaca pesisir Bali lembap. Gambar kerja 3D sebelum produksi sangat membantu tim arsitek kami."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: PERTANYAAN YANG SERING DITANYAKAN (FAQ ACCORDION) -->
+    <section id="faq" class="py-16 lg:py-24 border-b border-sand-line">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <p class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-2">05 / PANDUAN PEMESANAN &amp; JAMINAN MUTU</p>
+                <h2 class="font-serif text-3xl sm:text-4xl text-teak">Pertanyaan yang Sering Ditanyakan (FAQ)</h2>
+                <p class="text-sm text-teak-muted mt-2">
+                    Penjelasan teknis mengenai kekeringan kayu jati oven, garansi konstruksi, prosedur pengiriman truk mebel, dan sistem pembayaran.
+                </p>
+            </div>
+
+            <div class="space-y-3">
+                <!-- FAQ 1 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(0)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>1. Bagaimana jaminan kayu jati tidak melengkung, retak, atau dimakan bubuk kayu?</span>
+                        <i id="mebelFaqIcon0" class="fa-solid fa-minus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody0" class="px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Seluruh papan kayu jati di bengkel kami wajib melewati proses pengeringan ruang oven uap (<strong>Kiln-Dry Chamber</strong>) selama 12–14 hari hingga kadar air mencapai standar ekspor <strong>MC 10%–12%</strong>, serta diberikan cairan anti-hama kayu (*Lentrek treatment*) sebelum masuk tahap perakitan.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(1)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>2. Berapa lama garansi konstruksi mebel yang diberikan oleh KayuArta Jepara?</span>
+                        <i id="mebelFaqIcon1" class="fa-solid fa-plus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody1" class="hidden px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Untuk produk berbahan <strong>Jati Rakyat Tua Grade B</strong> kami memberikan <strong>Garansi Konstruksi Resmi 3 Tahun</strong>, sedangkan untuk <strong>Jati Perhutani TPK Grade A (Lepas Putih)</strong> dilindungi <strong>Garansi Konstruksi 10 Tahun</strong> yang mencakup perbaikan gratis atau penggantian unit apabila sambungan purus-lubang goyang atau papan membelah alami.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(2)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>3. Mengapa pengiriman menggunakan Ekspedisi Truk Mebel Jepara dan apakah diantar sampai ke dalam rumah?</span>
+                        <i id="mebelFaqIcon2" class="fa-solid fa-plus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody2" class="hidden px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Furnitur kayu solid memiliki bobot dan dimensi besar sehingga jauh lebih aman dan hemat dikirim menggunakan <strong>Truk Ekspedisi Khusus Mebel Jepara</strong> (dihitung per volume m&sup3;, bukan per kilogram). Kru supir dan kernet truk kami akan menurunkan barang, membuka pelindung *foam sheet*, serta <strong>merakit mebel langsung di ruangan rumah Anda tanpa biaya tambahan</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(3)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>4. Bagaimana prosedur pemesanan ukuran custom dan sistem pembayaran DP 50%?</span>
+                        <i id="mebelFaqIcon3" class="fa-solid fa-plus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody3" class="hidden px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Untuk pesanan *Pre-Order Custom 14 Hari*, pembayaran dilakukan dalam 2 tahap yang aman: <strong>DP 50%</strong> saat gambar kerja 3D disetujui untuk memulai pemotongan kayu, dan <strong>Pelunasan 50%</strong> setelah mebel selesai difinishing (melalui video call inspeksi di gudang Jepara) atau saat truk ekspedisi tiba di lokasi Anda.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(4)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>5. Apakah pembeli bisa berkunjung langsung ke Workshop Tahunan Jepara atau meminta sampel kayu?</span>
+                        <i id="mebelFaqIcon4" class="fa-solid fa-plus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody4" class="hidden px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Sangat bisa. Anda dapat mengunjungi bengkel produksi kami di Jl. Raya Jepara–Kudus KM 6 (Desa Tahunan) maupun galeri sampel di Kemang Timur Jakarta. Untuk proyek interior luar kota, kami juga dapat mengirimkan kotak *Sample Kit* berisi 4 potongan blok kayu jati dengan 4 warna finishing berbeda ke alamat Anda.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="bg-sand-card border border-sand-line">
+                    <button type="button" onclick="toggleMebelFaq(5)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-teak text-sm">
+                        <span>6. Bagaimana cara merawat permukaan meja makan dan sofa kayu jati agar tetap awet puluhan tahun?</span>
+                        <i id="mebelFaqIcon5" class="fa-solid fa-plus text-brass text-xs shrink-0 ml-4"></i>
+                    </button>
+                    <div id="mebelFaqBody5" class="hidden px-6 pb-5 text-xs sm:text-sm text-teak-muted space-y-2 border-t border-sand-line pt-4">
+                        <p>Seluruh produk kami dilapisi *Polyurethane (PU) Acrylic Top Coat* yang tahan tumpahan air hangat dan noda makanan harian. Cukup bersihkan dengan kain mikrofiber lembap, dan setiap 6–12 bulan sekali oleskan *beeswax* atau *teak oil* alami yang sudah kami sertakan gratis di dalam paket pengiriman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-teak text-sand border-t border-teak-light">
+        <!-- 1. Strip CTA & Trust Badges (Top of Footer) -->
+        <div class="border-b border-sand/10 bg-teak-light/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <!-- 3 Trust Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teak border border-brass/40 text-brass font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-bolt text-[10px]"></i>
+                                <span>Konfirmasi Instan</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teak border border-brass/40 text-brass font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                <span>Pembayaran Aman DP 50%</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-teak border border-brass/40 text-brass font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
+                                <i class="fa-solid fa-certificate text-[10px]"></i>
+                                <span>Layanan Terverifikasi SVLK &amp; Kiln-Dry</span>
+                            </span>
+                        </div>
+
+                        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl text-sand leading-tight">
+                            Hadirkan Kehangatan <span class="italic font-normal text-brass">Kayu Jati TPK Jepara</span> di Hunian &amp; Ruang Komersial Anda.
+                        </h2>
+                        <p class="text-xs sm:text-sm text-sand/75 max-w-2xl leading-relaxed">
+                            Pesan koleksi *ready stock* atau ajukan ukuran *custom* sesuai denah ruangan Anda langsung dari bengkel kriya kami di Tahunan, Jepara. Pengiriman aman menggunakan armada truk ekspedisi khusus mebel lengkap dengan perakitan di tempat.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row lg:justify-end gap-3.5">
+                        <button type="button" onclick="toggleCartDrawer(true)" class="inline-flex items-center justify-center gap-2.5 bg-brass hover:bg-brass-hover text-white font-bold text-xs uppercase tracking-widest px-6 py-4 transition whitespace-nowrap">
+                            <i class="fa-solid fa-truck-moving"></i>
+                            <span>Simulasi Ongkir Truk</span>
+                        </button>
+                        <a href="https://wa.me/6281234567890?text=Halo%20Kepala%20Tukang%20KayuArta%20Jepara%2C%20saya%20ingin%20konsultasi%20pemesanan%20mebel%20jati%20dan%20estimasi%20kargo%20truk." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-teak hover:bg-teak-light text-sand border border-brass/50 font-bold text-xs uppercase tracking-widest px-6 py-4 transition whitespace-nowrap">
+                            <i class="fa-brands fa-whatsapp text-brass text-sm"></i>
+                            <span>Konsultasi Bengkel WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 4-Column Responsive Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-5">
+                    <a href="#" class="flex items-center gap-3.5 group focus:outline-none">
+                        <img src="assets/logo.svg" alt="KayuArta Jepara" class="h-11 w-[44px] object-cover object-left rounded-xl shrink-0 border border-brass/40">
+                        <div>
+                            <div class="font-serif text-2xl font-bold text-sand tracking-wide leading-none">
+                                Kayu<span class="italic font-normal text-brass">Arta</span>
+                            </div>
+                            <div class="font-mono text-[10px] uppercase tracking-[0.16em] text-brass mt-1">
+                                JEPARA HERITAGE &amp; LIVING
+                            </div>
+                        </div>
+                    </a>
+
+                    <p class="text-xs sm:text-sm text-sand/75 leading-relaxed">
+                        CV Kayu Arta Kriya Jepara — Produsen mebel kayu jati solid berstandar ekspor (Kiln-Dry MC 12%) dengan konstruksi purus-lubang tradisional untuk rumah tapak, villa, resort, dan kafe.
+                    </p>
+
+                    <div class="pt-1">
+                        <p class="font-mono text-[10px] uppercase tracking-widest text-brass/90 mb-2.5">Dokumentasi Produksi &amp; Sosial Media</p>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com/kayuarta.jepara" target="_blank" rel="noopener noreferrer" aria-label="Instagram KayuArta Jepara" class="w-9 h-9 border border-sand/20 bg-teak-light hover:bg-brass hover:text-white hover:border-brass text-sand flex items-center justify-center transition">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://tiktok.com/@kayuarta.jepara" target="_blank" rel="noopener noreferrer" aria-label="TikTok KayuArta Jepara" class="w-9 h-9 border border-sand/20 bg-teak-light hover:bg-brass hover:text-white hover:border-brass text-sand flex items-center justify-center transition">
+                                <i class="fa-brands fa-tiktok text-sm"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp KayuArta Jepara" class="w-9 h-9 border border-sand/20 bg-teak-light hover:bg-brass hover:text-white hover:border-brass text-sand flex items-center justify-center transition">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                            <a href="https://youtube.com/@kayuartajepara" target="_blank" rel="noopener noreferrer" aria-label="YouTube KayuArta Jepara" class="w-9 h-9 border border-sand/20 bg-teak-light hover:bg-brass hover:text-white hover:border-brass text-sand flex items-center justify-center transition">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-4">Navigasi Cepat</h3>
+                    <nav aria-label="Navigasi Cepat">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-sand/80">
+                            <li>
+                                <a href="#" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>Beranda</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-koleksi" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>Layanan &amp; Koleksi Mebel</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#standar-kayu" onclick="toggleCartDrawer(true)" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>Simulasi Ongkir &amp; Harga</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#custom-order" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>Cara Pemesanan Custom</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ulasan-pembeli" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>Ulasan &amp; Foto Pelanggan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="hover:text-brass transition-colors inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-chevron-right text-[9px] text-brass/70"></i>
+                                    <span>FAQ &amp; Kontak</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Layanan & Kategori -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-4">Koleksi &amp; Kategori</h3>
+                    <nav aria-label="Layanan dan Kategori" class="space-y-3">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-sand/80">
+                            <li>
+                                <a href="#katalog-koleksi" onclick="setRoomFilter('Ruang Makan')" class="hover:text-brass transition-colors block">
+                                    Meja Makan Solid Jati Pendopo 6–8 Kursi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-koleksi" onclick="setRoomFilter('Ruang Tamu')" class="hover:text-brass transition-colors block">
+                                    Sofa 3-Seater Jati Kalingga &amp; Credenza
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-koleksi" onclick="setRoomFilter('Kamar Tidur')" class="hover:text-brass transition-colors block">
+                                    Dipan King Platform &amp; Lemari Pakaian Louvre
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#katalog-koleksi" onclick="setRoomFilter('Kursi Cafe & Hotel')" class="hover:text-brass transition-colors block">
+                                    Kursi Cafe Hiroshima &amp; Lounge Rotan Alami
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#custom-order" class="hover:text-brass transition-colors block">
+                                    Pengerjaan Custom Ukuran &amp; Gambar Kerja 3D
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="pt-2">
+                            <a href="#custom-order" class="inline-flex items-center gap-2 px-3.5 py-2.5 bg-teak-light border border-brass/50 hover:bg-brass hover:text-white text-brass text-xs font-semibold transition w-full justify-between">
+                                <span><i class="fa-solid fa-compass-drafting mr-1.5"></i>Paket Proyek Cafe, Villa &amp; Hotel</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Kolom 4: Kontak & Jam Operasional -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-brass font-semibold mb-4">Workshop &amp; Showroom</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-sand/80">
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-teak-light border border-brass/30 text-brass flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </span>
+                            <div>
+                                <p class="text-sand font-medium leading-relaxed">Jl. Raya Jepara – Kudus KM 6, Desa Tahunan, Kec. Tahunan, Kab. Jepara, Jawa Tengah 59427 (Showroom: Kemang Timur No. 69, Jaksel)</p>
+                                <a href="https://maps.google.com/?q=Tahunan+Jepara+Jawa+Tengah" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-brass hover:underline font-mono text-[11px] mt-1">
+                                    <span>Buka di Google Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 bg-teak-light border border-brass/30 text-brass flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-sand/50">WhatsApp Kepala Tukang &amp; Admin</span>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-sand hover:text-brass font-mono font-semibold transition">
+                                    +62 812-3456-7890
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 bg-teak-light border border-brass/30 text-brass flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-sand/50">Email Penawaran &amp; RAB Proyek</span>
+                                <a href="mailto:halo@kayuarta-jepara.id" class="text-sand hover:text-brass font-mono transition">
+                                    halo@kayuarta-jepara.id
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-teak-light border border-brass/30 text-brass flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-sand/50">Jam Operasional Workshop &amp; Galeri</span>
+                                <p class="text-sand font-medium">Senin – Minggu: 08.00 – 20.00 WIB</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-sand/15 bg-teak/95">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <!-- Left: Payment Method Badges -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-sand/50 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 bg-teak-light border border-sand/15 text-sand/90 font-mono text-[11px] font-semibold whitespace-nowrap">DANA</span>
+                </div>
+
+                <!-- Right: Copyright & Legal Links -->
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-sand/60 text-center sm:text-right">
+                    <p>&copy; 2026 KayuArta Jepara Heritage &amp; Living. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
+                        <!-- TODO: Replace with dedicated terms modal or page -->
+                        <a href="#" class="hover:text-brass transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Replace with dedicated privacy policy modal or page -->
+                        <a href="#" class="hover:text-brass transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-brass transition-colors whitespace-nowrap">Garansi Konstruksi 10 Tahun</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OVER CART DRAWER + KALKULATOR ONGKIR EKSPEDISI TRUK MEBEL -->
+    <div id="cartDrawerBackdrop" class="fixed inset-0 z-50 hidden bg-teak/70 backdrop-blur-sm">
+        <div class="fixed inset-y-0 right-0 max-w-lg w-full bg-sand border-l border-sand-line flex flex-col justify-between shadow-2xl">
+            
+            <!-- Drawer Header -->
+            <div class="p-6 border-b border-sand-line flex items-center justify-between bg-sand-card">
+                <div>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-brass font-semibold">EKSPEDISI TRUK MEBEL JEPARA</span>
+                    <h3 class="font-serif text-2xl text-teak">Daftar Pesanan &amp; Kalkulator Kargo</h3>
+                </div>
+                <button type="button" onclick="toggleCartDrawer(false)" aria-label="Tutup Keranjang" class="w-9 h-9 border border-sand-line flex items-center justify-center text-teak hover:bg-sand-dark">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Drawer Scrollable Body -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                <!-- Cart Items Container -->
+                <div id="cartItemsContainer" class="space-y-4">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Cargo Truck Shipping Calculator Box -->
+                <div class="bg-sand-card border border-sand-line p-5 space-y-4">
+                    <div class="flex items-center justify-between border-b border-sand-line pb-3">
+                        <span class="font-mono text-xs uppercase font-bold text-teak">
+                            <i class="fa-solid fa-truck-moving text-brass mr-1.5"></i>Kalkulator Ongkir Ekspedisi Truk
+                        </span>
+                        <span id="cartTotalVolumeBadge" class="font-mono text-xs bg-teak text-sand px-2.5 py-0.5 font-semibold">
+                            0.00 m&sup3;
+                        </span>
+                    </div>
+
+                    <div>
+                        <label for="shippingZoneSelect" class="block text-xs font-mono uppercase text-teak-muted mb-1.5">
+                            Pilih Zona Tujuan Pengiriman dari Jepara:
+                        </label>
+                        <select id="shippingZoneSelect" onchange="renderCartDrawer()" class="w-full bg-sand border border-sand-line px-3.5 py-2.5 text-xs font-mono font-semibold text-teak focus:outline-none focus:border-brass">
+                            <option value="jabodetabek" data-base="350000" data-per-cbm="320000">Jabodetabek (Truk Engkel/Fuso 2–3 Hari)</option>
+                            <option value="bandung" data-base="300000" data-per-cbm="290000">Bandung &amp; Jawa Barat (2–3 Hari)</option>
+                            <option value="surabaya" data-base="250000" data-per-cbm="240000">Semarang, Solo, Jogja &amp; Surabaya (1–2 Hari)</option>
+                            <option value="bali" data-base="500000" data-per-cbm="450000">Denpasar, Ubud &amp; Canggu Bali (3–5 Hari)</option>
+                            <option value="luar_pulau" data-base="850000" data-per-cbm="750000">Luar Pulau: Sumatera, Kalimantan, Sulawesi</option>
+                        </select>
+                    </div>
+
+                    <p class="text-[11px] text-teak-muted leading-relaxed">
+                        *Pengiriman mebel kayu menggunakan <strong class="text-teak">Truk Ekspedisi Khusus Mebel Jepara</strong> (bukan kurir paket reguler), sudah termasuk pembungkusan *single-face corrugated paper*, *foam sheet*, dan perakitan di dalam ruangan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-6 border-t border-sand-line bg-sand-card space-y-3">
+                <div class="flex items-center justify-between text-xs text-teak-muted">
+                    <span>Subtotal Harga Mebel</span>
+                    <span id="cartSubtotalText" class="font-mono font-semibold text-teak">Rp 0</span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-teak-muted">
+                    <span>Estimasi Ongkir Truk Mebel (<span id="cartVolFooterText">0 m&sup3;</span>)</span>
+                    <span id="cartShippingText" class="font-mono font-semibold text-brass">Rp 0</span>
+                </div>
+                <div class="flex items-baseline justify-between pt-2 border-t border-sand-line">
+                    <span class="font-mono text-xs uppercase font-bold text-teak">Total Estimasi Pesanan</span>
+                    <span id="cartGrandTotalText" class="font-mono text-xl font-bold text-teak">Rp 0</span>
+                </div>
+
+                <button type="button" onclick="checkoutCartViaWA()" class="w-full bg-teak hover:bg-teak-light text-sand font-bold text-xs uppercase tracking-wider py-4 px-6 transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-brass text-base"></i>
+                    <span>Pesan &amp; Kunci Slot Produksi via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: "KayuArta Jepara Heritage & Living",
+            address: "Jl. Raya Jepara – Kudus KM 6, Desa Tahunan, Kec. Tahunan, Kab. Jepara, Jawa Tengah 59427",
+            mapsUrl: "https://maps.google.com/?q=Tahunan+Jepara+Jawa+Tengah",
+            whatsappNumber: "6281234567890",
+            whatsappDisplay: "+62 812-3456-7890",
+            email: "halo@kayuarta-jepara.id",
+            operationalHours: "Senin – Minggu: 08.00 – 20.00 WIB",
+            socials: {
+                instagram: "https://instagram.com/kayuarta.jepara",
+                tiktok: "https://tiktok.com/@kayuarta.jepara",
+                whatsapp: "https://wa.me/6281234567890",
+                youtube: "https://youtube.com/@kayuartajepara"
+            }
+        };
+
+        const WA_NUMBER = FOOTER_CONFIG.whatsappNumber;
+
+        const FINISH_OPTIONS = [
+            { id: "Natural Teak", color: "#C68B59" },
+            { id: "Walnut Brown", color: "#7A4B2A" },
+            { id: "Salak Dark", color: "#3B2314" },
+            { id: "Bleached Oak", color: "#D9C3A9" }
+        ];
+
+        // 11 Local Wooden Furniture Products
+        const PRODUCTS = [
+            {
+                id: "meja-makan-pendopo",
+                name: "Meja Makan Solid Jati Pendopo 6–8 Kursi",
+                room: "Ruang Makan",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 8400000,
+                dimensions: "P 220 × L 100 × T 76 cm",
+                volumeCbm: 1.65,
+                image: "assets/images/prod-meja-makan.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "sofa-jati-kalingga",
+                name: "Sofa 3-Seater Jati Kalingga + Cushion Linen",
+                room: "Ruang Tamu",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 6950000,
+                dimensions: "P 210 × L 85 × T 78 cm",
+                volumeCbm: 1.40,
+                image: "assets/images/prod-sofa-jati.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "kursi-rotan-anyam",
+                name: "Lounge Chair Jati & Anyaman Rotan Alami",
+                room: "Kursi Cafe & Hotel",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 1850000,
+                dimensions: "P 68 × L 72 × T 75 cm",
+                volumeCbm: 0.38,
+                image: "assets/images/prod-kursi-rotan.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "credenza-slatted",
+                name: "Bufet Credenza TV Kisi-Kisi Jati Retro",
+                room: "Ruang Tamu",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 5200000,
+                dimensions: "P 180 × L 45 × T 65 cm",
+                volumeCbm: 0.55,
+                image: "assets/images/prod-credenza.jpg",
+                selectedFinish: "Walnut Brown",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "dipan-king-platform",
+                name: "Dipan Tempat Tidur Jati Floating King Size",
+                room: "Kamar Tidur",
+                status: "Pre-Order Custom 14 Hari",
+                basePrice: 7600000,
+                dimensions: "P 200 × L 180 × T 95 cm",
+                volumeCbm: 1.50,
+                image: "assets/images/prod-dipan-tempat-tidur.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade A"
+            },
+            {
+                id: "lemari-pakaian-3pintu",
+                name: "Lemari Pakaian Jati 3 Pintu Louvre",
+                room: "Kamar Tidur",
+                status: "Pre-Order Custom 14 Hari",
+                basePrice: 9200000,
+                dimensions: "P 160 × L 60 × T 210 cm",
+                volumeCbm: 2.00,
+                image: "assets/images/prod-lemari-pakaian.jpg",
+                selectedFinish: "Walnut Brown",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "meja-kopi-lesung",
+                name: "Coffee Table Jati Lesung Organik",
+                room: "Ruang Tamu",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 2750000,
+                dimensions: "P 120 × L 65 × T 40 cm",
+                volumeCbm: 0.35,
+                image: "assets/images/prod-meja-kopi.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "kursi-cafe-hiroshima",
+                name: "Kursi Cafe & Resto Jati Lengkung Ergonomis",
+                room: "Kursi Cafe & Hotel",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 980000,
+                dimensions: "P 54 × L 52 × T 77 cm",
+                volumeCbm: 0.22,
+                image: "assets/images/prod-kursi-cafe.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "meja-kerja-arsitek",
+                name: "Meja Kerja Studio & Laci Jati Solid",
+                room: "Ruang Makan",
+                status: "Pre-Order Custom 14 Hari",
+                basePrice: 4450000,
+                dimensions: "P 150 × L 70 × T 75 cm",
+                volumeCbm: 0.80,
+                image: "assets/images/prod-meja-kerja.jpg",
+                selectedFinish: "Walnut Brown",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "nakas-kamar-2laci",
+                name: "Nakas Samping Tempat Tidur 2 Laci Brass",
+                room: "Kamar Tidur",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 1650000,
+                dimensions: "P 50 × L 42 × T 55 cm",
+                volumeCbm: 0.15,
+                image: "assets/images/prod-nakas.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade B"
+            },
+            {
+                id: "bangku-taman-teras",
+                name: "Bangku Teras & Resort Outdoor Jati TPK",
+                room: "Kursi Cafe & Hotel",
+                status: "Ready Stock Siap Kirim",
+                basePrice: 3400000,
+                dimensions: "P 150 × L 62 × T 82 cm",
+                volumeCbm: 0.75,
+                image: "assets/images/prod-bangku-taman.jpg",
+                selectedFinish: "Natural Teak",
+                selectedGrade: "Grade A"
+            }
+        ];
+
+        let currentRoomFilter = "all";
+        let currentStatusFilter = "all";
+
+        // Default 1 item in cart so the Truck Shipping Calculator is immediately demonstrable
+        let cart = [
+            {
+                productId: "meja-makan-pendopo",
+                finish: "Natural Teak",
+                grade: "Grade A",
+                qty: 1
+            }
+        ];
+
+        function formatIDR(num) {
+            return "Rp " + Math.round(num).toLocaleString("id-ID");
+        }
+
+        function getUnitPrice(product, grade) {
+            return grade === "Grade A" ? Math.round(product.basePrice * 1.2) : product.basePrice;
+        }
+
+        function setRoomFilter(room) {
+            currentRoomFilter = room;
+            document.querySelectorAll(".room-filter-btn").forEach(btn => {
+                if (btn.getAttribute("data-room") === room) {
+                    btn.className = "room-filter-btn bg-teak text-sand border border-teak px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition";
+                } else {
+                    btn.className = "room-filter-btn bg-sand-card text-teak border border-sand-line hover:bg-sand-dark px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition";
+                }
+            });
+            renderProducts();
+        }
+
+        function setStatusFilter(status) {
+            currentStatusFilter = status;
+            renderProducts();
+        }
+
+        function selectCardFinish(prodId, finishName) {
+            const p = PRODUCTS.find(item => item.id === prodId);
+            if (p) {
+                p.selectedFinish = finishName;
+                renderProducts();
+            }
+        }
+
+        function selectCardGrade(prodId, gradeName) {
+            const p = PRODUCTS.find(item => item.id === prodId);
+            if (p) {
+                p.selectedGrade = gradeName;
+                renderProducts();
+            }
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById("productGrid");
+            const filtered = PRODUCTS.filter(p => {
+                const matchRoom = currentRoomFilter === "all" || p.room === currentRoomFilter;
+                const matchStatus = currentStatusFilter === "all" || p.status === currentStatusFilter;
+                return matchRoom && matchStatus;
+            });
+
+            grid.innerHTML = filtered.map(prod => {
+                const price = getUnitPrice(prod, prod.selectedGrade);
+                const isReady = prod.status === "Ready Stock Siap Kirim";
+
+                return `
+                    <article class="bg-sand-card border border-sand-line flex flex-col justify-between">
+                        <div>
+                            <!-- Image & Badges -->
+                            <div class="relative aspect-[4/3] overflow-hidden border-b border-sand-line bg-sand-dark">
+                                <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-3 left-3 ${isReady ? 'bg-teak text-sand' : 'bg-brass text-white'} font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 font-semibold">
+                                    ${prod.status}
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-sand-card/95 border border-sand-line text-teak font-mono text-[10px] px-2.5 py-1 font-semibold">
+                                    Vol: ${prod.volumeCbm.toFixed(2)} m&sup3;
+                                </span>
+                            </div>
+
+                            <!-- Specs & Customizer -->
+                            <div class="p-6 space-y-4">
+                                <div>
+                                    <div class="flex items-center justify-between text-[11px] font-mono text-teak-muted uppercase">
+                                        <span>${prod.room}</span>
+                                        <span>${prod.dimensions}</span>
+                                    </div>
+                                    <h3 class="font-serif text-xl text-teak font-semibold mt-1 leading-snug">${prod.name}</h3>
+                                </div>
+
+                                <!-- Interactive Wood Finish Selector -->
+                                <div class="pt-3 border-t border-sand-line">
+                                    <div class="flex items-center justify-between text-xs mb-2">
+                                        <span class="font-mono uppercase text-[10px] text-teak-muted">Warna Finishing:</span>
+                                        <strong class="font-mono text-[11px] text-teak">${prod.selectedFinish}</strong>
+                                    </div>
+                                    <div class="flex items-center gap-2.5">
+                                        ${FINISH_OPTIONS.map(f => `
+                                            <button type="button" onclick="selectCardFinish('${prod.id}', '${f.id}')" title="${f.id}" aria-label="Pilih warna ${f.id}"
+                                                class="w-6 h-6 rounded-full border border-teak/30 transition ${prod.selectedFinish === f.id ? 'swatch-ring-active' : 'opacity-75 hover:opacity-100'}"
+                                                style="background-color: ${f.color}">
+                                            </button>
+                                        `).join("")}
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Wood Grade Toggle -->
+                                <div class="pt-3 border-t border-sand-line">
+                                    <span class="block font-mono uppercase text-[10px] text-teak-muted mb-1.5">Pilih Grade Kayu Jati:</span>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button type="button" onclick="selectCardGrade('${prod.id}', 'Grade B')"
+                                            class="py-1.5 px-2 text-[11px] font-mono border text-center transition ${prod.selectedGrade === 'Grade B' ? 'bg-teak text-sand border-teak font-bold' : 'bg-sand text-teak border-sand-line'}">
+                                            Grade B (Standar)
+                                        </button>
+                                        <button type="button" onclick="selectCardGrade('${prod.id}', 'Grade A')"
+                                            class="py-1.5 px-2 text-[11px] font-mono border text-center transition ${prod.selectedGrade === 'Grade A' ? 'bg-teak text-sand border-teak font-bold' : 'bg-sand text-teak border-sand-line'}">
+                                            TPK Grade A (+20%)
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price & Add to Cart Footer -->
+                        <div class="px-6 pb-6 pt-3 border-t border-sand-line flex items-center justify-between gap-3">
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-teak-muted">Harga Bengkel</span>
+                                <span class="font-mono text-lg font-bold text-teak">${formatIDR(price)}</span>
+                            </div>
+                            <button type="button" onclick="addToCart('${prod.id}')" class="bg-brass hover:bg-brass-hover text-white text-xs font-bold uppercase tracking-wider px-4 py-3 transition inline-flex items-center gap-2">
+                                <i class="fa-solid fa-plus text-[10px]"></i>
+                                <span>Masukkan Pesanan</span>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        // Cart & Truck Shipping Functions
+        function addToCart(prodId) {
+            const prod = PRODUCTS.find(p => p.id === prodId);
+            if (!prod) return;
+
+            const existing = cart.find(item =>
+                item.productId === prod.id &&
+                item.finish === prod.selectedFinish &&
+                item.grade === prod.selectedGrade
+            );
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    productId: prod.id,
+                    finish: prod.selectedFinish,
+                    grade: prod.selectedGrade,
+                    qty: 1
+                });
+            }
+
+            renderCartDrawer();
+            toggleCartDrawer(true);
+        }
+
+        function updateCartItemQty(index, delta) {
+            if (!cart[index]) return;
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            renderCartDrawer();
+        }
+
+        function toggleCartDrawer(open) {
+            const backdrop = document.getElementById("cartDrawerBackdrop");
+            if (open) {
+                backdrop.classList.remove("hidden");
+                renderCartDrawer();
+            } else {
+                backdrop.classList.add("hidden");
+            }
+        }
+
+        function renderCartDrawer() {
+            const container = document.getElementById("cartItemsContainer");
+            const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById("headerCartCount").textContent = totalCount;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-sand-card border border-sand-line p-6 text-center text-xs text-teak-muted">
+                        Belum ada unit mebel yang dipilih. Silakan pilih koleksi mebel dari katalog untuk menghitung volume kargo truk.
+                    </div>
+                `;
+                document.getElementById("cartTotalVolumeBadge").innerHTML = "0.00 m&sup3;";
+                document.getElementById("cartVolFooterText").innerHTML = "0.00 m&sup3;";
+                document.getElementById("cartSubtotalText").textContent = "Rp 0";
+                document.getElementById("cartShippingText").textContent = "Rp 0";
+                document.getElementById("cartGrandTotalText").textContent = "Rp 0";
+                return;
+            }
+
+            let subtotal = 0;
+            let totalVolume = 0;
+
+            container.innerHTML = cart.map((item, idx) => {
+                const prod = PRODUCTS.find(p => p.id === item.productId) || PRODUCTS[0];
+                const unitPrice = getUnitPrice(prod, item.grade);
+                const linePrice = unitPrice * item.qty;
+                const lineVolume = prod.volumeCbm * item.qty;
+
+                subtotal += linePrice;
+                totalVolume += lineVolume;
+
+                return `
+                    <div class="bg-sand-card border border-sand-line p-4 flex gap-3.5 items-start">
+                        <img src="${prod.image}" alt="${prod.name}" class="w-16 h-16 object-cover border border-sand-line">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-serif text-sm font-semibold text-teak leading-snug">${prod.name}</h4>
+                            <p class="font-mono text-[11px] text-teak-muted mt-0.5">
+                                ${item.grade} &bull; ${item.finish} &bull; ${lineVolume.toFixed(2)} m&sup3;
+                            </p>
+                            <div class="flex items-center justify-between mt-2.5">
+                                <span class="font-mono text-xs font-bold text-teak">${formatIDR(linePrice)}</span>
+                                <div class="inline-flex items-center border border-sand-line bg-sand">
+                                    <button type="button" onclick="updateCartItemQty(${idx}, -1)" class="w-6 h-6 text-xs font-bold text-teak hover:bg-sand-dark">-</button>
+                                    <span class="px-2.5 font-mono text-xs font-semibold">${item.qty}</span>
+                                    <button type="button" onclick="updateCartItemQty(${idx}, 1)" class="w-6 h-6 text-xs font-bold text-teak hover:bg-sand-dark">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            // Calculate Truck Cargo Cost based on Volume (m3) and Destination Zone
+            const zoneSelect = document.getElementById("shippingZoneSelect");
+            const opt = zoneSelect.options[zoneSelect.selectedIndex];
+            const baseFee = parseInt(opt.getAttribute("data-base") || "350000", 10);
+            const perCbmFee = parseInt(opt.getAttribute("data-per-cbm") || "320000", 10);
+
+            const shippingCost = Math.round(baseFee + (totalVolume * perCbmFee));
+            const grandTotal = subtotal + shippingCost;
+
+            document.getElementById("cartTotalVolumeBadge").innerHTML = `${totalVolume.toFixed(2)} m&sup3;`;
+            document.getElementById("cartVolFooterText").innerHTML = `${totalVolume.toFixed(2)} m&sup3;`;
+            document.getElementById("cartSubtotalText").textContent = formatIDR(subtotal);
+            document.getElementById("cartShippingText").textContent = formatIDR(shippingCost);
+            document.getElementById("cartGrandTotalText").textContent = formatIDR(grandTotal);
+        }
+
+        function checkoutCartViaWA() {
+            if (cart.length === 0) return;
+
+            const zoneSelect = document.getElementById("shippingZoneSelect");
+            const zoneText = zoneSelect.options[zoneSelect.selectedIndex].text;
+            const subtotalText = document.getElementById("cartSubtotalText").textContent;
+            const shippingText = document.getElementById("cartShippingText").textContent;
+            const grandTotalText = document.getElementById("cartGrandTotalText").textContent;
+
+            const itemsLines = cart.map((item, idx) => {
+                const prod = PRODUCTS.find(p => p.id === item.productId) || PRODUCTS[0];
+                const unitPrice = getUnitPrice(prod, item.grade);
+                return `${idx + 1}. *${prod.name}* (${item.qty} unit)\n   Spec: ${item.grade} | Finishing: ${item.finish} | ${prod.dimensions}\n   Subtotal: ${formatIDR(unitPrice * item.qty)}`;
+            }).join("\n\n");
+
+            const msg = `Halo Admin Bengkel *KayuArta Jepara*, saya ingin memesan mebel dengan rincian berikut:\n\n` +
+                `${itemsLines}\n\n` +
+                `- *Zona Ekspedisi Truk:* ${zoneText}\n` +
+                `- *Subtotal Mebel:* ${subtotalText}\n` +
+                `- *Estimasi Ongkir Truk:* ${shippingText}\n` +
+                `- *Total Estimasi:* ${grandTotalText}\n\n` +
+                `Mohon informasi ketersediaan stok dan jadwal pengiriman truk mebel. Terima kasih.`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        function sendCustomRequestWA() {
+            const type = document.getElementById("custItemType").value || "Mebel Custom";
+            const grade = document.getElementById("custGrade").value;
+            const finish = document.getElementById("custFinish").value;
+            const p = document.getElementById("custLength").value;
+            const l = document.getElementById("custWidth").value;
+            const t = document.getElementById("custHeight").value;
+            const city = document.getElementById("custCity").value;
+
+            const msg = `Halo Kepala Tukang *KayuArta Jepara*, saya ingin konsultasi pembuatan mebel *Custom Ukuran*:\n\n` +
+                `- *Jenis Mebel:* ${type}\n` +
+                `- *Dimensi Custom:* P ${p} cm × L ${l} cm × T ${t} cm\n` +
+                `- *Spesifikasi Kayu:* ${grade}\n` +
+                `- *Warna Finishing:* ${finish}\n` +
+                `- *Kota Pengiriman:* ${city}\n\n` +
+                `Mohon estimasi harga produksi dan waktu pengerjaannya. Terima kasih.`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+        }
+
+        function toggleMebelFaq(index) {
+            for (let i = 0; i < 6; i++) {
+                const body = document.getElementById("mebelFaqBody" + i);
+                const icon = document.getElementById("mebelFaqIcon" + i);
+                if (!body || !icon) continue;
+                if (i === index) {
+                    const isHidden = body.classList.contains("hidden");
+                    body.classList.toggle("hidden", !isHidden);
+                    icon.className = isHidden ? "fa-solid fa-minus text-brass text-xs shrink-0 ml-4" : "fa-solid fa-plus text-brass text-xs shrink-0 ml-4";
+                } else {
+                    body.classList.add("hidden");
+                    icon.className = "fa-solid fa-plus text-brass text-xs shrink-0 ml-4";
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
+            renderCartDrawer();
+
+            const mobileBtn = document.getElementById("mobileMenuBtn");
+            const mobilePanel = document.getElementById("mobileMenuPanel");
+            if (mobileBtn && mobilePanel) {
+                mobileBtn.addEventListener("click", () => {
+                    mobilePanel.classList.toggle("hidden");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

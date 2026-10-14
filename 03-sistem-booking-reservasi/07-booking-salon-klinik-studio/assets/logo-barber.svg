@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="brbGold" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#1C1917" stroke="url(#brbGold)" stroke-width="2.2"/>
+  <!-- Vintage Barber Pole Stripes Accent -->
+  <circle cx="32" cy="32" r="22" stroke="#292524" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <!-- Bespoke Crossed Barber Shears -->
+  <path d="M20 18L42 40M44 18L22 40" stroke="url(#brbGold)" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="19" cy="44" r="5" stroke="url(#brbGold)" stroke-width="2.6"/>
+  <circle cx="45" cy="44" r="5" stroke="url(#brbGold)" stroke-width="2.6"/>
+  <circle cx="32" cy="30" r="2.2" fill="#FDE68A"/>
+  <!-- Crown / Comb Top Detail -->
+  <path d="M25 14H39M27 14V18M32 14V18M37 14V18" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+</svg>

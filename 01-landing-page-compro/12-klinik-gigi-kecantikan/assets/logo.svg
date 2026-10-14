@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 56" fill="none">
+  <!-- Emblem: Swiss Clinical Minimalist Tooth + Botanical Leaf + Aesthetic Sparkle -->
+  <rect x="2" y="2" width="52" height="52" rx="26" fill="#0D3B3E"/>
+  <circle cx="28" cy="28" r="22" stroke="#C2A675" stroke-width="1" opacity="0.6"/>
+  <!-- Minimalist Architectural Tooth & Leaf Line-Art -->
+  <path d="M20 21C17.5 21 16 23.5 16.5 27.5C17 31.5 19 37 21.5 39.5C23 41 24.5 38.5 25.5 35C26.2 32.5 27 31.5 28 31.5C29 31.5 29.8 32.5 30.5 35C31.5 38.5 33 41 34.5 39.5C37 37 39 31.5 39.5 27.5C40 23.5 38.5 21 36 21C33.2 21 30.8 23 28 23C25.2 23 22.8 21 20 21Z" stroke="#FAF9F6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Sparkle / Aesthetic Star in Top Crown -->
+  <path d="M28 11L29.3 15.2L33.5 16.5L29.3 17.8L28 22L26.7 17.8L22.5 16.5L26.7 15.2L28 11Z" fill="#C2A675"/>
+  <!-- Wordmark with generous right breathing room -->
+  <text x="66" y="29" font-family="Georgia, 'Cormorant Garamond', serif" font-size="23" font-weight="600" fill="#0D3B3E" letter-spacing="0.2">Senyum<tspan font-style="italic" fill="#9E7E46">Luxe</tspan></text>
+  <text x="67" y="44" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="8.8" font-weight="600" fill="#4A6466" letter-spacing="2.0">DENTAL &amp; DERMA AESTHETIC</text>
+</svg>

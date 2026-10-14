@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LembahPinus Sanctuary — Sistem Booking Villa Private Pool &amp; Glamping Kabin Puncak</title>
+    <meta name="description" content="Reservasi Villa Private Pool Air Hangat, Kabin Kayu A-Frame & Glamping Eksklusif di Hutan Pinus. Cek ketersediaan tanggal real-time, kalkulasi otomatis tarif Weekday/Weekend, dan terbitkan E-Voucher Check-In.">
+
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const FOOTER_CONFIG = {
+            brandName: 'LembahPinus Sanctuary',
+            tagline: 'BOUTIQUE STAY & GLAMPING',
+            description: 'Koleksi villa private pool, glamping cabin A-frame, dan resort alami di Puncak Bogor & Lembang Bandung dengan sistem booking kalender real-time.',
+            address: 'Jl. Hutan Pinus Cisarua KM 14, Puncak, Bogor & Lembah Asri Lembang Bandung',
+            mapsUrl: 'https://maps.google.com/?q=Puncak+Cisarua+Bogor',
+            whatsapp: '+62 812-3456-7890',
+            email: 'stay@lembahpinus.id',
+            hours: 'Check-In: 14.00 WIB | Check-Out: 12.00 WIB (Resepsionis 24 Jam)',
+            paymentMethods: ['QRIS', 'BCA', 'BRI', 'Mandiri', 'GoPay', 'OVO', 'DANA']
+        };
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                    colors: {
+                        pine: {
+                            DEFAULT: '#16261E',
+                            dark: '#0E1914',
+                            muted: '#2C4237',
+                            light: '#E8EFEA'
+                        },
+                        linen: {
+                            DEFAULT: '#F3EFE6',
+                            soft: '#FAF8F3',
+                            border: '#DDD5C5',
+                            dark: '#E5DECFE6'
+                        },
+                        ochre: {
+                            DEFAULT: '#B86B35',
+                            dark: '#965324',
+                            light: '#F9EFE7'
+                        },
+                        ink: {
+                            DEFAULT: '#1C211E',
+                            muted: '#525E57'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F3EFE6;
+            color: #1C211E;
+        }
+        .editorial-border {
+            border: 1px solid #D5CCB8;
+        }
+        .unit-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .unit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(22, 38, 30, 0.14);
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #voucherPrintableArea, #voucherPrintableArea * {
+                visibility: visible;
+            }
+            #voucherPrintableArea {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-pine selection:text-linen">
+
+    <!-- TOP PORTFOLIO DEMO BAR -->
+    <div class="bg-pine-dark text-linen text-xs py-2.5 px-4 border-b border-pine-muted relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap overflow-x-auto">
+            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <a href="../../index.html" class="inline-flex items-center gap-2 bg-pine-muted/70 hover:bg-ochre text-linen font-semibold px-3.5 py-1 rounded-full transition-colors duration-200 border border-linen/15 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span>Kembali ke Katalog Portofolio</span>
+                </a>
+                <span class="hidden lg:inline-flex items-center gap-2 text-linen/80 font-mono text-[11px] whitespace-nowrap">
+                    <span class="w-1.5 h-1.5 rounded-full bg-ochre shrink-0"></span>
+                    <span>DEMO #15 • RESERVASI VILLA PRIVATE POOL &amp; GLAMPING KABIN</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 whitespace-nowrap">
+                <button onclick="applyPresetStay('weekend_couple')" class="bg-ochre/20 hover:bg-ochre text-linen border border-ochre/50 px-3 py-1 rounded-full transition font-mono text-[11px] whitespace-nowrap shrink-0">
+                    Simulasi Weekend Couple
+                </button>
+                <button onclick="applyPresetStay('rombongan_gathering')" class="hidden sm:inline-flex bg-pine-muted hover:bg-ochre text-linen border border-linen/20 px-3 py-1 rounded-full transition font-mono text-[11px] whitespace-nowrap shrink-0">
+                    Simulasi Rombongan 16 Orang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-linen/95 backdrop-blur-md border-b border-linen-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6 flex-nowrap">
+            <a href="#" class="flex items-center gap-3 shrink-0">
+                <img src="assets/logo.svg" alt="LembahPinus Sanctuary" class="h-11 w-auto shrink-0">
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-ink-muted whitespace-nowrap shrink-0">
+                <a href="#date-engine" class="hover:text-pine transition whitespace-nowrap">Cek Jadwal</a>
+                <a href="#katalog-unit" class="hover:text-pine transition whitespace-nowrap">Koleksi Villa</a>
+                <a href="#addon-experience" class="hover:text-pine transition whitespace-nowrap">Add-On &amp; BBQ</a>
+                <a href="#ulasan-tamu" class="hover:text-pine transition whitespace-nowrap">Ulasan Tamu</a>
+                <a href="#faq" class="hover:text-pine transition whitespace-nowrap">FAQ</a>
+                <a href="#aturan-lokasi" class="hover:text-pine transition whitespace-nowrap">Lokasi</a>
+            </nav>
+
+            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <span class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-linen-soft border border-linen-border font-mono text-[11px] text-pine font-semibold whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-mountain text-ochre"></i>
+                    <span>1.240 MDPL • 17°C</span>
+                </span>
+                <button onclick="openBookingVoucherModal()" class="px-4 py-2.5 rounded-lg bg-pine hover:bg-ochre text-linen font-semibold text-xs uppercase tracking-wider transition flex items-center gap-2 whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-receipt"></i>
+                    <span>Ringkasan &amp; E-Voucher</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: KINFOLK / CEREAL BOUTIQUE HOSPITALITY -->
+    <section class="relative bg-pine text-linen overflow-hidden border-b border-linen-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-ochre bg-pine-dark/70 px-3.5 py-1.5 rounded border border-ochre/30">
+                        <span>6°41'52.4"S 106°58'14.2"E</span>
+                        <span>•</span>
+                        <span>PRIVATE FOREST SANCTUARY</span>
+                    </div>
+
+                    <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-[58px] leading-[1.06] text-linen">
+                        Ketenangan Hutan Pinus, Kolam Air Hangat Pribadi &amp; Kabut Pagi.
+                    </h1>
+
+                    <p class="text-sm sm:text-base text-linen/80 leading-relaxed max-w-xl">
+                        Enam unit hunian arsitektural terpisah di lereng bukit pinus pribadi. Nikmati kolam renang air hangat <span class="font-mono text-linen font-medium">32°C–36°C</span>, koneksi internet dedicated berkecepatan tinggi untuk *work from nature*, serta layanan kambing guling &amp; api unggun di halaman villa Anda.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-2 border-t border-linen/15 font-mono text-xs">
+                        <div>
+                            <div class="text-ochre font-semibold text-base sm:text-lg">32°C – 36°C</div>
+                            <div class="text-linen/70 text-[11px]">Warm Heated Pool</div>
+                        </div>
+                        <div>
+                            <div class="text-ochre font-semibold text-base sm:text-lg">250 Mbps</div>
+                            <div class="text-linen/70 text-[11px]">Dedicated Mesh WiFi</div>
+                        </div>
+                        <div>
+                            <div class="text-ochre font-semibold text-base sm:text-lg">DP 50%</div>
+                            <div class="text-linen/70 text-[11px]">Kunci Tanggal Instan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative rounded-xl overflow-hidden border border-linen/20 shadow-2xl aspect-[16/11]">
+                        <img src="assets/images/hero-villa-pool.jpg" alt="LembahPinus Private Pool Villa" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-pine-dark/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-linen">
+                            <span class="bg-pine-dark/90 px-3 py-1.5 rounded border border-linen/20">
+                                <i class="fa-solid fa-water text-ochre mr-1.5"></i>Villa Pinus Private Pool — Air Hangat 32°C
+                            </span>
+                            <span class="bg-ochre text-white px-3 py-1.5 rounded font-semibold">
+                                Tersedia Minggu Ini
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE CHECK-IN & CHECK-OUT DATE ENGINE + DYNAMIC WEEKDAY VS WEEKEND PRICING -->
+    <section id="date-engine" class="relative -mt-6 z-30 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto bg-linen-soft rounded-2xl p-6 sm:p-7 editorial-border shadow-xl">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 mb-5 border-b border-linen-border">
+                <div>
+                    <span class="font-mono text-[11px] uppercase tracking-widest text-ochre font-semibold">MESIN KALKULASI TANGGAL &amp; TARIF OTOMATIS</span>
+                    <h2 class="font-serif font-bold text-2xl sm:text-3xl text-pine">Pilih Tanggal Check-In &amp; Check-Out</h2>
+                </div>
+                <!-- Dynamic Weekday vs Weekend Breakdown Pill -->
+                <div class="bg-pine text-linen px-4 py-2.5 rounded-xl font-mono text-xs flex flex-wrap items-center gap-3">
+                    <span>Durasi: <strong id="engineTotalNightsBadge" class="text-ochre">2 Malam</strong></span>
+                    <span class="opacity-40">|</span>
+                    <span id="engineNightBreakdownBadge">1 Malam Weekday + 1 Malam Weekend</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+                <div>
+                    <label class="block font-mono text-[11px] uppercase tracking-wider text-ink-muted mb-1.5">Tanggal Check-In (14:00 WIB)</label>
+                    <input id="checkInDate" type="date" onchange="handleDateChange()" class="w-full px-3.5 py-2.5 rounded-lg bg-linen border border-linen-border font-mono text-xs font-semibold text-pine focus:outline-none focus:border-ochre">
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[11px] uppercase tracking-wider text-ink-muted mb-1.5">Tanggal Check-Out (12:00 WIB)</label>
+                    <input id="checkOutDate" type="date" onchange="handleDateChange()" class="w-full px-3.5 py-2.5 rounded-lg bg-linen border border-linen-border font-mono text-xs font-semibold text-pine focus:outline-none focus:border-ochre">
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[11px] uppercase tracking-wider text-ink-muted mb-1.5">Jumlah Tamu Menginap</label>
+                    <select id="guestCountSelect" onchange="handleGuestFilterSync()" class="w-full px-3.5 py-2.5 rounded-lg bg-linen border border-linen-border font-mono text-xs font-semibold text-pine focus:outline-none focus:border-ochre">
+                        <option value="2">2 Orang (Couple / Honeymoon)</option>
+                        <option value="6" selected>4 - 8 Orang (Keluarga Inti)</option>
+                        <option value="16">10 - 20 Orang (Rombongan / Gathering)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[11px] uppercase tracking-wider text-ink-muted mb-1.5">Filter Kapasitas Unit</label>
+                    <select id="capacitySelectDropdown" onchange="filterCapacity(this.value)" class="w-full px-3.5 py-2.5 rounded-lg bg-linen border border-linen-border font-mono text-xs font-semibold text-pine focus:outline-none focus:border-ochre">
+                        <option value="all">Semua Koleksi Unit (6 Unit)</option>
+                        <option value="couple">Couple 2 Orang (2 Unit)</option>
+                        <option value="family">Family 4-8 Orang (3 Unit)</option>
+                        <option value="rombongan">Rombongan 10-20 Orang (1 Unit)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <a href="#katalog-unit" class="w-full py-2.5 px-4 rounded-lg bg-ochre hover:bg-ochre-dark text-white font-semibold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 h-[40px]">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Lihat Tarif Unit</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Rule Weekday vs Weekend -->
+            <div class="mt-4 pt-3 border-t border-linen-border flex flex-wrap items-center justify-between gap-2 text-[11px] text-ink-muted font-mono">
+                <span><strong class="text-pine">Aturan Tarif Otomatis:</strong> Minggu–Kamis = Tarif Weekday Normal • Jumat, Sabtu &amp; Libur Nasional = Tarif Weekend/High Season.</span>
+                <span class="text-ochre font-semibold">Bebas Biaya Reschedule H-7</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG 6 UNIT VILLA & GLAMPING -->
+    <section id="katalog-unit" class="py-14 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-ochre font-semibold">ARCHITECTURAL COLLECTION</span>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl text-pine mt-1">
+                        Pilih Unit Villa Private Pool atau Glamping Kabin
+                    </h2>
+                </div>
+
+                <!-- Capacity Filter Pills -->
+                <div class="flex flex-wrap gap-2" id="capFilterButtons">
+                    <button onclick="filterCapacity('all')" data-cap="all" class="cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-pine text-linen transition">
+                        Semua Unit (6)
+                    </button>
+                    <button onclick="filterCapacity('couple')" data-cap="couple" class="cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-linen-soft text-ink border border-linen-border hover:border-pine transition">
+                        Couple 2 Orang
+                    </button>
+                    <button onclick="filterCapacity('family')" data-cap="family" class="cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-linen-soft text-ink border border-linen-border hover:border-pine transition">
+                        Family 4-8 Orang
+                    </button>
+                    <button onclick="filterCapacity('rombongan')" data-cap="rombongan" class="cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-linen-soft text-ink border border-linen-border hover:border-pine transition">
+                        Rombongan 10-20 Orang
+                    </button>
+                </div>
+            </div>
+
+            <!-- 6 Units Grid -->
+            <div id="unitsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ADD-ON EXPERIENCE SELECTOR & LIVE BOOKING CONFIGURATOR -->
+    <section id="addon-experience" class="py-14 lg:py-20 bg-linen-soft border-y border-linen-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <!-- Left Column: Add-On Experiences (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <span class="font-mono text-xs uppercase tracking-widest text-ochre font-semibold">CURATED MOUNTAIN EXPERIENCES</span>
+                        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-pine mt-1">
+                            Tambahkan Pengalaman Menginap &amp; Kuliner Malam
+                        </h2>
+                        <p class="text-sm text-ink-muted mt-1">
+                            Staf *butler* kami akan menyiapkan seluruh perlengkapan di teras villa atau dek kabin Anda sesuai jam yang diinginkan.
+                        </p>
+                    </div>
+
+                    <!-- Visual Highlight of Experiences -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="rounded-xl overflow-hidden border border-linen-border relative h-32">
+                            <img src="assets/images/exp-bbq-grill.jpg" alt="Kambing Guling & BBQ" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-pine/90 text-linen font-mono text-[10px] px-2 py-0.5 rounded">BBQ &amp; Kambing Guling</span>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-linen-border relative h-32">
+                            <img src="assets/images/exp-bonfire.jpg" alt="Api Unggun Pinus" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-pine/90 text-linen font-mono text-[10px] px-2 py-0.5 rounded">Api Unggun Pribadi</span>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-linen-border relative h-32">
+                            <img src="assets/images/exp-floating-breakfast.jpg" alt="Floating Breakfast" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-pine/90 text-linen font-mono text-[10px] px-2 py-0.5 rounded">Warm Pool &amp; Layanan</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Add-on Checkboxes -->
+                    <div class="space-y-3" id="addonsContainer">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Sticky Reservation Summary & Instant E-Voucher Generator (5 cols) -->
+                <div class="lg:col-span-5 bg-pine text-linen rounded-2xl p-6 sm:p-8 border border-ochre/40 shadow-2xl space-y-5 sticky top-24">
+                    <div class="flex items-start justify-between gap-3 border-b border-linen/15 pb-4">
+                        <div>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-ochre">UNIT VILLA TERPILIH</span>
+                            <h3 class="font-serif font-bold text-2xl text-white mt-0.5" id="summaryUnitName">Villa Kayu &amp; Kaca "Pinus Private Pool"</h3>
+                            <p class="font-mono text-xs text-linen/70 mt-0.5" id="summaryUnitSpecs">165 m² • 3 Kamar Tidur • Heated Pool 32°C</p>
+                        </div>
+                        <span class="bg-ochre text-white font-mono text-[11px] font-semibold px-2.5 py-1 rounded shrink-0" id="summaryCapacityBadge">Family 4-8 Org</span>
+                    </div>
+
+                    <!-- Breakdown Table -->
+                    <div class="space-y-2.5 font-mono text-xs border-b border-linen/15 pb-4">
+                        <div class="flex justify-between">
+                            <span class="text-linen/70">Jadwal Check-In / Out:</span>
+                            <span id="summaryDateRange" class="text-white font-semibold">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-linen/70">Rincian Malam Weekday:</span>
+                            <span id="summaryWeekdayLine" class="text-linen">1 mlm × Rp 1.850.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-linen/70">Rincian Malam Weekend:</span>
+                            <span id="summaryWeekendLine" class="text-ochre font-semibold">1 mlm × Rp 2.450.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-linen/70">Tambahan Experience &amp; Extra Bed:</span>
+                            <span id="summaryAddonsTotal" class="text-linen">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-baseline pt-2 border-t border-linen/15 text-sm">
+                            <span class="font-sans font-semibold text-linen">Total Biaya Menginap:</span>
+                            <span id="summaryGrandTotal" class="font-serif font-bold text-3xl text-white">Rp 4.300.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Option: DP 50% vs Full Payment -->
+                    <div class="space-y-2">
+                        <label class="block font-mono text-[11px] uppercase tracking-wider text-linen/80">Skema Pembayaran Kunci Tanggal:</label>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button type="button" id="payOptDP" onclick="setPaymentScheme('dp50')" class="p-3 rounded-xl border border-ochre bg-ochre/20 text-left transition">
+                                <div class="font-mono font-bold text-xs text-white">DP 50% Kunci Jadwal</div>
+                                <div class="font-mono text-sm font-bold text-ochre mt-0.5" id="summaryDPAmount">Rp 2.150.000</div>
+                                <div class="text-[10px] text-linen/70">Pelunasan saat Check-In</div>
+                            </button>
+                            <button type="button" id="payOptFull" onclick="setPaymentScheme('full')" class="p-3 rounded-xl border border-linen/20 bg-pine-dark/50 text-left transition">
+                                <div class="font-mono font-bold text-xs text-white">Pelunasan 100%</div>
+                                <div class="font-mono text-sm font-bold text-linen mt-0.5" id="summaryFullAmount">Rp 4.300.000</div>
+                                <div class="text-[10px] text-linen/70">Prioritas Early Check-In</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Guest Name & Phone Inputs -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                        <input id="guestBookingName" type="text" placeholder="Nama Pemesan (Misal: Bpk. Aditya)" class="px-3.5 py-2.5 rounded-lg bg-pine-dark border border-linen/20 text-xs text-white placeholder:text-linen/50 focus:outline-none focus:border-ochre">
+                        <input id="guestBookingPhone" type="tel" placeholder="Nomor WhatsApp Aktif" class="px-3.5 py-2.5 rounded-lg bg-pine-dark border border-linen/20 text-xs text-white placeholder:text-linen/50 focus:outline-none focus:border-ochre">
+                    </div>
+
+                    <button type="button" onclick="openBookingVoucherModal()" class="w-full py-4 px-5 rounded-xl bg-ochre hover:bg-ochre-dark text-white font-semibold text-xs uppercase tracking-widest transition flex items-center justify-center gap-2.5 shadow-lg">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <span>Terbitkan E-Voucher Check-In &amp; Kunci Tanggal</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANDUAN MENGINAP, FASILITAS & PIN LOKASI -->
+    <section id="aturan-lokasi" class="py-14 bg-linen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-linen-soft p-6 rounded-2xl editorial-border">
+                    <div class="font-mono text-xs text-ochre font-semibold mb-2">01 / WAKTU CHECK-IN &amp; PRIVASI</div>
+                    <h3 class="font-serif font-bold text-2xl text-pine mb-2">Check-In Tanpa Antre dengan QR Gate Pass</h3>
+                    <p class="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                        Setiap pemesanan yang telah membayar DP 50% langsung mendapatkan E-Voucher resmi ber-QR Code. Tunjukkan pada penjaga gerbang utama LembahPinus untuk langsung menuju parkir pribadi unit Anda.
+                    </p>
+                </div>
+                <div class="bg-linen-soft p-6 rounded-2xl editorial-border">
+                    <div class="font-mono text-xs text-ochre font-semibold mb-2">02 / AKSES JALAN BEBAS MACET</div>
+                    <h3 class="font-serif font-bold text-2xl text-pine mb-2">Jalur Alternatif Aspal Mulus</h3>
+                    <p class="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                        Tim resepsionis kami akan mengirimkan panduan rute jalur alternatif khusus penghuni villa agar Anda terhindar dari titik buka-tutup jalur utama Puncak / Lembang. Bisa dilalui sedan maupun bus medium.
+                    </p>
+                </div>
+                <div class="bg-linen-soft p-6 rounded-2xl editorial-border">
+                    <div class="font-mono text-xs text-ochre font-semibold mb-2">03 / RAMAH KELUARGA &amp; HALAL</div>
+                    <h3 class="font-serif font-bold text-2xl text-pine mb-2">Dapur Lengkap &amp; Air Pegunungan</h3>
+                    <p class="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                        Seluruh unit dilengkapi kompor tanam, kulkas, penanak nasi, dispenser galon gratis, alat makan steril, serta perlengkapan ibadah di setiap kamar tidur.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERITA & DOKUMENTASI TAMU MENGINAP (GUEST PHOTO REVIEWS) -->
+    <section id="ulasan-tamu" class="py-14 lg:py-20 bg-linen-soft border-t border-linen-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-ochre font-semibold">GUEST STORIES &amp; PHOTO JOURNAL</span>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl text-pine mt-1">
+                        Cerita &amp; Dokumentasi Tamu Menginap di LembahPinus
+                    </h2>
+                    <p class="text-sm text-ink-muted mt-1">
+                        Foto asli dokumentasi keluarga, pasangan bulan madu, dan rombongan kantor yang telah menginap di unit villa &amp; kabin kami.
+                    </p>
+                </div>
+                <div class="bg-linen px-4 py-3 rounded-xl editorial-border flex items-center gap-3 shrink-0">
+                    <div class="text-ochre text-sm flex items-center gap-0.5">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="font-mono text-xs">
+                        <div class="font-bold text-pine">4.95 / 5.0 Guest Satisfaction</div>
+                        <div class="text-ink-muted text-[11px]">920+ Keluarga &amp; Korporat</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Guest Photo Review Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Guest Card 1 -->
+                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="assets/images/exp-floating-breakfast.jpg" alt="Dokumentasi Tamu Private Pool" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                Dokumentasi Tamu • Warm Pool 32°C
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2.5">
+                            <div class="flex items-center gap-1 text-ochre text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Verified Stay</span>
+                            </div>
+                            <p class="text-xs text-ink leading-relaxed">
+                                "Air kolam renangnya beneran hangat 32°C walaupun udara pagi Puncak lagi 17 derajat! Anak-anak betah berenang dari pagi, dan proses check-in pakai QR E-Voucher super praktis."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                        <img src="assets/images/guest-avatar-1.jpg" alt="Ibu Clarissa" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-pine">Ibu Clarissa &amp; Keluarga</div>
+                            <div class="font-mono text-[10px] text-ink-muted">2 Malam • Villa Pinus Private Pool</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guest Card 2 -->
+                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="assets/images/exp-bbq-grill.jpg" alt="Dokumentasi BBQ Malam" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                Dokumentasi Tamu • Kambing Guling
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2.5">
+                            <div class="flex items-center gap-1 text-ochre text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Company Outing</span>
+                            </div>
+                            <p class="text-xs text-ink leading-relaxed">
+                                "Sewa Grand Sanctuary Estate buat retreat tim 18 orang. WiFi Starlink 250 Mbps kencang buat Zoom meeting, malamnya tambah paket Kambing Guling &amp; Api Unggun, dagingnya empuk banget!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                        <img src="assets/images/guest-avatar-2.jpg" alt="Bpk. Aditya" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-pine">Bpk. Aditya Mahendra</div>
+                            <div class="font-mono text-[10px] text-ink-muted">Rombongan 18 Org • Grand Sanctuary</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guest Card 3 -->
+                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="assets/images/interior-bedroom.jpg" alt="Dokumentasi Interior Kabin" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                Dokumentasi Tamu • Interior Kabin
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2.5">
+                            <div class="flex items-center gap-1 text-ochre text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Honeymoon Stay</span>
+                            </div>
+                            <p class="text-xs text-ink leading-relaxed">
+                                "Menginap di Kabin A-Frame Cemara berdua suami. Sprei dan selimutnya wangi hotel bintang lima, Jacuzzi air hangatnya langsung menghadap hutan pinus berkabut."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                        <img src="assets/images/guest-avatar-3.jpg" alt="Kak Larasati" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-pine">Kak Larasati &amp; Reza</div>
+                            <div class="font-mono text-[10px] text-ink-muted">Couple Stay • Kabin A-Frame Cemara</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guest Card 4 -->
+                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="assets/images/exp-bonfire.jpg" alt="Dokumentasi Api Unggun" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                Dokumentasi Tamu • Bonfire Night
+                            </span>
+                        </div>
+                        <div class="p-5 space-y-2.5">
+                            <div class="flex items-center gap-1 text-ochre text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Family Gathering</span>
+                            </div>
+                            <p class="text-xs text-ink leading-relaxed">
+                                "Suka sekali sama transparansi harganya: di web langsung kelihatan hitungan malam Kamis (Weekday) dan malam Jumat (Weekend), bisa kunci tanggal dulu pakai DP 50%."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                        <img src="assets/images/guest-avatar-4.jpg" alt="Bpk. Hendra" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-pine">Bpk. Hendra Gunawan</div>
+                            <div class="font-mono text-[10px] text-ink-muted">Family 6 Org • Forest Pavilion</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE FAQ ACCORDION -->
+    <section id="faq" class="py-14 lg:py-20 bg-linen border-t border-linen-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="font-mono text-xs uppercase tracking-widest text-ochre font-semibold">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl text-pine mt-1">
+                    Pertanyaan yang Sering Ditanyakan Tamu
+                </h2>
+                <p class="text-sm text-ink-muted mt-1">
+                    Informasi lengkap mengenai prosedur penguncian tanggal DP 50%, fasilitas kolam air hangat, dan aturan menginap.
+                </p>
+            </div>
+
+            <div class="space-y-3" id="faqAccordion15">
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(0)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>1. Bagaimana prosedur penguncian tanggal dengan DP 50% dan pelunasannya?</span>
+                        <i id="faqIcon15_0" class="fa-solid fa-minus text-ochre text-sm"></i>
+                    </button>
+                    <div id="faqBody15_0" class="px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Setelah Anda memilih tanggal Check-In &amp; Check-Out serta menerbitkan E-Voucher, Anda cukup membayar <strong>DP 50%</strong> melalui QRIS Resmi atau Virtual Account BCA/Mandiri atas nama PT Lembah Pinus Sanctuary. Tanggal otomatis terkunci di kalender sistem kami, dan sisa 50% dapat dilunasi saat Anda tiba (Check-In) di lokasi.
+                    </div>
+                </div>
+
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(1)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>2. Mengapa total harga otomatis berbeda antara malam biasa dan akhir pekan?</span>
+                        <i id="faqIcon15_1" class="fa-solid fa-plus text-pine text-sm"></i>
+                    </button>
+                    <div id="faqBody15_1" class="hidden px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Mesin kalender kami mendeteksi setiap malam secara otomatis: malam Minggu hingga Kamis dihitung menggunakan <strong>Tarif Weekday</strong>, sedangkan malam Jumat, Sabtu, dan Hari Libur Nasional menggunakan <strong>Tarif Weekend</strong>. Jika Anda menginap Kamis–Sabtu (2 malam), sistem otomatis menjumlahkan 1 malam Weekday + 1 malam Weekend secara akurat.
+                    </div>
+                </div>
+
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(2)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>3. Apakah Private Pool dan Jacuzzi benar-benar menggunakan air hangat 24 jam?</span>
+                        <i id="faqIcon15_2" class="fa-solid fa-plus text-pine text-sm"></i>
+                    </button>
+                    <div id="faqBody15_2" class="hidden px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Ya. Seluruh unit villa dan kabin dilengkapi sistem pemanas <em>Heat-Pump</em> otomatis yang menjaga suhu air kolam di kisaran <strong>32°C–33°C</strong> (dan <strong>36°C</strong> untuk Jacuzzi Kabin A-Frame) sehingga anak-anak maupun lansia tetap nyaman berenang pagi maupun malam hari tanpa kedinginan.
+                    </div>
+                </div>
+
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(3)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>4. Apakah akses jalan menuju villa aman untuk mobil sedan/MPV dan bebas macet?</span>
+                        <i id="faqIcon15_3" class="fa-solid fa-plus text-pine text-sm"></i>
+                    </button>
+                    <div id="faqBody15_3" class="hidden px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Akses jalan menuju LembahPinus 100% beraspal mulus dan lebar (bisa dilalui mobil sedan rendah, Alphard, hingga bus medium 33 kursi). Setelah booking terkonfirmasi, concierge kami mengirimkan panduan rute jalur alternatif khusus penghuni agar terhindar dari buka-tutup jalur utama.
+                    </div>
+                </div>
+
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(4)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>5. Bagaimana kebijakan perubahan jadwal (Reschedule) jika ada halangan mendadak?</span>
+                        <i id="faqIcon15_4" class="fa-solid fa-plus text-pine text-sm"></i>
+                    </button>
+                    <div id="faqBody15_4" class="hidden px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Tamu berhak mengajukan <strong>Reschedule Tanggal Gratis (1x)</strong> maksimal H-7 sebelum tanggal Check-In awal selama unit masih tersedia pada tanggal pengganti yang diinginkan.
+                    </div>
+                </div>
+
+                <div class="bg-linen-soft rounded-xl editorial-border overflow-hidden">
+                    <button type="button" onclick="toggleFaq15(5)" class="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-lg sm:text-xl text-pine">
+                        <span>6. Apakah diperbolehkan membawa makanan sendiri atau memesan katering tambahan?</span>
+                        <i id="faqIcon15_5" class="fa-solid fa-plus text-pine text-sm"></i>
+                    </button>
+                    <div id="faqBody15_5" class="hidden px-5 pb-5 text-xs sm:text-sm text-ink-muted leading-relaxed border-t border-linen-border pt-3">
+                        Sangat diperbolehkan tanpa biaya tambahan (bebas <em>corkage fee</em>). Dapur setiap villa sudah lengkap dengan kompor, kulkas, alat masak, dan panggangan arang. Anda juga dapat memilih paket praktis <strong>Kambing Guling / BBQ Grill Malam (+Rp 450.000)</strong> yang disiapkan langsung oleh juru masak kami.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- FOOTER -->
+    <footer id="kontak-footer" class="bg-pine-dark text-linen border-t border-pine-muted mt-16">
+        <!-- 1. Top Strip CTA & Trust Badges -->
+        <div class="border-b border-pine-muted/80 bg-pine-deep/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center lg:text-left max-w-2xl">
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-ochre/15 text-ochre border border-ochre/30">
+                            <i class="fa-solid fa-camera"></i> Jaminan Unit Sesuai Foto 100%
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                            <i class="fa-solid fa-qrcode"></i> Konfirmasi Instan &amp; E-Voucher QR
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-sky-500/15 text-sky-300 border border-sky-500/30">
+                            <i class="fa-solid fa-shield-halved"></i> Reschedule Fleksibel Cuaca
+                        </span>
+                    </div>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-bold tracking-tight">
+                        Rencanakan Staycation &amp; Gathering Impian di LembahPinus
+                    </h3>
+                    <p class="text-xs sm:text-sm text-linen/70 leading-relaxed font-sans">
+                        Nikmati udara sejuk pegunungan, private pool air hangat, api unggun malam hari, dan panorama kabut pinus alami bersama keluarga atau rombongan Anda.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3.5 shrink-0 w-full sm:w-auto">
+                    <a href="#katalog-unit" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-ochre hover:bg-ochre-light text-white font-semibold text-sm transition text-center shadow-lg shadow-ochre/20">
+                        <i class="fa-regular fa-calendar-check mr-2"></i>Pilih Unit &amp; Cek Tanggal
+                    </a>
+                    <a href="https://wa.me/6281234567890?text=Halo%20LembahPinus%20Sanctuary,%20saya%20ingin%20tanya%20ketersediaan%20villa" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-pine-muted hover:bg-pine-surface text-linen font-semibold text-sm transition text-center border border-linen/20">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i>Chat Concierge Villa
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Four Columns Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+                <!-- Kolom 1: Brand & Sosial Media -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/logo.svg" alt="LembahPinus Logo" class="h-11 w-11 rounded-xl bg-pine-deep border border-linen/20 p-2 object-contain shrink-0">
+                        <div>
+                            <div class="font-serif font-bold text-xl text-white tracking-wide">LEMBAH<span class="text-ochre">PINUS</span></div>
+                            <span class="font-mono text-[10px] text-ochre uppercase tracking-widest block">SANCTUARY &bull; BOUTIQUE STAY</span>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-linen/70 leading-relaxed font-sans">
+                        Koleksi villa private pool, glamping cabin A-frame, dan resort alami di Puncak Bogor &amp; Lembang Bandung dengan sistem booking kalender real-time.
+                    </p>
+                    <div class="pt-1">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-linen/60 block mb-2.5">Ikuti Momen Kami</span>
+                        <div class="flex items-center gap-2.5">
+                            <a href="https://instagram.com/lembahpinus.sanctuary" target="_blank" rel="noopener noreferrer" aria-label="Instagram LembahPinus" class="w-9 h-9 rounded-xl bg-pine-deep border border-linen/20 text-linen hover:bg-ochre hover:text-white transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://tiktok.com/@lembahpinus.id" target="_blank" rel="noopener noreferrer" aria-label="TikTok LembahPinus" class="w-9 h-9 rounded-xl bg-pine-deep border border-linen/20 text-linen hover:bg-ochre hover:text-white transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Concierge" class="w-9 h-9 rounded-xl bg-pine-deep border border-linen/20 text-linen hover:bg-ochre hover:text-white transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                            <a href="https://youtube.com/@lembahpinussanctuary" target="_blank" rel="noopener noreferrer" aria-label="YouTube LembahPinus" class="w-9 h-9 rounded-xl bg-pine-deep border border-linen/20 text-linen hover:bg-ochre hover:text-white transition flex items-center justify-center text-sm">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Navigasi Cepat -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-ochre font-bold mb-4">Navigasi Cepat</h3>
+                    <nav aria-label="Navigasi Cepat">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-linen/80">
+                            <li><a href="#" class="hover:text-ochre transition-colors block">Beranda Utama</a></li>
+                            <li><a href="#katalog-unit" class="hover:text-ochre transition-colors block">Pilihan Villa &amp; Glamping</a></li>
+                            <li><a href="#experience" class="hover:text-ochre transition-colors block">Pengalaman &amp; Aktivitas Alam</a></li>
+                            <li><a href="#ulasan-tamu" class="hover:text-ochre transition-colors block">Ulasan Tamu &amp; Foto Pengunjung</a></li>
+                            <li><a href="#faq" class="hover:text-ochre transition-colors block">Pertanyaan yang Sering Ditanyakan (FAQ)</a></li>
+                            <li><a href="#kontak-footer" class="hover:text-ochre transition-colors block">Lokasi &amp; Kontak Concierge</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Tipe Unit & Fasilitas -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-ochre font-bold mb-4">Pilihan Akomodasi</h3>
+                    <nav aria-label="Pilihan Akomodasi">
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-linen/80">
+                            <li><a href="#katalog-unit" onclick="filterUnits('couple')" class="hover:text-ochre transition-colors block">Glamping Cabin A-Frame (Couple 2 Orang)</a></li>
+                            <li><a href="#katalog-unit" onclick="filterUnits('family')" class="hover:text-ochre transition-colors block">Villa Pinus Private Pool (Family 4-8 Orang)</a></li>
+                            <li><a href="#katalog-unit" onclick="filterUnits('group')" class="hover:text-ochre transition-colors block">Grand Sanctuary Residence (Rombongan 12-20 Orang)</a></li>
+                            <li><a href="#katalog-unit" onclick="filterUnits('couple')" class="hover:text-ochre transition-colors block">Sky View Geodesic Dome (Jacuzzi Air Hangat)</a></li>
+                        </ul>
+                        <div class="pt-3">
+                            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20LembahPinus,%20saya%20tertarik%20sewa%20all-venue%20gathering%20rombongan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-pine-deep border border-ochre/40 hover:bg-ochre hover:text-white text-ochre text-xs font-semibold transition w-full justify-between">
+                                <span><i class="fa-solid fa-users mr-1.5"></i>Paket Gathering &amp; Outing Kantor</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Kolom 4: Lokasi & Jam Operasional -->
+                <div>
+                    <h3 class="font-mono text-xs uppercase tracking-widest text-ochre font-bold mb-4">Lokasi &amp; Layanan Tamu</h3>
+                    <ul class="space-y-3.5 text-xs sm:text-sm text-linen/80">
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-pine-deep border border-linen/20 text-ochre flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </span>
+                            <div>
+                                <p class="text-white font-medium leading-relaxed">Jl. Hutan Pinus Cisarua KM 14, Puncak, Bogor &bull; Lembah Asri Lembang Bandung</p>
+                                <a href="https://maps.google.com/?q=Puncak+Cisarua+Bogor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-ochre hover:underline font-mono text-[11px] mt-1">
+                                    <span>Buka Petunjuk Arah di Maps</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-pine-deep border border-linen/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-linen/60">WhatsApp Concierge &amp; Booking</span>
+                                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-white hover:text-ochre font-mono font-bold transition">
+                                    +62 812-3456-7890
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-pine-deep border border-linen/20 text-sky-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-envelope text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-linen/60">Email Kerjasama &amp; Event</span>
+                                <a href="mailto:stay@lembahpinus.id" class="text-white hover:text-ochre font-mono transition">
+                                    stay@lembahpinus.id
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-pine-deep border border-linen/20 text-ochre flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </span>
+                            <div>
+                                <span class="block font-mono text-[10px] uppercase text-linen/60">Waktu Check-In &amp; Check-Out</span>
+                                <p class="text-white font-medium">Check-In: 14.00 WIB &bull; Check-Out: 12.00 WIB (Resepsionis 24 Jam)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar -->
+        <div class="border-t border-pine-muted/80 bg-pine-deep/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                    <span class="font-mono text-[10px] uppercase tracking-wider text-linen/60 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">QRIS</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">BCA</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">BRI</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">Mandiri</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">GoPay</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">OVO</span>
+                    <span class="px-2.5 py-1 rounded bg-pine-muted border border-linen/20 text-linen font-mono text-[11px] font-bold whitespace-nowrap">DANA</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-linen/70 text-center sm:text-right">
+                    <p>&copy; 2026 LembahPinus Sanctuary. Portofolio UMKM Website Series.</p>
+                    <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
+                        <!-- TODO: Replace with dedicated terms modal -->
+                        <a href="#" class="hover:text-ochre transition-colors whitespace-nowrap">Syarat &amp; Ketentuan</a>
+                        <!-- TODO: Replace with dedicated privacy policy modal -->
+                        <a href="#" class="hover:text-ochre transition-colors whitespace-nowrap">Kebijakan Privasi</a>
+                        <a href="#faq" class="hover:text-ochre transition-colors whitespace-nowrap">Kebijakan Reschedule &amp; Batal</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AVAILABILITY CALENDAR MODAL PER UNIT -->
+    <div id="calendarModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-pine-dark/75 backdrop-blur-xs p-4">
+        <div class="bg-linen-soft rounded-2xl max-w-xl w-full p-6 editorial-border shadow-2xl relative">
+            <button onclick="closeCalendarModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-linen border border-linen-border flex items-center justify-center text-pine hover:bg-ochre hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="font-mono text-[11px] uppercase tracking-widest text-ochre font-semibold">KALENDER KETERSEDIAAN REAL-TIME</div>
+            <h3 class="font-serif font-bold text-2xl text-pine mt-0.5 mb-1" id="calModalUnitTitle">Nama Unit</h3>
+            <p class="text-xs text-ink-muted mb-4">Klik tanggal kosong berwarna hijau untuk memilih tanggal Check-In, atau periksa status ketersediaan 14 hari ke depan.</p>
+
+            <div class="flex items-center gap-4 text-[11px] font-mono mb-3">
+                <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-700 inline-block"></span> Tersedia</span>
+                <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-ochre inline-block"></span> Tarif Weekend</span>
+                <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-stone-300 inline-block"></span> Sudah Terisi</span>
+            </div>
+
+            <div id="calModalGrid" class="grid grid-cols-7 gap-2 font-mono text-xs mb-5">
+                <!-- Populated via JS -->
+            </div>
+
+            <div class="flex justify-end gap-2">
+                <button onclick="closeCalendarModal()" class="px-4 py-2 rounded-lg bg-pine text-linen font-mono text-xs font-semibold">Selesai &amp; Pilih Unit Ini</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTANT BOOKING & PRINTABLE E-VOUCHER MODAL -->
+    <div id="voucherModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-pine-dark/80 backdrop-blur-xs p-4 overflow-y-auto">
+        <div class="bg-linen-soft rounded-2xl max-w-2xl w-full p-6 sm:p-8 editorial-border shadow-2xl my-8 relative">
+            <button onclick="closeBookingVoucherModal()" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-linen border border-linen-border flex items-center justify-center text-pine hover:bg-ochre hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Printable E-Voucher Container -->
+            <div id="voucherPrintableArea" class="bg-white rounded-xl border border-stone-300 p-6 space-y-5 text-ink">
+                <div class="flex flex-wrap items-start justify-between gap-4 border-b border-stone-200 pb-4">
+                    <div class="flex items-center gap-3">
+                        <img src="assets/logo.svg" alt="LembahPinus Logo" class="h-11 w-auto">
+                    </div>
+                    <div class="text-right font-mono">
+                        <span class="inline-block bg-pine text-linen text-[10px] font-semibold px-2.5 py-0.5 rounded uppercase">E-VOUCHER RESERVASI RESMI</span>
+                        <div class="text-sm font-bold text-pine mt-1" id="vchCode">KODE: LPS-2026-8492</div>
+                    </div>
+                </div>
+
+                <!-- Guest & Unit Details -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-linen/60 p-4 rounded-xl border border-linen-border text-xs">
+                    <div class="space-y-1">
+                        <div class="font-mono text-[10px] uppercase text-ink-muted">TAMU UTAMA</div>
+                        <div class="font-bold text-sm text-pine" id="vchGuestName">Bpk./Ibu Tamu Kehormatan</div>
+                        <div class="font-mono text-ink-muted" id="vchGuestPhone">-</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-mono text-[10px] uppercase text-ink-muted">UNIT HUNIAN</div>
+                        <div class="font-serif font-bold text-lg text-pine" id="vchUnitName">-</div>
+                        <div class="font-mono text-[11px] text-ochre font-semibold" id="vchUnitSpecs">-</div>
+                    </div>
+                </div>
+
+                <!-- Check-in / Check-out & Night Breakdown -->
+                <div class="grid grid-cols-3 gap-3 font-mono text-xs border-y border-stone-200 py-3">
+                    <div>
+                        <span class="text-[10px] text-ink-muted block">CHECK-IN (14:00)</span>
+                        <strong class="text-pine" id="vchCheckIn">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-ink-muted block">CHECK-OUT (12:00)</span>
+                        <strong class="text-pine" id="vchCheckOut">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-ink-muted block">DURASI &amp; TIPE HARI</span>
+                        <strong class="text-ochre" id="vchDuration">-</strong>
+                    </div>
+                </div>
+
+                <!-- Cost & DP Summary + QR Code Gate Pass -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+                    <div class="sm:col-span-8 space-y-2 text-xs font-mono">
+                        <div class="flex justify-between">
+                            <span class="text-ink-muted">Total Sewa Unit Villa:</span>
+                            <span id="vchRoomTotal" class="font-semibold">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-ink-muted">Layanan Tambahan (Add-ons):</span>
+                            <span id="vchAddonsList" class="font-semibold">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between pt-2 border-t border-stone-200 text-sm">
+                            <span class="font-sans font-bold text-pine">Total Tagihan Menginap:</span>
+                            <span id="vchGrandTotal" class="font-bold text-pine">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between bg-ochre-light p-2.5 rounded-lg border border-ochre/30 text-ochre-dark font-bold">
+                            <span id="vchPaySchemeLabel">Nominal DP 50% (QRIS / BCA VA):</span>
+                            <span id="vchPayNowAmount">Rp 0</span>
+                        </div>
+                        <div class="text-[11px] text-ink-muted pt-1">
+                            <i class="fa-solid fa-location-dot text-ochre mr-1"></i>
+                            <strong>Pin Google Maps Gate:</strong> 6°41'52.4"S 106°58'14.2"E (Pos Utama LembahPinus KM 14)
+                        </div>
+                    </div>
+
+                    <!-- Vector SVG QR Code Gate Pass -->
+                    <div class="sm:col-span-4 flex flex-col items-center justify-center bg-linen/50 p-3 rounded-xl border border-linen-border">
+                        <svg viewBox="0 0 100 100" class="w-24 h-24 text-pine" fill="currentColor">
+                            <rect x="8" y="8" width="26" height="26" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="16" y="16" width="10" height="10"/>
+                            <rect x="66" y="8" width="26" height="26" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="74" y="16" width="10" height="10"/>
+                            <rect x="8" y="66" width="26" height="26" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="16" y="74" width="10" height="10"/>
+                            <rect x="42" y="10" width="6" height="6"/>
+                            <rect x="52" y="16" width="6" height="12"/>
+                            <rect x="42" y="28" width="8" height="8"/>
+                            <rect x="12" y="42" width="12" height="6"/>
+                            <rect x="30" y="44" width="14" height="6"/>
+                            <rect x="48" y="40" width="12" height="12"/>
+                            <rect x="66" y="44" width="8" height="8"/>
+                            <rect x="80" y="40" width="12" height="6"/>
+                            <rect x="42" y="60" width="8" height="14"/>
+                            <rect x="56" y="64" width="12" height="6"/>
+                            <rect x="74" y="58" width="8" height="16"/>
+                            <rect x="44" y="82" width="16" height="8"/>
+                            <rect x="66" y="80" width="10" height="10"/>
+                            <rect x="82" y="78" width="10" height="14"/>
+                        </svg>
+                        <span class="font-mono text-[10px] font-semibold text-pine mt-1.5">SCAN GATE CHECK-IN</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <button onclick="window.print()" class="px-4 py-3 rounded-xl bg-linen border border-linen-border text-pine font-mono text-xs font-semibold hover:bg-pine hover:text-linen transition flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Cetak / Simpan PDF E-Voucher</span>
+                </button>
+
+                <button onclick="confirmBookingWhatsApp()" class="flex-1 py-3.5 px-5 rounded-xl bg-pine hover:bg-ochre text-linen font-semibold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Kirim E-Voucher &amp; Konfirmasi DP ke WhatsApp Concierge</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // 1. 6 UNITS DATABASE
+        const villaUnits = [
+            {
+                id: 'aframe-cemara',
+                name: 'Kabin Kayu A-Frame "Cemara"',
+                category: 'couple',
+                capacityLabel: 'Couple 2 Orang',
+                maxGuests: '2 Dewasa + 1 Anak',
+                area: '48 m²',
+                bedrooms: '1 Loft King Bed',
+                poolSpec: 'Private Jacuzzi Air Hangat 36°C',
+                wifiSpec: '120 Mbps Mesh WiFi',
+                elevation: '1.260 MDPL',
+                weekdayRate: 950000,
+                weekendRate: 1350000,
+                image: 'assets/images/unit-aframe-cabin.jpg',
+                bookedOffsets: [2, 5, 9] // relative day offsets that are already booked
+            },
+            {
+                id: 'glamping-dome-kabut',
+                name: 'Geodesic Glamping Dome "Kabut Pagi"',
+                category: 'couple',
+                capacityLabel: 'Couple 2 Orang',
+                maxGuests: '2 Dewasa (Honeymoon Deck)',
+                area: '42 m²',
+                bedrooms: '1 Panoramic Queen Suite',
+                poolSpec: 'Outdoor Heated Bathtub 35°C',
+                wifiSpec: '120 Mbps Mesh WiFi',
+                elevation: '1.280 MDPL',
+                weekdayRate: 850000,
+                weekendRate: 1200000,
+                image: 'assets/images/unit-glamping-dome.jpg',
+                bookedOffsets: [1, 6, 10]
+            },
+            {
+                id: 'villa-pinus-pool',
+                name: 'Villa Kayu & Kaca "Pinus Private Pool"',
+                category: 'family',
+                capacityLabel: 'Family 4-8 Orang',
+                maxGuests: '6 - 8 Orang',
+                area: '165 m²',
+                bedrooms: '3 Kamar Tidur Ensuite',
+                poolSpec: 'Heated Private Pool 32°C',
+                wifiSpec: '150 Mbps Dedicated Fiber',
+                elevation: '1.220 MDPL',
+                weekdayRate: 1850000,
+                weekendRate: 2450000,
+                image: 'assets/images/unit-pine-villa.jpg',
+                bookedOffsets: [3, 4, 11]
+            },
+            {
+                id: 'forest-pavilion',
+                name: 'Forest Pavilion Villa "Lembah Asri"',
+                category: 'family',
+                capacityLabel: 'Family 4-8 Orang',
+                maxGuests: '8 Orang',
+                area: '190 m²',
+                bedrooms: '3 Kamar Tidur + Balkon Pinus',
+                poolSpec: 'Infinity Warm Pool 31°C',
+                wifiSpec: '150 Mbps Dedicated Fiber',
+                elevation: '1.240 MDPL',
+                weekdayRate: 2100000,
+                weekendRate: 2750000,
+                image: 'assets/images/unit-forest-pavilion.jpg',
+                bookedOffsets: [0, 7, 12]
+            },
+            {
+                id: 'river-cottage',
+                name: 'Riverbank Cottage "Suara Sungai"',
+                category: 'family',
+                capacityLabel: 'Family 4-8 Orang',
+                maxGuests: '4 - 6 Orang',
+                area: '140 m²',
+                bedrooms: '2 Kamar Tidur Kayu Jati',
+                poolSpec: 'Warm Plunge Pool 33°C',
+                wifiSpec: '120 Mbps Mesh WiFi',
+                elevation: '1.190 MDPL',
+                weekdayRate: 1550000,
+                weekendRate: 2050000,
+                image: 'assets/images/unit-river-cottage.jpg',
+                bookedOffsets: [2, 8]
+            },
+            {
+                id: 'grand-sanctuary-estate',
+                name: 'Grand Sanctuary Estate "Puncak Raya"',
+                category: 'rombongan',
+                capacityLabel: 'Rombongan 10-20 Orang',
+                maxGuests: '15 - 20 Orang (Aula & Billiard)',
+                area: '420 m²',
+                bedrooms: '5 Kamar Tidur Besar + Ruang Karaoke',
+                poolSpec: 'Olympic Heated Pool 32°C',
+                wifiSpec: '250 Mbps Starlink Business',
+                elevation: '1.250 MDPL',
+                weekdayRate: 3650000,
+                weekendRate: 4850000,
+                image: 'assets/images/unit-grand-sanctuary.jpg',
+                bookedOffsets: [4, 5, 13]
+            }
+        ];
+
+        // 2. ADD-ON EXPERIENCES
+        const addonOptions = [
+            {
+                id: 'bbq-kambing-guling',
+                name: 'Paket Kambing Guling Muda / BBQ Grill Malam Pribadi',
+                desc: 'Termasuk juru masak di villa, arang kelapa, jagung manis, sosis bratwurst & lontong hangat (untuk 6–12 porsi).',
+                price: 450000,
+                perNight: false
+            },
+            {
+                id: 'extra-bed-breakfast',
+                name: 'Extra Bed Springbed + Selimut Tebal + Sarapan Pagi',
+                desc: 'Kasur tambahan lantai empuk lengkap bantal bulu angsa sintetis dan jatah sarapan nasi goreng/roti bakar.',
+                price: 125000,
+                perNight: true
+            },
+            {
+                id: 'api-unggun-marshmallow',
+                name: 'Paket Api Unggun Kayu Pinus & Marshmallow Roast',
+                desc: 'Kayu bakar kering siap nyala 3 jam di firepit halaman villa + 15 tusuk marshmallow & cokelat panas.',
+                price: 150000,
+                perNight: false
+            },
+            {
+                id: 'dokumentasi-drone',
+                name: 'Sesi Dokumentasi Drone Cinematic Pagi (30 Menit)',
+                desc: 'Pilot drone berlisensi mengabadikan momen keluarga di private pool dengan latar kabut hutan pinus (File 4K langsung dikirim).',
+                price: 300000,
+                perNight: false
+            }
+        ];
+
+        let selectedUnitId = 'villa-pinus-pool';
+        let selectedCategory = 'all';
+        let selectedAddons = {
+            'bbq-kambing-guling': false,
+            'extra-bed-breakfast': false,
+            'api-unggun-marshmallow': true,
+            'dokumentasi-drone': false
+        };
+        let paymentScheme = 'dp50'; // 'dp50' or 'full'
+        let currentBookingCode = 'LPS-2026-8492';
+
+        function formatIDR(num) {
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        // Calculate exact weekday vs weekend nights between check-in and check-out
+        function getStayBreakdown() {
+            const inVal = document.getElementById('checkInDate').value;
+            const outVal = document.getElementById('checkOutDate').value;
+            let start = inVal ? new Date(inVal + 'T00:00:00') : new Date();
+            let end = outVal ? new Date(outVal + 'T00:00:00') : new Date(start.getTime() + 2 * 86400000);
+
+            if (end <= start) {
+                end = new Date(start.getTime() + 86400000);
+                document.getElementById('checkOutDate').value = end.toISOString().split('T')[0];
+            }
+
+            let weekdayNights = 0;
+            let weekendNights = 0;
+            let cur = new Date(start);
+
+            while (cur < end) {
+                const day = cur.getDay(); // 0=Sun, 5=Fri, 6=Sat
+                if (day === 5 || day === 6) {
+                    weekendNights++;
+                } else {
+                    weekdayNights++;
+                }
+                cur.setDate(cur.getDate() + 1);
+            }
+
+            const totalNights = weekdayNights + weekendNights;
+            return {
+                checkInStr: start.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                checkOutStr: end.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }),
+                weekdayNights,
+                weekendNights,
+                totalNights
+            };
+        }
+
+        function handleDateChange() {
+            const b = getStayBreakdown();
+            document.getElementById('engineTotalNightsBadge').textContent = `${b.totalNights} Malam`;
+            document.getElementById('engineNightBreakdownBadge').textContent = `${b.weekdayNights} Malam Weekday + ${b.weekendNights} Malam Weekend`;
+            renderUnits();
+            renderAddons();
+            updateBookingSummary();
+        }
+
+        function handleGuestFilterSync() {
+            const val = parseInt(document.getElementById('guestCountSelect').value, 10);
+            if (val <= 2) filterCapacity('couple');
+            else if (val <= 8) filterCapacity('family');
+            else filterCapacity('rombongan');
+        }
+
+        function filterCapacity(cap) {
+            selectedCategory = cap;
+            document.getElementById('capacitySelectDropdown').value = cap;
+            document.querySelectorAll('.cap-btn').forEach(btn => {
+                if (btn.dataset.cap === cap) {
+                    btn.className = 'cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-pine text-linen transition';
+                } else {
+                    btn.className = 'cap-btn px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-linen-soft text-ink border border-linen-border hover:border-pine transition';
+                }
+            });
+            renderUnits();
+        }
+
+        function renderUnits() {
+            const grid = document.getElementById('unitsGrid');
+            const b = getStayBreakdown();
+            const list = villaUnits.filter(u => selectedCategory === 'all' || u.category === selectedCategory);
+
+            grid.innerHTML = list.map(u => {
+                const isSelected = u.id === selectedUnitId;
+                const stayTotal = (u.weekdayRate * b.weekdayNights) + (u.weekendRate * b.weekendNights);
+
+                // Mini 7-day availability strip
+                const today = new Date();
+                let stripHtml = '';
+                for (let d = 0; d < 7; d++) {
+                    const dt = new Date(today.getTime() + d * 86400000);
+                    const dayNum = dt.getDate();
+                    const isBooked = u.bookedOffsets.includes(d);
+                    const isWknd = dt.getDay() === 5 || dt.getDay() === 6;
+                    const colorCls = isBooked
+                        ? 'bg-stone-300 text-stone-500 line-through'
+                        : isWknd
+                            ? 'bg-ochre/20 text-ochre-dark border border-ochre/40 font-semibold'
+                            : 'bg-pine-light text-pine font-semibold';
+                    stripHtml += `<span class="text-[10px] font-mono py-1 rounded text-center ${colorCls}" title="${isBooked ? 'Sudah Dipesan' : 'Tersedia'}">${dayNum}</span>`;
+                }
+
+                return `
+                    <article class="bg-linen-soft rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between ${isSelected ? 'ring-2 ring-ochre' : ''}">
+                        <div>
+                            <!-- Unit Photo -->
+                            <div class="relative h-56 overflow-hidden">
+                                <img src="${u.image}" alt="${u.name}" class="w-full h-full object-cover">
+                                <div class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                    ${u.capacityLabel}
+                                </div>
+                                <div class="absolute top-3 right-3 bg-linen/95 text-pine font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                    ${u.area} • ${u.elevation}
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono bg-pine-dark/85 text-linen px-3 py-1.5 rounded-lg backdrop-blur-xs">
+                                    <span><i class="fa-solid fa-temperature-three-quarters text-ochre mr-1"></i>${u.poolSpec}</span>
+                                </div>
+                            </div>
+
+                            <!-- Specs Body -->
+                            <div class="p-5 space-y-4">
+                                <div>
+                                    <h3 class="font-serif font-bold text-2xl text-pine leading-snug">${u.name}</h3>
+                                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-ink-muted mt-1">
+                                        <span><i class="fa-solid fa-bed text-ochre mr-1"></i>${u.bedrooms}</span>
+                                        <span>•</span>
+                                        <span><i class="fa-solid fa-wifi text-pine mr-1"></i>${u.wifiSpec}</span>
+                                    </div>
+                                </div>
+
+                                <!-- 7-Day Quick Availability Strip -->
+                                <div class="bg-linen p-3 rounded-xl border border-linen-border">
+                                    <div class="flex items-center justify-between text-[10px] font-mono text-ink-muted mb-1.5">
+                                        <span>KETERSEDIAAN 7 HARI KE DEPAN</span>
+                                        <button type="button" onclick="openCalendarModal('${u.id}')" class="text-ochre font-semibold underline hover:text-pine">
+                                            Buka Kalender 14 Hari
+                                        </button>
+                                    </div>
+                                    <div class="grid grid-cols-7 gap-1">
+                                        ${stripHtml}
+                                    </div>
+                                </div>
+
+                                <!-- Weekday vs Weekend Rates -->
+                                <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-xs">
+                                    <div class="bg-linen p-2.5 rounded-lg border border-linen-border">
+                                        <span class="text-[10px] text-ink-muted block">TARIF WEEKDAY</span>
+                                        <strong class="text-pine">${formatIDR(u.weekdayRate)}</strong><span class="text-[10px] text-ink-muted">/mlm</span>
+                                    </div>
+                                    <div class="bg-ochre-light p-2.5 rounded-lg border border-ochre/30">
+                                        <span class="text-[10px] text-ochre-dark block">TARIF WEEKEND</span>
+                                        <strong class="text-ochre-dark">${formatIDR(u.weekendRate)}</strong><span class="text-[10px] text-ochre-dark">/mlm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Total for Selected Dates & CTA -->
+                        <div class="p-5 pt-0 space-y-3">
+                            <div class="pt-3 border-t border-linen-border flex items-baseline justify-between">
+                                <div>
+                                    <span class="font-mono text-[10px] uppercase text-ink-muted block">Total ${b.totalNights} Malam Pilihan Anda</span>
+                                    <span class="font-serif font-bold text-2xl text-pine">${formatIDR(stayTotal)}</span>
+                                </div>
+                                <span class="font-mono text-[11px] text-ochre font-semibold">DP 50%: ${formatIDR(stayTotal / 2)}</span>
+                            </div>
+
+                            <button type="button" onclick="selectUnit('${u.id}')" class="w-full py-3 px-4 rounded-xl font-mono text-xs font-semibold uppercase tracking-wider transition flex items-center justify-center gap-2 ${
+                                isSelected
+                                    ? 'bg-ochre text-white'
+                                    : 'bg-pine hover:bg-ochre text-linen'
+                            }">
+                                <i class="fa-solid ${isSelected ? 'fa-circle-check' : 'fa-key'}"></i>
+                                <span>${isSelected ? 'Unit Terpilih — Lanjut ke Add-On' : 'Pilih Unit Villa Ini'}</span>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function selectUnit(unitId) {
+            selectedUnitId = unitId;
+            renderUnits();
+            updateBookingSummary();
+            document.getElementById('addon-experience').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderAddons() {
+            const container = document.getElementById('addonsContainer');
+            const b = getStayBreakdown();
+
+            container.innerHTML = addonOptions.map(a => {
+                const isChecked = !!selectedAddons[a.id];
+                const effectivePrice = a.perNight ? a.price * b.totalNights : a.price;
+                return `
+                    <label class="p-4 rounded-xl border transition flex items-start justify-between gap-4 cursor-pointer ${
+                        isChecked ? 'bg-ochre-light border-ochre' : 'bg-linen border-linen-border hover:border-pine'
+                    }">
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleAddon('${a.id}')" class="mt-1 w-4 h-4 accent-pine">
+                            <div>
+                                <div class="font-serif font-bold text-lg text-pine leading-snug">${a.name}</div>
+                                <p class="text-xs text-ink-muted mt-0.5">${a.desc}</p>
+                            </div>
+                        </div>
+                        <div class="text-right font-mono shrink-0">
+                            <div class="font-semibold text-xs text-pine">+${formatIDR(effectivePrice)}</div>
+                            <div class="text-[10px] text-ink-muted">${a.perNight ? `${formatIDR(a.price)} × ${b.totalNights} mlm` : 'Sekali Pesan'}</div>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+        }
+
+        function toggleAddon(addonId) {
+            selectedAddons[addonId] = !selectedAddons[addonId];
+            renderAddons();
+            updateBookingSummary();
+        }
+
+        function setPaymentScheme(scheme) {
+            paymentScheme = scheme;
+            const dpBtn = document.getElementById('payOptDP');
+            const fullBtn = document.getElementById('payOptFull');
+            if (scheme === 'dp50') {
+                dpBtn.className = 'p-3 rounded-xl border border-ochre bg-ochre/20 text-left transition';
+                fullBtn.className = 'p-3 rounded-xl border border-linen/20 bg-pine-dark/50 text-left transition';
+            } else {
+                fullBtn.className = 'p-3 rounded-xl border border-ochre bg-ochre/20 text-left transition';
+                dpBtn.className = 'p-3 rounded-xl border border-linen/20 bg-pine-dark/50 text-left transition';
+            }
+            updateBookingSummary();
+        }
+
+        function updateBookingSummary() {
+            const unit = villaUnits.find(u => u.id === selectedUnitId) || villaUnits[0];
+            const b = getStayBreakdown();
+
+            const weekdayCost = unit.weekdayRate * b.weekdayNights;
+            const weekendCost = unit.weekendRate * b.weekendNights;
+            const roomTotal = weekdayCost + weekendCost;
+
+            let addonsTotal = 0;
+            let activeAddonNames = [];
+            addonOptions.forEach(a => {
+                if (selectedAddons[a.id]) {
+                    const cost = a.perNight ? a.price * b.totalNights : a.price;
+                    addonsTotal += cost;
+                    activeAddonNames.push(a.name.split('/')[0].trim());
+                }
+            });
+
+            const grandTotal = roomTotal + addonsTotal;
+            const dpAmount = Math.round(grandTotal * 0.5);
+
+            document.getElementById('summaryUnitName').textContent = unit.name;
+            document.getElementById('summaryUnitSpecs').textContent = `${unit.area} • ${unit.bedrooms} • ${unit.poolSpec}`;
+            document.getElementById('summaryCapacityBadge').textContent = unit.capacityLabel;
+            document.getElementById('summaryDateRange').textContent = `${b.checkInStr} → ${b.checkOutStr} (${b.totalNights} Mlm)`;
+            document.getElementById('summaryWeekdayLine').textContent = `${b.weekdayNights} mlm × ${formatIDR(unit.weekdayRate)} = ${formatIDR(weekdayCost)}`;
+            document.getElementById('summaryWeekendLine').textContent = `${b.weekendNights} mlm × ${formatIDR(unit.weekendRate)} = ${formatIDR(weekendCost)}`;
+            document.getElementById('summaryAddonsTotal').textContent = formatIDR(addonsTotal);
+            document.getElementById('summaryGrandTotal').textContent = formatIDR(grandTotal);
+            document.getElementById('summaryDPAmount').textContent = formatIDR(dpAmount);
+            document.getElementById('summaryFullAmount').textContent = formatIDR(grandTotal);
+
+            // Sync E-Voucher fields
+            document.getElementById('vchCode').textContent = `KODE: ${currentBookingCode}`;
+            document.getElementById('vchGuestName').textContent = document.getElementById('guestBookingName').value.trim() || 'Bpk./Ibu Tamu LembahPinus';
+            document.getElementById('vchGuestPhone').textContent = document.getElementById('guestBookingPhone').value.trim() || 'Konfirmasi via WhatsApp';
+            document.getElementById('vchUnitName').textContent = unit.name;
+            document.getElementById('vchUnitSpecs').textContent = `${unit.area} • ${unit.poolSpec} • ${unit.wifiSpec}`;
+            document.getElementById('vchCheckIn').textContent = b.checkInStr;
+            document.getElementById('vchCheckOut').textContent = b.checkOutStr;
+            document.getElementById('vchDuration').textContent = `${b.totalNights} Malam (${b.weekdayNights} WD / ${b.weekendNights} WE)`;
+            document.getElementById('vchRoomTotal').textContent = formatIDR(roomTotal);
+            document.getElementById('vchAddonsList').textContent = addonsTotal > 0 ? `${formatIDR(addonsTotal)} (${activeAddonNames.join(', ')})` : 'Rp 0 (Tanpa Add-on)';
+            document.getElementById('vchGrandTotal').textContent = formatIDR(grandTotal);
+            document.getElementById('vchPaySchemeLabel').textContent = paymentScheme === 'dp50'
+                ? 'Nominal DP 50% Kunci Tanggal (QRIS / BCA VA):'
+                : 'Nominal Pelunasan 100% (QRIS / BCA VA):';
+            document.getElementById('vchPayNowAmount').textContent = paymentScheme === 'dp50' ? formatIDR(dpAmount) : formatIDR(grandTotal);
+        }
+
+        // Availability Calendar Modal per Unit
+        function openCalendarModal(unitId) {
+            const u = villaUnits.find(x => x.id === unitId);
+            if (!u) return;
+            selectedUnitId = unitId;
+            renderUnits();
+            updateBookingSummary();
+
+            document.getElementById('calModalUnitTitle').textContent = u.name;
+            const grid = document.getElementById('calModalGrid');
+            const today = new Date();
+            let cells = '';
+
+            for (let i = 0; i < 14; i++) {
+                const dt = new Date(today.getTime() + i * 86400000);
+                const iso = dt.toISOString().split('T')[0];
+                const dayLabel = dt.toLocaleDateString('id-ID', { weekday: 'short', day: '2-digit', month: 'short' });
+                const isBooked = u.bookedOffsets.includes(i);
+                const isWknd = dt.getDay() === 5 || dt.getDay() === 6;
+
+                if (isBooked) {
+                    cells += `
+                        <div class="p-2.5 rounded-lg bg-stone-200 text-stone-400 text-center border border-stone-300 cursor-not-allowed">
+                            <div class="text-[10px]">${dayLabel}</div>
+                            <div class="font-bold text-[10px] mt-1">TERISI</div>
+                        </div>
+                    `;
+                } else {
+                    cells += `
+                        <button type="button" onclick="pickDateFromModal('${iso}')" class="p-2.5 rounded-lg text-center border transition ${
+                            isWknd
+                                ? 'bg-ochre-light border-ochre text-ochre-dark hover:bg-ochre hover:text-white'
+                                : 'bg-pine-light border-pine/30 text-pine hover:bg-pine hover:text-linen'
+                        }">
+                            <div class="text-[10px]">${dayLabel}</div>
+                            <div class="font-bold text-[10px] mt-1">${isWknd ? formatIDR(u.weekendRate / 1000) + 'k' : formatIDR(u.weekdayRate / 1000) + 'k'}</div>
+                        </button>
+                    `;
+                }
+            }
+            grid.innerHTML = cells;
+
+            const modal = document.getElementById('calendarModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function pickDateFromModal(isoDate) {
+            const inDt = new Date(isoDate + 'T00:00:00');
+            const outDt = new Date(inDt.getTime() + 2 * 86400000);
+            document.getElementById('checkInDate').value = isoDate;
+            document.getElementById('checkOutDate').value = outDt.toISOString().split('T')[0];
+            handleDateChange();
+            closeCalendarModal();
+        }
+
+        function closeCalendarModal() {
+            const modal = document.getElementById('calendarModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openBookingVoucherModal() {
+            currentBookingCode = 'LPS-2026-' + Math.floor(1000 + Math.random() * 9000);
+            updateBookingSummary();
+            const modal = document.getElementById('voucherModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBookingVoucherModal() {
+            const modal = document.getElementById('voucherModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function applyPresetStay(preset) {
+            // Find upcoming Friday
+            const now = new Date();
+            const daysUntilFri = (5 - now.getDay() + 7) % 7 || 7;
+            const fri = new Date(now.getTime() + daysUntilFri * 86400000);
+            const sun = new Date(fri.getTime() + 2 * 86400000);
+
+            document.getElementById('checkInDate').value = fri.toISOString().split('T')[0];
+            document.getElementById('checkOutDate').value = sun.toISOString().split('T')[0];
+
+            if (preset === 'weekend_couple') {
+                selectedUnitId = 'aframe-cemara';
+                filterCapacity('all');
+                selectedAddons = {
+                    'bbq-kambing-guling': false,
+                    'extra-bed-breakfast': false,
+                    'api-unggun-marshmallow': true,
+                    'dokumentasi-drone': true
+                };
+            } else {
+                selectedUnitId = 'grand-sanctuary-estate';
+                filterCapacity('all');
+                selectedAddons = {
+                    'bbq-kambing-guling': true,
+                    'extra-bed-breakfast': true,
+                    'api-unggun-marshmallow': true,
+                    'dokumentasi-drone': false
+                };
+            }
+            handleDateChange();
+            document.getElementById('addon-experience').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function confirmBookingWhatsApp() {
+            updateBookingSummary();
+            const unit = villaUnits.find(u => u.id === selectedUnitId) || villaUnits[0];
+            const b = getStayBreakdown();
+            const guestName = document.getElementById('guestBookingName').value.trim() || 'Tamu LembahPinus';
+            const guestPhone = document.getElementById('guestBookingPhone').value.trim() || '-';
+            const payNow = document.getElementById('vchPayNowAmount').textContent;
+            const grandTotal = document.getElementById('vchGrandTotal').textContent;
+
+            const msg = [
+                `Halo Resepsionis *LembahPinus Sanctuary*, saya ingin konfirmasi reservasi villa:`,
+                ``,
+                `*Kode E-Voucher:* ${currentBookingCode}`,
+                `*Unit Terpilih:* ${unit.name} (${unit.capacityLabel})`,
+                `*Check-In:* ${b.checkInStr} (14:00 WIB)`,
+                `*Check-Out:* ${b.checkOutStr} (12:00 WIB)`,
+                `*Durasi:* ${b.totalNights} Malam (${b.weekdayNights} Malam Weekday + ${b.weekendNights} Malam Weekend)`,
+                `*Total Biaya Menginap:* ${grandTotal}`,
+                `*Skema Pembayaran:* ${paymentScheme === 'dp50' ? 'DP 50% Kunci Tanggal' : 'Pelunasan 100%'} (*${payNow}*)`,
+                ``,
+                `*Data Pemesan:*`,
+                `Nama: ${guestName}`,
+                `No. WA: ${guestPhone}`,
+                ``,
+                `Mohon kirimkan QRIS / Nomor Virtual Account resmi untuk penguncian tanggal. Terima kasih.`
+            ].join('\n');
+
+            window.open(`https://wa.me/6281399887755?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function toggleFaq15(idx) {
+            for (let i = 0; i < 6; i++) {
+                const body = document.getElementById('faqBody15_' + i);
+                const icon = document.getElementById('faqIcon15_' + i);
+                if (!body || !icon) continue;
+                if (i === idx) {
+                    const isHidden = body.classList.contains('hidden');
+                    body.classList.toggle('hidden', !isHidden);
+                    icon.className = isHidden ? 'fa-solid fa-minus text-ochre text-sm' : 'fa-solid fa-plus text-pine text-sm';
+                } else {
+                    body.classList.add('hidden');
+                    icon.className = 'fa-solid fa-plus text-pine text-sm';
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Default check-in: 2 days from now (spanning 1 weekday + 1 weekend or 2 nights)
+            const d1 = new Date(Date.now() + 2 * 86400000);
+            const d2 = new Date(Date.now() + 4 * 86400000);
+            document.getElementById('checkInDate').value = d1.toISOString().split('T')[0];
+            document.getElementById('checkOutDate').value = d2.toISOString().split('T')[0];
+            handleDateChange();
+        });
+    </script>
+</body>
+</html>
