@@ -70,9 +70,27 @@
         <a href="armada.html" class="hover:text-safety-500 transition-colors">Peralatan</a>
         <a href="kontak.html" class="hover:text-safety-500 transition-colors">Kontak</a>
       </nav>
-      <a href="kontak.html#rfq" class="hidden sm:inline-flex items-center gap-2 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base px-5 py-2.5 rounded uppercase tracking-wider transition-all">
+      <div class="flex items-center gap-3">
+        <a href="kontak.html#rfq" class="hidden sm:inline-flex items-center gap-2 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base px-5 py-2.5 rounded uppercase tracking-wider transition-all">
         <i class="fa-solid fa-file-contract"></i> Permintaan RFQ
       </a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-white text-xl p-2" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-concrete-950 border-b border-slate-800 px-4 py-4 space-y-3 text-sm font-semibold text-slate-300 max-h-[75vh] overflow-y-auto">
+      <a href="index.html" class="block py-2 hover:text-safety-500 transition-colors">Beranda</a>
+      <a href="tentang.html" class="block py-2 hover:text-safety-500 transition-colors">Tentang Kami</a>
+      <a href="layanan.html" class="block py-2 hover:text-safety-500 transition-colors">Layanan</a>
+      <a href="proyek.html" class="block py-2 hover:text-safety-500 transition-colors">Proyek</a>
+      <a href="k3-mutu.html" class="block py-2 text-safety-500 font-bold">K3 & Mutu</a>
+      <a href="armada.html" class="block py-2 hover:text-safety-500 transition-colors">Peralatan</a>
+      <a href="karir.html" class="block py-2 hover:text-safety-500 transition-colors">Karir</a>
+      <a href="berita.html" class="block py-2 hover:text-safety-500 transition-colors">Berita</a>
+      <a href="kontak.html" class="block py-2 hover:text-safety-500 transition-colors">Kontak</a>
+      <a href="kontak.html#rfq" class="block py-2 text-safety-500 font-bold border-t border-slate-800 mt-2 pt-2">Permintaan RFQ ↗</a>
     </div>
   </header>
 
@@ -443,6 +461,11 @@
 
     </div>
   </footer>
-
+  <script>
+    function toggleMobileMenu() {
+      const m = document.getElementById("mobileMenu");
+      if (m) m.classList.toggle("hidden");
+    }
+  </script>
 </body>
 </html>

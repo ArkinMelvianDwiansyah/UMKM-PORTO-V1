@@ -1673,23 +1673,25 @@
 
   <!-- Device Simulator Preview Modal -->
   <div id="previewModal" class="fixed inset-0 z-50 hidden bg-ink/90 backdrop-blur-sm flex flex-col">
-    <div class="h-16 bg-surface border-b border-line px-4 sm:px-6 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full bg-forest"></span>
-        <h4 id="modalTitle" class="text-sm font-bold text-ink truncate max-w-xs sm:max-w-md">Live Preview</h4>
+    <div class="h-14 sm:h-16 bg-surface border-b border-line px-3 sm:px-6 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-forest shrink-0"></span>
+        <h4 id="modalTitle" class="text-xs sm:text-sm font-bold text-ink truncate max-w-[130px] sm:max-w-xs md:max-w-md">Live Preview</h4>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="setViewport('desktop')" id="btnDesktop" class="px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface">
-          Desktop
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button onclick="setViewport('desktop')" id="btnDesktop" class="hidden xs:inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-ink text-surface">
+          <i class="fa-solid fa-desktop text-[10px]"></i>
+          <span class="hidden sm:inline">Desktop</span>
         </button>
-        <button onclick="setViewport('mobile')" id="btnMobile" class="px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line">
-          HP (412px)
+        <button onclick="setViewport('mobile')" id="btnMobile" class="hidden xs:inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-paper text-ink border border-line">
+          <i class="fa-solid fa-mobile-screen text-[10px]"></i>
+          <span class="hidden sm:inline">HP (412px)</span>
         </button>
-        <a id="modalFullLink" href="#" target="_blank" class="px-3 py-1.5 text-xs font-mono font-semibold bg-accent text-surface ml-2">
-          Buka Penuh ↗
+        <a id="modalFullLink" href="#" target="_blank" class="px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-accent text-surface inline-flex items-center gap-1">
+          <span>Buka Penuh</span> &nearr;
         </a>
-        <button onclick="closePreviewModal()" class="ml-2 w-8 h-8 bg-paper border border-line hover:bg-ink hover:text-surface text-ink flex items-center justify-center transition">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="closePreviewModal()" class="w-7 h-7 sm:w-8 sm:h-8 bg-paper border border-line hover:bg-ink hover:text-surface text-ink flex items-center justify-center transition shrink-0" aria-label="Tutup Preview">
+          <i class="fa-solid fa-xmark text-sm"></i>
         </button>
       </div>
     </div>
@@ -1761,37 +1763,37 @@
   </div>
 
   <!-- Footer -->
-  <footer id="kontak-footer" class="border-t border-line bg-surface text-ink">
+  <footer id="kontak-footer" class="border-t border-stone-800 bg-[#111215] text-[#A1A1AA]">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
       <!-- 1. Strip Konsultasi & Komitmen Layanan -->
-      <div class="py-10 border-b border-line">
-        <div class="bg-paper border border-line p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div class="space-y-3 text-center lg:text-left max-w-2xl">
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-surface border border-line text-xs font-mono font-medium text-ink">
-              <span class="w-2 h-2 rounded-full bg-forest"></span>
+      <div class="py-12 border-b border-stone-800/80">
+        <div class="bg-gradient-to-br from-stone-900/90 to-stone-950 border border-stone-800 p-6 sm:p-8 lg:p-10 rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+          <div class="space-y-3.5 text-center lg:text-left max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-medium text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Studio Pembuatan Website UMKM &amp; Korporasi Indonesia</span>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Konsultasikan Rencana Website Usaha Anda
             </h3>
-            <p class="text-xs sm:text-sm text-muted leading-relaxed">
-              Diskusikan arsitektur halaman, alur transaksi WhatsApp, sistem reservasi, atau profil corporate B2B bersama kami. Konsultasi awal bebas biaya dengan rancangan estimasi anggaran yang transparan dan realistis.
+            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+              Diskusikan arsitektur halaman, alur transaksi WhatsApp, sistem reservasi, atau profil corporate B2B bersama tim developer kami. Konsultasi awal 100% bebas biaya dengan estimasi anggaran yang transparan dan realistis.
             </p>
-            <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-5 text-xs font-mono text-muted">
-              <span class="inline-flex items-center gap-1.5 text-ink"><i class="fa-solid fa-check text-forest text-[11px]" aria-hidden="true"></i> Pengerjaan 3&ndash;7 Hari Kerja</span>
-              <span class="inline-flex items-center gap-1.5 text-ink"><i class="fa-solid fa-check text-forest text-[11px]" aria-hidden="true"></i> 100% Hak Milik Klien</span>
-              <span class="inline-flex items-center gap-1.5 text-ink"><i class="fa-solid fa-check text-forest text-[11px]" aria-hidden="true"></i> Domain .COM &amp; Cloud 1 Thn</span>
+            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-5 text-xs font-mono text-stone-300">
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400 text-xs" aria-hidden="true"></i> Pengerjaan 3&ndash;7 Hari Kerja</span>
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400 text-xs" aria-hidden="true"></i> 100% Hak Milik (Bukan Sewa)</span>
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400 text-xs" aria-hidden="true"></i> Domain .COM &amp; Cloud 1 Tahun</span>
             </div>
           </div>
           <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
             <a href="https://wa.me/6289680551957?text=Halo%20JalaninWeb%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20usaha."
                target="_blank" rel="noopener noreferrer"
-               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent hover:bg-ink text-surface font-semibold text-xs sm:text-sm px-6 py-3.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-sm">
-              <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-accent hover:bg-accent/90 text-white font-bold text-xs sm:text-sm px-7 py-4 rounded-xl transition shadow-lg shadow-accent/20">
+              <i class="fa-brands fa-whatsapp text-lg text-emerald-300" aria-hidden="true"></i>
               <span>Chat WhatsApp Langsung</span>
             </a>
             <a href="#simulasi-biaya"
-               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-surface hover:bg-paper text-ink border border-line font-semibold text-xs sm:text-sm px-5 py-3.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink">
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-stone-900 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-xs sm:text-sm px-6 py-4 rounded-xl transition">
               <span>Hitung Estimasi Biaya</span>
             </a>
           </div>
@@ -1799,117 +1801,125 @@
       </div>
 
       <!-- 2. Grid 4 Kolom Informasi Resmi -->
-      <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-xs sm:text-sm">
-        <!-- Kolom 1: Brand & Profil Agensi -->
-        <div class="space-y-4">
-          <a href="#top" class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" aria-label="Kembali ke Beranda JalaninWeb">
-            <img src="assets/logo.svg" alt="JalaninWeb Studio" class="h-10 w-auto" />
+      <div class="py-12 sm:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 text-xs sm:text-sm">
+        <!-- Kolom 1: Brand & Profil Agensi (span 4) -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="#top" class="inline-flex items-center gap-3 group" aria-label="Kembali ke Beranda JalaninWeb">
+            <img src="assets/logo.svg" alt="JalaninWeb Studio" class="h-10 w-[42px] object-cover object-left rounded-lg shrink-0" />
+            <div>
+              <div class="text-lg font-extrabold text-white tracking-tight leading-none">
+                jalanin<span class="text-accent">web</span><span class="text-stone-400 text-sm font-semibold">.com</span>
+              </div>
+              <div class="text-[9.5px] font-mono tracking-wider text-stone-400 uppercase mt-1">
+                Solusi Digital UMKM &amp; Korporasi
+              </div>
+            </div>
           </a>
-          <p class="text-xs sm:text-sm text-muted leading-relaxed">
-            Studio desain dan pengembangan website fungsional untuk pelaku usaha lokal, UMKM, dan korporasi Indonesia. Mengedepankan loading cepat, nol framework berat, dan fokus konversi penjualan.
+          <p class="text-xs text-stone-300 leading-relaxed">
+            Studio desain dan pengembangan website fungsional untuk pelaku usaha lokal, UMKM, dan korporasi Indonesia. Mengedepankan loading cepat, nol framework berat, dan fokus mendatangkan lead penjualan.
           </p>
-          <div class="flex items-center gap-2 pt-1">
-            <a href="https://instagram.com/jalaninweb" target="_blank" rel="noopener noreferrer" aria-label="Instagram Resmi JalaninWeb"
-               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
+          <div class="flex items-center gap-2.5 pt-1">
             <a href="https://wa.me/6289680551957" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hotline JalaninWeb"
-               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+               class="w-8 h-8 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-emerald-400 hover:border-emerald-500/40 flex items-center justify-center transition">
+              <i class="fa-brands fa-whatsapp text-sm" aria-hidden="true"></i>
+            </a>
+            <a href="https://instagram.com/jalaninweb" target="_blank" rel="noopener noreferrer" aria-label="Instagram Resmi JalaninWeb"
+               class="w-8 h-8 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-pink-400 hover:border-pink-500/40 flex items-center justify-center transition">
+              <i class="fa-brands fa-instagram text-sm" aria-hidden="true"></i>
             </a>
             <a href="https://tiktok.com/@jalaninweb" target="_blank" rel="noopener noreferrer" aria-label="TikTok JalaninWeb"
-               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center">
-              <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+               class="w-8 h-8 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-white hover:border-stone-600 flex items-center justify-center transition">
+              <i class="fa-brands fa-tiktok text-sm" aria-hidden="true"></i>
             </a>
             <a href="https://linkedin.com/company/jalaninweb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Perusahaan JalaninWeb"
-               class="w-9 h-9 bg-paper border border-line text-ink hover:bg-accent hover:text-surface hover:border-accent transition flex items-center justify-center">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+               class="w-8 h-8 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 hover:text-blue-400 hover:border-blue-500/40 flex items-center justify-center transition">
+              <i class="fa-brands fa-linkedin-in text-sm" aria-hidden="true"></i>
             </a>
           </div>
         </div>
 
-        <!-- Kolom 2: Navigasi Halaman -->
-        <nav aria-label="Navigasi Cepat" class="space-y-4">
-          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Struktur Halaman</h4>
-          <ul class="space-y-2.5 text-muted">
-            <li><a href="#top" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Beranda Utama</span></a></li>
-            <li><a href="#katalog" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Katalog 18 Portofolio</span></a></li>
-            <li><a href="#simulasi-biaya" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Kalkulator Estimasi Biaya</span></a></li>
-            <li><a href="#alur-kerja" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Alur Pengerjaan 4 Langkah</span></a></li>
-            <li><a href="#paket-investasi" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Pilihan Paket Investasi</span></a></li>
-            <li><a href="#ulasan-klien" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Testimoni Klien Nyata</span></a></li>
-            <li><a href="#faq" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-accent"></i><span>Tanya Jawab (FAQ)</span></a></li>
+        <!-- Kolom 2: Navigasi Halaman (span 2) -->
+        <nav aria-label="Navigasi Halaman" class="lg:col-span-2 space-y-3.5">
+          <h4 class="font-mono text-[11px] font-bold uppercase tracking-wider text-white">Navigasi</h4>
+          <ul class="space-y-2.5 text-xs text-stone-300">
+            <li><a href="#top" class="hover:text-white transition-colors block py-0.5">Beranda Utama</a></li>
+            <li><a href="#katalog" class="hover:text-white transition-colors block py-0.5">Katalog 18 Portofolio</a></li>
+            <li><a href="#simulasi-biaya" class="hover:text-white transition-colors block py-0.5">Simulasi Biaya Proyek</a></li>
+            <li><a href="#alur-kerja" class="hover:text-white transition-colors block py-0.5">Alur Kerja 4 Langkah</a></li>
+            <li><a href="#paket-investasi" class="hover:text-white transition-colors block py-0.5">Pilihan Paket Harga</a></li>
+            <li><a href="#ulasan-klien" class="hover:text-white transition-colors block py-0.5">Ulasan &amp; Testimoni</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors block py-0.5">Tanya Jawab (FAQ)</a></li>
           </ul>
         </nav>
 
-        <!-- Kolom 3: Spesialisasi Solusi -->
-        <nav aria-label="Solusi Digital" class="space-y-4">
-          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Spesialisasi Solusi</h4>
-          <ul class="space-y-2.5 text-muted">
-            <li><a href="#katalog" onclick="filterPortfolio('cat1')" class="hover:text-accent transition-colors flex items-center justify-between"><span>Landing Page Jasa &amp; Compro</span><span class="font-mono text-[10px] text-muted">#01–#03, #11–#12</span></a></li>
-            <li><a href="#katalog" onclick="filterPortfolio('cat2')" class="hover:text-accent transition-colors flex items-center justify-between"><span>Katalog &amp; Toko Online WA</span><span class="font-mono text-[10px] text-muted">#04–#05, #13–#14</span></a></li>
-            <li><a href="#katalog" onclick="filterPortfolio('cat3')" class="hover:text-accent transition-colors flex items-center justify-between"><span>Sistem Booking Slot Real-Time</span><span class="font-mono text-[10px] text-muted">#06–#07, #15</span></a></li>
-            <li><a href="#katalog" onclick="filterPortfolio('cat4')" class="hover:text-accent transition-colors flex items-center justify-between"><span>Web App POS &amp; Manajemen</span><span class="font-mono text-[10px] text-muted">#08–#10, #16</span></a></li>
-            <li><a href="#katalog" onclick="filterPortfolio('cat5')" class="hover:text-accent transition-colors flex items-center justify-between font-medium text-ink"><span>Corporate B2B &amp; Logistik</span><span class="font-mono text-[10px] text-accent font-semibold">#17–#18</span></a></li>
+        <!-- Kolom 3: Spesialisasi Solusi (span 3) -->
+        <nav aria-label="Kategori Solusi" class="lg:col-span-3 space-y-3.5">
+          <h4 class="font-mono text-[11px] font-bold uppercase tracking-wider text-white">Kategori Solusi</h4>
+          <ul class="space-y-2.5 text-xs text-stone-300">
+            <li><a href="#katalog" onclick="filterPortfolio('cat1')" class="hover:text-accent transition-colors block py-0.5">Landing Page &amp; Company Profile</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat2')" class="hover:text-accent transition-colors block py-0.5">Katalog &amp; Toko Online WhatsApp</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat3')" class="hover:text-accent transition-colors block py-0.5">Sistem Booking Jadwal Real-Time</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat4')" class="hover:text-accent transition-colors block py-0.5">Aplikasi Kasir POS &amp; Manajemen</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat5')" class="hover:text-accent transition-colors block py-0.5 font-medium text-white">Corporate B2B, Kontraktor &amp; Kargo</a></li>
           </ul>
         </nav>
 
-        <!-- Kolom 4: Studio & Kontak Resmi -->
-        <div class="space-y-4">
-          <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-ink">Studio &amp; Kontak Resmi</h4>
-          <ul class="space-y-3 text-muted">
+        <!-- Kolom 4: Studio & Kontak Resmi (span 3) -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="font-mono text-[11px] font-bold uppercase tracking-wider text-white">Kantor &amp; Kontak</h4>
+          <ul class="space-y-3 text-xs text-stone-300">
             <li class="flex items-start gap-2.5">
-              <i class="fa-solid fa-location-dot text-accent mt-1 w-4 text-center" aria-hidden="true"></i>
+              <i class="fa-solid fa-location-dot text-accent mt-1 shrink-0" aria-hidden="true"></i>
               <div>
-                <span class="block text-ink font-medium">Jl. Rodah Sekolahan No. 21, Sukolilo</span>
-                <span class="block text-[11px] font-mono text-muted">Gebang, Surabaya, Jawa Timur 60111</span>
-                <a href="https://maps.google.com/?q=Jl.+Rodah+Sekolahan+No.+21+Sukolilo+Surabaya" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-accent underline hover:text-ink transition">Buka Google Maps &nearr;</a>
+                <span class="block text-white font-medium">Jl. Rodah Sekolahan No. 21, Sukolilo</span>
+                <span class="block text-[11px] text-stone-400">Gebang, Surabaya, Jawa Timur 60111</span>
+                <a href="https://maps.google.com/?q=Jl.+Rodah+Sekolahan+No.+21+Sukolilo+Surabaya" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-accent hover:text-white transition inline-block mt-0.5">Buka Google Maps &nearr;</a>
               </div>
             </li>
             <li class="flex items-center gap-2.5">
-              <i class="fa-brands fa-whatsapp text-forest w-4 text-center" aria-hidden="true"></i>
+              <i class="fa-brands fa-whatsapp text-emerald-400 shrink-0" aria-hidden="true"></i>
               <div>
-                <a href="https://wa.me/6289680551957" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-ink hover:text-accent transition-colors">+62 896-8055-1957</a>
-                <span class="block text-[10px] font-mono text-forest font-semibold">Respon konsultasi &lt; 1 jam</span>
+                <a href="https://wa.me/6289680551957" target="_blank" rel="noopener noreferrer" class="font-mono font-bold text-white hover:text-accent transition-colors">+62 896-8055-1957</a>
+                <span class="block text-[10px] font-mono text-emerald-400">Respon konsultasi &lt; 1 jam</span>
               </div>
             </li>
             <li class="flex items-center gap-2.5">
-              <i class="fa-regular fa-envelope text-accent w-4 text-center" aria-hidden="true"></i>
-              <a href="mailto:jalaninweb@gmail.com" class="font-mono text-ink hover:text-accent transition-colors">jalaninweb@gmail.com</a>
+              <i class="fa-regular fa-envelope text-accent shrink-0" aria-hidden="true"></i>
+              <a href="mailto:jalaninweb@gmail.com" class="font-mono text-stone-300 hover:text-white transition-colors">jalaninweb@gmail.com</a>
             </li>
             <li class="flex items-start gap-2.5">
-              <i class="fa-regular fa-clock text-ink mt-0.5 w-4 text-center" aria-hidden="true"></i>
+              <i class="fa-regular fa-clock text-stone-400 mt-0.5 shrink-0" aria-hidden="true"></i>
               <div>
-                <span class="block text-ink">Senin &ndash; Sabtu: 08.00 &ndash; 21.00 WIB</span>
-                <span class="block text-[11px] font-mono text-muted">Minggu: On-call &amp; Konsultasi Terjadwal</span>
+                <span class="block text-stone-300">Senin &ndash; Sabtu: 08.00 &ndash; 21.00 WIB</span>
+                <span class="block text-[11px] text-stone-400">Minggu: Konsultasi Terjadwal / On-call</span>
               </div>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- 3. Bar Bawah & Standar Kualitas Agensi -->
-      <div class="py-6 border-t border-line flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted text-center md:text-left">
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 font-mono text-[11px]">
-          <span class="inline-flex items-center gap-1.5 text-forest font-semibold">
-            <span class="w-2 h-2 rounded-full bg-forest"></span> 100% Hak Milik Klien
-          </span>
-          <span class="text-line">•</span>
-          <span>SPK &amp; Invoice Resmi B2B</span>
-          <span class="text-line">•</span>
-          <span>Termin Pembayaran Bertahap (DP 50% + Pelunasan)</span>
-          <span class="text-line">•</span>
-          <span>Garansi Bug 30 Hari</span>
-        </div>
-        <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 font-mono text-[11px]">
-          <div>&copy; 2026 JalaninWeb (jalaninweb.com). All rights reserved.</div>
-          <nav aria-label="Tautan Legal" class="flex items-center gap-3">
-            <button onclick="openLegalModal('syarat')" class="hover:text-ink underline transition">Syarat &amp; Ketentuan</button>
-            <span>•</span>
-            <button onclick="openLegalModal('privasi')" class="hover:text-ink underline transition">Kebijakan Privasi</button>
-            <span>•</span>
-            <a href="#faq" class="hover:text-accent transition-colors">Bantuan</a>
-          </nav>
+      <!-- 3. Bar Jaminan Agensi -->
+      <div class="py-4 border-t border-stone-800/80 flex flex-wrap items-center justify-center sm:justify-start gap-x-5 gap-y-2 text-[11px] font-mono text-stone-400">
+        <span class="inline-flex items-center gap-1.5 text-emerald-400 font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 100% Hak Milik Klien
+        </span>
+        <span class="text-stone-700 hidden sm:inline">&bull;</span>
+        <span>SPK &amp; Invoice Resmi B2B</span>
+        <span class="text-stone-700 hidden sm:inline">&bull;</span>
+        <span>Termin Bertahap (DP 50% + Pelunasan)</span>
+        <span class="text-stone-700 hidden sm:inline">&bull;</span>
+        <span>Garansi Maintenance 30 Hari</span>
+      </div>
+
+      <!-- 4. Bar Bawah: Copyright & Legal Links -->
+      <div class="py-5 border-t border-stone-800/60 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-stone-400 text-center md:text-left">
+        <div>&copy; 2026 JalaninWeb (jalaninweb.com). Hak cipta dilindungi undang-undang.</div>
+        <div class="flex items-center gap-4 text-xs font-mono">
+          <button onclick="openLegalModal('syarat')" class="hover:text-white transition whitespace-nowrap">Syarat &amp; Ketentuan</button>
+          <span class="text-stone-700">&bull;</span>
+          <button onclick="openLegalModal('privasi')" class="hover:text-white transition whitespace-nowrap">Kebijakan Privasi</button>
+          <span class="text-stone-700">&bull;</span>
+          <a href="#faq" class="hover:text-white transition whitespace-nowrap">Pusat Bantuan</a>
         </div>
       </div>
     </div>

@@ -1048,13 +1048,13 @@
     </footer>
 
     <!-- PRINTABLE KWITANSI SPP / NOTA RESEP / KARTU ANGSURAN MODAL -->
-    <div id="receiptModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 backdrop-blur-xs p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 border border-slate-200 shadow-2xl relative">
-            <button onclick="closeReceiptModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700">
+    <div id="receiptModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 backdrop-blur-xs p-3 sm:p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 border border-slate-200 shadow-2xl relative max-h-[92vh] flex flex-col">
+            <button onclick="closeReceiptModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700" aria-label="Tutup">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div id="printableReceiptArea" class="space-y-4 text-xs text-slate-800">
+            <div id="printableReceiptArea" class="space-y-4 text-xs text-slate-800 overflow-y-auto flex-1 pr-1">
                 <!-- Populated dynamically -->
             </div>
 

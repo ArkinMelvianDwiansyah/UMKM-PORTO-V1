@@ -755,29 +755,29 @@
     </div>
 
     <!-- ==================== MODAL A: DETAIL KAMAR KOS & PENGHUNI ==================== -->
-    <div id="kosRoomModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
-            <div class="px-5 py-4 bg-slate-900 text-white flex items-center justify-between">
+    <div id="kosRoomModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-3 sm:p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
+            <div class="px-5 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
                 <div>
                     <span id="mdlKosFloor" class="text-[10px] uppercase tracking-wider font-bold text-indigo-300">Lantai 1 • VIP AC</span>
                     <h3 id="mdlKosTitle" class="text-base font-extrabold">Detail Kamar 101</h3>
                 </div>
-                <button onclick="closeKosModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeKosModal()" class="text-slate-400 hover:text-white" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div id="mdlKosBody" class="p-5 space-y-4 text-xs">
+            <div id="mdlKosBody" class="p-5 space-y-4 text-xs overflow-y-auto flex-1">
                 <!-- Populated dynamically via JS -->
             </div>
         </div>
     </div>
 
     <!-- ==================== MODAL B: STRUK PKB BENGKEL ==================== -->
-    <div id="bengkelReceiptModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden border border-slate-200">
-            <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between no-print">
+    <div id="bengkelReceiptModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm hidden items-center justify-center z-50 p-3 sm:p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
+            <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between no-print shrink-0">
                 <span class="text-xs font-bold"><i class="fa-solid fa-wrench text-amber-400 mr-1.5"></i> Struk Servis & Kartu Ganti Oli</span>
-                <button onclick="closeBengkelModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeBengkelModal()" class="text-slate-400 hover:text-white" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="p-5 bg-slate-100 flex justify-center">
+            <div class="p-4 sm:p-5 bg-slate-100 flex justify-center overflow-y-auto flex-1">
                 <div id="bengkelPrintable" class="w-full bg-white p-4 rounded-xl border border-slate-300 font-mono text-[11px] space-y-2 shadow-sm">
                     <div class="text-center border-b border-dashed border-slate-400 pb-2">
                         <p class="font-extrabold text-sm">BENGKELPINTAR MOTOR & MOBIL</p>
