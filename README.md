@@ -42,6 +42,9 @@ Buka showcase utama:
 - **[KelolaPro — Aplikasi Manajemen Kos-Kosan & Bengkel Servis](./04-aplikasi-manajemen-pos/10-aplikasi-kos-bengkel/index.html)** (+ Visual Denah Kamar 20 Unit & Riwayat Servis Plat Nomor)
 - **[NusaERP — SIMKlinik SOAP, Administrasi SPP Sekolah & Koperasi BMT](./04-aplikasi-manajemen-pos/16-aplikasi-klinik-koperasi-sekolah/index.html)** (+ Rekam Medis E-Resep, Broadcast SPP WA & Simulasi Pinjaman)
 
+### 5. Landing Page Corporate & B2B (`05-landing-page-corporate/`)
+- **[PT Bumi Karya Konstruksi — Kontraktor Sipil & Infrastruktur Nasional](./05-landing-page-corporate/17-kontraktor-sipil/index.html)** (+ Multipage 17 Halaman, Filter Proyek Sektor/Tahun/Status & Wizard RFQ 3 Langkah)
+
 ---
 
 ## 🛠️ Standar Kualitas jalaninweb.com

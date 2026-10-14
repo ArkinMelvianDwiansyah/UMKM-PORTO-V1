@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Perusahaan &amp; Struktur Organisasi | PT Bumi Karya Konstruksi</title>
+  <meta name="description" content="Profil korporat, rekam jejak 15 tahun, visi-misi, nilai keselamatan kerja, dan dewan direksi PT Bumi Karya Konstruksi.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            concrete: {
+              950: '#0B0F17',
+              900: '#121824',
+              800: '#1B2436',
+              700: '#28344D',
+              600: '#475569',
+              500: '#64748B'
+            },
+            safety: {
+              400: '#FDE047',
+              500: '#FACC15',
+              600: '#EAB308',
+              700: '#CA8A04'
+            }
+          },
+          fontFamily: {
+            condensed: ['"Barlow Condensed"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-concrete-950 text-slate-200 font-sans antialiased selection:bg-safety-500 selection:text-concrete-950 min-h-screen flex flex-col">
+
+  <!-- Top Demo Bar (Quality Rule #1) -->
+  <aside class="bg-amber-500 text-slate-950 px-4 py-2 text-xs font-semibold tracking-wide flex flex-wrap items-center justify-between border-b border-amber-600 z-50">
+    <div class="flex items-center gap-2">
+      <span class="bg-slate-950 text-amber-400 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider">Demo B2B</span>
+      <span>Contoh Tampilan Portofolio Corporate Kontraktor Sipil — <strong>JalaninWeb</strong> (Data &amp; Entitas Fiktif)</span>
+    </div>
+    <a href="../../index.html" class="inline-flex items-center gap-1.5 underline hover:text-slate-900 font-bold ml-auto sm:ml-0">
+      <i class="fa-solid fa-arrow-left"></i> Kembali ke Katalog Portofolio
+    </a>
+  </aside>
+
+  <!-- Navigation -->
+  <header class="bg-concrete-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logo.svg" alt="Logo PT Bumi Karya Konstruksi" class="h-11 w-auto">
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
+        <a href="index.html" class="hover:text-safety-500 transition-colors">Beranda</a>
+        <a href="tentang.html" class="text-safety-500 font-bold transition-colors">Tentang Kami</a>
+        <a href="layanan.html" class="hover:text-safety-500 transition-colors">Layanan</a>
+        <a href="proyek.html" class="hover:text-safety-500 transition-colors">Proyek</a>
+        <a href="k3-mutu.html" class="hover:text-safety-500 transition-colors">K3 &amp; Mutu</a>
+        <a href="armada.html" class="hover:text-safety-500 transition-colors">Peralatan</a>
+        <a href="kontak.html" class="hover:text-safety-500 transition-colors">Kontak</a>
+      </nav>
+      <a href="kontak.html#rfq" class="hidden sm:inline-flex items-center gap-2 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base px-5 py-2.5 rounded uppercase tracking-wider transition-all">
+        <i class="fa-solid fa-file-contract"></i> Permintaan RFQ
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-concrete-900 border-b border-slate-800 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/images/hero-construction.jpg" alt="Proyek Konstruksi Gedung" class="w-full h-full object-cover opacity-20 filter grayscale">
+      <div class="absolute inset-0 bg-gradient-to-r from-concrete-950 via-concrete-950/90 to-concrete-900/60"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <nav class="flex items-center gap-2 text-xs text-slate-400 mb-4 font-mono">
+        <a href="index.html" class="hover:text-safety-500">Beranda</a>
+        <span>/</span>
+        <span class="text-safety-500">Tentang Perusahaan</span>
+      </nav>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-safety-400 text-xs font-mono uppercase tracking-wider mb-4">
+        <i class="fa-solid fa-building"></i> Profil Korporasi &amp; Rekayasa
+      </div>
+      <h1 class="font-condensed font-black text-4xl sm:text-6xl text-white uppercase tracking-tight max-w-3xl leading-none mb-6">
+        Membangun Masa Depan <span class="text-safety-500">Infrastruktur Berkelanjutan</span>
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+        Didirikan pada tahun 2011 di Jakarta, PT Bumi Karya Konstruksi telah bertransformasi menjadi mitra strategis pemerintah dan korporasi swasta dalam pembangunan fasilitas vital, kawasan industri terintegrasi, serta jalur logistik nasional.
+      </p>
+    </div>
+  </section>
+
+  <!-- Overview & Numbers (Rule #3) -->
+  <section class="py-16 bg-concrete-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-7 space-y-6">
+        <p class="text-xs font-mono text-safety-500 uppercase tracking-widest">Integritas Rekayasa &amp; Eksekusi Cepat</p>
+        <h2 class="font-condensed font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">
+          15 Tahun Mengubah Cetak Biru Menjadi Kenyataan Fisik
+        </h2>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Sebagai kontraktor sipil umum berkualifikasi teruji, kami mengintegrasikan kekuatan sumber daya manusia berkeahlian tinggi, peralatan berat mandiri, serta pengendalian mutu berbasis laboratorium independen. Kami percaya bahwa setiap jembatan, jalan, dan lantai pabrik yang kami bangun memikul tanggung jawab peradaban dan denyut ekonomi daerah.
+        </p>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Dalam kurun waktu lebih dari satu dekade, rekam jejak kami membuktikan dedikasi terhadap kepatuhan jadwal (On-Time Delivery), keselamatan kerja tanpa kompromi (Zero Fatality), serta transparansi kalkulasi anggaran bagi para pemangku kepentingan.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <div class="flex items-center gap-3 bg-concrete-900 border border-slate-800 px-4 py-3 rounded-lg">
+            <i class="fa-solid fa-check-double text-safety-500 text-xl"></i>
+            <div>
+              <p class="text-xs font-bold text-white uppercase font-condensed">100% On-Spec SNI</p>
+              <p class="text-[11px] text-slate-400">Kepatuhan Standar Nasional Indonesia</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 bg-concrete-900 border border-slate-800 px-4 py-3 rounded-lg">
+            <i class="fa-solid fa-cubes-stacked text-safety-500 text-xl"></i>
+            <div>
+              <p class="text-xs font-bold text-white uppercase font-condensed">Batching Plant Mandiri</p>
+              <p class="text-[11px] text-slate-400">Jaminan pasokan ready-mix segar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 relative">
+          <span class="absolute top-2 right-2 text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Contoh</span>
+          <p class="font-condensed font-black text-4xl text-safety-500">140+</p>
+          <p class="text-xs font-semibold text-white uppercase mt-1">Proyek Selesai</p>
+          <p class="text-[11px] text-slate-500 mt-1">Jalan tol, gedung &amp; pabrik</p>
+        </div>
+        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 relative">
+          <span class="absolute top-2 right-2 text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Contoh</span>
+          <p class="font-condensed font-black text-4xl text-safety-500">15 Tahun</p>
+          <p class="text-xs font-semibold text-white uppercase mt-1">Pengalaman Sipil</p>
+          <p class="text-[11px] text-slate-500 mt-1">Sejak didirikan 2011</p>
+        </div>
+        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 relative">
+          <span class="absolute top-2 right-2 text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Contoh</span>
+          <p class="font-condensed font-black text-4xl text-safety-500">4.8M+</p>
+          <p class="text-xs font-semibold text-white uppercase mt-1">Jam Kerja Selamat</p>
+          <p class="text-[11px] text-slate-500 mt-1">Zero Lost Time Injury</p>
+        </div>
+        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 relative">
+          <span class="absolute top-2 right-2 text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Contoh</span>
+          <p class="font-condensed font-black text-4xl text-safety-500">58 Unit</p>
+          <p class="text-xs font-semibold text-white uppercase mt-1">Armada Berat</p>
+          <p class="text-[11px] text-slate-500 mt-1">Milik sendiri &amp; bersertifikasi</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Visi & Misi Section -->
+  <section class="py-16 bg-concrete-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="p-8 rounded-xl bg-concrete-950 border border-slate-800">
+          <div class="w-12 h-12 rounded-lg bg-safety-500/10 text-safety-500 flex items-center justify-center text-2xl mb-6">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <h2 class="font-condensed font-bold text-3xl text-white uppercase tracking-wider mb-4">Visi Perusahaan</h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Menjadi kontraktor rekayasa sipil dan infrastruktur terkemuka di Indonesia yang diakui atas keunggulan mutu rekayasa, budaya keselamatan kerja nihil insiden, serta kepemimpinan dalam teknologi konstruksi berkelanjutan yang berdampak positif bagi kemajuan bangsa.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-xl bg-concrete-950 border border-slate-800">
+          <div class="w-12 h-12 rounded-lg bg-safety-500/10 text-safety-500 flex items-center justify-center text-2xl mb-6">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <h2 class="font-condensed font-bold text-3xl text-white uppercase tracking-wider mb-4">Misi Perusahaan</h2>
+          <ul class="space-y-3 text-slate-300 text-sm">
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-safety-500 mt-1 shrink-0"></i>
+              <span>Menyelesaikan setiap proyek konstruksi tepat waktu, sesuai anggaran, dan memenuhi spesifikasi teknis tertinggi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-safety-500 mt-1 shrink-0"></i>
+              <span>Menegakkan standar K3LH tanpa kompromi demi melindungi setiap jiwa tenaga kerja dan kelestarian ekosistem.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-safety-500 mt-1 shrink-0"></i>
+              <span>Mengadopsi inovasi digital Building Information Modelling (BIM) dan metode prefabrikasi beton presisi tinggi.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Perusahaan -->
+  <section class="py-16 bg-concrete-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <p class="text-xs font-mono text-safety-500 uppercase tracking-widest mb-2">Milestone Perjalanan 15 Tahun</p>
+        <h2 class="font-condensed font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">Jejak Langkah Pertumbuhan</h2>
+      </div>
+
+      <div class="space-y-6 relative before:absolute before:inset-0 before:left-5 md:before:left-1/2 before:w-0.5 before:bg-slate-800">
+        
+        <!-- 2011 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pl-12 md:pl-0">
+          <div class="md:w-5/12 text-left md:text-right">
+            <span class="font-mono text-xs text-safety-500 font-bold">Tahun 2011</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Pendirian PT Bumi Karya Konstruksi</h3>
+            <p class="text-xs text-slate-400 mt-1">Beroperasi di Jakarta Timur fokus pada pekerjaan galian tanah &amp; pematangan lahan kawasan industri.</p>
+          </div>
+          <div class="absolute left-3.5 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-safety-500 border-4 border-concrete-950 z-10"></div>
+          <div class="md:w-5/12 hidden md:block"></div>
+        </div>
+
+        <!-- 2015 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pl-12 md:pl-0">
+          <div class="md:w-5/12 hidden md:block"></div>
+          <div class="absolute left-3.5 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-safety-500 border-4 border-concrete-950 z-10"></div>
+          <div class="md:w-5/12 text-left">
+            <span class="font-mono text-xs text-safety-500 font-bold">Tahun 2015</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Ekspansi Proyek Jalan Tol &amp; Jembatan</h3>
+            <p class="text-xs text-slate-400 mt-1">Memenangkan paket subkontraktor rigid pavement dan struktur jembatan bentang pracetak di koridor Jawa Barat.</p>
+          </div>
+        </div>
+
+        <!-- 2019 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pl-12 md:pl-0">
+          <div class="md:w-5/12 text-left md:text-right">
+            <span class="font-mono text-xs text-safety-500 font-bold">Tahun 2019</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Pembangunan Batching Plant Cileungsi</h3>
+            <p class="text-xs text-slate-400 mt-1">Mendirikan fasilitas produksi beton readymix 120 m³/jam dan workshop alat berat terpadu seluas 12.000 m².</p>
+          </div>
+          <div class="absolute left-3.5 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-safety-500 border-4 border-concrete-950 z-10"></div>
+          <div class="md:w-5/12 hidden md:block"></div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pl-12 md:pl-0">
+          <div class="md:w-5/12 hidden md:block"></div>
+          <div class="absolute left-3.5 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-safety-500 border-4 border-concrete-950 z-10"></div>
+          <div class="md:w-5/12 text-left">
+            <span class="font-mono text-xs text-safety-500 font-bold">Tahun 2022</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Sertifikasi Sistem Manajemen Terpadu</h3>
+            <p class="text-xs text-slate-400 mt-1">Meraih akreditasi integrasi ISO 9001:2015 (Mutu), ISO 45001:2018 (K3), dan ISO 14001:2015 (Lingkungan).</p>
+          </div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pl-12 md:pl-0">
+          <div class="md:w-5/12 text-left md:text-right">
+            <span class="font-mono text-xs text-safety-500 font-bold">Tahun 2026 (Sekarang)</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Implementasi BIM 5D &amp; Green Concrete</h3>
+            <p class="text-xs text-slate-400 mt-1">Penerapan penuh koordinasi digital 3D-5D dan formulasi beton rendah emisi untuk mendukung proyek ramah lingkungan.</p>
+          </div>
+          <div class="absolute left-3.5 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-safety-500 border-4 border-concrete-950 z-10"></div>
+          <div class="md:w-5/12 hidden md:block"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Struktur Organisasi & Dewan Direksi -->
+  <section class="py-16 bg-concrete-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <p class="text-xs font-mono text-safety-500 uppercase tracking-widest mb-2">Kepemimpinan Profesional</p>
+        <h2 class="font-condensed font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">Dewan Direksi &amp; Manajemen Kunci</h2>
+        <p class="text-xs text-slate-400 mt-2 font-mono">(Profil Tokoh dan Struktur Organisasi Fiktif Demo Portofolio)</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-concrete-950 border border-slate-800 rounded-xl overflow-hidden">
+          <div class="h-60 relative">
+            <img src="assets/images/direktur.jpg" alt="Ir. Bambang Soetrisno, M.T." class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-concrete-950 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Ir. Bambang Soetrisno, M.T.</h3>
+            <p class="text-xs text-safety-500 font-mono mb-2">Direktur Utama (CEO)</p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Alumnus Teknik Sipil ITB dengan pengalaman 24 tahun memimpin proyek infrastruktur jembatan dan jalan layang nasional.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-concrete-950 border border-slate-800 rounded-xl overflow-hidden">
+          <div class="h-60 relative">
+            <img src="assets/images/tim-engineer.jpg" alt="Ir. Dedi Prasetyo, S.T., IPM" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-concrete-950 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Ir. Dedi Prasetyo, S.T., IPM</h3>
+            <p class="text-xs text-safety-500 font-mono mb-2">Direktur Operasional &amp; Teknik</p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Spesialis geoteknik dan manajemen alat berat dengan lisensi Ahli Utama HAKI serta sertifikasi BIM Manager.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-concrete-950 border border-slate-800 rounded-xl overflow-hidden">
+          <div class="h-60 relative bg-concrete-800 flex items-center justify-center">
+            <i class="fa-solid fa-user-tie text-6xl text-slate-700"></i>
+            <div class="absolute inset-0 bg-gradient-to-t from-concrete-950 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Maya Safitri, S.E., M.M.</h3>
+            <p class="text-xs text-safety-500 font-mono mb-2">Direktur Keuangan &amp; Tender</p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Ahli tata kelola anggaran proyek, fasilitas garansi bank (Performance Bond), dan manajemen pengadaan material terintegrasi.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-concrete-950 border border-slate-800 rounded-xl overflow-hidden">
+          <div class="h-60 relative">
+            <img src="assets/images/k3-briefing.jpg" alt="Capt. Andi Wijaya, S.T." class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-concrete-950 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-condensed font-bold text-xl text-white uppercase">Andi Wijaya, S.T., CSP</h3>
+            <p class="text-xs text-safety-500 font-mono mb-2">Kepala Divisi HSE &amp; K3LH</p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Auditor SMK3 bersertifikat BNSP yang mengawal protokol Zero Accident dan kepatuhan lingkungan di seluruh site aktif.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-concrete-950 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-xs font-mono text-safety-500 uppercase tracking-widest mb-2">Kolaborasi Rekayasa Sipil</p>
+      <h2 class="font-condensed font-black text-3xl sm:text-4xl text-white uppercase tracking-tight mb-4">
+        Siap Mengajukan Undangan Prakualifikasi &amp; Tender?
+      </h2>
+      <p class="text-slate-300 text-sm mb-8 max-w-xl mx-auto">
+        Tim Tender PT Bumi Karya Konstruksi siap menyusun proposal teknis, jadwal CPM, serta rincian BoQ transparan untuk proyek Anda.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="kontak.html#rfq" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base px-8 py-3.5 rounded uppercase tracking-wider transition-all">
+          <i class="fa-solid fa-file-signature"></i> Kirim Dokumen RFQ
+        </a>
+        <a href="proyek.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-concrete-800 hover:bg-concrete-700 text-white font-condensed font-bold text-base px-8 py-3.5 rounded uppercase tracking-wider border border-slate-700 transition-all">
+          <i class="fa-solid fa-briefcase"></i> Lihat Portofolio Proyek
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer B2B Relevan -->
+  <footer class="bg-concrete-900 border-t border-slate-800 py-12 text-sm text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <img src="assets/logo.svg" alt="PT Bumi Karya Konstruksi" class="h-9 w-auto mb-4">
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          Kontraktor sipil, rekayasa struktur gedung, jembatan, dan sarana industri berstandar mutu ISO 9001 &amp; ISO 45001.
+        </p>
+        <span class="inline-block px-2.5 py-1 rounded bg-concrete-800 text-safety-400 text-[11px] font-mono border border-slate-700">
+          Contoh Demo B2B Portofolio
+        </span>
+      </div>
+      <div>
+        <h2 class="font-condensed font-bold text-white text-base uppercase tracking-wider mb-3">Divisi Layanan</h2>
+        <ul class="space-y-2 text-xs">
+          <li><a href="layanan-gedung.html" class="hover:text-safety-500">Konstruksi Gedung Bertingkat</a></li>
+          <li><a href="layanan-jalan-jembatan.html" class="hover:text-safety-500">Jalan Tol &amp; Jembatan Bentang</a></li>
+          <li><a href="layanan-mep.html" class="hover:text-safety-500">MEP Infrastruktur &amp; Pabrik</a></li>
+          <li><a href="layanan-pabrik.html" class="hover:text-safety-500">Renovasi Pergudangan &amp; Pabrik</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-condensed font-bold text-white text-base uppercase tracking-wider mb-3">Navigasi Teknis</h2>
+        <ul class="space-y-2 text-xs">
+          <li><a href="tentang.html" class="text-safety-500 font-bold">Profil &amp; Struktur Organisasi</a></li>
+          <li><a href="proyek.html" class="hover:text-safety-500">Daftar Proyek &amp; Filter Sektor</a></li>
+          <li><a href="k3-mutu.html" class="hover:text-safety-500">Standar HSE &amp; Jam Kerja Selamat</a></li>
+          <li><a href="armada.html" class="hover:text-safety-500">Kapasitas Alat Berat &amp; Batching</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-condensed font-bold text-white text-base uppercase tracking-wider mb-3">Kontak Divisi Tender</h2>
+        <p class="text-xs text-slate-400 mb-2">Kawasan Industri Pulogadung Blok B No. 14, Jakarta Timur</p>
+        <p class="text-xs text-slate-300 font-mono mb-1"><i class="fa-solid fa-phone text-safety-500 mr-1.5"></i> (021) 8984-7291</p>
+        <p class="text-xs text-slate-300 font-mono mb-1"><i class="fa-brands fa-whatsapp text-emerald-400 mr-1.5"></i> 0812-9842-1720</p>
+        <p class="text-xs text-slate-300 font-mono"><i class="fa-solid fa-envelope text-safety-500 mr-1.5"></i> tender@bumikarya.co.id</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <p>&copy; 2026 PT Bumi Karya Konstruksi. Seluruh hak cipta dilindungi. Demo B2B JalaninWeb.</p>
+      <div class="flex gap-4">
+        <a href="syarat-ketentuan.html" class="hover:text-safety-500">Syarat &amp; Ketentuan</a>
+        <a href="kebijakan-privasi.html" class="hover:text-safety-500">Kebijakan Privasi</a>
+        <a href="sitemap.xml" class="hover:text-safety-500">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

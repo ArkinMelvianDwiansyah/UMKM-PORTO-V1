@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jalaninweb.site/05-landing-page-corporate/17-kontraktor-sipil/sitemap.xml
