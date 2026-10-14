@@ -26,7 +26,7 @@
             whatsapp: '+62 812-3456-7890',
             email: 'support@nusaerp.id',
             hours: 'Senin - Sabtu: 08.00 - 20.00 WIB (Server Uptime SLA 99.9%)',
-            paymentMethods: ['QRIS', 'BCA', 'BRI', 'Mandiri', 'GoPay', 'OVO', 'DANA']
+            paymentMethods: ['Virtual Account BCA', 'Mandiri Corporate', 'BNI', 'BRI', 'SPK Kontrak B2B', 'QRIS Dinamis']
         };
 
         tailwind.config = {
@@ -877,27 +877,21 @@
     </section>
 
         <!-- FOOTER -->
+        <!-- FOOTER ENTERPRISE SAAS -->
     <footer id="kontak-footer" class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-16">
-        <!-- 1. Strip CTA & Trust Badges -->
+        <!-- 1. Top Enterprise CTA Banner -->
         <div class="border-b border-slate-800 bg-slate-900/60">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-6">
                 <div class="space-y-2 text-center lg:text-left max-w-2xl">
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-2">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
-                            <i class="fa-solid fa-notes-medical"></i> Standar Rekam Medis SOAP &amp; ICD-10
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/15 text-blue-300 border border-blue-500/30">
-                            <i class="fa-solid fa-shield-halved"></i> Multi-Role RBAC &amp; Audit Log Transaksi
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                            <i class="fa-solid fa-file-invoice"></i> Export Excel, PDF &amp; WhatsApp Gateway
-                        </span>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/30 mb-2">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        <span>Sistem Enterprise Terpadu Multi-Institusi</span>
                     </div>
                     <h3 class="text-2xl sm:text-3xl text-white font-bold tracking-tight">
                         Modernisasi Operasional Klinik, Sekolah &amp; Koperasi Anda
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
-                        Pangkas waktu administrasi manual, hilangkan selisih kas dan stok obat, serta pantau seluruh laporan keuangan secara real-time dari satu sistem terpadu.
+                        Pangkas waktu administrasi manual, hilangkan selisih kas dan stok obat, serta pantau seluruh laporan keuangan secara real-time dari satu sistem terpadu berlisensi resmi.
                     </p>
                 </div>
 
@@ -918,10 +912,12 @@
                 <!-- Kolom 1: Brand & Sosial Media -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <img src="assets/logo.svg" alt="NusaERP Logo" class="h-11 w-11 rounded-xl bg-slate-900 border border-slate-800 p-2 object-contain shrink-0">
+                        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center shrink-0 shadow-md">
+                            <svg class="w-6 h-6" viewBox="0 0 40 40" fill="none"><path d="M20 7L31 13.5V26.5L20 33L9 26.5V13.5L20 7Z" stroke="#38BDF8" stroke-width="2" stroke-linejoin="round"/><path d="M20 7V20M20 20L31 13.5M20 20L9 13.5" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="3.2" fill="#F8FAFC"/></svg>
+                        </div>
                         <div>
-                            <div class="font-bold text-xl text-white tracking-wide">Nusa<span class="text-teal-400">ERP</span></div>
-                            <span class="font-mono text-[10px] text-teal-400 uppercase tracking-widest block">ENTERPRISE SUITE v4.2</span>
+                            <div class="font-extrabold text-xl text-white tracking-wide">Nusa<span class="text-teal-400">ERP</span></div>
+                            <span class="font-mono text-[10px] text-teal-400/90 uppercase tracking-widest block font-semibold">ENTERPRISE SUITE v4.2</span>
                         </div>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
@@ -946,7 +942,7 @@
                     </div>
                 </div>
 
-                <!-- Kolom 2: Navigasi Cepat -->
+                <!-- Kolom 2: Navigasi Modul -->
                 <div>
                     <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Navigasi Modul</h3>
                     <nav aria-label="Navigasi Cepat">
@@ -961,7 +957,7 @@
                     </nav>
                 </div>
 
-                <!-- Kolom 3: Fitur Unggulan -->
+                <!-- Kolom 3: Fitur Terintegrasi -->
                 <div>
                     <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Fitur Terintegrasi</h3>
                     <nav aria-label="Fitur Terintegrasi">
@@ -983,23 +979,19 @@
                 <!-- Kolom 4: Kontak & Jam Support -->
                 <div>
                     <h3 class="font-mono text-xs uppercase tracking-widest text-teal-400 font-bold mb-4">Kantor &amp; Support Teknis</h3>
-                    <ul class="space-y-3.5 text-xs sm:text-sm text-slate-400">
-                        <li class="flex items-start gap-3">
-                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-teal-400 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fa-solid fa-location-dot text-xs"></i>
-                            </span>
+                    <ul class="space-y-3 text-xs sm:text-sm text-slate-400">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-teal-400 mt-1 shrink-0"></i>
                             <div>
                                 <p class="text-white font-medium leading-relaxed">Cyber 2 Tower Lt. 18, Jl. HR Rasuna Said Blok X-5, Kuningan, Jakarta Selatan 12950</p>
-                                <a href="https://maps.google.com/?q=Cyber+2+Tower+Jakarta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-teal-400 hover:underline font-mono text-[11px] mt-1">
+                                <a href="https://maps.google.com/?q=Cyber+2+Tower+Jakarta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-teal-400 hover:underline font-mono text-[11px] mt-0.5">
                                     <span>Buka Lokasi Kantor di Maps</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                                 </a>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-emerald-400 flex items-center justify-center shrink-0">
-                                <i class="fa-brands fa-whatsapp text-xs"></i>
-                            </span>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 mt-1 shrink-0"></i>
                             <div>
                                 <span class="block font-mono text-[10px] uppercase text-slate-500">Hotline Helpdesk &amp; Konsultasi</span>
                                 <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-white hover:text-teal-400 font-mono font-bold transition">
@@ -1007,10 +999,8 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-sky-400 flex items-center justify-center shrink-0">
-                                <i class="fa-regular fa-envelope text-xs"></i>
-                            </span>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-regular fa-envelope text-sky-400 mt-1 shrink-0"></i>
                             <div>
                                 <span class="block font-mono text-[10px] uppercase text-slate-500">Email Helpdesk &amp; SLA</span>
                                 <a href="mailto:support@nusaerp.id" class="text-white hover:text-teal-400 font-mono transition">
@@ -1018,13 +1008,11 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fa-regular fa-clock text-xs"></i>
-                            </span>
+                        <li class="flex items-start gap-2.5 border-t border-slate-800/80 pt-2">
+                            <i class="fa-regular fa-clock text-amber-400 mt-1 shrink-0"></i>
                             <div>
-                                <span class="block font-mono text-[10px] uppercase text-slate-500">Jam Layanan Helpdesk Teknis</span>
-                                <p class="text-white font-medium">Senin &ndash; Sabtu: 08.00 &ndash; 20.00 WIB (Server Uptime SLA 99.9%)</p>
+                                <span class="block font-mono text-[10px] uppercase text-slate-500">Layanan Support Teknis</span>
+                                <p class="text-white font-medium">Senin &ndash; Sabtu: 08.00 &ndash; 20.00 WIB (Uptime Cloud SLA 99.9%)</p>
                             </div>
                         </li>
                     </ul>
@@ -1032,27 +1020,26 @@
             </div>
         </div>
 
-        <!-- 3. Bottom Bar -->
+        <!-- 3. Bottom Bar: Institutional Standards & Compliance -->
         <div class="border-t border-slate-800 bg-slate-950">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
-                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                    <span class="font-mono text-[10px] uppercase tracking-wider text-slate-500 mr-1 whitespace-nowrap">Metode Pembayaran:</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">QRIS</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">BCA</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">BRI</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">Mandiri</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">GoPay</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">OVO</span>
-                    <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300 font-mono text-[11px] font-bold whitespace-nowrap">DANA</span>
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-slate-400 font-mono text-[11px]">
+                    <span class="inline-flex items-center gap-1.5 text-emerald-400 font-semibold"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> SLA Cloud 99.98%</span>
+                    <span class="text-slate-600">&bull;</span>
+                    <span>Standar SOAP &amp; ICD-10</span>
+                    <span class="text-slate-600">&bull;</span>
+                    <span>Permenkes No. 24/2022 (RME)</span>
+                    <span class="text-slate-600">&bull;</span>
+                    <span>SAK ETAP Koperasi</span>
+                    <span class="text-slate-600">&bull;</span>
+                    <span>Enkripsi Database AES-256</span>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs text-slate-400 text-center sm:text-right">
-                    <p>&copy; 2026 NusaERP Enterprise Suite. Portofolio UMKM Website Series.</p>
+                    <p>&copy; 2026 NusaERP Enterprise Suite. Hak Cipta Dilindungi.</p>
                     <nav aria-label="Kebijakan dan Ketentuan" class="flex flex-wrap items-center justify-center gap-4">
-                        <!-- TODO: Dedicated terms page -->
-                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Perjanjian Lisensi (EULA)</a>
-                        <!-- TODO: Dedicated privacy page -->
-                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Kebijakan Kerahasiaan Data Medis</a>
+                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Lisensi EULA Institusi</a>
+                        <a href="#" class="hover:text-teal-400 transition-colors whitespace-nowrap">Kerahasiaan Rekam Medis</a>
                         <a href="#faq" class="hover:text-teal-400 transition-colors whitespace-nowrap">Jaminan SLA 99.9%</a>
                     </nav>
                 </div>
