@@ -32,12 +32,15 @@
             #waReceiptModal { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
             .no-print { display: none !important; }
         }
+        html, body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="bg-sky-50/60 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
 
     <!-- TOP NAVIGATION BAR -->
-    <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30 overflow-x-auto">
+    <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30">
         <div class="flex items-center gap-3 lg:gap-4 shrink-0">
             <a href="../../index.html" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 whitespace-nowrap shrink-0">
                 <i class="fa-solid fa-arrow-left text-sky-400"></i>
@@ -57,7 +60,7 @@
         </div>
 
         <!-- Center Navigation Tabs -->
-        <nav class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shrink-0 gap-1">
+        <nav class="hidden md:flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 shrink-0 gap-1">
             <button onclick="switchLaundryTab('kasir')" id="tabBtn-kasir" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-sky-500 text-slate-950 shadow shrink-0 whitespace-nowrap">
                 <i class="fa-solid fa-plus"></i>
                 <span>Input Nota</span>
@@ -81,17 +84,110 @@
             </button>
         </nav>
 
-        <!-- Right Summary Pill -->
-        <div class="hidden xl:flex items-center gap-3 shrink-0">
-            <div class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2 shrink-0 whitespace-nowrap">
+        <!-- Right Summary Pill & Mobile Toggle -->
+        <div class="flex items-center gap-3 shrink-0">
+            <div class="hidden xl:flex items-center bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-xs gap-2 shrink-0 whitespace-nowrap">
                 <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
                 <div>
                     <p class="text-[10px] text-slate-400 leading-none whitespace-nowrap">Server Notifikasi WA</p>
                     <p class="font-bold text-emerald-400 text-[11px] leading-tight mt-0.5 tabular-nums whitespace-nowrap">Terhubung (0812-9988-xxxx)</p>
                 </div>
             </div>
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="md:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 text-sky-400 hover:bg-slate-700 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Modul">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (SKY-BLUE SAAS LAUNDRY THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-slate-900 text-white z-50 flex flex-col justify-between shadow-2xl border-l border-slate-800 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="SmartWash Laundry" class="w-9 h-9 rounded-xl shadow-md shrink-0">
+                    <div>
+                        <div class="font-extrabold text-base text-white leading-none">SmartWash <span class="text-sky-400">Laundry</span></div>
+                        <span class="text-[10px] text-slate-400 font-mono">Sistem Kasir &amp; Kanban WA</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Server Status Badge -->
+            <div class="mt-4 p-3 bg-slate-800/90 border border-slate-700 rounded-xl flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
+                <div class="text-left text-xs">
+                    <div class="font-bold text-white">Server WhatsApp Aktif</div>
+                    <div class="text-[10px] text-emerald-400 font-mono">Auto-Kirim Nota &amp; Notif Selesai</div>
+                </div>
+            </div>
+
+            <!-- Laundry Modules Navigation -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2 font-bold">MODUL OPERASIONAL LAUNDRY:</p>
+                <div class="space-y-1.5 font-bold text-xs">
+                    <button onclick="switchLaundryTab('kasir'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-sky-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-plus text-sky-400 w-4"></i> Input Nota Cucian Baru</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                    <button onclick="switchLaundryTab('kanban'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-sky-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-table-columns text-indigo-400 w-4"></i> Kanban Produksi Cucian</span>
+                        <span class="text-[10px] bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2 py-0.5 rounded font-mono">6 Antrean</span>
+                    </button>
+                    <button onclick="switchLaundryTab('portal'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-sky-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-magnifying-glass text-teal-400 w-4"></i> Portal Cek Status Pelanggan</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Quick Links -->
+            <nav class="mt-5 space-y-1 text-xs font-semibold">
+                <button onclick="scrollToLaundrySection('section-ulasan'); toggleMobileDrawer(false);" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-sky-400 transition text-left">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-star text-amber-400 w-4"></i> Ulasan Hasil Cuci Pelanggan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </button>
+                <button onclick="scrollToLaundrySection('section-faq'); toggleMobileDrawer(false);" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-sky-400 transition text-left">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-sky-400 w-4"></i> FAQ Layanan &amp; Garansi</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </button>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-sky-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-rose-400 w-4"></i> Workshop &amp; Outlet Laundry</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="switchLaundryTab('portal'); document.getElementById('searchReceiptInput').value='INV-LDR-089'; searchCustomerTracking(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-barcode text-sky-400"></i>
+                    <span>Simulasi Cek Resi INV-089</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20SmartWash%20Laundry,%20saya%20ingin%20tanya%20status%20cucian" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Chat Resepsionis WA</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-800 bg-slate-950">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-400 hover:text-sky-400 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-500 font-mono">
+                SmartWash Laundry &copy; 2026 &bull; Automatic WhatsApp System
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN CONTENT AREA -->
     <div class="flex-1 flex overflow-hidden">
@@ -1251,10 +1347,23 @@
             `;
         }
 
-        // Bind live input listeners for preview
-        ['ldrCustomerName', 'ldrCustomerWa'].forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateLaundryPrice);
-        });
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
 
         // Init
         calculateLaundryPrice();

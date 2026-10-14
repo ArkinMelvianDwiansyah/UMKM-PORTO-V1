@@ -38,6 +38,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         input[type=range] {
             -webkit-appearance: none;
             appearance: none;
@@ -124,21 +128,81 @@
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden text-[#111315] p-2.5 border border-zinc-400 bg-white shrink-0">
-                <i class="fa-solid fa-bars text-lg"></i>
+            <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Menu" class="lg:hidden text-[#111315] w-10 h-10 border border-zinc-400 bg-white hover:bg-[#111315] hover:text-white transition flex items-center justify-center shrink-0">
+                <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-[#F6F5F2] border-b border-zinc-300 px-4 pt-3 pb-6 space-y-2.5 text-sm font-semibold text-[#111315]">
-            <a href="#kalkulator-grosir" class="block py-2 text-[#FF4D1C] font-bold">Kalkulator Harga Grosir Bertingkat</a>
-            <a href="#katalog-bahan" class="block py-2 hover:text-[#FF4D1C]">Katalog Bahan Kain & Size Chart</a>
-            <a href="#portofolio" class="block py-2 hover:text-[#FF4D1C]">Galeri Seragam, Kaos & Jersey</a>
-            <a href="#alur-produksi" class="block py-2 hover:text-[#FF4D1C]">5 Tahap Produksi Pabrik</a>
-            <a href="#klien" class="block py-2 hover:text-[#FF4D1C]">Ulasan & Foto Produksi Klien</a>
-            <a href="#faq" class="block py-2 hover:text-[#FF4D1C]">Pertanyaan Umum (FAQ)</a>
-        </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0A0B0D]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#111315] text-zinc-200 border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-black">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="Arka Garment" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded bg-zinc-800 hover:bg-[#FF4D1C] text-white flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 text-xs uppercase tracking-wider">
+            <a href="#kalkulator-grosir" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-[#FF4D1C] hover:text-orange-300 border border-[#FF4D1C]/30 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">01.</span>
+                    <span>Kalkulator Grosir Pabrik</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-[#FF4D1C]/20 text-[#FF4D1C] font-bold">Diskon</span>
+            </a>
+            <a href="#katalog-bahan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">02.</span>
+                    <span>Katalog Kain &amp; Size Chart</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#portofolio" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">03.</span>
+                    <span>Galeri Seragam &amp; Jersey</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#alur-produksi" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">04.</span>
+                    <span>5 Tahap SOP Pabrik</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#klien" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">05.</span>
+                    <span>Ulasan Produksi Klien</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#FF4D1C] font-bold">06.</span>
+                    <span>Pertanyaan Umum (FAQ)</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-zinc-800 bg-black space-y-3">
+            <a href="#kalkulator-grosir" onclick="toggleMobileDrawer()"
+               class="w-full py-3 px-4 bg-[#FF4D1C] hover:bg-[#e03d0f] text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Minta Mockup Desain Gratis</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] text-zinc-500 hover:text-zinc-300 transition pt-1">
+                &larr; Indeks Portofolio UMKM
+            </a>
+        </div>
+    </aside>
 
     <!-- HERO SECTION -->
     <section class="relative bg-[#F6F5F2] text-[#111315] overflow-hidden crop-mark-grid py-14 lg:py-20 border-b border-zinc-300">
@@ -1407,6 +1471,25 @@
             // Initial run
             calculateWholesale();
         })();
+
+        // --- Mobile Drawer Navigation ---
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
     </script>
 </body>
 </html>

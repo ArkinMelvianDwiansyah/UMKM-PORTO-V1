@@ -85,6 +85,10 @@
         .animate-cart-pulse {
             animation: cartPulse 0.35s ease-in-out;
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-rosegold-600 selection:text-white">
@@ -173,9 +177,97 @@
                         <span id="headerCartTotal" class="block font-mono text-xs font-bold text-rose-200">Rp 0</span>
                     </div>
                 </button>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="lg:hidden p-2.5 bg-white border border-stone-300 text-stone-800 hover:text-rosegold-600 transition flex items-center justify-center shrink-0" aria-label="Buka Menu Navigasi">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (CHIC ATELIER LOOKBOOK THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#FAF8F5] text-stone-900 z-50 flex flex-col justify-between shadow-2xl border-l border-stone-300 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-stone-300">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="assets/logo.svg" alt="Azzahra Atelier" class="h-9 w-auto">
+                </a>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 border border-stone-300 text-stone-700 hover:text-rosegold-600 flex items-center justify-center transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Reseller Privilege Highlight -->
+            <div class="mt-4 p-3.5 bg-rosegold-50 border border-rosegold-200 text-xs">
+                <div class="flex items-center gap-2 text-rosegold-700 font-bold font-mono text-[10px] uppercase">
+                    <i class="fa-solid fa-gem text-rosegold-600"></i>
+                    <span>Privilege Reseller</span>
+                </div>
+                <p class="text-stone-700 text-xs mt-1 leading-relaxed">
+                    Beli minimal <strong>3 pcs</strong> (bebas campur) otomatis aktif <strong>Harga Reseller Hemat 15%</strong>.
+                </p>
+                <div class="mt-2.5 flex items-center gap-1.5 font-mono text-[11px]">
+                    <span class="text-stone-500">Kode:</span>
+                    <button onclick="applyVoucherQuick('UMKMAJU'); toggleMobileDrawer(false);" class="bg-[#121212] text-amber-200 px-2 py-0.5 font-bold font-mono">
+                        UMKMAJU
+                    </button>
+                    <span class="text-stone-500 text-[10px]">(Rp 20.000)</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="mt-5 space-y-1 font-mono text-xs uppercase tracking-wider font-semibold">
+                <a href="#katalog-section" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-stone-200 hover:text-rosegold-600 hover:bg-stone-100 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-shirt text-stone-400 w-4"></i> Koleksi Fashion</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#program-reseller" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-stone-200 hover:text-rosegold-600 hover:bg-stone-100 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-tag text-stone-400 w-4"></i> Program Reseller</span>
+                    <span class="text-[10px] bg-rosegold-600 text-white px-2 py-0.5 font-bold font-mono">-15%</span>
+                </a>
+                <a href="#ulasan-pelanggan" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-stone-200 hover:text-rosegold-600 hover:bg-stone-100 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera-retro text-stone-400 w-4"></i> Lookbook &amp; Ulasan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-stone-200 hover:text-rosegold-600 hover:bg-stone-100 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-stone-400 w-4"></i> FAQ &amp; Ketentuan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-stone-200 hover:text-rosegold-600 hover:bg-stone-100 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-stone-400 w-4"></i> Butik &amp; Kontak</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="openSizeGuideModal(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 bg-white border border-stone-300 hover:bg-stone-100 text-stone-800 text-xs font-mono font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-ruler-horizontal text-rosegold-600"></i>
+                    <span>PANDUAN UKURAN (SIZE GUIDE)</span>
+                </button>
+                <button onclick="toggleCartDrawer(true); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 bg-[#121212] hover:bg-rosegold-600 text-white text-xs font-bold font-mono flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-bag-shopping text-rose-300"></i>
+                    <span>LIHAT TAS BELANJA</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-stone-300 bg-white">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-stone-500 hover:text-stone-900 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-stone-400 font-mono">
+                Azzahra &amp; GlowLokal Atelier &copy; 2026
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="relative overflow-hidden atelier-grid-bg pt-10 pb-16 lg:py-16 border-b border-stone-300">
@@ -2023,6 +2115,24 @@
             } else {
                 backdrop.classList.add('hidden');
                 drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
             }
         }
 

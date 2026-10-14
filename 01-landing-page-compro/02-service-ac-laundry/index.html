@@ -30,6 +30,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         .swiss-grid {
             background-size: 32px 32px;
             background-image: 
@@ -89,21 +93,81 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden text-slate-900 p-2.5 border border-slate-300 bg-slate-50 shrink-0">
-                <i class="fa-solid fa-bars text-lg"></i>
+            <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Menu" class="lg:hidden text-slate-900 w-10 h-10 border border-slate-300 bg-slate-50 hover:bg-slate-900 hover:text-white transition flex items-center justify-center shrink-0">
+                <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-300 px-4 pt-3 pb-6 space-y-2 font-mono text-xs uppercase tracking-wider">
-            <a href="#katalog-layanan" class="block py-2 text-slate-800 border-b border-slate-100">01. Layanan AC, Cleaning & Laundry</a>
-            <a href="#booking-instan" class="block py-2 text-sky-600 font-bold border-b border-slate-100">02. Kalkulator & Form Panggil Instan</a>
-            <a href="#teknisi" class="block py-2 text-slate-800 border-b border-slate-100">03. Teknisi Bersertifikat BNSP</a>
-            <a href="#area-layanan" class="block py-2 text-slate-800 border-b border-slate-100">04. Area Layanan (6 Kota)</a>
-            <a href="#ulasan" class="block py-2 text-slate-800 border-b border-slate-100">05. Testimoni Pelanggan</a>
-            <a href="#faq" class="block py-2 text-slate-800">06. FAQ</a>
-        </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-slate-900 text-slate-200 border-l border-slate-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="DinginKilat" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded bg-slate-800 hover:bg-sky-600 text-white flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 text-xs uppercase tracking-wider">
+            <a href="#katalog-layanan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/60 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">01.</span>
+                    <span>Layanan AC &amp; Cleaning</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#booking-instan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-sky-400 hover:text-sky-300 border border-sky-500/30 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">02.</span>
+                    <span>Kalkulator &amp; Panggil Teknisi</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-sky-500/20 text-sky-400 font-bold">Instan</span>
+            </a>
+            <a href="#teknisi" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/60 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">03.</span>
+                    <span>Teknisi BNSP</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#area-layanan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/60 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">04.</span>
+                    <span>Posko 6 Kota</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#ulasan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/60 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">05.</span>
+                    <span>Ulasan Pelanggan</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/60 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-sky-400 font-bold">06.</span>
+                    <span>FAQ &amp; Garansi 30 Hari</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-800 bg-slate-950 space-y-3">
+            <a href="#booking-instan" onclick="toggleMobileDrawer()"
+               class="w-full py-3 px-4 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>Panggil Teknisi Sekarang</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] text-slate-500 hover:text-slate-300 transition pt-1">
+                &larr; Indeks Portofolio UMKM
+            </a>
+        </div>
+    </aside>
 
     <!-- HERO SECTION: SWISS TECHNICAL GRID -->
     <section class="relative overflow-hidden swiss-grid py-14 lg:py-20 bg-white border-b border-slate-300">
@@ -1254,6 +1318,25 @@
             // Initial render
             updateCartSummary();
         })();
+
+        // --- Mobile Drawer Navigation ---
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
     </script>
 </body>
 </html>

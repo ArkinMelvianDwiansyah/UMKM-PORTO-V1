@@ -24,13 +24,25 @@ function initMobileNav() {
 
   function openDrawer() {
     drawer.classList.remove('translate-x-full');
-    if (backdrop) backdrop.classList.remove('hidden');
+    if (backdrop) {
+      backdrop.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        backdrop.classList.remove('opacity-0');
+        backdrop.classList.add('opacity-100');
+      });
+    }
     document.body.classList.add('overflow-hidden');
   }
 
   function closeDrawer() {
     drawer.classList.add('translate-x-full');
-    if (backdrop) backdrop.classList.add('hidden');
+    if (backdrop) {
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      setTimeout(() => {
+        backdrop.classList.add('hidden');
+      }, 300);
+    }
     document.body.classList.remove('overflow-hidden');
   }
 

@@ -71,6 +71,10 @@
                 box-shadow: none !important;
             }
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-600 selection:text-white min-h-screen flex flex-col bg-slate-50">
@@ -100,7 +104,7 @@
     <div class="bg-white border-b border-slate-200 sticky top-11 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-                <div class="flex items-center gap-4 shrink-0">
+                <div class="flex items-center justify-between lg:justify-start gap-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <img src="assets/logo.svg" alt="ReservasiKu Logo" class="w-9 h-9 rounded-xl shadow-sm shrink-0">
                         <div>
@@ -119,6 +123,11 @@
                         <a href="#ulasan-pelanggan" class="hover:text-indigo-600 transition whitespace-nowrap">Ulasan &amp; Foto</a>
                         <a href="#faq" class="hover:text-indigo-600 transition whitespace-nowrap">FAQ</a>
                     </nav>
+
+                    <!-- Mobile Hamburger Toggle Button -->
+                    <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="md:hidden w-9 h-9 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 hover:bg-slate-200 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Navigasi">
+                        <i class="fa-solid fa-bars text-base"></i>
+                    </button>
                 </div>
 
                 <!-- 3 Industry Mode Buttons -->
@@ -147,6 +156,99 @@
                         </div>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (MULTI-BOOKING LUXURY THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-white text-slate-900 z-50 flex flex-col justify-between shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="ReservasiKu" class="w-8 h-8 rounded-xl shadow-sm shrink-0">
+                    <div>
+                        <div class="font-display font-bold text-sm text-slate-900 leading-none">ReservasiKu</div>
+                        <span class="text-[10px] text-slate-500 font-mono">Multi-Booking System</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 hover:text-slate-900 flex items-center justify-center transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Mode Switcher Inside Drawer -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2 font-bold">PILIH MODE BISNIS:</p>
+                <div class="space-y-1.5">
+                    <button onclick="switchIndustryMode('barber'); toggleMobileDrawer(false);" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-amber-500 flex items-center gap-2.5 text-left text-xs font-bold transition">
+                        <img src="assets/logo-barber.svg" alt="Barber" class="w-7 h-7 rounded-lg shrink-0">
+                        <div>
+                            <div>Gentleman's Cut</div>
+                            <span class="text-[10px] text-slate-500 font-normal">Barbershop &amp; Haircut</span>
+                        </div>
+                    </button>
+                    <button onclick="switchIndustryMode('clinic'); toggleMobileDrawer(false);" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-teal-500 flex items-center gap-2.5 text-left text-xs font-bold transition">
+                        <img src="assets/logo-clinic.svg" alt="Clinic" class="w-7 h-7 rounded-lg shrink-0">
+                        <div>
+                            <div>SenyumSehat Aesthetic</div>
+                            <span class="text-[10px] text-slate-500 font-normal">Klinik Gigi &amp; Facial</span>
+                        </div>
+                    </button>
+                    <button onclick="switchIndustryMode('studio'); toggleMobileDrawer(false);" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-500 flex items-center gap-2.5 text-left text-xs font-bold transition">
+                        <img src="assets/logo-studio.svg" alt="Studio" class="w-7 h-7 rounded-lg shrink-0">
+                        <div>
+                            <div>KuyPhoto Studio</div>
+                            <span class="text-[10px] text-slate-500 font-normal">Self-Photo &amp; Photobox</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="mt-5 space-y-1 text-xs font-bold">
+                <a href="#wizardSection" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-list-check text-indigo-600 w-4"></i> Form Booking Reservasi</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+                <a href="#ulasan-pelanggan" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera-retro text-amber-600 w-4"></i> Portofolio &amp; Ulasan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-teal-600 w-4"></i> FAQ Reservasi &amp; DP</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-rose-600 w-4"></i> Alamat &amp; Kontak</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="runAutoDemoBooking(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Simulasi Cepat Booking</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20ReservasiKu,%20saya%20ingin%20tanya%20jadwal%20reservasi" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                    <span>Chat WhatsApp CS</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-200 bg-slate-50">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-400 font-mono">
+                ReservasiKu Multi-Booking &copy; 2026
             </div>
         </div>
     </div>
@@ -1529,6 +1631,24 @@
             const t = activeReservationTicket;
             const msg = `Halo Admin *${t.bizName}*!%0ASaya ingin konfirmasi Kartu Nomor Antrean & Reservasi Online:%0A%0A*Nomor Antrean:* ${t.qNumber}%0A*Kode Booking:* ${t.bookCode}%0A*Nama Pelanggan:* ${t.custName}%0A*${t.specLabel}:* ${t.specName}%0A*Tanggal:* ${t.dateText}%0A*Jam Sesi:* ${t.timeText}%0A*Layanan:* ${t.services.join(', ')}%0A*Total Biaya:* ${t.totalCost} (${t.payStatus})%0A%0ATerima kasih!`;
             window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {

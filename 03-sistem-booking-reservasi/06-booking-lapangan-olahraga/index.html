@@ -100,6 +100,10 @@
                 color: black !important;
             }
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-lime-400 selection:text-slate-950 min-h-screen flex flex-col">
@@ -173,9 +177,122 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="mobileCartBadge">0 Slot</span>
                 </a>
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="lg:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 text-lime-400 hover:bg-slate-700 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Navigasi">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (ATHLETIC DARK SLATE & LIME THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-slate-900 text-white z-50 flex flex-col justify-between shadow-2xl border-l border-slate-800 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="ArenaKita Sport" class="w-9 h-9 rounded-xl shadow-md shrink-0">
+                    <div>
+                        <div class="font-display font-bold text-base text-white leading-none">Arena<span class="text-lime-400">Kita</span></div>
+                        <span class="text-[10px] text-slate-400 font-mono">Sport Center Online</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Live Status & Quick Action -->
+            <div class="mt-4 p-3 bg-slate-800/80 border border-slate-700 rounded-xl text-xs">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400 font-mono text-[10px] uppercase">STATUS SISTEM</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono px-2 py-0.5 rounded-md flex items-center gap-1 font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE MATRIX
+                    </span>
+                </div>
+                <p class="text-slate-300 text-xs mt-1.5">
+                    Padel Panoramic, Mini Soccer FIFA, Futsal Vinyl, Badminton BWF
+                </p>
+            </div>
+
+            <!-- Court Selector Quick Tabs -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2">PILIH LAPANGAN:</p>
+                <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                    <button onclick="selectVenue('padel'); toggleMobileDrawer(false);" class="p-2.5 rounded-lg bg-slate-800 border border-slate-700 hover:border-lime-400/50 text-slate-200 text-left transition flex items-center gap-2">
+                        <i class="fa-solid fa-table-tennis-paddle-ball text-lime-400"></i>
+                        <span>Padel Court</span>
+                    </button>
+                    <button onclick="selectVenue('minisoccer'); toggleMobileDrawer(false);" class="p-2.5 rounded-lg bg-slate-800 border border-slate-700 hover:border-lime-400/50 text-slate-200 text-left transition flex items-center gap-2">
+                        <i class="fa-solid fa-futbol text-emerald-400"></i>
+                        <span>Mini Soccer</span>
+                    </button>
+                    <button onclick="selectVenue('futsal'); toggleMobileDrawer(false);" class="p-2.5 rounded-lg bg-slate-800 border border-slate-700 hover:border-lime-400/50 text-slate-200 text-left transition flex items-center gap-2">
+                        <i class="fa-solid fa-square-full text-amber-400"></i>
+                        <span>Futsal Vinyl</span>
+                    </button>
+                    <button onclick="selectVenue('badminton'); toggleMobileDrawer(false);" class="p-2.5 rounded-lg bg-slate-800 border border-slate-700 hover:border-lime-400/50 text-slate-200 text-left transition flex items-center gap-2">
+                        <i class="fa-solid fa-feather text-sky-400"></i>
+                        <span>Badminton</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="mt-5 space-y-1 text-xs font-semibold">
+                <a href="#jadwal-section" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-regular fa-calendar-check text-lime-400 w-4"></i> Jadwal &amp; Matrix Jam</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#sparring-section" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-people-group text-emerald-400 w-4"></i> Lawan Sparring Komunitas</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">AKTIF</span>
+                </a>
+                <a href="#fasilitas-section" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-medal text-amber-400 w-4"></i> Fasilitas &amp; Locker Room</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#ulasan-member" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera text-sky-400 w-4"></i> Ulasan &amp; Foto Member</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-purple-400 w-4"></i> FAQ &amp; Ketentuan Booking</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-lime-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-rose-400 w-4"></i> Lokasi Venue &amp; Peta</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="openCheckBookingModal(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-qrcode text-lime-400"></i>
+                    <span>Cek Tiket / Status Booking</span>
+                </button>
+                <a href="#booking-summary-panel" onclick="toggleMobileDrawer(false)" class="w-full py-2.5 px-3 rounded-xl bg-lime-400 hover:bg-lime-300 text-slate-950 text-xs font-bold flex items-center justify-center gap-2 transition shadow-lg shadow-lime-500/20">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Lihat Slot Dipilih</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-800 bg-slate-950">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-400 hover:text-lime-400 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-500 font-mono">
+                ArenaKita Sport Center &copy; 2026 &bull; Real-Time Booking
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="relative overflow-hidden court-grid-bg border-b border-slate-800/80 pt-8 pb-10">
@@ -2076,6 +2193,24 @@
             }
             if (hoursEl) hoursEl.textContent = FOOTER_CONFIG.operationalHours;
             if (copyEl) copyEl.textContent = FOOTER_CONFIG.copyright;
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         // Initialize on load

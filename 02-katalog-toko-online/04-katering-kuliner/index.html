@@ -57,6 +57,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #FAF6F0;
             color: #1C1917;
@@ -149,13 +153,13 @@
             </nav>
 
             <!-- Right Actions: WA Consult & Cart Button -->
-            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah." target="_blank" rel="noopener noreferrer" class="whitespace-nowrap hidden md:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-semibold text-xs transition">
                     <i class="fa-brands fa-whatsapp text-sm text-halal-600"></i>
                     <span>Konsultasi Menu</span>
                 </a>
 
-                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-3 bg-[#1C1917] hover:bg-terracotta-600 text-white font-bold px-4 py-2.5 transition">
+                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-2.5 sm:gap-3 bg-[#1C1917] hover:bg-terracotta-600 text-white font-bold px-3 sm:px-4 py-2.5 transition">
                     <div class="relative flex items-center gap-1.5">
                         <i class="fa-solid fa-basket-shopping text-base text-amber-400"></i>
                         <span id="cartCountBadge" class="bg-terracotta-600 text-white font-mono text-[11px] font-bold min-w-[22px] h-5 px-1.5 inline-flex items-center justify-center">0</span>
@@ -165,9 +169,81 @@
                         <span id="headerCartTotal" class="block font-mono text-xs font-bold text-amber-300">Rp 0</span>
                     </div>
                 </button>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileNavToggle" onclick="toggleMobileDrawer()" aria-label="Buka Menu Navigasi" class="lg:hidden w-10 h-10 border border-stone-300 bg-white text-stone-900 hover:bg-[#1C1917] hover:text-white transition flex items-center justify-center shrink-0">
+                    <i id="mobileNavIcon" class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-stone-950/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#1C1917] text-stone-200 border-l border-stone-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-stone-800 flex items-center justify-between bg-black">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="Dapur Berkah" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded bg-stone-800 hover:bg-terracotta-600 text-white flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 text-xs uppercase tracking-wider">
+            <a href="#katalog-menu" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-stone-900 hover:bg-stone-800 text-amber-400 hover:text-amber-300 border border-stone-800 hover:border-amber-400/40 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-utensils text-terracotta-500 text-sm w-4"></i>
+                    <span>Katalog Menu Kuliner</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-amber-400/20 text-amber-300 font-bold">12 Menu</span>
+            </a>
+            <a href="#kalkulator-acara" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-stone-900 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-800 hover:border-stone-700 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-calculator text-amber-400 text-sm w-4"></i>
+                    <span>Simulasi Porsi &amp; Acara</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-halal-700/40 text-emerald-300 font-bold">-10%</span>
+            </a>
+            <a href="#keunggulan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-stone-900 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-800 hover:border-stone-700 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-certificate text-emerald-400 text-sm w-4"></i>
+                    <span>Standar Dapur Halal</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#testimoni" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-bg-stone-900 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-800 hover:border-stone-700 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-star text-amber-400 text-sm w-4"></i>
+                    <span>Ulasan &amp; Foto Masakan</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-stone-900 hover:bg-stone-800 text-stone-200 hover:text-white border border-stone-800 hover:border-stone-700 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-question text-sky-400 text-sm w-4"></i>
+                    <span>FAQ &amp; Jadwal Antar</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-stone-800 bg-black space-y-3">
+            <button onclick="toggleMobileDrawer(); toggleCartDrawer(true);" class="w-full py-3 px-4 bg-terracotta-600 hover:bg-terracotta-700 text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span>Buka Keranjang Pesanan</span>
+            </button>
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah." target="_blank" rel="noopener noreferrer"
+               class="w-full py-2.5 px-4 bg-halal-700 hover:bg-halal-600 text-white font-semibold text-xs transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>Chat Admin Dapur WA</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] text-stone-500 hover:text-stone-300 transition pt-1">
+                &larr; Indeks Portofolio UMKM
+            </a>
+        </div>
+    </aside>
 
     <!-- HERO SECTION -->
     <section class="relative overflow-hidden editorial-grid pt-10 pb-16 lg:py-16 border-b border-stone-300">
@@ -2064,6 +2140,25 @@
             toastTimer = setTimeout(() => {
                 toast.classList.add('hidden');
             }, 3000);
+        }
+
+        // Mobile Navigation Drawer Toggle
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         // Initialize on Load

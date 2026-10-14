@@ -106,6 +106,10 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #E85D2A;
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-terracotta selection:text-white">
@@ -186,6 +190,11 @@
                     <span>Keranjang</span>
                     <span id="cartCountBadge" class="bg-charcoal text-mustard font-mono text-xs font-bold px-2 py-0.5 rounded-md border border-white/20">0</span>
                 </button>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="lg:hidden w-10 h-10 rounded-xl bg-cream border-[1.5px] border-charcoal text-charcoal hover:bg-cream-dark flex items-center justify-center shrink-0 transition tactile-btn" aria-label="Buka Menu Navigasi">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
 
@@ -201,6 +210,94 @@
             </button>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-charcoal/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (TACTILE POP PET MART THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-cream text-charcoal z-50 flex flex-col justify-between shadow-2xl border-l-[2px] border-charcoal transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b-[1.5px] border-charcoal">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="assets/logo.svg" alt="PawHaus Pet Mart" class="h-9 w-auto">
+                </a>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded-xl border-[1.5px] border-charcoal bg-cream-soft text-charcoal flex items-center justify-center tactile-btn transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Service Badges -->
+            <div class="mt-4 p-3 bg-cream-soft rounded-xl border-[1.5px] border-charcoal text-xs">
+                <div class="flex items-center gap-2 text-terracotta font-extrabold text-[11px]">
+                    <i class="fa-solid fa-motorcycle text-terracotta"></i>
+                    <span>Same-Day GoSend / Grab</span>
+                </div>
+                <p class="text-charcoal-muted text-[11px] mt-1">
+                    Pakan 100% Original &bull; Pet Hotel CCTV 24 Jam &bull; Medicated Grooming
+                </p>
+            </div>
+
+            <!-- Dual-Mode Switcher inside Drawer -->
+            <div class="mt-4 flex gap-2">
+                <button onclick="switchMode('mart'); toggleMobileDrawer(false);" class="flex-1 py-2 px-2.5 rounded-lg text-xs font-extrabold border-[1.5px] border-charcoal bg-charcoal text-cream flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-bag-shopping text-terracotta"></i>
+                    <span>Katalog Pakan</span>
+                </button>
+                <button onclick="switchMode('grooming'); toggleMobileDrawer(false);" class="flex-1 py-2 px-2.5 rounded-lg text-xs font-extrabold border-[1.5px] border-charcoal bg-cream-soft text-charcoal flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-scissors text-sage"></i>
+                    <span>Grooming</span>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="mt-5 space-y-1 text-xs font-extrabold">
+                <a href="#katalog-section" onclick="switchMode('mart'); toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-charcoal/20 hover:bg-cream-soft transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-bowl-food text-terracotta w-4"></i> Pakan &amp; Pasir Kucing</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-charcoal-muted"></i>
+                </a>
+                <a href="#kalkulator-grooming" onclick="switchMode('grooming'); toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-charcoal/20 hover:bg-cream-soft transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-bath text-sage w-4"></i> Kalkulator Grooming</span>
+                    <span class="text-[10px] bg-sage text-white px-2 py-0.5 rounded-md font-mono">ANTAR JEMPUT</span>
+                </a>
+                <a href="#ulasan-pelanggan" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-charcoal/20 hover:bg-cream-soft transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera-retro text-terracotta w-4"></i> Ulasan Foto Anabul</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-charcoal-muted"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-charcoal/20 hover:bg-cream-soft transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-charcoal w-4"></i> FAQ Penitipan &amp; Grooming</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-charcoal-muted"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 rounded-xl border border-charcoal/20 hover:bg-cream-soft transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-terracotta w-4"></i> Lokasi Pet Store &amp; Klinik</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-charcoal-muted"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button type="button" onclick="openCartDrawer(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold tactile-btn flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span>Buka Keranjang Belanja</span>
+                </button>
+                <a href="https://wa.me/6281288997766?text=Halo%20PawHaus%20Pet%20Mart,%20saya%20ingin%20tanya%20pakan%20atau%20jadwal%20grooming" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-cream-soft border-[1.5px] border-charcoal text-charcoal hover:bg-cream-dark text-xs font-bold tactile-btn flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                    <span>Chat Resepsionis WA</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t-[1.5px] border-charcoal bg-cream-soft">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-charcoal-muted hover:text-charcoal font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px] text-terracotta"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-charcoal-muted font-mono">
+                PawHaus Pet Mart &bull; Grooming &amp; Stay &copy; 2026
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION: NEO-EDITORIAL TACTILE POP RETAIL -->
     <section class="relative overflow-hidden border-b-[1.5px] border-charcoal bg-cream">
@@ -1641,6 +1738,24 @@
             bd.classList.add('opacity-0');
             dr.classList.add('translate-x-full');
             setTimeout(() => bd.classList.add('hidden'), 250);
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         function updateCartQty(uid, delta) {

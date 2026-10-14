@@ -50,6 +50,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #F7F4EE;
             color: #1A2420;
@@ -140,24 +144,85 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" type="button" aria-label="Buka Menu Navigasi" class="lg:hidden p-2.5 border border-line text-pine hover:bg-sand transition shrink-0">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" type="button" aria-label="Buka Menu Navigasi" class="lg:hidden w-10 h-10 border border-line bg-sand text-pine hover:bg-pine hover:text-white transition flex items-center justify-center shrink-0">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
+    </header>
 
-        <!-- Mobile Dropdown -->
-        <div id="mobileMenuPanel" class="hidden lg:hidden bg-alabaster border-b border-line px-4 pt-3 pb-6 space-y-3">
-            <a href="#katalog-armada" class="block py-2 text-sm font-semibold border-b border-line/60">Armada</a>
-            <a href="#paket-wisata" class="block py-2 text-sm font-semibold border-b border-line/60">Paket Wisata</a>
-            <a href="#kalkulator-sewa" class="block py-2 text-sm font-semibold border-b border-line/60 text-clay">Kalkulator Sewa</a>
-            <a href="#ulasan-tamu" class="block py-2 text-sm font-semibold border-b border-line/60">Ulasan Tamu &amp; Dokumentasi</a>
-            <a href="#faq" class="block py-2 text-sm font-semibold">FAQ</a>
-            <a href="#kalkulator-sewa" class="block w-full text-center bg-pine text-alabaster text-xs font-bold uppercase tracking-wider py-3 mt-2">
-                Cek Ketersediaan Unit
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0A1410]/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#122B22] text-alabaster z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out border-l border-line/20">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-line/20 flex items-center justify-between bg-pine-dark">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="JelajahNusa" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-clay text-alabaster flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 font-mono text-xs uppercase tracking-wider">
+            <a href="#katalog-armada" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-car text-clay text-sm w-4"></i>
+                    <span>Katalog Armada Mobil</span>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-clay/30 text-clay font-semibold">18 Unit</span>
+            </a>
+            <a href="#paket-wisata" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-map-location-dot text-clay text-sm w-4"></i>
+                    <span>Paket Tour &amp; Open Trip</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#kalkulator-sewa" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-sliders text-clay text-sm w-4"></i>
+                    <span>Kalkulator Tarif Sewa</span>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-pine-light text-alabaster font-semibold">Diskon 10%</span>
+            </a>
+            <a href="#syarat-sewa" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-clay text-sm w-4"></i>
+                    <span>Syarat Lepas Kunci</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#ulasan-tamu" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-star text-clay text-sm w-4"></i>
+                    <span>Ulasan Pelanggan</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-clay/20 text-alabaster hover:text-clay border border-transparent hover:border-clay/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-question text-clay text-sm w-4"></i>
+                    <span>Tanya Jawab (FAQ)</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-line/20 bg-pine-dark space-y-3">
+            <a href="#kalkulator-sewa" onclick="toggleMobileDrawer()" class="w-full py-3 px-4 rounded bg-clay hover:bg-[#b04822] text-white font-mono text-xs uppercase tracking-wider font-bold transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Cek Jadwal &amp; Pesan Mobil</span>
+            </a>
+            <a href="https://wa.me/6281234567890?text=Halo%20JelajahNusa%2C%20saya%20ingin%20tanya%20sewa%20mobil" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded bg-white/10 hover:bg-emerald-600 text-alabaster font-mono text-xs font-semibold transition flex items-center justify-center gap-2 border border-white/10">
+                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                <span>Chat Admin WhatsApp 24 Jam</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] font-mono text-alabaster/60 hover:text-alabaster transition pt-1">
+                &larr; Kembali ke Katalog Portofolio UMKM
             </a>
         </div>
-    </header>
+    </aside>
 
     <!-- HERO SECTION: EDITORIAL MAGAZINE LAYOUT -->
     <section class="relative editorial-grid-bg border-b border-line">
@@ -1563,18 +1628,29 @@
 
             document.getElementById("calcDurationInput").addEventListener("input", updateCalculator);
 
-            // Mobile menu toggle
-            const mobileBtn = document.getElementById("mobileMenuBtn");
-            const mobilePanel = document.getElementById("mobileMenuPanel");
-            mobileBtn.addEventListener("click", () => {
-                mobilePanel.classList.toggle("hidden");
-            });
-
             populateCalculatorSelect();
             renderFleetGrid();
             updateCalculator();
             renderTours();
         });
+
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
     </script>
 </body>
 </html>

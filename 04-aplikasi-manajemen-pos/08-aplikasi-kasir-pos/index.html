@@ -68,6 +68,9 @@
             }
             .no-print { display: none !important; }
         }
+        html, body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
@@ -128,8 +131,102 @@
                 <div id="liveClock" class="text-xs font-bold text-emerald-400 whitespace-nowrap">10:42:19 WIB</div>
                 <div id="liveDate" class="text-[10px] text-slate-400 whitespace-nowrap">12 Okt 2026</div>
             </div>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="md:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 text-emerald-400 hover:bg-slate-700 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Modul">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (MODERN EMERALD POS DASHBOARD THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-slate-900 text-white z-50 flex flex-col justify-between shadow-2xl border-l border-slate-800 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="KasirPintar Pro" class="w-9 h-9 rounded-xl shadow-md shrink-0">
+                    <div>
+                        <div class="font-extrabold text-base text-white leading-none">KasirPintar <span class="text-emerald-400">Pro</span></div>
+                        <span class="text-[10px] text-slate-400 font-mono">v4.2 Cloud POS</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Active Cashier Profile Card -->
+            <div class="mt-4 p-3 bg-slate-800/90 border border-slate-700 rounded-xl flex items-center gap-3">
+                <img src="assets/images/cashier-avatar.jpg" alt="Rina Wulandari" class="w-9 h-9 rounded-lg object-cover border border-emerald-400/50 shrink-0">
+                <div class="text-left">
+                    <div class="text-xs font-bold text-white">Rina Wulandari</div>
+                    <div class="text-[10px] text-emerald-400 font-mono">Shift Pagi &bull; Kasir 01 Aktif</div>
+                </div>
+            </div>
+
+            <!-- POS Modules Navigation -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2 font-bold">MODUL APLIKASI KASIR:</p>
+                <div class="space-y-1.5 font-bold text-xs">
+                    <button onclick="switchTab('pos'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-emerald-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-desktop text-emerald-400 w-4"></i> Layar Kasir (POS)</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                    <button onclick="switchTab('stok'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-emerald-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-boxes-stacked text-amber-400 w-4"></i> Manajemen Stok</span>
+                        <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded font-mono">2 Menipis</span>
+                    </button>
+                    <button onclick="switchTab('laporan'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-emerald-500/50 flex items-center justify-between transition text-left">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-chart-pie text-sky-400 w-4"></i> Laporan Laba &amp; Omset</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Quick Links -->
+            <nav class="mt-5 space-y-1 text-xs font-semibold">
+                <a href="#ulasan-mitra" onclick="switchTab('pos'); toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-emerald-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera text-slate-400 w-4"></i> Bukti Cetak Struk &amp; Ulasan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#faq" onclick="switchTab('pos'); toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-emerald-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-slate-400 w-4"></i> FAQ Printer &amp; Kasir Cloud</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+                <a href="#kontak-footer" onclick="switchTab('pos'); toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-emerald-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-slate-400 w-4"></i> Outlet &amp; Info Lisensi</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="clearCart(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-rotate-left text-amber-400"></i>
+                    <span>Reset Transaksi Baru</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20KasirPintar%20Pro,%20saya%20ingin%20tanya%20fitur%20POS" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Chat Support Teknis</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-800 bg-slate-950">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-400 hover:text-emerald-400 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-500 font-mono">
+                KasirPintar Pro &copy; 2026 &bull; Cloud POS &amp; Inventory
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN WORKSPACE -->
     <div class="flex-1 flex overflow-hidden">
@@ -1479,6 +1576,24 @@
             document.getElementById('liveClock').textContent = now.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB';
         }
         setInterval(updateClock, 1000);
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
 
         // Init
         renderPosProducts();

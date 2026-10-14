@@ -43,6 +43,12 @@
       }
     }
   </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body class="bg-maritime-950 text-slate-100 font-sans antialiased selection:bg-cargo-500 selection:text-white min-h-screen flex flex-col">
 
@@ -90,13 +96,72 @@
         <a href="armada.html" class="hover:text-cargo-400 transition-colors">Armada &amp; Kapasitas</a>
         <a href="kontak.html" class="text-cargo-400 transition-colors">Hubungi Kami</a>
       </nav>
-      <a href="https://wa.me/6289680551957?text=Halo%20SLN%20Cargo%2C%20saya%20ingin%20konsultasi%20pengiriman%20kargo" target="_blank" rel="noopener"
-         class="px-4 py-2.5 text-xs font-bold bg-cargo-600 hover:bg-cargo-500 text-white rounded shadow-lg transition flex items-center gap-2">
-        <i class="fa-brands fa-whatsapp text-sm"></i>
-        <span>Chat CS Kargo</span>
-      </a>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/6289680551957?text=Halo%20SLN%20Cargo%2C%20saya%20ingin%20konsultasi%20pengiriman%20kargo" target="_blank" rel="noopener"
+           class="hidden sm:flex px-4 py-2.5 text-xs font-bold bg-cargo-600 hover:bg-cargo-500 text-white rounded shadow-lg transition items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>Chat CS Kargo</span>
+        </a>
+        <button id="mobileNavToggle" type="button" aria-label="Buka Menu Navigasi" class="md:hidden p-2 text-slate-300 hover:text-white hover:bg-maritime-800 rounded-lg">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Backdrop & Drawer -->
+  <div id="mobileBackdrop" class="fixed inset-0 bg-maritime-950/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+  <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-maritime-900 border-l border-maritime-800 z-50 p-6 flex flex-col justify-between overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-maritime-800">
+        <div class="flex items-center gap-2.5">
+          <img src="assets/favicon.svg" alt="SLN Cargo" class="w-8 h-8">
+          <div>
+            <span class="block text-sm font-bold text-white font-display">SLN CARGO</span>
+            <span class="block text-[10px] text-cargo-400 font-mono">PT Samudera Logistik Nusantara</span>
+          </div>
+        </div>
+        <button id="mobileNavClose" type="button" aria-label="Tutup Menu" class="p-2 text-slate-400 hover:text-white rounded-lg">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-2 mt-6 text-sm font-medium">
+        <a href="index.html" class="px-3 py-2.5 rounded-md text-slate-200 hover:bg-maritime-800 hover:text-cargo-400 flex items-center justify-between transition-colors">
+          <span>Beranda</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+        </a>
+        <a href="layanan.html" class="px-3 py-2.5 rounded-md text-slate-200 hover:bg-maritime-800 hover:text-cargo-400 flex items-center justify-between transition-colors">
+          <span>Layanan Kargo</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+        </a>
+        <a href="armada.html" class="px-3 py-2.5 rounded-md text-slate-200 hover:bg-maritime-800 hover:text-cargo-400 flex items-center justify-between transition-colors">
+          <span>Armada &amp; Kapasitas</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+        </a>
+        <a href="index.html#rute-pelayaran" class="px-3 py-2.5 rounded-md text-slate-200 hover:bg-maritime-800 hover:text-cargo-400 flex items-center justify-between transition-colors">
+          <span>Rute &amp; Jadwal</span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+        </a>
+        <a href="kontak.html" class="px-3 py-2.5 rounded-md bg-maritime-800 text-cargo-400 font-semibold flex items-center justify-between">
+          <span>Hubungi Kami</span>
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </a>
+      </nav>
+      <div class="mt-6 pt-6 border-t border-maritime-800 space-y-3">
+        <a href="index.html#lacak-resi" class="w-full py-2.5 text-center text-xs font-mono font-bold bg-maritime-800 text-slate-200 rounded-md border border-maritime-700 block">
+          <i class="fa-solid fa-barcode text-cargo-400 mr-2"></i> Lacak Resi AWB
+        </a>
+        <a href="https://wa.me/6289680551957?text=Halo%20SLN%20Cargo%2C%20saya%20ingin%20konsultasi%20pengiriman%20kargo" target="_blank" rel="noopener" class="w-full py-2.5 text-center text-xs font-bold bg-cargo-600 hover:bg-cargo-500 text-white rounded-md block shadow-lg">
+          <i class="fa-brands fa-whatsapp mr-2"></i> Chat CS Kargo WA
+        </a>
+      </div>
+    </div>
+    <div class="text-[11px] text-slate-400 font-mono pt-6 border-t border-maritime-800">
+      <p class="font-bold text-slate-200">Hotline Operasional:</p>
+      <p class="mt-1">+62 896-8055-1957</p>
+      <p>operasional@samuderalogistik.co.id</p>
+    </div>
+  </div>
 
   <!-- Page Header -->
   <section class="bg-maritime-900 border-b border-maritime-800 py-12">
@@ -401,5 +466,6 @@
     }
   </script>
 
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -57,6 +57,12 @@
     }
   </script>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body class="bg-maritime-950 text-slate-100 font-sans antialiased selection:bg-cargo-500 selection:text-white min-h-screen flex flex-col">
 
@@ -144,7 +150,7 @@
   </header>
 
   <!-- Mobile Drawer Backdrop & Drawer -->
-  <div id="mobileBackdrop" class="fixed inset-0 bg-maritime-950/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  <div id="mobileBackdrop" class="fixed inset-0 bg-maritime-950/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
   <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-maritime-900 border-l border-maritime-800 z-50 p-6 flex flex-col justify-between overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-maritime-800">

@@ -84,6 +84,10 @@
                 box-shadow: none !important;
             }
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-clinical selection:text-white">
@@ -140,16 +144,121 @@
                 <a href="#faq" class="px-2.5 py-1.5 text-xs font-bold text-slate-700 hover:text-clinical transition whitespace-nowrap shrink-0">FAQ</a>
             </div>
 
-            <!-- Operator Profile -->
-            <div class="hidden xl:flex items-center gap-3 shrink-0 whitespace-nowrap">
-                <div class="text-right">
-                    <div class="text-xs font-bold text-slate-900 whitespace-nowrap" id="activeOperatorName">dr. Hendra Wijaya, Sp.PD</div>
-                    <div class="font-mono text-[10px] text-teal-700 font-semibold whitespace-nowrap" id="activeOperatorRole">KLINIK PRATAMA NUSANTARA</div>
+            <!-- Operator Profile & Mobile Hamburger -->
+            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+                <div class="hidden xl:flex items-center gap-3 shrink-0 whitespace-nowrap">
+                    <div class="text-right">
+                        <div class="text-xs font-bold text-slate-900 whitespace-nowrap" id="activeOperatorName">dr. Hendra Wijaya, Sp.PD</div>
+                        <div class="font-mono text-[10px] text-teal-700 font-semibold whitespace-nowrap" id="activeOperatorRole">KLINIK PRATAMA NUSANTARA</div>
+                    </div>
+                    <img id="activeOperatorAvatar" src="assets/images/doctor-avatar-1.jpg" alt="Operator Avatar" class="w-9 h-9 rounded-full object-cover border border-slate-300 shrink-0">
                 </div>
-                <img id="activeOperatorAvatar" src="assets/images/doctor-avatar-1.jpg" alt="Operator Avatar" class="w-9 h-9 rounded-full object-cover border border-slate-300 shrink-0">
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 hover:bg-slate-200 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Modul ERP">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (ULTRA-CRISP ENTERPRISE ERP THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-white text-slate-900 z-50 flex flex-col justify-between shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="NusaERP" class="h-8 w-auto shrink-0">
+                    <div>
+                        <div class="font-bold text-sm text-slate-900 leading-none">NusaERP</div>
+                        <span class="text-[10px] text-teal-700 font-mono">3-in-1 Enterprise Suite</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 hover:text-slate-900 flex items-center justify-center transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Active Operator Badge -->
+            <div class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3">
+                <img src="assets/images/doctor-avatar-1.jpg" alt="Operator" class="w-9 h-9 rounded-full object-cover border border-slate-300 shrink-0">
+                <div class="text-left">
+                    <div class="text-xs font-bold text-slate-900" id="drawerOperatorName">dr. Hendra Wijaya, Sp.PD</div>
+                    <div class="text-[10px] text-teal-700 font-mono" id="drawerOperatorRole">Klinik Pratama Nusantara</div>
+                </div>
+            </div>
+
+            <!-- 3 ERP Modules Navigation -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2 font-bold">PILIH MODUL ENTERPRISE:</p>
+                <div class="space-y-2">
+                    <button onclick="switchApp('klinik'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl border border-slate-200 hover:border-teal-500 hover:bg-teal-50/40 flex items-center gap-3 transition text-left">
+                        <img src="assets/logo-medika.svg" alt="Klinik" class="w-8 h-8 rounded-lg shrink-0">
+                        <div>
+                            <div class="font-bold text-xs text-slate-900">1. SIMKlinik &amp; Apotek</div>
+                            <span class="text-[10px] text-slate-500">Rekam Medis SOAP &bull; E-Resep &bull; Stok Obat</span>
+                        </div>
+                    </button>
+                    <button onclick="switchApp('eduspp'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/40 flex items-center gap-3 transition text-left">
+                        <img src="assets/logo-eduspp.svg" alt="EduSPP" class="w-8 h-8 rounded-lg shrink-0">
+                        <div>
+                            <div class="font-bold text-xs text-slate-900">2. EduSPP Sekolah</div>
+                            <span class="text-[10px] text-slate-500">Tagihan SPP &bull; Kwitansi &bull; Broadcast WA</span>
+                        </div>
+                    </button>
+                    <button onclick="switchApp('koperasi'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 flex items-center gap-3 transition text-left">
+                        <img src="assets/logo-koperasi.svg" alt="KoperasiKu" class="w-8 h-8 rounded-lg shrink-0">
+                        <div>
+                            <div class="font-bold text-xs text-slate-900">3. KoperasiKu KSP</div>
+                            <span class="text-[10px] text-slate-500">Simpanan Pokok &bull; Simulasi Pinjaman Tenor</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Quick Links -->
+            <nav class="mt-5 space-y-1 text-xs font-semibold">
+                <a href="#testimoni-klien" onclick="toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-award text-amber-500 w-4"></i> Testimoni Klien ERP</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-teal-600 w-4"></i> FAQ Lisensi &amp; Server Cloud</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-building text-blue-600 w-4"></i> Konsultasi Tender &amp; Kontak</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="switchApp('eduspp'); printSppReceipt(0); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-receipt text-blue-600"></i>
+                    <span>Cetak Sampel Kwitansi SPP</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20NusaERP,%20saya%20ingin%20konsultasi%20paket%20ERP" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-teal-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                    <span>Konsultasi Demo via WA</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-200 bg-slate-50">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-500 hover:text-slate-900 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-400 font-mono">
+                NusaERP &copy; 2026 &bull; Enterprise Management Systems
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN WORKSPACE CONTAINER -->
     <main class="max-w-[1440px] mx-auto px-4 sm:px-6 py-6">
@@ -1680,6 +1789,24 @@
             t.classList.remove('hidden');
             clearTimeout(window.__erpToastTimer);
             window.__erpToastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {

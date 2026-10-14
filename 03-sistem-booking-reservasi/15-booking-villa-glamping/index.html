@@ -66,6 +66,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #F3EFE6;
             color: #1C211E;
@@ -125,9 +129,9 @@
 
     <!-- STICKY NAVIGATION HEADER -->
     <header class="sticky top-0 z-40 bg-linen/95 backdrop-blur-md border-b border-linen-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6 flex-nowrap">
-            <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="assets/logo.svg" alt="LembahPinus Sanctuary" class="h-11 w-auto shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-3">
+            <a href="#" class="flex items-center gap-2.5 shrink-0 min-w-0" aria-label="LembahPinus Beranda">
+                <img src="assets/logo.svg" alt="LembahPinus Sanctuary" class="h-9 sm:h-11 w-auto max-w-[185px] sm:max-w-none object-contain shrink-0">
             </a>
 
             <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-ink-muted whitespace-nowrap shrink-0">
@@ -139,18 +143,100 @@
                 <a href="#aturan-lokasi" class="hover:text-pine transition whitespace-nowrap">Lokasi</a>
             </nav>
 
-            <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <span class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-linen-soft border border-linen-border font-mono text-[11px] text-pine font-semibold whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-mountain text-ochre"></i>
                     <span>1.240 MDPL • 17°C</span>
                 </span>
-                <button onclick="openBookingVoucherModal()" class="px-4 py-2.5 rounded-lg bg-pine hover:bg-ochre text-linen font-semibold text-xs uppercase tracking-wider transition flex items-center gap-2 whitespace-nowrap shrink-0">
+                <!-- Desktop CTA Button -->
+                <button onclick="openBookingVoucherModal()" class="hidden sm:inline-flex px-4 py-2.5 rounded-lg bg-pine hover:bg-ochre text-linen font-semibold text-xs uppercase tracking-wider transition items-center gap-2 whitespace-nowrap shrink-0 shadow-sm">
                     <i class="fa-solid fa-receipt"></i>
                     <span>Ringkasan &amp; E-Voucher</span>
+                </button>
+                <!-- Mobile Voucher Quick Button -->
+                <button onclick="openBookingVoucherModal()" class="sm:hidden w-10 h-10 rounded-lg bg-pine/10 hover:bg-pine text-pine hover:text-white transition flex items-center justify-center shrink-0" aria-label="Lihat Ringkasan Booking">
+                    <i class="fa-solid fa-receipt text-base"></i>
+                </button>
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobileNavToggle" onclick="toggleMobileDrawer()" class="lg:hidden w-10 h-10 rounded-lg border border-linen-border bg-linen-soft text-pine hover:bg-pine hover:text-linen transition flex items-center justify-center shrink-0 shadow-xs" aria-label="Buka Menu Navigasi">
+                    <i id="mobileNavIcon" class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0A1410]/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#16261E] text-linen z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out border-l border-linen/15">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-linen/15 flex items-center justify-between bg-[#111F18]">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="LembahPinus" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded-lg bg-linen/10 hover:bg-ochre text-linen flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 font-mono text-xs uppercase tracking-wider">
+            <a href="#date-engine" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-regular fa-calendar-check text-ochre text-sm w-4"></i>
+                    <span>Cek Jadwal &amp; Tarif</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#katalog-unit" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-house-chimney text-ochre text-sm w-4"></i>
+                    <span>Koleksi 6 Villa &amp; Kabin</span>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-ochre/30 text-ochre font-semibold">Heated</span>
+            </a>
+            <a href="#addon-experience" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-fire text-ochre text-sm w-4"></i>
+                    <span>Add-On &amp; BBQ Malam</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#ulasan-tamu" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-star text-ochre text-sm w-4"></i>
+                    <span>Ulasan Tamu</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-question text-ochre text-sm w-4"></i>
+                    <span>FAQ &amp; Kebijakan DP</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#aturan-lokasi" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded-xl bg-linen/5 hover:bg-ochre/20 text-linen hover:text-ochre border border-transparent hover:border-ochre/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot text-ochre text-sm w-4"></i>
+                    <span>Peta Lokasi &amp; Gerbang</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-linen/15 bg-[#111F18] space-y-3">
+            <button onclick="toggleMobileDrawer(); openBookingVoucherModal();" class="w-full py-3 px-4 rounded-xl bg-ochre hover:bg-ochre-dark text-white font-mono text-xs uppercase tracking-wider font-bold transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Ringkasan &amp; E-Voucher</span>
+            </button>
+            <a href="https://wa.me/6281388990011?text=Halo%20Concierge%20LembahPinus%2C%20saya%20ingin%20tanya%20ketersediaan%20villa" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-linen/10 hover:bg-emerald-600 text-linen font-mono text-xs font-semibold transition flex items-center justify-center gap-2 border border-linen/15">
+                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                <span>Chat Concierge 24 Jam</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] font-mono text-linen/60 hover:text-linen transition pt-1">
+                &larr; Kembali ke Katalog Portofolio UMKM
+            </a>
+        </div>
+    </aside>
 
     <!-- HERO SECTION: KINFOLK / CEREAL BOUTIQUE HOSPITALITY -->
     <section class="relative bg-pine text-linen overflow-hidden border-b border-linen-border">
@@ -804,40 +890,40 @@
     </div>
 
     <!-- INSTANT BOOKING & PRINTABLE E-VOUCHER MODAL -->
-    <div id="voucherModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-pine-dark/80 backdrop-blur-xs p-4 overflow-y-auto">
-        <div class="bg-linen-soft rounded-2xl max-w-2xl w-full p-6 sm:p-8 editorial-border shadow-2xl my-8 relative">
-            <button onclick="closeBookingVoucherModal()" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-linen border border-linen-border flex items-center justify-center text-pine hover:bg-ochre hover:text-white">
+    <div id="voucherModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-pine-dark/80 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto">
+        <div class="bg-linen-soft rounded-2xl max-w-2xl w-full p-4 sm:p-8 editorial-border shadow-2xl my-4 sm:my-8 relative max-h-[94vh] overflow-y-auto flex flex-col">
+            <button onclick="closeBookingVoucherModal()" class="absolute top-3.5 right-3.5 w-9 h-9 rounded-lg bg-linen border border-linen-border flex items-center justify-center text-pine hover:bg-ochre hover:text-white transition z-10" aria-label="Tutup Voucher">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <!-- Printable E-Voucher Container -->
-            <div id="voucherPrintableArea" class="bg-white rounded-xl border border-stone-300 p-6 space-y-5 text-ink">
-                <div class="flex flex-wrap items-start justify-between gap-4 border-b border-stone-200 pb-4">
+            <div id="voucherPrintableArea" class="bg-white rounded-xl border border-stone-300 p-4 sm:p-6 space-y-4 sm:space-y-5 text-ink overflow-hidden">
+                <div class="flex flex-wrap items-start justify-between gap-3 border-b border-stone-200 pb-4">
                     <div class="flex items-center gap-3">
-                        <img src="assets/logo.svg" alt="LembahPinus Logo" class="h-11 w-auto">
+                        <img src="assets/logo.svg" alt="LembahPinus Logo" class="h-9 sm:h-11 w-auto">
                     </div>
                     <div class="text-right font-mono">
-                        <span class="inline-block bg-pine text-linen text-[10px] font-semibold px-2.5 py-0.5 rounded uppercase">E-VOUCHER RESERVASI RESMI</span>
-                        <div class="text-sm font-bold text-pine mt-1" id="vchCode">KODE: LPS-2026-8492</div>
+                        <span class="inline-block bg-pine text-linen text-[9.5px] sm:text-[10px] font-semibold px-2 py-0.5 rounded uppercase">E-VOUCHER RESERVASI RESMI</span>
+                        <div class="text-xs sm:text-sm font-bold text-pine mt-1" id="vchCode">KODE: LPS-2026-8492</div>
                     </div>
                 </div>
 
                 <!-- Guest & Unit Details -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-linen/60 p-4 rounded-xl border border-linen-border text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 bg-linen/60 p-3.5 sm:p-4 rounded-xl border border-linen-border text-xs">
                     <div class="space-y-1">
                         <div class="font-mono text-[10px] uppercase text-ink-muted">TAMU UTAMA</div>
                         <div class="font-bold text-sm text-pine" id="vchGuestName">Bpk./Ibu Tamu Kehormatan</div>
-                        <div class="font-mono text-ink-muted" id="vchGuestPhone">-</div>
+                        <div class="font-mono text-ink-muted text-xs" id="vchGuestPhone">-</div>
                     </div>
                     <div class="space-y-1">
                         <div class="font-mono text-[10px] uppercase text-ink-muted">UNIT HUNIAN</div>
-                        <div class="font-serif font-bold text-lg text-pine" id="vchUnitName">-</div>
+                        <div class="font-serif font-bold text-base sm:text-lg text-pine" id="vchUnitName">-</div>
                         <div class="font-mono text-[11px] text-ochre font-semibold" id="vchUnitSpecs">-</div>
                     </div>
                 </div>
 
                 <!-- Check-in / Check-out & Night Breakdown -->
-                <div class="grid grid-cols-3 gap-3 font-mono text-xs border-y border-stone-200 py-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-xs border-y border-stone-200 py-3 bg-stone-50/50 p-2 sm:p-0 sm:bg-transparent">
                     <div>
                         <span class="text-[10px] text-ink-muted block">CHECK-IN (14:00)</span>
                         <strong class="text-pine" id="vchCheckIn">-</strong>
@@ -1495,6 +1581,24 @@
                     body.classList.add('hidden');
                     icon.className = 'fa-solid fa-plus text-pine text-sm';
                 }
+            }
+        }
+
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
             }
         }
 

@@ -41,6 +41,12 @@
       }
     }
   </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body class="bg-concrete-950 text-slate-200 font-sans antialiased selection:bg-safety-500 selection:text-concrete-950 min-h-screen flex flex-col">
 
@@ -74,25 +80,100 @@
         <a href="kontak.html#rfq" class="hidden sm:inline-flex items-center gap-2 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base px-5 py-2.5 rounded uppercase tracking-wider transition-all">
         <i class="fa-solid fa-file-contract"></i> Permintaan RFQ
       </a>
-        <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 hover:text-white text-xl p-2" aria-label="Toggle Menu">
+        <button onclick="toggleMobileDrawer(true)" class="lg:hidden text-slate-300 hover:text-white text-xl p-2" aria-label="Toggle Menu">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
-    <!-- Mobile Menu Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-concrete-950 border-b border-slate-800 px-4 py-4 space-y-3 text-sm font-semibold text-slate-300 max-h-[75vh] overflow-y-auto">
-      <a href="index.html" class="block py-2 hover:text-safety-500 transition-colors">Beranda</a>
-      <a href="tentang.html" class="block py-2 hover:text-safety-500 transition-colors">Tentang Kami</a>
-      <a href="layanan.html" class="block py-2 hover:text-safety-500 transition-colors">Layanan</a>
-      <a href="proyek.html" class="block py-2 hover:text-safety-500 transition-colors">Proyek</a>
-      <a href="k3-mutu.html" class="block py-2 hover:text-safety-500 transition-colors">K3 & Mutu</a>
-      <a href="armada.html" class="block py-2 hover:text-safety-500 transition-colors">Peralatan</a>
-      <a href="karir.html" class="block py-2 hover:text-safety-500 transition-colors">Karir</a>
-      <a href="berita.html" class="block py-2 text-safety-500 font-bold">Berita</a>
-      <a href="kontak.html" class="block py-2 hover:text-safety-500 transition-colors">Kontak</a>
-      <a href="kontak.html#rfq" class="block py-2 text-safety-500 font-bold border-t border-slate-800 mt-2 pt-2">Permintaan RFQ ↗</a>
+    </header>
+
+  <!-- MOBILE DRAWER BACKDROP -->
+  <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- MOBILE SLIDE-OVER DRAWER (HEAVY CIVIL ENGINEERING THEME) -->
+  <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-concrete-950 text-slate-200 z-50 flex flex-col justify-between shadow-2xl border-l border-slate-800 transform translate-x-full transition-transform duration-300 ease-out">
+    <div class="p-5 overflow-y-auto">
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <img src="assets/logo.svg" alt="PT Bumi Karya" class="h-8 w-auto">
+        </div>
+        <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition" aria-label="Tutup Menu">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Tender Hotline Pill -->
+      <div class="mt-4 p-3 bg-slate-900 border border-slate-800 rounded text-xs font-mono">
+        <div class="flex items-center gap-1.5 text-safety-500 font-bold text-[10px] uppercase">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>DIVISI TENDER B2B AKTIF</span>
+        </div>
+        <p class="text-slate-400 text-[11px] mt-1">
+          Siap Menerima Undangan Tender Q2–Q4 2026
+        </p>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mt-5 space-y-1 text-xs font-semibold">
+        <a href="index.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-house w-4 text-slate-500"></i> Beranda</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="tentang.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-building-columns w-4 text-slate-500"></i> Tentang Kami</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="layanan.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-trowel-bricks w-4 text-slate-500"></i> Divisi Layanan</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="proyek.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-helmet-safety w-4 text-slate-500"></i> Portofolio Proyek</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="k3-mutu.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-shield-halved w-4 text-slate-500"></i> K3 &amp; Mutu HSE</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="armada.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-truck-monster w-4 text-slate-500"></i> Peralatan Berat</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="karir.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-user-tie w-4 text-slate-500"></i> Karir</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+        <a href="kontak.html" class="flex items-center justify-between p-3 rounded border border-slate-800/40 hover:bg-slate-900 hover:text-safety-500 transition">
+          <span class="flex items-center gap-3"><i class="fa-solid fa-envelope w-4 text-slate-500"></i> Kontak &amp; Tender</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+        </a>
+      </nav>
+
+      <!-- Quick Action inside Drawer -->
+      <div class="mt-5 space-y-2">
+        <a href="kontak.html#rfq" class="w-full py-3 px-3 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-sm uppercase tracking-wider rounded flex items-center justify-center gap-2 transition shadow-md shadow-safety-500/20">
+          <i class="fa-solid fa-file-contract"></i>
+          <span>Permintaan Penawaran (RFQ)</span>
+        </a>
+        <a href="https://wa.me/6281298421720?text=Halo%20Sekretariat%20Tender%20PT%20Bumi%20Karya,%20kami%20ingin%20mengirimkan%20undangan%20tender" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded flex items-center justify-center gap-2 transition">
+          <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+          <span>WhatsApp Sekretariat Tender</span>
+        </a>
+      </div>
     </div>
-  </header>
+
+    <!-- Drawer Footer -->
+    <div class="p-5 border-t border-slate-800 bg-slate-950">
+      <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-400 hover:text-safety-500 font-mono text-xs font-semibold py-1.5 transition">
+        <i class="fa-solid fa-arrow-left text-[11px]"></i>
+        <span>Kembali ke Katalog UMKM</span>
+      </a>
+      <div class="mt-2 text-center text-[10px] text-slate-500 font-mono">
+        PT Bumi Karya Konstruksi &copy; 2026
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="relative py-20 bg-concrete-900 border-b border-slate-800 overflow-hidden">
@@ -361,10 +442,28 @@
 
     </div>
   </footer>
-  <script>
+    <script>
+    function toggleMobileDrawer(open) {
+      const drawer = document.getElementById('mobileDrawer');
+      const backdrop = document.getElementById('mobileDrawerBackdrop');
+      if (!drawer || !backdrop) return;
+      if (open) {
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        drawer.classList.remove('translate-x-full');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        drawer.classList.add('translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+    // Backward compatibility for existing buttons
     function toggleMobileMenu() {
-      const m = document.getElementById("mobileMenu");
-      if (m) m.classList.toggle("hidden");
+      const drawer = document.getElementById('mobileDrawer');
+      const isOpen = drawer && !drawer.classList.contains('translate-x-full');
+      toggleMobileDrawer(!isOpen);
     }
   </script>
 </body>

@@ -60,6 +60,10 @@
             outline: 2px solid #231912;
             outline-offset: 2px;
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-teak selection:text-sand">
@@ -118,22 +122,93 @@
                     </button>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 border border-sand-line text-teak hover:bg-sand-dark shrink-0">
+                    <button id="mobileMenuBtn" onclick="toggleMobileDrawer(true)" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 border border-sand-line text-teak hover:bg-sand-dark shrink-0">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenuPanel" class="hidden lg:hidden bg-sand border-b border-sand-line px-4 pt-3 pb-6 space-y-3">
-            <a href="#katalog-koleksi" class="block py-2 text-sm font-semibold border-b border-sand-line">Koleksi Mebel</a>
-            <a href="#custom-order" class="block py-2 text-sm font-semibold border-b border-sand-line">Kustom Kayu &amp; Ukuran</a>
-            <button type="button" onclick="toggleCartDrawer(true)" class="block w-full text-left py-2 text-sm font-semibold text-brass border-b border-sand-line">Cek Ongkir Truk Mebel</button>
-            <a href="#ulasan-pembeli" class="block py-2 text-sm font-semibold border-b border-sand-line">Ulasan Pembeli &amp; Real Pict</a>
-            <a href="#faq" class="block py-2 text-sm font-semibold">FAQ</a>
-        </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (SCANDINAVIAN-JAVANESE TEAK THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#FAF7F2] text-teak z-50 flex flex-col justify-between shadow-2xl border-l border-sand-line transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-sand-line">
+                <a href="#" class="flex items-center gap-2">
+                    <img src="assets/logo.svg" alt="KayuArta Jepara" class="h-9 w-auto">
+                </a>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 border border-sand-line text-teak hover:bg-sand-dark flex items-center justify-center transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Artisan Spec Badge -->
+            <div class="mt-4 p-3 bg-sand-card border border-sand-line text-xs font-mono">
+                <div class="flex items-center gap-2 text-brass font-bold text-[10px] uppercase">
+                    <span class="w-2 h-2 rounded-full bg-brass"></span>
+                    <span>Bengkel Kayu Tahunan, Jepara</span>
+                </div>
+                <p class="text-teak-muted text-[11px] mt-1 font-sans">
+                    Kayu Jati TPK Perhutani &bull; MC 10-12% &bull; Ekspedisi Truk Mebel
+                </p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="mt-5 space-y-1 text-xs uppercase tracking-wider font-semibold font-mono">
+                <a href="#katalog-koleksi" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-chair text-brass w-4"></i> Koleksi 12 Mebel</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#custom-order" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-ruler-combined text-brass w-4"></i> Kustom Ukuran</span>
+                    <span class="text-[10px] bg-brass text-white px-2 py-0.5">PO 14 HARI</span>
+                </a>
+                <button type="button" onclick="toggleCartDrawer(true); toggleMobileDrawer(false);" class="w-full flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition text-left">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-truck-ramp-box text-brass w-4"></i> Cek Ongkir Truk</span>
+                    <i class="fa-solid fa-calculator text-[11px] text-brass"></i>
+                </button>
+                <a href="#ulasan-pembeli" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera-retro text-brass w-4"></i> Ulasan &amp; Real Pict</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#faq" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-brass w-4"></i> FAQ &amp; Legalitas Kayu</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false)" class="flex items-center justify-between p-3 border-b border-sand-line hover:bg-sand-dark transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-brass w-4"></i> Workshop &amp; Kontak</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-stone-400"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button type="button" onclick="toggleCartDrawer(true); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 bg-teak hover:bg-teak-light text-sand text-xs font-bold font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-truck-ramp-box text-brass"></i>
+                    <span>Daftar Pesanan &amp; Ongkir Truk</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20KayuArta%20Jepara,%20saya%20ingin%20konsultasi%20mebel%20jati" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 bg-white border border-sand-line hover:bg-sand-dark text-teak text-xs font-bold font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                    <span>Chat Kepala Tukang WA</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-sand-line bg-sand-card">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-teak-muted hover:text-teak font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px] text-brass"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-teak-muted font-mono">
+                KayuArta Jepara &copy; 2026 &bull; Heritage &amp; Modern Living
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION: ARCHITECTURAL FURNITURE LOOKBOOK -->
     <section class="border-b border-sand-line">
@@ -1271,17 +1346,26 @@
             }
         }
 
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             renderProducts();
             renderCartDrawer();
-
-            const mobileBtn = document.getElementById("mobileMenuBtn");
-            const mobilePanel = document.getElementById("mobileMenuPanel");
-            if (mobileBtn && mobilePanel) {
-                mobileBtn.addEventListener("click", () => {
-                    mobilePanel.classList.toggle("hidden");
-                });
-            }
         });
     </script>
 </body>

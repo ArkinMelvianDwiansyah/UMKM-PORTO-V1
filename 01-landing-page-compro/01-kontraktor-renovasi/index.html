@@ -47,6 +47,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #F7F5F0;
             color: #18181B;
@@ -140,25 +144,81 @@
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" aria-label="Buka Menu" class="lg:hidden text-stonearch-900 p-2.5 border border-stonearch-300 bg-stonearch-50 shrink-0">
-                <i class="fa-solid fa-bars text-lg"></i>
+            <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Buka Menu" class="lg:hidden text-stonearch-900 w-10 h-10 border border-stonearch-300 bg-stonearch-50 hover:bg-stonearch-900 hover:text-white transition flex items-center justify-center shrink-0">
+                <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
             </button>
         </div>
+    </header>
 
-        <!-- Mobile Menu Drawer -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-stonearch-100 border-b border-stonearch-300 px-4 pt-3 pb-6 space-y-2 font-mono text-xs uppercase tracking-wider">
-            <a href="#layanan" class="block py-2.5 text-stonearch-900 border-b border-stonearch-200">01. Layanan & Paket</a>
-            <a href="#kalkulator-rab" class="block py-2.5 text-ochre-600 font-bold border-b border-stonearch-200">02. Kalkulator Estimasi RAB</a>
-            <a href="#portofolio" class="block py-2.5 text-stonearch-900 border-b border-stonearch-200">03. Portofolio Proyek</a>
-            <a href="#alur-kerja" class="block py-2.5 text-stonearch-900 border-b border-stonearch-200">04. Alur Kerja</a>
-            <a href="#testimoni" class="block py-2.5 text-stonearch-900 border-b border-stonearch-200">05. Testimoni Klien</a>
-            <a href="#faq" class="block py-2.5 text-stonearch-900 pb-3">06. Tanya Jawab (FAQ)</a>
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0E0F10]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#18181B] text-[#E4E4E7] border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="NusaBangun" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded bg-zinc-800 hover:bg-ochre-600 text-white flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 text-xs uppercase tracking-wider">
+            <a href="#layanan" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">01.</span>
+                    <span>Layanan &amp; Paket</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#kalkulator-rab" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-ochre-400 hover:text-ochre-300 border border-ochre-500/30 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">02.</span>
+                    <span>Kalkulator Estimasi RAB</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-ochre-500/20 text-ochre-400 font-bold">Hitung</span>
+            </a>
+            <a href="#portofolio" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">03.</span>
+                    <span>Portofolio Proyek</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#alur-kerja" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">04.</span>
+                    <span>Alur Kerja &amp; Garansi</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#testimoni" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">05.</span>
+                    <span>Testimoni Klien</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 hover:border-zinc-700 transition group">
+                <div class="flex items-center gap-3">
+                    <span class="text-ochre-500 font-bold">06.</span>
+                    <span>Tanya Jawab (FAQ)</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-zinc-800 bg-zinc-950 space-y-3">
             <a href="https://wa.me/6281234567890?text=Halo%20Tim%20Arsitek%20NusaBangun,%20saya%20ingin%20jadwal%20survei%20lokasi%20gratis." target="_blank" rel="noopener"
-               class="w-full inline-flex items-center justify-center gap-2 bg-stonearch-900 text-white font-bold py-3.5">
-                <i class="fa-brands fa-whatsapp text-ochre-500"></i> Konsultasi & Survei Gratis
+               class="w-full py-3 px-4 bg-ochre-600 hover:bg-ochre-500 text-white font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Jadwalkan Survei Lokasi</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] text-zinc-500 hover:text-zinc-300 transition pt-1">
+                &larr; Indeks Portofolio UMKM
             </a>
         </div>
-    </header>
+    </aside>
 
     <!-- HERO SECTION: ARCHITECTURAL EDITORIAL BRUTALIST -->
     <section class="relative bg-stonearch-100 border-b border-stonearch-300 arch-grid">
@@ -1641,6 +1701,25 @@
             // Initial calculation
             calculateRAB();
         })();
+
+        // --- Mobile Drawer Navigation ---
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
     </script>
 </body>
 </html>

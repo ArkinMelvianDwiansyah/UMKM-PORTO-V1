@@ -32,6 +32,9 @@
             #bengkelReceiptModal { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
             .no-print { display: none !important; }
         }
+        html, body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
@@ -68,19 +71,108 @@
             </button>
         </div>
 
-        <div class="hidden md:flex items-center gap-2 shrink-0">
-            <button onclick="scrollToKelolaSection('ulasan-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
-                <i class="fa-solid fa-camera-retro text-indigo-400 mr-1"></i>Ulasan Mitra
-            </button>
-            <button onclick="scrollToKelolaSection('faq-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
-                <i class="fa-solid fa-circle-question text-amber-400 mr-1"></i>FAQ
-            </button>
-            <div class="hidden 2xl:flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl text-xs whitespace-nowrap shrink-0">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-                <span class="text-slate-300 font-semibold whitespace-nowrap">Auto-Reminder WA Aktif</span>
+        <div class="flex items-center gap-2 shrink-0">
+            <div class="hidden md:flex items-center gap-2 shrink-0">
+                <button onclick="scrollToKelolaSection('ulasan-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-camera-retro text-indigo-400 mr-1"></i>Ulasan Mitra
+                </button>
+                <button onclick="scrollToKelolaSection('faq-section')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition whitespace-nowrap shrink-0">
+                    <i class="fa-solid fa-circle-question text-amber-400 mr-1"></i>FAQ
+                </button>
+                <div class="hidden 2xl:flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl text-xs whitespace-nowrap shrink-0">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                    <span class="text-slate-300 font-semibold whitespace-nowrap">Auto-Reminder WA Aktif</span>
+                </div>
             </div>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="md:hidden w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 text-violet-400 hover:bg-slate-700 flex items-center justify-center shrink-0 transition" aria-label="Buka Menu Modul">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- MOBILE SLIDE-OVER DRAWER (VIOLET/SLATE 2-IN-1 SUITE THEME) -->
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-slate-900 text-white z-50 flex flex-col justify-between shadow-2xl border-l border-slate-800 transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="p-5 overflow-y-auto">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                    <img src="assets/logo.svg" alt="KelolaPro UMKM" class="w-9 h-9 rounded-xl shadow-md shrink-0">
+                    <div>
+                        <div class="font-extrabold text-base text-white leading-none">KelolaPro <span class="text-violet-400">UMKM</span></div>
+                        <span class="text-[10px] text-slate-400 font-mono">2-in-1 App Suite</span>
+                    </div>
+                </div>
+                <button onclick="toggleMobileDrawer(false)" class="w-9 h-9 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition" aria-label="Tutup Menu">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- App Switcher inside Drawer -->
+            <div class="mt-4">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2 font-bold">PILIH APLIKASI OPERASIONAL:</p>
+                <div class="space-y-2">
+                    <button onclick="switchMainApp('kos'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-indigo-500/50 flex items-center gap-3 transition text-left">
+                        <img src="assets/logo-kos.svg" alt="JuraganKos" class="w-8 h-8 rounded-lg shrink-0">
+                        <div>
+                            <div class="font-bold text-xs text-white">Aplikasi A: JuraganKos</div>
+                            <span class="text-[10px] text-slate-400">Denah Visual 20 Kamar &bull; Tagihan WA</span>
+                        </div>
+                    </button>
+                    <button onclick="switchMainApp('bengkel'); toggleMobileDrawer(false);" class="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-violet-500/50 flex items-center gap-3 transition text-left">
+                        <img src="assets/logo-bengkel.svg" alt="BengkelPintar" class="w-8 h-8 rounded-lg shrink-0">
+                        <div>
+                            <div class="font-bold text-xs text-white">Aplikasi B: BengkelPintar</div>
+                            <span class="text-[10px] text-slate-400">Riwayat Plat Nomor &bull; Input PKB</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Quick Links -->
+            <nav class="mt-5 space-y-1 text-xs font-semibold">
+                <button onclick="scrollToKelolaSection('ulasan-section'); toggleMobileDrawer(false);" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-violet-400 transition text-left">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-camera-retro text-indigo-400 w-4"></i> Ulasan Pemilik Kos &amp; Bengkel</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </button>
+                <button onclick="scrollToKelolaSection('faq-section'); toggleMobileDrawer(false);" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-violet-400 transition text-left">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-circle-question text-amber-400 w-4"></i> FAQ Penggunaan Sistem</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </button>
+                <a href="#kontak-footer" onclick="toggleMobileDrawer(false);" class="flex items-center justify-between p-3 rounded-xl border border-slate-800 hover:bg-slate-800 hover:text-violet-400 transition">
+                    <span class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-rose-400 w-4"></i> Kontak Pengembang &amp; Demo</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                </a>
+            </nav>
+
+            <!-- Quick Action Tools inside Drawer -->
+            <div class="mt-5 space-y-2">
+                <button onclick="switchMainApp('bengkel'); document.getElementById('plateSearchInput').value='B 4512 KZX'; renderPlateHistory(); toggleMobileDrawer(false);" class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-magnifying-glass text-violet-400"></i>
+                    <span>Simulasi Plat: B 4512 KZX</span>
+                </button>
+                <a href="https://wa.me/6281234567890?text=Halo%20KelolaPro%20UMKM,%20saya%20tertarik%20aplikasi%20kos%20dan%20bengkel" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Konsultasi Demo via WA</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-slate-800 bg-slate-950">
+            <a href="../../index.html" class="flex items-center justify-center gap-2 text-slate-400 hover:text-violet-400 font-mono text-xs font-semibold py-2 transition">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Kembali ke Katalog UMKM</span>
+            </a>
+            <div class="mt-2 text-center text-[10px] text-slate-500 font-mono">
+                KelolaPro UMKM &copy; 2026 &bull; JuraganKos &amp; BengkelPintar
+            </div>
+        </div>
+    </div>
 
     <!-- MAIN SCROLLABLE WORKSPACE -->
     <div id="mainScrollContainer" class="flex-1 overflow-y-auto p-4 lg:p-6 custom-scroll space-y-8">
@@ -1280,6 +1372,24 @@
             const modal = document.getElementById('bengkelReceiptModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileDrawer(open) {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            if (open) {
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawer.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawer.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            }
         }
 
         // Init

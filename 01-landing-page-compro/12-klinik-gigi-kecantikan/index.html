@@ -53,6 +53,10 @@
     </script>
 
     <style>
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #FAF9F6;
             color: #1B2A2B;
@@ -160,22 +164,82 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 border border-ivory-border text-teal hover:bg-ivory-warm shrink-0">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" type="button" aria-label="Buka Menu" class="lg:hidden w-10 h-10 border border-ivory-border text-teal hover:bg-teal hover:text-ivory transition flex items-center justify-center shrink-0">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenuPanel" class="hidden lg:hidden bg-ivory border-b border-ivory-border px-4 pt-3 pb-6 space-y-3">
-            <a href="#layanan-klinis" class="block py-2 text-sm font-medium border-b border-ivory-border">Layanan</a>
-            <a href="#transformasi-senyum" class="block py-2 text-sm font-medium border-b border-ivory-border">Hasil Pasien (Before &amp; After)</a>
-            <a href="#simulasi-biaya" class="block py-2 text-sm font-semibold text-teal border-b border-ivory-border">Simulasi Biaya &amp; Cicilan 0%</a>
-            <a href="#jadwal-dokter" class="block py-2 text-sm font-medium border-b border-ivory-border">Jadwal Dokter</a>
-            <a href="#ulasan-pasien" class="block py-2 text-sm font-medium border-b border-ivory-border">Ulasan Pasien</a>
-            <a href="#faq" class="block py-2 text-sm font-medium">FAQ</a>
-        </div>
     </header>
+
+    <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
+    <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#071F21]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#0D3B3E] text-ivory border-l border-teal-light/20 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-sans">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-teal-light/20 flex items-center justify-between bg-[#072426]">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.svg" alt="SenyumLuxe" class="h-8 w-auto brightness-0 invert">
+            </div>
+            <button onclick="toggleMobileDrawer()" class="w-8 h-8 rounded bg-teal-light/20 hover:bg-champagne hover:text-teal-dark text-ivory flex items-center justify-center transition" aria-label="Tutup Menu">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <!-- Drawer Navigation Links -->
+        <nav class="flex-1 overflow-y-auto p-5 space-y-2 text-xs uppercase tracking-wider font-mono">
+            <a href="#layanan-klinis" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-ivory hover:text-champagne border border-transparent hover:border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-stethoscope text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-medium">Layanan Dental &amp; Derma</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#transformasi-senyum" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-ivory hover:text-champagne border border-transparent hover:border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-wand-magic-sparkles text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-medium">Hasil Pasien (Before/After)</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-champagne/20 text-champagne font-bold">Slider</span>
+            </a>
+            <a href="#simulasi-biaya" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-champagne border border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-calculator text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-semibold">Simulasi Biaya &amp; Cicilan 0%</span>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-teal-light text-ivory font-bold">0%</span>
+            </a>
+            <a href="#jadwal-dokter" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-ivory hover:text-champagne border border-transparent hover:border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-user-doctor text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-medium">Jadwal Praktik 3 Cabang</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#ulasan-pasien" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-ivory hover:text-champagne border border-transparent hover:border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-star text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-medium">Ulasan Pasien</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+            <a href="#faq" onclick="toggleMobileDrawer()" class="flex items-center justify-between p-3 rounded bg-white/5 hover:bg-white/10 text-ivory hover:text-champagne border border-transparent hover:border-champagne/30 transition group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-circle-question text-champagne text-sm w-4"></i>
+                    <span class="font-sans normal-case text-sm font-medium">FAQ &amp; Kebijakan Medis</span>
+                </div>
+                <i class="fa-solid fa-angle-right text-[11px] opacity-40 group-hover:opacity-100 transition"></i>
+            </a>
+        </nav>
+        <!-- Drawer Footer -->
+        <div class="p-5 border-t border-teal-light/20 bg-[#072426] space-y-3">
+            <a href="#simulasi-biaya" onclick="toggleMobileDrawer()"
+               class="w-full py-3 px-4 bg-champagne hover:bg-champagne-light text-teal-dark font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Jadwalkan Konsultasi Dokter</span>
+            </a>
+            <a href="../../index.html" class="block text-center text-[10px] text-ivory/60 hover:text-ivory transition pt-1">
+                &larr; Indeks Portofolio UMKM
+            </a>
+        </div>
+    </aside>
 
     <!-- HERO SECTION: SWISS CLINICAL MINIMALIST -->
     <section class="relative border-b border-ivory-border overflow-hidden">
@@ -1446,12 +1510,26 @@
 
             // Initial slider sync
             setTimeout(() => updateSliderPosition(50), 60);
-
-            // Mobile menu
-            document.getElementById("mobileMenuBtn").addEventListener("click", () => {
-                document.getElementById("mobileMenuPanel").classList.toggle("hidden");
-            });
         });
+
+        // --- Mobile Drawer Navigation ---
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileDrawerBackdrop');
+            if (!drawer || !backdrop) return;
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
     </script>
 </body>
 </html>
