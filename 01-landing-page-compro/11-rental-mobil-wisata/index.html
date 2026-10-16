@@ -364,121 +364,149 @@
     </section>
 
     <!-- SECTION 2: INTERACTIVE RENTAL CALCULATOR & BOOKING ENGINE -->
+        <!-- 02. KALKULATOR SEWA MOBIL (REFINED & TIDY UI) -->
     <section id="kalkulator-sewa" class="py-16 lg:py-24 bg-sand border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-8 border-b border-line">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold block mb-1">02 / SIMULASI TARIF INSTAN & TRANSPARAN</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl text-pine">Kalkulator Sewa Mobil &amp; Rute Perjalanan</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-ink-muted max-w-md">
+                    Sesuaikan unit, layanan kemudi, durasi sewa, dan area tujuan untuk mendapatkan rincian biaya akurat tanpa biaya tersembunyi.
+                </p>
+            </div>
+
+            <!-- Quick Preset Buttons -->
+            <div class="bg-alabaster p-4 border border-line mb-8 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs font-bold text-pine uppercase">Rekomendasi Rute Populer:</span>
+                    <span class="text-xs text-ink-muted hidden sm:inline">(Klik untuk simulasi langsung)</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2" id="presetRentalGroup">
+                    <button type="button" data-car="zenix" data-mode="lepas_kunci" data-days="2" data-route="jogja"
+                        class="fleet-preset-btn px-3 py-1.5 bg-sand hover:bg-pine hover:text-white border border-line text-xs font-mono font-bold transition text-pine">
+                        Weekend Jogja (Zenix 2 Hari)
+                    </button>
+                    <button type="button" data-car="brio" data-mode="lepas_kunci" data-days="3" data-route="bali"
+                        class="fleet-preset-btn px-3 py-1.5 bg-sand hover:bg-pine hover:text-white border border-line text-xs font-mono font-bold transition text-pine">
+                        Explore Bali (Brio 3 Hari -10%)
+                    </button>
+                    <button type="button" data-car="hiace" data-mode="all_in" data-days="3" data-route="jogja"
+                        class="fleet-preset-btn px-3 py-1.5 bg-sand hover:bg-pine hover:text-white border border-line text-xs font-mono font-bold transition text-pine">
+                        Family Rombongan (Hiace 3 Hari)
+                    </button>
+                    <button type="button" data-car="alphard" data-mode="all_in" data-days="1" data-route="jogja"
+                        class="fleet-preset-btn px-3 py-1.5 bg-sand hover:bg-pine hover:text-white border border-line text-xs font-mono font-bold transition text-pine">
+                        VIP Tamu Khusus (Alphard All-In)
+                    </button>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 
                 <!-- Left Column: Interactive Form Controls (7 Cols) -->
-                <div class="lg:col-span-7 bg-alabaster border border-line p-6 sm:p-8 lg:p-10">
-                    <div class="border-b border-line pb-5 mb-6">
-                        <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold">02 / SIMULASI TARIF INSTAN</span>
-                        <h2 class="font-serif text-2xl sm:text-3xl text-pine mt-1">Kalkulator Sewa Mobil &amp; Rute Perjalanan</h2>
-                        <p class="text-xs sm:text-sm text-ink-muted mt-1">
-                            Sesuaikan unit, layanan kemudi, durasi sewa, dan area tujuan untuk mendapatkan rincian biaya akurat tanpa biaya tersembunyi.
-                        </p>
+                <div class="lg:col-span-7 bg-alabaster border border-line p-6 sm:p-8 lg:p-10 space-y-6">
+                    <!-- 1. Select Vehicle Unit -->
+                    <div>
+                        <label for="calcVehicleSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
+                            1. Pilih Unit Armada
+                        </label>
+                        <select id="calcVehicleSelect" class="w-full bg-sand border border-line px-4 py-3.5 text-sm font-semibold text-pine focus:outline-none focus:border-clay">
+                            <!-- Populated via JS -->
+                        </select>
                     </div>
 
-                    <div class="space-y-6">
-                        <!-- 1. Select Vehicle Unit -->
-                        <div>
-                            <label for="calcVehicleSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
-                                1. Pilih Unit Armada
+                    <!-- 2. Service Mode Toggle: Lepas Kunci vs All-In -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold">
+                                2. Mode Layanan Sewa
                             </label>
-                            <select id="calcVehicleSelect" class="w-full bg-sand border border-line px-4 py-3.5 text-sm font-semibold text-pine focus:outline-none focus:border-clay">
-                                <!-- Populated via JS -->
+                            <span id="driverMandatoryNote" class="hidden text-[11px] font-mono text-clay font-semibold">
+                                *Unit komersial/VIP wajib dengan Sopir Resmi
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button type="button" id="modeLepasKunciBtn" onclick="setServiceMode('lepas_kunci')" class="text-left p-4 border transition-all bg-pine text-alabaster border-pine">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-mono uppercase tracking-wider font-bold">Lepas Kunci (24 Jam)</span>
+                                    <i class="fa-solid fa-key text-clay"></i>
+                                </div>
+                                <p class="text-xs opacity-80">Kendali penuh sendiri, bebas atur jam berangkat. Gratis antar ke bandara/stasiun.</p>
+                            </button>
+                            <button type="button" id="modeAllInBtn" onclick="setServiceMode('all_in')" class="text-left p-4 border transition-all bg-sand text-ink border-line hover:border-pine">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-mono uppercase tracking-wider font-bold">All-In (Sopir + BBM Kota)</span>
+                                    <i class="fa-solid fa-user-tie text-clay"></i>
+                                </div>
+                                <p class="text-xs opacity-80">Termasuk pengemudi lokal berpengalaman &amp; BBM pemakaian dalam kota (12 Jam/Hari).</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Duration & Pickup Date -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="calcDurationInput" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold">
+                                    3. Durasi Sewa (Hari)
+                                </label>
+                                <span class="text-[11px] font-mono text-clay font-semibold">Min. 3 Hari Diskon 10%</span>
+                            </div>
+                            <div class="flex items-center border border-line bg-sand">
+                                <button type="button" onclick="adjustDuration(-1)" aria-label="Kurangi Hari" class="w-12 h-12 flex items-center justify-center text-pine hover:bg-line/50 transition font-bold">
+                                    <i class="fa-solid fa-minus text-xs"></i>
+                                </button>
+                                <input id="calcDurationInput" type="number" min="1" max="30" value="3" class="w-full h-12 text-center bg-transparent font-mono text-base font-bold text-pine focus:outline-none">
+                                <button type="button" onclick="adjustDuration(1)" aria-label="Tambah Hari" class="w-12 h-12 flex items-center justify-center text-pine hover:bg-line/50 transition font-bold">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="calcDateInput" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
+                                4. Tanggal Mulai Pemakaian
+                            </label>
+                            <input id="calcDateInput" type="date" class="w-full h-12 bg-sand border border-line px-4 text-sm font-mono text-pine focus:outline-none focus:border-clay">
+                        </div>
+                    </div>
+
+                    <!-- 4. Destination Route & Pickup Point -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="calcRouteSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
+                                5. Rute &amp; Zona Perjalanan
+                            </label>
+                            <select id="calcRouteSelect" onchange="updateCalculator()" class="w-full bg-sand border border-line px-3.5 py-3 text-sm font-medium text-pine focus:outline-none focus:border-clay">
+                                <option value="jogja" data-surcharge="0">Yogyakarta, Sleman &amp; Magelang (+Rp 0)</option>
+                                <option value="bali" data-surcharge="0">Bali: Kuta, Ubud, Kintamani (+Rp 0)</option>
+                                <option value="bandung" data-surcharge="0">Bandung Raya: Lembang &amp; Ciwidey (+Rp 0)</option>
+                                <option value="luar_kota" data-surcharge="150000">Lintas Provinsi / Luar Zona (+Rp 150rb/hari)</option>
                             </select>
                         </div>
 
-                        <!-- 2. Service Mode Toggle: Lepas Kunci vs All-In -->
                         <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <label class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold">
-                                    2. Mode Layanan Sewa
-                                </label>
-                                <span id="driverMandatoryNote" class="hidden text-[11px] font-mono text-clay font-semibold">
-                                    *Unit komersial/VIP wajib dengan Sopir Resmi
-                                </span>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <button type="button" id="modeLepasKunciBtn" onclick="setServiceMode('lepas_kunci')" class="text-left p-4 border transition-all bg-pine text-alabaster border-pine">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <span class="text-xs font-mono uppercase tracking-wider font-bold">Lepas Kunci (24 Jam)</span>
-                                        <i class="fa-solid fa-key text-clay"></i>
-                                    </div>
-                                    <p class="text-xs opacity-80">Kendali penuh sendiri, bebas atur jam berangkat. Gratis antar ke bandara/stasiun.</p>
-                                </button>
-                                <button type="button" id="modeAllInBtn" onclick="setServiceMode('all_in')" class="text-left p-4 border transition-all bg-sand text-ink border-line hover:border-pine">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <span class="text-xs font-mono uppercase tracking-wider font-bold">All-In (Sopir + BBM Kota)</span>
-                                        <i class="fa-solid fa-user-tie text-clay"></i>
-                                    </div>
-                                    <p class="text-xs opacity-80">Termasuk pengemudi lokal berpengalaman &amp; BBM pemakaian dalam kota (12 Jam/Hari).</p>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- 3. Duration & Pickup Date -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <div class="flex items-center justify-between mb-2">
-                                    <label for="calcDurationInput" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold">
-                                        3. Durasi Sewa (Hari)
-                                    </label>
-                                    <span class="text-[11px] font-mono text-clay font-semibold">Min. 3 Hari Diskon 10%</span>
-                                </div>
-                                <div class="flex items-center border border-line bg-sand">
-                                    <button type="button" onclick="adjustDuration(-1)" aria-label="Kurangi Hari" class="w-12 h-12 flex items-center justify-center text-pine hover:bg-line/50 transition font-bold">
-                                        <i class="fa-solid fa-minus text-xs"></i>
-                                    </button>
-                                    <input id="calcDurationInput" type="number" min="1" max="30" value="3" class="w-full h-12 text-center bg-transparent font-mono text-base font-bold text-pine focus:outline-none">
-                                    <button type="button" onclick="adjustDuration(1)" aria-label="Tambah Hari" class="w-12 h-12 flex items-center justify-center text-pine hover:bg-line/50 transition font-bold">
-                                        <i class="fa-solid fa-plus text-xs"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="calcDateInput" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
-                                    4. Tanggal Mulai Pemakaian
-                                </label>
-                                <input id="calcDateInput" type="date" class="w-full h-12 bg-sand border border-line px-4 text-sm font-mono text-pine focus:outline-none focus:border-clay">
-                            </div>
-                        </div>
-
-                        <!-- 4. Destination Route & Pickup Point -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label for="calcRouteSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
-                                    5. Rute &amp; Zona Perjalanan
-                                </label>
-                                <select id="calcRouteSelect" onchange="updateCalculator()" class="w-full bg-sand border border-line px-3.5 py-3 text-sm font-medium text-pine focus:outline-none focus:border-clay">
-                                    <option value="jogja" data-surcharge="0">Yogyakarta, Sleman &amp; Magelang (+Rp 0)</option>
-                                    <option value="bali" data-surcharge="0">Bali: Kuta, Ubud, Kintamani (+Rp 0)</option>
-                                    <option value="bandung" data-surcharge="0">Bandung Raya: Lembang &amp; Ciwidey (+Rp 0)</option>
-                                    <option value="luar_kota" data-surcharge="150000">Lintas Provinsi / Luar Zona (+Rp 150rb/hari)</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="calcPickupSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
-                                    6. Titik Serah Terima Unit
-                                </label>
-                                <select id="calcPickupSelect" onchange="updateCalculator()" class="w-full bg-sand border border-line px-3.5 py-3 text-sm font-medium text-pine focus:outline-none focus:border-clay">
-                                    <option value="Bandara (YIA / Ngurah Rai / Husein)">Antar ke Bandara (Gratis)</option>
-                                    <option value="Stasiun Kereta (Tugu / Bandung)">Antar ke Stasiun Kereta (Gratis)</option>
-                                    <option value="Hotel / Villa Tempat Menginap">Antar ke Hotel / Villa (Gratis)</option>
-                                    <option value="Ambil Sendiri di Garasi Pool">Ambil di Garasi Pool JelajahNusa</option>
-                                </select>
-                            </div>
+                            <label for="calcPickupSelect" class="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
+                                6. Titik Serah Terima Unit
+                            </label>
+                            <select id="calcPickupSelect" onchange="updateCalculator()" class="w-full bg-sand border border-line px-3.5 py-3 text-sm font-medium text-pine focus:outline-none focus:border-clay">
+                                <option value="Bandara (YIA / Ngurah Rai / Husein)">Antar ke Bandara (Gratis)</option>
+                                <option value="Stasiun Kereta (Tugu / Bandung)">Antar ke Stasiun Kereta (Gratis)</option>
+                                <option value="Hotel / Villa Tempat Menginap">Antar ke Hotel / Villa (Gratis)</option>
+                                <option value="Ambil Sendiri di Garasi Pool">Ambil di Garasi Pool JelajahNusa</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column: Live Editorial Boarding Pass / Receipt Summary (5 Cols) -->
-                <div class="lg:col-span-5 bg-pine text-alabaster border border-pine-light p-6 sm:p-8 sticky top-28">
+                <div class="lg:col-span-5 bg-pine text-alabaster border border-pine-light p-6 sm:p-8 sticky top-28 shadow-xl">
                     <div class="flex items-center justify-between border-b border-alabaster/15 pb-4 mb-5">
                         <div>
-                            <span class="font-mono text-[11px] uppercase tracking-widest text-clay">RINGKASAN ESTIMASI SEWA</span>
+                            <span class="font-mono text-[11px] uppercase tracking-widest text-clay font-bold">RINGKASAN ESTIMASI SEWA</span>
                             <h3 id="summaryVehicleName" class="font-serif text-2xl text-alabaster mt-0.5">Toyota Kijang Innova Zenix</h3>
                         </div>
                         <span id="summaryCategoryBadge" class="font-mono text-[10px] uppercase tracking-wider bg-pine-light border border-alabaster/20 px-2.5 py-1">
@@ -522,14 +550,14 @@
                     <!-- Grand Total -->
                     <div class="flex items-baseline justify-between mb-6">
                         <div>
-                            <span class="block text-xs font-mono uppercase tracking-wider text-alabaster/70">Total Estimasi Biaya</span>
-                            <span class="text-[11px] text-alabaster/60">Termasuk pajak &amp; asuransi dasar</span>
+                            <span class="block text-xs font-mono uppercase tracking-wider text-alabaster/70 font-semibold">Total Estimasi Biaya</span>
+                            <span class="text-[11px] text-alabaster/60">Termasuk asuransi dasar &amp; bebas serah terima</span>
                         </div>
                         <span id="summaryTotal" class="font-mono text-2xl sm:text-3xl font-bold text-clay">Rp 1.755.000</span>
                     </div>
 
                     <!-- WhatsApp Booking Button -->
-                    <button type="button" onclick="bookFleetViaWA()" class="w-full bg-clay hover:bg-clay-hover text-white font-bold text-sm py-4 px-6 transition flex items-center justify-center gap-2.5">
+                    <button type="button" onclick="bookFleetViaWA()" class="w-full bg-clay hover:bg-clay-hover text-white font-bold text-sm py-4 px-6 transition flex items-center justify-center gap-2.5 shadow-lg">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Cek Ketersediaan &amp; Booking via WhatsApp</span>
                     </button>
@@ -573,127 +601,418 @@
     </section>
 
     <!-- SECTION 4: ULASAN TAMU & FOTO DOKUMENTASI PERJALANAN PELANGGAN -->
-    <section id="ulasan-tamu" class="py-16 lg:py-24 bg-sand border-b border-line">
+        <!-- 04. VIDEO ARMADA & STANDAR INSPEKSI GARASI -->
+    <section id="video-armada" class="py-16 lg:py-24 bg-pine-dark text-alabaster border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-line">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-alabaster/15 mb-8">
                 <div>
-                    <p class="font-mono text-xs uppercase tracking-widest text-clay font-semibold mb-2">04 / DOKUMENTASI TAMU &amp; ULASAN TERVERIFIKASI</p>
-                    <h2 class="font-serif text-3xl sm:text-4xl text-pine">Galeri Ulasan Pelanggan &amp; Foto Armada di Lapangan</h2>
+                    <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-clay font-semibold mb-2 bg-pine px-3 py-1 border border-clay/30">
+                        <span class="w-2 h-2 rounded-full bg-clay animate-pulse"></span>
+                        04 / DOKUMENTASI AKSI NYATA &amp; STANDAR KELAYAKAN ARMADA
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-alabaster mt-1">
+                        Uji Jalan Rute Wisata &amp; Standar Inspeksi Garasi
+                    </h2>
                 </div>
-                <p class="text-sm text-ink-muted max-w-md">
-                    Dokumentasi asli penyerahan unit lepas kunci, rombongan tur kantor, dan perjalanan keluarga bersama tim JelajahNusa di Yogyakarta, Bali, Bromo, dan Bandung.
+                <p class="text-sm text-alabaster/70 max-w-md leading-relaxed">
+                    Kenyamanan liburan Anda dimulai dari persiapan garasi kami. Saksikan ketelitian inspeksi 21 titik keselamatan mesin serta stabilitas armada di rute tanjakan pegunungan.
                 </p>
             </div>
 
-            <!-- 4 Photo Review Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                <!-- Review Card 1 -->
-                <article class="bg-alabaster border border-line flex flex-col justify-between">
-                    <div>
-                        <div class="relative aspect-[16/9] overflow-hidden border-b border-line">
-                            <img src="assets/images/fleet-zenix.jpg" alt="Foto Unit Innova Zenix Lepas Kunci Pelanggan" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
-                                DOKUMENTASI SERAH TERIMA UNIT &bull; STASIUN TUGU
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2.5 py-1">
-                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-line">
-                                <img src="assets/images/cust-2.jpg" alt="Rendra Prakoso" class="w-12 h-12 rounded-full object-cover border border-clay shrink-0">
-                                <div>
-                                    <h3 class="font-bold text-pine text-sm">Rendra Prakoso &amp; Keluarga</h3>
-                                    <p class="text-xs text-ink-muted">Jakarta Selatan &bull; <span class="text-clay font-semibold">Innova Zenix Hybrid (Lepas Kunci 4 Hari)</span></p>
-                                </div>
-                            </div>
-                            <p class="text-xs sm:text-sm text-ink leading-relaxed">
-                                "Unit diantar tepat waktu di pintu keluar Stasiun Tugu jam 06.30 pagi. Kondisi mobil benar-benar bersih wangi, kilometer masih 14 ribuan, dan bensin terisi penuh. Pengembalian deposit Rp 500 ribu langsung ditransfer saat serah terima kunci di Bandara YIA."
-                            </p>
-                        </div>
-                    </div>
-                </article>
+            <!-- Video Switcher Buttons -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button type="button" id="btnFleetRoadtrip" data-video="roadtrip"
+                    class="fleet-video-btn active px-5 py-3 border border-clay bg-clay/20 text-white font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-road text-clay"></i>
+                    <span>AKSI 1: Road Trip Wisata &amp; Uji Performa Jalur Berkelok</span>
+                </button>
+                <button type="button" id="btnFleetInspeksi" data-video="inspeksi"
+                    class="fleet-video-btn px-5 py-3 border border-alabaster/20 bg-pine text-alabaster/70 hover:text-white font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-wrench text-clay"></i>
+                    <span>AKSI 2: Standar Garasi &amp; Inspeksi 21 Titik Mesin</span>
+                </button>
+            </div>
 
-                <!-- Review Card 2 -->
-                <article class="bg-alabaster border border-line flex flex-col justify-between">
-                    <div>
-                        <div class="relative aspect-[16/9] overflow-hidden border-b border-line">
-                            <img src="assets/images/fleet-hiace.jpg" alt="Foto Dokumentasi Rombongan Hiace Premio di Jogja & Bali" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
-                                DOKUMENTASI ROMBONGAN HIACE PREMIO &bull; BALI
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2.5 py-1">
-                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-line">
-                                <img src="assets/images/cust-3.jpg" alt="Nadya Kusumawardhani" class="w-12 h-12 rounded-full object-cover border border-clay shrink-0">
-                                <div>
-                                    <h3 class="font-bold text-pine text-sm">Nadya Kusumawardhani (HRD PT Sinar Pangan)</h3>
-                                    <p class="text-xs text-ink-muted">Surabaya &bull; <span class="text-clay font-semibold">Charter 2 Unit Hiace Premio + Open Trip Bali</span></p>
-                                </div>
-                            </div>
-                            <p class="text-xs sm:text-sm text-ink leading-relaxed">
-                                "Mengurus outing 24 staf kantor ke Ubud dan Nusa Penida jadi sangat ringan. Sopir Pak Wayan dan Pak Gede sangat sopan, kabin Hiace Premio dingin dan bersih, serta dokumen e-Faktur pajak lengkap untuk laporan keuangan perusahaan kami."
-                            </p>
-                        </div>
+            <!-- Video Player Card Container -->
+            <div class="border border-alabaster/20 bg-pine overflow-hidden shadow-2xl">
+                <!-- Top Status Bar -->
+                <div class="bg-pine-dark px-6 py-3 border-b border-alabaster/15 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-clay/20 text-clay border border-clay/40 text-[11px] font-bold uppercase">
+                            <span class="w-1.5 h-1.5 rounded-full bg-clay animate-pulse"></span> INSPEKSI FISIK
+                        </span>
+                        <span class="text-alabaster font-semibold" id="fleetVideoTitleBadge">ROAD TEST JALUR PANTAI &amp; TANJAKAN BROMO</span>
                     </div>
-                </article>
+                    <div class="flex items-center gap-4 text-alabaster/70 text-[11px]">
+                        <span><i class="fa-solid fa-shield-halved text-clay mr-1"></i> Asuransi All-Risk</span>
+                        <span><i class="fa-solid fa-headset text-clay mr-1"></i> Roadside Support 24/7</span>
+                    </div>
+                </div>
 
-                <!-- Review Card 3 -->
-                <article class="bg-alabaster border border-line flex flex-col justify-between">
-                    <div>
-                        <div class="relative aspect-[16/9] overflow-hidden border-b border-line">
-                            <img src="assets/images/dest-bromo.jpg" alt="Foto Tamu Private Trip Sunrise Bromo 4x4" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
-                                DOKUMENTASI TAMU PRIVATE TRIP &bull; GUNUNG BROMO
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2.5 py-1">
-                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-line">
-                                <img src="assets/images/cust-4.jpg" alt="Dimas Anggara" class="w-12 h-12 rounded-full object-cover border border-clay shrink-0">
-                                <div>
-                                    <h3 class="font-bold text-pine text-sm">Dimas Anggara &amp; Partner</h3>
-                                    <p class="text-xs text-ink-muted">Bandung &bull; <span class="text-clay font-semibold">Paket Sunrise Bromo Midnight Jeep 4x4</span></p>
-                                </div>
-                            </div>
-                            <p class="text-xs sm:text-sm text-ink leading-relaxed">
-                                "Penjemputan jam 12 malam dari hotel Malang pakai Innova lanjut pindah ke Jeep Hardtop 4x4 di rest area Wonokitri tanpa antre. Driver Jeep sekaligus bantu foto-foto di Bukit Widodaren dan Pasir Berbisik dengan hasil dokumentasi luar biasa!"
-                            </p>
-                        </div>
-                    </div>
-                </article>
+                <!-- Video Element with Controls -->
+                <div class="relative aspect-video max-h-[500px] w-full bg-black overflow-hidden flex items-center justify-center">
+                    <video id="fleetVideoPlayer" autoplay loop muted playsinline class="w-full h-full object-cover">
+                        <source id="fleetVideoSource" src="assets/videos/video-roadtrip.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung pemutar video MP4.
+                    </video>
 
-                <!-- Review Card 4 -->
-                <article class="bg-alabaster border border-line flex flex-col justify-between">
-                    <div>
-                        <div class="relative aspect-[16/9] overflow-hidden border-b border-line">
-                            <img src="assets/images/dest-borobudur.jpg" alt="Foto Dokumentasi Tamu Paket Wisata Jogja Heritage" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
-                                DOKUMENTASI TAMU KELUARGA &bull; CANDI BOROBUDUR
-                            </span>
-                            <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2.5 py-1">
-                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
-                            </span>
+                    <!-- Overlay Controls (Play/Pause, Sound Toggle) -->
+                    <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
+                        <button type="button" id="fleetTogglePlayBtn" aria-label="Play atau Pause Video"
+                            class="w-10 h-10 rounded-full bg-pine-dark/80 hover:bg-clay text-white border border-alabaster/30 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-pause text-xs" id="fleetPlayIcon"></i>
+                        </button>
+                        <button type="button" id="fleetToggleMuteBtn" aria-label="Nyalakan atau Matikan Suara"
+                            class="w-10 h-10 rounded-full bg-pine-dark/80 hover:bg-clay text-white border border-alabaster/30 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-volume-xmark text-xs" id="fleetMuteIcon"></i>
+                        </button>
+                    </div>
+
+                    <!-- Watermark Tag -->
+                    <div class="absolute top-4 left-4 bg-pine-dark/85 backdrop-blur-sm px-3.5 py-1.5 border border-alabaster/20 text-[11px] font-mono text-clay font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-car"></i>
+                        <span>DOKUMENTASI ASLI JELAJAHNUSA TRANSPORT</span>
+                    </div>
+                </div>
+
+                <!-- Structured Method Breakdown Underneath Video -->
+                <div class="p-6 sm:p-8 bg-pine border-t border-alabaster/15">
+                    <div class="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="font-mono text-xs text-clay font-bold uppercase" id="fleetPhaseTag">SOP UJI JALAN // RUTE WISATA &amp; JALUR LUAR KOTA</span>
+                            <h3 class="font-serif text-xl sm:text-2xl text-alabaster mt-0.5" id="fleetHeadingTitle">3 Pilar Keamanan &amp; Kenyamanan Berkendara JelajahNusa</h3>
                         </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-line">
-                                <img src="assets/images/cust-1.jpg" alt="dr. Felicia Tan" class="w-12 h-12 rounded-full object-cover border border-clay shrink-0">
-                                <div>
-                                    <h3 class="font-bold text-pine text-sm">dr. Felicia Tan &amp; Orang Tua</h3>
-                                    <p class="text-xs text-ink-muted">Medan &bull; <span class="text-clay font-semibold">Sewa Toyota Alphard All-In + Borobudur Tour</span></p>
-                                </div>
+                        <span class="font-mono text-xs text-alabaster/60 bg-pine-dark px-3 py-1 border border-alabaster/15">Standar Garasi 2026</span>
+                    </div>
+
+                    <!-- Dynamic Steps Grid -->
+                    <div class="grid sm:grid-cols-3 gap-4" id="fleetStepsContainer">
+                        <!-- Step 1 -->
+                        <div class="bg-pine-dark p-5 border border-alabaster/15 relative group hover:border-clay/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-clay">01</span>
+                                <span class="font-mono text-[10px] bg-pine text-alabaster/80 px-2 py-0.5">PERFORMA</span>
                             </div>
-                            <p class="text-xs sm:text-sm text-ink leading-relaxed">
-                                "Membawa orang tua lansia keliling Borobudur dan Kaliurang sangat nyaman dengan unit Alphard dari JelajahNusa. Tiket naik struktur candi sudah diuruskan tim sejak jauh hari dan jadwal perjalanan fleksibel mengikuti ritme istirahat orang tua."
+                            <h4 class="font-bold text-alabaster text-sm mb-1.5">Uji Suspensi &amp; Pengereman ABS</h4>
+                            <p class="text-xs text-alabaster/70 leading-relaxed">
+                                Pengecekan ketebalan kampas rem, minyak rem, dan kestabilan shock absorber di jalur bergelombang serta tikungan tajam demi kenyamanan seluruh penumpang.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-pine-dark p-5 border border-alabaster/15 relative group hover:border-clay/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-clay">02</span>
+                                <span class="font-mono text-[10px] bg-clay/20 text-clay border border-clay/30 px-2 py-0.5">KENYAMANAN</span>
+                            </div>
+                            <h4 class="font-bold text-alabaster text-sm mb-1.5">Kabin Dingin &amp; Sanitasi Fogging</h4>
+                            <p class="text-xs text-alabaster/70 leading-relaxed">
+                                AC double blower diuji dengan termometer digital, filter kabin diganti berkala, dan interior disterilkan tanpa aroma rokok menyengat.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-pine-dark p-5 border border-alabaster/15 relative group hover:border-clay/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-clay">03</span>
+                                <span class="font-mono text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5">PROTEKSI</span>
+                            </div>
+                            <h4 class="font-bold text-alabaster text-sm mb-1.5">Emergency Assistance 24 Jam</h4>
+                            <p class="text-xs text-alabaster/70 leading-relaxed">
+                                Didukung jaringan mitra bengkel dan towing resmi di jalur wisata Jawa &amp; Bali. Jaminan pengiriman armada pengganti bila terjadi kendala teknis.
                             </p>
                         </div>
                     </div>
-                </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. ULASAN PELANGGAN & FOTO LAPANGAN (CAROUSEL SLIDER) -->
+    <section id="ulasan-tamu" class="py-16 lg:py-24 bg-sand border-b border-line">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header & Navigation Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-line mb-10">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-clay font-semibold block mb-1">
+                        05 / DOKUMENTASI TAMU &amp; ULASAN TERVERIFIKASI
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-pine">
+                        Pengalaman Nyata Menjelajah Nusantara
+                    </h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono text-ink-muted mr-2 hidden sm:inline">Geser ulasan:</span>
+                    <button type="button" id="fleetReviewPrevBtn" aria-label="Ulasan sebelumnya"
+                        class="w-10 h-10 border border-line bg-alabaster hover:bg-pine hover:text-alabaster text-pine flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                    </button>
+                    <button type="button" id="fleetReviewNextBtn" aria-label="Ulasan berikutnya"
+                        class="w-10 h-10 border border-line bg-alabaster hover:bg-pine hover:text-alabaster text-pine flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carousel Viewport -->
+            <div class="overflow-hidden" id="fleetReviewWrap">
+                <div class="flex gap-6 transition-transform duration-500 ease-out" id="fleetReviewTrack">
+                    
+                    <!-- Slide 1 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/fleet-zenix.jpg" alt="Foto Unit Innova Zenix Lepas Kunci Pelanggan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    SERAH TERIMA &bull; STASIUN TUGU
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-2.jpg" alt="Rendra Prakoso" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Rendra Prakoso</h3>
+                                        <p class="text-xs text-ink-muted">Jakarta Selatan &bull; <span class="text-clay font-semibold">Innova Zenix Lepas Kunci</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Unit diantar tepat waktu di pintu keluar Stasiun Tugu jam 06.30 pagi. Kondisi mobil bersih wangi, kilometer masih 14 ribuan, dan bensin penuh. Pengembalian deposit Rp 500 ribu ditransfer saat serah kunci di YIA."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-4819</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 2 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/trip-bali.jpg" alt="Foto Dokumentasi Rombongan Hiace Premio Bali" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    OUTING KANTOR &bull; UBUD BALI
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-3.jpg" alt="Nadya Kusumawardhani" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Nadya Kusumawardhani</h3>
+                                        <p class="text-xs text-ink-muted">Surabaya &bull; <span class="text-clay font-semibold">2x Hiace Premio All-In</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Mengurus gathering 24 staf kantor ke Ubud dan Nusa Penida jadi sangat ringan. Sopir Pak Wayan sangat sabar dan hafal jalan pintas. Kabin Hiace dingin, invoice dan faktur pajak perusahaan lengkap."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5022</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 3 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/trip-bromo.jpg" alt="Foto Tamu Private Trip Sunrise Bromo 4x4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    MIDNIGHT TRIP &bull; BROMO SUNRISE
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-4.jpg" alt="Dimas Anggara" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Dimas Anggara</h3>
+                                        <p class="text-xs text-ink-muted">Bandung &bull; <span class="text-clay font-semibold">Innova + Jeep Hardtop 4x4</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Penjemputan tepat jam 12 malam dari hotel Malang. Lanjut pindah ke Jeep Hardtop 4x4 di rest area Wonokitri tanpa antre tiket. Driver Jeep sangat lihai mengambil spot foto sunrise terbaik di Bukit Kingkong."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5108</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 4 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/trip-jogja.jpg" alt="Foto Tamu Paket Wisata Borobudur Heritage" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    HERITAGE TOUR &bull; CANDI BOROBUDUR
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-1.jpg" alt="dr. Felicia Tan" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">dr. Felicia Tan &amp; Keluarga</h3>
+                                        <p class="text-xs text-ink-muted">Medan &bull; <span class="text-clay font-semibold">Toyota Alphard All-In</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Membawa orang tua lansia keliling Borobudur dan Kaliurang sangat tenang dengan unit Alphard JelajahNusa. Captain seat nyaman, suspensi empuk, dan sopir Mas Anto menyetir dengan sangat halus."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5240</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 5 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/fleet-brio.jpg" alt="Foto Brio Lepas Kunci Bali" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    ISLAND HOPPING &bull; BALI SELATAN
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-5.jpg" alt="Aditya Wijaya" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Aditya Wijaya</h3>
+                                        <p class="text-xs text-ink-muted">Semarang &bull; <span class="text-clay font-semibold">Honda Brio Matic (3 Hari)</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Sewa Brio lepas kunci di Bandara Ngurah Rai. Petugas standby bawa papan nama saat kami mendarat. Mobil lincah banget buat masuk gang-gang Canggu dan Uluwatu. Irit bensin dan AC dingin menggigit."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5319</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 6 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/fleet-fortuner.jpg" alt="Foto Fortuner 4x4 Tour Dieng" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    EXPLORE DIENG &bull; WONOSOBO
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-6.jpg" alt="Bpk. Hendarto" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Bpk. Hendarto &amp; Kolega</h3>
+                                        <p class="text-xs text-ink-muted">Surabaya &bull; <span class="text-clay font-semibold">Fortuner GR Sport All-In</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Tanjakan ekstrem jalur Dieng lewat Bawang (Tol Kahyangan) dilibas enteng oleh Fortuner. Driver sangat berpengalaman membaca cuaca kabut tebal dan tau warung mie ongklok paling otentik."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5441</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 7 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/trip-bandung.jpg" alt="Foto Hiace Luxury Tour Lembang" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    FAMILY GATHERING &bull; LEMBANG
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-7.jpg" alt="Clarissa Monica" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">Clarissa Monica</h3>
+                                        <p class="text-xs text-ink-muted">Tangerang &bull; <span class="text-clay font-semibold">Toyota Hiace Commuter All-In</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Arisan keluarga 14 orang ke Orchid Forest dan Tangkuban Perahu Bandung. Mobil lega, ada port USB charge di tiap jok, dan driver Pak Dadang sangat ramah membantu kakek nenek saat naik turun mobil."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5590</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                    <!-- Slide 8 -->
+                    <article class="fleet-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 bg-alabaster border border-line flex flex-col justify-between overflow-hidden group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden border-b border-line">
+                                <img src="assets/images/dest-bandung.jpg" alt="Foto Innova Zenix All-In Jogja" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-pine-dark/90 text-alabaster font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                    BUSINESS TRIP &bull; YOGYAKARTA
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-clay text-white font-mono text-xs font-bold px-2 py-0.5">
+                                    <i class="fa-solid fa-star mr-1"></i>5.0
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3.5 pb-3 mb-3 border-b border-line">
+                                    <img src="assets/images/cust-8.jpg" alt="dr. Raymond Siregar" class="w-11 h-11 rounded-full object-cover border border-clay shrink-0">
+                                    <div>
+                                        <h3 class="font-bold text-pine text-sm">dr. Raymond Siregar</h3>
+                                        <p class="text-xs text-ink-muted">Jakarta Pusat &bull; <span class="text-clay font-semibold">Innova Zenix Hybrid All-In</span></p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-ink leading-relaxed">
+                                    "Kunjungan kerja seminar kedokteran di UGM dan lanjut wisata kuliner malam ke Jejamuran. Mobil senyap, driver tepat waktu standby di lobby hotel 15 menit sebelum jadwal. Sangat recommended untuk dinas profesional."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 bg-sand border-t border-line font-mono text-[11px] text-ink-muted flex justify-between items-center">
+                            <span>KONTRAK #JN-5678</span>
+                            <span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>TERVERIFIKASI</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Dots Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-8" id="fleetReviewDotsRow">
+                <!-- Dots populated by JS -->
             </div>
         </div>
     </section>
@@ -1607,6 +1926,267 @@
             document.getElementById("poolSpot3").textContent = data.spot3;
         }
 
+        
+        // --- FLEET PRESET BUTTONS FOR CALCULATOR ---
+        document.querySelectorAll('.fleet-preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const carId = btn.getAttribute('data-car');
+                const mode = btn.getAttribute('data-mode');
+                const days = parseInt(btn.getAttribute('data-days'), 10) || 1;
+                const route = btn.getAttribute('data-route');
+
+                // Set car
+                selectedCarId = carId;
+                const sel = document.getElementById('calcVehicleSelect');
+                if (sel) sel.value = carId;
+
+                // Set mode
+                setServiceMode(mode);
+
+                // Set duration
+                const durInput = document.getElementById('calcDurationInput');
+                if (durInput) durInput.value = days;
+
+                // Set route
+                const routeSel = document.getElementById('calcRouteSelect');
+                if (routeSel && route) routeSel.value = route;
+
+                updateCalculator();
+            });
+        });
+
+        // --- VIDEO FLEET SWITCHER & CONTROLS ---
+        const fleetVideoPlayer = document.getElementById('fleetVideoPlayer');
+        const fleetVideoSource = document.getElementById('fleetVideoSource');
+        const btnFleetRoadtrip = document.getElementById('btnFleetRoadtrip');
+        const btnFleetInspeksi = document.getElementById('btnFleetInspeksi');
+        const fleetTogglePlayBtn = document.getElementById('fleetTogglePlayBtn');
+        const fleetToggleMuteBtn = document.getElementById('fleetToggleMuteBtn');
+        const fleetPlayIcon = document.getElementById('fleetPlayIcon');
+        const fleetMuteIcon = document.getElementById('fleetMuteIcon');
+        const fleetVideoTitleBadge = document.getElementById('fleetVideoTitleBadge');
+        const fleetPhaseTag = document.getElementById('fleetPhaseTag');
+        const fleetHeadingTitle = document.getElementById('fleetHeadingTitle');
+        const fleetStepsContainer = document.getElementById('fleetStepsContainer');
+
+        const fleetVideoData = {
+            roadtrip: {
+                src: 'assets/videos/video-roadtrip.mp4',
+                titleBadge: 'ROAD TEST JALUR PANTAI & TANJAKAN BROMO',
+                phaseTag: 'SOP UJI JALAN // RUTE WISATA & JALUR LUAR KOTA',
+                heading: '3 Pilar Keamanan & Kenyamanan Berkendara JelajahNusa',
+                steps: [
+                    { no: '01', badge: 'PERFORMA', title: 'Uji Suspensi & Pengereman ABS', desc: 'Pengecekan ketebalan kampas rem, minyak rem, dan kestabilan shock absorber di jalur bergelombang serta tikungan tajam demi kenyamanan seluruh penumpang.' },
+                    { no: '02', badge: 'KENYAMANAN', title: 'Kabin Dingin & Sanitasi Fogging', desc: 'AC double blower diuji dengan termometer digital, filter kabin diganti berkala, dan interior disterilkan tanpa aroma rokok menyengat.' },
+                    { no: '03', badge: 'PROTEKSI', title: 'Emergency Assistance 24 Jam', desc: 'Didukung jaringan mitra bengkel dan towing resmi di jalur wisata Jawa & Bali. Jaminan pengiriman armada pengganti bila terjadi kendala teknis.' }
+                ]
+            },
+            inspeksi: {
+                src: 'assets/videos/video-inspeksi.mp4',
+                titleBadge: 'STANDAR GARASI & INSPEKSI 21 TITIK KELAYAKAN',
+                phaseTag: 'SOP GARASI // CEK FISIK & MEKANIKAL LENGKAP',
+                heading: '3 Tahapan Inspeksi Teliti Sebelum Unit Dilepas ke Pelanggan',
+                steps: [
+                    { no: '01', badge: 'MESIN & CAIRAN', title: 'Cek Oli Mesin, Radiator & Transmisi', desc: 'Pengecekan level dan viskositas oli, cairan pendingin radiator coolant, air wiper, serta tegangan aki dengan multimeter digital.' },
+                    { no: '02', badge: 'BAN & KAKI-KAKI', title: 'Kedalaman Alur Ban & Torsi Baut Roda', desc: 'Pemeriksaan alur tapak ban di atas standar 3mm, kalibrasi tekanan angin ban nitrogen, dan pengecekan ban cadangan + dongkrak.' },
+                    { no: '03', badge: 'BAST DIGITAL', title: 'Berita Acara & Cek Fisik Bersama', desc: 'Pencatatan goresan minor, foto keliling 360 derajat unit, serta penandatanganan e-form BAST digital transparan sebelum serah kunci.' }
+                ]
+            }
+        };
+
+        function switchFleetVideo(type) {
+            const data = fleetVideoData[type];
+            if (!data || !fleetVideoPlayer || !fleetVideoSource) return;
+
+            fleetVideoSource.src = data.src;
+            fleetVideoPlayer.load();
+            fleetVideoPlayer.play().catch(() => {});
+
+            if (fleetPlayIcon) fleetPlayIcon.className = 'fa-solid fa-pause text-xs';
+            if (fleetVideoTitleBadge) fleetVideoTitleBadge.textContent = data.titleBadge;
+            if (fleetPhaseTag) fleetPhaseTag.textContent = data.phaseTag;
+            if (fleetHeadingTitle) fleetHeadingTitle.textContent = data.heading;
+
+            if (type === 'roadtrip') {
+                btnFleetRoadtrip?.classList.add('active', 'border-clay', 'bg-clay/20', 'text-white');
+                btnFleetRoadtrip?.classList.remove('border-alabaster/20', 'bg-pine', 'text-alabaster/70');
+                btnFleetInspeksi?.classList.remove('active', 'border-clay', 'bg-clay/20', 'text-white');
+                btnFleetInspeksi?.classList.add('border-alabaster/20', 'bg-pine', 'text-alabaster/70');
+            } else {
+                btnFleetInspeksi?.classList.add('active', 'border-clay', 'bg-clay/20', 'text-white');
+                btnFleetInspeksi?.classList.remove('border-alabaster/20', 'bg-pine', 'text-alabaster/70');
+                btnFleetRoadtrip?.classList.remove('active', 'border-clay', 'bg-clay/20', 'text-white');
+                btnFleetRoadtrip?.classList.add('border-alabaster/20', 'bg-pine', 'text-alabaster/70');
+            }
+
+            if (fleetStepsContainer) {
+                fleetStepsContainer.innerHTML = data.steps.map(s => `
+                    <div class="bg-pine-dark p-5 border border-alabaster/15 relative group hover:border-clay/50 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-2xl font-bold text-clay">${s.no}</span>
+                            <span class="font-mono text-[10px] bg-pine text-alabaster/80 px-2 py-0.5">${s.badge}</span>
+                        </div>
+                        <h4 class="font-bold text-alabaster text-sm mb-1.5">${s.title}</h4>
+                        <p class="text-xs text-alabaster/70 leading-relaxed">${s.desc}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        btnFleetRoadtrip?.addEventListener('click', () => switchFleetVideo('roadtrip'));
+        btnFleetInspeksi?.addEventListener('click', () => switchFleetVideo('inspeksi'));
+
+        fleetTogglePlayBtn?.addEventListener('click', () => {
+            if (!fleetVideoPlayer) return;
+            if (fleetVideoPlayer.paused) {
+                fleetVideoPlayer.play();
+                if (fleetPlayIcon) fleetPlayIcon.className = 'fa-solid fa-pause text-xs';
+            } else {
+                fleetVideoPlayer.pause();
+                if (fleetPlayIcon) fleetPlayIcon.className = 'fa-solid fa-play text-xs';
+            }
+        });
+
+        fleetToggleMuteBtn?.addEventListener('click', () => {
+            if (!fleetVideoPlayer) return;
+            fleetVideoPlayer.muted = !fleetVideoPlayer.muted;
+            if (fleetMuteIcon) {
+                fleetMuteIcon.className = fleetVideoPlayer.muted ? 'fa-solid fa-volume-xmark text-xs' : 'fa-solid fa-volume-high text-xs';
+            }
+        });
+
+        // --- 8-CARD TRAVEL REVIEW CAROUSEL SLIDER ---
+        const fleetReviewTrack = document.getElementById('fleetReviewTrack');
+        const fleetReviewWrap = document.getElementById('fleetReviewWrap');
+        const fleetReviewPrevBtn = document.getElementById('fleetReviewPrevBtn');
+        const fleetReviewNextBtn = document.getElementById('fleetReviewNextBtn');
+        const fleetReviewDotsRow = document.getElementById('fleetReviewDotsRow');
+        const fleetReviewSlides = document.querySelectorAll('.fleet-review-slide');
+
+        let currentFleetSlide = 0;
+        let fleetReviewTimer = null;
+
+        function getFleetVisibleSlides() {
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        function getMaxFleetSlideIndex() {
+            const visible = getFleetVisibleSlides();
+            return Math.max(0, fleetReviewSlides.length - visible);
+        }
+
+        function updateFleetReviewSlider() {
+            if (!fleetReviewTrack || !fleetReviewSlides.length) return;
+            const maxIdx = getMaxFleetSlideIndex();
+            if (currentFleetSlide > maxIdx) currentFleetSlide = maxIdx;
+            if (currentFleetSlide < 0) currentFleetSlide = 0;
+
+            const firstSlide = fleetReviewSlides[0];
+            const slideWidth = firstSlide.offsetWidth;
+            const gap = 24; // gap-6 = 24px
+            const moveX = currentFleetSlide * (slideWidth + gap);
+
+            fleetReviewTrack.style.transform = `translateX(-${moveX}px)`;
+
+            // Update dots
+            const dots = fleetReviewDotsRow?.querySelectorAll('button');
+            dots?.forEach((d, idx) => {
+                if (idx === currentFleetSlide) {
+                    d.className = 'w-6 h-2 bg-clay transition-all';
+                } else {
+                    d.className = 'w-2 h-2 bg-line hover:bg-clay/50 transition-all';
+                }
+            });
+        }
+
+        function renderFleetReviewDots() {
+            if (!fleetReviewDotsRow) return;
+            const maxIdx = getMaxFleetSlideIndex();
+            fleetReviewDotsRow.innerHTML = '';
+            for (let i = 0; i <= maxIdx; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Menuju ulasan ${i + 1}`);
+                dot.className = i === currentFleetSlide ? 'w-6 h-2 bg-clay transition-all' : 'w-2 h-2 bg-line hover:bg-clay/50 transition-all';
+                dot.addEventListener('click', () => {
+                    currentFleetSlide = i;
+                    updateFleetReviewSlider();
+                    startFleetAutoplay();
+                });
+                fleetReviewDotsRow.appendChild(dot);
+            }
+        }
+
+        function nextFleetReview() {
+            const maxIdx = getMaxFleetSlideIndex();
+            if (currentFleetSlide >= maxIdx) {
+                currentFleetSlide = 0;
+            } else {
+                currentFleetSlide++;
+            }
+            updateFleetReviewSlider();
+        }
+
+        function prevFleetReview() {
+            const maxIdx = getMaxFleetSlideIndex();
+            if (currentFleetSlide <= 0) {
+                currentFleetSlide = maxIdx;
+            } else {
+                currentFleetSlide--;
+            }
+            updateFleetReviewSlider();
+        }
+
+        function startFleetAutoplay() {
+            stopFleetAutoplay();
+            fleetReviewTimer = setInterval(nextFleetReview, 5000);
+        }
+
+        function stopFleetAutoplay() {
+            if (fleetReviewTimer) {
+                clearInterval(fleetReviewTimer);
+                fleetReviewTimer = null;
+            }
+        }
+
+        fleetReviewPrevBtn?.addEventListener('click', () => {
+            prevFleetReview();
+            startFleetAutoplay();
+        });
+
+        fleetReviewNextBtn?.addEventListener('click', () => {
+            nextFleetReview();
+            startFleetAutoplay();
+        });
+
+        fleetReviewWrap?.addEventListener('mouseenter', stopFleetAutoplay);
+        fleetReviewWrap?.addEventListener('mouseleave', startFleetAutoplay);
+
+        // Touch Swipe
+        let fleetTouchStartX = 0;
+        let fleetTouchEndX = 0;
+        fleetReviewWrap?.addEventListener('touchstart', (e) => {
+            stopFleetAutoplay();
+            fleetTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        fleetReviewWrap?.addEventListener('touchend', (e) => {
+            fleetTouchEndX = e.changedTouches[0].screenX;
+            if (fleetTouchEndX < fleetTouchStartX - 40) {
+                nextFleetReview();
+            } else if (fleetTouchEndX > fleetTouchStartX + 40) {
+                prevFleetReview();
+            }
+            startFleetAutoplay();
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            renderFleetReviewDots();
+            updateFleetReviewSlider();
+        });
+
         // Initialize Page
         document.addEventListener("DOMContentLoaded", () => {
             // Set default date to tomorrow
@@ -1632,6 +2212,9 @@
             renderFleetGrid();
             updateCalculator();
             renderTours();
+            renderFleetReviewDots();
+            updateFleetReviewSlider();
+            startFleetAutoplay();
         });
 
         function toggleMobileDrawer() {
