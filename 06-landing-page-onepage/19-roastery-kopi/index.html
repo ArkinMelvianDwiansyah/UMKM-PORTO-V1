@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sangrai &amp; Seduh — Artisan Coffee Roastery Jakarta | Biji Kopi Single Origin Indonesia</title>
+  <meta name="description" content="Roastery kopi artisanal di Panglima Polim Jakarta Selatan. Menyediakan biji kopi single origin pilihan dari Aceh Gayo hingga Flores Bajawa, profil sangrai presisi, paket langganan kopi segar, dan kelas cupping.">
+  <meta name="keywords" content="roastery kopi jakarta, single origin gayo, artisan coffee roaster, biji kopi arabika, cold brew jakarta, kelas cupping kopi, paket langganan kopi">
+  <meta name="author" content="Sangrai &amp; Seduh">
+
+  <!-- Open Graph / Meta Sosial -->
+  <meta property="og:title" content="Sangrai &amp; Seduh — Artisan Coffee Roastery Jakarta">
+  <meta property="og:description" content="Kurasi biji kopi pilihan nusantara dengan profil sangrai presisi untuk penyeduh rumahan dan cafe specialty.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-coffee.jpg">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data Schema.org (LocalBusiness / CoffeeRoastery) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CoffeeShop",
+    "name": "Sangrai & Seduh Artisan Roastery",
+    "image": "assets/images/hero-coffee.jpg",
+    "description": "Roastery kopi artisanal dan manual brew slow bar di Jakarta Selatan.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Panglima Polim V No. 28, Melawai",
+      "addressLocality": "Jakarta Selatan",
+      "addressRegion": "DKI Jakarta",
+      "postalCode": "12160",
+      "addressCountry": "ID"
+    },
+    "telephone": "+6281291901926",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "07:00",
+        "closes": "22:00"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 1. TOP DEMO NOTICE BAR (Wajib Katalog) -->
+  <div class="demo-banner" role="banner" aria-label="Pemberitahuan Demo">
+    <div class="container demo-banner-content">
+      <div class="demo-banner-text">
+        <span class="demo-tag">Demo Portofolio</span>
+        <span>Contoh Tampilan / Landing Page Portofolio JalaninWeb (Data &amp; Entitas Fiktif)</span>
+      </div>
+      <a href="../../index.html" class="demo-back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        Kembali ke Katalog
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. NAVBAR STICKY (Scroll-Spy + Drawer Mobile) -->
+  <header class="navbar-sticky" id="navbar">
+    <div class="container nav-wrapper">
+      <a href="#beranda" class="nav-brand" aria-label="Sangrai &amp; Seduh Beranda">
+        <img src="assets/logo.svg" alt="Logo Sangrai &amp; Seduh Artisan Roastery" width="220" height="44">
+      </a>
+
+      <nav class="nav-desktop" aria-label="Navigasi Utama">
+        <ul class="nav-menu">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="#origin" class="nav-link">Single Origin</a></li>
+          <li><a href="#menu-seduh" class="nav-link">Slow Bar</a></li>
+          <li><a href="#langganan" class="nav-link">Langganan</a></li>
+          <li><a href="#workshop" class="nav-link">Workshop</a></li>
+          <li><a href="#galeri" class="nav-link">Galeri</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <a href="#origin" class="nav-cta-btn">
+        Pesan Biji Kopi
+      </a>
+
+      <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu Mobile" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <img src="assets/logo.svg" alt="Sangrai &amp; Seduh" width="160" height="34">
+        <button type="button" class="drawer-close-btn" id="closeDrawerBtn" aria-label="Tutup Menu">&times;</button>
+      </div>
+      <ul class="drawer-menu">
+        <li><a href="#beranda" class="drawer-link">Beranda</a></li>
+        <li><a href="#keunggulan" class="drawer-link">Keunggulan</a></li>
+        <li><a href="#tentang" class="drawer-link">Tentang Roastery</a></li>
+        <li><a href="#layanan" class="drawer-link">Layanan</a></li>
+        <li><a href="#origin" class="drawer-link">Single Origin</a></li>
+        <li><a href="#menu-seduh" class="drawer-link">Menu Slow Bar</a></li>
+        <li><a href="#langganan" class="drawer-link">Paket Langganan</a></li>
+        <li><a href="#workshop" class="drawer-link">Kelas Cupping</a></li>
+        <li><a href="#galeri" class="drawer-link">Galeri &amp; Studio</a></li>
+        <li><a href="#proses" class="drawer-link">Proses Sangrai</a></li>
+        <li><a href="#testimoni" class="drawer-link">Ulasan Klien</a></li>
+        <li><a href="#faq" class="drawer-link">FAQ</a></li>
+        <li><a href="#kontak" class="drawer-link">Kontak &amp; Alamat</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="#origin" class="btn-primary" style="width: 100%; text-align: center;">Katalog Single Origin</a>
+      <div style="font-size: 0.8125rem; color: var(--text-muted); text-align: center;">
+        <span class="data-phone">0812-9190-1926</span><br>
+        Panglima Polim, Jakarta Selatan
+      </div>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- 3. #beranda — HERO SECTION -->
+    <section class="hero-section" id="beranda" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-subhead-pill">
+            <span class="pulse-dot"></span>
+            Micro-Batch Specialty Roaster &bull; Jakarta
+          </div>
+          <h1 class="hero-title" id="hero-heading">
+            Kurasi Biji Kopi Indonesia, Disangrai dengan Presisi &amp; Rasa.
+          </h1>
+          <p class="hero-lead">
+            Kami meroasting biji kopi specialty dalam batch kecil 3–5 kg per sangraian untuk menjaga kesegaran, kejelasan karakter terroir tanah vulkanik nusantara, dan kejujuran rasa di setiap cangkir.
+          </p>
+          <div class="hero-actions">
+            <a href="#origin" class="btn-primary">
+              Jelajahi Single Origin
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#langganan" class="btn-secondary">
+              Paket Langganan
+            </a>
+          </div>
+          <div class="hero-meta-strip">
+            <div class="meta-item">
+              <span class="meta-label">Roast Date</span>
+              <span class="meta-val">Maks. 7 Hari Lalu</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Origin Pilihan</span>
+              <span class="meta-val">6 Daerah Penghasil</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Metode Bar</span>
+              <span class="meta-val">Filter &amp; Manual Brew</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-frame">
+            <img src="assets/images/hero-coffee.jpg" alt="Secangkir kopi filter artisanal dan biji kopi sangrai Sangrai &amp; Seduh" class="img-monochrome" width="600" height="480">
+            <div class="hero-badge-overlay">
+              <div class="badge-title">Slow Bar Experience</div>
+              <div class="badge-sub">Panglima Polim V No. 28, Melawai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. #keunggulan — STRIP KEUNGGULAN (3-4 item, tanpa angka palsu) -->
+    <section class="keunggulan-section" id="keunggulan" aria-label="Keunggulan Sangrai &amp; Seduh">
+      <div class="container">
+        <div class="keunggulan-grid">
+          <div class="keunggulan-card">
+            <div class="keunggulan-num">01 / MICRO-BATCH</div>
+            <h3 class="keunggulan-title">Batch Sangrai Kecil</h3>
+            <p class="keunggulan-desc">Disangrai maksimal 5 kg per putaran mesin agar kurva suhu dan airflow terkontrol presisi hingga titik first crack.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-num">02 / DIRECT FAIR TRADE</div>
+            <h3 class="keunggulan-title">Hubungan Petani Langsung</h3>
+            <p class="keunggulan-desc">Green beans dibeli langsung dari kelompok tani binaan di Aceh, Toraja, Bali, dan Flores dengan harga berkeadilan di atas harga pasar.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-num">03 / DEGASSING FRESH</div>
+            <h3 class="keunggulan-title">Kesegaran Terjamin</h3>
+            <p class="keunggulan-desc">Seluruh kemasan kami kirimkan dalam rentang resting optimal 4–14 hari setelah tanggal sangrai, lengkap dengan katup aroma one-way valve.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-num">04 / CUPPING AUDIT</div>
+            <h3 class="keunggulan-title">Audit Sensorik Ketat</h3>
+            <p class="keunggulan-desc">Setiap batch melewati protokol cupping standar SCA untuk memvalidasi aroma, sweetness, keasaman, dan konsistensi rasa sebelum dikemas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. #tentang — CERITA BRAND SINGKAT -->
+    <section class="tentang-section" id="tentang" aria-labelledby="tentang-heading">
+      <div class="container tentang-grid">
+        <div class="tentang-visual">
+          <img src="assets/images/roaster-machine.jpg" alt="Mesin sangrai drum kopi artisanal Sangrai &amp; Seduh" class="img-monochrome" width="560" height="480">
+          <div class="tentang-stamp">
+            <span>Kurasi</span>
+            <span>Terbaik</span>
+            <span>&bull;</span>
+          </div>
+        </div>
+
+        <div class="tentang-content">
+          <div class="section-label">Tentang Kami</div>
+          <h2 class="section-title" id="tentang-heading">Menghormati Perjalanan Dari Kebun Hingga Cangkir.</h2>
+          <blockquote class="lead-quote">
+            "Kopi yang jujur tidak membutuhkan gula untuk disukai, hanya butuh penghormatan pada tanah asalnya dan ketelitian saat memanaskannya."
+          </blockquote>
+          <p>
+            Sangrai &amp; Seduh didirikan oleh dua kurator kopi mandiri di kawasan Melawai, Jakarta Selatan. Berangkat dari kecintaan pada ragam cita rasa biji kopi nusantara yang kaya mikroklimat, kami memilih pendekatan sangrai artisanal yang tidak terburu-buru.
+          </p>
+          <p>
+            Bagi kami, setiap varietal—dari Typica dataran tinggi Toraja hingga Bourbon fermentasi anaerobik di lereng Gunung Ijen—memiliki titik manisnya sendiri. Kami menggunakan mesin drum cast-iron custom dengan pemantauan probe termal digital untuk memastikan profil panggang medium-light yang menonjolkan keasaman buah segar dan kompleksitas floral alami.
+          </p>
+
+          <div class="tentang-specs-grid">
+            <div class="spec-box">
+              <div class="spec-title">Tipe Mesin Roaster</div>
+              <div class="spec-val">Drum Cast-Iron Double Wall 5kg</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-title">Rentang Profil Panggang</div>
+              <div class="spec-val">Light-to-Medium Specialty Roast</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-title">Sertifikasi Praktisi</div>
+              <div class="spec-val">Q-Grader &amp; Roasting Foundation</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-title">Standar Kemasan</div>
+              <div class="spec-val">Alufoil Zipper + Degassing Valve</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. #layanan — LAYANAN / PRODUK UTAMA -->
+    <section class="layanan-section" id="layanan" aria-labelledby="layanan-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Pilar Layanan</span>
+          <h2 class="section-title" id="layanan-heading">Solusi Kopi untuk Rumah, Cafe, dan Komunitas.</h2>
+          <p class="section-desc">Dari kebutuhan seduh harian di dapur Anda hingga pasokan stabil untuk coffee shop komersial.</p>
+        </div>
+
+        <div class="layanan-grid">
+          <!-- Kartu Layanan 1 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <div class="layanan-card-icon">01</div>
+              <h3 class="layanan-card-title">Retail Whole Bean &amp; Bubuk Segar</h3>
+              <p class="layanan-card-desc">Biji kopi pilihan ukuran 200g, 500g, dan 1kg. Bisa digiling sesuai alat seduh Anda (Tubruk, Espresso, French Press, atau V60) tepat sebelum dikirim.</p>
+              <ul class="layanan-card-perks">
+                <li>Biji utuh atau gilingan presisi gratis</li>
+                <li>Roast date tertulis transparan di kantong</li>
+                <li>Panduan rasio seduh bawaan kemasan</li>
+              </ul>
+            </div>
+            <div class="layanan-card-footer">
+              <a href="#origin" class="layanan-link">Lihat Katalog Biji &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Kartu Layanan 2 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <div class="layanan-card-icon">02</div>
+              <h3 class="layanan-card-title">B2B Roasting &amp; House Blend Cafe</h3>
+              <p class="layanan-card-desc">Layanan sangrai rutin khusus pemilik kedai kopi, restoran, dan kantor. Kami membantu merancang signature blend yang konsisten dengan harga grosir kompetitif.</p>
+              <ul class="layanan-card-perks">
+                <li>Pengembangan rasa sesuai profil mesin cafe</li>
+                <li>Minimum order bersahabat mulai 5 kg</li>
+                <li>Jadwal pasokan mingguan terjaga</li>
+              </ul>
+            </div>
+            <div class="layanan-card-footer">
+              <a href="#kontak" class="layanan-link">Konsultasi Blend Cafe &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Kartu Layanan 3 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <div class="layanan-card-icon">03</div>
+              <h3 class="layanan-card-title">Slow Bar &amp; Kelas Cupping</h3>
+              <p class="layanan-card-desc">Nikmati pengalaman manual brew santai di bar Panglima Polim kami, atau ikuti sesi bedah rasa sensori kopi untuk mengasah kepekaan lidah Anda.</p>
+              <ul class="layanan-card-perks">
+                <li>Seduhan pour-over dari roaster langsung</li>
+                <li>Sesi cupping publik setiap akhir pekan</li>
+                <li>Edukasi varietal dan teknik ekstraksi</li>
+              </ul>
+            </div>
+            <div class="layanan-card-footer">
+              <a href="#workshop" class="layanan-link">Jadwal Sesi Cupping &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECTION KHAS INDUSTRI 1: #origin (Koleksi 6 Single Origin Indonesia) -->
+    <section class="origin-section" id="origin" aria-labelledby="origin-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Kurasi Nusantara</span>
+          <h2 class="section-title" id="origin-heading">Koleksi Biji Kopi Single Origin Terpilih.</h2>
+          <p class="section-desc">Ditanam di ketinggian di atas 1.200 mdpl, dipetik merah sempurna, dan disangrai untuk menonjolkan identitas rasa khas daerahnya.</p>
+        </div>
+
+        <div class="origin-grid">
+          <!-- Origin 1 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-gayo.jpg" alt="Biji kopi Aceh Gayo Bener Meriah" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Sumatera</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Washed Process</span>
+                <span>Medium Light</span>
+              </div>
+              <h3 class="origin-name">Aceh Gayo Bener Meriah</h3>
+              <p class="origin-notes">"Black tea, peach, hint of bergamot, clean sweet finish."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.450 &ndash; 1.600 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Timtim &amp; Ateng Super</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 95.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Origin 2 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-mandheling.jpg" alt="Biji kopi Mandheling Wet Hulled" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Sumatera Utara</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Wet Hulled (Giling Basah)</span>
+                <span>Medium Roast</span>
+              </div>
+              <h3 class="origin-name">Mandheling Lintongnihuta</h3>
+              <p class="origin-notes">"Dark chocolate, cedar wood, syrupy body, earthy sweetness."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.300 &ndash; 1.500 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Lasuna &amp; Garunggang</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 90.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Origin 3 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-toraja.jpg" alt="Biji kopi Toraja Sapan" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Sulawesi</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Full Washed</span>
+                <span>Light to Medium</span>
+              </div>
+              <h3 class="origin-name">Toraja Sapan Minanga</h3>
+              <p class="origin-notes">"Herbal spices, brown sugar, green apple acidity, silky body."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.700 &ndash; 2.100 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Typica &amp; S-795</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 105.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Origin 4 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-kintamani.jpg" alt="Biji kopi Bali Kintamani Natural" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Bali</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Natural Anaerobic</span>
+                <span>Light Roast</span>
+              </div>
+              <h3 class="origin-name">Bali Kintamani Ulian</h3>
+              <p class="origin-notes">"Mandarin orange, floral jasmine, dried raisins, honey sweetness."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.250 &ndash; 1.400 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Bourbon &amp; Kopyol</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 110.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Origin 5 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-ijen.jpg" alt="Biji kopi Jawa Ijen Honey" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Jawa Timur</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Yellow Honey Process</span>
+                <span>Medium Light</span>
+              </div>
+              <h3 class="origin-name">Jawa Ijen Raung</h3>
+              <p class="origin-notes">"Red apple, cane sugar, nutty almond, round balanced mouthfeel."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.300 &ndash; 1.600 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Kartika &amp; USDA 762</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 85.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Origin 6 -->
+          <article class="origin-card">
+            <div class="origin-img-wrap">
+              <img src="assets/images/origin-bajawa.jpg" alt="Biji kopi Flores Bajawa" class="img-monochrome" loading="lazy" width="400" height="220">
+              <span class="origin-badge">Nusa Tenggara Timur</span>
+            </div>
+            <div class="origin-body">
+              <div class="origin-meta-top">
+                <span>Washed Process</span>
+                <span>Medium Roast</span>
+              </div>
+              <h3 class="origin-name">Flores Bajawa Ngada</h3>
+              <p class="origin-notes">"Caramel, sweet tobacco, mild citrus lemon, velvety aftertaste."</p>
+              <div class="origin-specs-list">
+                <div class="origin-spec-item">Ketinggian<strong>1.400 &ndash; 1.550 mdpl</strong></div>
+                <div class="origin-spec-item">Varietal<strong>Yellow Caturra &amp; Typica</strong></div>
+              </div>
+              <div class="origin-footer">
+                <div class="origin-price">Rp 90.000 <small>/ 200g</small></div>
+                <a href="#kontak" class="origin-btn-order">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SECTION KHAS INDUSTRI 2: #menu-seduh (Menu Seduh Manual Brew di Bar) -->
+    <section class="menu-seduh-section" id="menu-seduh" aria-labelledby="menu-seduh-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Slow Bar Experience</span>
+          <h2 class="section-title" id="menu-seduh-heading">Metode Ekstraksi Manual Brew di Bar.</h2>
+          <p class="section-desc">Pilih metode favorit Anda saat berkunjung ke bar Panglima Polim kami. Barista kami menyeduh per cangkir secara langsung.</p>
+        </div>
+
+        <div class="tabs-nav" role="tablist">
+          <button type="button" class="tab-btn active" data-tab="tab-v60" role="tab" aria-selected="true" aria-controls="tab-v60">Hario V60</button>
+          <button type="button" class="tab-btn" data-tab="tab-aeropress" role="tab" aria-selected="false" aria-controls="tab-aeropress">Aeropress</button>
+          <button type="button" class="tab-btn" data-tab="tab-kalita" role="tab" aria-selected="false" aria-controls="tab-kalita">Kalita Wave</button>
+          <button type="button" class="tab-btn" data-tab="tab-japanese" role="tab" aria-selected="false" aria-controls="tab-japanese">Japanese Iced Drip</button>
+        </div>
+
+        <!-- Tab 1: V60 -->
+        <div class="tab-pane active" id="tab-v60" role="tabpanel">
+          <div class="brew-detail-card">
+            <div class="brew-info">
+              <h3>Hario V60 Cone Pour-Over</h3>
+              <p>Metode tuang tetes kerucut dengan kertas filter Jepang. Menghasilkan secangkir kopi berkarakter super clean, kejelasan notes bunga dan buah yang tegas, serta aftertaste yang menyegarkan tanpa residu ampas.</p>
+              <div class="brew-metrics">
+                <div class="brew-metric-item">
+                  <span>Rasio Seduh</span>
+                  <strong>1 : 15</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Waktu Seduh</span>
+                  <strong>2m 45s</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Karakter</span>
+                  <strong>Clean &amp; Bright</strong>
+                </div>
+              </div>
+              <div class="brew-price-box">
+                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
+                <span class="price-tag">Rp 38.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+              </div>
+            </div>
+            <div class="brew-visual">
+              <img src="assets/images/barista-brewing.jpg" alt="Barista menyeduh kopi dengan V60 di Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Aeropress -->
+        <div class="tab-pane" id="tab-aeropress" role="tabpanel">
+          <div class="brew-detail-card">
+            <div class="brew-info">
+              <h3>Aeropress Inverted Method</h3>
+              <p>Metode ekstraksi tekanan udara manual dengan teknik inverted. Menghasilkan ekstraksi yang kaya, ketebalan body lebih bulat, dan rasa manis alami yang terpancar kuat tanpa keasaman menusuk.</p>
+              <div class="brew-metrics">
+                <div class="brew-metric-item">
+                  <span>Rasio Seduh</span>
+                  <strong>1 : 14</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Waktu Seduh</span>
+                  <strong>1m 50s</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Karakter</span>
+                  <strong>Sweet &amp; Round</strong>
+                </div>
+              </div>
+              <div class="brew-price-box">
+                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
+                <span class="price-tag">Rp 40.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+              </div>
+            </div>
+            <div class="brew-visual">
+              <img src="assets/images/packaging-bag.jpg" alt="Ekstraksi Aeropress di bar Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Kalita Wave -->
+        <div class="tab-pane" id="tab-kalita" role="tabpanel">
+          <div class="brew-detail-card">
+            <div class="brew-info">
+              <h3>Kalita Wave Flat-Bottom</h3>
+              <p>Dripper dengan dasar datar dan tiga lubang ekstraksi. Aliran air merata menghasilkan ekstraksi yang sangat stabil dan seimbang antara tingkat keasaman, rasa manis karamel, dan body yang lembut.</p>
+              <div class="brew-metrics">
+                <div class="brew-metric-item">
+                  <span>Rasio Seduh</span>
+                  <strong>1 : 16</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Waktu Seduh</span>
+                  <strong>3m 15s</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Karakter</span>
+                  <strong>Balanced &amp; Mild</strong>
+                </div>
+              </div>
+              <div class="brew-price-box">
+                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
+                <span class="price-tag">Rp 38.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+              </div>
+            </div>
+            <div class="brew-visual">
+              <img src="assets/images/barista-brewing.jpg" alt="Seduhan Kalita Wave di bar Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Japanese Iced Drip -->
+        <div class="tab-pane" id="tab-japanese" role="tabpanel">
+          <div class="brew-detail-card">
+            <div class="brew-info">
+              <h3>Japanese Style Iced Filter</h3>
+              <p>Kopi pour-over panas yang langsung menetes di atas bongkahan es batu bening (flash chill). Menangkap dan mengunci molekul aroma buah sebelum teroksidasi, menghasilkan seduhan dingin yang segar seketika.</p>
+              <div class="brew-metrics">
+                <div class="brew-metric-item">
+                  <span>Rasio Seduh</span>
+                  <strong>1 : 13 (Kopi : Es)</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Waktu Seduh</span>
+                  <strong>2m 30s</strong>
+                </div>
+                <div class="brew-metric-item">
+                  <span>Karakter</span>
+                  <strong>Crisp &amp; Refreshing</strong>
+                </div>
+              </div>
+              <div class="brew-price-box">
+                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
+                <span class="price-tag">Rp 42.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+              </div>
+            </div>
+            <div class="brew-visual">
+              <img src="assets/images/hero-coffee.jpg" alt="Japanese Iced Drip Coffee dingin segar" class="img-monochrome" loading="lazy" width="450" height="320">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SECTION KHAS INDUSTRI 3: #langganan (Paket Langganan Kopi Berkala) -->
+    <section class="langganan-section" id="langganan" aria-labelledby="langganan-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Kopi Segar Rutin</span>
+          <h2 class="section-title" id="langganan-heading">Paket Langganan Kopi Berkala.</h2>
+          <p class="section-desc">Nikmati biji kopi yang selalu baru disangrai terkirim otomatis ke pintu rumah atau kantor Anda setiap bulan tanpa repot pesan berulang.</p>
+        </div>
+
+        <div class="langganan-grid">
+          <!-- Tier 1 -->
+          <article class="langganan-card">
+            <div>
+              <div class="langganan-header">
+                <span class="tier-sub">Untuk Penikmat Santai</span>
+                <h3 class="langganan-tier">Penjelajah Rasa</h3>
+                <p class="langganan-desc">Cocok untuk penikmat yang menyeduh 1–2 cangkir kopi filter di pagi hari.</p>
+              </div>
+              <div class="langganan-price-box">
+                <div class="langganan-price">Rp 145.000</div>
+                <span class="langganan-period">per bulan &bull; 1x pengiriman (300g)</span>
+              </div>
+              <ul class="langganan-perks">
+                <li>1 bag kopi 300g single origin kurasi roaster</li>
+                <li>Pilihan gilingan atau biji utuh</li>
+                <li>Kartu catatan cupping dan panduan seduh</li>
+                <li>Bebas ubah origin setiap pengiriman</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-tier">Langganan Paket Ini</a>
+          </article>
+
+          <!-- Tier 2 (Featured) -->
+          <article class="langganan-card featured">
+            <span class="featured-pill">Paling Diminati</span>
+            <div>
+              <div class="langganan-header">
+                <span class="tier-sub">Untuk Home Brewer Aktif</span>
+                <h3 class="langganan-tier">Barista Rumah</h3>
+                <p class="langganan-desc">Pilihan terbaik untuk eksplorasi 2 varian rasa berbeda sepanjang bulan.</p>
+              </div>
+              <div class="langganan-price-box">
+                <div class="langganan-price">Rp 275.000</div>
+                <span class="langganan-period">per bulan &bull; 2x bag 250g (total 500g)</span>
+              </div>
+              <ul class="langganan-perks">
+                <li>2 kantong 250g (2 single origin berbeda)</li>
+                <li>Prioritas pengiriman batch sangrai terpanas</li>
+                <li>Akses diskon 15% untuk merchandise &amp; alat seduh</li>
+                <li>Undangan gratis sesi cupping publik bulanan</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-tier">Langganan Barista Rumah</a>
+          </article>
+
+          <!-- Tier 3 -->
+          <article class="langganan-card">
+            <div>
+              <div class="langganan-header">
+                <span class="tier-sub">Studio, Kantor &amp; Keluarga</span>
+                <h3 class="langganan-tier">Studio &amp; Kantor</h3>
+                <p class="langganan-desc">Pasokan kopi fresh berkualitas tinggi untuk menyegarkan produktivitas tim kreatif.</p>
+              </div>
+              <div class="langganan-price-box">
+                <div class="langganan-price">Rp 520.000</div>
+                <span class="langganan-period">per bulan &bull; 2x pengiriman @ 500g (1 kg)</span>
+              </div>
+              <ul class="langganan-perks">
+                <li>Total 1 kg kopi per bulan (dibagi 2x kirim fresh)</li>
+                <li>Pilihan profil espresso atau filter</li>
+                <li>Dukungan setting grinder &amp; resep gratis</li>
+                <li>Pengiriman bebas biaya untuk area Jabodetabek</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-tier">Langganan Studio &amp; Kantor</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SECTION KHAS INDUSTRI 4: #workshop (Kelas Edukasi & Cupping) -->
+    <section class="workshop-section" id="workshop" aria-labelledby="workshop-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Edukasi &amp; Komunitas</span>
+          <h2 class="section-title" id="workshop-heading">Workshop Seduh Rumahan &amp; Sensori Cupping.</h2>
+          <p class="section-desc">Tingkatkan pemahaman Anda tentang anatomi rasa kopi bersama roaster kami di studio Panglima Polim.</p>
+        </div>
+
+        <div class="workshop-grid">
+          <!-- Class 1 -->
+          <article class="workshop-card">
+            <div>
+              <span class="workshop-badge">Kelas Pemula &amp; Home Brewer</span>
+              <h3 class="workshop-title">Fundamental Manual Brew V60</h3>
+              <p class="workshop-desc">Pelajari variabel seduh kunci: ukuran gilingan (grind size), rasio kopi dan air, suhu air, agitasi tuangan, dan cara mendeteksi under/over-extraction di rumah.</p>
+              <div class="workshop-details">
+                <div class="workshop-detail-item">
+                  <span>Durasi</span>
+                  <strong>2,5 Jam</strong>
+                </div>
+                <div class="workshop-detail-item">
+                  <span>Kapasitas</span>
+                  <strong>Maks. 6 Orang</strong>
+                </div>
+                <div class="workshop-detail-item">
+                  <span>Termasuk</span>
+                  <strong>Beans 200g + Modul</strong>
+                </div>
+              </div>
+            </div>
+            <div class="workshop-footer">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Investasi Belajar</span>
+                <strong style="font-family: var(--font-serif); font-size: 1.25rem;">Rp 350.000 <small style="font-size: 0.75rem; font-weight: normal;">/ pax</small></strong>
+              </div>
+              <a href="#kontak" class="btn-primary" style="padding: 10px 18px; font-size: 0.75rem;">Daftar Sesi</a>
+            </div>
+          </article>
+
+          <!-- Class 2 -->
+          <article class="workshop-card">
+            <div>
+              <span class="workshop-badge">Sensori &amp; Cupping Praktis</span>
+              <h3 class="workshop-title">Sensori Cupping 101 &amp; Coffee Flavour Wheel</h3>
+              <p class="workshop-desc">Membedah rasa kopi menggunakan protokol standar SCA. Berlatih membedakan fragrance, aroma, keasaman malic/citric, serta mendeskripsikan body cangkir kopi.</p>
+              <div class="workshop-details">
+                <div class="workshop-detail-item">
+                  <span>Durasi</span>
+                  <strong>3 Jam</strong>
+                </div>
+                <div class="workshop-detail-item">
+                  <span>Kapasitas</span>
+                  <strong>Maks. 8 Orang</strong>
+                </div>
+                <div class="workshop-detail-item">
+                  <span>Termasuk</span>
+                  <strong>Flavour Wheel &amp; Cupping Spoon</strong>
+                </div>
+              </div>
+            </div>
+            <div class="workshop-footer">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Investasi Belajar</span>
+                <strong style="font-family: var(--font-serif); font-size: 1.25rem;">Rp 450.000 <small style="font-size: 0.75rem; font-weight: normal;">/ pax</small></strong>
+              </div>
+              <a href="#kontak" class="btn-primary" style="padding: 10px 18px; font-size: 0.75rem;">Daftar Sesi</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. #galeri — SHOWCASE GALERI & LIGHTBOX -->
+    <section class="galeri-section" id="galeri" aria-labelledby="galeri-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Dokumentasi &amp; Studio</span>
+          <h2 class="section-title" id="galeri-heading">Galeri Suasana Roastery &amp; Slow Bar.</h2>
+          <p class="section-desc">Melihat lebih dekat proses pemanggangan drum, atmosfer bar manual, dan detail kurasi biji kami.</p>
+        </div>
+
+        <div class="galeri-filter-bar">
+          <button type="button" class="galeri-filter-btn active" data-filter="all">Semua Foto</button>
+          <button type="button" class="galeri-filter-btn" data-filter="roastery">Mesin &amp; Roasting</button>
+          <button type="button" class="galeri-filter-btn" data-filter="bar">Slow Bar &amp; Seduh</button>
+          <button type="button" class="galeri-filter-btn" data-filter="cupping">Sesi Cupping</button>
+        </div>
+
+        <div class="galeri-grid">
+          <!-- Item 1 -->
+          <div class="galeri-item" data-cat="roastery">
+            <img src="assets/images/gallery-1.jpg" alt="Mesin sangrai drum cast iron berputar" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Mesin &amp; Roasting</span>
+              <h4 class="galeri-item-title">Putaran Drum Sangrai</h4>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="galeri-item" data-cat="bar">
+            <img src="assets/images/gallery-2.jpg" alt="Penuangan air panas di atas dripper kopi filter" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Slow Bar &amp; Seduh</span>
+              <h4 class="galeri-item-title">Presisi Penuangan Kettle</h4>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="galeri-item" data-cat="cupping">
+            <img src="assets/images/gallery-3.jpg" alt="Meja uji rasa cupping kopi nusantara" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Sesi Cupping</span>
+              <h4 class="galeri-item-title">Audit Meja Cupping</h4>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="galeri-item" data-cat="roastery">
+            <img src="assets/images/gallery-4.jpg" alt="Pemeriksaan warna biji kopi sangrai" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Mesin &amp; Roasting</span>
+              <h4 class="galeri-item-title">Sampel Biji Pasca-Sangrai</h4>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="galeri-item" data-cat="bar">
+            <img src="assets/images/gallery-5.jpg" alt="Atmosfer bar kopi santai Melawai" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Slow Bar &amp; Seduh</span>
+              <h4 class="galeri-item-title">Sudut Santai Melawai</h4>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="galeri-item" data-cat="cupping">
+            <img src="assets/images/gallery-6.jpg" alt="Peserta kelas cupping mencium aroma basah kopi" class="img-monochrome" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-item-cat">Sesi Cupping</span>
+              <h4 class="galeri-item-title">Mengeksplorasi Fragrance</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto">
+      <div class="lightbox-content">
+        <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Tutup Pratinjau">&times;</button>
+        <img src="assets/images/gallery-1.jpg" alt="Foto Diperbesar" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+
+    <!-- 12. #proses — CARA KERJA / CARA PESAN (4 Langkah) -->
+    <section class="proses-section" id="proses" aria-labelledby="proses-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Alur Kerja</span>
+          <h2 class="section-title" id="proses-heading">Standar Pengolahan &amp; Pemesanan Kami.</h2>
+          <p class="section-desc">Empat tahapan terstruktur yang memastikan setiap gram kopi tiba di tangan Anda dalam kondisi rasa paling prima.</p>
+        </div>
+
+        <div class="proses-grid">
+          <div class="proses-step-card">
+            <div class="proses-num">01</div>
+            <h3 class="proses-title">Pilih Profil &amp; Jenis Gilingan</h3>
+            <p class="proses-desc">Tentukan varian single origin pilihan Anda di katalog atau diskusikan kebutuhan blend khusus Anda langsung bersama roaster via WhatsApp.</p>
+          </div>
+
+          <div class="proses-step-card">
+            <div class="proses-num">02</div>
+            <h3 class="proses-title">Sangrai Micro-Batch Presisi</h3>
+            <p class="proses-desc">Biji kopi disangrai menggunakan profil kurva panas digital yang telah diuji sensorik sebelumnya untuk memastikan stabilitas aroma buah dan manis.</p>
+          </div>
+
+          <div class="proses-step-card">
+            <div class="proses-num">03</div>
+            <h3 class="proses-title">Degassing &amp; Uji Seduh</h3>
+            <p class="proses-desc">Kopi didiamkan dalam ruang resting bersuhu terkontrol untuk pelepasan gas CO₂ alami, lalu diuji cupping sampel acak sebelum disegel rapat.</p>
+          </div>
+
+          <div class="proses-step-card">
+            <div class="proses-num">04</div>
+            <h3 class="proses-title">Pengemasan &amp; Ekspedisi Kilat</h3>
+            <p class="proses-desc">Dikemas dalam kantong alufoil food-grade dengan zipper dan one-way valve, siap dikirim ke seluruh penjuru Indonesia atau diambil di bar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. #testimoni — TESTIMONI (3 ulasan berlabel Contoh, nama fiktif unik) -->
+    <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Ulasan Pelanggan</span>
+          <h2 class="section-title" id="testimoni-heading">Apa Kata Penikmat Seduh Kami.</h2>
+          <p class="section-desc">Pengalaman nyata dari penyeduh rumahan, penikmat filter harian, dan pemilik kedai specialty.</p>
+        </div>
+
+        <div class="testimoni-grid">
+          <!-- Testimoni 1 -->
+          <article class="testimoni-card">
+            <span class="testimoni-sample-tag">Contoh</span>
+            <blockquote class="testimoni-quote">
+              "Biji Gayo Bener Meriah dari Sangrai &amp; Seduh selalu punya aroma peach yang sangat bersih saat diseduh V60 pagi hari. Roast date selalu baru dan tidak pernah ada aroma gosong."
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-1.jpg" alt="Foto Guntur K." class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Guntur K.</strong>
+                <span>Home Brewer &bull; Kemang, Jakarta</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimoni 2 -->
+          <article class="testimoni-card">
+            <span class="testimoni-sample-tag">Contoh</span>
+            <blockquote class="testimoni-quote">
+              "Kami memakai house blend racikan Sangrai &amp; Seduh untuk mesin espresso kafe kami di Cipete sejak tahun lalu. Tamu kafe sangat memuji crema yang tebal dan aftertaste cokelatnya."
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-2.jpg" alt="Foto Alya M." class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Alya M.</strong>
+                <span>Pengelola Kedai Kopi &bull; Cipete, Jakarta</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimoni 3 -->
+          <article class="testimoni-card">
+            <span class="testimoni-sample-tag">Contoh</span>
+            <blockquote class="testimoni-quote">
+              "Ikut sesi Sensori Cupping 101 kemarin benar-benar membuka wawasan saya tentang acidity vs bitterness. Penjelasan roasternya membumi dan sangat aplikatif untuk seduh di rumah."
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-3.jpg" alt="Foto Faisal R." class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Faisal R.</strong>
+                <span>Alumni Workshop Cupping &bull; Bandung</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. #faq — FAQ (6 Item Lengkap Accordion) -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Tanya Jawab</span>
+          <h2 class="section-title" id="faq-heading">Pertanyaan yang Sering Diajukan.</h2>
+          <p class="section-desc">Segala hal yang perlu Anda ketahui mengenai pemesanan biji kopi, tanggal sangrai, dan kunjungan ke bar kami.</p>
+        </div>
+
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Berapa umur tanggal sangrai (roast date) kopi yang saya terima?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Kami hanya mengirimkan kopi dengan tanggal sangrai maksimal 7 hari dari hari pemesanan Anda. Kopi specialty membutuhkan waktu resting sekitar 4–7 hari untuk melepaskan sisa gas karbon dioksida sebelum siap diseduh dengan cita rasa paling optimal.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah saya bisa meminta kopi dikirim dalam kondisi sudah digiling?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Tentu bisa. Anda dapat memilih tingkat gilingan: Biji Utuh (Whole Bean), Giling Kasar (Cold Brew &amp; French Press), Giling Medium (V60, Aeropress, Kalita Wave), atau Giling Halus (Espresso &amp; Tubruk Tradisional) tanpa biaya tambahan.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Bagaimana cara kerja sistem langganan kopi bulanan?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Setelah memilih paket langganan dan mengonfirmasi via WhatsApp, pengiriman pertama langsung diproses. Untuk bulan-bulan berikutnya, tim kami akan mengirimkan pengingat jadwal kirim 3 hari sebelumnya. Anda bebas mengganti varian origin, alamat tujuan, atau menjeda langganan kapan saja.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah ada minimal pemesanan untuk suplai kafe atau resto (B2B)?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Untuk mendapatkan harga khusus kemitraan kedai kopi, minimal pemesanan awal hanya 5 kg. Kami juga menyediakan sesi konsultasi cupping gratis di studio kami untuk mencicipi dan memformulasi rasio blend yang pas bagi mesin komersial Anda.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Bagaimana cara menyimpan biji kopi agar tetap segar lebih lama?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Simpan biji kopi di dalam kemasan aslinya yang telah dilengkapi valve satu arah dan zipper kedap udara, atau letakkan dalam toples kaca kedap udara buram. Jauhkan dari paparan sinar matahari langsung, panas dapur, dan jangan menyimpannya di dalam kulkas (freezer) karena kelembapan dapat merusak aroma.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Bagaimana prosedur pendaftaran untuk sesi workshop dan cupping?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sesi kelas diadakan setiap Sabtu dan Minggu dengan slot terbatas maksimal 6–8 peserta agar interaksi tetap intim. Anda cukup mengisi form kontak di bawah atau mengirimkan pesan WhatsApp ke nomor resmi kami untuk mengecek slot tanggal terdekat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. #cta — BAND AJAKAN PENUTUP -->
+    <section class="cta-band-section" id="cta" aria-labelledby="cta-heading">
+      <div class="container cta-band-grid">
+        <div>
+          <h2 class="cta-band-title" id="cta-heading">Mulai Seduh Secangkir Kopi yang Lebih Jujur Hari Ini.</h2>
+          <p class="cta-band-desc">
+            Pesan biji kopi single origin pilihan Anda sekarang dan rasakan perbedaan seduhan micro-batch berkarakter. Tim kami siap merekomendasikan profil rasa yang sesuai selera Anda.
+          </p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#kontak" class="btn-white">Hubungi Kami di WhatsApp &rarr;</a>
+          <span style="font-size: 0.8125rem; color: var(--text-light-muted);">Respons cepat pada jam operasional bar (08.00 &ndash; 21.00 WIB)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. #kontak — KONTAK + JAM + FORM RINGKAS (WhatsApp Generator) -->
+    <section class="kontak-section" id="kontak" aria-labelledby="kontak-heading">
+      <div class="container kontak-grid">
+        <!-- Info Roastery & Lokasi -->
+        <div class="kontak-info-box">
+          <div class="section-label">Lokasi &amp; Jam Bar</div>
+          <h3 id="kontak-heading">Kunjungi Slow Bar &amp; Roastery Kami</h3>
+          <p>
+            Rasakan kehangatan aroma biji kopi yang baru disangrai dan nikmati obrolan santai seputar teknik seduh bersama barista kami.
+          </p>
+
+          <div class="kontak-details-list">
+            <div class="kontak-detail-row">
+              <div class="detail-label">Alamat Studio</div>
+              <div class="detail-val data-address">Jl. Panglima Polim V No. 28, Melawai, Kebayoran Baru, Jakarta Selatan 12160</div>
+            </div>
+            <div class="kontak-detail-row">
+              <div class="detail-label">Hari Kerja</div>
+              <div class="detail-val data-hours-weekdays">Senin – Jumat: 08.00 – 21.00 WIB</div>
+            </div>
+            <div class="kontak-detail-row">
+              <div class="detail-label">Akhir Pekan</div>
+              <div class="detail-val data-hours-weekends">Sabtu – Minggu: 07.00 – 22.00 WIB</div>
+            </div>
+            <div class="kontak-detail-row">
+              <div class="detail-label">WhatsApp</div>
+              <div class="detail-val data-phone">0812-9190-1926</div>
+            </div>
+            <div class="kontak-detail-row">
+              <div class="detail-label">Email Tim</div>
+              <div class="detail-val"><a href="mailto:halo@sangraiseduh.demo" class="data-email">halo@sangraiseduh.demo</a></div>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?q=Panglima+Polim+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width: 100%; text-align: center;">
+            Buka Petunjuk di Google Maps &rarr;
+          </a>
+        </div>
+
+        <!-- Form Pesan -> WhatsApp -->
+        <div class="kontak-form-card">
+          <h3>Kirim Pesan ke Tim Roastery</h3>
+          <p class="form-sub">Isi formulir singkat di bawah ini. Pesan Anda akan tersusun rapi dan langsung terhubung ke chat WhatsApp kami.</p>
+
+          <form id="kontakForm">
+            <div class="form-group">
+              <label for="formNama" class="form-label">Nama Lengkap</label>
+              <input type="text" id="formNama" class="form-input" placeholder="Contoh: Rian Hendrawan" required>
+            </div>
+
+            <div class="form-group">
+              <label for="formKontak" class="form-label">Nomor WhatsApp atau Email</label>
+              <input type="text" id="formKontak" class="form-input" placeholder="Contoh: 0812-xxxx-xxxx" required>
+            </div>
+
+            <div class="form-group">
+              <label for="formTopik" class="form-label">Keperluan / Kebutuhan</label>
+              <select id="formTopik" class="form-select">
+                <option value="Pemesanan Biji Kopi Retail">Pemesanan Biji Kopi Retail</option>
+                <option value="Langganan Kopi Bulanan">Langganan Kopi Bulanan</option>
+                <option value="Kemitraan Suplai Cafe & B2B">Kemitraan Suplai Cafe &amp; B2B</option>
+                <option value="Pendaftaran Workshop Cupping">Pendaftaran Workshop Cupping</option>
+                <option value="Pertanyaan Umum">Pertanyaan Umum Lainnya</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="formPesan" class="form-label">Detail Pesan / Varian yang Diinginkan</label>
+              <textarea id="formPesan" class="form-textarea" placeholder="Tuliskan varian biji kopi, ukuran gilingan, atau pertanyaan Anda di sini..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%;">
+              Lanjutkan ke WhatsApp
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 17. FOOTER RELEVAN INDUSTRI (Nol Link Mati, Modal Legal, 4 Kolom) -->
+  <footer class="site-footer" id="kontak-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Kolom 1: Brand & Filosofi -->
+        <div class="footer-brand-col">
+          <img src="assets/logo-white.svg" alt="Sangrai &amp; Seduh Roastery" width="220" height="44">
+          <p>
+            Kurasi biji kopi specialty Indonesia disangrai dalam micro-batch presisi di Melawai, Jakarta Selatan. Mendedikasikan rasa jujur untuk setiap cangkir kopi harian Anda.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/sangraiseduh.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram Sangrai &amp; Seduh">IG</a>
+            <a href="https://tiktok.com/@sangraiseduh.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="TikTok Sangrai &amp; Seduh">TT</a>
+            <a href="https://youtube.com/@sangraiseduh.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="YouTube Sangrai &amp; Seduh">YT</a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi Cepat -->
+        <div>
+          <h4 class="footer-col-title">Navigasi Cepat</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#beranda" class="footer-nav-link">Beranda</a></li>
+            <li><a href="#tentang" class="footer-nav-link">Tentang Roastery</a></li>
+            <li><a href="#origin" class="footer-nav-link">Koleksi Single Origin</a></li>
+            <li><a href="#menu-seduh" class="footer-nav-link">Metode Slow Bar</a></li>
+            <li><a href="#langganan" class="footer-nav-link">Paket Langganan</a></li>
+            <li><a href="#workshop" class="footer-nav-link">Workshop Cupping</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Layanan & Produk -->
+        <div>
+          <h4 class="footer-col-title">Layanan Khusus</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#origin" class="footer-nav-link">Biji Kopi Kemasan 200g</a></li>
+            <li><a href="#layanan" class="footer-nav-link">Suplai Espresso Cafe (B2B)</a></li>
+            <li><a href="#proses" class="footer-nav-link">Protokol Sangrai Drum</a></li>
+            <li><a href="#galeri" class="footer-nav-link">Galeri Bar Melawai</a></li>
+            <li><a href="#faq" class="footer-nav-link">Penyimpanan Biji Kopi</a></li>
+            <li><a href="#kontak" class="footer-nav-link">Konsultasi Roaster</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Jam & Kontak -->
+        <div>
+          <h4 class="footer-col-title">Kontak &amp; Bar</h4>
+          <div class="footer-contact-info">
+            <div>
+              <span style="display:block; font-size:0.75rem; text-transform:uppercase; color:var(--text-light-muted);">Alamat Roastery</span>
+              <strong class="data-address">Jl. Panglima Polim V No. 28, Melawai, Kebayoran Baru, Jakarta Selatan 12160</strong>
+            </div>
+            <div>
+              <span style="display:block; font-size:0.75rem; text-transform:uppercase; color:var(--text-light-muted);">Jam Buka Bar</span>
+              <span class="data-hours-weekdays">Senin – Jumat: 08.00 – 21.00 WIB</span><br>
+              <span class="data-hours-weekends">Sabtu – Minggu: 07.00 – 22.00 WIB</span>
+            </div>
+            <div>
+              <span style="display:block; font-size:0.75rem; text-transform:uppercase; color:var(--text-light-muted);">WhatsApp Resmi</span>
+              <a href="https://wa.me/6281291901926" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; font-weight:700;" class="data-phone">0812-9190-1926</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span class="dynamic-year">2026</span> Sangrai &amp; Seduh Artisan Roastery. Hak Cipta Dilindungi. Portofolio UMKM JalaninWeb.
+        </div>
+        <div class="legal-links">
+          <button type="button" class="legal-btn" id="termsModalBtn">Syarat &amp; Ketentuan</button>
+          <button type="button" class="legal-btn" id="privacyModalBtn">Kebijakan Privasi</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 18. MODAL LEGAL: Syarat & Ketentuan -->
+  <div class="legal-modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="termsTitle">Syarat &amp; Ketentuan Layanan</h3>
+        <button type="button" class="drawer-close-btn" id="closeTermsBtn" aria-label="Tutup Syarat">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Informasi Produk &amp; Kesegaran</h4>
+        <p>Seluruh biji kopi yang kami sediakan disangrai dalam kapasitas micro-batch. Kami mencantumkan tanggal sangrai (roast date) pada kemasan. Rentang resting ideal untuk penyeduhan adalah 4 hingga 30 hari setelah tanggal sangrai.</p>
+        <h4>2. Pengiriman &amp; Pemesanan</h4>
+        <p>Pemesanan produk retail yang masuk sebelum pukul 14.00 WIB pada hari kerja akan diproses dan dikirim pada hari yang sama. Pengiriman dilakukan melalui ekspedisi terpercaya dengan kemasan tersegel rapi.</p>
+        <h4>3. Penggantian Produk Rusak</h4>
+        <p>Jika paket yang Anda terima dalam kondisi kemasan robek atau cacat produksi, mohon kirimkan bukti video unboxing dalam waktu 1x24 jam setelah penerimaan paket untuk penggantian kemasan baru tanpa biaya.</p>
+        <h4>4. Kunjungan Bar &amp; Reservasi Workshop</h4>
+        <p>Slot kehadiran sesi cupping atau workshop bersifat terbatas. Pembatalan kehadiran yang diinfokan minimal 24 jam sebelum jadwal akan dialihkan ke sesi berikutnya.</p>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="btn-primary" id="closeTermsFooterBtn" style="padding: 10px 20px; font-size: 0.75rem;">Saya Mengerti</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19. MODAL LEGAL: Kebijakan Privasi -->
+  <div class="legal-modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="privacyTitle">Kebijakan Privasi</h3>
+        <button type="button" class="drawer-close-btn" id="closePrivacyBtn" aria-label="Tutup Privasi">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Pengumpulan Data</h4>
+        <p>Kami hanya mengumpulkan data yang Anda masukkan secara sukarela melalui formulir kontak atau chat WhatsApp (seperti nama, nomor kontak, dan preferensi kopi Anda) untuk memproses pemesanan dan langganan.</p>
+        <h4>2. Penggunaan Data</h4>
+        <p>Data kontak Anda hanya digunakan untuk konfirmasi transaksi, koordinasi pengiriman pesanan, dan pengingat jadwal langganan. Kami tidak membagikan, menyewakan, atau menjual data Anda kepada pihak ketiga mana pun.</p>
+        <h4>3. Hak Pengguna</h4>
+        <p>Anda berhak meminta penghapusan riwayat kontak dan penghentian pengiriman pesan pengingat langganan kapan pun dengan menghubungi admin kami via WhatsApp.</p>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="btn-primary" id="closePrivacyFooterBtn" style="padding: 10px 20px; font-size: 0.75rem;">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20. FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/6281291901926?text=Halo%20Sangrai%20%26%20Seduh,%20saya%20tertarik%20dengan%20koleksi%20biji%20kopi%20Anda." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" aria-label="Hubungi WhatsApp Sangrai &amp; Seduh">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.766.8 5.342 2.183 7.518L2.05 30.12a.8.8 0 00.98.98l6.732-2.115A13.916 13.916 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.536 11.536 0 01-5.888-1.608l-.422-.25-4.47 1.405 1.424-4.385-.274-.436A11.547 11.547 0 014.4 16C4.4 9.603 9.603 4.4 16 4.4c6.397 0 11.6 5.203 11.6 11.6 0 6.397-5.203 11.6-11.6 11.6zm6.388-8.683c-.35-.175-2.072-1.023-2.393-1.14-.321-.117-.554-.175-.788.175-.233.35-.905 1.14-1.109 1.373-.204.233-.408.262-.758.087-.35-.175-1.478-.545-2.815-1.737-1.04-.928-1.742-2.075-1.946-2.425-.204-.35-.022-.54.153-.714.157-.157.35-.408.525-.612.175-.204.233-.35.35-.583.117-.233.058-.438-.029-.613-.087-.175-.788-1.898-1.08-2.6-.284-.684-.572-.591-.788-.602l-.67-.012c-.233 0-.613.087-.934.437-.321.35-1.226 1.2-1.226 2.924 0 1.725 1.255 3.391 1.43 3.624.175.233 2.47 3.771 5.984 5.289.836.362 1.488.578 1.996.74.839.266 1.603.229 2.207.139.674-.101 2.072-.847 2.364-1.664.292-.817.292-1.517.204-1.664-.087-.146-.321-.233-.671-.408z"/>
+    </svg>
+  </a>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

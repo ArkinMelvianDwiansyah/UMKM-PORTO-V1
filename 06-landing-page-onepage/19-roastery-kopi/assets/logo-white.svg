@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" width="280" height="56" fill="none">
+  <!-- Minimalist Geometric Coffee Bean / Roaster Flame Emblem -->
+  <g transform="translate(4, 4)">
+    <rect width="48" height="48" rx="8" fill="#F5F5F0" />
+    <path d="M24 10C17.3726 10 12 15.3726 12 22C12 30.5 18 38 24 38C30 38 36 30.5 36 22C36 15.3726 30.6274 10 24 10Z" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" fill="none" />
+    <path d="M24 11C21.5 15.5 27 19.5 24 24C21 28.5 26.5 32.5 24 37" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="24" cy="7" r="1.5" fill="#8C8C88" />
+    <circle cx="24" cy="41" r="1.5" fill="#8C8C88" />
+  </g>
+  <!-- Bespoke Editorial Typography Inverted -->
+  <text x="64" y="27" font-family="'Fraunces', 'Georgia', serif" font-size="18" font-weight="700" letter-spacing="0.08em" fill="#F5F5F0">SANGRAI &amp; SEDUH</text>
+  <text x="64.5" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em" fill="#A3A39E">ARTISAN ROASTERY &bull; JAKARTA</text>
+</svg>
