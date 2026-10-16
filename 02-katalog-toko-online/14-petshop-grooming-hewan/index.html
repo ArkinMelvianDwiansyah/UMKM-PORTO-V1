@@ -750,10 +750,66 @@
         </div>
     </section>
 
+    <!-- SECTION 3.5: DOKUMENTASI VIDEO PERAWATAN ANABUL (VIDEO SWITCHER) -->
+    <section class="py-14 lg:py-18 bg-charcoal text-cream border-b-[1.5px] border-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+                <div>
+                    <span class="font-mono text-xs text-mustard uppercase tracking-widest">[03.5] STANDAR HIGIENIS &amp; PERAWATAN KASIH SAYANG</span>
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">Dokumentasi Salon Grooming &amp; Suasana Pet Hotel</h3>
+                    <p class="text-xs sm:text-sm text-stone-300 mt-1 max-w-xl">
+                        Lihat langsung kelembutan penanganan anabul oleh groomer bersertifikat di ruang kaca terbuka serta kenyamanan kamar kabin kayu VIP ber-AC 24 jam.
+                    </p>
+                </div>
+                <!-- Video Switcher -->
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <button type="button" data-video="assets/videos/video-grooming-anabul.mp4" data-caption="SALON GROOMING ANABUL // MANDI AIR HANGAT &amp; SISIR BLOW DRY BEBAS STRES"
+                        class="pet-video-btn active px-4 py-2 bg-terracotta text-white font-bold border border-terracotta rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-play text-[10px]"></i>
+                        <span>Salon Grooming &amp; Spa</span>
+                    </button>
+                    <button type="button" data-video="assets/videos/video-kucing-pethotel.mp4" data-caption="PET HOTEL VIP SUITE // KABIN KAYU BER-AC DINGIN &amp; PEMANTAUAN CCTV 24 JAM"
+                        class="pet-video-btn px-4 py-2 bg-stone-800 text-stone-300 hover:text-white font-medium border border-stone-700 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-film text-[10px]"></i>
+                        <span>Pet Hotel &amp; Bermain</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-[1.5px] border-stone-700 bg-black rounded-2xl overflow-hidden shadow-2xl">
+                <div class="relative bg-black h-80 sm:h-[460px] overflow-hidden">
+                    <video id="petVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/grooming-salon.jpg" src="assets/videos/video-grooming-anabul.mp4"></video>
+                    <div class="absolute bottom-4 left-4 bg-charcoal/90 backdrop-blur-md px-4 py-2 border border-stone-700 rounded-xl font-mono text-xs text-mustard flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                        <span id="petVideoCaption">SALON GROOMING ANABUL // MANDI AIR HANGAT &amp; SISIR BLOW DRY BEBAS STRES</span>
+                    </div>
+                </div>
+                <!-- 3 Quality Benchmarks -->
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800 bg-stone-900 p-6 sm:p-8">
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-terracotta font-bold tracking-wider">STANDAR // 01</span>
+                        <h4 class="font-display text-lg font-bold text-white">Air Hangat Suhu Terkontrol 38°C</h4>
+                        <p class="text-stone-300 text-xs leading-relaxed">Menjaga suhu tubuh anabul tetap stabil agar tidak menggigil atau demam setelah mandi, dilengkapi sampo hypoallergenic impor.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-sage font-bold tracking-wider">STANDAR // 02</span>
+                        <h4 class="font-display text-lg font-bold text-white">100% Bebas Obat Bius &amp; Kekerasan</h4>
+                        <p class="text-stone-300 text-xs leading-relaxed">Seluruh proses grooming dilakukan dengan teknik gentle handling di ruang kaca transparan yang bisa ditonton langsung oleh pet parents.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-mustard font-bold tracking-wider">STANDAR // 03</span>
+                        <h4 class="font-display text-lg font-bold text-white">Sterilisasi Lampu UV Meja Stainless</h4>
+                        <p class="text-stone-300 text-xs leading-relaxed">Setiap selesai menangani 1 pasien anabul, meja dan gunting disemprot disinfektan veteriner dan disinar UV untuk mencegah penularan jamur atau kutu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECTION 4: ULASAN PENGUNJUNG & DOKUMENTASI FOTO ANABUL PELANGGAN -->
     <section id="ulasan-pelanggan" class="py-14 lg:py-20 bg-cream-soft border-b-[1.5px] border-charcoal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                 <div>
                     <div class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-terracotta mb-2">
                         <i class="fa-solid fa-camera-retro"></i>
@@ -766,21 +822,31 @@
                         Lebih dari 4.200 pemilik kucing dan anjing di Jakarta Selatan, BSD &amp; Kelapa Gading mempercayakan kebutuhan anabulnya di PawHaus.
                     </p>
                 </div>
-                <div class="bg-cream px-4 py-3 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm flex items-center gap-3 shrink-0">
-                    <div class="text-mustard text-base flex items-center gap-0.5">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Category Filter & Pagination Controls -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs" id="petReviewCategoryTabs">
+                        <button type="button" onclick="filterPetReviews('all')" class="pet-rev-tab active px-3.5 py-2 bg-charcoal text-cream rounded-xl border-[1.5px] border-charcoal font-bold transition">Semua (8)</button>
+                        <button type="button" onclick="filterPetReviews('grooming')" class="pet-rev-tab px-3.5 py-2 bg-cream text-charcoal hover:bg-cream-dark rounded-xl border-[1.5px] border-charcoal font-medium transition">Grooming Salon</button>
+                        <button type="button" onclick="filterPetReviews('hotel')" class="pet-rev-tab px-3.5 py-2 bg-cream text-charcoal hover:bg-cream-dark rounded-xl border-[1.5px] border-charcoal font-medium transition">Pet Hotel VIP</button>
+                        <button type="button" onclick="filterPetReviews('pakan')" class="pet-rev-tab px-3.5 py-2 bg-cream text-charcoal hover:bg-cream-dark rounded-xl border-[1.5px] border-charcoal font-medium transition">Pakan &amp; Pasir</button>
                     </div>
-                    <div class="text-xs">
-                        <div class="font-display font-extrabold text-charcoal">4.9 / 5.0 Rating Google</div>
-                        <div class="text-charcoal-muted">1.480+ Ulasan (Contoh/Ilustrasi Portofolio)*</div>
+                    <!-- Pagination Controls -->
+                    <div class="flex items-center gap-1.5 font-mono text-xs ml-auto sm:ml-0">
+                        <button type="button" onclick="changePetReviewPage(-1)" class="w-9 h-9 bg-cream hover:bg-cream-dark text-charcoal border-[1.5px] border-charcoal rounded-xl flex items-center justify-center transition tactile-btn" aria-label="Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="petReviewPageIndicator" class="px-3 py-1.5 text-xs text-charcoal font-mono font-bold bg-cream rounded-xl border-[1.5px] border-charcoal">1 / 2</span>
+                        <button type="button" onclick="changePetReviewPage(1)" class="w-9 h-9 bg-cream hover:bg-cream-dark text-charcoal border-[1.5px] border-charcoal rounded-xl flex items-center justify-center transition tactile-btn" aria-label="Selanjutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 4 Customer Photo Review Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Review Card 1 -->
-                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+            <!-- 8 Customer Photo Review Cards (Paginated 4 per page) -->
+            <div id="petReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Review Card 1 (Page 1 - Pakan) -->
+                <article class="pet-review-card bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="pakan" data-page="1">
                     <div>
                         <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
                             <img src="assets/images/cat-portrait.jpg" alt="Foto Review Kucing Mochi" class="w-full h-full object-cover">
@@ -807,8 +873,8 @@
                     </div>
                 </article>
 
-                <!-- Review Card 2 -->
-                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                <!-- Review Card 2 (Page 1 - Grooming) -->
+                <article class="pet-review-card bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="grooming" data-page="1">
                     <div>
                         <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
                             <img src="assets/images/grooming-salon.jpg" alt="Foto Hasil Full Grooming" class="w-full h-full object-cover">
@@ -835,8 +901,8 @@
                     </div>
                 </article>
 
-                <!-- Review Card 3 -->
-                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                <!-- Review Card 3 (Page 1 - Hotel) -->
+                <article class="pet-review-card bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="hotel" data-page="1">
                     <div>
                         <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
                             <img src="assets/images/pet-hotel-room.jpg" alt="Foto Kamar VIP Pet Hotel" class="w-full h-full object-cover">
@@ -863,8 +929,8 @@
                     </div>
                 </article>
 
-                <!-- Review Card 4 -->
-                <article class="bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between">
+                <!-- Review Card 4 (Page 1 - Pakan) -->
+                <article class="pet-review-card bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="pakan" data-page="1">
                     <div>
                         <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
                             <img src="assets/images/dog-portrait.jpg" alt="Foto Anjing Sehat" class="w-full h-full object-cover">
@@ -887,6 +953,118 @@
                         <div class="text-xs">
                             <div class="font-display font-bold text-charcoal">Bpk. Dimas Prasetyo</div>
                             <div class="text-[11px] text-charcoal-muted">Owner Max (Golden Retriever)</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 5 (Page 2 - Grooming) -->
+                <article class="pet-review-card hidden bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="grooming" data-page="2">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/rev-grooming-kucing.jpg" alt="Foto Kucing Anggora Sehat" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-sage text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Mandi Jamur Medicated
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Klinik &amp; Grooming</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Kucing anggora saya ada jamur membandel di leher. Setelah 3 sesi mandi medicated sulfur di PawHaus jamurnya kering total dan bulu tumbuh halus kembali. Dokter hewannya sangat ramah!"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-5.jpg" alt="drh. Salsabila" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">drh. Salsabila</div>
+                            <div class="text-[11px] text-charcoal-muted">Kebayoran Baru &bull; Anggora Mix</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 6 (Page 2 - Hotel) -->
+                <article class="pet-review-card hidden bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="hotel" data-page="2">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/rev-pethotel-suite.jpg" alt="Foto Suasana Pet Hotel Suite" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-terracotta text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Pet Hotel 7 Malam
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Mudik Lebaran</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Selama mudik 7 hari kemarin tenang banget karena bisa cek CCTV kabin anabul tiap saat. Stafnya kasih makan tepat waktu sesuai takaran pakan basah yang saya bawakan dari rumah."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-6.jpg" alt="Kevin Sanjaya" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Kevin Sanjaya</div>
+                            <div class="text-[11px] text-charcoal-muted">BSD City &bull; 2 Kucing Ragdoll</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 7 (Page 2 - Grooming) -->
+                <article class="pet-review-card hidden bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="grooming" data-page="2">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/rev-grooming-anjing.jpg" alt="Foto Anjing Cukur Styling" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-sage text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-charcoal">
+                                Styling Teddy Cut
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Poodle Spa</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Groomer di PawHaus sangat sabar menghadapi anjing saya yang agak penakut. Guntingan teddy bear-nya rapi simetris, telinga dibersihkan bersih tanpa merah, dan pulangnya dikasih pita cantik."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-7.jpg" alt="Jessica Vania" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Jessica Vania</div>
+                            <div class="text-[11px] text-charcoal-muted">Kelapa Gading &bull; Toy Poodle</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Review Card 8 (Page 2 - Pakan) -->
+                <article class="pet-review-card hidden bg-cream rounded-2xl tactile-card overflow-hidden flex flex-col justify-between" data-category="pakan" data-page="2">
+                    <div>
+                        <div class="relative h-48 border-b-[1.5px] border-charcoal overflow-hidden">
+                            <img src="assets/images/rev-pakan-kucing.jpg" alt="Foto Kucing Makan Pakan Fresh" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-charcoal text-mustard font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-white/20">
+                                Langganan Pasir 25L
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-mustard text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-sage font-bold ml-1">Same-Day Delivery</span>
+                            </div>
+                            <p class="text-xs text-charcoal leading-relaxed">
+                                "Sangat terbantu ada opsi langganan bulanan hemat 10%. Pasir gumpal 25 liter dan vitamin nutri-gel diantar tepat waktu setiap awal bulan, tidak pernah telat dan kemasannya aman."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-3 border-t border-cream-border flex items-center gap-3 bg-cream-soft/50">
+                        <img src="assets/images/cust-avatar-8.jpg" alt="Fajar Ramadhan" class="w-10 h-10 rounded-full object-cover border border-charcoal shrink-0">
+                        <div class="text-xs">
+                            <div class="font-display font-bold text-charcoal">Fajar Ramadhan</div>
+                            <div class="text-[11px] text-charcoal-muted">Bintaro Sektor 9 &bull; 3 Kucing Domestik</div>
                         </div>
                     </div>
                 </article>
@@ -1934,6 +2112,73 @@
             t.classList.remove('hidden');
             clearTimeout(window.__toastTimer);
             window.__toastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
+        }
+
+        // Pet Video Switcher Logic
+        document.querySelectorAll('.pet-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const player = document.getElementById('petVideoPlayer');
+                const captionEl = document.getElementById('petVideoCaption');
+                if (player && videoSrc) {
+                    player.src = videoSrc;
+                    player.play().catch(e => console.log('Autoplay deferred:', e));
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+                document.querySelectorAll('.pet-video-btn').forEach(b => {
+                    b.classList.remove('bg-terracotta', 'text-white', 'border-terracotta', 'active');
+                    b.classList.add('bg-stone-800', 'text-stone-300', 'border-stone-700');
+                });
+                btn.classList.add('bg-terracotta', 'text-white', 'border-terracotta', 'active');
+                btn.classList.remove('bg-stone-800', 'text-stone-300', 'border-stone-700');
+            });
+        });
+
+        // Pet Review Filter & Pagination Logic
+        let currentPetReviewCat = 'all';
+        let currentPetReviewPage = 1;
+        const totalPetReviewPages = 2;
+
+        function filterPetReviews(cat) {
+            currentPetReviewCat = cat;
+            currentPetReviewPage = 1;
+            document.querySelectorAll('.pet-rev-tab').forEach(btn => {
+                btn.classList.remove('active', 'bg-charcoal', 'text-cream', 'font-bold');
+                btn.classList.add('bg-cream', 'text-charcoal', 'font-medium');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-charcoal', 'text-cream', 'font-bold');
+                event.target.classList.remove('bg-cream', 'text-charcoal', 'font-medium');
+            }
+            applyPetReviewDisplay();
+        }
+
+        function changePetReviewPage(delta) {
+            let next = currentPetReviewPage + delta;
+            if (next < 1) next = totalPetReviewPages;
+            if (next > totalPetReviewPages) next = 1;
+            currentPetReviewPage = next;
+            applyPetReviewDisplay();
+        }
+
+        function applyPetReviewDisplay() {
+            const cards = document.querySelectorAll('.pet-review-card');
+            cards.forEach(card => {
+                const matchCat = (currentPetReviewCat === 'all' || card.getAttribute('data-category') === currentPetReviewCat);
+                const matchPage = (parseInt(card.getAttribute('data-page')) === currentPetReviewPage);
+                if (matchCat && matchPage) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            const indicator = document.getElementById('petReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentPetReviewPage} / ${totalPetReviewPages}`;
+            }
         }
 
         // Init Default Date & Render

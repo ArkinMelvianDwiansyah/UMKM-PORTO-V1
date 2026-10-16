@@ -283,6 +283,183 @@
           </div>
         </div>
       </div>
+
+      <!-- Interactive Kalkulator Biaya Pendidikan & Free Trial -->
+      <div class="kalkulator-biaya-card" id="kalkulator-biaya">
+        <div style="border-bottom: 1.5px dashed var(--color-border); padding-bottom: 16px; margin-bottom: 24px;">
+          <span class="section-label" style="font-size:0.75rem; color:var(--color-primary-dark);">[SIMULASI INVESTASI PENDIDIKAN] KALKULATOR BIAYA &amp; TRIAL CLASS</span>
+          <h3 style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-heading); color: var(--color-text-title); margin-top: 4px;">
+            Simulasi Biaya Program &amp; Fasilitas Tambahan
+          </h3>
+          <p style="font-size: 0.9375rem; color: var(--color-text-muted); margin-top: 4px;">
+            Pilih program utama, fasilitas pendukung, serta periode pendaftaran untuk melihat total estimasi biaya dan booking free trial.
+          </p>
+        </div>
+
+        <div class="calc-grid">
+          <!-- Left Controls -->
+          <div>
+            <div class="calc-field-group">
+              <label for="calcProgram" class="calc-label">Pilih Program Belajar</label>
+              <select id="calcProgram" class="calc-select">
+                <option value="1850000" data-name="Toddler &amp; Daycare Kasih" data-age="Usia 1–3 Tahun">Toddler &amp; Daycare Kasih — Rp 1.850.000 / bln</option>
+                <option value="850000" data-name="PAUD &amp; TK Sentra Kreatif" data-age="Usia 3–6 Tahun" selected>PAUD &amp; TK Sentra Kreatif — Rp 850.000 / bln</option>
+                <option value="450000" data-name="Bimbel Calistung &amp; Pendampingan SD" data-age="Usia 5–9 Tahun">Bimbel Calistung &amp; Pendampingan SD — Rp 450.000 / bln</option>
+                <option value="2450000" data-name="Paket Komplit Daycare + Bimbel Sore" data-age="Usia 2–7 Tahun">Paket Komplit Daycare + Bimbel Sore — Rp 2.450.000 / bln</option>
+              </select>
+            </div>
+
+            <div class="calc-field-group">
+              <label class="calc-label">Fasilitas &amp; Layanan Tambahan (Opsional)</label>
+              <div class="calc-addons-list">
+                <label class="calc-addon-label">
+                  <input type="checkbox" class="calc-addon-check" value="350000" data-name="Catering Makan Siang &amp; Snack Sehat Organik">
+                  <span class="calc-addon-text">Catering Makan Siang &amp; Snack Sehat Organik</span>
+                  <span class="calc-addon-price">+Rp 350.000/bln</span>
+                </label>
+                <label class="calc-addon-label">
+                  <input type="checkbox" class="calc-addon-check" value="400000" data-name="Antar-Jemput Mobil Ramah Anak Area Bintaro">
+                  <span class="calc-addon-text">Antar-Jemput Mobil Ramah Anak (Area Bintaro &amp; Sekitar)</span>
+                  <span class="calc-addon-price">+Rp 400.000/bln</span>
+                </label>
+                <label class="calc-addon-label">
+                  <input type="checkbox" class="calc-addon-check" value="250000" data-name="Ekstrakurikuler Renang Cilik &amp; Kelas Musik">
+                  <span class="calc-addon-text">Ekstrakurikuler Renang Cilik &amp; Kelas Musik Angklung</span>
+                  <span class="calc-addon-price">+Rp 250.000/bln</span>
+                </label>
+                <label class="calc-addon-label">
+                  <input type="checkbox" class="calc-addon-check" value="300000" data-name="Asesmen Psikologi &amp; Konsultasi Tumbuh Kembang">
+                  <span class="calc-addon-text">Asesmen Psikologi &amp; Konsultasi Tumbuh Kembang</span>
+                  <span class="calc-addon-price">+Rp 300.000/semester</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="calc-field-group">
+              <label class="calc-label">Skema Pembayaran Pendaftaran</label>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <label class="calc-addon-label">
+                  <input type="radio" name="calcPeriod" value="1" checked style="accent-color:var(--color-primary-dark);">
+                  <span class="calc-addon-text">Bulanan (Reguler)</span>
+                  <span class="calc-addon-price" style="color:var(--color-text-muted);">Standar</span>
+                </label>
+                <label class="calc-addon-label">
+                  <input type="radio" name="calcPeriod" value="6" data-discount="10" style="accent-color:var(--color-primary-dark);">
+                  <span class="calc-addon-text">Paket 1 Semester (6 Bulan) &bull; Hemat 10% Bebas Uang Pangkal</span>
+                  <span class="calc-addon-price" style="color:#10B981;">Diskon 10%</span>
+                </label>
+                <label class="calc-addon-label">
+                  <input type="radio" name="calcPeriod" value="12" data-discount="20" style="accent-color:var(--color-primary-dark);">
+                  <span class="calc-addon-text">Paket 1 Tahun Ajaran (12 Bulan) &bull; Diskon 20% + Free Seragam</span>
+                  <span class="calc-addon-price" style="color:#10B981;">Diskon 20%</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Summary Box -->
+          <div class="calc-summary-box">
+            <div>
+              <h4 class="calc-summary-title">Rincian Estimasi Biaya</h4>
+              <div class="calc-summary-row">
+                <span>Program:</span>
+                <strong id="calcSummaryProgramName" style="color:var(--color-text-title); text-align:right;">PAUD &amp; TK Sentra Kreatif</strong>
+              </div>
+              <div class="calc-summary-row">
+                <span>Biaya Pokok per Bulan:</span>
+                <span id="calcSummaryBasePrice" style="font-family:monospace; color:var(--color-text-title);">Rp 850.000</span>
+              </div>
+              <div class="calc-summary-row">
+                <span>Fasilitas Tambahan:</span>
+                <span id="calcSummaryAddonsCount" style="color:var(--color-text-title);">0 Fasilitas</span>
+              </div>
+              <div class="calc-summary-row">
+                <span>Periode &amp; Diskon:</span>
+                <span id="calcSummaryDiscount" style="color:#10B981; font-family:monospace; font-weight:700;">Bulanan (Rp 0)</span>
+              </div>
+              <div class="calc-summary-row">
+                <span>Status Free Trial:</span>
+                <strong style="color:var(--color-coral);"><span style="background:var(--color-coral-light); padding:2px 8px; border-radius:9999px;">GRATIS 1 Sesi</span></strong>
+              </div>
+
+              <div class="calc-summary-total">
+                <div>
+                  <span style="font-size:0.8125rem; color:var(--color-text-muted); display:block;">Total Investasi Belajar:</span>
+                  <div class="calc-total-val" id="calcTotalPriceDisplay">Rp 850.000</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:24px;">
+              <button type="button" id="btnSendTuitionWa" class="btn-primary" style="width:100%; justify-content:center; padding:16px; font-weight:700; border-radius:var(--radius-full);">
+                <span>Daftar Free Trial &amp; Kirim Estimasi via WA</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+              <p style="font-size:0.75rem; color:var(--color-text-muted); text-align:center; margin-top:8px;">
+                *Ayah &amp; Bunda bebas menjadwalkan kunjungan observasi dan konsultasi psikolog anak tanpa dipungut biaya.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6B. VIDEO SWITCHER: DOKUMENTASI AKTIVITAS KELAS & TAMAN BERMAIN -->
+  <section class="kids-video-section" id="video-belajar" aria-labelledby="video-belajar-heading">
+    <div class="container">
+      <div class="kids-video-card">
+        <div class="kids-video-header">
+          <div>
+            <span class="section-label" style="font-size:0.75rem; color:var(--color-primary-dark);">[DOKUMENTASI KELAS] STIMULASI SENSORIK &amp; KECERIAAN ANAK</span>
+            <h2 class="section-title" id="video-belajar-heading" style="font-size:clamp(1.5rem, 3vw, 2rem); margin-top:4px;">
+              Suasana Belajar Sambil Bermain di Rumah Tumbuh
+            </h2>
+            <p style="font-size:0.9375rem; color:var(--color-text-muted); margin-top:4px; max-width:680px;">
+              Lihat bagaimana interaksi hangat para fasilitator kami mendampingi anak mengeksplorasi sensorik, motorik halus, dan bermain di ruang terbuka hijau.
+            </p>
+          </div>
+          <!-- Video Switcher Controls -->
+          <div class="kids-video-switcher-btns">
+            <button type="button" class="kids-video-btn active" data-video="assets/videos/video-belajar-anak-paud.mp4" data-caption="KELAS SENTRA // EKSPLORASI SENSORIK &amp; LITERASI KREATIF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Belajar di Sentra</span>
+            </button>
+            <button type="button" class="kids-video-btn" data-video="assets/videos/video-bermain-outdoor-anak.mp4" data-caption="TAMAN BERMAIN // MOTORIK KASAR &amp; SOSIALISASI ALAM TERBUKA">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              <span>Bermain Outdoor</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Video Frame -->
+        <div class="kids-video-frame">
+          <video id="kidsVideoPlayer" autoplay loop muted playsinline poster="assets/images/hero-kids.jpg" src="assets/videos/video-belajar-anak-paud.mp4"></video>
+          <div class="kids-video-caption-pill">
+            <span class="live-learn-dot"></span>
+            <span id="kidsVideoCaption">KELAS SENTRA // EKSPLORASI SENSORIK &amp; LITERASI KREATIF</span>
+          </div>
+        </div>
+
+        <!-- 3 Educational Standards -->
+        <div class="kids-video-pillars">
+          <div class="kids-pillar-item">
+            <div class="kids-pillar-tag">STIMULASI // 01</div>
+            <div class="kids-pillar-title">Active Learning &amp; Bermain Bebas</div>
+            <p class="kids-pillar-desc">Anak diarahkan bereksplorasi secara alami dengan loose parts dan media sensorik untuk mengasah keingintahuan intelek tanpa paksaan.</p>
+          </div>
+          <div class="kids-pillar-item">
+            <div class="kids-pillar-tag">PENDAMPINGAN // 02</div>
+            <div class="kids-pillar-title">Fasilitator Penuh Kasih Sayang</div>
+            <p class="kids-pillar-desc">Rasio kecil 1 guru untuk 4 anak menjamin setiap luapan emosi, pencapaian kecil, dan kebutuhan anak didampingi secara personal.</p>
+          </div>
+          <div class="kids-pillar-item">
+            <div class="kids-pillar-tag">KEAMANAN // 03</div>
+            <div class="kids-pillar-title">CCTV Terbuka &amp; Sterilisasi UV</div>
+            <p class="kids-pillar-desc">Seluruh area bermain, ruang tidur daycare, dan sudut kelas dipantau CCTV real-time yang dapat diakses orang tua demi rasa tenang.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -415,47 +592,189 @@
   <section class="testimoni-section" id="testimoni">
     <div class="container">
       <div class="section-header-center">
-        <span class="section-label">Pengalaman Orang Tua</span>
-        <h2 class="section-title">Cerita Hangat dari Ayah & Bunda</h2>
-        <p class="section-sub">Kebahagiaan dan rasa aman keluarga adalah prioritas tertinggi dalam setiap langkah kami.</p>
+        <span class="section-label">Pengalaman &amp; Ulasan Orang Tua</span>
+        <h2 class="section-title">Cerita Hangat dari Ayah &amp; Bunda</h2>
+        <p class="section-sub">Kebahagiaan, stimulasi alami, dan rasa aman keluarga adalah prioritas tertinggi dalam setiap langkah kami.</p>
       </div>
 
-      <div class="testimoni-grid">
-        <!-- Testimoni 1 -->
-        <div class="testimoni-card">
-          <div class="testimoni-stars">★★★★★</div>
-          <p class="testimoni-quote">"Awalnya Arkan sangat pemalu dan selalu menangis kalau ditinggal. Baru 2 minggu di Rumah Tumbuh, sekarang dia malah paling antusias bangun pagi dan cerita tentang Bunda guru dan teman-temannya!"</p>
+      <!-- Filter Tabs & Pagination Controls -->
+      <div class="testimoni-controls-bar">
+        <div class="testimoni-filter-group" id="paudReviewFilterTabs">
+          <button type="button" class="testimoni-filter-btn active" onclick="filterPaudReviews('all')">Semua Ulasan (8)</button>
+          <button type="button" class="testimoni-filter-btn" onclick="filterPaudReviews('daycare')">Toddler &amp; Daycare</button>
+          <button type="button" class="testimoni-filter-btn" onclick="filterPaudReviews('paud')">PAUD &amp; TK Sentra</button>
+          <button type="button" class="testimoni-filter-btn" onclick="filterPaudReviews('calistung')">Bimbel Calistung</button>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="testimoni-pagination-group">
+          <button type="button" class="testimoni-page-btn" onclick="changePaudReviewPage(-1)" aria-label="Halaman Sebelumnya">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <span class="testimoni-page-indicator" id="paudReviewPageIndicator">1 / 2</span>
+          <button type="button" class="testimoni-page-btn" onclick="changePaudReviewPage(1)" aria-label="Halaman Selanjutnya">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="testimoni-grid-4col" id="paudReviewsGrid">
+        <!-- Card 1 (Page 1 - Daycare) -->
+        <div class="testimoni-card paud-review-card" data-category="daycare" data-page="1">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-paud-sensory.jpg" alt="Stimulasi Sensorik Balita" loading="lazy">
+            <span class="testimoni-tag-badge">Toddler &bull; 2 Th</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Awalnya Arkan sangat pemalu dan menangis kalau ditinggal. Baru 2 minggu di Rumah Tumbuh, sekarang malah paling antusias bangun pagi dan cerita tentang Bunda guru dan teman-temannya!&rdquo;</p>
           <div class="testimoni-author">
-            <img src="assets/images/avatar-1.jpg" alt="Foto Bunda Nadia S." class="author-avatar" width="50" height="50">
+            <img src="assets/images/cust-1.jpg" alt="Bunda Nadia S." class="author-avatar" width="50" height="50">
             <div class="author-info">
               <h4>Bunda Nadia S.</h4>
+              <span class="author-role">Orang Tua Toddler Usia 2 Tahun</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 (Page 1 - Daycare) -->
+        <div class="testimoni-card paud-review-card" data-category="daycare" data-page="1">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-daycare-sleep.jpg" alt="Ruang Istirahat Daycare Bersih" loading="lazy">
+            <span class="testimoni-tag-badge">Daycare &bull; Full Day</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Sebagai orang tua bekerja, daycare Rumah Tumbuh benar-benar penyelamat. Menunya bergizi organik, jam tidur siangnya disiplin, dan laporan foto hariannya membuat kami tenang sepanjang hari.&rdquo;</p>
+          <div class="testimoni-author">
+            <img src="assets/images/cust-2.jpg" alt="Ayah Ryan K." class="author-avatar" width="50" height="50">
+            <div class="author-info">
+              <h4>Ayah Ryan K.</h4>
+              <span class="author-role">Orang Tua Daycare Usia 2.5 Tahun</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 (Page 1 - Calistung) -->
+        <div class="testimoni-card paud-review-card" data-category="calistung" data-page="1">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-calistung-baca.jpg" alt="Belajar Membaca Fonik" loading="lazy">
+            <span class="testimoni-tag-badge">Calistung &bull; Fonik</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Metode foniknya luar biasa! Anak saya yang tadinya malas membaca sekarang suka mengeja papan nama di jalan dengan gembira. Tanpa paksaan, tapi progresnya sangat cepat masuk SD.&rdquo;</p>
+          <div class="testimoni-author">
+            <img src="assets/images/cust-3.jpg" alt="Bunda Citra W." class="author-avatar" width="50" height="50">
+            <div class="author-info">
+              <h4>Bunda Citra W.</h4>
+              <span class="author-role">Orang Tua Siswa Calistung 6 Tahun</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 (Page 1 - PAUD) -->
+        <div class="testimoni-card paud-review-card" data-category="paud" data-page="1">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-art-creative.jpg" alt="Sentra Seni & Lukis" loading="lazy">
+            <span class="testimoni-tag-badge">PAUD &bull; Sentra Seni</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Aktivitas sensori dan melukis finger-painting di sini sangat membebaskan daya imajinasi anak. Guru-gurunya sabar luar biasa dan selalu mengapresiasi setiap coretan karya anak.&rdquo;</p>
+          <div class="testimoni-author">
+            <img src="assets/images/cust-4.jpg" alt="Ayah Dimas & Bunda Laras" class="author-avatar" width="50" height="50">
+            <div class="author-info">
+              <h4>Ayah Dimas &amp; Bunda Laras</h4>
               <span class="author-role">Orang Tua Murid PAUD Usia 4 Tahun</span>
             </div>
           </div>
         </div>
 
-        <!-- Testimoni 2 -->
-        <div class="testimoni-card">
-          <div class="testimoni-stars">★★★★★</div>
-          <p class="testimoni-quote">"Sebagai orang tua bekerja, daycare Rumah Tumbuh benar-benar penyelamat. Menunya bergizi, jam tidur siangnya disiplin, dan laporan foto hariannya membuat kami tenang bekerja sepanjang hari."</p>
+        <!-- Card 5 (Page 2 - Daycare) -->
+        <div class="testimoni-card paud-review-card hidden" data-category="daycare" data-page="2">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-outdoor-play.jpg" alt="Taman Bermain Outdoor Hijau" loading="lazy">
+            <span class="testimoni-tag-badge">Daycare &bull; Outdoor</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Taman bermain luar ruangannya sangat teduh dan bersih. Anak-anak banyak bergerak dan motorik kasarnya berkembang pesat, jarang sakit karena daya tahan tubuhnya bagus.&rdquo;</p>
           <div class="testimoni-author">
-            <img src="assets/images/avatar-2.jpg" alt="Foto Ayah Ryan K." class="author-avatar" width="50" height="50">
+            <img src="assets/images/cust-5.jpg" alt="Bunda Fenny Kusuma" class="author-avatar" width="50" height="50">
             <div class="author-info">
-              <h4>Ayah Ryan K.</h4>
-              <span class="author-role">Orang Tua Daycare Balita Usia 2 Tahun</span>
+              <h4>Bunda Fenny Kusuma</h4>
+              <span class="author-role">Orang Tua Daycare Usia 3 Tahun</span>
             </div>
           </div>
         </div>
 
-        <!-- Testimoni 3 -->
-        <div class="testimoni-card">
-          <div class="testimoni-stars">★★★★★</div>
-          <p class="testimoni-quote">"Metode foniknya luar biasa! Anak saya yang tadinya malas membaca sekarang suka mengeja papan nama di jalan dengan gembira. Tanpa paksaan, tapi progresnya sangat cepat."</p>
+        <!-- Card 6 (Page 2 - PAUD) -->
+        <div class="testimoni-card paud-review-card hidden" data-category="paud" data-page="2">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-music-angklung.jpg" alt="Kelas Musik & Angklung" loading="lazy">
+            <span class="testimoni-tag-badge">PAUD &bull; Musik Angklung</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Kelas pengenalan ritme musik dan angklung melatih fokus dan kepekaan sosial anak saat bermain berkelompok. Sangat jarang ada PAUD modern yang melestarikan nilai budaya lokal seperti ini.&rdquo;</p>
           <div class="testimoni-author">
-            <img src="assets/images/avatar-3.jpg" alt="Foto Bunda Citra W." class="author-avatar" width="50" height="50">
+            <img src="assets/images/cust-6.jpg" alt="Ayah Hendro Pratama" class="author-avatar" width="50" height="50">
             <div class="author-info">
-              <h4>Bunda Citra W.</h4>
-              <span class="author-role">Orang Tua Siswa Calistung Usia 6 Tahun</span>
+              <h4>Ayah Hendro Pratama</h4>
+              <span class="author-role">Orang Tua Murid TK Bintaro</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 (Page 2 - Calistung) -->
+        <div class="testimoni-card paud-review-card hidden" data-category="calistung" data-page="2">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-stem-science.jpg" alt="Eksperimen Sains Cilik" loading="lazy">
+            <span class="testimoni-tag-badge">Calistung &bull; Sains SD</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">4.9</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Matematika diajarkan dengan alat peraga konkret dan eksperimen sederhana. Anak saya tidak pernah merasa berhitung itu menakutkan, malah jadi pelajaran favoritnya saat ini.&rdquo;</p>
+          <div class="testimoni-author">
+            <img src="assets/images/cust-7.jpg" alt="Bunda Maya Triana" class="author-avatar" width="50" height="50">
+            <div class="author-info">
+              <h4>Bunda Maya Triana</h4>
+              <span class="author-role">Orang Tua Siswa SD Kelas 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 (Page 2 - PAUD) -->
+        <div class="testimoni-card paud-review-card hidden" data-category="paud" data-page="2">
+          <div class="testimoni-card-photo">
+            <img src="assets/images/rev-cooking-kids.jpg" alt="Kelas Memasak Cilik" loading="lazy">
+            <span class="testimoni-tag-badge">PAUD &bull; Little Chef</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div class="testimoni-stars">★★★★★</div>
+            <span style="font-family:monospace; font-weight:700; font-size:0.875rem; color:var(--color-primary-dark);">5.0</span>
+          </div>
+          <p class="testimoni-quote">&ldquo;Program Little Chef melatih kemandirian dan motorik halus menyiapkan camilan sendiri. Di rumah anak jadi lebih mau makan sayur dan buah setelah praktik cooking class di Rumah Tumbuh.&rdquo;</p>
+          <div class="testimoni-author">
+            <img src="assets/images/cust-8.jpg" alt="Ayah Bagus Wijaya" class="author-avatar" width="50" height="50">
+            <div class="author-info">
+              <h4>Ayah Bagus Wijaya</h4>
+              <span class="author-role">Orang Tua Murid PAUD Usia 5 Tahun</span>
             </div>
           </div>
         </div>

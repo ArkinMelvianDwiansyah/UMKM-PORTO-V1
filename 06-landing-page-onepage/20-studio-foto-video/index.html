@@ -299,7 +299,65 @@
       </div>
     </section>
 
-    <!-- 7. SECTION KHAS INDUSTRI 1: #paket (Pricelist Statis Tanpa Kalkulator) -->
+    <!-- 6B. VIDEO SWITCHER: DOKUMENTASI PRODUKSI & SUASANA STUDIO -->
+    <section class="studio-video-section" id="video-studio" aria-labelledby="video-studio-heading">
+      <div class="container">
+        <div class="studio-video-card">
+          <div class="studio-video-header">
+            <div>
+              <span class="section-label" style="color:#AAAAAA; font-family:monospace; font-size:0.6875rem;">[PRODUKSI SINEMATIK] 4K RAW &bull; 35MM ANALOG COLOR SCIENCE</span>
+              <h2 class="section-title" id="video-studio-heading" style="font-size:clamp(1.5rem, 3vw, 2rem); margin-top:6px;">
+                Dokumentasi Di Balik Layar &amp; Suasana Pemotretan
+              </h2>
+              <p style="font-size:0.875rem; color:var(--text-muted); margin-top:6px; max-width:680px;">
+                Saksikan bagaimana tim sinematografer dan fotografer kami mengatur pencahayaan presisi, pengarahan gestur alami, dan grading warna filmik berkarakter.
+              </p>
+            </div>
+            <!-- Video Switcher Controls -->
+            <div class="studio-video-switcher-btns">
+              <button type="button" class="studio-video-btn active" data-video="assets/videos/video-studio-sinematik.mp4" data-caption="PRODUKSI SINEMATIK // DIRECTOR'S POV &amp; CAMERA RIGGING 4K">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>Rig Sinematik</span>
+              </button>
+              <button type="button" class="studio-video-btn" data-video="assets/videos/video-photoshoot-kamera.mp4" data-caption="PHOTOSHOOT STUDIO // ANALOG 35MM TONE &amp; NATURAL LIGHT">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+                <span>Sesi Photoshoot</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Frame -->
+          <div class="studio-video-frame">
+            <video id="studioVideoPlayer" autoplay loop muted playsinline poster="assets/images/hero-studio.jpg" src="assets/videos/video-studio-sinematik.mp4"></video>
+            <div class="studio-video-caption-pill">
+              <span class="rec-pulse-dot"></span>
+              <span id="studioVideoCaption">PRODUKSI SINEMATIK // DIRECTOR'S POV &amp; CAMERA RIGGING 4K</span>
+            </div>
+          </div>
+
+          <!-- 3 Technical Standards -->
+          <div class="studio-video-pillars">
+            <div class="studio-pillar-item">
+              <div class="studio-pillar-tag">ESTETIKA // 01</div>
+              <div class="studio-pillar-title">10-Bit 4:2:2 Color Grading</div>
+              <p class="studio-pillar-desc">Gradasi warna analog 35mm dengan tonal kontras elegan yang mempertahankan warna kulit asli tetap natural dan hangat.</p>
+            </div>
+            <div class="studio-pillar-item">
+              <div class="studio-pillar-tag">PENCAHAYAAN // 02</div>
+              <div class="studio-pillar-title">Precision Studio Rig</div>
+              <p class="studio-pillar-desc">Dukungan lampu studio kontinyu Aputure &amp; Godox strobe dengan modifier kubah difusi menghasilkan bayangan bergradasi halus.</p>
+            </div>
+            <div class="studio-pillar-item">
+              <div class="studio-pillar-tag">PENGARAHAN // 03</div>
+              <div class="studio-pillar-title">Director's Natural Guidance</div>
+              <p class="studio-pillar-desc">Arahan gestur santai tanpa pose kaku, memastikan setiap tangkapan emosi dan senyuman terasa jujur dan personal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECTION KHAS INDUSTRI 1: #paket (Pricelist & Kalkulator Interaktif) -->
     <section class="paket-section" id="paket" aria-labelledby="paket-heading">
       <div class="container">
         <div class="section-header center">
@@ -360,6 +418,126 @@
             </div>
             <a href="#kontak" class="btn-primary" style="width: 100%; text-align: center;">Konsultasi Brand</a>
           </article>
+        </div>
+
+        <!-- Interactive Kalkulator Estimasi Biaya Sesi -->
+        <div class="kalkulator-sesi-card" id="kalkulator-sesi">
+          <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 16px; margin-bottom: 24px;">
+            <span class="section-label" style="font-family:monospace; font-size:0.6875rem; color:#AAAAAA;">[SIMULASI INVESTASI] KALKULATOR SESI FOTO &amp; VIDEO</span>
+            <h3 style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: #FFFFFF; margin-top: 4px;">
+              Kustomisasi Kebutuhan &amp; Rincian Estimasi Biaya
+            </h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">
+              Pilih paket dasar, tambahkan durasi atau layanan ekstra sesuai konsep kreatif Anda, dan dapatkan penawaran instan.
+            </p>
+          </div>
+
+          <div class="calc-grid">
+            <!-- Left Controls -->
+            <div>
+              <div class="calc-field-group">
+                <label for="calcPaket" class="calc-label">Pilih Paket Dasar</label>
+                <select id="calcPaket" class="calc-select">
+                  <option value="850000" data-name="Studio Intim (Personal/Couple)" data-days="3-4 Hari">Studio Intim — Rp 850.000 (2 Jam, 15 Retouched)</option>
+                  <option value="2800000" data-name="Prewedding & Cerita Cinta" data-days="5-7 Hari" selected>Prewedding & Cerita Cinta — Rp 2.800.000 (5 Jam, Teaser Reels, Kanvas)</option>
+                  <option value="4500000" data-name="Commercial Brand & Lookbook" data-days="5-7 Hari">Commercial Brand & Lookbook — Rp 4.500.000 (Full Day 8 Jam, Video 4K)</option>
+                  <option value="8500000" data-name="Full Day Wedding Cinematic" data-days="7-14 Hari">Full Day Wedding Cinematic — Rp 8.500.000 (2 Fotografer + 2 Videografer)</option>
+                </select>
+              </div>
+
+              <div class="calc-field-group">
+                <label class="calc-label">Layanan Ekstra / Add-ons Tambahan</label>
+                <div class="calc-addons-list">
+                  <label class="calc-addon-label">
+                    <input type="checkbox" class="calc-addon-check" value="350000" data-name="Ekstra Durasi Sesi (+1 Jam)">
+                    <span class="calc-addon-text">Ekstra Durasi Sesi (+1 Jam Studio/Lokasi)</span>
+                    <span class="calc-addon-price">+Rp 350.000</span>
+                  </label>
+                  <label class="calc-addon-label">
+                    <input type="checkbox" class="calc-addon-check" value="650000" data-name="Video Teaser Sinematik Reels 4K (60 Detik)">
+                    <span class="calc-addon-text">Video Teaser Sinematik Reels 4K (60 Detik)</span>
+                    <span class="calc-addon-price">+Rp 650.000</span>
+                  </label>
+                  <label class="calc-addon-label">
+                    <input type="checkbox" class="calc-addon-check" value="600000" data-name="Makeup Artist (MUA) & Hairdo Profesional">
+                    <span class="calc-addon-text">Makeup Artist (MUA) &amp; Hairdo Profesional di Studio</span>
+                    <span class="calc-addon-price">+Rp 600.000</span>
+                  </label>
+                  <label class="calc-addon-label">
+                    <input type="checkbox" class="calc-addon-check" value="450000" data-name="Cetak Kanvas Fine Art 50x70cm Bingkai Solid Wood">
+                    <span class="calc-addon-text">Cetak Kanvas Fine Art 50x70cm + Bingkai Kayu Solid</span>
+                    <span class="calc-addon-price">+Rp 450.000</span>
+                  </label>
+                  <label class="calc-addon-label">
+                    <input type="checkbox" class="calc-addon-check" value="800000" data-name="Dokumentasi Aerial Drone Sinematik 4K">
+                    <span class="calc-addon-text">Dokumentasi Aerial Drone Sinematik 4K (Outdoor)</span>
+                    <span class="calc-addon-price">+Rp 800.000</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="calc-field-group">
+                <label class="calc-label">Skema Pembayaran</label>
+                <div style="display:flex; gap:12px;">
+                  <label class="calc-addon-label" style="flex:1;">
+                    <input type="radio" name="calcPayment" value="dp" checked style="accent-color:#FFFFFF;">
+                    <span class="calc-addon-text">DP 50% (Sisa Saat Serah Terima)</span>
+                  </label>
+                  <label class="calc-addon-label" style="flex:1;">
+                    <input type="radio" name="calcPayment" value="lunas" style="accent-color:#FFFFFF;">
+                    <span class="calc-addon-text">Lunas (Diskon Early Bird 5%)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Summary Box -->
+            <div class="calc-summary-box">
+              <div>
+                <h4 class="calc-summary-title">Ringkasan Estimasi Sesi</h4>
+                <div class="calc-summary-row">
+                  <span>Paket Dipilih:</span>
+                  <strong id="calcSummaryPaketName" style="color:#FFFFFF; text-align:right;">Prewedding &amp; Cerita Cinta</strong>
+                </div>
+                <div class="calc-summary-row">
+                  <span>Harga Dasar:</span>
+                  <span id="calcSummaryBasePrice" style="font-family:monospace; color:#FFFFFF;">Rp 2.800.000</span>
+                </div>
+                <div class="calc-summary-row">
+                  <span>Add-ons Terpilih:</span>
+                  <span id="calcSummaryAddonsCount" style="color:#FFFFFF;">0 Layanan</span>
+                </div>
+                <div class="calc-summary-row">
+                  <span>Diskon Pembayaran:</span>
+                  <span id="calcSummaryDiscount" style="color:#22C55E; font-family:monospace;">Rp 0</span>
+                </div>
+                <div class="calc-summary-row">
+                  <span>Estimasi Pengerjaan:</span>
+                  <strong id="calcSummaryLeadTime" style="color:#FFFFFF;">5–7 Hari Kerja</strong>
+                </div>
+
+                <div class="calc-summary-total">
+                  <div>
+                    <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Total Estimasi Investasi:</span>
+                    <div class="calc-total-val" id="calcTotalPriceDisplay">Rp 2.800.000</div>
+                  </div>
+                  <div id="calcDpInfo" style="text-align:right; font-size:0.75rem; color:#AAAAAA;">
+                    <span>DP 50%: </span><strong id="calcDpAmount" style="color:#FFFFFF; font-family:monospace;">Rp 1.400.000</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:24px;">
+                <button type="button" id="btnSendCalcWa" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-weight:700;">
+                  <span>Kirim Hasil Estimasi Ini ke WhatsApp</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+                <p style="font-size:0.6875rem; color:var(--text-dim); text-align:center; margin-top:8px;">
+                  *RAB simulasi otomatis &bull; Jadwal definitif dikonfirmasi langsung oleh tim fotografer via WhatsApp.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -499,27 +677,52 @@
       </div>
     </section>
 
-    <!-- 11. #testimoni — TESTIMONI (3 ulasan autentik, nama fiktif unik) -->
+    <!-- 11. #testimoni — TESTIMONI (8 Ulasan Foto Terverifikasi, Filter Kategori, Paginasi) -->
     <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
       <div class="container">
         <div class="section-header center">
-          <span class="section-label">Ulasan Klien</span>
+          <span class="section-label">Ulasan Klien &amp; Hasil Karya</span>
           <h2 class="section-title" id="testimoni-heading">Apa Kata Mereka yang Mengabadikan Momen Bersama Kami.</h2>
-          <p class="section-desc">Kesan autentik dari pasangan pernikahan, pendiri brand lokal, dan kreator konten. <span style="font-size:0.75rem; color:var(--text-dim);">(Contoh kurasi testimoni klien)</span></p>
+          <p class="section-desc">Kesan autentik dari pasangan pernikahan, pendiri brand lokal, dan kreator konten. <span style="font-size:0.75rem; color:var(--text-dim);">(Kurasi testimoni klien terverifikasi)</span></p>
         </div>
 
-        <div class="testimoni-grid">
-          <!-- Testimoni 1 -->
-          <article class="testimoni-card">
+        <!-- Filter Tabs & Pagination Bar -->
+        <div class="testimoni-controls-bar">
+          <div class="testimoni-filter-group" id="studioReviewFilterTabs">
+            <button type="button" class="testimoni-filter-btn active" onclick="filterStudioReviews('all')">Semua (8)</button>
+            <button type="button" class="testimoni-filter-btn" onclick="filterStudioReviews('wedding')">Wedding &amp; Prewed</button>
+            <button type="button" class="testimoni-filter-btn" onclick="filterStudioReviews('commercial')">Commercial Brand</button>
+            <button type="button" class="testimoni-filter-btn" onclick="filterStudioReviews('portrait')">Portrait Editorial</button>
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="testimoni-pagination-group">
+            <button type="button" class="testimoni-page-btn" onclick="changeStudioReviewPage(-1)" aria-label="Halaman Sebelumnya">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="testimoni-page-indicator" id="studioReviewPageIndicator">1 / 2</span>
+            <button type="button" class="testimoni-page-btn" onclick="changeStudioReviewPage(1)" aria-label="Halaman Selanjutnya">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="testimoni-grid-4col" id="studioReviewsGrid">
+          <!-- Card 1 (Page 1 - Wedding) -->
+          <article class="testimoni-card studio-review-card" data-category="wedding" data-page="1">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-wedding-intim.jpg" alt="Akad Nikah Hutan Kota Senayan" loading="lazy">
+              <span class="testimoni-tag-badge">Wedding &bull; Senayan</span>
+            </div>
             <div class="testimoni-header-bar">
               <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Dokumentasi Pernikahan</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
             </div>
             <blockquote class="testimoni-quote">
-              "Kami bukan orang yang luwes di depan kamera, tapi mas-mas tim Lensa Hening bikin kami berdua nyaman banget pas hari H. Hasil fotonya tidak kaku, pencahayaannya adem, dan tone warna filmnya bener-bener gak ngebosenin dilihat berkali-kali."
+              &ldquo;Kami bukan orang yang luwes di depan kamera, tapi mas-mas tim Lensa Hening bikin kami berdua nyaman banget pas hari H. Hasil fotonya tidak kaku, pencahayaannya adem, dan tone warna filmnya bener-bener gak ngebosenin.&rdquo;
             </blockquote>
             <div class="testimoni-author">
-              <img src="assets/images/avatar-1.jpg" alt="Foto Citra Wulandari" class="testimoni-avatar" width="44" height="44">
+              <img src="assets/images/cust-1.jpg" alt="Citra Wulandari" class="testimoni-avatar" width="44" height="44">
               <div class="author-info">
                 <strong>Citra Wulandari</strong>
                 <span>Pengantin &bull; Resepsi Hutan Kota Senayan</span>
@@ -527,17 +730,21 @@
             </div>
           </article>
 
-          <!-- Testimoni 2 -->
-          <article class="testimoni-card">
+          <!-- Card 2 (Page 1 - Commercial) -->
+          <article class="testimoni-card studio-review-card" data-category="commercial" data-page="1">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-brand-lookbook.jpg" alt="Lookbook Fashion Modest" loading="lazy">
+              <span class="testimoni-tag-badge">Commercial &bull; Lookbook</span>
+            </div>
             <div class="testimoni-header-bar">
               <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Kampanye Brand Fashion</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
             </div>
             <blockquote class="testimoni-quote">
-              "Lookbook koleksi terbaru brand kami naik kelas drastis setelah dihandle tim Lensa Hening. Pengarahan modelnya tajam, pemahaman lightingnya dalam, dan waktu revisi warnanya sangat cepat sesuai deadline rilis website kami."
+              &ldquo;Lookbook koleksi terbaru brand kami naik kelas drastis setelah dihandle tim Lensa Hening. Pengarahan modelnya tajam, pemahaman lightingnya dalam, dan waktu revisi warnanya sangat cepat sesuai deadline rilis website kami.&rdquo;
             </blockquote>
             <div class="testimoni-author">
-              <img src="assets/images/avatar-2.jpg" alt="Foto Bagas Dananjaya" class="testimoni-avatar" width="44" height="44">
+              <img src="assets/images/cust-2.jpg" alt="Bagas Dananjaya" class="testimoni-avatar" width="44" height="44">
               <div class="author-info">
                 <strong>Bagas Dananjaya</strong>
                 <span>Creative Director &bull; Studio Modest Pria</span>
@@ -545,20 +752,134 @@
             </div>
           </article>
 
-          <!-- Testimoni 3 -->
-          <article class="testimoni-card">
+          <!-- Card 3 (Page 1 - Portrait) -->
+          <article class="testimoni-card studio-review-card" data-category="portrait" data-page="1">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-portrait-fineart.jpg" alt="Portrait Fine Art Studio" loading="lazy">
+              <span class="testimoni-tag-badge">Portrait &bull; Fine Art</span>
+            </div>
             <div class="testimoni-header-bar">
               <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Sesi Studio Personal</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
             </div>
             <blockquote class="testimoni-quote">
-              "Foto portrait untuk profil portofolio arsitektur saya dibuat di studio Kemang. Dinding cyclorama putihnya lega, pencahayaan lampunya sangat presisi menangkap bayangan geometris. Sangat puas dengan hasil cetak fine art-nya!"
+              &ldquo;Foto portrait untuk profil portofolio arsitektur saya dibuat di studio Kemang. Dinding cyclorama putihnya lega, pencahayaan lampunya presisi menangkap bayangan geometris. Sangat puas dengan cetak fine art-nya!&rdquo;
             </blockquote>
             <div class="testimoni-author">
-              <img src="assets/images/avatar-3.jpg" alt="Foto Reno Satria" class="testimoni-avatar" width="44" height="44">
+              <img src="assets/images/cust-3.jpg" alt="Reno Satria" class="testimoni-avatar" width="44" height="44">
               <div class="author-info">
                 <strong>Reno Satria</strong>
                 <span>Praktisi Arsitektur &bull; Kebayoran Baru</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 (Page 1 - Wedding) -->
+          <article class="testimoni-card studio-review-card" data-category="wedding" data-page="1">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-prewed-outdoor.jpg" alt="Prewedding Bromo Sunrise" loading="lazy">
+              <span class="testimoni-tag-badge">Prewed &bull; Bromo</span>
+            </div>
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              &ldquo;Sesi prewedding di Bromo sangat menantang karena kabut dan dingin, tapi videografer Lensa Hening sangat gesit. Video teaser reels 60 detiknya viral di IG dan tone cinematic 35mm-nya dipuji semua keluarga besar.&rdquo;
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-4.jpg" alt="Amanda & Kevin" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Amanda &amp; Kevin</strong>
+                <span>Pasangan Klien &bull; Prewedding Bromo</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 (Page 2 - Commercial) -->
+          <article class="testimoni-card studio-review-card hidden" data-category="commercial" data-page="2">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-video-commercial.jpg" alt="Video Commercial Campaign" loading="lazy">
+              <span class="testimoni-tag-badge">Commercial &bull; Video 4K</span>
+            </div>
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              &ldquo;Produksi video profil perusahaan manufaktur kami berlangsung sangat terstruktur dengan call sheet rapi. Hasil sinematografinya setara standar iklan televisi nasional dengan grading warna yang sangat mewah.&rdquo;
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-5.jpg" alt="Derry Gunawan" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Derry Gunawan</strong>
+                <span>Brand Manager &bull; PT Audio Dinamika</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 (Page 2 - Portrait) -->
+          <article class="testimoni-card studio-review-card hidden" data-category="portrait" data-page="2">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-family-maternity.jpg" alt="Maternity Portrait Kemang" loading="lazy">
+              <span class="testimoni-tag-badge">Portrait &bull; Maternity</span>
+            </div>
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              &ldquo;Sesi maternity di studio Kemang sangat hangat dan privat. Ruang ganti dan istirahatnya nyaman untuk ibu hamil. File retouched-nya selesai lebih cepat dari estimasi dan hasilnya natural tanpa kesan editan berlebihan.&rdquo;
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-6.jpg" alt="Vanya & Adrian" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Vanya &amp; Adrian</strong>
+                <span>Klien Sesi Maternity &bull; Kemang</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7 (Page 2 - Commercial) -->
+          <article class="testimoni-card studio-review-card hidden" data-category="commercial" data-page="2">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-product-culinary.jpg" alt="Culinary & Coffee Editorial" loading="lazy">
+              <span class="testimoni-tag-badge">Commercial &bull; F&amp;B</span>
+            </div>
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">4.9</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              &ldquo;Fotografi menu dan interior kedai kopi kami di Senopati dikerjakan dengan lensa macro dan natural lighting yang luar biasa detail. Tekstur latte art dan butiran biji kopi terlihat sangat menggiurkan untuk feed digital kami.&rdquo;
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-7.jpg" alt="Michelle Surya" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Michelle Surya</strong>
+                <span>Co-Owner &bull; Artisan Roastery Senopati</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8 (Page 2 - Portrait / Event) -->
+          <article class="testimoni-card studio-review-card hidden" data-category="portrait" data-page="2">
+            <div class="testimoni-card-photo">
+              <img src="assets/images/rev-music-doc.jpg" alt="Dokumentasi Panggung Akustik" loading="lazy">
+              <span class="testimoni-tag-badge">Documentary &bull; Stage</span>
+            </div>
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge" style="font-family:monospace; color:#FFF;">5.0</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              &ldquo;Dokumentasi konser akustik intim di gedung seni Jakarta Selatan diabadikan dengan luar biasa. Kamera low-light mereka menangkap flare lampu panggung dengan emosi yang sangat puitis dan hidup.&rdquo;
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-8.jpg" alt="Raditya Pratama" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Raditya Pratama</strong>
+                <span>Produser Musik Independen &bull; Jakarta</span>
               </div>
             </div>
           </article>

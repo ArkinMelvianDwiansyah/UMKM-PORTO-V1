@@ -791,8 +791,60 @@
                 </div>
             </div>
 
+            <!-- DOKUMENTASI WORKSHOP & MESIN GARMEN (VIDEO SHOWCASE) -->
+            <div class="pt-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[06] LIVE WORKSHOP & DOKUMENTASI MESIN</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Teknologi Mesin Bordir & Sablon Presisi</h3>
+                    </div>
+                    <!-- Video Switcher Buttons -->
+                    <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                        <button type="button" data-video="assets/videos/video-bordir-komputer.mp4" data-caption="MESIN BORDIR KOMPUTER BARUDAN JEPANG // 12 KEPALA OTOMATIS (1.200 RPM)"
+                            class="garment-video-btn active px-3.5 py-2 bg-[#FF4D1C] text-white font-bold border border-[#FF4D1C] transition flex items-center gap-2">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Bordir Komputer Barudan</span>
+                        </button>
+                        <button type="button" data-video="assets/videos/video-sablon-printing.mp4" data-caption="LABORATORIUM WARNA & MEJA SABLON ROTARY // TINTA PLASTISOL HD & CURING 160°C"
+                            class="garment-video-btn px-3.5 py-2 bg-zinc-800 text-zinc-300 font-semibold border border-zinc-700 hover:border-zinc-500 transition flex items-center gap-2">
+                            <i class="fa-solid fa-film text-[10px]"></i>
+                            <span>Laboratorium Sablon & Printing</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Frame -->
+                <div class="border-2 border-zinc-800 bg-zinc-950 overflow-hidden shadow-2xl">
+                    <div class="relative bg-black h-80 sm:h-[480px] overflow-hidden">
+                        <video id="garmentVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/hero-garment.jpg" src="assets/videos/video-bordir-komputer.mp4"></video>
+                        <div class="absolute bottom-4 left-4 bg-[#111315]/90 backdrop-blur-md px-4 py-2 border border-zinc-700 font-mono text-xs text-zinc-200 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span id="garmentVideoCaption">MESIN BORDIR KOMPUTER BARUDAN JEPANG // 12 KEPALA OTOMATIS (1.200 RPM)</span>
+                        </div>
+                    </div>
+                    <!-- 3 Machine Specs -->
+                    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-800 bg-zinc-950 p-6 sm:p-8">
+                        <div class="p-4 space-y-1.5">
+                            <div class="font-mono text-xs text-[#FF4D1C] font-bold tracking-wider">MESIN // 01</div>
+                            <h4 class="text-sm font-bold text-white">Barudan 12-Head Multihead Embroidery</h4>
+                            <p class="text-zinc-400 text-xs leading-relaxed">Kerapatan jahitan hingga 1.200 rpm dengan benang polyester anti luntur untuk logo kemeja & jaket B2B.</p>
+                        </div>
+                        <div class="p-4 space-y-1.5">
+                            <div class="font-mono text-xs text-[#4F46E5] font-bold tracking-wider">MESIN // 02</div>
+                            <h4 class="text-sm font-bold text-white">Rotary Screen & Curing Tunnel 160°C</h4>
+                            <p class="text-zinc-400 text-xs leading-relaxed">Tinta Plastisol HD & discharge premium yang matang sempurna di mesin pemanas curing, elastis dan awet.</p>
+                        </div>
+                        <div class="p-4 space-y-1.5">
+                            <div class="font-mono text-xs text-emerald-400 font-bold tracking-wider">MESIN // 03</div>
+                            <h4 class="text-sm font-bold text-white">High-Speed Laser Pattern Cutter & Steam QC</h4>
+                            <p class="text-zinc-400 text-xs leading-relaxed">Pola potong kain presisi milimeter, bebas melintir, dan setrika uap industri sebelum polybag seal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Client Trust & Testimonials -->
-            <div id="klien" class="space-y-8">
+            <div id="klien" class="space-y-8 pt-4">
                 <div class="bg-zinc-900 border border-zinc-800 p-8 text-center">
                     <p class="font-mono text-xs font-bold uppercase tracking-widest text-indigo-300 mb-6">
                         DIPERCAYA OLEH 500+ INSTANSI, KORPORASI, KAMPUS & KOMUNITAS DI INDONESIA
@@ -823,15 +875,34 @@
                 <div class="pt-4">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                         <div>
-                            <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[06] BUKTI PRODUKSI & ULASAN MITRA B2B</span>
+                            <span class="font-mono text-[#FF4D1C] font-bold text-xs uppercase tracking-widest">[07] BUKTI PRODUKSI & ULASAN MITRA B2B</span>
                             <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Foto Hasil Produksi & Testimoni Klien</h3>
                         </div>
-                        <span class="font-mono text-xs text-zinc-400">100% Dokumentasi Batch Aktual Pabrik Bandung</span>
+                        <div class="flex items-center gap-3">
+                            <!-- Category Filter Tabs -->
+                            <div class="hidden sm:flex items-center gap-1.5 font-mono text-xs">
+                                <button type="button" onclick="filterReviews('all')" class="review-tab-btn active px-3 py-1.5 bg-[#FF4D1C] text-white font-bold border border-[#FF4D1C]">Semua (6)</button>
+                                <button type="button" onclick="filterReviews('seragam')" class="review-tab-btn px-3 py-1.5 bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700">Kemeja & PDL</button>
+                                <button type="button" onclick="filterReviews('kaos')" class="review-tab-btn px-3 py-1.5 bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700">Kaos & Gathering</button>
+                                <button type="button" onclick="filterReviews('jersey')" class="review-tab-btn px-3 py-1.5 bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700">Jersey & Hoodie</button>
+                            </div>
+                            <!-- Pagination Arrow Buttons -->
+                            <div class="flex items-center gap-1.5 font-mono text-xs">
+                                <button type="button" id="prevReviewPageBtn" onclick="changeReviewPage(-1)" class="w-9 h-9 bg-zinc-800 hover:bg-[#FF4D1C] text-white flex items-center justify-center border border-zinc-700 transition" aria-label="Sebelumnya">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <span id="reviewPageIndicator" class="px-2.5 py-1 text-xs text-zinc-400 font-mono">1 / 2</span>
+                                <button type="button" id="nextReviewPageBtn" onclick="changeReviewPage(1)" class="w-9 h-9 bg-zinc-800 hover:bg-[#FF4D1C] text-white flex items-center justify-center border border-zinc-700 transition" aria-label="Selanjutnya">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Review 1 -->
-                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                    <!-- Reviews Grid -->
+                    <div id="reviewsGrid" class="grid md:grid-cols-3 gap-6">
+                        <!-- Review 1 (Page 1 - Seragam) -->
+                        <div class="review-card bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="seragam" data-page="1">
                             <div>
                                 <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
                                     <img src="assets/images/porto-pdh.jpg" alt="Hasil Produksi Kemeja PDL Kalimantan Energi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -863,8 +934,8 @@
                             </div>
                         </div>
 
-                        <!-- Review 2 -->
-                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                        <!-- Review 2 (Page 1 - Kaos) -->
+                        <div class="review-card bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="kaos" data-page="1">
                             <div>
                                 <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
                                     <img src="assets/images/porto-kaos.jpg" alt="Hasil Produksi Kaos Gathering FinTech" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -896,8 +967,8 @@
                             </div>
                         </div>
 
-                        <!-- Review 3 -->
-                        <div class="bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group">
+                        <!-- Review 3 (Page 1 - Jersey/Hoodie) -->
+                        <div class="review-card bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="jersey" data-page="1">
                             <div>
                                 <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
                                     <img src="assets/images/porto-hoodie.jpg" alt="Hasil Produksi Hoodie & Jaket BEM Kampus" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -925,6 +996,105 @@
                                 <div>
                                     <div class="text-xs font-bold text-white">Bpk. Fajar Ramadhan</div>
                                     <div class="font-mono text-[10px] text-zinc-400">Ketua Panitia • BEM Universitas Negeri</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 (Page 2 - Jersey) -->
+                        <div class="review-card hidden bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="jersey" data-page="2">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/rev-jersey.jpg" alt="Hasil Produksi Jersey Futsal Liga Komunitas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 180 PCS JERSEY SUBLIM
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-cyan-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        DRYFIT MILANO
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-988</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Sublimasi warna jersey futsal tim kami gradasinya keluar tajam sekali sesuai file CMYK. Bahan Dryfit Milano zig-zag sangat sejuk untuk dipakai bertanding."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-4.jpg" alt="Reza Kurniawan" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Reza Kurniawan</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">Koordinator Liga • Bandung Futsal Series</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 5 (Page 2 - Seragam) -->
+                        <div class="review-card hidden bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="seragam" data-page="2">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/rev-pdl.jpg" alt="Hasil Produksi Seragam PDH Bank" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 240 PCS PDH AMERICAN DRILL
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-amber-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        BORDIR TAJIN
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-1014</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Pelayanan admin fast response dan komunikatif. Faktur pajak PPN terbit tepat waktu untuk administrasi audit procurement perusahaan kami. Jahitan sangat rapi."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-5.jpg" alt="Dra. Siti Rahmawati" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Dra. Siti Rahmawati</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">Head of GA • Bank Swasta Regional</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 6 (Page 2 - Kaos) -->
+                        <div class="review-card hidden bg-zinc-900 border border-zinc-800 flex flex-col justify-between overflow-hidden group" data-category="kaos" data-page="2">
+                            <div>
+                                <div class="relative h-48 overflow-hidden bg-zinc-950 border-b border-zinc-800">
+                                    <img src="assets/images/rev-event.jpg" alt="Hasil Produksi Kaos Event Nasional" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <div class="absolute top-3 left-3 bg-[#111315]/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 border border-zinc-700">
+                                        FOTO PRODUK // 1.200 PCS KAOS EVENT
+                                    </div>
+                                    <div class="absolute bottom-2.5 right-2.5 bg-emerald-600 text-white font-mono text-[10px] font-bold px-2 py-0.5">
+                                        TIER PABRIK
+                                    </div>
+                                </div>
+                                <div class="p-6 pb-4">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex text-amber-400 text-xs gap-1">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span class="font-mono text-[10px] text-emerald-400 font-bold">BATCH #B2B-1042</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                                        "Kapasitas produksi benar-benar terbukti. Order 1.200 pcs untuk konvensi nasional selesai dalam 9 hari kerja tanpa ada satu pun cacat jahit atau sablon."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
+                                <img src="assets/images/avatar-6.jpg" alt="Bramantyo Wicaksono" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-white">Bramantyo Wicaksono</div>
+                                    <div class="font-mono text-[10px] text-zinc-400">Managing Director • Event Organizer Jakarta</div>
                                 </div>
                             </div>
                         </div>
@@ -1465,6 +1635,85 @@
                     else if (w < 96) rec = 'Size XXL (57 x 76 cm)';
                     else rec = 'Size 3XL (60 x 78 cm)';
                     recommendedSizeBadge.textContent = rec;
+                });
+            }
+
+            // --- Garment Video Player Switcher ---
+            const garmentVideoBtns = document.querySelectorAll('.garment-video-btn');
+            const garmentVideoPlayer = document.getElementById('garmentVideoPlayer');
+            const garmentVideoCaption = document.getElementById('garmentVideoCaption');
+
+            garmentVideoBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    garmentVideoBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-[#FF4D1C]', 'text-white', 'border-[#FF4D1C]');
+                        b.classList.add('bg-zinc-800', 'text-zinc-300', 'border-zinc-700');
+                    });
+                    btn.classList.add('active', 'bg-[#FF4D1C]', 'text-white', 'border-[#FF4D1C]');
+                    btn.classList.remove('bg-zinc-800', 'text-zinc-300', 'border-zinc-700');
+
+                    const targetVideo = btn.dataset.video;
+                    const caption = btn.dataset.caption;
+                    if (garmentVideoPlayer && targetVideo) {
+                        garmentVideoPlayer.src = targetVideo;
+                        garmentVideoPlayer.play().catch(() => {});
+                    }
+                    if (garmentVideoCaption && caption) {
+                        garmentVideoCaption.textContent = caption;
+                    }
+                });
+            });
+
+            // --- Review Pagination & Category Filtering ---
+            let currentReviewPage = 1;
+            let currentReviewCategory = 'all';
+
+            window.filterReviews = function(cat) {
+                currentReviewCategory = cat;
+                currentReviewPage = 1;
+                const tabBtns = document.querySelectorAll('.review-tab-btn');
+                tabBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-[#FF4D1C]', 'text-white', 'border-[#FF4D1C]');
+                    b.classList.add('bg-zinc-800', 'text-zinc-300', 'border-zinc-700');
+                });
+                if (event && event.target) {
+                    event.target.classList.add('active', 'bg-[#FF4D1C]', 'text-white', 'border-[#FF4D1C]');
+                    event.target.classList.remove('bg-zinc-800', 'text-zinc-300', 'border-zinc-700');
+                }
+                renderReviews();
+            };
+
+            window.changeReviewPage = function(delta) {
+                const totalPages = currentReviewCategory === 'all' ? 2 : 1;
+                const newPage = currentReviewPage + delta;
+                if (newPage >= 1 && newPage <= totalPages) {
+                    currentReviewPage = newPage;
+                    renderReviews();
+                }
+            };
+
+            function renderReviews() {
+                const cards = document.querySelectorAll('.review-card');
+                const totalPages = currentReviewCategory === 'all' ? 2 : 1;
+                const indicator = document.getElementById('reviewPageIndicator');
+                if (indicator) indicator.textContent = `${currentReviewPage} / ${totalPages}`;
+
+                cards.forEach(card => {
+                    const cardCat = card.dataset.category;
+                    const cardPage = Number(card.dataset.page);
+                    let shouldShow = false;
+
+                    if (currentReviewCategory === 'all') {
+                        shouldShow = (cardPage === currentReviewPage);
+                    } else {
+                        shouldShow = (cardCat === currentReviewCategory);
+                    }
+
+                    if (shouldShow) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
                 });
             }
 

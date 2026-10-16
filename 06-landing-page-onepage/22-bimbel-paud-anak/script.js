@@ -314,4 +314,199 @@ Mohon konfirmasi ketersediaan slot fasilitator di cabang Bintaro. Terima kasih!`
       }
     });
   }
+
+  // --- 11. KIDS VIDEO SWITCHER (#video-belajar) ---
+  const kidsVideoBtns = document.querySelectorAll('.kids-video-btn');
+  const kidsVideoPlayer = document.getElementById('kidsVideoPlayer');
+  const kidsVideoCaption = document.getElementById('kidsVideoCaption');
+
+  kidsVideoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      kidsVideoBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const videoSrc = btn.getAttribute('data-video');
+      const caption = btn.getAttribute('data-caption');
+
+      if (kidsVideoPlayer && videoSrc) {
+        kidsVideoPlayer.src = videoSrc;
+        kidsVideoPlayer.play().catch(() => {});
+      }
+      if (kidsVideoCaption && caption) {
+        kidsVideoCaption.textContent = caption;
+      }
+    });
+  });
+
+  // --- 12. INTERACTIVE TUITION FEE CALCULATOR (#kalkulator-biaya) ---
+  const calcProgram = document.getElementById('calcProgram');
+  const calcAddons = document.querySelectorAll('.calc-addon-check');
+  const calcPeriodRadios = document.querySelectorAll('input[name="calcPeriod"]');
+  const calcSummaryProgramName = document.getElementById('calcSummaryProgramName');
+  const calcSummaryBasePrice = document.getElementById('calcSummaryBasePrice');
+  const calcSummaryAddonsCount = document.getElementById('calcSummaryAddonsCount');
+  const calcSummaryDiscount = document.getElementById('calcSummaryDiscount');
+  const calcTotalPriceDisplay = document.getElementById('calcTotalPriceDisplay');
+  const btnSendTuitionWa = document.getElementById('btnSendTuitionWa');
+
+  function formatRupiah(num) {
+    return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function updateTuitionCalculator() {
+    if (!calcProgram) return;
+    const selectedOption = calcProgram.options[calcProgram.selectedIndex];
+    const basePrice = parseInt(selectedOption.value, 10) || 0;
+    const programName = selectedOption.getAttribute('data-name') || selectedOption.text;
+
+    let addonsTotal = 0;
+    let selectedAddonNames = [];
+
+    calcAddons.forEach(cb => {
+      if (cb.checked) {
+        addonsTotal += parseInt(cb.value, 10) || 0;
+        selectedAddonNames.push(cb.getAttribute('data-name'));
+      }
+    });
+
+    let months = 1;
+    let discountPct = 0;
+    calcPeriodRadios.forEach(radio => {
+      if (radio.checked) {
+        months = parseInt(radio.value, 10) || 1;
+        discountPct = parseInt(radio.getAttribute('data-discount'), 10) || 0;
+      }
+    });
+
+    const monthlyCombined = basePrice + addonsTotal;
+    const rawTotal = monthlyCombined * months;
+    let discountAmount = 0;
+    if (discountPct > 0) {
+      discountAmount = Math.round(rawTotal * (discountPct / 100));
+    }
+    const grandTotal = rawTotal - discountAmount;
+
+    if (calcSummaryProgramName) calcSummaryProgramName.textContent = programName;
+    if (calcSummaryBasePrice) calcSummaryBasePrice.textContent = formatRupiah(basePrice);
+    if (calcSummaryAddonsCount) {
+      calcSummaryAddonsCount.textContent = selectedAddonNames.length > 0 
+        ? `${selectedAddonNames.length} Fasilitas (${formatRupiah(addonsTotal)}/bln)`
+        : '0 Fasilitas';
+    }
+    if (calcSummaryDiscount) {
+      if (discountPct > 0) {
+        calcSummaryDiscount.textContent = `${months} Bulan (-${formatRupiah(discountAmount)} / ${discountPct}%)`;
+      } else {
+        calcSummaryDiscount.textContent = 'Bulanan Reguler (Rp 0)';
+      }
+    }
+    if (calcTotalPriceDisplay) {
+      calcTotalPriceDisplay.textContent = formatRupiah(grandTotal);
+    }
+  }
+
+  if (calcProgram) {
+    calcProgram.addEventListener('change', updateTuitionCalculator);
+    calcAddons.forEach(cb => cb.addEventListener('change', updateTuitionCalculator));
+    calcPeriodRadios.forEach(r => r.addEventListener('change', updateTuitionCalculator));
+    updateTuitionCalculator();
+  }
+
+  if (btnSendTuitionWa) {
+    btnSendTuitionWa.addEventListener('click', () => {
+      const selectedOption = calcProgram.options[calcProgram.selectedIndex];
+      const programName = selectedOption.getAttribute('data-name') || selectedOption.text;
+      const basePrice = parseInt(selectedOption.value, 10) || 0;
+      let addonList = [];
+      calcAddons.forEach(cb => {
+        if (cb.checked) addonList.push(`  + ${cb.getAttribute('data-name')} (${formatRupiah(parseInt(cb.value, 10))})`);
+      });
+
+      let months = 1;
+      let discountPct = 0;
+      calcPeriodRadios.forEach(radio => {
+        if (radio.checked) {
+          months = parseInt(radio.value, 10) || 1;
+          discountPct = parseInt(radio.getAttribute('data-discount'), 10) || 0;
+        }
+      });
+
+      const totalText = calcTotalPriceDisplay ? calcTotalPriceDisplay.textContent : formatRupiah(basePrice);
+
+      let msg = `Halo Admin Rumah Tumbuh, saya ingin konsultasi pendaftaran & free trial berdasarkan simulasi di website:%0A%0A` +
+        `• *Program*: ${programName} (${formatRupiah(basePrice)}/bln)%0A` +
+        (addonList.length > 0 ? `• *Fasilitas Ekstra*:%0A${addonList.join('%0A')}%0A` : `• *Fasilitas Ekstra*: Tidak ada%0A`) +
+        `• *Periode*: ${months} Bulan ${discountPct > 0 ? `(Diskon ${discountPct}%)` : '(Bulanan)'}%0A` +
+        `• *Total Estimasi*: *${totalText}*%0A` +
+        `• *Free Trial*: Mau jadwalkan 1 Sesi Free Trial%0A%0A` +
+        `Mohon info ketersediaan slot kelas & jadwal observasi di cabang Bintaro. Terima kasih Ayah/Bunda!`;
+
+      window.open(`https://wa.me/${SCHOOL_DATA.phoneRaw}?text=${msg}`, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  // --- 13. VERIFIED PHOTO REVIEWS FILTER & PAGINATION (#testimoni) ---
+  let currentPaudReviewCategory = 'all';
+  let currentPaudReviewPage = 1;
+
+  function filterPaudReviews(cat) {
+    currentPaudReviewCategory = cat;
+    currentPaudReviewPage = 1;
+
+    const tabs = document.querySelectorAll('#paudReviewFilterTabs .testimoni-filter-btn');
+    tabs.forEach(tab => {
+      const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+      if (isSelected) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    applyPaudReviewDisplay();
+  }
+
+  function changePaudReviewPage(delta) {
+    const cards = Array.from(document.querySelectorAll('.paud-review-card'));
+    const matchedCards = cards.filter(card => {
+      if (currentPaudReviewCategory === 'all') return true;
+      return card.getAttribute('data-category') === currentPaudReviewCategory;
+    });
+    const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+    const newPage = currentPaudReviewPage + delta;
+    if (newPage >= 1 && newPage <= totalPages) {
+      currentPaudReviewPage = newPage;
+      applyPaudReviewDisplay();
+    }
+  }
+
+  function applyPaudReviewDisplay() {
+    const cards = Array.from(document.querySelectorAll('.paud-review-card'));
+    const matchedCards = cards.filter(card => {
+      if (currentPaudReviewCategory === 'all') return true;
+      return card.getAttribute('data-category') === currentPaudReviewCategory;
+    });
+
+    const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+    if (currentPaudReviewPage > totalPages) currentPaudReviewPage = totalPages;
+
+    const startIndex = (currentPaudReviewPage - 1) * 4;
+    const endIndex = startIndex + 4;
+
+    cards.forEach(card => card.classList.add('hidden'));
+    matchedCards.forEach((card, idx) => {
+      if (idx >= startIndex && idx < endIndex) {
+        card.classList.remove('hidden');
+      }
+    });
+
+    const indicator = document.getElementById('paudReviewPageIndicator');
+    if (indicator) {
+      indicator.textContent = `${currentPaudReviewPage} / ${totalPages}`;
+    }
+  }
+
+  window.filterPaudReviews = filterPaudReviews;
+  window.changePaudReviewPage = changePaudReviewPage;
+  applyPaudReviewDisplay();
 });

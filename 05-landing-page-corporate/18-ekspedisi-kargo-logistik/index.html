@@ -1033,91 +1033,326 @@
       </div>
     </section>
 
-    <!-- Testimoni Klien B2B (Mandatory Rule #3: labeled "Contoh/Ilustrasi") -->
+    <!-- Video Switcher Section: Operasional Kargo Laut & Pergudangan Modern -->
+    <section class="py-16 bg-maritime-900 border-b border-maritime-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-maritime-950 border border-maritime-800 rounded-3xl p-6 lg:p-8 shadow-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-maritime-800">
+            <div>
+              <span class="font-mono text-xs text-cargo-400 font-bold uppercase tracking-wider">[DOKUMENTASI OPERASIONAL] LOGISTIK TOL LAUT &amp; TERMINAL KONTAINER</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">
+                Aktivitas Bongkar Muat Pelabuhan &amp; Pergudangan Modern
+              </h2>
+              <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                Saksikan dokumentasi handling kontainer di Terminal Petikemas Tanjung Perak dan alur stuffing kargo terintegrasi WMS di gudang logistik kami.
+              </p>
+            </div>
+            <!-- Video Switcher Buttons -->
+            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <button type="button" data-video="assets/videos/video-kargo-kapal-laut.mp4" data-caption="PELABUHAN // BONGKAR MUAT KAPAL KONTAINER TOL LAUT TANJUNG PERAK"
+                class="cargo-video-btn active px-4 py-2 bg-cargo-600 text-white font-bold rounded-lg transition flex items-center gap-2">
+                <i class="fa-solid fa-play text-xs"></i>
+                <span>Kapal Kontainer Laut</span>
+              </button>
+              <button type="button" data-video="assets/videos/video-pergudangan-truk.mp4" data-caption="WAREHOUSING // STUFFING FORKLIFT &amp; CROSS-DOCKING TRUK WINGBOX"
+                class="cargo-video-btn px-4 py-2 bg-maritime-900 text-slate-300 hover:text-white font-medium border border-maritime-700 rounded-lg transition flex items-center gap-2">
+                <i class="fa-solid fa-film text-xs"></i>
+                <span>Gudang &amp; Forklift</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="border border-maritime-800 bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <div class="relative bg-black h-72 sm:h-[400px] overflow-hidden">
+              <video id="cargoVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/port-terminal.jpg" src="assets/videos/video-kargo-kapal-laut.mp4"></video>
+              <div class="absolute bottom-4 left-4 bg-maritime-950/90 backdrop-blur-md px-4 py-2 border border-maritime-700 rounded font-mono text-xs text-cargo-400 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-cargo-500 animate-ping"></span>
+                <span id="cargoVideoCaption">PELABUHAN // BONGKAR MUAT KAPAL KONTAINER TOL LAUT TANJUNG PERAK</span>
+              </div>
+            </div>
+            <!-- 3 Quality Pillars -->
+            <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-maritime-800 bg-maritime-950 p-5">
+              <div class="p-3 space-y-1">
+                <span class="font-mono text-xs text-cargo-400 font-bold">STANDAR // 01</span>
+                <h4 class="font-bold text-white text-sm">Alokasi Slot Kapal Terjadwal</h4>
+                <p class="text-slate-400 text-xs leading-relaxed">Kepastian space kontainer reguler di kapal RoRo dan kontainer express rute Jawa–Kalimantan–Sulawesi–Papua.</p>
+              </div>
+              <div class="p-3 space-y-1">
+                <span class="font-mono text-xs text-emerald-400 font-bold">STANDAR // 02</span>
+                <h4 class="font-bold text-white text-sm">Proteksi Asuransi Marine Cargo</h4>
+                <p class="text-slate-400 text-xs leading-relaxed">Seluruh muatan terlindungi klausul asuransi Institute Cargo Clauses (A) dengan pertanggungan menyeluruh all-risk.</p>
+              </div>
+              <div class="p-3 space-y-1">
+                <span class="font-mono text-xs text-blue-400 font-bold">STANDAR // 03</span>
+                <h4 class="font-bold text-white text-sm">Fleet GPS &amp; POD Balik Kilat</h4>
+                <p class="text-slate-400 text-xs leading-relaxed">Armada truk terpasang telematika sensor 24 jam dan pengembalian bukti terima surat jalan fisik maksimal 3 hari kerja.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimoni Klien B2B (8 Verified Photo Reviews, Filter, Paginasi) -->
     <section class="py-20 bg-maritime-950 border-b border-maritime-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-2xl mx-auto mb-14">
-          <span class="text-xs font-mono text-cargo-400 uppercase tracking-widest font-bold block mb-2">
-            Kepercayaan Manajer Logistik &amp; Pabrik
-          </span>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-display">
-            Testimoni Mitra Korporat
-          </h2>
-          <span class="text-[11px] font-mono text-slate-400 mt-2 block">(Data Testimoni di bawah ini adalah Contoh/Ilustrasi Portofolio)</span>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b border-maritime-800">
+          <div>
+            <span class="text-xs font-mono text-cargo-400 uppercase tracking-widest font-bold block mb-1">
+              Kepercayaan Manajer Logistik, Procurement &amp; Pabrik
+            </span>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-display">
+              Testimoni Mitra Korporat &amp; Bukti Muatan
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Ulasan nyata dari pengirim kargo rutin lintas pulau yang bermitra dengan SLN Cargo (simulasi portofolio B2B)*.</p>
+          </div>
+          <!-- Category Filter Tabs & Pagination Controls -->
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="cargoReviewCategoryTabs">
+              <button type="button" onclick="filterCargoReviews('all')" class="cargo-rev-tab active px-3 py-1 bg-cargo-600 text-white font-bold rounded transition">Semua (8)</button>
+              <button type="button" onclick="filterCargoReviews('laut')" class="cargo-rev-tab px-3 py-1 bg-maritime-900 text-slate-300 hover:text-white rounded transition">Kargo Laut</button>
+              <button type="button" onclick="filterCargoReviews('truk')" class="cargo-rev-tab px-3 py-1 bg-maritime-900 text-slate-300 hover:text-white rounded transition">Sewa Truk</button>
+              <button type="button" onclick="filterCargoReviews('gudang')" class="cargo-rev-tab px-3 py-1 bg-maritime-900 text-slate-300 hover:text-white rounded transition">Gudang &amp; Project</button>
+            </div>
+            <!-- Pagination Controls -->
+            <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+              <button type="button" onclick="changeCargoReviewPage(-1)" class="w-8 h-8 bg-maritime-900 hover:bg-maritime-800 text-slate-300 border border-maritime-700 rounded flex items-center justify-center transition" aria-label="Sebelumnya">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+              </button>
+              <span id="cargoReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-300 font-mono font-bold bg-maritime-950 rounded border border-maritime-700">1 / 2</span>
+              <button type="button" onclick="changeCargoReviewPage(1)" class="w-8 h-8 bg-maritime-900 hover:bg-maritime-800 text-slate-300 border border-maritime-700 rounded flex items-center justify-center transition" aria-label="Selanjutnya">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Testi 1 -->
-          <div class="bg-maritime-900 border border-maritime-800 rounded-xl p-6 flex flex-col justify-between">
+        <!-- 8 Review Cards (4 per page) -->
+        <div id="cargoReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 (Page 1 - Laut) -->
+          <div class="cargo-review-card bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="laut" data-page="1">
             <div>
-              <div class="flex items-center gap-1 text-cargo-400 text-xs mb-4">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-kargo-fcl.jpg" alt="FCL Kontainer Semen" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  FCL 40ft • Surabaya–Makassar
+                </span>
               </div>
-              <p class="text-xs text-slate-300 leading-relaxed italic">
-                &ldquo;Pengiriman rutin 40–50 kontainer semen dan mortar per bulan dari pabrik kami di Gresik menuju Makassar dan Balikpapan selalu tepat waktu. Slot kapal selalu aman walau saat peak season.&rdquo;
-              </p>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Pengiriman rutin 40–50 kontainer semen dan mortar per bulan dari pabrik kami di Gresik menuju Makassar dan Balikpapan selalu tepat waktu. Slot kapal selalu aman walau peak season.&rdquo;
+                </p>
+              </div>
             </div>
-            <div class="flex items-center gap-3 pt-6 mt-6 border-t border-maritime-800">
-              <img src="assets/images/avatar-1.jpg" alt="Hendra Wijaya" class="w-10 h-10 rounded-full object-cover border border-maritime-700">
-              <div>
-                <h4 class="text-xs font-bold text-white">Hendra Wijaya</h4>
-                <p class="text-[10px] text-slate-400 font-mono">Plant Logistic Manager — PT Semen Inti Perkasa</p>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-1.jpg" alt="Hendra Wijaya" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Hendra Wijaya</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Plant Logistic Manager — PT Semen Inti Perkasa</p>
               </div>
             </div>
           </div>
 
-          <!-- Testi 2 -->
-          <div class="bg-maritime-900 border border-maritime-800 rounded-xl p-6 flex flex-col justify-between">
+          <!-- Card 2 (Page 1 - Truk) -->
+          <div class="cargo-review-card bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="truk" data-page="1">
             <div>
-              <div class="flex items-center gap-1 text-cargo-400 text-xs mb-4">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-truk-wingbox.jpg" alt="Truk Tronton Wingbox" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Tronton Wingbox • Jawa–Bali
+                </span>
               </div>
-              <p class="text-xs text-slate-300 leading-relaxed italic">
-                &ldquo;Tronton Wingbox SLN Cargo sangat terawat dan bersih, cocok untuk komoditas pangan dan consumer goods yang sensitif. Tracking GPS armada sangat transparan untuk laporan ke manajemen.&rdquo;
-              </p>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Tronton Wingbox SLN Cargo sangat terawat dan bersih, cocok untuk komoditas pangan dan consumer goods yang sensitif. Tracking GPS armada sangat transparan untuk laporan ke manajemen.&rdquo;
+                </p>
+              </div>
             </div>
-            <div class="flex items-center gap-3 pt-6 mt-6 border-t border-maritime-800">
-              <img src="assets/images/avatar-2.jpg" alt="Maya Sulistyo" class="w-10 h-10 rounded-full object-cover border border-maritime-700">
-              <div>
-                <h4 class="text-xs font-bold text-white">Maya Sulistyo</h4>
-                <p class="text-[10px] text-slate-400 font-mono">Head of Supply Chain — PT Agrindo Pangan Nusantara</p>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-2.jpg" alt="Maya Sulistyo" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Maya Sulistyo</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Head of Supply Chain — PT Agrindo Pangan</p>
               </div>
             </div>
           </div>
 
-          <!-- Testi 3 -->
-          <div class="bg-maritime-900 border border-maritime-800 rounded-xl p-6 flex flex-col justify-between">
+          <!-- Card 3 (Page 1 - Gudang) -->
+          <div class="cargo-review-card bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="gudang" data-page="1">
             <div>
-              <div class="flex items-center gap-1 text-cargo-400 text-xs mb-4">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-gudang-crossdock.jpg" alt="Gudang Cross-Docking" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Cross-Docking • Hub Surabaya
+                </span>
               </div>
-              <p class="text-xs text-slate-300 leading-relaxed italic">
-                &ldquo;Pengembalian Surat Jalan (POD) sangat cepat, maksimal 3 hari kerja setelah bongkar sudah sampai di meja Finance kami dengan cap basah. Sangat membantu percepatan penagihan invoice.&rdquo;
-              </p>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Pengembalian Surat Jalan (POD) sangat cepat, maksimal 3 hari kerja setelah bongkar sudah sampai di meja Finance kami dengan cap basah. Sangat membantu percepatan penagihan invoice.&rdquo;
+                </p>
+              </div>
             </div>
-            <div class="flex items-center gap-3 pt-6 mt-6 border-t border-maritime-800">
-              <img src="assets/images/avatar-3.jpg" alt="Bambang Sutrisno" class="w-10 h-10 rounded-full object-cover border border-maritime-700">
-              <div>
-                <h4 class="text-xs font-bold text-white">Bambang Sutrisno</h4>
-                <p class="text-[10px] text-slate-400 font-mono">Direktur Operasional — CV Mega Surya Distribusi</p>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-3.jpg" alt="Bambang Sutrisno" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Bambang Sutrisno</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Direktur Operasional — CV Mega Surya Distribusi</p>
               </div>
             </div>
           </div>
 
+          <!-- Card 4 (Page 1 - Laut) -->
+          <div class="cargo-review-card bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="laut" data-page="1">
+            <div>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-kargo-lcl.jpg" alt="Kargo Laut LCL Pallet" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Kargo Laut LCL • Makassar
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">4.9</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Kargo konsolidasi LCL barang pecah belah kami dibungkus pallet kayu rapi dan dilapisi bubble wrap tebal. Tidak ada klaim kerusakan barang pecah selama 8 bulan berturut-turut.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-4.jpg" alt="Dedy Irawan" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Dedy Irawan</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Manager Logistik — PT Sinar Keramik Nusantara</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 (Page 2 - Truk) -->
+          <div class="cargo-review-card hidden bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="truk" data-page="2">
+            <div>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-sewa-trailer.jpg" alt="Sewa Truk Trailer Flatbed" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Flatbed Trailer • Mesin Pabrik
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Mobilisasi mesin injection moulding berat 28 ton dari pelabuhan Tanjung Priok ke kawasan industri Cikarang ditangani dengan pengawalan resmi dan lashing rantai grade 80.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-5.jpg" alt="Ir. Rudi Hartono" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Ir. Rudi Hartono</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Technical Project Lead — PT Prima Mesindo</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 (Page 2 - Gudang) -->
+          <div class="cargo-review-card hidden bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="gudang" data-page="2">
+            <div>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-kargo-ikn.jpg" alt="Kargo Proyek IKN Nusantara" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Proyek IKN • Kapal RoRo Cepat
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Pengiriman material batching plant dan pipa baja menuju IKN Balikpapan tiba sesuai komitmen 3 hari pelayaran dari Surabaya. Koordinasi bongkar di Pelabuhan Semayang sangat sigap.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-6.jpg" alt="Agus Setiawan" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Agus Setiawan, ST</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Logistics Coordinator — KSO Infrastruktur IKN</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 (Page 2 - Truk) -->
+          <div class="cargo-review-card hidden bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="truk" data-page="2">
+            <div>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-cold-chain.jpg" alt="Kargo Box Reefer Pendingin" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Reefer Box • Suhu Terjaga
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">4.9</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Sewa CDD Long Box berpendingin untuk distribusi suplemen farmasi ke Jawa Timur dan Bali terjaga stabil di suhu 18°C. Data log temperatur digital tercatat akurat.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-7.jpg" alt="Apt. Lutfi Hakim" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Apt. Lutfi Hakim</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">Distribusi Farmasi — PT Farma Medika Husada</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 (Page 2 - Laut) -->
+          <div class="cargo-review-card hidden bg-maritime-900 border border-maritime-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-cargo-500/60 transition-all" data-category="laut" data-page="2">
+            <div>
+              <div class="relative h-44 overflow-hidden border-b border-maritime-800">
+                <img src="assets/images/rev-tol-laut-papua.jpg" alt="Tol Laut Jayapura Papua" class="w-full h-full object-cover">
+                <span class="absolute top-3 left-3 bg-maritime-950/90 text-cargo-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-maritime-700">
+                  Tol Laut • Jayapura &amp; Sorong
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="flex items-center gap-1 text-cargo-400 text-xs">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed italic">
+                  &ldquo;Jalur reguler kapal tol laut ke Sorong dan Jayapura sangat terpercaya. Tarif per m³ kompetitif dan penanganan barang di depo pelabuhan Papua terkelola aman.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div class="p-4 border-t border-maritime-800 bg-maritime-950 flex items-center gap-3">
+              <img src="assets/images/cust-8.jpg" alt="Simon Rumbewas" class="w-10 h-10 rounded-full object-cover border border-maritime-700 shrink-0">
+              <div class="min-w-0">
+                <h4 class="text-xs font-bold text-white truncate">Simon Rumbewas</h4>
+                <p class="text-[10px] text-slate-400 font-mono truncate">General Manager — CV Papua Mandiri Trading</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1486,6 +1721,105 @@
         viewTarif.classList.add('hidden');
       }
     }
+
+    // Video Switcher for Cargo & Warehouse Operations
+    document.querySelectorAll('.cargo-video-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cargo-video-btn').forEach(b => {
+          b.classList.remove('active', 'bg-cargo-600', 'text-white', 'font-bold');
+          b.classList.add('bg-maritime-900', 'text-slate-300', 'font-medium', 'border', 'border-maritime-700');
+          const icon = b.querySelector('i');
+          if (icon) {
+            icon.className = 'fa-solid fa-film text-xs';
+          }
+        });
+        btn.classList.add('active', 'bg-cargo-600', 'text-white', 'font-bold');
+        btn.classList.remove('bg-maritime-900', 'text-slate-300', 'font-medium', 'border', 'border-maritime-700');
+        const activeIcon = btn.querySelector('i');
+        if (activeIcon) {
+          activeIcon.className = 'fa-solid fa-play text-xs';
+        }
+
+        const videoSrc = btn.getAttribute('data-video');
+        const caption = btn.getAttribute('data-caption');
+        const videoEl = document.getElementById('cargoVideoPlayer');
+        const captionEl = document.getElementById('cargoVideoCaption');
+        if (videoEl && videoSrc) {
+          videoEl.src = videoSrc;
+          videoEl.play().catch(() => {});
+        }
+        if (captionEl && caption) {
+          captionEl.textContent = caption;
+        }
+      });
+    });
+
+    // Cargo Reviews Filter & Pagination
+    let currentCargoReviewCategory = 'all';
+    let currentCargoReviewPage = 1;
+
+    function filterCargoReviews(cat) {
+      currentCargoReviewCategory = cat;
+      currentCargoReviewPage = 1;
+
+      const tabs = document.querySelectorAll('#cargoReviewCategoryTabs .cargo-rev-tab');
+      tabs.forEach(tab => {
+        const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+        if (isSelected) {
+          tab.classList.add('active', 'bg-cargo-600', 'text-white', 'font-bold');
+          tab.classList.remove('bg-maritime-900', 'text-slate-300');
+        } else {
+          tab.classList.remove('active', 'bg-cargo-600', 'text-white', 'font-bold');
+          tab.classList.add('bg-maritime-900', 'text-slate-300');
+        }
+      });
+
+      applyCargoReviewDisplay();
+    }
+
+    function changeCargoReviewPage(delta) {
+      const cards = Array.from(document.querySelectorAll('.cargo-review-card'));
+      const matchedCards = cards.filter(card => {
+        if (currentCargoReviewCategory === 'all') return true;
+        return card.getAttribute('data-category') === currentCargoReviewCategory;
+      });
+      const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+      const newPage = currentCargoReviewPage + delta;
+      if (newPage >= 1 && newPage <= totalPages) {
+        currentCargoReviewPage = newPage;
+        applyCargoReviewDisplay();
+      }
+    }
+
+    function applyCargoReviewDisplay() {
+      const cards = Array.from(document.querySelectorAll('.cargo-review-card'));
+      const matchedCards = cards.filter(card => {
+        if (currentCargoReviewCategory === 'all') return true;
+        return card.getAttribute('data-category') === currentCargoReviewCategory;
+      });
+
+      const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+      if (currentCargoReviewPage > totalPages) currentCargoReviewPage = totalPages;
+
+      const startIndex = (currentCargoReviewPage - 1) * 4;
+      const endIndex = startIndex + 4;
+
+      cards.forEach(card => card.classList.add('hidden'));
+      matchedCards.forEach((card, idx) => {
+        if (idx >= startIndex && idx < endIndex) {
+          card.classList.remove('hidden');
+        }
+      });
+
+      const indicator = document.getElementById('cargoReviewPageIndicator');
+      if (indicator) {
+        indicator.textContent = `${currentCargoReviewPage} / ${totalPages}`;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applyCargoReviewDisplay();
+    });
   </script>
 </body>
 </html>

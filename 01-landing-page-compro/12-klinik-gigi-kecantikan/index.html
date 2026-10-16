@@ -765,6 +765,59 @@
         </div>
     </section>
 
+    <!-- SECTION: DOKUMENTASI PROSEDUR KLINIS & STERILISASI (VIDEO SHOWCASE) -->
+    <section id="video-klinis" class="py-16 lg:py-20 bg-teal-dark text-ivory border-b border-teal-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-champagne font-semibold mb-2">DOKUMENTASI KLINIS &amp; PROTOKOL MEDIS</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ivory font-semibold">Standar Operasional Steril &amp; Kenyamanan Pasien</h2>
+                </div>
+                <!-- Video Switcher -->
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <button type="button" data-video="assets/videos/video-dental-checkup.mp4" data-caption="PROSEDUR PEMERIKSAAN DENTAL SPESIALIS // AIRFLOW WARM WATER &amp; STERILE POUCH"
+                        class="clinic-video-btn active px-4 py-2 bg-champagne text-teal-dark font-bold border border-champagne transition flex items-center gap-2">
+                        <i class="fa-solid fa-play text-[10px]"></i>
+                        <span>Pemeriksaan Dental Spesialis</span>
+                    </button>
+                    <button type="button" data-video="assets/videos/video-aesthetic-care.mp4" data-caption="PERAWATAN DERMA &amp; ESTETIKA MEDIS // SWISS CLINICAL PROTOCOL &amp; RECOVERY CARE"
+                        class="clinic-video-btn px-4 py-2 bg-teal-light text-ivory font-medium border border-teal hover:border-champagne transition flex items-center gap-2">
+                        <i class="fa-solid fa-film text-[10px]"></i>
+                        <span>Estetika Kulit &amp; Derma</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border border-teal-light bg-black overflow-hidden shadow-2xl">
+                <div class="relative bg-black h-80 sm:h-[480px] overflow-hidden">
+                    <video id="clinicVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/hero-clinic.jpg" src="assets/videos/video-dental-checkup.mp4"></video>
+                    <div class="absolute bottom-4 left-4 bg-teal-dark/90 backdrop-blur-md px-4 py-2 border border-teal-light font-mono text-xs text-ivory flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span id="clinicVideoCaption">PROSEDUR PEMERIKSAAN DENTAL SPESIALIS // AIRFLOW WARM WATER &amp; STERILE POUCH</span>
+                    </div>
+                </div>
+                <!-- 3 Medical Highlights -->
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-teal-light/50 bg-teal-dark p-6 sm:p-8">
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-champagne font-bold tracking-wider">PROTOKOL 01</span>
+                        <h4 class="font-serif text-lg font-semibold text-ivory">Autoclave Vacuum Class-B 134°C</h4>
+                        <p class="text-ivory/70 text-xs leading-relaxed">Sterilisasi uap bertekanan tinggi dengan siklus vakum tiga tahap untuk membunuh seluruh spora bakteri.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-champagne font-bold tracking-wider">PROTOKOL 02</span>
+                        <h4 class="font-serif text-lg font-semibold text-ivory">Swiss Guided Biofilm Therapy (GBT)</h4>
+                        <p class="text-ivory/70 text-xs leading-relaxed">Pembersihan plak dan stain menggunakan partikel eritritol halus dan air hangat, tanpa rasa ngilu.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-champagne font-bold tracking-wider">PROTOKOL 03</span>
+                        <h4 class="font-serif text-lg font-semibold text-ivory">Digital Intraoral Scanner 3D</h4>
+                        <p class="text-ivory/70 text-xs leading-relaxed">Pemindaian model rongga mulut akurasi mikron tanpa cetakan konvensional untuk aligner dan veneer presisi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECTION 6: ULASAN PASIEN & FOTO DOKUMENTASI HASIL PERAWATAN -->
     <section id="ulasan-pasien" class="py-16 lg:py-24 bg-ivory-warm border-b border-ivory-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -773,15 +826,31 @@
                     <p class="font-mono text-xs uppercase tracking-widest text-champagne-dark font-semibold mb-2">06 / TESTIMONI PASIEN &amp; HASIL PERAWATAN</p>
                     <h2 class="font-serif text-3xl sm:text-4xl text-teal font-semibold">Ulasan Terverifikasi &amp; Foto Dokumentasi Pasien</h2>
                 </div>
-                <p class="text-sm text-slateText-muted max-w-md">
-                    Cerita nyata pasien SenyumLuxe setelah menjalani prosedur Porcelain Veneer, Scaling Airflow, Orthodontic Aligner, dan Korean Pico Laser.
-                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                    <!-- Filter Tabs -->
+                    <div class="hidden sm:flex items-center gap-1.5 font-mono text-xs">
+                        <button type="button" onclick="filterClinicReviews('all')" class="clinic-tab-btn active px-3.5 py-1.5 bg-teal text-ivory font-bold border border-teal">Semua (8)</button>
+                        <button type="button" onclick="filterClinicReviews('veneer')" class="clinic-tab-btn px-3.5 py-1.5 bg-ivory text-slateText hover:border-teal border border-ivory-border">Veneer &amp; Aligner</button>
+                        <button type="button" onclick="filterClinicReviews('scaling')" class="clinic-tab-btn px-3.5 py-1.5 bg-ivory text-slateText hover:border-teal border border-ivory-border">Scaling &amp; Bleaching</button>
+                        <button type="button" onclick="filterClinicReviews('derma')" class="clinic-tab-btn px-3.5 py-1.5 bg-ivory text-slateText hover:border-teal border border-ivory-border">Laser &amp; Estetika</button>
+                    </div>
+                    <!-- Pagination Buttons -->
+                    <div class="flex items-center gap-1.5 font-mono text-xs">
+                        <button type="button" onclick="changeClinicReviewPage(-1)" class="w-9 h-9 bg-ivory hover:bg-teal hover:text-ivory text-teal border border-ivory-border flex items-center justify-center transition" aria-label="Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="clinicReviewPageIndicator" class="px-2.5 py-1 text-xs text-teal font-mono font-bold">1 / 2</span>
+                        <button type="button" onclick="changeClinicReviewPage(1)" class="w-9 h-9 bg-ivory hover:bg-teal hover:text-ivory text-teal border border-ivory-border flex items-center justify-center transition" aria-label="Selanjutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- 4 Patient Photo Review Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                <!-- Patient Review 1 -->
-                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+            <!-- 8 Patient Photo Review Cards (Paginated 4 per page) -->
+            <div id="clinicReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <!-- Patient Review 1 (Page 1) -->
+                <article class="clinic-review-card bg-ivory border border-ivory-border flex flex-col justify-between" data-category="veneer" data-page="1">
                     <div>
                         <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
                             <img src="assets/images/smile-after.jpg" alt="Hasil Porcelain Veneer Pasien SenyumLuxe" class="w-full h-full object-cover">
@@ -807,11 +876,11 @@
                     </div>
                 </article>
 
-                <!-- Patient Review 2 -->
-                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                <!-- Patient Review 2 (Page 1) -->
+                <article class="clinic-review-card bg-ivory border border-ivory-border flex flex-col justify-between" data-category="scaling" data-page="1">
                     <div>
                         <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
-                            <img src="assets/images/treatment-scaling.jpg" alt="Dokumentasi Scaling & Bleaching Pasien" class="w-full h-full object-cover">
+                            <img src="assets/images/treatment-scaling.jpg" alt="Dokumentasi Scaling &amp; Bleaching Pasien" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
                                 SCALING &amp; BLEACHING &bull; CABANG BSD
                             </span>
@@ -834,8 +903,8 @@
                     </div>
                 </article>
 
-                <!-- Patient Review 3 -->
-                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                <!-- Patient Review 3 (Page 1) -->
+                <article class="clinic-review-card bg-ivory border border-ivory-border flex flex-col justify-between" data-category="derma" data-page="1">
                     <div>
                         <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
                             <img src="assets/images/treatment-laser.jpg" alt="Dokumentasi Korean Pico Laser Pasien" class="w-full h-full object-cover">
@@ -861,8 +930,8 @@
                     </div>
                 </article>
 
-                <!-- Patient Review 4 -->
-                <article class="bg-ivory border border-ivory-border flex flex-col justify-between">
+                <!-- Patient Review 4 (Page 1) -->
+                <article class="clinic-review-card bg-ivory border border-ivory-border flex flex-col justify-between" data-category="veneer" data-page="1">
                     <div>
                         <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
                             <img src="assets/images/treatment-ortho.jpg" alt="Dokumentasi Orthodontic Clear Aligner Pasien" class="w-full h-full object-cover">
@@ -887,7 +956,117 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- Patient Review 5 (Page 2) -->
+                <article class="clinic-review-card hidden bg-ivory border border-ivory-border flex flex-col justify-between" data-category="veneer" data-page="2">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/treatment-veneer.jpg" alt="Hasil Direct Composite Veneer" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                COMPOSITE VENEER &bull; CABANG KEMANG
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-5.jpg" alt="dr. Rendy Wardhana" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">dr. Rendy Wardhana</h3>
+                                    <p class="text-xs text-slateText-muted">Jakarta Selatan &bull; <span class="text-champagne-dark font-semibold">Direct Composite Veneer 6 Gigi</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Sebagai sesama tenaga medis, saya sangat mengapresiasi kerapian isolasi rubber dam dan sterilisasi di SenyumLuxe. Pengerjaan veneer komposit 6 gigi depan hanya 1 sesi kunjungan dengan polesan mikro yang mengkilap alami."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 6 (Page 2) -->
+                <article class="clinic-review-card hidden bg-ivory border border-ivory-border flex flex-col justify-between" data-category="scaling" data-page="2">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/rev-smile-1.jpg" alt="Dokumentasi Swiss Airflow &amp; Fluoride" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                SWISS AIRFLOW GBT &bull; CABANG BANDUNG
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-6.jpg" alt="Sarah Faradiba" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Sarah Faradiba (Content Creator)</h3>
+                                    <p class="text-xs text-slateText-muted">Bandung &bull; <span class="text-champagne-dark font-semibold">Pembersihan Karang Gigi Airflow</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Pertama kali scaling yang tidak bikin trauma berdarah atau ngilu ngilu. Suasana kliniknya seperti spa bintang lima di Kemang & Dago, harum botani menenangkan, dokter dan suster sangat ramah menjelaskan tiap step."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 7 (Page 2) -->
+                <article class="clinic-review-card hidden bg-ivory border border-ivory-border flex flex-col justify-between" data-category="derma" data-page="2">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/rev-smile-2.jpg" alt="Dokumentasi Skin Rejuvenation" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                REJURAN &amp; SKIN BOOSTER &bull; CABANG BSD
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-7.jpg" alt="Dr. Hendra Gunawan" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Dr. Hendra Gunawan (Akademisi)</h3>
+                                    <p class="text-xs text-slateText-muted">Tangerang &bull; <span class="text-champagne-dark font-semibold">Skin Booster Salmon DNA</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Perawatan Salmon DNA dan laser collagen booster di bawah pengawasan dokter spesialis kulit. Pori-pori mengecil dan tekstur kulit jauh lebih halus dan kencang. Jadwal reservasi sangat on-time tanpa antre."
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Patient Review 8 (Page 2) -->
+                <article class="clinic-review-card hidden bg-ivory border border-ivory-border flex flex-col justify-between" data-category="derma" data-page="2">
+                    <div>
+                        <div class="relative aspect-[16/9] overflow-hidden border-b border-ivory-border">
+                            <img src="assets/images/rev-smile-3.jpg" alt="Dokumentasi Glass Skin Toning" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-teal-dark/90 text-ivory font-mono text-[10px] uppercase tracking-wider px-2.5 py-1">
+                                GLASS SKIN TONING &bull; CABANG KEMANG
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-champagne text-teal-dark font-mono text-xs font-bold px-2.5 py-1">
+                                <i class="fa-solid fa-star mr-1"></i>5.0 / 5.0
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-ivory-border">
+                                <img src="assets/images/cust-8.jpg" alt="Clarissa Agatha" class="w-12 h-12 rounded-full object-cover border border-champagne shrink-0">
+                                <div>
+                                    <h3 class="font-serif text-xl font-semibold text-teal">Clarissa Agatha (Model &amp; Host)</h3>
+                                    <p class="text-xs text-slateText-muted">Jakarta Selatan &bull; <span class="text-champagne-dark font-semibold">Korean Glass Skin Laser</span></p>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slateText leading-relaxed">
+                                "Routine perawatan sebulan sekali sebelum shooting selalu di SenyumLuxe. Kombinasi scaling airflow dan laser toning bikin senyum makin percaya diri di depan kamera HD. Sangat saya rekomendasikan!"
+                            </p>
+                        </div>
+                    </div>
+                </article>
             </div>
+        </div>
+    </section>
         </div>
     </section>
 
@@ -1463,6 +1642,83 @@
                     icon.className = "fa-solid fa-plus text-champagne-dark text-xs shrink-0 ml-4";
                 }
             }
+        // --- Clinic Video Switcher ---
+        const clinicVideoBtns = document.querySelectorAll('.clinic-video-btn');
+        const clinicVideoPlayer = document.getElementById('clinicVideoPlayer');
+        const clinicVideoCaption = document.getElementById('clinicVideoCaption');
+
+        clinicVideoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                clinicVideoBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-champagne', 'text-teal-dark', 'font-bold', 'border-champagne');
+                    b.classList.add('bg-teal-light', 'text-ivory', 'font-medium', 'border-teal');
+                });
+                btn.classList.add('active', 'bg-champagne', 'text-teal-dark', 'font-bold', 'border-champagne');
+                btn.classList.remove('bg-teal-light', 'text-ivory', 'font-medium', 'border-teal');
+
+                const targetVideo = btn.dataset.video;
+                const caption = btn.dataset.caption;
+                if (clinicVideoPlayer && targetVideo) {
+                    clinicVideoPlayer.src = targetVideo;
+                    clinicVideoPlayer.play().catch(() => {});
+                }
+                if (clinicVideoCaption && caption) {
+                    clinicVideoCaption.textContent = caption;
+                }
+            });
+        });
+
+        // --- Clinic Reviews Pagination & Filtering ---
+        let currentClinicReviewPage = 1;
+        let currentClinicReviewCat = 'all';
+
+        function filterClinicReviews(cat) {
+            currentClinicReviewCat = cat;
+            currentClinicReviewPage = 1;
+            const tabBtns = document.querySelectorAll('.clinic-tab-btn');
+            tabBtns.forEach(b => {
+                b.classList.remove('active', 'bg-teal', 'text-ivory', 'font-bold', 'border-teal');
+                b.classList.add('bg-ivory', 'text-slateText', 'border-ivory-border');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-teal', 'text-ivory', 'font-bold', 'border-teal');
+                event.target.classList.remove('bg-ivory', 'text-slateText', 'border-ivory-border');
+            }
+            renderClinicReviews();
+        }
+
+        function changeClinicReviewPage(delta) {
+            const totalPages = currentClinicReviewCat === 'all' ? 2 : 1;
+            const newPage = currentClinicReviewPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentClinicReviewPage = newPage;
+                renderClinicReviews();
+            }
+        }
+
+        function renderClinicReviews() {
+            const cards = document.querySelectorAll('.clinic-review-card');
+            const totalPages = currentClinicReviewCat === 'all' ? 2 : 1;
+            const indicator = document.getElementById('clinicReviewPageIndicator');
+            if (indicator) indicator.textContent = `${currentClinicReviewPage} / ${totalPages}`;
+
+            cards.forEach(card => {
+                const cardCat = card.dataset.category;
+                const cardPage = Number(card.dataset.page);
+                let shouldShow = false;
+
+                if (currentClinicReviewCat === 'all') {
+                    shouldShow = (cardPage === currentClinicReviewPage);
+                } else {
+                    shouldShow = (cardCat === currentClinicReviewCat);
+                }
+
+                if (shouldShow) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
         }
 
         // Initialize Events

@@ -238,4 +238,198 @@ document.addEventListener('DOMContentLoaded', () => {
       closeDrawer();
     }
   });
+
+  // --- 8. STUDIO VIDEO SWITCHER (#video-studio) ---
+  const videoBtns = document.querySelectorAll('.studio-video-btn');
+  const videoPlayer = document.getElementById('studioVideoPlayer');
+  const videoCaption = document.getElementById('studioVideoCaption');
+
+  videoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      videoBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const videoSrc = btn.getAttribute('data-video');
+      const caption = btn.getAttribute('data-caption');
+
+      if (videoPlayer && videoSrc) {
+        videoPlayer.src = videoSrc;
+        videoPlayer.play().catch(() => {});
+      }
+      if (videoCaption && caption) {
+        videoCaption.textContent = caption;
+      }
+    });
+  });
+
+  // --- 9. INTERACTIVE PHOTOSHOOT & CINEMA CALCULATOR (#kalkulator-sesi) ---
+  const calcPaket = document.getElementById('calcPaket');
+  const calcAddons = document.querySelectorAll('.calc-addon-check');
+  const calcPaymentRadios = document.querySelectorAll('input[name="calcPayment"]');
+  const calcSummaryPaketName = document.getElementById('calcSummaryPaketName');
+  const calcSummaryBasePrice = document.getElementById('calcSummaryBasePrice');
+  const calcSummaryAddonsCount = document.getElementById('calcSummaryAddonsCount');
+  const calcSummaryDiscount = document.getElementById('calcSummaryDiscount');
+  const calcSummaryLeadTime = document.getElementById('calcSummaryLeadTime');
+  const calcTotalPriceDisplay = document.getElementById('calcTotalPriceDisplay');
+  const calcDpAmount = document.getElementById('calcDpAmount');
+  const calcDpInfo = document.getElementById('calcDpInfo');
+  const btnSendCalcWa = document.getElementById('btnSendCalcWa');
+
+  function formatRupiah(num) {
+    return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function updatePhotoshootCalculator() {
+    if (!calcPaket) return;
+    const selectedOption = calcPaket.options[calcPaket.selectedIndex];
+    const basePrice = parseInt(selectedOption.value, 10) || 0;
+    const packageName = selectedOption.getAttribute('data-name') || selectedOption.text;
+    const leadTime = selectedOption.getAttribute('data-days') || '5–7 Hari Kerja';
+
+    let addonsTotal = 0;
+    let selectedAddonNames = [];
+
+    calcAddons.forEach(cb => {
+      if (cb.checked) {
+        addonsTotal += parseInt(cb.value, 10) || 0;
+        selectedAddonNames.push(cb.getAttribute('data-name'));
+      }
+    });
+
+    const subtotal = basePrice + addonsTotal;
+    let isLunas = false;
+    calcPaymentRadios.forEach(radio => {
+      if (radio.checked && radio.value === 'lunas') isLunas = true;
+    });
+
+    let discount = 0;
+    if (isLunas) {
+      discount = Math.round(subtotal * 0.05); // 5% early bird discount
+    }
+
+    const grandTotal = subtotal - discount;
+    const dp50 = Math.round(grandTotal * 0.5);
+
+    if (calcSummaryPaketName) calcSummaryPaketName.textContent = packageName;
+    if (calcSummaryBasePrice) calcSummaryBasePrice.textContent = formatRupiah(basePrice);
+    if (calcSummaryAddonsCount) {
+      calcSummaryAddonsCount.textContent = selectedAddonNames.length > 0 
+        ? `${selectedAddonNames.length} Layanan (${formatRupiah(addonsTotal)})`
+        : '0 Layanan';
+    }
+    if (calcSummaryDiscount) {
+      calcSummaryDiscount.textContent = discount > 0 ? `- ${formatRupiah(discount)} (5%)` : 'Rp 0';
+    }
+    if (calcSummaryLeadTime) calcSummaryLeadTime.textContent = leadTime;
+    if (calcTotalPriceDisplay) calcTotalPriceDisplay.textContent = formatRupiah(grandTotal);
+
+    if (calcDpInfo && calcDpAmount) {
+      if (isLunas) {
+        calcDpInfo.innerHTML = '<span style="color:#22C55E; font-weight:700;">Lunas (Early Bird -5%)</span>';
+      } else {
+        calcDpInfo.innerHTML = `<span>DP 50%: </span><strong style="color:#FFFFFF; font-family:monospace;">${formatRupiah(dp50)}</strong>`;
+      }
+    }
+  }
+
+  if (calcPaket) {
+    calcPaket.addEventListener('change', updatePhotoshootCalculator);
+    calcAddons.forEach(cb => cb.addEventListener('change', updatePhotoshootCalculator));
+    calcPaymentRadios.forEach(r => r.addEventListener('change', updatePhotoshootCalculator));
+    updatePhotoshootCalculator();
+  }
+
+  if (btnSendCalcWa) {
+    btnSendCalcWa.addEventListener('click', () => {
+      const selectedOption = calcPaket.options[calcPaket.selectedIndex];
+      const packageName = selectedOption.getAttribute('data-name') || selectedOption.text;
+      const basePrice = parseInt(selectedOption.value, 10) || 0;
+      let addonList = [];
+      calcAddons.forEach(cb => {
+        if (cb.checked) addonList.push(`  + ${cb.getAttribute('data-name')} (${formatRupiah(parseInt(cb.value, 10))})`);
+      });
+
+      let isLunas = false;
+      calcPaymentRadios.forEach(radio => {
+        if (radio.checked && radio.value === 'lunas') isLunas = true;
+      });
+
+      const totalText = calcTotalPriceDisplay ? calcTotalPriceDisplay.textContent : formatRupiah(basePrice);
+
+      let msg = `Halo Lensa Hening Studio, saya membuat simulasi estimasi sesi foto/video di website:%0A%0A` +
+        `• *Paket Sesi*: ${packageName} (${formatRupiah(basePrice)})%0A` +
+        (addonList.length > 0 ? `• *Layanan Add-ons*:%0A${addonList.join('%0A')}%0A` : `• *Layanan Add-ons*: Tidak ada%0A`) +
+        `• *Skema Pembayaran*: ${isLunas ? 'Lunas 100% (Diskon Early Bird 5%)' : 'DP 50%' }%0A` +
+        `• *Total Estimasi*: *${totalText}*%0A%0A` +
+        `Mohon cek ketersediaan tanggal dan slot studio untuk konsep kami. Terima kasih.`;
+
+      window.open(`https://wa.me/${STUDIO_DATA.phoneRaw}?text=${msg}`, '_blank', 'noopener,noreferrer');
+    });
+  }
+
+  // --- 10. VERIFIED PHOTO REVIEWS FILTER & PAGINATION (#testimoni) ---
+  let currentStudioReviewCategory = 'all';
+  let currentStudioReviewPage = 1;
+
+  function filterStudioReviews(cat) {
+    currentStudioReviewCategory = cat;
+    currentStudioReviewPage = 1;
+
+    const tabs = document.querySelectorAll('#studioReviewFilterTabs .testimoni-filter-btn');
+    tabs.forEach(tab => {
+      const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+      if (isSelected) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    applyStudioReviewDisplay();
+  }
+
+  function changeStudioReviewPage(delta) {
+    const cards = Array.from(document.querySelectorAll('.studio-review-card'));
+    const matchedCards = cards.filter(card => {
+      if (currentStudioReviewCategory === 'all') return true;
+      return card.getAttribute('data-category') === currentStudioReviewCategory;
+    });
+    const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+    const newPage = currentStudioReviewPage + delta;
+    if (newPage >= 1 && newPage <= totalPages) {
+      currentStudioReviewPage = newPage;
+      applyStudioReviewDisplay();
+    }
+  }
+
+  function applyStudioReviewDisplay() {
+    const cards = Array.from(document.querySelectorAll('.studio-review-card'));
+    const matchedCards = cards.filter(card => {
+      if (currentStudioReviewCategory === 'all') return true;
+      return card.getAttribute('data-category') === currentStudioReviewCategory;
+    });
+
+    const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+    if (currentStudioReviewPage > totalPages) currentStudioReviewPage = totalPages;
+
+    const startIndex = (currentStudioReviewPage - 1) * 4;
+    const endIndex = startIndex + 4;
+
+    cards.forEach(card => card.classList.add('hidden'));
+    matchedCards.forEach((card, idx) => {
+      if (idx >= startIndex && idx < endIndex) {
+        card.classList.remove('hidden');
+      }
+    });
+
+    const indicator = document.getElementById('studioReviewPageIndicator');
+    if (indicator) {
+      indicator.textContent = `${currentStudioReviewPage} / ${totalPages}`;
+    }
+  }
+
+  window.filterStudioReviews = filterStudioReviews;
+  window.changeStudioReviewPage = changeStudioReviewPage;
+  applyStudioReviewDisplay();
 });

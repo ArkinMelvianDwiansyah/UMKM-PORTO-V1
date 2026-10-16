@@ -772,10 +772,68 @@
         </section>
     </main>
 
-    <!-- SECTION TESTIMONI KLIEN & DOKUMENTASI IMPLEMENTASI INSTITUSI -->
-    <section id="testimoni-klien" class="py-14 bg-white border-t border-slate-200 mt-8">
+    <!-- ========================================================================= -->
+    <!-- SECTION VIDEO DOKUMENTASI SISTEM MEDIS & AKADEMIK                         -->
+    <!-- ========================================================================= -->
+    <section class="py-10 bg-slate-900 border-t border-slate-800 text-white">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+                <div>
+                    <span class="font-mono text-xs text-clinical font-bold uppercase tracking-wider">[DOKUMENTASI OPERASIONAL] REKAM MEDIS &amp; SISTEM AKADEMIK</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">Standar Efisiensi Klinik Medis &amp; Institusi Pendidikan</h2>
+                    <p class="text-xs text-slate-400 mt-1 max-w-xl">
+                        Saksikan alur kerja rekam medis SOAP terintegrasi gudang apotek serta modul administrasi tagihan SPP sekolah real-time.
+                    </p>
+                </div>
+                <!-- Video Switcher Buttons -->
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <button type="button" data-video="assets/videos/video-klinik-medis.mp4" data-caption="SIMKLINIK // KONSULTASI POLI, REKAM MEDIS SOAP &amp; E-RESEP APOTEK"
+                        class="erp-video-btn active px-3.5 py-1.5 bg-clinical text-white font-bold rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-play text-[10px]"></i>
+                        <span>Klinik &amp; Konsultasi Dokter</span>
+                    </button>
+                    <button type="button" data-video="assets/videos/video-sekolah-edukasi.mp4" data-caption="EDUSPP // PEMBELAJARAN KELAS, TAGIHAN SPP SISWA &amp; BROADCAST WA"
+                        class="erp-video-btn px-3.5 py-1.5 bg-slate-800 text-slate-300 hover:text-white font-medium border border-slate-700 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-film text-[10px]"></i>
+                        <span>Sekolah &amp; Kelas Belajar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border border-slate-800 bg-black rounded-2xl overflow-hidden shadow-2xl">
+                <div class="relative bg-black h-64 sm:h-[360px] overflow-hidden">
+                    <video id="erpVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/clinic-room.jpg" src="assets/videos/video-klinik-medis.mp4"></video>
+                    <div class="absolute bottom-3 left-3 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 border border-slate-700 rounded-lg font-mono text-xs text-teal-300 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span>
+                        <span id="erpVideoCaption">SIMKLINIK // KONSULTASI POLI, REKAM MEDIS SOAP &amp; E-RESEP APOTEK</span>
+                    </div>
+                </div>
+                <!-- 3 Pillars -->
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950 p-4 sm:p-5">
+                    <div class="p-2.5 space-y-1">
+                        <span class="font-mono text-xs text-teal-400 font-bold">PILAR // 01</span>
+                        <h4 class="text-xs font-bold text-white">SIMKlinik SOAP &amp; ICD-10</h4>
+                        <p class="text-slate-400 text-[11px] leading-relaxed">Pencatatan medis komprehensif, potong stok obat otomatis, dan peringatan dini obat mendekati masa kadaluarsa (&lt;90 hari).</p>
+                    </div>
+                    <div class="p-2.5 space-y-1">
+                        <span class="font-mono text-xs text-blue-400 font-bold">PILAR // 02</span>
+                        <h4 class="text-xs font-bold text-white">EduSPP &amp; Broadcast WhatsApp</h4>
+                        <p class="text-slate-400 text-[11px] leading-relaxed">Rekapitulasi tagihan SPP per kelas, cetak kwitansi resmi, dan pengiriman pesan pengingat tagihan massal sekali klik.</p>
+                    </div>
+                    <div class="p-2.5 space-y-1">
+                        <span class="font-mono text-xs text-emerald-400 font-bold">PILAR // 03</span>
+                        <h4 class="text-xs font-bold text-white">KoperasiKu &amp; Simulasi Transparan</h4>
+                        <p class="text-slate-400 text-[11px] leading-relaxed">Buku simpanan anggota multi-rekening, tabel amortisasi pinjaman flat/anuitas, dan kalkulasi SHU otomatis akhir periode.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TESTIMONI KLIEN & DOKUMENTASI IMPLEMENTASI INSTITUSI -->
+    <section id="testimoni-klien" class="py-14 bg-white border-t border-slate-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
                 <div>
                     <span class="font-mono text-xs uppercase tracking-widest text-clinical font-bold">DOKUMENTASI IMPLEMENTASI &amp; ULASAN KLIEN</span>
                     <h2 class="font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1">
@@ -785,23 +843,34 @@
                         Dokumentasi nyata operasional harian di meja dokter, apotek, loket tata usaha sekolah, dan kantor layanan koperasi.
                     </p>
                 </div>
-                <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200 flex items-center gap-3 shrink-0">
-                    <div class="text-amber-500 text-xs flex items-center gap-0.5">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Category Filter Tabs & Pagination Controls -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="erpReviewCategoryTabs">
+                        <button type="button" onclick="filterNusaErpReviews('all')" class="erp-rev-tab active px-3 py-1 bg-slate-900 text-white rounded-lg font-bold transition">Semua (8)</button>
+                        <button type="button" onclick="filterNusaErpReviews('klinik')" class="erp-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">SIMKlinik</button>
+                        <button type="button" onclick="filterNusaErpReviews('eduspp')" class="erp-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">EduSPP</button>
+                        <button type="button" onclick="filterNusaErpReviews('koperasi')" class="erp-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">KoperasiKu</button>
                     </div>
-                    <div class="text-xs font-mono">
-                        <strong class="text-slate-900">340+ Institusi Aktif</strong> • <span class="text-clinical font-bold">99.9% Uptime</span>
+                    <!-- Pagination Controls -->
+                    <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+                        <button type="button" onclick="changeNusaErpReviewPage(-1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="nusaErpReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-700 font-mono font-bold bg-slate-50 rounded-lg border border-slate-200">1 / 2</span>
+                        <button type="button" onclick="changeNusaErpReviewPage(1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Selanjutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 4 Client Photo Review Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+            <!-- 8 Review Cards (4 per page) -->
+            <div id="nusaErpReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 (Page 1 - Klinik) -->
+                <article class="erp-review-card enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="klinik" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-slate-200">
-                            <img src="assets/images/clinic-room.jpg" alt="Dokumentasi Poli Klinik" class="w-full h-full object-cover">
+                            <img src="assets/images/rev-klinik-soap.jpg" alt="Dokumentasi Poli Klinik" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-slate-900/90 text-teal-300 font-mono text-[10px] font-bold px-2.5 py-1 rounded">
                                 Dokumentasi • Poli Umum &amp; Gigi
                             </span>
@@ -825,11 +894,11 @@
                     </div>
                 </article>
 
-                <!-- Card 2 -->
-                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                <!-- Card 2 (Page 1 - Klinik) -->
+                <article class="erp-review-card enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="klinik" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-slate-200">
-                            <img src="assets/images/clinic-pharmacy.jpg" alt="Dokumentasi Stok Apotek" class="w-full h-full object-cover">
+                            <img src="assets/images/rev-apotek-stok.jpg" alt="Dokumentasi Stok Apotek" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-clinical text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
                                 Dokumentasi • Gudang Apotek FEFO
                             </span>
@@ -853,11 +922,11 @@
                     </div>
                 </article>
 
-                <!-- Card 3 -->
-                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                <!-- Card 3 (Page 1 - EduSPP) -->
+                <article class="erp-review-card enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="eduspp" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-slate-200">
-                            <img src="assets/images/school-campus.jpg" alt="Dokumentasi Tata Usaha Sekolah" class="w-full h-full object-cover">
+                            <img src="assets/images/rev-spp-sekolah.jpg" alt="Dokumentasi Tata Usaha Sekolah" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-royal text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
                                 Dokumentasi • Tata Usaha Sekolah
                             </span>
@@ -881,11 +950,11 @@
                     </div>
                 </article>
 
-                <!-- Card 4 -->
-                <article class="enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between">
+                <!-- Card 4 (Page 1 - KoperasiKu) -->
+                <article class="erp-review-card enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="koperasi" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-slate-200">
-                            <img src="assets/images/koperasi-office.jpg" alt="Dokumentasi Kantor Koperasi" class="w-full h-full object-cover">
+                            <img src="assets/images/rev-koperasi-simpanan.jpg" alt="Dokumentasi Kantor Koperasi" class="w-full h-full object-cover">
                             <span class="absolute top-3 left-3 bg-coop text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
                                 Dokumentasi • KSP &amp; BMT Syariah
                             </span>
@@ -905,6 +974,118 @@
                         <div class="text-xs">
                             <div class="font-bold text-slate-900">Bpk. H. Suryono, SE</div>
                             <div class="font-mono text-[10px] text-slate-500">Ketua KSP Mitra Sejahtera Mandiri</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 5 (Page 2 - Klinik) -->
+                <article class="erp-review-card hidden enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="klinik" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/rev-antrean-pasien.jpg" alt="Antrean Pasien &amp; E-Resep" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-slate-900/90 text-teal-300 font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Antrean Pasien • Live Display
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-clinical font-bold ml-1">Poli Umum &amp; Gigi</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Pasien tidak lagi menumpuk di ruang tunggu karena nomor antrean dan estimasi panggilan tampil live di TV poli. Pelayanan klinik jadi jauh lebih tenang dan teratur."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/cust-1.jpg" alt="dr. Faisal" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">dr. Faisal Akbar</div>
+                            <div class="font-mono text-[10px] text-slate-500">Dokter Jaga Poli • Klinik Medika Utama</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 6 (Page 2 - EduSPP) -->
+                <article class="erp-review-card hidden enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="eduspp" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/rev-kwitansi-digital.jpg" alt="Kwitansi SPP Resmi" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-royal text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Kwitansi &amp; Rekap SPP
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-royal font-bold ml-1">Laporan Yayasan</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Cetak kwitansi pembayaran format thermal atau PDF otomatis kirim ke WA wali murid. Laporan kas masuk SPP bulanan ke pengurus yayasan siap dalam 1 klik."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/cust-2.jpg" alt="Bpk. Rahmat" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Bpk. Rahmat Hidayat, SE</div>
+                            <div class="font-mono text-[10px] text-slate-500">Bendahara Yayasan Pendidikan Insan Mulia</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 7 (Page 2 - KoperasiKu) -->
+                <article class="erp-review-card hidden enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="koperasi" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/rev-angsuran-pinjaman.jpg" alt="Simulasi Pinjaman KSP" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-coop text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Amortisasi &amp; Akad Syariah
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-coop font-bold ml-1">Simulasi Angsuran</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Simulasi angsuran pinjaman dengan rincian pokok dan bagi hasil bulanan sangat transparan. Anggota merasa aman dan tidak ada sengketa perhitungan denda."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/cust-3.jpg" alt="Hj. Maryani" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Hj. Maryani Kusuma</div>
+                            <div class="font-mono text-[10px] text-slate-500">Manager Pembiayaan KSP BMT Amanah</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 8 (Page 2 - EduSPP) -->
+                <article class="erp-review-card hidden enterprise-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="eduspp" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-slate-200">
+                            <img src="assets/images/rev-broadcast-wa.jpg" alt="Administrasi Santri Pesantren" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-royal text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded">
+                                Asrama &amp; Uang Makan
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[10px] text-royal font-bold ml-1">Pesantren &amp; Asrama</span>
+                            </div>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                "Tagihan asrama santri, uang makan bulanan, dan iuran kegiatan ekstrakurikuler terintegrasi rapi. Wali santri di luar kota bisa cek status dan bayar via QRIS."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
+                        <img src="assets/images/cust-4.jpg" alt="Ust. Mansur" class="w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0">
+                        <div class="text-xs">
+                            <div class="font-bold text-slate-900">Ust. Mansur Siregar, Lc</div>
+                            <div class="font-mono text-[10px] text-slate-500">Sekretaris Yayasan Pesantren Qurani</div>
                         </div>
                     </div>
                 </article>
@@ -1803,6 +1984,93 @@
             window.__erpToastTimer = setTimeout(() => t.classList.add('hidden'), 3200);
         }
 
+        // NusaERP Video Switcher
+        document.querySelectorAll('.erp-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.erp-video-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-clinical', 'text-white', 'font-bold');
+                    b.classList.add('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+                });
+                btn.classList.add('active', 'bg-clinical', 'text-white', 'font-bold');
+                btn.classList.remove('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const videoEl = document.getElementById('erpVideoPlayer');
+                const captionEl = document.getElementById('erpVideoCaption');
+                if (videoEl && videoSrc) {
+                    videoEl.src = videoSrc;
+                    videoEl.play().catch(() => {});
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+            });
+        });
+
+        // NusaERP Reviews Filter & Pagination
+        let currentNusaErpReviewCategory = 'all';
+        let currentNusaErpReviewPage = 1;
+
+        function filterNusaErpReviews(cat) {
+            currentNusaErpReviewCategory = cat;
+            currentNusaErpReviewPage = 1;
+
+            const tabs = document.querySelectorAll('#erpReviewCategoryTabs .erp-rev-tab');
+            tabs.forEach(tab => {
+                const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+                if (isSelected) {
+                    tab.classList.add('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.remove('bg-slate-100', 'text-slate-700');
+                } else {
+                    tab.classList.remove('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.add('bg-slate-100', 'text-slate-700');
+                }
+            });
+
+            applyNusaErpReviewDisplay();
+        }
+
+        function changeNusaErpReviewPage(delta) {
+            const cards = Array.from(document.querySelectorAll('.erp-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentNusaErpReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentNusaErpReviewCategory;
+            });
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            const newPage = currentNusaErpReviewPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentNusaErpReviewPage = newPage;
+                applyNusaErpReviewDisplay();
+            }
+        }
+
+        function applyNusaErpReviewDisplay() {
+            const cards = Array.from(document.querySelectorAll('.erp-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentNusaErpReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentNusaErpReviewCategory;
+            });
+
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            if (currentNusaErpReviewPage > totalPages) currentNusaErpReviewPage = totalPages;
+
+            const startIndex = (currentNusaErpReviewPage - 1) * 4;
+            const endIndex = startIndex + 4;
+
+            cards.forEach(card => card.classList.add('hidden'));
+            matchedCards.forEach((card, idx) => {
+                if (idx >= startIndex && idx < endIndex) {
+                    card.classList.remove('hidden');
+                }
+            });
+
+            const indicator = document.getElementById('nusaErpReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentNusaErpReviewPage} / ${totalPages}`;
+            }
+        }
+
         // Toggle Mobile Navigation Drawer
         function toggleMobileDrawer(open) {
             const drawer = document.getElementById('mobileDrawer');
@@ -1825,6 +2093,7 @@
             renderClinicApp();
             renderSppTable();
             renderCoopApp();
+            applyNusaErpReviewDisplay();
         });
     </script>
 </body>

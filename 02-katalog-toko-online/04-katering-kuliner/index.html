@@ -552,30 +552,97 @@
             </div>
         </div>
 
-        <!-- Testimonials with Real Customer Order Photos -->
-        <div id="testimoni" class="bg-white p-6 sm:p-8 border border-stone-300">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-stone-200">
+        <!-- DOKUMENTASI DAPUR & PROSES MASAK KATERING (VIDEO SHOWCASE) -->
+        <div class="mb-14 bg-[#1C1917] text-white border border-stone-800 p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                 <div>
-                    <span class="font-mono text-xs text-terracotta-600 font-bold uppercase tracking-wider">[04] BUKTI NYATA & DOKUMENTASI PESANAN</span>
-                    <h3 class="font-display font-bold text-xl sm:text-2xl text-stone-900 mt-1">Ulasan & Foto Pesanan Pelanggan Dapur Berkah</h3>
-                    <p class="text-xs sm:text-sm text-stone-600">Dokumentasi asli pesanan Nasi Box, Aqiqah, Tumpeng & Frozen Food yang diterima pelanggan.</p>
+                    <span class="font-mono text-xs text-amber-400 font-bold uppercase tracking-wider">[03.1] LIVE KITCHEN &amp; FOOD SAFETY</span>
+                    <h3 class="font-display font-bold text-2xl sm:text-3xl text-white mt-1">Dapur Higienis Berstandar Halal Kemenag</h3>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1 max-w-xl">
+                        Dipimpin oleh chef berpengalaman hotel berbintang, seluruh bahan baku bumbu rempah segar ditumbuk alami tanpa pengawet sintetis.
+                    </p>
                 </div>
-                <div class="flex items-center gap-1.5 text-amber-500 font-mono text-xs font-bold bg-cream-50 px-4 py-2 border border-stone-300 shrink-0">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span class="text-stone-900 ml-1">4.95 / 5.0 (2.400+ Order)</span>
+                <!-- Video Switcher -->
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <button type="button" data-video="assets/videos/video-dapur-katering.mp4" data-caption="OPERASIONAL DAPUR KATERING // CHEF PROFESIONAL &amp; KEBERSIHAN STAINLESS-STEEL"
+                        class="catering-video-btn active px-4 py-2 bg-terracotta-600 text-white font-bold border border-terracotta-600 transition flex items-center gap-2">
+                        <i class="fa-solid fa-play text-[10px]"></i>
+                        <span>Dapur &amp; Proses Masak</span>
+                    </button>
+                    <button type="button" data-video="assets/videos/video-plating-saji.mp4" data-caption="PENYAJIAN MAKANAN &amp; PACKING // WADAH SEKAT FOOD-GRADE &amp; SEAL HIGIENIS"
+                        class="catering-video-btn px-4 py-2 bg-stone-800 text-stone-300 hover:text-white font-medium border border-stone-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-film text-[10px]"></i>
+                        <span>Plating &amp; Pengemasan</span>
+                    </button>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Photo Review 1 -->
-                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+
+            <div class="border border-stone-700 bg-black overflow-hidden shadow-2xl">
+                <div class="relative bg-black h-80 sm:h-[460px] overflow-hidden">
+                    <video id="cateringVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/menu-01-ayam-bakar.jpg" src="assets/videos/video-dapur-katering.mp4"></video>
+                    <div class="absolute bottom-4 left-4 bg-[#1C1917]/90 backdrop-blur-md px-4 py-2 border border-stone-700 font-mono text-xs text-amber-300 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span id="cateringVideoCaption">OPERASIONAL DAPUR KATERING // CHEF PROFESIONAL &amp; KEBERSIHAN STAINLESS-STEEL</span>
+                    </div>
+                </div>
+                <!-- 3 Safety Specs -->
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800 bg-[#1C1917] p-6 sm:p-8">
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-terracotta-400 font-bold tracking-wider">STANDAR // 01</span>
+                        <h4 class="font-display text-base font-bold text-white">Sertifikat Halal Resmi MUI &amp; Kemenag</h4>
+                        <p class="text-stone-400 text-xs leading-relaxed">Semua bahan daging ayam, sapi, dan kambing bersertifikat halal dengan rantai pasok terverifikasi syariat.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-amber-400 font-bold tracking-wider">STANDAR // 02</span>
+                        <h4 class="font-display text-base font-bold text-white">Dapur Stainless Steel &amp; Filter Air RO</h4>
+                        <p class="text-stone-400 text-xs leading-relaxed">Pencucian sayur dan beras menggunakan air filtrasi RO higienis serta peralatan masak bebas karat food-grade.</p>
+                    </div>
+                    <div class="p-4 space-y-1.5">
+                        <span class="font-mono text-xs text-emerald-400 font-bold tracking-wider">STANDAR // 03</span>
+                        <h4 class="font-display text-base font-bold text-white">Armada Mobil Box Pengiriman Khusus</h4>
+                        <p class="text-stone-400 text-xs leading-relaxed">Kotak pesanan terlindung dari terik matahari dan debu jalanan, menjaga kehangatan hingga tiba di meja prasmanan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials with Real Customer Order Photos -->
+        <div id="testimoni" class="bg-white p-6 sm:p-8 border border-stone-300">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-stone-200">
+                <div>
+                    <span class="font-mono text-xs text-terracotta-600 font-bold uppercase tracking-wider">[04] BUKTI NYATA &amp; DOKUMENTASI PESANAN</span>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl text-stone-900 mt-1">Ulasan &amp; Foto Pesanan Pelanggan Dapur Berkah</h3>
+                    <p class="text-xs sm:text-sm text-stone-600">Dokumentasi asli pesanan Nasi Box, Aqiqah, Tumpeng &amp; Frozen Food yang diterima pelanggan.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <!-- Filter Tabs -->
+                    <div class="hidden sm:flex items-center gap-1.5 font-mono text-xs">
+                        <button type="button" onclick="filterCateringReviews('all')" class="catering-tab-btn active px-3.5 py-1.5 bg-terracotta-600 text-white font-bold border border-terracotta-600">Semua (8)</button>
+                        <button type="button" onclick="filterCateringReviews('box')" class="catering-tab-btn px-3.5 py-1.5 bg-cream-50 text-stone-700 hover:border-stone-400 border border-stone-300">Nasi Box (2)</button>
+                        <button type="button" onclick="filterCateringReviews('aqiqah')" class="catering-tab-btn px-3.5 py-1.5 bg-cream-50 text-stone-700 hover:border-stone-400 border border-stone-300">Aqiqah (2)</button>
+                        <button type="button" onclick="filterCateringReviews('tumpeng')" class="catering-tab-btn px-3.5 py-1.5 bg-cream-50 text-stone-700 hover:border-stone-400 border border-stone-300">Tumpeng &amp; Gedung (2)</button>
+                        <button type="button" onclick="filterCateringReviews('frozen')" class="catering-tab-btn px-3.5 py-1.5 bg-cream-50 text-stone-700 hover:border-stone-400 border border-stone-300">Frozen Food (2)</button>
+                    </div>
+                    <!-- Pagination Controls -->
+                    <div class="flex items-center gap-1.5 font-mono text-xs">
+                        <button type="button" onclick="changeCateringReviewPage(-1)" class="w-9 h-9 bg-cream-50 hover:bg-terracotta-600 hover:text-white text-stone-800 border border-stone-300 flex items-center justify-center transition" aria-label="Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="cateringReviewPageIndicator" class="px-2.5 py-1 text-xs text-stone-800 font-mono font-bold">1 / 2</span>
+                        <button type="button" onclick="changeCateringReviewPage(1)" class="w-9 h-9 bg-cream-50 hover:bg-terracotta-600 hover:text-white text-stone-800 border border-stone-300 flex items-center justify-center transition" aria-label="Selanjutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cateringReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Photo Review 1 (Page 1 - Aqiqah) -->
+                <div class="catering-review-card bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="aqiqah" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-stone-300">
                             <img src="assets/images/menu-05-aqiqah-50.jpg" alt="Foto Pesanan Paket Aqiqah 50 Box" class="w-full h-full object-cover">
-                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • 50 Box Aqiqah</span>
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; 50 Box Aqiqah</span>
                         </div>
                         <div class="p-4">
                             <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
@@ -597,19 +664,19 @@
                     </div>
                 </div>
 
-                <!-- Photo Review 2 -->
-                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                <!-- Photo Review 2 (Page 1 - Box) -->
+                <div class="catering-review-card bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="box" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-stone-300">
                             <img src="assets/images/menu-01-ayam-bakar.jpg" alt="Foto Pesanan Nasi Box Kantor" class="w-full h-full object-cover">
-                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • 80 Nasi Box</span>
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; 80 Nasi Box</span>
                         </div>
                         <div class="p-4">
                             <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                 <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
                             </div>
-                            <p class="text-xs text-stone-700 leading-relaxed">"Rutin pesan 80 Nasi Box Ayam Bakar Madu untuk rapat bulanan kantor. Di katalog ini bisa pilih varian nasi uduk & sambal matah, plus otomatis diskon 10%."</p>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Rutin pesan 80 Nasi Box Ayam Bakar Madu untuk rapat bulanan kantor. Di katalog ini bisa pilih varian nasi uduk &amp; sambal matah, plus otomatis diskon 10%."</p>
                         </div>
                     </div>
                     <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
@@ -624,12 +691,12 @@
                     </div>
                 </div>
 
-                <!-- Photo Review 3 -->
-                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                <!-- Photo Review 3 (Page 1 - Tumpeng) -->
+                <div class="catering-review-card bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="tumpeng" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-stone-300">
-                            <img src="assets/images/menu-02-nasi-kebuli.jpg" alt="Foto Tumpeng & Kebuli Syukuran Kantor" class="w-full h-full object-cover">
-                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan • Syukuran Kantor</span>
+                            <img src="assets/images/menu-02-nasi-kebuli.jpg" alt="Foto Tumpeng &amp; Kebuli Syukuran Kantor" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; Syukuran Kantor</span>
                         </div>
                         <div class="p-4">
                             <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
@@ -651,12 +718,12 @@
                     </div>
                 </div>
 
-                <!-- Photo Review 4 -->
-                <div class="bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden">
+                <!-- Photo Review 4 (Page 1 - Frozen) -->
+                <div class="catering-review-card bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="frozen" data-page="1">
                     <div>
                         <div class="relative h-44 overflow-hidden border-b border-stone-300">
-                            <img src="assets/images/menu-09-dimsum-mentai.jpg" alt="Foto Paket Frozen Food & Dimsum" class="w-full h-full object-cover">
-                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Dimsum & Risol</span>
+                            <img src="assets/images/menu-09-dimsum-mentai.jpg" alt="Foto Paket Frozen Food &amp; Dimsum" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk &bull; Dimsum &amp; Risol</span>
                         </div>
                         <div class="p-4">
                             <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
@@ -675,6 +742,114 @@
                             </div>
                         </div>
                         <span class="font-mono text-[10px] bg-stone-200 text-stone-800 font-bold px-2 py-0.5">FROZEN</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 5 (Page 2 - Tumpeng/Wedding) -->
+                <div class="catering-review-card hidden bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="tumpeng" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/rev-catering-wedding.jpg" alt="Foto Katering Pernikahan Gedung" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Acara &bull; Prasmanan 400 Porsi</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Pesan prasmanan 400 porsi untuk resepsi pernikahan gedung di Jakarta Timur. Pelayanan staf katering ramah, refill makanan cepat, dan tamu memuji rasa gulai kambing &amp; rolade."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-4.jpg" alt="Dini Anggraini" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Dini Anggraini, S.Kom</div>
+                                <div class="text-stone-500 text-[10px]">Rawamangun, Jakarta Timur</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-terracotta-50 text-terracotta-700 border border-terracotta-200 font-bold px-2 py-0.5">WEDDING</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 6 (Page 2 - Box) -->
+                <div class="catering-review-card hidden bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="box" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/rev-catering-office.jpg" alt="Foto Gathering Nasi Box Kantor" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; 150 Box Rapat</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Order 150 Nasi Box Empal Balado &amp; Ayam Goreng Lengkuas untuk seminar BUMN. Kemasan kardus tebal food-grade eksklusif dengan stempel tanggal &amp; jam masak."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-5.jpg" alt="Bpk. Rahmat Saleh" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Bpk. Rahmat Saleh</div>
+                                <div class="text-stone-500 text-[10px]">Kuningan, Jakarta Selatan</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-orange-50 text-terracotta-700 border border-orange-200 font-bold px-2 py-0.5">SEMINAR</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 7 (Page 2 - Aqiqah) -->
+                <div class="catering-review-card hidden bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="aqiqah" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/rev-catering-aqiqah.jpg" alt="Foto Paket Aqiqah Kambing Guling" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; Aqiqah Barokah</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Video penyembelihan kambing dan sertifikat berbingkainya sangat rapi. Nasi kebuli porsi mantap, daging melimpah, dan kuah gule tidak pedas sehingga disukai anak-anak."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-6.jpg" alt="dr. Fauzan Akbar" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">dr. Fauzan Akbar, Sp.A</div>
+                                <div class="text-stone-500 text-[10px]">Depok, Jawa Barat</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-halal-50 text-halal-700 border border-halal-500/30 font-bold px-2 py-0.5">AQIQAH</span>
+                    </div>
+                </div>
+
+                <!-- Photo Review 8 (Page 2 - Frozen/Event) -->
+                <div class="catering-review-card hidden bg-cream-50 border border-stone-300 flex flex-col justify-between overflow-hidden" data-category="frozen" data-page="2">
+                    <div>
+                        <div class="relative h-44 overflow-hidden border-b border-stone-300">
+                            <img src="assets/images/rev-tumpeng-syukuran.jpg" alt="Foto Tumpeng Mini Selamatan" class="w-full h-full object-cover">
+                            <span class="absolute bottom-2 left-2 bg-[#1C1917]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pesanan &bull; 60 Tumpeng Mini</span>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="font-mono text-[11px] text-stone-900 font-bold ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-stone-700 leading-relaxed">"Pesan 60 Tumpeng Mini untuk selamatan rumah baru di BSD. Packaging mika bulat tebal dengan pita satin sangat elegan dibagikan ke tetangga."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 border-t border-stone-200 bg-white flex items-center justify-between text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <img src="assets/images/avatar-7.jpg" alt="Ibu Citra Dewi" class="w-8 h-8 object-cover border border-stone-300">
+                            <div>
+                                <div class="font-bold text-stone-900">Ibu Citra Dewi</div>
+                                <div class="text-stone-500 text-[10px]">BSD City, Tangerang</div>
+                            </div>
+                        </div>
+                        <span class="font-mono text-[10px] bg-amber-50 text-amber-800 border border-amber-300 font-bold px-2 py-0.5">SELAMATAN</span>
                     </div>
                 </div>
             </div>
@@ -2159,6 +2334,83 @@
                 backdrop.classList.add('opacity-0', 'pointer-events-none');
                 document.body.classList.remove('overflow-hidden');
             }
+        // --- Catering Video Switcher ---
+        const cateringVideoBtns = document.querySelectorAll('.catering-video-btn');
+        const cateringVideoPlayer = document.getElementById('cateringVideoPlayer');
+        const cateringVideoCaption = document.getElementById('cateringVideoCaption');
+
+        cateringVideoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cateringVideoBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-terracotta-600', 'text-white', 'border-terracotta-600');
+                    b.classList.add('bg-stone-800', 'text-stone-300', 'border-stone-700');
+                });
+                btn.classList.add('active', 'bg-terracotta-600', 'text-white', 'border-terracotta-600');
+                btn.classList.remove('bg-stone-800', 'text-stone-300', 'border-stone-700');
+
+                const targetVideo = btn.dataset.video;
+                const caption = btn.dataset.caption;
+                if (cateringVideoPlayer && targetVideo) {
+                    cateringVideoPlayer.src = targetVideo;
+                    cateringVideoPlayer.play().catch(() => {});
+                }
+                if (cateringVideoCaption && caption) {
+                    cateringVideoCaption.textContent = caption;
+                }
+            });
+        });
+
+        // --- Catering Reviews Pagination & Filtering ---
+        let currentCateringReviewPage = 1;
+        let currentCateringReviewCat = 'all';
+
+        function filterCateringReviews(cat) {
+            currentCateringReviewCat = cat;
+            currentCateringReviewPage = 1;
+            const tabBtns = document.querySelectorAll('.catering-tab-btn');
+            tabBtns.forEach(b => {
+                b.classList.remove('active', 'bg-terracotta-600', 'text-white', 'border-terracotta-600');
+                b.classList.add('bg-cream-50', 'text-stone-700', 'border-stone-300');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-terracotta-600', 'text-white', 'border-terracotta-600');
+                event.target.classList.remove('bg-cream-50', 'text-stone-700', 'border-stone-300');
+            }
+            renderCateringReviews();
+        }
+
+        function changeCateringReviewPage(delta) {
+            const totalPages = currentCateringReviewCat === 'all' ? 2 : 1;
+            const newPage = currentCateringReviewPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentCateringReviewPage = newPage;
+                renderCateringReviews();
+            }
+        }
+
+        function renderCateringReviews() {
+            const cards = document.querySelectorAll('.catering-review-card');
+            const totalPages = currentCateringReviewCat === 'all' ? 2 : 1;
+            const indicator = document.getElementById('cateringReviewPageIndicator');
+            if (indicator) indicator.textContent = `${currentCateringReviewPage} / ${totalPages}`;
+
+            cards.forEach(card => {
+                const cardCat = card.dataset.category;
+                const cardPage = Number(card.dataset.page);
+                let shouldShow = false;
+
+                if (currentCateringReviewCat === 'all') {
+                    shouldShow = (cardPage === currentCateringReviewPage);
+                } else {
+                    shouldShow = (cardCat === currentCateringReviewCat);
+                }
+
+                if (shouldShow) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
         }
 
         // Initialize on Load

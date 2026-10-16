@@ -419,26 +419,93 @@
                     </div>
                 </section>
 
+                <!-- 1.5 DOKUMENTASI WORKSHOP LAUNDRY & HIGIENIS MESIN (VIDEO) -->
+                <section class="bg-slate-900 rounded-3xl border border-slate-800 p-6 lg:p-8 shadow-lg text-white">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 pb-4 border-b border-slate-800">
+                        <div>
+                            <span class="font-mono text-[11px] font-bold text-sky-400 uppercase tracking-wider">[VIDEO DOKUMENTASI] HIGIENIS 1 MESIN 1 NOTA</span>
+                            <h2 class="text-xl lg:text-2xl font-extrabold text-white mt-1">Standar Cuci Mesin Komersial &amp; Setrika Uap Boiler</h2>
+                            <p class="text-xs text-slate-400 mt-1 max-w-xl">
+                                Saksikan bagaimana setiap helai pakaian diproses terpisah tanpa campur pelanggan lain dengan mesin industri front loading dan setrika uap murni.
+                            </p>
+                        </div>
+                        <!-- Video Switcher -->
+                        <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                            <button type="button" data-video="assets/videos/video-mesin-laundry.mp4" data-caption="PROSES PENCUCIAN // MESIN FRONT-LOADING BERPUTAR &amp; TIDAK DICAMPUR"
+                                class="laundry-video-btn active px-3.5 py-1.5 bg-sky-500 text-slate-950 font-bold rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                                <span>Mesin Cuci Higienis</span>
+                            </button>
+                            <button type="button" data-video="assets/videos/video-lipat-setrika.mp4" data-caption="FINISHING &amp; PACKING // SETRIKA UAP BOILER &amp; LIPAT RAPI STANDAR BUTIK"
+                                class="laundry-video-btn px-3.5 py-1.5 bg-slate-800 text-slate-300 hover:text-white font-medium border border-slate-700 rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-film text-[10px]"></i>
+                                <span>Setrika &amp; Lipat Rapi</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-800 bg-black rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="relative bg-black h-64 sm:h-[340px] overflow-hidden">
+                            <video id="laundryVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/srv-kiloan.jpg" src="assets/videos/video-mesin-laundry.mp4"></video>
+                            <div class="absolute bottom-3 left-3 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 border border-slate-700 rounded-lg font-mono text-xs text-sky-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                                <span id="laundryVideoCaption">PROSES PENCUCIAN // MESIN FRONT-LOADING BERPUTAR &amp; TIDAK DICAMPUR</span>
+                            </div>
+                        </div>
+                        <!-- 3 Quality Specs -->
+                        <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950 p-4 sm:p-5">
+                            <div class="p-2.5 space-y-1">
+                                <span class="font-mono text-xs text-sky-400 font-bold">STANDAR // 01</span>
+                                <h4 class="text-xs font-bold text-white">1 Mesin 1 Pelanggan</h4>
+                                <p class="text-slate-400 text-[11px] leading-relaxed">Cucian Anda dijamin tidak pernah dicampur dengan pakaian orang lain, higienis &amp; tidak tertukar.</p>
+                            </div>
+                            <div class="p-2.5 space-y-1">
+                                <span class="font-mono text-xs text-amber-400 font-bold">STANDAR // 02</span>
+                                <h4 class="text-xs font-bold text-white">Setrika Uap Boiler Murni</h4>
+                                <p class="text-slate-400 text-[11px] leading-relaxed">Tanpa risiko baju gosong atau mengkilap. Uap panas membunuh 99.9% bakteri dan menghaluskan serat kain.</p>
+                            </div>
+                            <div class="p-2.5 space-y-1">
+                                <span class="font-mono text-xs text-emerald-400 font-bold">STANDAR // 03</span>
+                                <h4 class="text-xs font-bold text-white">Notifikasi WhatsApp + Rak Presisi</h4>
+                                <p class="text-slate-400 text-[11px] leading-relaxed">Pelanggan langsung menerima WA saat cucian selesai, tersimpan aman di nomor rak bernomor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- 2. Galeri Ulasan & Foto Hasil Cucian Pelanggan Asli -->
                 <section id="section-ulasan" class="bg-white rounded-3xl border border-slate-200 p-6 lg:p-8 shadow-sm">
-                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
                         <div>
                             <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Bukti Kualitas &amp; Testimoni (Simulasi)*</span>
                             <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Ulasan Pelanggan &amp; Dokumentasi Hasil Cucian</h2>
-                            <p class="text-xs text-slate-500 mt-1">Foto asli hasil pengerjaan tim SmartWash Laundry dari ulasan pelanggan langganan kami (ilustrasi portofolio).</p>
+                            <p class="text-xs text-slate-500 mt-1">Foto asli hasil pengerjaan tim SmartWash Laundry dari pelanggan langganan kami.</p>
                         </div>
-                        <div class="flex items-center gap-3 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shrink-0">
-                            <div class="text-amber-400 text-lg"><i class="fa-solid fa-star"></i></div>
-                            <div class="tabular-nums">
-                                <div class="text-sm font-extrabold leading-none">4.97 / 5.0</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">1.420+ Ulasan Google Maps (Contoh/Simulasi)*</div>
+                        <!-- Category Filter & Pagination Controls -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="laundryReviewCategoryTabs">
+                                <button type="button" onclick="filterLaundryReviews('all')" class="laundry-rev-tab active px-3 py-1 bg-slate-900 text-white rounded-lg font-bold transition">Semua (8)</button>
+                                <button type="button" onclick="filterLaundryReviews('kiloan')" class="laundry-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Cuci Kiloan</button>
+                                <button type="button" onclick="filterLaundryReviews('express')" class="laundry-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Express 6 Jam</button>
+                                <button type="button" onclick="filterLaundryReviews('spesial')" class="laundry-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Sepatu &amp; Bedcover</button>
+                            </div>
+                            <!-- Pagination Controls -->
+                            <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+                                <button type="button" onclick="changeLaundryReviewPage(-1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Sebelumnya">
+                                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                                </button>
+                                <span id="laundryReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-700 font-mono font-bold bg-slate-50 rounded-lg border border-slate-200">1 / 2</span>
+                                <button type="button" onclick="changeLaundryReviewPage(1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Selanjutnya">
+                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        <!-- Review Card 1 -->
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                    <!-- 8 Laundry Photo Review Cards (Paginated 4 per page) -->
+                    <div id="laundryReviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- Review Card 1 (Page 1 - Kiloan) -->
+                        <div class="laundry-review-card rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="kiloan" data-page="1">
                             <div>
                                 <div class="relative h-40 w-full overflow-hidden bg-slate-200">
                                     <img src="assets/images/srv-kiloan.jpg" alt="Hasil Cuci Komplit Setrika" class="w-full h-full object-cover">
@@ -464,8 +531,8 @@
                             </div>
                         </div>
 
-                        <!-- Review Card 2 -->
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                        <!-- Review Card 2 (Page 1 - Spesial) -->
+                        <div class="laundry-review-card rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="spesial" data-page="1">
                             <div>
                                 <div class="relative h-40 w-full overflow-hidden bg-slate-200">
                                     <img src="assets/images/srv-sepatu.jpg" alt="Hasil Cuci Sepatu Deep Clean" class="w-full h-full object-cover">
@@ -491,8 +558,8 @@
                             </div>
                         </div>
 
-                        <!-- Review Card 3 -->
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                        <!-- Review Card 3 (Page 1 - Spesial) -->
+                        <div class="laundry-review-card rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="spesial" data-page="1">
                             <div>
                                 <div class="relative h-40 w-full overflow-hidden bg-slate-200">
                                     <img src="assets/images/srv-bedcover.jpg" alt="Hasil Cuci Bedcover Besar" class="w-full h-full object-cover">
@@ -518,8 +585,8 @@
                             </div>
                         </div>
 
-                        <!-- Review Card 4 -->
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                        <!-- Review Card 4 (Page 1 - Express) -->
+                        <div class="laundry-review-card rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="express" data-page="1">
                             <div>
                                 <div class="relative h-40 w-full overflow-hidden bg-slate-200">
                                     <img src="assets/images/srv-express.jpg" alt="Kilat Express 6 Jam" class="w-full h-full object-cover">
@@ -542,6 +609,114 @@
                             <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
                                 <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pelanggan Terverifikasi</span>
                                 <span>1 minggu lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 5 (Page 2 - Kiloan) -->
+                        <div class="laundry-review-card hidden rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="kiloan" data-page="2">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/rev-cuci-kiloan.jpg" alt="Hasil Cuci Kiloan Tebet" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Cuci Kiloan Reguler</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-5.jpg" alt="dr. Vania Larasati" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">dr. Vania Larasati</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Sebagai dokter yang jadwalnya padat, antar-jemput cucian ke Tebet ini praktis banget. Jas dokter dan scrubs dicuci bersih wangi lavender."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Tebet Barat • Pelanggan Rutin</span>
+                                <span>4 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 6 (Page 2 - Express) -->
+                        <div class="laundry-review-card hidden rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="express" data-page="2">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/rev-cuci-express.jpg" alt="Express 6 Jam Kemeja" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Express Kemeja Kantor</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-6.jpg" alt="Farhan Ramzi" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Farhan Ramzi</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Kemeja batik sutra dan kemeja putih kantoran disetrika uap halus tanpa mengkerut. Tracking via webnya akurat banget saat status berubah jadi siap ambil."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Kuningan • Karyawan Swasta</span>
+                                <span>6 hari lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 7 (Page 2 - Spesial) -->
+                        <div class="laundry-review-card hidden rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="spesial" data-page="2">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/rev-cuci-bedcover.jpg" alt="Bedcover King Size" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Bedcover King Size</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-7.jpg" alt="Ibu Maya Anggraini" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Maya Anggraini</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Bawa 2 bedcover tebal langsung kering wangi tanpa bau apek jemuran. Kemasannya rapi dilapisi plastik ganda jadi aman waktu hujan di jalan."</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pancoran • Pelanggan Tetap</span>
+                                <span>1 minggu lalu</span>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 8 (Page 2 - Spesial) -->
+                        <div class="laundry-review-card hidden rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/60 flex flex-col justify-between shadow-sm hover:shadow-md transition" data-category="spesial" data-page="2">
+                            <div>
+                                <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                                    <img src="assets/images/rev-cuci-sepatu.jpg" alt="Cuci Sepatu Sneakers" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold backdrop-blur-sm">Sneakers Whitening</span>
+                                </div>
+                                <div class="p-4">
+                                    <div class="flex items-center gap-2.5 mb-2.5">
+                                        <img src="assets/images/cust-8.jpg" alt="Kevin Pratama" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <div class="min-w-0">
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Kevin Pratama</h4>
+                                            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                                <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">"Sepatu basket dan running shoes dicuci bersih sampai ke sol dalam. Sol kuning unyellowing-nya berhasil putih lagi. Recommended banget!"</p>
+                                </div>
+                            </div>
+                            <div class="px-4 py-2.5 bg-white border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-400 tabular-nums">
+                                <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Pasar Minggu • Shoe Care</span>
+                                <span>2 minggu lalu</span>
                             </div>
                         </div>
                     </div>
@@ -1379,6 +1554,93 @@
             `;
         }
 
+        // Laundry Video Documentation Switcher
+        document.querySelectorAll('.laundry-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.laundry-video-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-sky-500', 'text-slate-950', 'font-bold');
+                    b.classList.add('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+                });
+                btn.classList.add('active', 'bg-sky-500', 'text-slate-950', 'font-bold');
+                btn.classList.remove('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const videoEl = document.getElementById('laundryVideoPlayer');
+                const captionEl = document.getElementById('laundryVideoCaption');
+                if (videoEl && videoSrc) {
+                    videoEl.src = videoSrc;
+                    videoEl.play().catch(() => {});
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+            });
+        });
+
+        // Laundry Customer Photo Reviews Pagination & Filter
+        let currentLaundryReviewCategory = 'all';
+        let currentLaundryReviewPage = 1;
+
+        function filterLaundryReviews(cat) {
+            currentLaundryReviewCategory = cat;
+            currentLaundryReviewPage = 1;
+
+            const tabs = document.querySelectorAll('#laundryReviewCategoryTabs .laundry-rev-tab');
+            tabs.forEach(tab => {
+                const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+                if (isSelected) {
+                    tab.classList.add('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.remove('bg-slate-100', 'text-slate-700');
+                } else {
+                    tab.classList.remove('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.add('bg-slate-100', 'text-slate-700');
+                }
+            });
+
+            applyLaundryReviewDisplay();
+        }
+
+        function changeLaundryReviewPage(delta) {
+            const cards = Array.from(document.querySelectorAll('.laundry-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentLaundryReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentLaundryReviewCategory;
+            });
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            const newPage = currentLaundryReviewPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentLaundryReviewPage = newPage;
+                applyLaundryReviewDisplay();
+            }
+        }
+
+        function applyLaundryReviewDisplay() {
+            const cards = Array.from(document.querySelectorAll('.laundry-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentLaundryReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentLaundryReviewCategory;
+            });
+
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            if (currentLaundryReviewPage > totalPages) currentLaundryReviewPage = totalPages;
+
+            const startIndex = (currentLaundryReviewPage - 1) * 4;
+            const endIndex = startIndex + 4;
+
+            cards.forEach(card => card.classList.add('hidden'));
+            matchedCards.forEach((card, idx) => {
+                if (idx >= startIndex && idx < endIndex) {
+                    card.classList.remove('hidden');
+                }
+            });
+
+            const indicator = document.getElementById('laundryReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentLaundryReviewPage} / ${totalPages}`;
+            }
+        }
+
         // Toggle Mobile Navigation Drawer
         function toggleMobileDrawer(open) {
             const drawer = document.getElementById('mobileDrawer');
@@ -1401,6 +1663,7 @@
         calculateLaundryPrice();
         renderKanbanBoard();
         searchCustomerTracking();
+        applyLaundryReviewDisplay();
     </script>
 </body>
 </html>

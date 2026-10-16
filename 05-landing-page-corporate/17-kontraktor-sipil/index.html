@@ -570,6 +570,66 @@
     </div>
   </section>
 
+  <!-- Video Switcher Section: Rekayasa Lapangan & Alat Berat -->
+  <section class="py-16 bg-concrete-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-concrete-900 border border-slate-800 rounded-3xl p-6 lg:p-8 shadow-2xl">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+          <div>
+            <span class="font-mono text-xs text-safety-500 font-bold uppercase tracking-wider">[DOKUMENTASI OPERASIONAL] REKAYASA STRUKTUR &amp; ALAT BERAT</span>
+            <h2 class="font-condensed font-black text-2xl sm:text-4xl text-white uppercase tracking-tight mt-1">
+              Presisi Konstruksi &amp; Mobilisasi Alat Berat di Site
+            </h2>
+            <p class="text-xs text-slate-400 mt-1 max-w-2xl">
+              Saksikan dokumentasi pelaksanaan ereksi struktur baja industri, pengecoran jembatan kontinu, dan operasional armada excavator SILO mandiri.
+            </p>
+          </div>
+          <!-- Video Switcher Buttons -->
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <button type="button" data-video="assets/videos/video-proyek-konstruksi.mp4" data-caption="EREKSI STRUKTUR // RANGKA BAJA WF BENTANG 45M &amp; PEMBESIAN BETON JALAN"
+              class="civil-video-btn active px-4 py-2 bg-safety-500 text-concrete-950 font-condensed font-bold uppercase tracking-wider rounded transition flex items-center gap-2">
+              <i class="fa-solid fa-play text-xs"></i>
+              <span>Struktur Konstruksi</span>
+            </button>
+            <button type="button" data-video="assets/videos/video-alat-berat.mp4" data-caption="EARTHMOVING &amp; FOUNDATION // EXCAVATOR HEAVY-DUTY &amp; CUT-AND-FILL MANDIRI"
+              class="civil-video-btn px-4 py-2 bg-concrete-950 text-slate-300 hover:text-white font-condensed font-bold uppercase tracking-wider border border-slate-700 rounded transition flex items-center gap-2">
+              <i class="fa-solid fa-film text-xs"></i>
+              <span>Armada Alat Berat</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="border border-slate-800 bg-black rounded-2xl overflow-hidden shadow-2xl">
+          <div class="relative bg-black h-72 sm:h-[400px] overflow-hidden">
+            <video id="civilVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/hero-construction.jpg" src="assets/videos/video-proyek-konstruksi.mp4"></video>
+            <div class="absolute bottom-4 left-4 bg-concrete-950/90 backdrop-blur-md px-4 py-2 border border-slate-700 rounded font-mono text-xs text-safety-400 flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-safety-500 animate-ping"></span>
+              <span id="civilVideoCaption">EREKSI STRUKTUR // RANGKA BAJA WF BENTANG 45M &amp; PEMBESIAN BETON JALAN</span>
+            </div>
+          </div>
+          <!-- 3 Quality Pillars -->
+          <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-concrete-950 p-5">
+            <div class="p-3 space-y-1">
+              <span class="font-mono text-xs text-safety-500 font-bold">STANDAR // 01</span>
+              <h4 class="font-condensed font-bold text-white text-base uppercase">Batching Plant Mandiri 120 m³/jam</h4>
+              <p class="text-slate-400 text-xs leading-relaxed">Pengiriman ready-mix beton kontinu dengan retarder khusus, bebas cold joint pada pengecoran massal.</p>
+            </div>
+            <div class="p-3 space-y-1">
+              <span class="font-mono text-xs text-emerald-400 font-bold">STANDAR // 02</span>
+              <h4 class="font-condensed font-bold text-white text-base uppercase">Protokol HSE Zero Accident</h4>
+              <p class="text-slate-400 text-xs leading-relaxed">Penerapan toolbox meeting harian, izin kerja angkat (lifting permit), dan penegakan batas keselamatan K3.</p>
+            </div>
+            <div class="p-3 space-y-1">
+              <span class="font-mono text-xs text-blue-400 font-bold">STANDAR // 03</span>
+              <h4 class="font-condensed font-bold text-white text-base uppercase">Armada Berat GPS Telematika</h4>
+              <p class="text-slate-400 text-xs leading-relaxed">58 unit excavator, mobile crane, dan vibro roller bersertifikat SILO siap dimobilisasi tanpa vendor perantara.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured Case Studies Showcase -->
   <section class="py-20 bg-concrete-900 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -638,71 +698,438 @@
     </div>
   </section>
 
-  <!-- Client Testimonials (Quality Rule #3: Label Contoh/Ilustrasi) -->
+  <!-- Interactive Kalkulator Biaya Proyek & Simulator Kurva-S Progres -->
+  <section id="kalkulator-rab" class="py-20 bg-concrete-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-mono text-safety-500 uppercase tracking-widest">Engineering Estimator &amp; Kurva-S</span>
+        <h2 class="font-condensed font-black text-3xl sm:text-5xl text-white uppercase tracking-tight mt-1">
+          Simulasi Estimasi Anggaran &amp; Kurva-S Jadwal Proyek
+        </h2>
+        <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+          Hitung indikasi anggaran konstruksi (RAB kasar) dan simulasi tahapan progres fisik berbasis standar harga satuan PU-PR dan indeks material terkini.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left: Input Form Controls (7 cols) -->
+        <div class="lg:col-span-7 bg-concrete-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-400 font-bold mb-2">Tipe Proyek Konstruksi</label>
+              <select id="civilProjectType" onchange="calculateCivilRab()" class="w-full px-4 py-3 rounded bg-concrete-950 border border-slate-700 text-white font-condensed font-bold text-sm focus:border-safety-500 focus:outline-none">
+                <option value="jalan|8500000000|km|Jalan Raya / Tol Perkerasan Kaku (Rigid Pavement)">Jalan Tol / Rigid Pavement (Rp 8.5 Milyar/km)</option>
+                <option value="gedung|4800000|m2|Gedung Bertingkat / Tower Komersial">Gedung Bertingkat / Tower (Rp 4.8 Juta/m²)</option>
+                <option value="gudang|2900000|m2|Gudang Logistik Modern Bentang Bebas">Gudang Logistik FM2 (Rp 2.9 Juta/m²)</option>
+                <option value="jembatan|18500000000|bentang|Jembatan Gelagar Baja SM490 Bentang Panjang">Jembatan Gelagar Baja (Rp 18.5 Milyar/bentang)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-400 font-bold mb-2">Skema Kontrak Tender</label>
+              <select id="civilContractScheme" onchange="calculateCivilRab()" class="w-full px-4 py-3 rounded bg-concrete-950 border border-slate-700 text-white font-condensed font-bold text-sm focus:border-safety-500 focus:outline-none">
+                <option value="epc|1.05">Design &amp; Build (EPC Turnkey) + Desain BIM 5D</option>
+                <option value="gc|1.00" selected>General Contractor (Pelaksanaan Konstruksi Penuh)</option>
+                <option value="subkon|0.88">Pekerjaan Tanah, Fondasi &amp; Struktur Saja</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quantity / Volume Slider -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-mono uppercase text-slate-400 font-bold">Kuantitas / Volume Volume Pekerjaan:</label>
+              <span class="font-mono text-sm font-bold text-safety-400" id="civilQtyDisplay">5 km</span>
+            </div>
+            <input type="range" id="civilQtySlider" min="1" max="50" step="1" value="5" oninput="updateCivilQtyInput(this.value)" class="w-full accent-safety-500 bg-slate-800 h-2 rounded cursor-pointer">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>Min: 1</span>
+              <span id="civilSliderMid">25</span>
+              <span id="civilSliderMax">Max: 50</span>
+            </div>
+          </div>
+
+          <!-- Target Duration -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-400 font-bold mb-2">Target Durasi Pelaksanaan</label>
+              <select id="civilDuration" onchange="calculateCivilRab()" class="w-full px-4 py-3 rounded bg-concrete-950 border border-slate-700 text-white font-condensed font-bold text-sm focus:border-safety-500 focus:outline-none">
+                <option value="6">6 Bulan (Fast-Track 2 Shift)</option>
+                <option value="12" selected>12 Bulan (Jadwal Standar CPM)</option>
+                <option value="18">18 Bulan (Multi-Years)</option>
+                <option value="24">24 Bulan (Kompleks)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase text-slate-400 font-bold mb-2">Opsi Batching Plant &amp; QC On-Site</label>
+              <select id="civilBatchingOpt" onchange="calculateCivilRab()" class="w-full px-4 py-3 rounded bg-concrete-950 border border-slate-700 text-white font-condensed font-bold text-sm focus:border-safety-500 focus:outline-none">
+                <option value="include">Termasuk Mobile Batching Plant di Site (Hemat 5%)</option>
+                <option value="transit">Pengiriman Mixer Truk dari Yard Utama</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Kurva-S Visual Milestone Progress Bars -->
+          <div class="pt-4 border-t border-slate-800 space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between text-slate-400">
+              <span class="uppercase font-bold text-[11px] text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-line text-safety-500"></i> Proyeksi Kurva-S Progres Fisik
+              </span>
+              <span id="civilMilestoneText" class="text-safety-400 font-bold">12 Bulan Kontrak</span>
+            </div>
+            <!-- Progress Stages -->
+            <div class="space-y-2 text-[11px]">
+              <div>
+                <div class="flex justify-between text-slate-400 mb-1">
+                  <span>Tahap I: Mobilisasi, Survei Topografi &amp; Earthwork (Bln 1–3)</span>
+                  <span class="text-white font-bold">20%</span>
+                </div>
+                <div class="w-full bg-concrete-950 h-2 rounded overflow-hidden">
+                  <div class="bg-safety-500 h-full w-[20%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-400 mb-1">
+                  <span>Tahap II: Substruktur, Pemancangan &amp; Fondasi Bore Pile (Bln 4–6)</span>
+                  <span class="text-white font-bold">35%</span>
+                </div>
+                <div class="w-full bg-concrete-950 h-2 rounded overflow-hidden">
+                  <div class="bg-amber-400 h-full w-[35%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-400 mb-1">
+                  <span>Tahap III: Struktur Utama, Erection Baja &amp; Rigid Pavement (Bln 7–10)</span>
+                  <span class="text-white font-bold">35%</span>
+                </div>
+                <div class="w-full bg-concrete-950 h-2 rounded overflow-hidden">
+                  <div class="bg-blue-400 h-full w-[35%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-400 mb-1">
+                  <span>Tahap IV: MEP, Finishing, Commissioning &amp; BAST I (Bln 11–12)</span>
+                  <span class="text-white font-bold">10%</span>
+                </div>
+                <div class="w-full bg-concrete-950 h-2 rounded overflow-hidden">
+                  <div class="bg-emerald-400 h-full w-[10%]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real-Time Output Breakdown Card (5 cols) -->
+        <div class="lg:col-span-5 bg-concrete-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 sticky top-28">
+          <div class="border-b border-slate-800 pb-4">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-safety-500 font-bold block mb-1">RAB ESTIMATOR INDIKATIF (B2B)</span>
+            <h3 class="font-condensed font-bold text-xl text-white uppercase" id="civilOutputProjectTitle">Jalan Raya / Tol Perkerasan Kaku</h3>
+            <p class="text-slate-400 text-xs font-mono mt-1" id="civilOutputVolumeText">Volume: 5 km • 12 Bulan Pengerjaan</p>
+          </div>
+
+          <!-- Total Estimasi Nilai Kontrak -->
+          <div class="bg-concrete-950 p-4 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-[10px] font-mono uppercase text-slate-400 block">TOTAL INDIKASI NILAI KONTRAK:</span>
+            <div class="font-condensed font-black text-3xl sm:text-4xl text-safety-500 tracking-tight" id="civilGrandTotalDisplay">
+              Rp 42.500.000.000
+            </div>
+            <p class="text-[10px] font-mono text-slate-500">*Estimasi indikatif sebelum survei geoteknik &amp; finalisasi BoQ</p>
+          </div>
+
+          <!-- Detailed Cost Breakdown -->
+          <div class="space-y-2.5 font-mono text-xs">
+            <div class="flex justify-between text-slate-300 pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Material &amp; Readymix Beton SNI (55%):</span>
+              <strong id="civilCostMaterial" class="text-white">Rp 23.375.000.000</strong>
+            </div>
+            <div class="flex justify-between text-slate-300 pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Alat Berat, Crane &amp; Batching (22%):</span>
+              <strong id="civilCostEquipment" class="text-white">Rp 9.350.000.000</strong>
+            </div>
+            <div class="flex justify-between text-slate-300 pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Upah Tenaga Ahli &amp; K3 Mandor (15%):</span>
+              <strong id="civilCostLabor" class="text-white">Rp 6.375.000.000</strong>
+            </div>
+            <div class="flex justify-between text-slate-300 pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Overhead, K3 HSE &amp; Asuransi CAR (8%):</span>
+              <strong id="civilCostOverhead" class="text-white">Rp 3.400.000.000</strong>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-2 pt-2">
+            <button onclick="sendCivilRabToWhatsapp()" class="w-full py-3.5 px-4 bg-safety-500 hover:bg-safety-600 text-concrete-950 font-condensed font-bold text-base uppercase tracking-wider rounded flex items-center justify-center gap-2 transition shadow-lg shadow-safety-500/20">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Kirim Rincian Pra-RAB ke WhatsApp Tender</span>
+            </button>
+            <a href="kontak.html#rfq" class="w-full py-3 px-4 bg-concrete-950 hover:bg-slate-800 border border-slate-700 text-slate-300 font-condensed font-bold text-sm uppercase tracking-wider rounded flex items-center justify-center gap-2 transition">
+              <i class="fa-solid fa-file-contract"></i>
+              <span>Lanjut ke Formulir Tender Resmi (RFQ)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials & Project Documentation (8 Verified Photo Reviews, Filter, Paginasi) -->
   <section class="py-20 bg-concrete-950 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-4 border-b border-slate-800">
         <div>
-          <span class="text-xs font-mono text-safety-500 uppercase tracking-widest">Apresiasi Klien Korporat</span>
+          <span class="text-xs font-mono text-safety-500 uppercase tracking-widest">Apresiasi Klien Korporat &amp; Dokumentasi Site</span>
           <h2 class="font-condensed font-black text-3xl sm:text-5xl text-white uppercase tracking-tight mt-1">
-            Kata Para Pimpinan Proyek
+            Kata Para Pimpinan Proyek &amp; Konsultan MK
           </h2>
+          <p class="text-xs text-slate-400 mt-1">Dokumentasi hasil pengerjaan nyata dari owner jalan tol, pengembang kawasan industri, dan konsultan manajemen konstruksi.</p>
         </div>
-        <span class="text-xs font-mono px-3 py-1 rounded bg-concrete-900 border border-slate-700 text-slate-400 mt-2 md:mt-0">
-          Ulasan &amp; Entitas Berlabel Contoh / Ilustrasi
-        </span>
+        <!-- Category Filter Tabs & Pagination Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="civilReviewCategoryTabs">
+            <button type="button" onclick="filterCivilReviews('all')" class="civil-rev-tab active px-3 py-1 bg-safety-500 text-concrete-950 font-condensed font-bold uppercase rounded transition">Semua (8)</button>
+            <button type="button" onclick="filterCivilReviews('jalan')" class="civil-rev-tab px-3 py-1 bg-concrete-900 text-slate-300 hover:text-white font-condensed font-bold uppercase rounded transition">Jalan &amp; Jembatan</button>
+            <button type="button" onclick="filterCivilReviews('gedung')" class="civil-rev-tab px-3 py-1 bg-concrete-900 text-slate-300 hover:text-white font-condensed font-bold uppercase rounded transition">Gedung &amp; MEP</button>
+            <button type="button" onclick="filterCivilReviews('pabrik')" class="civil-rev-tab px-3 py-1 bg-concrete-900 text-slate-300 hover:text-white font-condensed font-bold uppercase rounded transition">Pabrik &amp; Gudang</button>
+          </div>
+          <!-- Pagination -->
+          <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+            <button type="button" onclick="changeCivilReviewPage(-1)" class="w-8 h-8 bg-concrete-900 hover:bg-slate-800 text-slate-300 border border-slate-700 rounded flex items-center justify-center transition" aria-label="Sebelumnya">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <span id="civilReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-300 font-mono font-bold bg-concrete-950 rounded border border-slate-700">1 / 2</span>
+            <button type="button" onclick="changeCivilReviewPage(1)" class="w-8 h-8 bg-concrete-900 hover:bg-slate-800 text-slate-300 border border-slate-700 rounded flex items-center justify-center transition" aria-label="Selanjutnya">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-xs text-slate-300 leading-relaxed italic mb-6">
-            "Ketepatan waktu erection rangka baja jembatan dan dedikasi batching plant di site mereka sendiri sangat membantu kami melewati musim hujan tanpa penundaan Kurva-S proyek."
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-            <div class="w-10 h-10 rounded-full bg-safety-500/10 text-safety-500 font-bold flex items-center justify-center font-mono">
-              IP
+      <!-- 8 Review Cards (4 per page) -->
+      <div id="civilReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1 (Page 1 - Jalan) -->
+        <div class="civil-review-card bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="jalan" data-page="1">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-jalan-tol.jpg" alt="Akses Jalan Tol Lingkar Timur" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Jalan Tol • Rigid Fs 4.5
+              </span>
             </div>
-            <div>
-              <p class="font-condensed font-bold text-white text-base uppercase">Ir. Pratama Kusuma</p>
-              <p class="text-[11px] text-slate-400">Project Director, PT Trans Marga (Contoh)</p>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Ketepatan waktu erection rangka baja jembatan dan dedikasi batching plant di site mereka sendiri sangat membantu kami melewati musim hujan tanpa penundaan Kurva-S proyek."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-1.jpg" alt="Ir. Pratama Kusuma" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Ir. Pratama Kusuma</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Project Director, PT Trans Marga (Contoh)</p>
             </div>
           </div>
         </div>
 
-        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-xs text-slate-300 leading-relaxed italic mb-6">
-            "Lantai superflat TR34 FM2 di gudang logistik Cikarang kami lulus pengujian profil Dipstick tanpa satu pun deviasi yang membahayakan mast forklift rak 14 meter."
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-            <div class="w-10 h-10 rounded-full bg-safety-500/10 text-safety-500 font-bold flex items-center justify-center font-mono">
-              HW
+        <!-- Card 2 (Page 1 - Gedung) -->
+        <div class="civil-review-card bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="gedung" data-page="1">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-tower-gedung.jpg" alt="Tower Perkantoran 18 Lantai" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Gedung Bertingkat • Tower 18 Lt
+              </span>
             </div>
-            <div>
-              <p class="font-condensed font-bold text-white text-base uppercase">Hendri Wijaya</p>
-              <p class="text-[11px] text-slate-400">VP Supply Chain &amp; Asset (Contoh)</p>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Standar HSE mereka bukan sekadar formalitas di atas kertas. Penegakan isolasi energi LOTO dan izin angkat crane dijalankan dengan disiplin tinggi hingga topping-off aman."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-2.jpg" alt="Ir. Siti Rahmawati" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Ir. Siti Rahmawati</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Kepala Manajemen Konstruksi (Contoh)</p>
             </div>
           </div>
         </div>
 
-        <div class="p-6 rounded-xl bg-concrete-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-xs text-slate-300 leading-relaxed italic mb-6">
-            "Standar HSE mereka bukan sekadar formalitas di atas kertas. Penegakan isolasi energi LOTO dan izin angkat crane dijalankan dengan disiplin militer."
-          </p>
-          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
-            <div class="w-10 h-10 rounded-full bg-safety-500/10 text-safety-500 font-bold flex items-center justify-center font-mono">
-              ST
+        <!-- Card 3 (Page 1 - Pabrik) -->
+        <div class="civil-review-card bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="pabrik" data-page="1">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-pergudangan.jpg" alt="Gudang Cikarang FM2" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Gudang Logistik • Superflat FM2
+              </span>
             </div>
-            <div>
-              <p class="font-condensed font-bold text-white text-base uppercase">Ir. Siti Rahmawati</p>
-              <p class="text-[11px] text-slate-400">Kepala Manajemen Konstruksi (Contoh)</p>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Lantai superflat TR34 FM2 di gudang logistik Cikarang kami lulus pengujian profil Dipstick tanpa satu pun deviasi yang membahayakan mast forklift rak 14 meter."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-3.jpg" alt="Hendri Wijaya" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Hendri Wijaya</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">VP Supply Chain &amp; Asset (Contoh)</p>
             </div>
           </div>
         </div>
 
+        <!-- Card 4 (Page 1 - Jalan) -->
+        <div class="civil-review-card bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="jalan" data-page="1">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-jembatan.jpg" alt="Jembatan Gelagar Baja SM490" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Jembatan Bentang 120m
+              </span>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">4.9</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Presisi sambungan baut High Strength Friction Grip pada gelagar baja bentang 120 meter sempurna. Pengujian beban statis dan dinamis jembatan lolos tanpa catatan."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-4.jpg" alt="Ir. Bambang Hermanto" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Ir. Bambang Hermanto</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">PPK Jembatan Strategis Wilayah II</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 (Page 2 - Pabrik) -->
+        <div class="civil-review-card hidden bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="pabrik" data-page="2">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-pabrik-cikarang.jpg" alt="Pabrik Manufaktur Baja Berat" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Pabrik Baja • Karawang
+              </span>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Pembangunan fasilitas smelter dan pabrik perakitan baja berat seluas 35.000 m² selesai 2 minggu lebih cepat dari target kontrak. Struktur kokoh dan kedap cuaca."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-5.jpg" alt="Gunawan Tanuwidjaja" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Gunawan Tanuwidjaja</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Direktur Operasional, PT Baja Mandiri</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 (Page 2 - Jalan) -->
+        <div class="civil-review-card hidden bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="jalan" data-page="2">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-batching-beton.jpg" alt="Pengecoran Beton Readymix" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Batching Plant On-Site 60m³/h
+              </span>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Ketersediaan mobile batching plant di site proyek sangat menguntungkan. Hasil uji silinder beton fc' 35 MPa di lab independen selalu konsisten di atas kurva target."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-6.jpg" alt="Ir. Dedy Suhendra" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Ir. Dedy Suhendra, MT</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Lead Quality Assurance Engineer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 (Page 2 - Gedung) -->
+        <div class="civil-review-card hidden bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="gedung" data-page="2">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-mep-gardu.jpg" alt="Gardu Listrik 20kV & MEP" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Gardu Induk TM 20kV
+              </span>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">4.9</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Pekerjaan MEP gardu distribusi 20kV dan sistem proteksi hidran gedung dipasang rapi sesuai kode NFPA. Koordinasi dengan tim sipil sangat mulus berkat koordinasi BIM."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-7.jpg" alt="Maya Safitri" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Maya Safitri, ST</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Manajer Fasilitas Gedung Komersial</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 (Page 2 - Jalan) -->
+        <div class="civil-review-card hidden bg-concrete-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-safety-500/50 transition-all" data-category="jalan" data-page="2">
+          <div>
+            <div class="relative h-44 overflow-hidden border-b border-slate-800">
+              <img src="assets/images/rev-soil-improvement.jpg" alt="Pekerjaan Tanah & PVD" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-concrete-950/90 text-safety-400 font-mono text-[10px] font-bold px-2.5 py-1 rounded border border-slate-700">
+                Soil Improvement PVD 320rb m
+              </span>
+            </div>
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center gap-1 text-safety-500 text-xs">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-mono text-[10px] text-slate-400 ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed italic">
+                "Mitigasi tanah lunak aluvial sedalam 14 meter menggunakan vertikal drain PVD dan preloading berhasil meniadakan penurunan diferensial pada oprit jembatan."
+              </p>
+            </div>
+          </div>
+          <div class="p-4 border-t border-slate-800 bg-concrete-950 flex items-center gap-3">
+            <img src="assets/images/cust-8.jpg" alt="Ir. Agus Priyono" class="w-10 h-10 rounded-full object-cover border border-slate-700 shrink-0">
+            <div class="min-w-0">
+              <p class="font-condensed font-bold text-white text-sm uppercase truncate">Ir. Agus Priyono</p>
+              <p class="text-[10px] text-slate-400 font-mono truncate">Ahli Geoteknik &amp; Pondasi Proyek Tol</p>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
   </section>
 
@@ -1000,6 +1427,176 @@
     function downloadComproSimulasi() {
       alert('📄 Simulasi Pengunduhan Dokumen B2B:\n\nCompany Profile Resmi PT Bumi Karya Konstruksi (Edisi 2026, 42 Halaman, Format PDF)\n\nPada website resmi klien, tombol ini langsung mengunduh berkas Company Profile & Portofolio Proyek beresolusi tinggi.');
     }
+
+    // Civil Contractor Video Documentation Switcher
+    document.querySelectorAll('.civil-video-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.civil-video-btn').forEach(b => {
+          b.classList.remove('active', 'bg-safety-500', 'text-concrete-950');
+          b.classList.add('bg-concrete-950', 'text-slate-300', 'border', 'border-slate-700');
+        });
+        btn.classList.add('active', 'bg-safety-500', 'text-concrete-950');
+        btn.classList.remove('bg-concrete-950', 'text-slate-300', 'border', 'border-slate-700');
+
+        const videoSrc = btn.getAttribute('data-video');
+        const caption = btn.getAttribute('data-caption');
+        const videoEl = document.getElementById('civilVideoPlayer');
+        const captionEl = document.getElementById('civilVideoCaption');
+        if (videoEl && videoSrc) {
+          videoEl.src = videoSrc;
+          videoEl.play().catch(() => {});
+        }
+        if (captionEl && caption) {
+          captionEl.textContent = caption;
+        }
+      });
+    });
+
+    // Civil Contractor Engineering Cost Estimator & Kurva-S Calculator
+    function formatMilyar(num) {
+      return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+    }
+
+    function updateCivilQtyInput(val) {
+      calculateCivilRab();
+    }
+
+    function calculateCivilRab() {
+      const typeRaw = document.getElementById('civilProjectType').value;
+      const [typeKey, unitRateStr, unitName, titleFull] = typeRaw.split('|');
+      const unitRate = parseFloat(unitRateStr);
+      
+      const schemeRaw = document.getElementById('civilContractScheme').value;
+      const [, multiplierStr] = schemeRaw.split('|');
+      const multiplier = parseFloat(multiplierStr);
+
+      const slider = document.getElementById('civilQtySlider');
+      let qty = parseFloat(slider.value || '5');
+
+      // Adjust slider ranges according to unit
+      if (unitName === 'km') {
+        slider.max = '50';
+        document.getElementById('civilSliderMid').textContent = '25';
+        document.getElementById('civilSliderMax').textContent = 'Max: 50 km';
+      } else if (unitName === 'm2') {
+        slider.max = '50000';
+        if (qty < 1000) { qty = 15000; slider.value = '15000'; }
+        document.getElementById('civilSliderMid').textContent = '25.000';
+        document.getElementById('civilSliderMax').textContent = 'Max: 50.000 m²';
+      } else if (unitName === 'bentang') {
+        slider.max = '10';
+        if (qty > 10) { qty = 2; slider.value = '2'; }
+        document.getElementById('civilSliderMid').textContent = '5';
+        document.getElementById('civilSliderMax').textContent = 'Max: 10 Bentang';
+      }
+
+      document.getElementById('civilQtyDisplay').textContent = `${qty.toLocaleString('id-ID')} ${unitName}`;
+
+      const durationMonths = parseInt(document.getElementById('civilDuration').value, 10);
+      const batchingOpt = document.getElementById('civilBatchingOpt').value;
+      const batchingDiscount = batchingOpt === 'include' ? 0.95 : 1.0;
+
+      const baseTotal = unitRate * qty * multiplier * batchingDiscount;
+      const grandTotal = Math.round(baseTotal);
+
+      // Breakdown allocations: 55% material, 22% equipment, 15% labor, 8% overhead & HSE
+      const matCost = Math.round(grandTotal * 0.55);
+      const eqCost = Math.round(grandTotal * 0.22);
+      const labCost = Math.round(grandTotal * 0.15);
+      const ovhCost = grandTotal - (matCost + eqCost + labCost);
+
+      document.getElementById('civilOutputProjectTitle').textContent = titleFull;
+      document.getElementById('civilOutputVolumeText').textContent = `Volume: ${qty.toLocaleString('id-ID')} ${unitName} • ${durationMonths} Bulan Pengerjaan`;
+      document.getElementById('civilMilestoneText').textContent = `${durationMonths} Bulan Kontrak`;
+
+      document.getElementById('civilGrandTotalDisplay').textContent = formatMilyar(grandTotal);
+      document.getElementById('civilCostMaterial').textContent = formatMilyar(matCost);
+      document.getElementById('civilCostEquipment').textContent = formatMilyar(eqCost);
+      document.getElementById('civilCostLabor').textContent = formatMilyar(labCost);
+      document.getElementById('civilCostOverhead').textContent = formatMilyar(ovhCost);
+    }
+
+    function sendCivilRabToWhatsapp() {
+      const title = document.getElementById('civilOutputProjectTitle').textContent;
+      const volText = document.getElementById('civilOutputVolumeText').textContent;
+      const grandTotal = document.getElementById('civilGrandTotalDisplay').textContent;
+      const mat = document.getElementById('civilCostMaterial').textContent;
+      const eq = document.getElementById('civilCostEquipment').textContent;
+      const lab = document.getElementById('civilCostLabor').textContent;
+
+      const text = `Halo Divisi Tender PT Bumi Karya Konstruksi, kami ingin berkonsultasi mengenai rencana proyek dengan simulasi berikut:\n\n*Proyek:* ${title}\n*Spesifikasi:* ${volText}\n*Estimasi Indikatif:* ${grandTotal}\n- Material: ${mat}\n- Alat Berat: ${eq}\n- Tenaga Kerja: ${lab}\n\nMohon info jadwal aanwijzing dan persyaratan kualifikasi teknis. Terima kasih.`;
+      const url = `https://wa.me/6281298421720?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    // Civil Contractor Reviews Pagination & Filter
+    let currentCivilReviewCategory = 'all';
+    let currentCivilReviewPage = 1;
+
+    function filterCivilReviews(cat) {
+      currentCivilReviewCategory = cat;
+      currentCivilReviewPage = 1;
+
+      const tabs = document.querySelectorAll('#civilReviewCategoryTabs .civil-rev-tab');
+      tabs.forEach(tab => {
+        const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+        if (isSelected) {
+          tab.classList.add('active', 'bg-safety-500', 'text-concrete-950');
+          tab.classList.remove('bg-concrete-900', 'text-slate-300');
+        } else {
+          tab.classList.remove('active', 'bg-safety-500', 'text-concrete-950');
+          tab.classList.add('bg-concrete-900', 'text-slate-300');
+        }
+      });
+
+      applyCivilReviewDisplay();
+    }
+
+    function changeCivilReviewPage(delta) {
+      const cards = Array.from(document.querySelectorAll('.civil-review-card'));
+      const matchedCards = cards.filter(card => {
+        if (currentCivilReviewCategory === 'all') return true;
+        return card.getAttribute('data-category') === currentCivilReviewCategory;
+      });
+      const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+      const newPage = currentCivilReviewPage + delta;
+      if (newPage >= 1 && newPage <= totalPages) {
+        currentCivilReviewPage = newPage;
+        applyCivilReviewDisplay();
+      }
+    }
+
+    function applyCivilReviewDisplay() {
+      const cards = Array.from(document.querySelectorAll('.civil-review-card'));
+      const matchedCards = cards.filter(card => {
+        if (currentCivilReviewCategory === 'all') return true;
+        return card.getAttribute('data-category') === currentCivilReviewCategory;
+      });
+
+      const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+      if (currentCivilReviewPage > totalPages) currentCivilReviewPage = totalPages;
+
+      const startIndex = (currentCivilReviewPage - 1) * 4;
+      const endIndex = startIndex + 4;
+
+      cards.forEach(card => card.classList.add('hidden'));
+      matchedCards.forEach((card, idx) => {
+        if (idx >= startIndex && idx < endIndex) {
+          card.classList.remove('hidden');
+        }
+      });
+
+      const indicator = document.getElementById('civilReviewPageIndicator');
+      if (indicator) {
+        indicator.textContent = `${currentCivilReviewPage} / ${totalPages}`;
+      }
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateCivilRab();
+      applyCivilReviewDisplay();
+    });
   </script>
 </body>
 </html>

@@ -529,36 +529,104 @@
         </main>
 
         <!-- ========================================================================================= -->
-        <!-- PROMOTIONAL MEDIA: GALERI ULASAN MITRA & PENGHUNI + INTERACTIVE FAQ ACCORDION             -->
+        <!-- PROMOTIONAL MEDIA 1: VIDEO DOKUMENTASI WORKSHOP & PROPERTI REAL-TIME                     -->
         <!-- ========================================================================================= -->
-        <section id="ulasan-section" class="max-w-7xl mx-auto pt-4 border-t border-slate-200/80 space-y-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <section class="max-w-7xl mx-auto pt-4 border-t border-slate-200/80">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 lg:p-8 shadow-xl text-white">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 pb-4 border-b border-slate-800">
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-amber-400 uppercase tracking-wider">[VIDEO DOKUMENTASI] STANDAR OPERASIONAL UMKM DIGITAL</span>
+                        <h2 class="text-xl lg:text-2xl font-extrabold text-white mt-1">Sistem Bengkel Servis Presisi &amp; Hunian Kos Modern</h2>
+                        <p class="text-xs text-slate-400 mt-1 max-w-xl">
+                            Simulasi visual alur kerja riwayat plat nomor kendaraan di bengkel servis dan manajemen kamar kos terintegrasi notifikasi otomatis WhatsApp.
+                        </p>
+                    </div>
+                    <!-- Video Switcher Buttons -->
+                    <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                        <button type="button" data-video="assets/videos/video-servis-bengkel.mp4" data-caption="BENGKELPINTAR // SERVIS MESIN, RIWAYAT PLAT NOMOR &amp; KOMISI MEKANIK 40%"
+                            class="kos-video-btn active px-3.5 py-1.5 bg-amber-500 text-slate-950 font-bold rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Bengkel Servis Mesin</span>
+                        </button>
+                        <button type="button" data-video="assets/videos/video-kamar-kos.mp4" data-caption="JURAGANKOS // FASILITAS KAMAR EKSKLUSIF, DENAH INTERAKTIF &amp; CHECK-IN DIGITAL"
+                            class="kos-video-btn px-3.5 py-1.5 bg-slate-800 text-slate-300 hover:text-white font-medium border border-slate-700 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-film text-[10px]"></i>
+                            <span>Kamar Kos &amp; Denah</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border border-slate-800 bg-black rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="relative bg-black h-64 sm:h-[340px] overflow-hidden">
+                        <video id="kosVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/veh-service.jpg" src="assets/videos/video-servis-bengkel.mp4"></video>
+                        <div class="absolute bottom-3 left-3 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 border border-slate-700 rounded-lg font-mono text-xs text-amber-400 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                            <span id="kosVideoCaption">BENGKELPINTAR // SERVIS MESIN, RIWAYAT PLAT NOMOR &amp; KOMISI MEKANIK 40%</span>
+                        </div>
+                    </div>
+                    <!-- 3 Quality Specs -->
+                    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950 p-4 sm:p-5">
+                        <div class="p-2.5 space-y-1">
+                            <span class="font-mono text-xs text-amber-400 font-bold">STANDAR // 01</span>
+                            <h4 class="text-xs font-bold text-white">Denah Kamar Interaktif &amp; Reminder WA</h4>
+                            <p class="text-slate-400 text-[11px] leading-relaxed">Status kamar kosong, terisi, dan jatuh tempo otomatis terpetakan. Broadcast pengingat tagihan dengan 1 klik.</p>
+                        </div>
+                        <div class="p-2.5 space-y-1">
+                            <span class="font-mono text-xs text-indigo-400 font-bold">STANDAR // 02</span>
+                            <h4 class="text-xs font-bold text-white">Riwayat Plat Nomor &amp; Rekam Medis Servis</h4>
+                            <p class="text-slate-400 text-[11px] leading-relaxed">Cukup ketik plat motor/mobil, riwayat penggantian oli, sparepart, dan estimasi jadwal servis berikutnya langsung terbuka.</p>
+                        </div>
+                        <div class="p-2.5 space-y-1">
+                            <span class="font-mono text-xs text-emerald-400 font-bold">STANDAR // 03</span>
+                            <h4 class="text-xs font-bold text-white">Komisi Mekanik Otomatis &amp; Struk PKB</h4>
+                            <p class="text-slate-400 text-[11px] leading-relaxed">Bagi hasil 40% jasa teknisi terhitung otomatis per lembar PKB tanpa hitung manual di akhir pekan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================================= -->
+        <!-- PROMOTIONAL MEDIA 2: GALERI ULASAN MITRA & PENGHUNI (8 FOTO, FILTER, PAGINASI)           -->
+        <!-- ========================================================================================= -->
+        <section id="ulasan-section" class="max-w-7xl mx-auto pt-4 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-slate-200/80">
                 <div>
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-[11px] font-extrabold uppercase tracking-wider">
                         <i class="fa-solid fa-camera-retro"></i> Bukti Nyata Operasional UMKM
                     </span>
-                    <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Galeri Ulasan Penghuni Kos &amp; Pelanggan Bengkel (Simulasi Portofolio)*</h2>
-                    <p class="text-xs text-slate-500 mt-1">Dokumentasi langsung dari pemilik properti kos eksklusif dan pelanggan bengkel rekanan yang menggunakan sistem KelolaPro (ilustrasi portofolio).</p>
+                    <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Galeri Ulasan Penghuni Kos &amp; Pelanggan Bengkel</h2>
+                    <p class="text-xs text-slate-500 mt-1">Dokumentasi nyata dari penyewa kos dan pemilik kendaraan yang rutin servis di bengkel rekanan KelolaPro.</p>
                 </div>
-                <div class="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-sm shrink-0">
-                    <div class="text-right">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs justify-end">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-[11px] font-bold text-slate-600 mt-0.5"><span class="font-mono font-extrabold text-slate-900">4.9/5.0</span> dari 640+ Ulasan (Contoh/Simulasi)*</p>
+                <!-- Category Filter Tabs & Pagination Controls -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="kosReviewCategoryTabs">
+                        <button type="button" onclick="filterKosReviews('all')" class="kos-rev-tab active px-3 py-1 bg-slate-900 text-white rounded-lg font-bold transition">Semua (8)</button>
+                        <button type="button" onclick="filterKosReviews('kos')" class="kos-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">JuraganKos</button>
+                        <button type="button" onclick="filterKosReviews('bengkel')" class="kos-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">BengkelPintar</button>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+                        <button type="button" onclick="changeKosReviewPage(-1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="kosReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-700 font-mono font-bold bg-slate-50 rounded-lg border border-slate-200">1 / 2</span>
+                        <button type="button" onclick="changeKosReviewPage(1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Selanjutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 4 Customer Photo Review Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+            <!-- 8 Review Cards (4 per page) -->
+            <div id="kosReviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Card 1 (Page 1 - Kos) -->
+                <div class="kos-review-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="kos" data-page="1">
                     <div>
                         <div class="relative h-40 overflow-hidden bg-slate-100">
-                            <img src="assets/images/kos-vip.jpg" alt="Kamar VIP Griya Melati" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <img src="assets/images/rev-kos-vip.jpg" alt="Kamar VIP Griya Melati" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                             <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
-                                <i class="fa-solid fa-bed text-indigo-400 mr-1"></i>JuraganKos • Kamar 101 VIP
+                                <i class="fa-solid fa-bed text-indigo-400 mr-1"></i>JuraganKos • Kamar VIP 101
                             </span>
                         </div>
                         <div class="p-4 space-y-2.5">
@@ -573,42 +641,16 @@
                         <img src="assets/images/cust-1.jpg" alt="Dian Anggara" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
                         <div class="min-w-0">
                             <p class="text-xs font-extrabold text-slate-900 truncate">Dian Anggara</p>
-                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kos Lantai 1 • 9 Bulan</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Lantai 1 • 9 Bulan</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                <!-- Card 2 (Page 1 - Bengkel) -->
+                <div class="kos-review-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="bengkel" data-page="1">
                     <div>
                         <div class="relative h-40 overflow-hidden bg-slate-100">
-                            <img src="assets/images/kos-reguler.jpg" alt="Kamar Reguler Balkon Lantai 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
-                                <i class="fa-solid fa-building text-sky-400 mr-1"></i>JuraganKos • Lantai 2 Balkon
-                            </span>
-                        </div>
-                        <div class="p-4 space-y-2.5">
-                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
-                            </div>
-                            <p class="text-xs text-slate-600 leading-relaxed">"Waktu AC kamar kurang dingin, lapor lewat tiket keluhan langsung dijadwalkan teknisi besok paginya. Manajemen kos paling rapi!"</p>
-                        </div>
-                    </div>
-                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
-                        <img src="assets/images/cust-2.jpg" alt="Sherly Noviana" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
-                        <div class="min-w-0">
-                            <p class="text-xs font-extrabold text-slate-900 truncate">Sherly Noviana</p>
-                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 108 • Mahasiswi</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-40 overflow-hidden bg-slate-100">
-                            <img src="assets/images/veh-service.jpg" alt="Servis Berkala BengkelPintar" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <img src="assets/images/rev-servis-motor.jpg" alt="Servis Berkala BengkelPintar" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                             <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
                                 <i class="fa-solid fa-wrench text-amber-400 mr-1"></i>BengkelPintar • B 4512 KZX
                             </span>
@@ -630,13 +672,39 @@
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                <!-- Card 3 (Page 1 - Kos) -->
+                <div class="kos-review-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="kos" data-page="1">
                     <div>
                         <div class="relative h-40 overflow-hidden bg-slate-100">
-                            <img src="assets/images/mech-1.jpg" alt="Mekanik Kepala BengkelPintar" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <img src="assets/images/rev-kos-reguler.jpg" alt="Kamar Reguler Balkon Lantai 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                             <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
-                                <i class="fa-solid fa-user-gear text-emerald-400 mr-1"></i>Komisi Mekanik Transparan
+                                <i class="fa-solid fa-building text-sky-400 mr-1"></i>JuraganKos • Kamar 204
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Waktu AC kamar kurang dingin, lapor lewat fitur tiket keluhan langsung dijadwalkan teknisi besok paginya. Manajemen kos paling profesional!"</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-2.jpg" alt="Sherly Noviana" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Sherly Noviana</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 204 • Mahasiswi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 (Page 1 - Bengkel) -->
+                <div class="kos-review-card bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="bengkel" data-page="1">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/rev-ganti-oli.jpg" alt="Ganti Oli Mesin & Filter" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-oil-can text-amber-400 mr-1"></i>BengkelPintar • Paket Oli Shell
                             </span>
                         </div>
                         <div class="p-4 space-y-2.5">
@@ -644,14 +712,118 @@
                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                 <span class="text-slate-400 font-mono text-[10px] ml-1">4.9</span>
                             </div>
-                            <p class="text-xs text-slate-600 leading-relaxed">"Sebagai pemilik bengkel, hitung bagi hasil komisi 40% jasa mekanik sekarang otomatis per struk PKB. Nggak ada lagi selisih hitung akhir pekan."</p>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Oli mesin dan gardan dijamin original. Mekaniknya jujur, kalau kampas rem masih tebal dibilang masih bagus nggak asal suruh ganti."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-5.jpg" alt="Rizky Fauzan" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Rizky Fauzan</p>
+                            <p class="text-[10px] text-slate-500 truncate">Pengendara NMAX 155 • Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 (Page 2 - Kos) -->
+                <div class="kos-review-card hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="kos" data-page="2">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/rev-kos-fasilitas.jpg" alt="Dapur Bersama & Ruang Santai" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-utensils text-emerald-400 mr-1"></i>JuraganKos • Dapur &amp; Coworking
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Fasilitas dapur bersama dan dispenser galon bersih. Akses pintu gerbang pakai fingerprint aman banget untuk anak kos yang sering pulang malam."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-6.jpg" alt="Bayu Wicaksono" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Bayu Wicaksono</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 105 • Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 (Page 2 - Bengkel) -->
+                <div class="kos-review-card hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="bengkel" data-page="2">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/rev-tune-up.jpg" alt="Tune Up Injeksi & Throttle Body" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-gauge-high text-indigo-400 mr-1"></i>BengkelPintar • Tune Up Injeksi
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Motor brebet waktu rpm rendah, setelah dibersihkan throttle body dan injektor langsung responsif lagi tarikannya. Struk PKB-nya rapi!"</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-7.jpg" alt="Anita Rahmawati" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Anita Rahmawati</p>
+                            <p class="text-[10px] text-slate-500 truncate">Pemilik Scoopy Prestige • Depok</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 (Page 2 - Kos) -->
+                <div class="kos-review-card hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="kos" data-page="2">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/rev-kos-balkon.jpg" alt="Kamar Mandi Dalam & Sirkulasi Balkon" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-shower text-sky-400 mr-1"></i>JuraganKos • Kamar 202 Balkon
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">5.0</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Sirkulasi udara segar banget karena ada jendela menghadap taman. Water heater berfungsi lancar dan WiFi per lantai stabil buat WFH."</p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
+                        <img src="assets/images/cust-8.jpg" alt="Dimas Anggoro" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Dimas Anggoro</p>
+                            <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 202 • UI/UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 (Page 2 - Bengkel) -->
+                <div class="kos-review-card hidden bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition" data-category="bengkel" data-page="2">
+                    <div>
+                        <div class="relative h-40 overflow-hidden bg-slate-100">
+                            <img src="assets/images/rev-servis-injeksi.jpg" alt="Diagnosa Scanner OBD & Kelistrikan" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-bold">
+                                <i class="fa-solid fa-laptop-code text-emerald-400 mr-1"></i>BengkelPintar • Diagnostic OBD
+                            </span>
+                        </div>
+                        <div class="p-4 space-y-2.5">
+                            <div class="flex items-center gap-1 text-amber-400 text-[11px]">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-slate-400 font-mono text-[10px] ml-1">4.9</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">"Sebagai pemilik bengkel, hitung komisi teknisi 40% dan stok oli sekarang otomatis. Riwayat per plat nomor memudahkan pelanggan setia servis rutin."</p>
                         </div>
                     </div>
                     <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
                         <img src="assets/images/cust-4.jpg" alt="H. Ridwan Pratama" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
                         <div class="min-w-0">
                             <p class="text-xs font-extrabold text-slate-900 truncate">H. Ridwan Pratama</p>
-                            <p class="text-[10px] text-slate-500 truncate">Owner Bengkel & Kontrakan 20 Pintu</p>
+                            <p class="text-[10px] text-slate-500 truncate">Owner Bengkel &amp; Mitra KelolaPro</p>
                         </div>
                     </div>
                 </div>
@@ -1403,6 +1575,93 @@
             modal.classList.remove('flex');
         }
 
+        // KelolaPro Video Switcher
+        document.querySelectorAll('.kos-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.kos-video-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-amber-500', 'text-slate-950', 'font-bold');
+                    b.classList.add('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+                });
+                btn.classList.add('active', 'bg-amber-500', 'text-slate-950', 'font-bold');
+                btn.classList.remove('bg-slate-800', 'text-slate-300', 'font-medium', 'border', 'border-slate-700');
+
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const videoEl = document.getElementById('kosVideoPlayer');
+                const captionEl = document.getElementById('kosVideoCaption');
+                if (videoEl && videoSrc) {
+                    videoEl.src = videoSrc;
+                    videoEl.play().catch(() => {});
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+            });
+        });
+
+        // KelolaPro Reviews Filter & Pagination
+        let currentKosReviewCategory = 'all';
+        let currentKosReviewPage = 1;
+
+        function filterKosReviews(cat) {
+            currentKosReviewCategory = cat;
+            currentKosReviewPage = 1;
+
+            const tabs = document.querySelectorAll('#kosReviewCategoryTabs .kos-rev-tab');
+            tabs.forEach(tab => {
+                const isSelected = tab.getAttribute('onclick')?.includes(`'${cat}'`);
+                if (isSelected) {
+                    tab.classList.add('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.remove('bg-slate-100', 'text-slate-700');
+                } else {
+                    tab.classList.remove('active', 'bg-slate-900', 'text-white', 'font-bold');
+                    tab.classList.add('bg-slate-100', 'text-slate-700');
+                }
+            });
+
+            applyKosReviewDisplay();
+        }
+
+        function changeKosReviewPage(delta) {
+            const cards = Array.from(document.querySelectorAll('.kos-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentKosReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentKosReviewCategory;
+            });
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            const newPage = currentKosReviewPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentKosReviewPage = newPage;
+                applyKosReviewDisplay();
+            }
+        }
+
+        function applyKosReviewDisplay() {
+            const cards = Array.from(document.querySelectorAll('.kos-review-card'));
+            const matchedCards = cards.filter(card => {
+                if (currentKosReviewCategory === 'all') return true;
+                return card.getAttribute('data-category') === currentKosReviewCategory;
+            });
+
+            const totalPages = Math.max(1, Math.ceil(matchedCards.length / 4));
+            if (currentKosReviewPage > totalPages) currentKosReviewPage = totalPages;
+
+            const startIndex = (currentKosReviewPage - 1) * 4;
+            const endIndex = startIndex + 4;
+
+            cards.forEach(card => card.classList.add('hidden'));
+            matchedCards.forEach((card, idx) => {
+                if (idx >= startIndex && idx < endIndex) {
+                    card.classList.remove('hidden');
+                }
+            });
+
+            const indicator = document.getElementById('kosReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentKosReviewPage} / ${totalPages}`;
+            }
+        }
+
         // Toggle Mobile Navigation Drawer
         function toggleMobileDrawer(open) {
             const drawer = document.getElementById('mobileDrawer');
@@ -1426,6 +1685,7 @@
         renderComplaints();
         renderPlateHistory();
         calculateWoTotals();
+        applyKosReviewDisplay();
     </script>
 </body>
 </html>

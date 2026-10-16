@@ -524,25 +524,96 @@
                 </div>
             </div>
 
+            <!-- FASHION LOOKBOOK & MATERIAL SHOWCASE (VIDEO) -->
+            <div class="pt-8 border-t border-stone-800">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+                    <div>
+                        <span class="font-mono text-xs text-rose-300 uppercase tracking-widest">[02.1] STUDIO LOOKBOOK &amp; MATERIAL FLOW</span>
+                        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-white mt-0.5">Dokumentasi Studio &amp; Karakter Jatuh Kain</h3>
+                        <p class="text-xs sm:text-sm text-stone-400 mt-1 max-w-xl">
+                            Seluruh koleksi diperagakan oleh model dengan pencahayaan studio alami untuk menampilkan warna asli dan keanggunan siluet busana.
+                        </p>
+                    </div>
+                    <!-- Video Switcher -->
+                    <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                        <button type="button" data-video="assets/videos/video-fashion-lookbook.mp4" data-caption="STUDIO LOOKBOOK // MODEST WEAR &amp; KATEGORI FASHION EKSKLUSIF"
+                            class="fashion-video-btn active px-4 py-2 bg-rosegold-600 text-white font-bold border border-rosegold-600 transition flex items-center gap-2">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Studio Lookbook Busana</span>
+                        </button>
+                        <button type="button" data-video="assets/videos/video-dress-hijab.mp4" data-caption="KARAKTER KAIN &amp; FLOW MATERIAL // CRINKLE SILK &amp; VOAL PREMIUM"
+                            class="fashion-video-btn px-4 py-2 bg-stone-900 text-stone-300 hover:text-white font-medium border border-stone-700 transition flex items-center gap-2">
+                            <i class="fa-solid fa-film text-[10px]"></i>
+                            <span>Flow Material Silk &amp; Dress</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border border-stone-700 bg-black overflow-hidden shadow-2xl">
+                    <div class="relative bg-black h-80 sm:h-[460px] overflow-hidden">
+                        <video id="fashionVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/prod-01-abaya-silk.jpg" src="assets/videos/video-fashion-lookbook.mp4"></video>
+                        <div class="absolute bottom-4 left-4 bg-[#121212]/90 backdrop-blur-md px-4 py-2 border border-stone-700 font-mono text-xs text-rose-300 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                            <span id="fashionVideoCaption">STUDIO LOOKBOOK // MODEST WEAR &amp; KATEGORI FASHION EKSKLUSIF</span>
+                        </div>
+                    </div>
+                    <!-- 3 Quality Specs -->
+                    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800 bg-[#121212] p-6 sm:p-8">
+                        <div class="p-4 space-y-1.5">
+                            <span class="font-mono text-xs text-rose-300 font-bold tracking-wider">STANDAR // 01</span>
+                            <h4 class="font-serif text-lg font-bold text-white">Silk Armany &amp; Voal Ultrafine</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Karakter kain lembut, adem di kulit tropis, tidak menerawang, dan mudah dibentuk tegak di dahi.</p>
+                        </div>
+                        <div class="p-4 space-y-1.5">
+                            <span class="font-mono text-xs text-emerald-400 font-bold tracking-wider">STANDAR // 02</span>
+                            <h4 class="font-serif text-lg font-bold text-white">Skincare Lolos Uji BPOM &amp; Halal MUI</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Seluruh produk GlowLokal memiliki nomor notifikasi resmi BPOM RI tanpa hidrokuinon atau steroid.</p>
+                        </div>
+                        <div class="p-4 space-y-1.5">
+                            <span class="font-mono text-xs text-amber-300 font-bold tracking-wider">STANDAR // 03</span>
+                            <h4 class="font-serif text-lg font-bold text-white">Jahitan Kelim Butik 100% Rapi</h4>
+                            <p class="text-stone-400 text-xs leading-relaxed">Bukan obras konveksi murah; tepi jahitan memakai teknik kelim rapi ganda dengan kancing bungkus eksklusif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Customer & Reseller Testimonials with Real Product/OOTD Photos + Local Avatars -->
             <div id="ulasan-pelanggan" class="pt-8 border-t border-stone-800">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                     <div>
-                        <span class="font-mono text-xs text-rose-300 uppercase tracking-widest">[03] ULASAN FOTO PELANGGAN & MITRA RESELLER</span>
-                        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-white mt-0.5">Foto Asli Pemakaian & Review 4.200+ Pembeli</h3>
+                        <span class="font-mono text-xs text-rose-300 uppercase tracking-widest">[03] ULASAN FOTO PELANGGAN &amp; MITRA RESELLER</span>
+                        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-white mt-0.5">Foto Asli Pemakaian &amp; Review 4.200+ Pembeli</h3>
                     </div>
-                    <div class="font-mono text-xs bg-stone-900 border border-stone-700 px-3.5 py-2 text-amber-300">
-                        RATING 4.96 / 5.0 • VERIFIED PHOTO REVIEWS
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Filter Tabs -->
+                        <div class="hidden sm:flex items-center gap-1.5 font-mono text-xs">
+                            <button type="button" onclick="filterFashionReviews('all')" class="fashion-tab-btn active px-3.5 py-1.5 bg-rosegold-600 text-white font-bold border border-rosegold-600">Semua (8)</button>
+                            <button type="button" onclick="filterFashionReviews('gamis')" class="fashion-tab-btn px-3.5 py-1.5 bg-stone-900 text-stone-300 hover:text-white border border-stone-700">Gamis &amp; Abaya</button>
+                            <button type="button" onclick="filterFashionReviews('hijab')" class="fashion-tab-btn px-3.5 py-1.5 bg-stone-900 text-stone-300 hover:text-white border border-stone-700">Hijab &amp; Voal</button>
+                            <button type="button" onclick="filterFashionReviews('skincare')" class="fashion-tab-btn px-3.5 py-1.5 bg-stone-900 text-stone-300 hover:text-white border border-stone-700">Skincare</button>
+                            <button type="button" onclick="filterFashionReviews('sepatu')" class="fashion-tab-btn px-3.5 py-1.5 bg-stone-900 text-stone-300 hover:text-white border border-stone-700">Sepatu &amp; Koko</button>
+                        </div>
+                        <!-- Pagination Buttons -->
+                        <div class="flex items-center gap-1.5 font-mono text-xs">
+                            <button type="button" onclick="changeFashionReviewPage(-1)" class="w-9 h-9 bg-stone-900 hover:bg-rosegold-600 text-white border border-stone-700 flex items-center justify-center transition" aria-label="Sebelumnya">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <span id="fashionReviewPageIndicator" class="px-2.5 py-1 text-xs text-rose-300 font-mono font-bold">1 / 2</span>
+                            <button type="button" onclick="changeFashionReviewPage(1)" class="w-9 h-9 bg-stone-900 hover:bg-rosegold-600 text-white border border-stone-700 flex items-center justify-center transition" aria-label="Selanjutnya">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <!-- Photo Review 1 -->
-                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                <div id="fashionReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Photo Review 1 (Page 1 - Gamis) -->
+                    <div class="fashion-review-card bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="gamis" data-page="1">
                         <div>
                             <div class="relative h-44 overflow-hidden border-b border-stone-800">
                                 <img src="assets/images/prod-01-abaya-silk.jpg" alt="Foto OOTD Abaya Mahreen Silk" class="w-full h-full object-cover">
-                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto OOTD • Abaya Silk</span>
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto OOTD &bull; Abaya Silk</span>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
@@ -558,17 +629,17 @@
                             <img src="assets/images/avatar-1.jpg" alt="Nabila Putri" class="w-8 h-8 object-cover border border-stone-600">
                             <div>
                                 <div class="text-xs font-bold text-white">Nabila Putri</div>
-                                <div class="font-mono text-[10px] text-stone-400">Bandung • Paket 3 Pcs</div>
+                                <div class="font-mono text-[10px] text-stone-400">Bandung &bull; Paket 3 Pcs</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Photo Review 2 -->
-                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                    <!-- Photo Review 2 (Page 1 - Skincare) -->
+                    <div class="fashion-review-card bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="skincare" data-page="1">
                         <div>
                             <div class="relative h-44 overflow-hidden border-b border-stone-800">
                                 <img src="assets/images/prod-08-skincare-bundle.jpg" alt="Foto Review Skincare BPOM" class="w-full h-full object-cover">
-                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-emerald-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Skincare BPOM</span>
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-emerald-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk &bull; Skincare BPOM</span>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
@@ -576,7 +647,7 @@
                                     <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
                                 </div>
                                 <p class="text-xs text-stone-300 leading-relaxed">
-                                    "Sudah 6 bulan jadi reseller aktif Azzahra & GlowLokal di Surabaya. Sistem dropshipnya rapi, foto lookbook-nya eksklusif, dan skincare-nya resmi terdaftar BPOM."
+                                    "Sudah 6 bulan jadi reseller aktif Azzahra &amp; GlowLokal di Surabaya. Sistem dropshipnya rapi, foto lookbook-nya eksklusif, dan skincare-nya resmi terdaftar BPOM."
                                 </p>
                             </div>
                         </div>
@@ -584,17 +655,17 @@
                             <img src="assets/images/avatar-2.jpg" alt="Aisyah Rahma" class="w-8 h-8 object-cover border border-stone-600">
                             <div>
                                 <div class="text-xs font-bold text-white">Aisyah Rahma</div>
-                                <div class="font-mono text-[10px] text-stone-400">Surabaya • Mitra Reseller</div>
+                                <div class="font-mono text-[10px] text-stone-400">Surabaya &bull; Mitra Reseller</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Photo Review 3 -->
-                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                    <!-- Photo Review 3 (Page 1 - Sepatu/Koko) -->
+                    <div class="fashion-review-card bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="sepatu" data-page="1">
                         <div>
                             <div class="relative h-44 overflow-hidden border-b border-stone-800">
                                 <img src="assets/images/prod-05-koko-kurta.jpg" alt="Foto Koko Kurta Toyobo" class="w-full h-full object-cover">
-                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pembeli • Koko Kurta</span>
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pembeli &bull; Koko Kurta</span>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
@@ -610,17 +681,17 @@
                             <img src="assets/images/avatar-3.jpg" alt="Farhan Hakim" class="w-8 h-8 object-cover border border-stone-600">
                             <div>
                                 <div class="text-xs font-bold text-white">Farhan Hakim</div>
-                                <div class="font-mono text-[10px] text-stone-400">Jakarta Selatan • Verified</div>
+                                <div class="font-mono text-[10px] text-stone-400">Jakarta Selatan &bull; Verified</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Photo Review 4 -->
-                    <div class="bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden">
+                    <!-- Photo Review 4 (Page 1 - Hijab) -->
+                    <div class="fashion-review-card bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="hijab" data-page="1">
                         <div>
                             <div class="relative h-44 overflow-hidden border-b border-stone-800">
-                                <img src="assets/images/prod-03-pashmina.jpg" alt="Foto Hijab & Pashmina" class="w-full h-full object-cover">
-                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk • Hijab Voal</span>
+                                <img src="assets/images/prod-03-pashmina.jpg" alt="Foto Hijab &amp; Pashmina" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Produk &bull; Hijab Voal</span>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
@@ -636,12 +707,117 @@
                             <img src="assets/images/avatar-1.jpg" alt="Hj. Rina Maryam" class="w-8 h-8 object-cover border border-stone-600">
                             <div>
                                 <div class="text-xs font-bold text-white">Hj. Rina Maryam</div>
-                                <div class="font-mono text-[10px] text-stone-400">Depok • Order Seragam</div>
+                                <div class="font-mono text-[10px] text-stone-400">Depok &bull; Order Seragam</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 5 (Page 2 - Hijab) -->
+                    <div class="fashion-review-card hidden bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="hijab" data-page="2">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/rev-hijab-silk.jpg" alt="Foto Pashmina Silk Plisket" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto OOTD &bull; Pashmina Silk</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Pashmina Silk Plisket warna sage green-nya mewah banget. Seratnya berkilau elegan tanpa terkesan norak, dan finishing jahit tepi kecil sangat rapi standar desainer."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-4.jpg" alt="Shakira Maharani" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Shakira Maharani</div>
+                                <div class="font-mono text-[10px] text-stone-400">Tangerang &bull; Fashion Blogger</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 6 (Page 2 - Gamis) -->
+                    <div class="fashion-review-card hidden bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="gamis" data-page="2">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/rev-gamis-raya.jpg" alt="Foto Gamis Raya Brokat" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-rose-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pembeli &bull; Gamis Brokat</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Beli seragam gamis raya keluarga 5 pasang. Potongan pinggang dan lengan balonnya sangat manis, furing dalam katun adem tidak bikin gerah waktu silaturahmi seharian."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-5.jpg" alt="dr. Nadia Amalia" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">dr. Nadia Amalia</div>
+                                <div class="font-mono text-[10px] text-stone-400">Yogyakarta &bull; Paket Keluarga</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 7 (Page 2 - Skincare) -->
+                    <div class="fashion-review-card hidden bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="skincare" data-page="2">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/rev-serum-glowing.jpg" alt="Foto Serum Glowing Niacinamide" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-emerald-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Review &bull; Serum Niacinamide</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Botol kedua GlowLokal Niacinamide 10% + Zinc. Tekstur cair cepat meresap tidak lengket, bruntusan di jidat mereda dan warna kulit lebih merata. Resmi BPOM jadi tenang."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-6.jpg" alt="Putri Wulandari" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Putri Wulandari</div>
+                                <div class="font-mono text-[10px] text-stone-400">Jakarta Barat &bull; Repeat Order</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo Review 8 (Page 2 - Sepatu) -->
+                    <div class="fashion-review-card hidden bg-stone-900 border border-stone-800 flex flex-col justify-between overflow-hidden" data-category="sepatu" data-page="2">
+                        <div>
+                            <div class="relative h-44 overflow-hidden border-b border-stone-800">
+                                <img src="assets/images/rev-sepatu-mules.jpg" alt="Foto Sepatu Mules Velvet" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 left-2 bg-[#121212]/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1">Foto Pembeli &bull; Mules 5cm</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="font-mono text-[11px] text-white font-bold ml-1">5.0</span>
+                                </div>
+                                <p class="text-xs text-stone-300 leading-relaxed">
+                                    "Heels mules 5cm-nya empuk bantalannya, dipakai jalan-jalan di mall seharian tidak bikin lecet tumit. Sol karet antislipnya kokoh dan warnanya nude elegan matching sama abaya."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 px-4 py-3 border-t border-stone-800 bg-stone-950/60">
+                            <img src="assets/images/avatar-7.jpg" alt="Bella Salsabila" class="w-8 h-8 object-cover border border-stone-600">
+                            <div>
+                                <div class="text-xs font-bold text-white">Bella Salsabila</div>
+                                <div class="font-mono text-[10px] text-stone-400">Semarang &bull; Verified Order</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -2266,6 +2442,73 @@
             toastTimeout = setTimeout(() => {
                 box.classList.add('hidden');
             }, 3000);
+        }
+
+        // Video Switcher Logic
+        document.querySelectorAll('.fashion-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const player = document.getElementById('fashionVideoPlayer');
+                const captionEl = document.getElementById('fashionVideoCaption');
+                if (player && videoSrc) {
+                    player.src = videoSrc;
+                    player.play().catch(e => console.log('Autoplay deferred:', e));
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+                document.querySelectorAll('.fashion-video-btn').forEach(b => {
+                    b.classList.remove('bg-rosegold-600', 'text-white', 'border-rosegold-600', 'active');
+                    b.classList.add('bg-stone-900', 'text-stone-300', 'border-stone-700');
+                });
+                btn.classList.add('bg-rosegold-600', 'text-white', 'border-rosegold-600', 'active');
+                btn.classList.remove('bg-stone-900', 'text-stone-300', 'border-stone-700');
+            });
+        });
+
+        // Review Filter & Pagination Logic
+        let currentFashionReviewCat = 'all';
+        let currentFashionReviewPage = 1;
+        const totalFashionReviewPages = 2;
+
+        function filterFashionReviews(cat) {
+            currentFashionReviewCat = cat;
+            currentFashionReviewPage = 1;
+            document.querySelectorAll('.fashion-tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-rosegold-600', 'text-white', 'border-rosegold-600');
+                btn.classList.add('bg-stone-900', 'text-stone-300', 'border-stone-700');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-rosegold-600', 'text-white', 'border-rosegold-600');
+                event.target.classList.remove('bg-stone-900', 'text-stone-300', 'border-stone-700');
+            }
+            applyFashionReviewDisplay();
+        }
+
+        function changeFashionReviewPage(delta) {
+            let next = currentFashionReviewPage + delta;
+            if (next < 1) next = totalFashionReviewPages;
+            if (next > totalFashionReviewPages) next = 1;
+            currentFashionReviewPage = next;
+            applyFashionReviewDisplay();
+        }
+
+        function applyFashionReviewDisplay() {
+            const cards = document.querySelectorAll('.fashion-review-card');
+            cards.forEach(card => {
+                const matchCat = (currentFashionReviewCat === 'all' || card.getAttribute('data-category') === currentFashionReviewCat);
+                const matchPage = (parseInt(card.getAttribute('data-page')) === currentFashionReviewPage);
+                if (matchCat && matchPage) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            const indicator = document.getElementById('fashionReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentFashionReviewPage} / ${totalFashionReviewPages}`;
+            }
         }
 
         // Initialize on Load

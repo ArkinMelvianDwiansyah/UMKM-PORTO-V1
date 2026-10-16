@@ -1631,3 +1631,431 @@ button {
     height: 340px;
   }
 }
+
+/* ==========================================================================
+   19. STUDIO VIDEO SWITCHER (#video-studio)
+   ========================================================================== */
+.studio-video-section {
+  padding: clamp(64px, 8vw, 96px) 0;
+  border-bottom: 1px solid var(--border-light);
+  background-color: #0b0b0b;
+}
+
+.studio-video-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.studio-video-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+@media (min-width: 768px) {
+  .studio-video-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.studio-video-switcher-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.studio-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.studio-video-btn:hover {
+  color: #FFFFFF;
+  border-color: #666666;
+}
+
+.studio-video-btn.active {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.studio-video-frame {
+  position: relative;
+  background-color: #000000;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: clamp(260px, 45vw, 480px);
+  border: 1px solid var(--border-light);
+}
+
+.studio-video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.studio-video-caption-pill {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background-color: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #FFFFFF;
+}
+
+.rec-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #EF4444;
+  box-shadow: 0 0 8px #EF4444;
+  animation: pulseRec 1.5s infinite;
+}
+
+@keyframes pulseRec {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.studio-video-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.studio-pillar-item {
+  padding: 12px 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.studio-pillar-tag {
+  font-family: monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #AAAAAA;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.studio-pillar-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+
+.studio-pillar-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   20. VERIFIED PHOTO REVIEWS WITH TABS & PAGINATION (#testimoni)
+   ========================================================================== */
+.testimoni-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.testimoni-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.testimoni-filter-btn {
+  background-color: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.testimoni-filter-btn:hover {
+  color: var(--text-main);
+  border-color: #555555;
+}
+
+.testimoni-filter-btn.active {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.testimoni-pagination-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.testimoni-page-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.testimoni-page-btn:hover {
+  background-color: #262626;
+  border-color: #555555;
+}
+
+.testimoni-page-indicator {
+  font-family: monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+}
+
+.testimoni-grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .testimoni-grid-4col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .testimoni-grid-4col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.testimoni-card-photo {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  border: 1px solid var(--border-light);
+}
+
+.testimoni-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.testimoni-card:hover .testimoni-card-photo img {
+  transform: scale(1.05);
+}
+
+.testimoni-tag-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(14, 14, 14, 0.88);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.testimoni-card.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   21. INTERACTIVE PHOTOSHOOT & CINEMA CALCULATOR (#paket-calculator)
+   ========================================================================== */
+.kalkulator-sesi-card {
+  margin-top: 56px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-field-group {
+  margin-bottom: 24px;
+}
+
+.calc-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calc-select, .calc-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.calc-select:focus, .calc-input:focus {
+  border-color: #FFFFFF;
+}
+
+.calc-addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calc-addon-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.calc-addon-label:hover {
+  border-color: #555555;
+}
+
+.calc-addon-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.calc-addon-text {
+  font-size: 0.8125rem;
+  color: #EEEEEE;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.calc-addon-price {
+  font-family: monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #AAAAAA;
+}
+
+.calc-summary-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calc-summary-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.calc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.calc-summary-total {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.calc-total-val {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-display);
+}

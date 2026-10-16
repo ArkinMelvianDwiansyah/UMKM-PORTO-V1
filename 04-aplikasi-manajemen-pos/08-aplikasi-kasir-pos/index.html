@@ -343,6 +343,60 @@
                         <!-- Dynamically populated by JS -->
                     </div>
 
+                    <!-- DOKUMENTASI SISTEM KASIR & OPERASIONAL OUTLET (VIDEO) -->
+                    <section class="bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-lg text-white">
+                        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 pb-3 border-b border-slate-800">
+                            <div>
+                                <span class="font-mono text-[11px] font-bold text-emerald-400 uppercase tracking-wider">[VIDEO DEMO] OPERASIONAL KASIR &amp; RESTORAN</span>
+                                <h3 class="text-lg font-extrabold text-white mt-0.5">Simulasi Transaksi Cepat &amp; Alur Meja Resto</h3>
+                                <p class="text-xs text-slate-400 mt-1">
+                                    Lihat bagaimana KasirPintar Pro mempercepat waktu pelayanan pelanggan dari layar sentuh hingga cetak struk otomatis.
+                                </p>
+                            </div>
+                            <!-- Video Switcher -->
+                            <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                                <button type="button" data-video="assets/videos/video-transaksi-kasir.mp4" data-caption="SIMULASI KASIR // TRANSAKSI SENTUH CEPAT &amp; CETAK STRUK THERMAL 58MM"
+                                    class="pos-video-btn active px-3.5 py-1.5 bg-emerald-600 text-slate-950 font-bold rounded-xl transition flex items-center gap-2">
+                                    <i class="fa-solid fa-play text-[10px]"></i>
+                                    <span>Layar Kasir POS</span>
+                                </button>
+                                <button type="button" data-video="assets/videos/video-resto-operasional.mp4" data-caption="OPERASIONAL RESTO // ALUR MEJA DINE-IN &amp; TIKET DAPUR OTOMATIS"
+                                    class="pos-video-btn px-3.5 py-1.5 bg-slate-800 text-slate-300 hover:text-white font-medium border border-slate-700 rounded-xl transition flex items-center gap-2">
+                                    <i class="fa-solid fa-film text-[10px]"></i>
+                                    <span>Dapur &amp; Meja Resto</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-800 bg-black rounded-xl overflow-hidden shadow-2xl">
+                            <div class="relative bg-black h-64 sm:h-[340px] overflow-hidden">
+                                <video id="posVideoPlayer" class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/images/prod-kop-01.jpg" src="assets/videos/video-transaksi-kasir.mp4"></video>
+                                <div class="absolute bottom-3 left-3 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 border border-slate-700 rounded-lg font-mono text-xs text-emerald-400 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span id="posVideoCaption">SIMULASI KASIR // TRANSAKSI SENTUH CEPAT &amp; CETAK STRUK THERMAL 58MM</span>
+                                </div>
+                            </div>
+                            <!-- 3 Quality Specs -->
+                            <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800 bg-slate-950 p-4 sm:p-5">
+                                <div class="p-2.5 space-y-1">
+                                    <span class="font-mono text-xs text-emerald-400 font-bold">STANDAR // 01</span>
+                                    <h4 class="text-xs font-bold text-white">Printer Thermal ESC/POS</h4>
+                                    <p class="text-slate-400 text-[11px] leading-relaxed">Cetak instan struk nota 58mm/80mm via Bluetooth atau USB tanpa driver rumit.</p>
+                                </div>
+                                <div class="p-2.5 space-y-1">
+                                    <span class="font-mono text-xs text-amber-400 font-bold">STANDAR // 02</span>
+                                    <h4 class="text-xs font-bold text-white">Potong Stok HPP Real-Time</h4>
+                                    <p class="text-slate-400 text-[11px] leading-relaxed">Stok berkurang otomatis saat struk keluar, peringatan kuning jika stok &lt; 10 unit.</p>
+                                </div>
+                                <div class="p-2.5 space-y-1">
+                                    <span class="font-mono text-xs text-sky-400 font-bold">STANDAR // 03</span>
+                                    <h4 class="text-xs font-bold text-white">Offline-Ready &amp; Cloud Sync</h4>
+                                    <p class="text-slate-400 text-[11px] leading-relaxed">Kasir tetap bisa jualan meski WiFi toko mati, sinkronisasi otomatis saat online.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- ULASAN MITRA OUTLET & DOKUMENTASI FOTO PRODUK/PENGGUNA -->
                     <section id="ulasan-mitra" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
                         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 pb-3 border-b border-slate-100">
@@ -350,12 +404,31 @@
                                 <span class="font-mono text-[11px] font-bold text-emerald-600 uppercase tracking-wider">BUKTI IMPLEMENTASI OUTLET UMKM (CONTOH/SIMULASI)*</span>
                                 <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Ulasan &amp; Foto Outlet Pengguna KasirPintar Pro</h3>
                             </div>
-                            <span class="font-mono text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-lg">1.450+ Outlet Aktif (Ilustrasi)*</span>
+                            <!-- Category Filter & Pagination Controls -->
+                            <div class="flex flex-wrap items-center gap-2">
+                                <div class="flex flex-wrap items-center gap-1 font-mono text-xs" id="posReviewCategoryTabs">
+                                    <button type="button" onclick="filterPosReviews('all')" class="pos-rev-tab active px-3 py-1 bg-slate-900 text-white rounded-lg font-bold transition">Semua (8)</button>
+                                    <button type="button" onclick="filterPosReviews('kopi')" class="pos-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Cafe &amp; Kopi</button>
+                                    <button type="button" onclick="filterPosReviews('resto')" class="pos-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Resto &amp; Kuliner</button>
+                                    <button type="button" onclick="filterPosReviews('mart')" class="pos-rev-tab px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition">Retail &amp; Mart</button>
+                                </div>
+                                <!-- Pagination Controls -->
+                                <div class="flex items-center gap-1 font-mono text-xs ml-auto sm:ml-2">
+                                    <button type="button" onclick="changePosReviewPage(-1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Sebelumnya">
+                                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                                    </button>
+                                    <span id="posReviewPageIndicator" class="px-2.5 py-1 text-xs text-slate-700 font-mono font-bold bg-slate-50 rounded-lg border border-slate-200">1 / 2</span>
+                                    <button type="button" onclick="changePosReviewPage(1)" class="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg flex items-center justify-center transition" aria-label="Selanjutnya">
+                                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                            <!-- Mitra 1 -->
-                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                        <!-- 8 Mitra Photo Review Cards (Paginated 4 per page) -->
+                        <div id="posReviewsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            <!-- Mitra 1 (Page 1 - Kopi) -->
+                            <div class="pos-review-card bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="kopi" data-page="1">
                                 <div>
                                     <div class="relative h-36 overflow-hidden">
                                         <img src="assets/images/prod-kop-01.jpg" alt="Outlet Kopi Seduh Hayu" class="w-full h-full object-cover">
@@ -377,8 +450,8 @@
                                 </div>
                             </div>
 
-                            <!-- Mitra 2 -->
-                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                            <!-- Mitra 2 (Page 1 - Resto) -->
+                            <div class="pos-review-card bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="resto" data-page="1">
                                 <div>
                                     <div class="relative h-36 overflow-hidden">
                                         <img src="assets/images/prod-mkn-01.jpg" alt="Resto Sambal Nusantara" class="w-full h-full object-cover">
@@ -400,8 +473,8 @@
                                 </div>
                             </div>
 
-                            <!-- Mitra 3 -->
-                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                            <!-- Mitra 3 (Page 1 - Resto) -->
+                            <div class="pos-review-card bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="resto" data-page="1">
                                 <div>
                                     <div class="relative h-36 overflow-hidden">
                                         <img src="assets/images/prod-snk-01.jpg" alt="Bakery & Pastry" class="w-full h-full object-cover">
@@ -423,8 +496,8 @@
                                 </div>
                             </div>
 
-                            <!-- Mitra 4 -->
-                            <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
+                            <!-- Mitra 4 (Page 1 - Mart) -->
+                            <div class="pos-review-card bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="mart" data-page="1">
                                 <div>
                                     <div class="relative h-36 overflow-hidden">
                                         <img src="assets/images/prod-rtl-01.jpg" alt="Minimarket & Mart" class="w-full h-full object-cover">
@@ -442,6 +515,98 @@
                                     <div>
                                         <div class="text-xs font-bold text-slate-900">Bpk. Budi Santoso</div>
                                         <div class="text-[10px] text-slate-500">Berkah Mart • Yogyakarta</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 5 (Page 2 - Kopi) -->
+                            <div class="pos-review-card hidden bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="kopi" data-page="2">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/rev-struk-kasir.jpg" alt="Cilandak Kopi Jakarta" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Cetak Struk • Coffee Shop</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Koneksi ke printer Bluetooth thermal 58mm sangat mulus tanpa putus. QRIS dinamis langsung tercetak di struk nota pelanggan."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-5.jpg" alt="Rendy Pratama" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Rendy Pratama</div>
+                                        <div class="text-[10px] text-slate-500">Cilandak Kopi • Jakarta Selatan</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 6 (Page 2 - Resto) -->
+                            <div class="pos-review-card hidden bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="resto" data-page="2">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/rev-pos-resto.jpg" alt="Bistro 88 Kemang" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-amber-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Kitchen Display • Resto</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Orderan dari kasir langsung otomatis terpecah ke printer kitchen dan bar minum. Pelayan tidak perlu bolak-balik bawa kertas bon manual."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-6.jpg" alt="Chef Mario Wirawan" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Chef Mario Wirawan</div>
+                                        <div class="text-[10px] text-slate-500">Bistro 88 • Kemang Jakarta</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 7 (Page 2 - Mart) -->
+                            <div class="pos-review-card hidden bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="mart" data-page="2">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/rev-minimarket.jpg" alt="FreshMarket BSD" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Barcode Scan • Retail</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Database 1.200 barang toko kelontong kami tersimpan rapi. Tombol scan barcode cepat dan rekapan HPP per barang sangat akurat."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-7.jpg" alt="Linda Oktavia" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Linda Oktavia</div>
+                                        <div class="text-[10px] text-slate-500">FreshMarket • BSD Tangerang</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mitra 8 (Page 2 - Mart) -->
+                            <div class="pos-review-card hidden bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between" data-category="mart" data-page="2">
+                                <div>
+                                    <div class="relative h-36 overflow-hidden">
+                                        <img src="assets/images/rev-printer-thermal.jpg" alt="Depo Snack Semarang" class="w-full h-full object-cover">
+                                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-indigo-300 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Laporan Harian • Grosir</span>
+                                    </div>
+                                    <div class="p-3.5">
+                                        <div class="flex text-amber-400 text-[11px] gap-0.5 mb-1.5">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p class="text-xs text-slate-600 leading-relaxed">"Bisa cetak ulang nota transaksi kapan saja untuk pelanggan grosir yang minta bukti kwitansi tambahan. Laci uang RJ11 juga terbuka otomatis."</p>
+                                    </div>
+                                </div>
+                                <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
+                                    <img src="assets/images/cust-8.jpg" alt="Gunawan Tan" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <div>
+                                        <div class="text-xs font-bold text-slate-900">Gunawan Tan</div>
+                                        <div class="text-[10px] text-slate-500">Depo Snack • Semarang</div>
                                     </div>
                                 </div>
                             </div>
@@ -1631,6 +1796,73 @@
                 backdrop.classList.remove('opacity-100', 'pointer-events-auto');
                 drawer.classList.add('translate-x-full');
                 document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // POS Video Switcher Logic
+        document.querySelectorAll('.pos-video-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoSrc = btn.getAttribute('data-video');
+                const caption = btn.getAttribute('data-caption');
+                const player = document.getElementById('posVideoPlayer');
+                const captionEl = document.getElementById('posVideoCaption');
+                if (player && videoSrc) {
+                    player.src = videoSrc;
+                    player.play().catch(e => console.log('Autoplay deferred:', e));
+                }
+                if (captionEl && caption) {
+                    captionEl.textContent = caption;
+                }
+                document.querySelectorAll('.pos-video-btn').forEach(b => {
+                    b.classList.remove('bg-emerald-600', 'text-slate-950', 'active');
+                    b.classList.add('bg-slate-800', 'text-slate-300', 'border', 'border-slate-700');
+                });
+                btn.classList.add('bg-emerald-600', 'text-slate-950', 'active');
+                btn.classList.remove('bg-slate-800', 'text-slate-300', 'border', 'border-slate-700');
+            });
+        });
+
+        // POS Review Filter & Pagination Logic
+        let currentPosReviewCat = 'all';
+        let currentPosReviewPage = 1;
+        const totalPosReviewPages = 2;
+
+        function filterPosReviews(cat) {
+            currentPosReviewCat = cat;
+            currentPosReviewPage = 1;
+            document.querySelectorAll('.pos-rev-tab').forEach(btn => {
+                btn.classList.remove('active', 'bg-slate-900', 'text-white', 'font-bold');
+                btn.classList.add('bg-slate-100', 'text-slate-700', 'font-medium');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active', 'bg-slate-900', 'text-white', 'font-bold');
+                event.target.classList.remove('bg-slate-100', 'text-slate-700', 'font-medium');
+            }
+            applyPosReviewDisplay();
+        }
+
+        function changePosReviewPage(delta) {
+            let next = currentPosReviewPage + delta;
+            if (next < 1) next = totalPosReviewPages;
+            if (next > totalPosReviewPages) next = 1;
+            currentPosReviewPage = next;
+            applyPosReviewDisplay();
+        }
+
+        function applyPosReviewDisplay() {
+            const cards = document.querySelectorAll('.pos-review-card');
+            cards.forEach(card => {
+                const matchCat = (currentPosReviewCat === 'all' || card.getAttribute('data-category') === currentPosReviewCat);
+                const matchPage = (parseInt(card.getAttribute('data-page')) === currentPosReviewPage);
+                if (matchCat && matchPage) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            const indicator = document.getElementById('posReviewPageIndicator');
+            if (indicator) {
+                indicator.textContent = `${currentPosReviewPage} / ${totalPosReviewPages}`;
             }
         }
 

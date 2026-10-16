@@ -14,3 +14,6 @@ desktop.ini
 *.tmp
 *.zip
 node_modules/
+
+__pycache__/
+*.pyc
