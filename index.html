@@ -1212,6 +1212,16 @@
       </article>
 
     </div>
+
+    <!-- Pagination Bar (Max 10 per halaman) -->
+    <div id="portoPagination" class="mt-10 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs font-mono text-muted" id="portoPaginationInfo">
+        Menampilkan <span class="font-bold text-ink" id="pageRangeText">1–10</span> dari <span class="font-bold text-ink" id="totalFilteredText">22</span> portofolio
+      </div>
+      <div class="flex items-center gap-1.5 flex-wrap justify-center" id="paginationButtons">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
   </section>
 
   <!-- Friendly Keunggulan Section -->
@@ -1248,172 +1258,276 @@
     </div>
   </section>
 
-  <!-- Interactive Estimator Section (Terinspirasi Renovast & Cargon) -->
-  <section id="simulasi-biaya" class="py-16 border-t border-line bg-paper">
+  <!-- Workflow Video & Interactive Pricelist Calculator Section -->
+  <section id="simulasi-biaya" class="py-16 sm:py-20 border-t border-line bg-paper">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      <div class="max-w-3xl mb-10">
-        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">SIMULASI SPESIFIKASI & BIAYA</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2">Hitung Sendiri Estimasi Website Usaha Anda</h2>
-        <p class="text-xs sm:text-sm text-muted mt-2">
-          Pilih bidang bisnis dan centang fitur yang Anda butuhkan. Kami hitungkan estimasi biaya dan durasi pengerjaannya secara langsung—tanpa komitmen apapun.
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl mb-12">
+        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">PROSES PRODUKSI &amp; SIMULASI HARGA</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2 tracking-tight">Proses Pembuatan Website &amp; Simulasi Investasi</h2>
+        <p class="text-xs sm:text-sm text-muted mt-2 leading-relaxed">
+          Dibangun presisi dengan arsitektur modern (Laravel &amp; Tailwind CSS) tanpa template berat. Saksikan proses pengerjaan kami dan hitung estimasi biaya sesuai paket resmi usaha Anda.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <!-- Estimator Left: Form Controls -->
-        <div class="lg:col-span-7 bg-surface border border-line p-6 sm:p-8 space-y-6">
-          <!-- Step 1: Select Business Category -->
-          <div>
-            <label class="block text-xs font-mono uppercase tracking-wider font-bold text-ink mb-3">
-              1. Pilih Kategori Bisnis Anda
-            </label>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="estimatorTypeGrid">
-              <button type="button" onclick="selectEstimatorType('landing')" data-type="landing"
-                      class="est-type-btn p-3 border border-ink bg-ink text-surface text-left transition rounded-md">
-                <div class="text-sm font-bold">Jasa & Profil</div>
-                <div class="text-[10px] opacity-80 mt-0.5">Kontraktor, AC, Mobil</div>
-              </button>
-              <button type="button" onclick="selectEstimatorType('catalog')" data-type="catalog"
-                      class="est-type-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-md">
-                <div class="text-sm font-bold">Katalog & Toko</div>
-                <div class="text-[10px] text-muted mt-0.5">Kuliner, Fashion, Mebel</div>
-              </button>
-              <button type="button" onclick="selectEstimatorType('booking')" data-type="booking"
-                      class="est-type-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-md">
-                <div class="text-sm font-bold">Sistem Booking</div>
-                <div class="text-[10px] text-muted mt-0.5">Lapangan, Salon, Villa</div>
-              </button>
-              <button type="button" onclick="selectEstimatorType('pos')" data-type="pos"
-                      class="est-type-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-md">
-                <div class="text-sm font-bold">Kasir POS / Toko</div>
-                <div class="text-[10px] text-muted mt-0.5">Laundry, Minimarket, Cafe</div>
-              </button>
-              <button type="button" onclick="selectEstimatorType('corporate')" data-type="corporate"
-                      class="est-type-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-md sm:col-span-2">
-                <div class="text-sm font-bold">Corporate & B2B</div>
-                <div class="text-[10px] text-muted mt-0.5">Konstruksi Sipil, Kargo Logistik, Industri</div>
-              </button>
+        
+        <!-- Left: Authentic Studio Workflow Video & 4 SOP Steps -->
+        <div class="lg:col-span-6 space-y-6">
+          
+          <!-- Video Frame Mockup -->
+          <div class="bg-surface border border-line overflow-hidden shadow-sm">
+            <!-- Browser Top Mockup Bar -->
+            <div class="px-4 py-3 bg-paper border-b border-line flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+                <span class="ml-2 text-[11px] font-mono text-muted">jalaninweb.site/studio-production.mp4</span>
+              </div>
+              <div class="inline-flex items-center gap-1 text-[10px] font-mono text-forest font-semibold bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-forest animate-pulse"></span>
+                <span>ORIGINAL WORKFLOW</span>
+              </div>
+            </div>
+
+            <!-- Video Player -->
+            <div class="relative bg-stone-900 group">
+              <video id="workflowVideo"
+                     class="w-full h-64 sm:h-72 object-cover"
+                     autoplay muted loop playsinline controls
+                     poster="assets/images/thumb-20-studio.jpg">
+                <source src="06-landing-page-onepage/20-studio-foto-video/assets/videos/video-studio-sinematik.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video tag HTML5.
+              </video>
+              <div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 border border-line text-[11px] font-mono font-semibold text-ink">
+                Behind The Scene &bull; Studio Coding JalaninWeb
+              </div>
+            </div>
+
+            <!-- Modern Tech Badges Strip -->
+            <div class="p-3.5 bg-surface border-t border-line grid grid-cols-3 gap-2 text-center text-[11px] font-mono text-ink">
+              <div class="p-2 bg-paper border border-line">
+                <span class="block text-accent font-bold">LARAVEL 11</span>
+                <span class="text-[10px] text-muted">Backend Aman</span>
+              </div>
+              <div class="p-2 bg-paper border border-line">
+                <span class="block text-forest font-bold">TAILWIND CSS</span>
+                <span class="text-[10px] text-muted">Mobile-First</span>
+              </div>
+              <div class="p-2 bg-paper border border-line">
+                <span class="block text-ink font-bold">&lt; 1 DETIK</span>
+                <span class="text-[10px] text-muted">PageSpeed 90+</span>
+              </div>
             </div>
           </div>
 
-          <!-- Step 2: Select Features -->
-          <div class="pt-4 border-t border-line">
-            <label class="block text-xs font-mono uppercase tracking-wider font-bold text-ink mb-3">
-              2. Kebutuhan Fitur Tambahan (Opsional)
-            </label>
-            <div class="space-y-2.5 text-xs text-ink" id="estimatorFeatures">
-              <label class="flex items-center justify-between p-3 bg-paper border border-line rounded cursor-pointer hover:border-ink transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" checked disabled class="accent-forest w-4 h-4" />
-                  <div>
-                    <span class="font-semibold block">Domain (.com / .id) & Cloud Hosting 1 Tahun</span>
-                    <span class="text-[11px] text-muted">Termasuk sertifikat keamanan SSL gembok hijau</span>
-                  </div>
-                </div>
-                <span class="font-mono text-emerald-600 font-bold shrink-0">Termasuk</span>
-              </label>
-
-              <label class="flex items-center justify-between p-3 bg-paper border border-line rounded cursor-pointer hover:border-ink transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="featCalc" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                  <div>
-                    <span class="font-semibold block">Kalkulator Hitung Custom</span>
-                    <span class="text-[11px] text-muted">Contoh: hitung RAB m², grosir bertingkat, sewa hari</span>
-                  </div>
-                </div>
-                <span class="font-mono text-ink font-semibold shrink-0">+Rp 250.000</span>
-              </label>
-
-              <label class="flex items-center justify-between p-3 bg-paper border border-line rounded cursor-pointer hover:border-ink transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="featBooking" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                  <div>
-                    <span class="font-semibold block">Kalender & Matriks Jam Kosong</span>
-                    <span class="text-[11px] text-muted">Pilih tanggal & slot waktu otomatis, anti bentrok</span>
-                  </div>
-                </div>
-                <span class="font-mono text-ink font-semibold shrink-0">+Rp 450.000</span>
-              </label>
-
-              <label class="flex items-center justify-between p-3 bg-paper border border-line rounded cursor-pointer hover:border-ink transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="featQris" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                  <div>
-                    <span class="font-semibold block">Pembayaran QRIS / DP Otomatis</span>
-                    <span class="text-[11px] text-muted">Scan QRIS instan dari GoPay/OVO/BCA langsung di web</span>
-                  </div>
-                </div>
-                <span class="font-mono text-ink font-semibold shrink-0">+Rp 350.000</span>
-              </label>
-
-              <label class="flex items-center justify-between p-3 bg-paper border border-line rounded cursor-pointer hover:border-ink transition">
-                <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="featThermal" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                  <div>
-                    <span class="font-semibold block">Dukungan Cetak Struk Kasir 58mm</span>
-                    <span class="text-[11px] text-muted">Format struk thermal bluetooth langsung print kasir</span>
-                  </div>
-                </div>
-                <span class="font-mono text-ink font-semibold shrink-0">+Rp 300.000</span>
-              </label>
+          <!-- 4-Step Engineering SOP Process -->
+          <div class="bg-surface border border-line p-5 space-y-3">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold">
+              STANDAR PROSES PENGERJAAN KAMI
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 bg-paper border border-line">
+                <div class="font-mono text-[10px] text-muted font-bold">TAHAP 01</div>
+                <div class="font-bold text-ink mt-0.5">Analisis Kebutuhan &amp; Riset</div>
+                <p class="text-[11px] text-muted mt-1 leading-relaxed">Diskusi santai via WhatsApp untuk menentukan paket &amp; target pembeli bisnis Anda.</p>
+              </div>
+              <div class="p-3 bg-paper border border-line">
+                <div class="font-mono text-[10px] text-muted font-bold">TAHAP 02</div>
+                <div class="font-bold text-ink mt-0.5">UI/UX &amp; Tailwind CSS</div>
+                <p class="text-[11px] text-muted mt-1 leading-relaxed">Layout dirancang ramah HP, tombol WA mencolok, dan copywriting persuasif.</p>
+              </div>
+              <div class="p-3 bg-paper border border-line">
+                <div class="font-mono text-[10px] text-muted font-bold">TAHAP 03</div>
+                <div class="font-bold text-ink mt-0.5">Coding Laravel &amp; Database</div>
+                <p class="text-[11px] text-muted mt-1 leading-relaxed">Bebas plugin kembung, loading ringan diakses, dan aman dari bug.</p>
+              </div>
+              <div class="p-3 bg-paper border border-line">
+                <div class="font-mono text-[10px] text-muted font-bold">TAHAP 04</div>
+                <div class="font-bold text-ink mt-0.5">Live Demo &amp; 100% Hak Milik</div>
+                <p class="text-[11px] text-muted mt-1 leading-relaxed">Uji coba langsung di HP Anda, revisi tuntas, dan serah terima kepemilikan penuh.</p>
+              </div>
             </div>
           </div>
+
         </div>
 
-        <!-- Estimator Right: Live Summary Box -->
-        <div class="lg:col-span-5 bg-ink text-surface p-6 sm:p-8 rounded-xl shadow-xl space-y-6">
-          <div class="flex items-center justify-between pb-4 border-b border-stone-800">
-            <span class="text-xs font-mono uppercase tracking-wider text-stone-400">RINGKASAN SIMULASI</span>
-            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Transparan
-            </span>
+        <!-- Right: Synchronized Interactive Pricelist Calculator -->
+        <div class="lg:col-span-6 space-y-6">
+          
+          <div class="bg-surface border border-line p-6 sm:p-7 space-y-5">
+            <!-- Step 1: Select Official Package -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <label class="text-xs font-mono uppercase tracking-wider font-bold text-ink">
+                  1. Pilih Paket Layanan Resmi
+                </label>
+                <span class="text-[10px] font-mono text-muted">Sesuai Pricelist Resmi</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="estimatorTypeGrid">
+                <!-- Starter Tier -->
+                <button type="button" onclick="selectEstimatorType('starter')" data-type="starter"
+                        class="est-type-btn p-3.5 border border-line bg-paper text-ink text-left transition hover:border-ink">
+                  <div class="text-[11px] font-mono font-bold text-muted">PAKET 01</div>
+                  <div class="text-sm font-extrabold text-ink mt-0.5">Starter</div>
+                  <div class="text-xs font-mono font-bold text-accent mt-1">Rp 399.000</div>
+                  <div class="text-[10px] text-muted mt-1">Landing page 1 halaman instan serbacepat</div>
+                </button>
+
+                <!-- Growth Tier (Recommended) -->
+                <button type="button" onclick="selectEstimatorType('growth')" data-type="growth"
+                        class="est-type-btn p-3.5 border border-ink bg-ink text-surface text-left transition relative">
+                  <span class="absolute -top-2.5 right-2 bg-accent text-surface text-[9px] font-mono font-bold px-1.5 py-0.2">FAVORIT</span>
+                  <div class="text-[11px] font-mono font-bold text-amber-300">PAKET 02</div>
+                  <div class="text-sm font-extrabold text-surface mt-0.5">Growth</div>
+                  <div class="text-xs font-mono font-bold text-amber-300 mt-1">Rp 899.000</div>
+                  <div class="text-[10px] opacity-80 mt-1">3–6 halaman + CMS Admin &amp; Search Console</div>
+                </button>
+
+                <!-- Enterprise Tier -->
+                <button type="button" onclick="selectEstimatorType('enterprise')" data-type="enterprise"
+                        class="est-type-btn p-3.5 border border-line bg-paper text-ink text-left transition hover:border-ink">
+                  <div class="text-[11px] font-mono font-bold text-muted">PAKET 03</div>
+                  <div class="text-sm font-extrabold text-ink mt-0.5">Enterprise</div>
+                  <div class="text-xs font-mono font-bold text-forest mt-1">Custom Price</div>
+                  <div class="text-[10px] text-muted mt-1">Sistem kustom, API &amp; database kompleks</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Addon Options -->
+            <div class="pt-4 border-t border-line">
+              <label class="block text-xs font-mono uppercase tracking-wider font-bold text-ink mb-3">
+                2. Fitur Tambahan &amp; Kebutuhan Khusus (Opsional)
+              </label>
+
+              <div class="space-y-2.5 text-xs text-ink">
+                <!-- Addon 1: Domain .com / .id -->
+                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" id="featDomain" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
+                    <div>
+                      <span class="font-semibold block">Upgrade Domain Bergengsi (.com / .id) &amp; NVMe</span>
+                      <span class="text-[11px] text-muted" id="featDomainNote">Gratis sudah termasuk di Paket Growth &amp; Enterprise</span>
+                    </div>
+                  </div>
+                  <span id="featDomainPrice" class="font-mono text-emerald-700 font-bold shrink-0">Termasuk</span>
+                </label>
+
+                <!-- Addon 2: Kalender & Booking -->
+                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" id="featBooking" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
+                    <div>
+                      <span class="font-semibold block">Sistem Kalender &amp; Booking Jadwal</span>
+                      <span class="text-[11px] text-muted">Pilih tanggal &amp; slot jam otomatis anti bentrok langsung ke WA</span>
+                    </div>
+                  </div>
+                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 350.000</span>
+                </label>
+
+                <!-- Addon 3: QRIS / Payment -->
+                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" id="featQris" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
+                    <div>
+                      <span class="font-semibold block">Integrasi Scan QRIS / DP Otomatis</span>
+                      <span class="text-[11px] text-muted">Scan QRIS instan dari GoPay/OVO/BCA langsung di halaman website</span>
+                    </div>
+                  </div>
+                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 250.000</span>
+                </label>
+
+                <!-- Addon 4: Custom Calculator -->
+                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" id="featCalc" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
+                    <div>
+                      <span class="font-semibold block">Kalkulator Hitung Biaya Custom</span>
+                      <span class="text-[11px] text-muted">Contoh: hitung RAB m² konstruksi, grosir produk, atau sewa per hari</span>
+                    </div>
+                  </div>
+                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 250.000</span>
+                </label>
+
+                <!-- Addon 5: CMS Admin -->
+                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" id="featCms" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
+                    <div>
+                      <span class="font-semibold block">Dashboard Admin CMS Mandiri</span>
+                      <span class="text-[11px] text-muted" id="featCmsNote">Sudah termasuk gratis di Paket Growth &amp; Enterprise</span>
+                    </div>
+                  </div>
+                  <span id="featCmsPrice" class="font-mono text-emerald-700 font-bold shrink-0">Termasuk</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Live Calculation Result Card -->
+            <div class="p-5 bg-ink text-surface rounded-lg space-y-4 shadow-md">
+              <div class="flex items-center justify-between pb-3 border-b border-stone-800 text-xs font-mono">
+                <span class="text-stone-400 uppercase tracking-wider">RINGKASAN SIMULASI</span>
+                <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                  <i class="fa-solid fa-shield-halved text-xs"></i> 100% Hak Milik Anda
+                </span>
+              </div>
+
+              <div>
+                <div class="text-[11px] font-mono uppercase text-stone-400">Paket Terpilih</div>
+                <div id="estPackageName" class="text-xl font-extrabold text-surface mt-0.5">Paket Growth (3–6 Halaman + CMS)</div>
+                <div id="estPackageDesc" class="text-xs text-stone-300 mt-1 leading-relaxed">Paling diminati UMKM &amp; jasa lokal. Lengkap dengan Dashboard Admin CMS mandiri &amp; Google Search Console.</div>
+              </div>
+
+              <div class="p-3.5 bg-stone-900 border border-stone-800 space-y-1.5 text-xs">
+                <div class="flex items-center justify-between text-stone-400">
+                  <span>Paket Dasar:</span>
+                  <span id="estBasePrice" class="font-mono text-surface font-semibold">Rp 899.000</span>
+                </div>
+                <div class="flex items-center justify-between text-stone-400">
+                  <span>Fitur Tambahan:</span>
+                  <span id="estAddonPrice" class="font-mono text-surface font-semibold">Rp 0</span>
+                </div>
+                <div class="pt-2 border-t border-stone-800 flex items-baseline justify-between">
+                  <span class="text-xs font-mono uppercase text-amber-400 font-bold">TOTAL ESTIMASI:</span>
+                  <span id="estTotalPrice" class="text-2xl font-extrabold font-mono text-amber-300">Rp 899.000</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-xs text-stone-300">
+                <div class="p-2.5 bg-stone-900/60 border border-stone-800">
+                  <div class="text-[10px] font-mono uppercase text-stone-400">WAKTU PENGERJAAN</div>
+                  <div id="estDuration" class="font-bold text-surface text-sm mt-0.5">3 – 7 Hari Kerja</div>
+                </div>
+                <div class="p-2.5 bg-stone-900/60 border border-stone-800">
+                  <div class="text-[10px] font-mono uppercase text-stone-400">STATUS LAYANAN</div>
+                  <div class="font-bold text-emerald-400 text-sm mt-0.5">Terima Jadi &amp; Siap Pakai</div>
+                </div>
+              </div>
+
+              <div class="pt-1">
+                <a id="estWaButton"
+                   href="https://wa.me/6289680551957?text=Halo%20jalaninweb.site%2C%20saya%20tertarik%20dengan%20Paket%20Growth%20(Rp%20899.000)"
+                   target="_blank" rel="noopener noreferrer"
+                   class="w-full inline-flex items-center justify-center gap-2 bg-accent hover:opacity-95 text-surface font-bold text-sm py-3.5 px-4 transition shadow-md">
+                  <i class="fa-brands fa-whatsapp text-lg"></i>
+                  <span>Konsultasi &amp; Ambil Paket Ini di WA</span>
+                </a>
+                <p class="text-[10px] text-center text-stone-400 mt-2">
+                  *Bebas konsultasi &amp; diskusikan kebutuhan langsung di WhatsApp. Tanpa biaya komitmen.
+                </p>
+              </div>
+            </div>
+
           </div>
 
-          <div>
-            <div class="text-[11px] font-mono uppercase text-stone-400">Rekomendasi Paket Usaha</div>
-            <div id="estPackageName" class="text-xl sm:text-2xl font-extrabold text-surface mt-1">Paket Landing Page & Jasa</div>
-            <div id="estPackageDesc" class="text-xs text-stone-300 mt-1 leading-relaxed">Cocok untuk kontraktor, service AC, konveksi, rental mobil & klinik.</div>
-          </div>
-
-          <div class="p-4 bg-stone-900 border border-stone-800 rounded-lg space-y-2">
-            <div class="flex items-center justify-between text-xs text-stone-400">
-              <span>Paket Dasar:</span>
-              <span id="estBasePrice" class="font-mono text-surface font-semibold">Rp 950.000</span>
-            </div>
-            <div class="flex items-center justify-between text-xs text-stone-400">
-              <span>Fitur Tambahan:</span>
-              <span id="estAddonPrice" class="font-mono text-surface font-semibold">Rp 0</span>
-            </div>
-            <div class="pt-2 border-t border-stone-800 flex items-baseline justify-between">
-              <span class="text-xs font-mono uppercase text-amber-400 font-bold">TOTAL ESTIMASI:</span>
-              <span id="estTotalPrice" class="text-2xl font-extrabold font-mono text-amber-300">Rp 950.000</span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 text-xs text-stone-300 pt-1">
-            <div class="p-3 bg-stone-900/60 border border-stone-800 rounded">
-              <div class="text-[10px] font-mono uppercase text-stone-400">WAKTU PENGERJAAN</div>
-              <div id="estDuration" class="font-bold text-surface text-sm mt-0.5">3 – 5 Hari Kerja</div>
-            </div>
-            <div class="p-3 bg-stone-900/60 border border-stone-800 rounded">
-              <div class="text-[10px] font-mono uppercase text-stone-400">STATUS PEMBUATAN</div>
-              <div class="font-bold text-emerald-400 text-sm mt-0.5">Terima Jadi &amp; Siap Pakai</div>
-            </div>
-          </div>
-
-          <div class="pt-2 space-y-2">
-            <a id="estWaButton" href="https://wa.me/6289680551957?text=Halo%20jalaninweb.site%2C%20saya%20tertarik%20dengan%20Paket%20Landing%20Page"
-               target="_blank" rel="noopener noreferrer"
-               class="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold text-sm py-3.5 px-4 rounded-lg transition shadow-md">
-              <i class="fa-brands fa-whatsapp text-lg"></i>
-              <span>Kirim Spesifikasi Ini ke WA</span>
-            </a>
-            <p class="text-[11px] text-center text-stone-400">
-              *Bebas konsultasi & ubah kebutuhan saat chat di WhatsApp. Tanpa biaya komitmen.
-            </p>
-          </div>
         </div>
+
       </div>
+
     </div>
   </section>
 
@@ -1782,23 +1896,75 @@
         <h3 class="text-2xl sm:text-3xl font-extrabold text-ink mt-1 mb-6 tracking-tight">
           Pertanyaan yang Sering Diajukan (FAQ)
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- FAQ 1: Tech Stack -->
           <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-center gap-2">
-              <i class="fa-solid fa-circle-question text-accent text-xs"></i>
-              <span>Apakah ada biaya perpanjangan tahunan?</span>
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-code text-accent text-xs mt-1 shrink-0"></i>
+              <span>Teknologi apa yang digunakan oleh JalaninWeb?</span>
             </h4>
             <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Ya, perpanjangan domain dan hosting dimulai pada tahun kedua dengan biaya yang transparan dan terjangkau sesuai jenis domain yang dipilih.
+              Kami menggunakan standar modern kelas industri: Backend <strong class="text-ink">Laravel Framework</strong> yang tangguh dan berkeamanan tinggi, <strong class="text-ink">Tailwind CSS</strong> untuk styling responsif ultra-ringan tanpa CSS kembung/plugin lambat, serta arsitektur mobile-first dengan loading sub-second (&lt; 1 detik) dan skor Google PageSpeed 90+.
             </p>
           </div>
+
+          <!-- FAQ 2: CMS Self-Update (Key Requirement!) -->
           <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-center gap-2">
-              <i class="fa-solid fa-circle-question text-accent text-xs"></i>
-              <span>Berapa lama proses pengerjaannya?</span>
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-pen-to-square text-forest text-xs mt-1 shrink-0"></i>
+              <span>Bisakah saya update konten website sendiri setelah jadi?</span>
             </h4>
             <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Paket Starter membutuhkan waktu sekitar 1–3 hari kerja. Untuk Paket Growth membutuhkan waktu sekitar 3–7 hari kerja setelah materi lengkap.
+              <strong class="text-ink">Tergantung paket yang Anda beli:</strong><br>
+              • Untuk <strong class="text-ink">Paket Growth (Rp 899.000)</strong> &amp; <strong class="text-ink">Enterprise</strong>: BISA dan SANGAT MUDAH. Website dilengkapi Dashboard Admin CMS (Laravel CMS) mandiri untuk ganti foto/teks/katalog kapan saja tanpa paham coding.<br>
+              • Untuk <strong class="text-ink">Paket Starter (Rp 399.000)</strong>: Difokuskan sebagai landing page instan ultra-cepat dengan biaya hemat. Revisi konten minor dibantu via tim support WhatsApp atau bisa upgrade ke Growth kapan pun.
+            </p>
+          </div>
+
+          <!-- FAQ 3: 5-Step Process -->
+          <div class="bg-surface border border-line p-6 hover:border-ink transition">
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-list-check text-accent text-xs mt-1 shrink-0"></i>
+              <span>Bagaimana alur dan step pengerjaan website hingga online?</span>
+            </h4>
+            <p class="text-xs text-muted mt-2.5 leading-relaxed">
+              Alur pengerjaan transparan dalam 5 tahap: <strong class="text-ink">[1] Konsultasi WA</strong> menentukan paket &rarr; <strong class="text-ink">[2] DP 50% &amp; Pengumpulan Materi</strong> (foto, teks, logo) &rarr; <strong class="text-ink">[3] Desain UI/UX &amp; Coding Laravel + Tailwind</strong> &rarr; <strong class="text-ink">[4] Review Live Demo di HP</strong> &amp; revisi sesuai jatah &rarr; <strong class="text-ink">[5] Pelunasan 50% &amp; Serah Terima Penuh</strong> 100% hak milik website serta domain.
+            </p>
+          </div>
+
+          <!-- FAQ 4: Pricing & Durasi -->
+          <div class="bg-surface border border-line p-6 hover:border-ink transition">
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-tags text-forest text-xs mt-1 shrink-0"></i>
+              <span>Berapa paket harga pembuatan website dan durasi pengerjaannya?</span>
+            </h4>
+            <p class="text-xs text-muted mt-2.5 leading-relaxed">
+              Tersedia 3 pilihan paket investasi transparan:<br>
+              • <strong class="text-ink">Starter (Rp 399.000)</strong>: 1–3 hari kerja, landing page 1 halaman responsif.<br>
+              • <strong class="text-ink">Growth (Rp 899.000)</strong>: 3–7 hari kerja, multi-halaman (3–6 halaman) + CMS Admin + Search Console.<br>
+              • <strong class="text-ink">Enterprise (Custom Price)</strong>: 2–4 minggu, sistem kustom, integrasi API &amp; database kompleks.
+            </p>
+          </div>
+
+          <!-- FAQ 5: Perpanjangan & Biaya Tersembunyi -->
+          <div class="bg-surface border border-line p-6 hover:border-ink transition">
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-clock-rotate-left text-accent text-xs mt-1 shrink-0"></i>
+              <span>Apakah ada biaya perpanjangan tahunan atau biaya tersembunyi?</span>
+            </h4>
+            <p class="text-xs text-muted mt-2.5 leading-relaxed">
+              Sama sekali tidak ada biaya tersembunyi. Biaya paket sudah all-in untuk 1 tahun pertama (Domain, Cloud Hosting NVMe, SSL HTTPS, jatah revisi). Perpanjangan sewa domain &amp; hosting baru dimulai pada tahun kedua dengan biaya terjangkau dan transparan sesuai harga resmi registrasi.
+            </p>
+          </div>
+
+          <!-- FAQ 6: Kepemilikan 100% -->
+          <div class="bg-surface border border-line p-6 hover:border-ink transition">
+            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
+              <i class="fa-solid fa-key text-forest text-xs mt-1 shrink-0"></i>
+              <span>Siapa yang memiliki hak kepemilikan atas website setelah jadi?</span>
+            </h4>
+            <p class="text-xs text-muted mt-2.5 leading-relaxed">
+              <strong class="text-ink">100% Hak Milik Anda.</strong> Bukan sistem sewa bulanan yang mengunci operasional bisnis Anda. Setelah serah terima dan pelunasan, seluruh akses registrar domain, akun hosting server, dan source code menjadi aset digital milik Anda seutuhnya tanpa ikatan tersembunyi.
             </p>
           </div>
         </div>
@@ -2398,7 +2564,123 @@
   </footer>
 
   <script>
+    // --- Portfolio Filter & Pagination (Max 10 per page) ---
+    const ITEMS_PER_PAGE = 10;
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let currentPage = 1;
+
+    function renderPortfolio() {
+      const allCards = Array.from(document.querySelectorAll('.porto-card'));
+      const q = searchQuery.toLowerCase().trim();
+
+      // Filter matching cards
+      const matchingCards = allCards.filter(card => {
+        const matchesCat = (currentCategory === 'all' || card.dataset.category === currentCategory);
+        if (!matchesCat) return false;
+        if (!q) return true;
+        const text = (card.innerText + ' ' + (card.dataset.keywords || '')).toLowerCase();
+        return text.includes(q);
+      });
+
+      const totalMatches = matchingCards.length;
+      const totalPages = Math.max(1, Math.ceil(totalMatches / ITEMS_PER_PAGE));
+
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalMatches);
+
+      // Hide all cards first, then show only the active slice
+      allCards.forEach(card => card.style.display = 'none');
+      matchingCards.slice(startIndex, endIndex).forEach(card => {
+        card.style.display = 'flex';
+      });
+
+      // Update counters
+      const countEl = document.getElementById('portoCount');
+      if (countEl) countEl.textContent = totalMatches + ' Proyek';
+
+      const totalFilteredText = document.getElementById('totalFilteredText');
+      if (totalFilteredText) totalFilteredText.textContent = totalMatches;
+
+      const pageRangeText = document.getElementById('pageRangeText');
+      if (pageRangeText) {
+        if (totalMatches === 0) {
+          pageRangeText.textContent = '0';
+        } else {
+          pageRangeText.textContent = `${startIndex + 1}–${endIndex}`;
+        }
+      }
+
+      // Render Pagination Buttons
+      const btnContainer = document.getElementById('paginationButtons');
+      if (btnContainer) {
+        btnContainer.innerHTML = '';
+
+        if (totalMatches <= ITEMS_PER_PAGE) {
+          btnContainer.innerHTML = `
+            <span class="px-3.5 py-1.5 text-xs font-mono font-semibold bg-ink text-surface">1</span>
+          `;
+        } else {
+          // Previous button
+          const prevDisabled = currentPage === 1;
+          const prevBtn = document.createElement('button');
+          prevBtn.className = `px-3 py-1.5 text-xs font-mono font-semibold transition ${
+            prevDisabled 
+              ? 'opacity-40 cursor-not-allowed bg-paper text-muted border border-line' 
+              : 'bg-paper text-ink border border-line hover:border-ink hover:bg-line'
+          }`;
+          prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left mr-1"></i> Prev';
+          prevBtn.disabled = prevDisabled;
+          prevBtn.onclick = () => goToPage(currentPage - 1);
+          btnContainer.appendChild(prevBtn);
+
+          // Page Number buttons
+          for (let p = 1; p <= totalPages; p++) {
+            const pageBtn = document.createElement('button');
+            const isActive = p === currentPage;
+            pageBtn.className = `px-3.5 py-1.5 text-xs font-mono font-semibold transition ${
+              isActive 
+                ? 'bg-ink text-surface' 
+                : 'bg-paper text-ink border border-line hover:border-ink hover:bg-line'
+            }`;
+            pageBtn.textContent = p;
+            pageBtn.onclick = () => goToPage(p);
+            btnContainer.appendChild(pageBtn);
+          }
+
+          // Next button
+          const nextDisabled = currentPage === totalPages;
+          const nextBtn = document.createElement('button');
+          nextBtn.className = `px-3 py-1.5 text-xs font-mono font-semibold transition ${
+            nextDisabled 
+              ? 'opacity-40 cursor-not-allowed bg-paper text-muted border border-line' 
+              : 'bg-paper text-ink border border-line hover:border-ink hover:bg-line'
+          }`;
+          nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right ml-1"></i>';
+          nextBtn.disabled = nextDisabled;
+          nextBtn.onclick = () => goToPage(currentPage + 1);
+          btnContainer.appendChild(nextBtn);
+        }
+      }
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderPortfolio();
+      const katalogEl = document.getElementById('katalog');
+      if (katalogEl) {
+        katalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     function filterPortfolio(category) {
+      currentCategory = category;
+      currentPage = 1;
+
+      // Update category button styling
       document.querySelectorAll('.cat-btn').forEach(btn => {
         if (btn.dataset.cat === category) {
           btn.className = 'cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface shrink-0 transition';
@@ -2407,126 +2689,137 @@
         }
       });
 
-      let count = 0;
-      document.querySelectorAll('.porto-card').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-          count++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      const countEl = document.getElementById('portoCount');
-      if (countEl) countEl.textContent = count + ' Proyek';
+      renderPortfolio();
     }
 
     function searchPortfolio() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      let count = 0;
-      document.querySelectorAll('.porto-card').forEach(card => {
-        const text = (card.innerText + ' ' + (card.dataset.keywords || '')).toLowerCase();
-        const matches = text.includes(q);
-        card.style.display = matches ? 'flex' : 'none';
-        if (matches) count++;
-      });
-      const countEl = document.getElementById('portoCount');
-      if (countEl) countEl.textContent = count + ' Proyek';
+      searchQuery = document.getElementById('searchInput').value;
+      currentPage = 1;
+      renderPortfolio();
     }
 
-    // --- Interactive Estimator Logic (Terinspirasi Renovast & Cargon) ---
+    // --- Interactive Estimator Logic (Tersinkron dengan Pricelist Resmi) ---
     const ESTIMATOR_PACKAGES = {
-      landing: {
-        name: 'Paket Landing Page & Jasa Usaha',
-        basePrice: 950000,
-        desc: 'Cocok untuk kontraktor, service AC, konveksi, rental mobil & klinik.',
-        duration: '3 – 5 Hari Kerja'
+      starter: {
+        name: 'Paket Starter (Landing Page 1 Halaman)',
+        basePrice: 399000,
+        desc: 'Solusi landing page serbacepat untuk promosi produk tunggal atau iklan berbayar (Meta/Google Ads).',
+        duration: '1 – 3 Hari Kerja',
+        hasDomainIncluded: false,
+        hasCmsIncluded: false
       },
-      catalog: {
-        name: 'Paket Katalog & Toko Online WA',
-        basePrice: 1750000,
-        desc: 'Cocok untuk katering, fashion muslimah, skincare BPOM, mebel & pet shop.',
-        duration: '3 – 5 Hari Kerja'
+      growth: {
+        name: 'Paket Growth (3–6 Halaman + CMS)',
+        basePrice: 899000,
+        desc: 'Paling diminati UMKM & jasa lokal. Website multi-halaman lengkap dengan Dashboard Admin CMS mandiri & Google Search Console.',
+        duration: '3 – 7 Hari Kerja',
+        hasDomainIncluded: true,
+        hasCmsIncluded: true
       },
-      booking: {
-        name: 'Paket Sistem Booking Jadwal',
-        basePrice: 2850000,
-        desc: 'Cocok untuk lapangan olahraga/padel, barbershop, salon & villa glamping.',
-        duration: '5 – 7 Hari Kerja'
-      },
-      pos: {
-        name: 'Paket Aplikasi Kasir & POS Manajemen',
-        basePrice: 3900000,
-        desc: 'Cocok untuk kasir cafe/retail, laundry, kos-kosan, bengkel & apotek.',
-        duration: '5 – 7 Hari Kerja'
-      },
-      corporate: {
-        name: 'Paket Corporate B2B & Industri',
-        basePrice: 4500000,
-        desc: 'Cocok untuk kontraktor sipil, kargo logistik, tender B2B & manufaktur.',
-        duration: '7 – 10 Hari Kerja'
+      enterprise: {
+        name: 'Paket Enterprise (Custom & API)',
+        basePrice: 1950000,
+        desc: 'Solusi sistem kustom, integrasi API, booking database kompleks, dan traffic tinggi.',
+        duration: '2 – 4 Minggu',
+        hasDomainIncluded: true,
+        hasCmsIncluded: true
       }
     };
 
-    let currentEstimatorType = 'landing';
+    let currentEstimatorType = 'growth';
 
     function selectEstimatorType(type) {
       currentEstimatorType = type;
       document.querySelectorAll('.est-type-btn').forEach(btn => {
         if (btn.dataset.type === type) {
-          btn.className = 'est-type-btn p-3 border border-ink bg-ink text-surface text-left transition rounded-md';
+          btn.className = 'est-type-btn p-3.5 border border-ink bg-ink text-surface text-left transition relative';
+          const title = btn.querySelector('.text-sm');
+          if (title) title.className = 'text-sm font-extrabold text-surface mt-0.5';
           const sub = btn.querySelector('.text-\\[10px\\]');
-          if (sub) { sub.className = 'text-[10px] opacity-80 mt-0.5'; }
+          if (sub) sub.className = 'text-[10px] opacity-80 mt-1';
         } else {
-          btn.className = 'est-type-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-md';
+          btn.className = 'est-type-btn p-3.5 border border-line bg-paper text-ink text-left transition hover:border-ink';
+          const title = btn.querySelector('.text-sm');
+          if (title) title.className = 'text-sm font-extrabold text-ink mt-0.5';
           const sub = btn.querySelector('.text-\\[10px\\]');
-          if (sub) { sub.className = 'text-[10px] text-muted mt-0.5'; }
+          if (sub) sub.className = 'text-[10px] text-muted mt-1';
         }
       });
       calculateEstimator();
     }
 
     function calculateEstimator() {
-      const pkg = ESTIMATOR_PACKAGES[currentEstimatorType] || ESTIMATOR_PACKAGES.landing;
+      const pkg = ESTIMATOR_PACKAGES[currentEstimatorType] || ESTIMATOR_PACKAGES.growth;
       let addonTotal = 0;
       const selectedAddons = [];
 
-      if (document.getElementById('featCalc')?.checked) {
-        addonTotal += 250000;
-        selectedAddons.push('Kalkulator Hitung Custom (+250rb)');
+      // Update CMS & Domain addon labels based on package
+      const featCmsEl = document.getElementById('featCms');
+      const featCmsNote = document.getElementById('featCmsNote');
+      const featCmsPrice = document.getElementById('featCmsPrice');
+      if (pkg.hasCmsIncluded) {
+        if (featCmsEl) { featCmsEl.checked = true; featCmsEl.disabled = true; }
+        if (featCmsNote) featCmsNote.textContent = 'Sudah termasuk gratis di Paket Growth & Enterprise';
+        if (featCmsPrice) { featCmsPrice.textContent = 'Termasuk'; featCmsPrice.className = 'font-mono text-emerald-700 font-bold shrink-0'; }
+      } else {
+        if (featCmsEl) { featCmsEl.disabled = false; }
+        if (featCmsNote) featCmsNote.textContent = 'Dashboard Admin CMS mandiri untuk ganti foto & teks kapan saja';
+        if (featCmsPrice) { featCmsPrice.textContent = '+Rp 450.000'; featCmsPrice.className = 'font-mono text-ink font-semibold shrink-0'; }
+        if (featCmsEl?.checked) {
+          addonTotal += 450000;
+          selectedAddons.push('Dashboard Admin CMS (+450rb)');
+        }
       }
+
+      const featDomainEl = document.getElementById('featDomain');
+      const featDomainNote = document.getElementById('featDomainNote');
+      const featDomainPrice = document.getElementById('featDomainPrice');
+      if (pkg.hasDomainIncluded) {
+        if (featDomainEl) { featDomainEl.checked = true; featDomainEl.disabled = true; }
+        if (featDomainNote) featDomainNote.textContent = 'Domain .com / .id & Cloud Server NVMe sudah termasuk';
+        if (featDomainPrice) { featDomainPrice.textContent = 'Termasuk'; featDomainPrice.className = 'font-mono text-emerald-700 font-bold shrink-0'; }
+      } else {
+        if (featDomainEl) { featDomainEl.disabled = false; }
+        if (featDomainNote) featDomainNote.textContent = 'Upgrade ke domain bergengsi .com / .id (default: .my.id / .site)';
+        if (featDomainPrice) { featDomainPrice.textContent = '+Rp 150.000'; featDomainPrice.className = 'font-mono text-ink font-semibold shrink-0'; }
+        if (featDomainEl?.checked) {
+          addonTotal += 150000;
+          selectedAddons.push('Upgrade Domain .com/.id (+150rb)');
+        }
+      }
+
       if (document.getElementById('featBooking')?.checked) {
-        addonTotal += 450000;
-        selectedAddons.push('Matriks Jam Kosong (+450rb)');
+        addonTotal += 350000;
+        selectedAddons.push('Sistem Kalender & Booking (+350rb)');
       }
       if (document.getElementById('featQris')?.checked) {
-        addonTotal += 350000;
-        selectedAddons.push('Pembayaran QRIS (+350rb)');
+        addonTotal += 250000;
+        selectedAddons.push('Integrasi QRIS Otomatis (+250rb)');
       }
-      if (document.getElementById('featThermal')?.checked) {
-        addonTotal += 300000;
-        selectedAddons.push('Cetak Struk Kasir (+300rb)');
+      if (document.getElementById('featCalc')?.checked) {
+        addonTotal += 250000;
+        selectedAddons.push('Kalkulator Hitung Biaya Custom (+250rb)');
       }
 
       const total = pkg.basePrice + addonTotal;
-
       const formatRp = (num) => 'Rp ' + num.toLocaleString('id-ID');
 
       document.getElementById('estPackageName').textContent = pkg.name;
       document.getElementById('estPackageDesc').textContent = pkg.desc;
-      document.getElementById('estBasePrice').textContent = formatRp(pkg.basePrice);
+      document.getElementById('estBasePrice').textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(pkg.basePrice) : formatRp(pkg.basePrice);
       document.getElementById('estAddonPrice').textContent = formatRp(addonTotal);
-      document.getElementById('estTotalPrice').textContent = formatRp(total);
+      document.getElementById('estTotalPrice').textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(total) : formatRp(total);
       document.getElementById('estDuration').textContent = pkg.duration;
 
       // Construct WhatsApp prefilled message
-      let waText = `Halo jalaninweb.site, saya ingin konsultasi website dengan hasil simulasi berikut:\n` +
-                   `• Paket Usaha: ${pkg.name}\n` +
-                   `• Estimasi Total: ${formatRp(total)}\n` +
+      let waText = `Halo jalaninweb.site, saya ingin konsultasi pembuatan website dengan rincian berikut:\n` +
+                   `• Paket Terpilih: ${pkg.name}\n` +
+                   `• Estimasi Biaya: ${formatRp(total)}\n` +
                    `• Waktu Pengerjaan: ${pkg.duration}\n`;
       if (selectedAddons.length > 0) {
         waText += `• Fitur Tambahan: ${selectedAddons.join(', ')}\n`;
       }
-      waText += `Mohon dibantu info proses pembuatan dan diskusinya. Terima kasih!`;
+      waText += `Mohon dibantu info alur pengerjaan dan diskusinya. Terima kasih!`;
 
       const waBtn = document.getElementById('estWaButton');
       if (waBtn) {
@@ -2534,8 +2827,9 @@
       }
     }
 
-    // Initialize estimator
+    // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
+      renderPortfolio();
       calculateEstimator();
     });
 
