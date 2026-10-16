@@ -114,13 +114,28 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
 
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      tabPanes.forEach(p => {
+        p.classList.remove('active');
+        const video = p.querySelector('video');
+        if (video) {
+          video.pause();
+        }
+      });
 
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       const activePane = document.getElementById(targetTab);
       if (activePane) {
         activePane.classList.add('active');
+        const activeVideo = activePane.querySelector('video');
+        if (activeVideo) {
+          activeVideo.currentTime = 0;
+          activeVideo.play().catch(() => {});
+        }
       }
     });
   });

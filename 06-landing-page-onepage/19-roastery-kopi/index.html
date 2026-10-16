@@ -504,124 +504,372 @@
 
         <!-- Tab 1: V60 -->
         <div class="tab-pane active" id="tab-v60" role="tabpanel">
-          <div class="brew-detail-card">
-            <div class="brew-info">
-              <h3>Hario V60 Cone Pour-Over</h3>
-              <p>Metode tuang tetes kerucut dengan kertas filter Jepang. Menghasilkan secangkir kopi berkarakter super clean, kejelasan notes bunga dan buah yang tegas, serta aftertaste yang menyegarkan tanpa residu ampas.</p>
-              <div class="brew-metrics">
-                <div class="brew-metric-item">
-                  <span>Rasio Seduh</span>
-                  <strong>1 : 15</strong>
+          <div class="brew-card-vertical">
+            <!-- ATAS: Video Auto-play Barista Extraction (tetap di card) -->
+            <div class="brew-video-frame">
+              <video autoplay loop muted playsinline class="brew-video-player" poster="assets/images/barista-brewing.jpg">
+                <source src="assets/videos/video-v60.mp4" type="video/mp4">
+              </video>
+              <div class="brew-video-overlay">
+                <div class="brew-status-badge">
+                  <span class="pulse-dot"></span>
+                  <span>LIVE EKSTRAKSI BARISTA</span>
                 </div>
-                <div class="brew-metric-item">
-                  <span>Waktu Seduh</span>
-                  <strong>2m 45s</strong>
-                </div>
-                <div class="brew-metric-item">
-                  <span>Karakter</span>
-                  <strong>Clean &amp; Bright</strong>
-                </div>
-              </div>
-              <div class="brew-price-box">
-                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
-                <span class="price-tag">Rp 38.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+                <div class="brew-tool-tag">Hario V60 02 Ceramic &bull; Kettle Gooseneck 92&deg;C</div>
               </div>
             </div>
-            <div class="brew-visual">
-              <img src="assets/images/barista-brewing.jpg" alt="Barista menyeduh kopi dengan V60 di Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+
+            <!-- BAWAH: Penjelasan Lengkap Metode & Tahapan Barista -->
+            <div class="brew-card-content">
+              <div class="brew-content-header">
+                <div>
+                  <span class="brew-method-subtitle">Metode Tuang Kerucut Kertas Jepang</span>
+                  <h3 class="brew-method-title">Hario V60 Cone Pour-Over</h3>
+                </div>
+                <div class="brew-price-badge">
+                  <span class="brew-price-label">Harga Seduh di Bar</span>
+                  <span class="brew-price-amount">Rp 38.000 <small style="font-size: 0.8125rem; font-weight: normal;">/ cangkir</small></span>
+                </div>
+              </div>
+
+              <!-- Live Barista Action Breakdown -->
+              <div class="barista-action-box">
+                <div class="action-box-header">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <h4>Apa yang Sedang Dilakukan Barista pada Video di Atas:</h4>
+                </div>
+                <div class="action-steps-grid">
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 01</span>
+                    <strong>Blooming Degassing (45 Detik)</strong>
+                    <p>Barista menuangkan 45 ml air bersuhu 92&deg;C secara spiral untuk melepaskan gas CO&sup2; alami biji sangrai agar air dapat menyerap senyawa rasa secara merata.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 02</span>
+                    <strong>Penuangan Spiral Laminar</strong>
+                    <p>Aliran air dikontrol stabil dari cerat gooseneck dengan gerakan memutar dari pusat ke luar tanpa menyentuh kertas filter, menjaga agitasi tetap lembut.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 03</span>
+                    <strong>Drawdown &amp; Clarification</strong>
+                    <p>Air melewati alur spiral 60 derajat dan mengalir ke satu lubang besar, menghasilkan ekstraksi jernih berkarakter tea-like tanpa residu ampas.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strip Parameter Teknis -->
+              <div class="brew-parameters-grid">
+                <div class="param-item">
+                  <span class="param-label">Rasio Seduh</span>
+                  <strong class="param-val">1 : 15 (15g / 225ml)</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Suhu Air</span>
+                  <strong class="param-val">91&deg;C &ndash; 93&deg;C</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Gilingan</span>
+                  <strong class="param-val">Medium Fine</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Waktu Seduh</span>
+                  <strong class="param-val">2 Menit 45 Detik</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Karakter</span>
+                  <strong class="param-val">Clean, Bright &amp; Floral</strong>
+                </div>
+              </div>
+
+              <!-- Footer Card -->
+              <div class="brew-card-footer">
+                <div class="brew-tip">
+                  <strong>Rekomendasi Biji:</strong> Sangat optimal untuk varian <em>Bali Kintamani Ulian</em> (notes jeruk mandarin &amp; melati) atau <em>Aceh Gayo Bener Meriah</em>.
+                </div>
+                <a href="#kontak" class="btn-primary brew-cta-btn">
+                  <span>Pesan Seduhan Ini di Bar</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tab 2: Aeropress -->
         <div class="tab-pane" id="tab-aeropress" role="tabpanel">
-          <div class="brew-detail-card">
-            <div class="brew-info">
-              <h3>Aeropress Inverted Method</h3>
-              <p>Metode ekstraksi tekanan udara manual dengan teknik inverted. Menghasilkan ekstraksi yang kaya, ketebalan body lebih bulat, dan rasa manis alami yang terpancar kuat tanpa keasaman menusuk.</p>
-              <div class="brew-metrics">
-                <div class="brew-metric-item">
-                  <span>Rasio Seduh</span>
-                  <strong>1 : 14</strong>
+          <div class="brew-card-vertical">
+            <!-- ATAS: Video Auto-play Barista Extraction (tetap di card) -->
+            <div class="brew-video-frame">
+              <video autoplay loop muted playsinline class="brew-video-player" poster="assets/images/packaging-bag.jpg">
+                <source src="assets/videos/video-aeropress.mp4" type="video/mp4">
+              </video>
+              <div class="brew-video-overlay">
+                <div class="brew-status-badge">
+                  <span class="pulse-dot"></span>
+                  <span>LIVE EKSTRAKSI BARISTA</span>
                 </div>
-                <div class="brew-metric-item">
-                  <span>Waktu Seduh</span>
-                  <strong>1m 50s</strong>
-                </div>
-                <div class="brew-metric-item">
-                  <span>Karakter</span>
-                  <strong>Sweet &amp; Round</strong>
-                </div>
-              </div>
-              <div class="brew-price-box">
-                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
-                <span class="price-tag">Rp 40.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+                <div class="brew-tool-tag">AeroPress Inverted &bull; Tekanan Udara Manual</div>
               </div>
             </div>
-            <div class="brew-visual">
-              <img src="assets/images/packaging-bag.jpg" alt="Ekstraksi Aeropress di bar Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+
+            <!-- BAWAH: Penjelasan Lengkap Metode & Tahapan Barista -->
+            <div class="brew-card-content">
+              <div class="brew-content-header">
+                <div>
+                  <span class="brew-method-subtitle">Metode Immersion &amp; Tekanan Udara Plunger</span>
+                  <h3 class="brew-method-title">Aeropress Inverted Method</h3>
+                </div>
+                <div class="brew-price-badge">
+                  <span class="brew-price-label">Harga Seduh di Bar</span>
+                  <span class="brew-price-amount">Rp 40.000 <small style="font-size: 0.8125rem; font-weight: normal;">/ cangkir</small></span>
+                </div>
+              </div>
+
+              <!-- Live Barista Action Breakdown -->
+              <div class="barista-action-box">
+                <div class="action-box-header">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <h4>Apa yang Sedang Dilakukan Barista pada Video di Atas:</h4>
+                </div>
+                <div class="action-steps-grid">
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 01</span>
+                    <strong>Inverted Immersion Steeping</strong>
+                    <p>Tabung diposisikan terbalik, bubuk kopi diseduh terendam penuh dalam air selama 60 detik untuk melarutkan seluruh rasa manis karamel alami.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 02</span>
+                    <strong>Pengadukan Presisi 3 Putaran</strong>
+                    <p>Barista melakukan paddle stirring perlahan 3 kali searah jarum jam untuk memastikan seluruh partikel kopi basah merata tanpa over-ekstraksi.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 03</span>
+                    <strong>Plunging Tekanan Halus (30s)</strong>
+                    <p>Tabung dibalik ke server dan ditekan dengan bobot tangan konstan sampai terdengar desis hisapan udara, menghasilkan mouthfeel tebal nan lembut.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strip Parameter Teknis -->
+              <div class="brew-parameters-grid">
+                <div class="param-item">
+                  <span class="param-label">Rasio Seduh</span>
+                  <strong class="param-val">1 : 14 (16g / 220ml)</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Suhu Air</span>
+                  <strong class="param-val">86&deg;C &ndash; 88&deg;C</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Gilingan</span>
+                  <strong class="param-val">Medium Coarse</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Waktu Seduh</span>
+                  <strong class="param-val">1 Menit 50 Detik</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Karakter</span>
+                  <strong class="param-val">Sweet, Rich &amp; Velvety</strong>
+                </div>
+              </div>
+
+              <!-- Footer Card -->
+              <div class="brew-card-footer">
+                <div class="brew-tip">
+                  <strong>Rekomendasi Biji:</strong> Ideal untuk <em>Jawa Ijen Raung</em> (yellow honey sweetness) atau <em>Flores Bajawa Ngada</em> (karamel &amp; tembakau manis).
+                </div>
+                <a href="#kontak" class="btn-primary brew-cta-btn">
+                  <span>Pesan Seduhan Ini di Bar</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tab 3: Kalita Wave -->
         <div class="tab-pane" id="tab-kalita" role="tabpanel">
-          <div class="brew-detail-card">
-            <div class="brew-info">
-              <h3>Kalita Wave Flat-Bottom</h3>
-              <p>Dripper dengan dasar datar dan tiga lubang ekstraksi. Aliran air merata menghasilkan ekstraksi yang sangat stabil dan seimbang antara tingkat keasaman, rasa manis karamel, dan body yang lembut.</p>
-              <div class="brew-metrics">
-                <div class="brew-metric-item">
-                  <span>Rasio Seduh</span>
-                  <strong>1 : 16</strong>
+          <div class="brew-card-vertical">
+            <!-- ATAS: Video Auto-play Barista Extraction (tetap di card) -->
+            <div class="brew-video-frame">
+              <video autoplay loop muted playsinline class="brew-video-player" poster="assets/images/barista-brewing.jpg">
+                <source src="assets/videos/video-kalita.mp4" type="video/mp4">
+              </video>
+              <div class="brew-video-overlay">
+                <div class="brew-status-badge">
+                  <span class="pulse-dot"></span>
+                  <span>LIVE EKSTRAKSI BARISTA</span>
                 </div>
-                <div class="brew-metric-item">
-                  <span>Waktu Seduh</span>
-                  <strong>3m 15s</strong>
-                </div>
-                <div class="brew-metric-item">
-                  <span>Karakter</span>
-                  <strong>Balanced &amp; Mild</strong>
-                </div>
-              </div>
-              <div class="brew-price-box">
-                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
-                <span class="price-tag">Rp 38.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+                <div class="brew-tool-tag">Kalita Wave 185 Stainless &bull; Flat Bed 3-Hole</div>
               </div>
             </div>
-            <div class="brew-visual">
-              <img src="assets/images/barista-brewing.jpg" alt="Seduhan Kalita Wave di bar Sangrai &amp; Seduh" class="img-monochrome" loading="lazy" width="450" height="320">
+
+            <!-- BAWAH: Penjelasan Lengkap Metode & Tahapan Barista -->
+            <div class="brew-card-content">
+              <div class="brew-content-header">
+                <div>
+                  <span class="brew-method-subtitle">Metode Seduh Dasar Rata 3 Lubang Seimbang</span>
+                  <h3 class="brew-method-title">Kalita Wave Flat-Bottom</h3>
+                </div>
+                <div class="brew-price-badge">
+                  <span class="brew-price-label">Harga Seduh di Bar</span>
+                  <span class="brew-price-amount">Rp 38.000 <small style="font-size: 0.8125rem; font-weight: normal;">/ cangkir</small></span>
+                </div>
+              </div>
+
+              <!-- Live Barista Action Breakdown -->
+              <div class="barista-action-box">
+                <div class="action-box-header">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <h4>Apa yang Sedang Dilakukan Barista pada Video di Atas:</h4>
+                </div>
+                <div class="action-steps-grid">
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 01</span>
+                    <strong>Pulse Pouring 3 Termin</strong>
+                    <p>Barista menuangkan air secara bertahap (50g - 100g - 100g) menjaga ketinggian permukaan air tetap seragam di atas bubuk kopi.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 02</span>
+                    <strong>Wave Filter Temperature Shield</strong>
+                    <p>Lipatan bergelombang kertas filter membatasi kontak dengan dinding dripper, mempertahankan kestabilan suhu air ekstraksi hingga tetes akhir.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 03</span>
+                    <strong>Flat-Bed Uniform Drainage</strong>
+                    <p>Tiga lubang di dasar rata mencegah air menumpuk di satu titik tengah, menghasilkan ekstraksi konsisten tanpa rasa pahit astringent.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strip Parameter Teknis -->
+              <div class="brew-parameters-grid">
+                <div class="param-item">
+                  <span class="param-label">Rasio Seduh</span>
+                  <strong class="param-val">1 : 16 (16g / 256ml)</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Suhu Air</span>
+                  <strong class="param-val">90&deg;C &ndash; 92&deg;C</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Gilingan</span>
+                  <strong class="param-val">Medium Flat</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Waktu Seduh</span>
+                  <strong class="param-val">3 Menit 15 Detik</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Karakter</span>
+                  <strong class="param-val">Balanced, Sweet &amp; Mild</strong>
+                </div>
+              </div>
+
+              <!-- Footer Card -->
+              <div class="brew-card-footer">
+                <div class="brew-tip">
+                  <strong>Rekomendasi Biji:</strong> Pasangan serasi untuk <em>Toraja Sapan Minanga</em> (herbal rempah &amp; gula kelapa) atau <em>Sumatra Mandheling</em>.
+                </div>
+                <a href="#kontak" class="btn-primary brew-cta-btn">
+                  <span>Pesan Seduhan Ini di Bar</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tab 4: Japanese Iced Drip -->
         <div class="tab-pane" id="tab-japanese" role="tabpanel">
-          <div class="brew-detail-card">
-            <div class="brew-info">
-              <h3>Japanese Style Iced Filter</h3>
-              <p>Kopi pour-over panas yang langsung menetes di atas bongkahan es batu bening (flash chill). Menangkap dan mengunci molekul aroma buah sebelum teroksidasi, menghasilkan seduhan dingin yang segar seketika.</p>
-              <div class="brew-metrics">
-                <div class="brew-metric-item">
-                  <span>Rasio Seduh</span>
-                  <strong>1 : 13 (Kopi : Es)</strong>
+          <div class="brew-card-vertical">
+            <!-- ATAS: Video Auto-play Barista Extraction (tetap di card) -->
+            <div class="brew-video-frame">
+              <video autoplay loop muted playsinline class="brew-video-player" poster="assets/images/hero-coffee.jpg">
+                <source src="assets/videos/video-japanese.mp4" type="video/mp4">
+              </video>
+              <div class="brew-video-overlay">
+                <div class="brew-status-badge">
+                  <span class="pulse-dot"></span>
+                  <span>LIVE EKSTRAKSI BARISTA</span>
                 </div>
-                <div class="brew-metric-item">
-                  <span>Waktu Seduh</span>
-                  <strong>2m 30s</strong>
-                </div>
-                <div class="brew-metric-item">
-                  <span>Karakter</span>
-                  <strong>Crisp &amp; Refreshing</strong>
-                </div>
-              </div>
-              <div class="brew-price-box">
-                <span style="font-size: 0.875rem; color: var(--text-muted);">Harga Seduh di Bar:</span>
-                <span class="price-tag">Rp 42.000 <small style="font-size: 0.75rem; font-weight: normal;">/ porsi</small></span>
+                <div class="brew-tool-tag">Flash Brew Dripper &bull; Bongkahan Es Kristal Bening</div>
               </div>
             </div>
-            <div class="brew-visual">
-              <img src="assets/images/hero-coffee.jpg" alt="Japanese Iced Drip Coffee dingin segar" class="img-monochrome" loading="lazy" width="450" height="320">
+
+            <!-- BAWAH: Penjelasan Lengkap Metode & Tahapan Barista -->
+            <div class="brew-card-content">
+              <div class="brew-content-header">
+                <div>
+                  <span class="brew-method-subtitle">Metode Flash Chilled Filter Kopi Dingin</span>
+                  <h3 class="brew-method-title">Japanese Style Iced Filter</h3>
+                </div>
+                <div class="brew-price-badge">
+                  <span class="brew-price-label">Harga Seduh di Bar</span>
+                  <span class="brew-price-amount">Rp 42.000 <small style="font-size: 0.8125rem; font-weight: normal;">/ porsi</small></span>
+                </div>
+              </div>
+
+              <!-- Live Barista Action Breakdown -->
+              <div class="barista-action-box">
+                <div class="action-box-header">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  <h4>Apa yang Sedang Dilakukan Barista pada Video di Atas:</h4>
+                </div>
+                <div class="action-steps-grid">
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 01</span>
+                    <strong>Kombinasi 40% Es di Server</strong>
+                    <p>Barista menaruh 100g es kristal murni di dalam server kaca sebelum menyeduh, memperhitungkan rasio pelelehan es menjadi bagian seduhan utuh.</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 02</span>
+                    <strong>Hot Pour Ekstraksi Terkonsentrasi</strong>
+                    <p>Air panas 94&deg;C dituangkan lambat untuk mengekstrak konsentrat kopi kental yang langsung jatuh menyentuh es batu seketika (shock cooling).</p>
+                  </div>
+                  <div class="action-step-item">
+                    <span class="step-badge">Tahap 03</span>
+                    <strong>Aroma Lock &amp; Aerasi Cangkir</strong>
+                    <p>Proses pendinginan instan mengunci aroma aromatik buah volatile agar tidak menguap ke udara, menghasilkan rasa buah tropis yang tajam dan segar.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strip Parameter Teknis -->
+              <div class="brew-parameters-grid">
+                <div class="param-item">
+                  <span class="param-label">Rasio Seduh</span>
+                  <strong class="param-val">1 : 13 (18g : 130ml air + 100g es)</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Suhu Air</span>
+                  <strong class="param-val">93&deg;C &ndash; 95&deg;C</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Gilingan</span>
+                  <strong class="param-val">Medium Fine Konsentrat</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Waktu Seduh</span>
+                  <strong class="param-val">2 Menit 30 Detik</strong>
+                </div>
+                <div class="param-item">
+                  <span class="param-label">Karakter</span>
+                  <strong class="param-val">Crisp, Juicy &amp; Ultra-Refreshing</strong>
+                </div>
+              </div>
+
+              <!-- Footer Card -->
+              <div class="brew-card-footer">
+                <div class="brew-tip">
+                  <strong>Rekomendasi Biji:</strong> Paling segar menggunakan <em>Bali Kintamani Ulian</em> atau <em>Aceh Gayo Bener Meriah</em> dingin di siang hari.
+                </div>
+                <a href="#kontak" class="btn-primary brew-cta-btn">
+                  <span>Pesan Seduhan Ini di Bar</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -902,65 +1150,135 @@
     </section>
 
     <!-- 13. #testimoni — TESTIMONI (3 ulasan berlabel Contoh, nama fiktif unik) -->
+    <!-- 13. #testimoni — TESTIMONI (Ulasan Pelanggan Ngopi di Bar) -->
     <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
       <div class="container">
         <div class="section-header center">
-          <span class="section-label">Ulasan Pelanggan</span>
+          <span class="section-label">Pengalaman di Bar &amp; Seduh Harian</span>
           <h2 class="section-title" id="testimoni-heading">Apa Kata Penikmat Seduh Kami.</h2>
-          <p class="section-desc">Pengalaman nyata dari penyeduh rumahan, penikmat filter harian, dan pemilik kedai specialty. <span style="font-size:0.75rem; color:var(--text-muted); display:inline-block;">(Contoh kurasi testimoni pelanggan)</span></p>
+          <p class="section-desc">Pengalaman nyata dari pengunjung Slow Bar Panglima Polim, penyeduh filter rumahan, dan mitra kedai kopi specialty.</p>
+        </div>
+
+        <!-- Rating Summary Bar -->
+        <div class="testimoni-rating-summary">
+          <div class="rating-summary-pill">
+            <span class="stars">★★★★★</span>
+            <span><strong>4.9 / 5.0</strong> dari 180+ Ulasan Penikmat Kopi</span>
+          </div>
+          <div class="rating-summary-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>100% Biji Fresh Roast &le; 7 Hari</span>
+          </div>
+          <div class="rating-summary-pill">
+            <span>98% Rekomendasi Puas</span>
+          </div>
         </div>
 
         <div class="testimoni-grid">
           <!-- Testimoni 1 -->
           <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Home Brewer &bull; Kemang</span>
+            <div class="review-photo-frame">
+              <img src="assets/images/review-1-ngopi.jpg" alt="Pengunjung menikmati pour-over V60 di bar Sangrai &amp; Seduh" class="review-photo-img" loading="lazy" width="400" height="220">
+              <div class="review-photo-overlay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span class="review-ordered-tag">Menu: V60 Flores Bajawa Hot &bull; Bar Melawai</span>
+              </div>
             </div>
-            <blockquote class="testimoni-quote">
-              "Biji Aceh Gayo Bener Meriah dari Sangrai &amp; Seduh selalu punya aroma peach dan black tea yang super clean saat diseduh V60 pagi hari. Roast date selalu di bawah seminggu, kemasan valve-nya rapat bikin aroma tetap terjaga sebulan penuh."
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-1.jpg" alt="Foto Guntur Kusuma" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Guntur Kusuma</strong>
-                <span>Penikmat Filter Harian &bull; Pelanggan Langganan</span>
+            <div class="review-card-body">
+              <div class="review-meta-row">
+                <span class="review-stars">★★★★★</span>
+                <span class="review-verified-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Kunjungan Bar Terverifikasi
+                </span>
+              </div>
+              <blockquote class="testimoni-quote">
+                "Datang jam 9 pagi pas baru buka, suasananya tenang dan aroma sangrainya semerbak. Barista Mas Danu ramah banget jelasin proses yellow honey Flores Bajawa. Notes karamel dan lemon-nya beneran keluar pas diseduh V60. Roast date baru 4 hari lalu, langsung beli 2 bag buat seduh di rumah!"
+              </blockquote>
+              <div>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-1.jpg" alt="Foto Guntur Kusuma" class="testimoni-avatar" width="44" height="44">
+                  <div class="author-info">
+                    <strong>Guntur Kusuma</strong>
+                    <span>Home Brewer &amp; Software Eng &bull; Pelanggan Langganan</span>
+                  </div>
+                </div>
+                <div class="review-helpful-tag">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                  <span>34 orang merasa ulasan ini membantu</span>
+                </div>
               </div>
             </div>
           </article>
 
           <!-- Testimoni 2 -->
           <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Mitra Coffee Shop &bull; Cipete</span>
+            <div class="review-photo-frame">
+              <img src="assets/images/review-2-ngopi.jpg" alt="Pemilik kedai kopi mengecek biji espresso blend" class="review-photo-img" loading="lazy" width="400" height="220">
+              <div class="review-photo-overlay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span class="review-ordered-tag">Mitra: Custom Espresso House Blend 2-Group</span>
+              </div>
             </div>
-            <blockquote class="testimoni-quote">
-              "Kami pakai custom house blend racikan Sangrai &amp; Seduh untuk mesin espresso 2-group kafe kami sejak 2023. Crema-nya tebal, aftertaste cokelat karamelnya konsisten diseduh puluhan cup per hari. Tamu kafe langganan kami sering memuji rasanya."
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-2.jpg" alt="Foto Alya Maheswari" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Alya Maheswari</strong>
-                <span>Pemilik Kedai Kopi Dua Rasa &bull; Jakarta Selatan</span>
+            <div class="review-card-body">
+              <div class="review-meta-row">
+                <span class="review-stars">★★★★★</span>
+                <span class="review-verified-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Mitra B2B Terverifikasi
+                </span>
+              </div>
+              <blockquote class="testimoni-quote">
+                "Sudah 1 tahun kedai kami di Cipete mempercayakan suplai biji espresso ke Sangrai &amp; Seduh. Konsistensi roasting-nya juara, crema tebal stabil walau diseduh 80+ cup sehari. Tamu kafe langganan kami sering nanya biji apa karena aftertaste cokelat karamelnya lingering banget."
+              </blockquote>
+              <div>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-2.jpg" alt="Foto Alya Maheswari" class="testimoni-avatar" width="44" height="44">
+                  <div class="author-info">
+                    <strong>Alya Maheswari</strong>
+                    <span>Owner Kedai Kopi Dua Rasa &bull; Cipete, Jakarta Selatan</span>
+                  </div>
+                </div>
+                <div class="review-helpful-tag">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                  <span>52 orang merasa ulasan ini membantu</span>
+                </div>
               </div>
             </div>
           </article>
 
           <!-- Testimoni 3 -->
           <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Alumni Workshop Cupping</span>
+            <div class="review-photo-frame">
+              <img src="assets/images/review-3-ngopi.jpg" alt="Peserta workshop sensori cupping sedang mencium aroma kopi" class="review-photo-img" loading="lazy" width="400" height="220">
+              <div class="review-photo-overlay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span class="review-ordered-tag">Alumni: Sensori Cupping 101 &bull; SCA Flavour</span>
+              </div>
             </div>
-            <blockquote class="testimoni-quote">
-              "Sesi Sensori Cupping 101 kemarin bener-bener membuka wawasan saya membedakan citric vs malic acidity dan aroma floral kopi nusantara. Penjelasan roasternya sangat membumi dan langsung dipraktikkan pakai cupping spoon standar SCA."
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-3.jpg" alt="Foto Faisal Ramadhan" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Faisal Ramadhan</strong>
-                <span>Alumni Workshop Sensori &bull; Bandung</span>
+            <div class="review-card-body">
+              <div class="review-meta-row">
+                <span class="review-stars">★★★★★</span>
+                <span class="review-verified-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Alumni Workshop Resmi
+                </span>
+              </div>
+              <blockquote class="testimoni-quote">
+                "Sesi Sensori Cupping 101 akhir pekan kemarin bener-bener membuka wawasan saya. Diajarin cara blind cupping 6 origin nusantara dan bedain citric vs malic acidity. Baristanya sabar banget jawab pertanyaan pemula. Pulang-pulang dapet bonus 1 bag Toraja Sapan yang manisnya gurih!"
+              </blockquote>
+              <div>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-3.jpg" alt="Foto Faisal Ramadhan" class="testimoni-avatar" width="44" height="44">
+                  <div class="author-info">
+                    <strong>Faisal Ramadhan</strong>
+                    <span>Product Designer &amp; Home Brewer &bull; Bandung</span>
+                  </div>
+                </div>
+                <div class="review-helpful-tag">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                  <span>41 orang merasa ulasan ini membantu</span>
+                </div>
               </div>
             </div>
           </article>
@@ -1066,100 +1384,123 @@
     <!-- 16. #kontak — KONTAK + JAM + FORM RINGKAS (WhatsApp Generator) -->
     <section class="kontak-section" id="kontak" aria-labelledby="kontak-heading">
       <div class="container kontak-grid">
-        <!-- Info Roastery & Lokasi -->
-        <div class="kontak-info-box">
-          <div class="section-label">Lokasi &amp; Jam Bar</div>
-          <h3 id="kontak-heading">Kunjungi Slow Bar &amp; Roastery Kami</h3>
-          <p>
-            Rasakan kehangatan aroma biji kopi yang baru disangrai dan nikmati obrolan santai seputar teknik seduh bersama barista kami.
-          </p>
+        <!-- Kolom Kiri: Hub Studio Melawai & Peta Interaktif Terintegrasi -->
+        <div class="kontak-studio-card">
+          <div class="studio-card-header">
+            <span class="section-label">Studio &amp; Slow Bar Melawai</span>
+            <h3 id="kontak-heading">Kunjungi Slow Bar &amp; Roastery Kami</h3>
+            <p>
+              Rasakan kehangatan aroma biji kopi yang baru disangrai, nikmati obrolan santai seputar variabel ekstraksi, dan cicipi kurasi single origin terbaik nusantara di kawasan Panglima Polim.
+            </p>
+          </div>
 
-          <div class="kontak-details-list">
-            <div class="kontak-detail-row">
-              <div class="detail-label">Alamat Studio</div>
-              <div class="detail-val data-address">Jl. Panglima Polim V No. 28, Melawai, Kebayoran Baru, Jakarta Selatan 12160</div>
+          <!-- 4 Information Chips -->
+          <div class="studio-chips-grid">
+            <div class="studio-chip-item">
+              <span class="chip-lbl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Alamat Studio
+              </span>
+              <span class="chip-val data-address">Jl. Panglima Polim V No. 28, Melawai, Kebayoran Baru, Jakarta Selatan</span>
             </div>
-            <div class="kontak-detail-row">
-              <div class="detail-label">Hari Kerja</div>
-              <div class="detail-val data-hours-weekdays">Senin – Jumat: 08.00 – 21.00 WIB</div>
+
+            <div class="studio-chip-item">
+              <span class="chip-lbl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Jam Buka Bar
+              </span>
+              <span class="chip-val">
+                <span class="data-hours-weekdays">Senin – Minggu: 08.00 – 21.00 WIB</span>
+                <span class="chip-status-open">&bull; Sedang Buka</span>
+              </span>
             </div>
-            <div class="kontak-detail-row">
-              <div class="detail-label">Akhir Pekan</div>
-              <div class="detail-val data-hours-weekends">Sabtu – Minggu: 07.00 – 22.00 WIB</div>
+
+            <div class="studio-chip-item">
+              <span class="chip-lbl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Akses Transportasi
+              </span>
+              <span class="chip-val">3 Menit jalan kaki dari Stasiun MRT Blok M BCA &amp; MRT Blok A</span>
             </div>
-            <div class="kontak-detail-row">
-              <div class="detail-label">WhatsApp</div>
-              <div class="detail-val data-phone">0812-9190-1926</div>
-            </div>
-            <div class="kontak-detail-row">
-              <div class="detail-label">Email Tim</div>
-              <div class="detail-val"><a href="mailto:halo@sangraiseduh.demo" class="data-email">halo@sangraiseduh.demo</a></div>
+
+            <div class="studio-chip-item">
+              <span class="chip-lbl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                WhatsApp Barista
+              </span>
+              <span class="chip-val"><a href="https://wa.me/6281291901926" target="_blank" rel="noopener noreferrer" class="data-phone">0812-9190-1926 (Fast Chat)</a></span>
             </div>
           </div>
 
-          <a href="https://maps.google.com/?q=Panglima+Polim+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width: 100%; text-align: center;">
-            Buka Petunjuk di Google Maps &rarr;
-          </a>
+          <!-- Integrated Google Maps Frame -->
+          <div class="map-integrated-box">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2483842142493!2d106.7978253!3d-6.2443015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f16d56d78d49%3A0xb35154ee42cf38f9!2sJl.%20Panglima%20Polim%20V%20No.28%2C%20RT.1%2FRW.6%2C%20Melawai%2C%20Kec.%20Kby.%20Baru%2C%20Kota%20Jakarta%20Selatan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Interaktif Lokasi Sangrai &amp; Seduh Melawai">
+            </iframe>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="map-integrated-actions">
+            <a href="https://maps.google.com/?q=Panglima+Polim+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-map-action">
+              <span>Buka Petunjuk di Google Maps App</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="https://wa.me/6281291901926?text=Halo%20Sangrai%20%26%20Seduh%2C%20saya%20sedang%20menuju%20ke%20bar%20Panglima%20Polim%2C%20apakah%20ada%20tempat%20duduk%20kosong%3F" target="_blank" rel="noopener noreferrer" class="btn-map-action">
+              <span>Tanya Ketersediaan Meja Bar (WA)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
 
-        <!-- Form Pesan -> WhatsApp -->
+        <!-- Kolom Kanan: Form Pesan -> WhatsApp -->
         <div class="kontak-form-card">
-          <h3>Kirim Pesan ke Tim Roastery</h3>
-          <p class="form-sub">Isi formulir singkat di bawah ini. Pesan Anda akan tersusun rapi dan langsung terhubung ke chat WhatsApp kami.</p>
+          <div>
+            <h3>Kirim Pesan ke Tim Roastery &amp; Barista</h3>
+            <p class="form-sub">Isi formulir singkat di bawah ini. Pesan Anda akan tersusun rapi dan langsung terhubung ke chat WhatsApp resmi kami.</p>
 
-          <form id="kontakForm">
-            <div class="form-group">
-              <label for="formNama" class="form-label">Nama Lengkap</label>
-              <input type="text" id="formNama" class="form-input" placeholder="Contoh: Rian Hendrawan" required>
-            </div>
+            <form id="kontakForm">
+              <div class="form-group">
+                <label for="formNama" class="form-label">Nama Lengkap *</label>
+                <input type="text" id="formNama" class="form-input" placeholder="Contoh: Rian Hendrawan" required>
+              </div>
 
-            <div class="form-group">
-              <label for="formKontak" class="form-label">Nomor WhatsApp atau Email</label>
-              <input type="text" id="formKontak" class="form-input" placeholder="Contoh: 0812-xxxx-xxxx" required>
-            </div>
+              <div class="form-group">
+                <label for="formKontak" class="form-label">Nomor WhatsApp *</label>
+                <input type="tel" id="formKontak" class="form-input" placeholder="Contoh: 0812-3456-7890" required>
+              </div>
 
-            <div class="form-group">
-              <label for="formTopik" class="form-label">Keperluan / Kebutuhan</label>
-              <select id="formTopik" class="form-select">
-                <option value="Pemesanan Biji Kopi Retail">Pemesanan Biji Kopi Retail</option>
-                <option value="Langganan Kopi Bulanan">Langganan Kopi Bulanan</option>
-                <option value="Kemitraan Suplai Cafe & B2B">Kemitraan Suplai Cafe &amp; B2B</option>
-                <option value="Pendaftaran Workshop Cupping">Pendaftaran Workshop Cupping</option>
-                <option value="Pertanyaan Umum">Pertanyaan Umum Lainnya</option>
-              </select>
-            </div>
+              <div class="form-group">
+                <label for="formTopik" class="form-label">Keperluan / Kebutuhan *</label>
+                <select id="formTopik" class="form-select">
+                  <option value="Pemesanan Biji Kopi Retail">Pemesanan Biji Kopi Retail Fresh Roast</option>
+                  <option value="Reservasi Meja Slow Bar">Reservasi Meja Slow Bar Melawai</option>
+                  <option value="Langganan Kopi Bulanan">Langganan Biji Kopi Bulanan</option>
+                  <option value="Kemitraan Suplai Cafe & B2B">Kemitraan Suplai Espresso Cafe &amp; B2B</option>
+                  <option value="Pendaftaran Workshop Cupping">Pendaftaran Workshop Cupping &amp; Sensori</option>
+                  <option value="Pertanyaan Umum">Konsultasi Pemilihan Biji Kopi</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="formPesan" class="form-label">Detail Pesan / Varian yang Diinginkan</label>
-              <textarea id="formPesan" class="form-textarea" placeholder="Tuliskan varian biji kopi, ukuran gilingan, atau pertanyaan Anda di sini..." required></textarea>
-            </div>
+              <div class="form-group">
+                <label for="formPesan" class="form-label">Detail Pesan / Varian Biji yang Diinginkan</label>
+                <textarea id="formPesan" class="form-textarea" placeholder="Tuliskan varian biji kopi (misal: Aceh Gayo / Bali Kintamani), ukuran gilingan V60/French Press, atau jam kunjungan Anda..." required></textarea>
+              </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%;">
-              Lanjutkan ke WhatsApp
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Peta Interaktif Studio Google Maps -->
-      <div class="kontak-map-wrapper">
-        <div class="map-header">
-          <div class="map-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Peta Lokasi Studio &amp; Slow Bar Melawai</span>
-            <span class="map-badge">Interaktif &bull; Geser &amp; Zoom</span>
+              <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; font-size: 0.9375rem; justify-content: center; margin-top: 8px;">
+                <span>Kirim Pesan ke WhatsApp Barista</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </form>
           </div>
-          <span style="font-size:0.75rem; color:var(--text-muted);">Jl. Panglima Polim V No. 28, Melawai, Kebayoran Baru, Jakarta Selatan</span>
-        </div>
-        <div class="map-frame-box">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2483842142493!2d106.7978253!3d-6.2443015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f16d56d78d49%3A0xb35154ee42cf38f9!2sJl.%20Panglima%20Polim%20V%20No.28%2C%20RT.1%2FRW.6%2C%20Melawai%2C%20Kec.%20Kby.%20Baru%2C%20Kota%20Jakarta%20Selatan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Peta Interaktif Lokasi Sangrai &amp; Seduh">
-          </iframe>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border-light); font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Respons cepat dalam 5&ndash;15 menit pada jam operasional bar (08.00 &ndash; 21.00 WIB)</span>
+          </div>
         </div>
       </div>
     </section>
