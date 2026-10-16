@@ -193,7 +193,83 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === lightboxModal) closeLightbox();
   });
 
-  // --- 6. FAQ ACCORDION (#faq) ---
+  // --- 6. TESTIMONI CAROUSEL SLIDER (#testimoni) ---
+  const carouselTrack = document.getElementById('reviewsCarouselTrack');
+  const prevBtn = document.getElementById('carouselPrevBtn');
+  const nextBtn = document.getElementById('carouselNextBtn');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const counterCurrent = document.getElementById('carouselCurrent');
+  const counterTotal = document.getElementById('carouselTotal');
+  const reviewCards = document.querySelectorAll('.review-carousel-item');
+
+  if (carouselTrack && reviewCards.length > 0) {
+    if (counterTotal) {
+      counterTotal.textContent = String(reviewCards.length).padStart(2, '0');
+    }
+
+    function getCardWidth() {
+      const firstCard = reviewCards[0];
+      const gap = 24;
+      return firstCard ? firstCard.offsetWidth + gap : 360;
+    }
+
+    function updateCarouselState() {
+      const scrollLeft = carouselTrack.scrollLeft;
+      const cardWidth = getCardWidth();
+      const activeIndex = Math.min(
+        reviewCards.length - 1,
+        Math.max(0, Math.round(scrollLeft / cardWidth))
+      );
+
+      if (counterCurrent) {
+        counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+      }
+
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+
+      if (prevBtn) {
+        prevBtn.disabled = scrollLeft <= 10;
+      }
+      if (nextBtn) {
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth - 10;
+        nextBtn.disabled = scrollLeft >= maxScroll;
+      }
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      carouselTrack.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      carouselTrack.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index') || '0', 10);
+        const targetCard = reviewCards[index];
+        if (targetCard) {
+          carouselTrack.scrollTo({
+            left: targetCard.offsetLeft - carouselTrack.offsetLeft,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    carouselTrack.addEventListener('scroll', updateCarouselState, { passive: true });
+    window.addEventListener('resize', updateCarouselState, { passive: true });
+
+    updateCarouselState();
+  }
+
+  // --- 7. FAQ ACCORDION (#faq) ---
   const faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach(item => {
