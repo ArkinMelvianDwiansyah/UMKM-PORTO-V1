@@ -1570,8 +1570,6 @@
                         row.classList.remove('border-sky-500', 'bg-sky-50/70', 'shadow-sm');
                         row.classList.add('border-slate-200', 'bg-white');
                     }
-                    const qtyEl = row.querySelector('.qty-val');
-                    const qty = Number(qtyEl.textContent) || 0;
                     const price = Number(row.dataset.price);
                     const name = row.dataset.name;
                     const unit = row.dataset.unit;
@@ -1611,51 +1609,40 @@
 
             // Attach +/- handlers
             serviceRows.forEach(row => {
-                    const qtyEl = row.querySelector('.qty-val');
-                    const qty = Number(qtyEl.textContent) || 0;
-                    if (qty > 0) {
-                        row.classList.remove('border-slate-200', 'bg-white');
-                        row.classList.add('border-sky-500', 'bg-sky-50/70', 'shadow-sm');
-                    } else {
-                        row.classList.remove('border-sky-500', 'bg-sky-50/70', 'shadow-sm');
-                        row.classList.add('border-slate-200', 'bg-white');
-                    }
                 const minusBtn = row.querySelector('.qty-minus');
                 const plusBtn = row.querySelector('.qty-plus');
                 const qtyEl = row.querySelector('.qty-val');
 
-                minusBtn.addEventListener('click', () => {
-                    let current = Number(qtyEl.textContent) || 0;
-                    if (current > 0) {
-                        qtyEl.textContent = current - 1;
-                        updateCartSummary();
-                    }
-                });
+                if (minusBtn && qtyEl) {
+                    minusBtn.addEventListener('click', () => {
+                        let current = Number(qtyEl.textContent) || 0;
+                        if (current > 0) {
+                            qtyEl.textContent = current - 1;
+                            updateCartSummary();
+                        }
+                    });
+                }
 
-                plusBtn.addEventListener('click', () => {
-                    let current = Number(qtyEl.textContent) || 0;
-                    qtyEl.textContent = current + 1;
+                if (plusBtn && qtyEl) {
+                    plusBtn.addEventListener('click', () => {
+                        let current = Number(qtyEl.textContent) || 0;
+                        qtyEl.textContent = current + 1;
+                        updateCartSummary();
+                    });
+                }
+            });
+
+            if (promoCheckbox) promoCheckbox.addEventListener('change', updateCartSummary);
+
+            if (resetCartBtn) {
+                resetCartBtn.addEventListener('click', () => {
+                    serviceRows.forEach(row => {
+                        const valEl = row.querySelector('.qty-val');
+                        if (valEl) valEl.textContent = '0';
+                    });
                     updateCartSummary();
                 });
-            });
-
-            promoCheckbox.addEventListener('change', updateCartSummary);
-
-            resetCartBtn.addEventListener('click', () => {
-                serviceRows.forEach(row => {
-                    const qtyEl = row.querySelector('.qty-val');
-                    const qty = Number(qtyEl.textContent) || 0;
-                    if (qty > 0) {
-                        row.classList.remove('border-slate-200', 'bg-white');
-                        row.classList.add('border-sky-500', 'bg-sky-50/70', 'shadow-sm');
-                    } else {
-                        row.classList.remove('border-sky-500', 'bg-sky-50/70', 'shadow-sm');
-                        row.classList.add('border-slate-200', 'bg-white');
-                    }
-                    row.querySelector('.qty-val').textContent = '0';
-                });
-                updateCartSummary();
-            });
+            }
 
             // Send Order to WhatsApp
             dispatchWaBtn.addEventListener('click', () => {

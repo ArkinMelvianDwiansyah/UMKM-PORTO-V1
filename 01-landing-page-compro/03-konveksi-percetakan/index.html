@@ -288,7 +288,8 @@
     </section>
 
     <!-- INTERACTIVE KALKULATOR HARGA GROSIR BERTINGKAT (TIERED PRICING) -->
-    <section id="kalkulator-grosir" class="py-20 relative"><div id="kalkulator-harga" class="absolute -top-24"></div> bg-white border-b border-zinc-300">
+    <section id="kalkulator-grosir" class="relative py-20 bg-white border-b border-zinc-300">
+        <div id="kalkulator-harga" class="absolute -top-24"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                 <div>
@@ -440,19 +441,19 @@
                             </button>
                         </div>
 
-                        <!-- 3 Tier Cards Indicator -->
+                        <!-- 3 Tier Cards Indicator (Clickable) -->
                         <div class="grid grid-cols-3 gap-2.5 pt-2 font-mono">
-                            <div id="tierCard1" class="p-3 border border-slate-700 bg-slate-950/70 text-center">
+                            <div id="tierCard1" class="p-3 border border-slate-700 bg-slate-950/70 text-center cursor-pointer hover:border-indigo-400 transition" title="Klik untuk pilih tier 12-49 pcs">
                                 <div class="text-[11px] font-bold text-zinc-400">12 – 49 PCS</div>
                                 <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Harga Standar</div>
                                 <div class="text-[10px] text-zinc-500">DISKON 0%</div>
                             </div>
-                            <div id="tierCard2" class="p-3 border-2 border-indigo-500 bg-indigo-500/15 text-center">
+                            <div id="tierCard2" class="p-3 border-2 border-indigo-500 bg-indigo-500/15 text-center cursor-pointer hover:border-indigo-400 transition" title="Klik untuk pilih tier 50-119 pcs">
                                 <div class="text-[11px] font-bold text-indigo-300">50 – 119 PCS</div>
                                 <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Diskon Grosir</div>
                                 <div class="text-[10px] font-bold text-emerald-400">HEMAT 12%</div>
                             </div>
-                            <div id="tierCard3" class="p-3 border border-slate-700 bg-slate-950/70 text-center">
+                            <div id="tierCard3" class="p-3 border border-slate-700 bg-slate-950/70 text-center cursor-pointer hover:border-orange-400 transition" title="Klik untuk pilih tier >=120 pcs">
                                 <div class="text-[11px] font-bold text-orange-300">≥ 120 PCS</div>
                                 <div class="text-xs sm:text-sm font-bold text-white mt-0.5 font-sans">Harga Pabrik</div>
                                 <div class="text-[10px] font-bold text-[#FF4D1C]">HEMAT 22%</div>
@@ -1528,6 +1529,32 @@
                     calculateWholesale();
                 });
             });
+
+            // Tier Cards Click Handlers (Direct Tier Activation)
+            if (tierCard1) {
+                tierCard1.addEventListener('click', () => {
+                    state.qty = 24;
+                    qtyInput.value = 24;
+                    qtySlider.value = 24;
+                    calculateWholesale();
+                });
+            }
+            if (tierCard2) {
+                tierCard2.addEventListener('click', () => {
+                    state.qty = 60;
+                    qtyInput.value = 60;
+                    qtySlider.value = 60;
+                    calculateWholesale();
+                });
+            }
+            if (tierCard3) {
+                tierCard3.addEventListener('click', () => {
+                    state.qty = 120;
+                    qtyInput.value = 120;
+                    qtySlider.value = 120;
+                    calculateWholesale();
+                });
+            }
 
             // Order via WhatsApp
             orderWaBtn.addEventListener('click', () => {
