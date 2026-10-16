@@ -874,114 +874,374 @@
     </main>
 
     <!-- ULASAN MEMBER & FOTO PENGUNJUNG -->
-    <section id="ulasan-member" class="bg-arena-dark court-grid-bg py-16 border-t border-slate-800/80">
+        <!-- 04. VIDEO AKSI & STANDAR VENUE OLAHRAGA -->
+    <section id="video-venue" class="bg-arena-navy py-16 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
                 <div>
-                    <span class="font-mono text-xs text-lime-400 uppercase tracking-wider">Dokumentasi & Bukti Nyata</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Ulasan Member & Foto <span class="text-lime-400">Pengunjung Lapangan</span></h2>
+                    <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-lime-400 font-bold mb-2 bg-slate-900 px-3 py-1 border border-lime-400/30">
+                        <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+                        // 04. AKSI PERTANDINGAN & STANDAR KELAYAKAN VENUE
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
+                        Aksi Lapangan &amp; Standar Kelas Turnamen
+                    </h2>
                 </div>
-                <p class="text-sm text-slate-400 max-w-md">
-                    Website ini bukan sekadar sistem booking, tapi juga media promosi venue olahraga yang menampilkan fasilitas premium dan pengalaman nyata pengunjung.
+                <p class="text-sm text-slate-400 max-w-md leading-relaxed">
+                    Lihat langsung atmosfer permainan di ArenaKita: kualitas pantulan bola di court padel panoramic dan empuknya rumput sintetis mini soccer berstandar FIFA.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Review 1: Padel -->
-                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/rev-padel.jpg" alt="Foto Pengunjung Padel" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-lime-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Main Padel</span>
+            <!-- Video Switcher Buttons -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button type="button" id="btnVenueSoccer" data-video="soccer"
+                    class="venue-video-btn active px-5 py-3 rounded-xl border border-lime-400 bg-lime-400/20 text-white font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-futbol text-lime-400"></i>
+                    <span>AKSI 1: Mini Soccer Rumput Sintetis FIFA &amp; Futsal Vinyl</span>
+                </button>
+                <button type="button" id="btnVenuePadel" data-video="padel"
+                    class="venue-video-btn px-5 py-3 rounded-xl border border-slate-700 bg-arena-card text-slate-300 hover:border-slate-500 font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-table-tennis-paddle-ball text-emerald-400"></i>
+                    <span>AKSI 2: Padel Panoramic Court &amp; Badminton BWF</span>
+                </button>
+            </div>
+
+            <!-- Video Player Card Container -->
+            <div class="border border-slate-700/80 bg-arena-card rounded-2xl overflow-hidden shadow-2xl">
+                <!-- Top Status Bar -->
+                <div class="bg-slate-950 px-6 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-lime-400/20 text-lime-400 border border-lime-400/40 text-[11px] font-bold uppercase rounded-md">
+                            <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span> LIVE ACTION
+                        </span>
+                        <span class="text-slate-200 font-bold" id="venueVideoTitleBadge">MINI SOCCER RUMPUT SINTETIS 50MM // FIFA QUALITY</span>
                     </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            "Court padel panoramic-nya mantap, kaca tempered tebal, lantai rumput sintetis FIFA quality. Booking lewat web langsung dapet slot tanpa ribet nelpon."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
-                        <img src="assets/images/cust-1.jpg" alt="Kevin R." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
-                        <div>
-                            <div class="text-xs font-bold text-white">Kevin Ramdhani</div>
-                            <div class="text-[10px] font-mono text-slate-400">Komunitas Padel JKT</div>
-                        </div>
+                    <div class="flex items-center gap-4 text-slate-400 text-[11px]">
+                        <span><i class="fa-solid fa-lightbulb text-lime-400 mr-1"></i> 500 Lux Stadium Lighting</span>
+                        <span><i class="fa-solid fa-shield text-lime-400 mr-1"></i> Standar Federasi Resmi</span>
                     </div>
                 </div>
 
-                <!-- Review 2: Futsal -->
-                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/rev-futsal.jpg" alt="Foto Pertandingan Futsal" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-emerald-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Turnamen Futsal</span>
+                <!-- Video Element with Controls -->
+                <div class="relative aspect-video max-h-[500px] w-full bg-black overflow-hidden flex items-center justify-center">
+                    <video id="venueVideoPlayer" autoplay loop muted playsinline class="w-full h-full object-cover">
+                        <source id="venueVideoSource" src="assets/videos/video-soccer.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung pemutar video MP4.
+                    </video>
+
+                    <!-- Overlay Controls (Play/Pause, Sound Toggle) -->
+                    <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
+                        <button type="button" id="venueTogglePlayBtn" aria-label="Play atau Pause Video"
+                            class="w-10 h-10 rounded-full bg-slate-950/80 hover:bg-lime-500 hover:text-slate-950 text-white border border-slate-700 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-pause text-xs" id="venuePlayIcon"></i>
+                        </button>
+                        <button type="button" id="venueToggleMuteBtn" aria-label="Nyalakan atau Matikan Suara"
+                            class="w-10 h-10 rounded-full bg-slate-950/80 hover:bg-lime-500 hover:text-slate-950 text-white border border-slate-700 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-volume-xmark text-xs" id="venueMuteIcon"></i>
+                        </button>
                     </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            "Lantai vinyl indoor-nya enak buat pivot, penerangan LED stadium grade. Tim kantor kami rutin booking 3 slot sekaligus buat turnamen internal."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
-                        <img src="assets/images/cust-2.jpg" alt="Reza A." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
-                        <div>
-                            <div class="text-xs font-bold text-white">Reza Andiarto</div>
-                            <div class="text-[10px] font-mono text-slate-400">Kapten Garuda FC</div>
-                        </div>
+
+                    <!-- Watermark Tag -->
+                    <div class="absolute top-4 left-4 bg-slate-950/85 backdrop-blur-sm px-3.5 py-1.5 rounded-lg border border-slate-700 text-[11px] font-mono text-lime-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-trophy"></i>
+                        <span>DOKUMENTASI ASLI ARENAKITA SPORT CENTER</span>
                     </div>
                 </div>
 
-                <!-- Review 3: Mini Soccer -->
-                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/rev-soccer.jpg" alt="Foto Mini Soccer" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-amber-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Team Building</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="font-mono text-[11px] text-white font-semibold ml-1">4.8</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            "Mini soccer-nya rumput sintetis tebal, luas banget buat 7v7. Parkiran lega, ada kantin dan mushola. Kami pakai buat team building kantor 40 orang."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
-                        <img src="assets/images/cust-3.jpg" alt="Anisa D." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
+                <!-- Structured Method Breakdown Underneath Video -->
+                <div class="p-6 sm:p-8 bg-arena-card border-t border-slate-800">
+                    <div class="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                         <div>
-                            <div class="text-xs font-bold text-white">Anisa Dwiyanti</div>
-                            <div class="text-[10px] font-mono text-slate-400">HRD PT Nusantara Digital</div>
+                            <span class="font-mono text-xs text-lime-400 font-bold uppercase" id="venuePhaseTag">SPESIFIKASI VENUE // MINI SOCCER &amp; FUTSAL VINYL</span>
+                            <h3 class="font-display text-xl sm:text-2xl text-white font-bold mt-0.5" id="venueHeadingTitle">Standar Fasilitas Unggulan Lapangan ArenaKita</h3>
                         </div>
+                        <span class="font-mono text-xs text-slate-400 bg-slate-900 px-3 py-1 border border-slate-800 rounded-lg">Fasilitas Resmi 2026</span>
                     </div>
-                </div>
 
-                <!-- Review 4: Badminton -->
-                <div class="bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/rev-badminton.jpg" alt="Foto Badminton" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-slate-950/85 text-sky-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Latihan Badminton</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-white font-semibold ml-1">5.0</span>
+                    <!-- Dynamic Steps Grid -->
+                    <div class="grid sm:grid-cols-3 gap-4" id="venueStepsContainer">
+                        <!-- Step 1 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-lime-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-lime-400">01</span>
+                                <span class="font-mono text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">RUMPUT FIFA</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Monofilament 50mm &amp; Infill Karet</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Bantalan infill karet EPDM berkualitas meredam benturan lutut dan pergelangan kaki. Rumput monofilament tidak mudah rontok dan bebas debu hitam pekat.
+                            </p>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            "Karpet BWF standart pertandingan, AC dingin, dan 6 line lapangan semua bersih. E-Tiket QR langsung masuk tanpa antri di meja resepsionis."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
-                        <img src="assets/images/cust-4.jpg" alt="Budi S." class="w-8 h-8 rounded-full object-cover border border-slate-600" />
-                        <div>
-                            <div class="text-xs font-bold text-white">Budi Santoso</div>
-                            <div class="text-[10px] font-mono text-slate-400">PB Jaya Raya Bekasi</div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-lime-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-lime-400">02</span>
+                                <span class="font-mono text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded">LIGHTING</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Floodlight 500 Lux Anti-Glare</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Lampu LED spotlight tersebar merata tanpa titik buta (shadow-free). Cocok untuk rekaman video kamera aksi dan pertandingan malam hari.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-lime-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-lime-400">03</span>
+                                <span class="font-mono text-[10px] bg-slate-800 text-lime-400 border border-slate-700 px-2 py-0.5 rounded">FASILITAS</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Kamar Mandi Air Hangat &amp; Locker</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Shower bertekanan dengan pemanas air, locker room berkunci, mushola bersih ber-AC, dan kantin isotonic drink siap menyambut selesai pertandingan.
+                            </p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. ULASAN MEMBER & FOTO PENGUNJUNG (CAROUSEL SLIDER) -->
+    <section id="ulasan-member" class="bg-arena-dark court-grid-bg py-16 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header & Navigation Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+                <div>
+                    <span class="font-mono text-xs text-lime-400 uppercase tracking-wider block mb-1">// 05. DOKUMENTASI AKTUAL &amp; BUKTI NYATA</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">Ulasan Member &amp; Foto <span class="text-lime-400">Pengunjung Lapangan</span></h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono text-slate-400 mr-2 hidden sm:inline">Geser ulasan:</span>
+                    <button type="button" id="venueReviewPrevBtn" aria-label="Ulasan sebelumnya"
+                        class="w-10 h-10 rounded-xl border border-slate-700 bg-arena-card hover:bg-lime-400 hover:text-slate-950 text-white flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                    </button>
+                    <button type="button" id="venueReviewNextBtn" aria-label="Ulasan berikutnya"
+                        class="w-10 h-10 rounded-xl border border-slate-700 bg-arena-card hover:bg-lime-400 hover:text-slate-950 text-white flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carousel Viewport -->
+            <div class="overflow-hidden" id="venueReviewWrap">
+                <div class="flex gap-6 transition-transform duration-500 ease-out" id="venueReviewTrack">
+                    
+                    <!-- Slide 1 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-padel.jpg" alt="Foto Pengunjung Padel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-lime-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Padel Panoramic 1</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Court padel panoramic-nya mantap, kaca tempered tebal, rumput sintetis pas. Booking via web langsung dapet QR code tiket tanpa ribet antre."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-1.jpg" alt="Kevin R." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Kevin Ramdhani</div>
+                                <div class="text-[10px] font-mono text-lime-400">Komunitas Padel JKT</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-futsal.jpg" alt="Foto Turnamen Futsal" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-emerald-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Futsal Vinyl 2</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Lantai vinyl indoor enak buat pivot dan lari kencang. Penerangan LED terang merata. Tim kantor kami rutin sparring tiap Rabu malam."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-2.jpg" alt="Reza A." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Reza Andiarto</div>
+                                <div class="text-[10px] font-mono text-lime-400">Kapten Garuda FC</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-soccer.jpg" alt="Foto Mini Soccer" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-amber-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Mini Soccer FIFA</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">4.9</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Mini soccer 7v7 rumput sintetisnya tebal dan tidak licin saat gerimis. Parkiran sangat luas buat 20 mobil. Sangat recommended buat gathering."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-3.jpg" alt="Anisa D." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Anisa Dwiyanti</div>
+                                <div class="text-[10px] font-mono text-lime-400">HRD PT Nusantara Tech</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-badminton.jpg" alt="Foto Badminton" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-sky-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Badminton BWF</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Karpet BWF hijau standart kejuaraan. Langit-langit tinggi shuttlecock tidak mentok. Kamar mandi bersih dan air hangat mengalir deras."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-4.jpg" alt="Budi S." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Budi Santoso</div>
+                                <div class="text-[10px] font-mono text-lime-400">PB Jaya Raya Tangsel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-sparring.jpg" alt="Foto Sparring Mini Soccer" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-lime-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Sparring Malam</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Fitur cari lawan sparring di website ini ngebantu banget pas tim kami kekurangan squad. Ketemu komunitas bola baru yang sportif dan asyik."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-5.jpg" alt="Farhan K." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Farhan Kurnia</div>
+                                <div class="text-[10px] font-mono text-lime-400">Fintech All-Stars</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-trophy.jpg" alt="Foto Trofi Turnamen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-amber-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Turnamen Futsal</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Penyelenggaraan mini tournament akhir pekan sukses besar. Wasit lisensi dan sound system di tribun sangat jernih. Semua peserta puas!"
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-6.jpg" alt="Coach Hendra" class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Coach Hendra Wijaya</div>
+                                <div class="text-[10px] font-mono text-lime-400">Akademi Futsal BSD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-nightgame.jpg" alt="Foto Badminton Night Game" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-sky-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">Badminton Prime</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">4.9</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Sewa raket dan kok langsung tersedia di pro-shop. Slot jam 20.00-22.00 pencahayaannya adem tidak bikin silau mata saat smash atas."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-7.jpg" alt="dr. Kevin S." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">dr. Kevin Sanjaya</div>
+                                <div class="text-[10px] font-mono text-lime-400">Klub Dokter Sport Bintaro</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="venue-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-arena-card border border-slate-700/80 rounded-2xl overflow-hidden flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-community.jpg" alt="Foto Padel Community" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-950/85 text-lime-400 text-[10px] font-mono px-2.5 py-1 rounded-lg">After-Work Padel</span>
+                                <span class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    "Olahraga padel bareng rekan kantor sehabis jam kerja jadi rutinitas favorit. Suasana venue modern, staf ramah, dan kopi di kafe-nya enak!"
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-700/60 flex items-center gap-3">
+                            <img src="assets/images/cust-8.jpg" alt="Sarah M." class="w-8 h-8 rounded-full object-cover border border-slate-600 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-white">Sarah Melati</div>
+                                <div class="text-[10px] font-mono text-lime-400">Padel Ladies League</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Dots Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-8" id="venueReviewDotsRow">
+                <!-- Dots populated by JS -->
             </div>
         </div>
     </section>
@@ -2217,12 +2477,247 @@
             }
         }
 
+        
+        // --- VIDEO VENUE SWITCHER & CONTROLS ---
+        const venueVideoPlayer = document.getElementById('venueVideoPlayer');
+        const venueVideoSource = document.getElementById('venueVideoSource');
+        const btnVenueSoccer = document.getElementById('btnVenueSoccer');
+        const btnVenuePadel = document.getElementById('btnVenuePadel');
+        const venueTogglePlayBtn = document.getElementById('venueTogglePlayBtn');
+        const venueToggleMuteBtn = document.getElementById('venueToggleMuteBtn');
+        const venuePlayIcon = document.getElementById('venuePlayIcon');
+        const venueMuteIcon = document.getElementById('venueMuteIcon');
+        const venueVideoTitleBadge = document.getElementById('venueVideoTitleBadge');
+        const venuePhaseTag = document.getElementById('venuePhaseTag');
+        const venueHeadingTitle = document.getElementById('venueHeadingTitle');
+        const venueStepsContainer = document.getElementById('venueStepsContainer');
+
+        const venueVideoData = {
+            soccer: {
+                src: 'assets/videos/video-soccer.mp4',
+                titleBadge: 'MINI SOCCER RUMPUT SINTETIS 50MM // FIFA QUALITY',
+                phaseTag: 'SPESIFIKASI VENUE // MINI SOCCER & FUTSAL VINYL',
+                heading: 'Standar Fasilitas Unggulan Lapangan ArenaKita',
+                steps: [
+                    { no: '01', badge: 'RUMPUT FIFA', title: 'Monofilament 50mm & Infill Karet', desc: 'Bantalan infill karet EPDM berkualitas meredam benturan lutut dan pergelangan kaki. Rumput monofilament tidak mudah rontok dan bebas debu hitam pekat.' },
+                    { no: '02', badge: 'LIGHTING', title: 'Floodlight 500 Lux Anti-Glare', desc: 'Lampu LED spotlight tersebar merata tanpa titik buta (shadow-free). Cocok untuk rekaman video kamera aksi dan pertandingan malam hari.' },
+                    { no: '03', badge: 'FASILITAS', title: 'Kamar Mandi Air Hangat & Locker', desc: 'Shower bertekanan dengan pemanas air, locker room berkunci, mushola bersih ber-AC, dan kantin isotonic drink siap menyambut selesai pertandingan.' }
+                ]
+            },
+            padel: {
+                src: 'assets/videos/video-padel.mp4',
+                titleBadge: 'PADEL PANORAMIC COURT & BADMINTON // BWF GRADE',
+                phaseTag: 'SPESIFIKASI VENUE // PADEL PANORAMIC & BADMINTON',
+                heading: 'Standar Internasional Lapangan Raket ArenaKita',
+                steps: [
+                    { no: '01', badge: 'TEMPERED GLASS', title: 'Kaca Panoramic 12mm & Pasir Silika', desc: 'Dinding kaca tempered kokoh dengan visibilitas penonton 360 derajat. Pasir silika khusus disebar presisi untuk pantulan bola konsisten.' },
+                    { no: '02', badge: 'KARPET BWF', title: 'Vinyl BWF Anti-Slip 4.5mm', desc: 'Lantai karpet bulutangkis dengan daya cengkeram optimal mencegah cedera terpeleset saat melakukan jumpsmash dan pergerakan lincah.' },
+                    { no: '03', badge: 'PRO-SHOP', title: 'Rental Raket & Ball Machine Simulator', desc: 'Penyewaan raket padel & badminton resmi, kok pertandingan, overgrip gratis, dan simulator mesin pelontar bola untuk latihan mandiri.' }
+                ]
+            }
+        };
+
+        function switchVenueVideo(type) {
+            const data = venueVideoData[type];
+            if (!data || !venueVideoPlayer || !venueVideoSource) return;
+
+            venueVideoSource.src = data.src;
+            venueVideoPlayer.load();
+            venueVideoPlayer.play().catch(() => {});
+
+            if (venuePlayIcon) venuePlayIcon.className = 'fa-solid fa-pause text-xs';
+            if (venueVideoTitleBadge) venueVideoTitleBadge.textContent = data.titleBadge;
+            if (venuePhaseTag) venuePhaseTag.textContent = data.phaseTag;
+            if (venueHeadingTitle) venueHeadingTitle.textContent = data.heading;
+
+            if (type === 'soccer') {
+                btnVenueSoccer?.classList.add('active', 'border-lime-400', 'bg-lime-400/20', 'text-white');
+                btnVenueSoccer?.classList.remove('border-slate-700', 'bg-arena-card', 'text-slate-300');
+                btnVenuePadel?.classList.remove('active', 'border-lime-400', 'bg-lime-400/20', 'text-white');
+                btnVenuePadel?.classList.add('border-slate-700', 'bg-arena-card', 'text-slate-300');
+            } else {
+                btnVenuePadel?.classList.add('active', 'border-lime-400', 'bg-lime-400/20', 'text-white');
+                btnVenuePadel?.classList.remove('border-slate-700', 'bg-arena-card', 'text-slate-300');
+                btnVenueSoccer?.classList.remove('active', 'border-lime-400', 'bg-lime-400/20', 'text-white');
+                btnVenueSoccer?.classList.add('border-slate-700', 'bg-arena-card', 'text-slate-300');
+            }
+
+            if (venueStepsContainer) {
+                venueStepsContainer.innerHTML = data.steps.map(s => `
+                    <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-lime-400/50 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-2xl font-bold text-lime-400">${s.no}</span>
+                            <span class="font-mono text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">${s.badge}</span>
+                        </div>
+                        <h4 class="font-bold text-white text-sm mb-1.5">${s.title}</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">${s.desc}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        btnVenueSoccer?.addEventListener('click', () => switchVenueVideo('soccer'));
+        btnVenuePadel?.addEventListener('click', () => switchVenueVideo('padel'));
+
+        venueTogglePlayBtn?.addEventListener('click', () => {
+            if (!venueVideoPlayer) return;
+            if (venueVideoPlayer.paused) {
+                venueVideoPlayer.play();
+                if (venuePlayIcon) venuePlayIcon.className = 'fa-solid fa-pause text-xs';
+            } else {
+                venueVideoPlayer.pause();
+                if (venuePlayIcon) venuePlayIcon.className = 'fa-solid fa-play text-xs';
+            }
+        });
+
+        venueToggleMuteBtn?.addEventListener('click', () => {
+            if (!venueVideoPlayer) return;
+            venueVideoPlayer.muted = !venueVideoPlayer.muted;
+            if (venueMuteIcon) {
+                venueMuteIcon.className = venueVideoPlayer.muted ? 'fa-solid fa-volume-xmark text-xs' : 'fa-solid fa-volume-high text-xs';
+            }
+        });
+
+        // --- 8-CARD VENUE REVIEW CAROUSEL SLIDER ---
+        const venueReviewTrack = document.getElementById('venueReviewTrack');
+        const venueReviewWrap = document.getElementById('venueReviewWrap');
+        const venueReviewPrevBtn = document.getElementById('venueReviewPrevBtn');
+        const venueReviewNextBtn = document.getElementById('venueReviewNextBtn');
+        const venueReviewDotsRow = document.getElementById('venueReviewDotsRow');
+        const venueReviewSlides = document.querySelectorAll('.venue-review-slide');
+
+        let currentVenueSlide = 0;
+        let venueReviewTimer = null;
+
+        function getVenueVisibleSlides() {
+            if (window.innerWidth >= 1024) return 4;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        function getMaxVenueSlideIndex() {
+            const visible = getVenueVisibleSlides();
+            return Math.max(0, venueReviewSlides.length - visible);
+        }
+
+        function updateVenueReviewSlider() {
+            if (!venueReviewTrack || !venueReviewSlides.length) return;
+            const maxIdx = getMaxVenueSlideIndex();
+            if (currentVenueSlide > maxIdx) currentVenueSlide = maxIdx;
+            if (currentVenueSlide < 0) currentVenueSlide = 0;
+
+            const firstSlide = venueReviewSlides[0];
+            const slideWidth = firstSlide.offsetWidth;
+            const gap = 24;
+            const moveX = currentVenueSlide * (slideWidth + gap);
+
+            venueReviewTrack.style.transform = `translateX(-${moveX}px)`;
+
+            const dots = venueReviewDotsRow?.querySelectorAll('button');
+            dots?.forEach((d, idx) => {
+                if (idx === currentVenueSlide) {
+                    d.className = 'w-6 h-2 bg-lime-400 rounded-full transition-all';
+                } else {
+                    d.className = 'w-2 h-2 bg-slate-700 hover:bg-slate-500 rounded-full transition-all';
+                }
+            });
+        }
+
+        function renderVenueReviewDots() {
+            if (!venueReviewDotsRow) return;
+            const maxIdx = getMaxVenueSlideIndex();
+            venueReviewDotsRow.innerHTML = '';
+            for (let i = 0; i <= maxIdx; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Menuju ulasan ${i + 1}`);
+                dot.className = i === currentVenueSlide ? 'w-6 h-2 bg-lime-400 rounded-full transition-all' : 'w-2 h-2 bg-slate-700 hover:bg-slate-500 rounded-full transition-all';
+                dot.addEventListener('click', () => {
+                    currentVenueSlide = i;
+                    updateVenueReviewSlider();
+                    startVenueAutoplay();
+                });
+                venueReviewDotsRow.appendChild(dot);
+            }
+        }
+
+        function nextVenueReview() {
+            const maxIdx = getMaxVenueSlideIndex();
+            if (currentVenueSlide >= maxIdx) {
+                currentVenueSlide = 0;
+            } else {
+                currentVenueSlide++;
+            }
+            updateVenueReviewSlider();
+        }
+
+        function prevVenueReview() {
+            const maxIdx = getMaxVenueSlideIndex();
+            if (currentVenueSlide <= 0) {
+                currentVenueSlide = maxIdx;
+            } else {
+                currentVenueSlide--;
+            }
+            updateVenueReviewSlider();
+        }
+
+        function startVenueAutoplay() {
+            stopVenueAutoplay();
+            venueReviewTimer = setInterval(nextVenueReview, 5000);
+        }
+
+        function stopVenueAutoplay() {
+            if (venueReviewTimer) {
+                clearInterval(venueReviewTimer);
+                venueReviewTimer = null;
+            }
+        }
+
+        venueReviewPrevBtn?.addEventListener('click', () => {
+            prevVenueReview();
+            startVenueAutoplay();
+        });
+
+        venueReviewNextBtn?.addEventListener('click', () => {
+            nextVenueReview();
+            startVenueAutoplay();
+        });
+
+        venueReviewWrap?.addEventListener('mouseenter', stopVenueAutoplay);
+        venueReviewWrap?.addEventListener('mouseleave', startVenueAutoplay);
+
+        // Touch Swipe
+        let venueTouchStartX = 0;
+        let venueTouchEndX = 0;
+        venueReviewWrap?.addEventListener('touchstart', (e) => {
+            stopVenueAutoplay();
+            venueTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        venueReviewWrap?.addEventListener('touchend', (e) => {
+            venueTouchEndX = e.changedTouches[0].screenX;
+            if (venueTouchEndX < venueTouchStartX - 40) {
+                nextVenueReview();
+            } else if (venueTouchEndX > venueTouchStartX + 40) {
+                prevVenueReview();
+            }
+            startVenueAutoplay();
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            renderVenueReviewDots();
+            updateVenueReviewSlider();
+        });
+
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
             initDates();
             selectVenue('padel');
             updateBookingSummary();
             initFooterConfig();
+            renderVenueReviewDots();
+            updateVenueReviewSlider();
+            startVenueAutoplay();
         });
     </script>
 </body>

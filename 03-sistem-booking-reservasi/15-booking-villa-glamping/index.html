@@ -493,6 +493,136 @@
         </div>
     </section>
 
+
+    <!-- VIDEO ATMOSFER & FASILITAS UNGGULAN (SANCTUARY VIDEO TOUR) -->
+    <section id="video-sanctuary" class="py-14 lg:py-20 bg-pine text-linen border-y border-linen-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 pb-6 border-b border-linen-border/30">
+                <div>
+                    <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ochre font-bold mb-2 bg-pine/60 px-3 py-1 border border-ochre/30 rounded">
+                        <span class="w-2 h-2 rounded-full bg-ochre animate-pulse"></span>
+                        // VIDEO TOUR VILLA &amp; SUASANA ALAM LEMBAHPINUS
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-linen mt-1">
+                        Atmosfer Pagi &amp; Kehangatan Malam di Sanctuary
+                    </h2>
+                </div>
+                <p class="text-xs sm:text-sm text-linen/75 max-w-md leading-relaxed">
+                    Saksikan ketenangan udara berkabut Puncak, jernihnya private warm pool 32°C, dan serunya api unggun barbecue di bawah langit berbintang.
+                </p>
+            </div>
+
+            <!-- Video Switcher Buttons -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button type="button" id="btnSanctuaryPool" data-video="pool"
+                    class="sanctuary-video-btn active px-5 py-3 rounded-xl border border-ochre bg-ochre/20 text-linen font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-water-ladder text-ochre"></i>
+                    <span>SUASANA 1: Private Pool Air Hangat 32°C &amp; Kabut Pagi Pinus</span>
+                </button>
+                <button type="button" id="btnSanctuaryBonfire" data-video="bonfire"
+                    class="sanctuary-video-btn px-5 py-3 rounded-xl border border-linen-border/50 bg-pine text-linen/70 hover:border-linen-border font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-fire text-amber-400"></i>
+                    <span>SUASANA 2: Bonfire Campfire Malam &amp; Barbecue Grill</span>
+                </button>
+            </div>
+
+            <!-- Video Card Container -->
+            <div class="border border-linen-border/40 bg-pine/90 rounded-2xl overflow-hidden shadow-2xl">
+                <!-- Top Status Bar -->
+                <div class="bg-black/40 px-6 py-3 border-b border-linen-border/30 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-ochre/30 text-ochre border border-ochre/40 text-[11px] font-bold uppercase rounded">
+                            <span class="w-1.5 h-1.5 rounded-full bg-ochre animate-pulse"></span> CINEMATIC TOUR
+                        </span>
+                        <span class="text-linen font-bold" id="sanctuaryVideoTitleBadge">PRIVATE HEATED POOL 32°C // FOREST MIST MORNING</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-linen/70 text-[11px]">
+                        <span><i class="fa-solid fa-temperature-arrow-up text-ochre mr-1"></i> Constant 32°C Water Heat</span>
+                        <span><i class="fa-solid fa-wifi text-ochre mr-1"></i> Starlink High-Speed 250 Mbps</span>
+                    </div>
+                </div>
+
+                <!-- Video Element with Controls -->
+                <div class="relative aspect-video max-h-[500px] w-full bg-black overflow-hidden flex items-center justify-center">
+                    <video id="sanctuaryVideoPlayer" autoplay loop muted playsinline class="w-full h-full object-cover">
+                        <source id="sanctuaryVideoSource" src="assets/videos/video-villa-pool.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung pemutar video MP4.
+                    </video>
+
+                    <!-- Overlay Controls -->
+                    <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
+                        <button type="button" id="sanctuaryTogglePlayBtn" aria-label="Play atau Pause Video"
+                            class="w-10 h-10 rounded-full bg-black/70 hover:bg-ochre hover:text-white text-linen border border-linen-border/50 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-pause text-xs" id="sanctuaryPlayIcon"></i>
+                        </button>
+                        <button type="button" id="sanctuaryToggleMuteBtn" aria-label="Nyalakan atau Matikan Suara"
+                            class="w-10 h-10 rounded-full bg-black/70 hover:bg-ochre hover:text-white text-linen border border-linen-border/50 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-volume-xmark text-xs" id="sanctuaryMuteIcon"></i>
+                        </button>
+                    </div>
+
+                    <!-- Watermark -->
+                    <div class="absolute top-4 left-4 bg-black/75 backdrop-blur-sm px-3.5 py-1.5 rounded-lg border border-linen-border/40 text-[11px] font-mono text-ochre font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                        <span>LEMBAHPINUS SANCTUARY PUNCAK RESORT</span>
+                    </div>
+                </div>
+
+                <!-- Amenity Breakdown Underneath Video -->
+                <div class="p-6 sm:p-8 bg-pine border-t border-linen-border/30">
+                    <div class="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <span class="font-mono text-xs text-ochre font-bold uppercase" id="sanctuaryPhaseTag">STANDAR FASILITAS // PRIVATE WARM POOL &amp; FOREST LIVING</span>
+                            <h3 class="font-serif text-xl sm:text-2xl text-linen font-bold mt-0.5" id="sanctuaryHeadingTitle">Fasilitas Standar Resort Bintang 5 di Setiap Unit</h3>
+                        </div>
+                        <span class="font-mono text-xs text-linen/70 bg-black/30 px-3 py-1 border border-linen-border/30 rounded-lg">Fasilitas Resmi 2026</span>
+                    </div>
+
+                    <!-- 3 Cards -->
+                    <div class="grid sm:grid-cols-3 gap-4" id="sanctuaryStepsContainer">
+                        <!-- Card 1 -->
+                        <div class="bg-black/30 p-5 rounded-xl border border-linen-border/30 relative group hover:border-ochre/60 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-ochre">01</span>
+                                <span class="font-mono text-[10px] bg-pine text-linen px-2 py-0.5 rounded border border-linen-border/40">HEATED POOL</span>
+                            </div>
+                            <h4 class="font-bold text-linen text-sm mb-1.5">Suhu Air Konstan 32°C Otomatis</h4>
+                            <p class="text-xs text-linen/75 leading-relaxed">
+                                Sistem Inverter Heat Pump modern menjaga suhu air kolam tetap hangat dan nyaman untuk balita maupun lansia meski malam hari suhu turun ke 16°C.
+                            </p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-black/30 p-5 rounded-xl border border-linen-border/30 relative group hover:border-ochre/60 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-ochre">02</span>
+                                <span class="font-mono text-[10px] bg-pine text-linen px-2 py-0.5 rounded border border-linen-border/40">STARLINK 250M</span>
+                            </div>
+                            <h4 class="font-bold text-linen text-sm mb-1.5">Koneksi Satelit Starlink &amp; Smart TV</h4>
+                            <p class="text-xs text-linen/75 leading-relaxed">
+                                Internet satelit latensi rendah 250 Mbps di seluruh sudut villa. Ideal untuk tim remote workation, meeting Zoom tanpa putus, dan Netflix party.
+                            </p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-black/30 p-5 rounded-xl border border-linen-border/30 relative group hover:border-ochre/60 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-ochre">03</span>
+                                <span class="font-mono text-[10px] bg-pine text-linen px-2 py-0.5 rounded border border-linen-border/40">BUTLER &amp; BBQ</span>
+                            </div>
+                            <h4 class="font-bold text-linen text-sm mb-1.5">Butler Pribadi &amp; Setup Api Unggun</h4>
+                            <p class="text-xs text-linen/75 leading-relaxed">
+                                Tim butler kami siap membantu menyalakan kayu bakar api unggun, meracik panggangan BBQ arang kelapa, dan menyajikan floating breakfast tepat waktu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- PANDUAN MENGINAP, FASILITAS & PIN LOKASI -->
     <section id="aturan-lokasi" class="py-14 bg-linen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -522,143 +652,291 @@
         </div>
     </section>
 
-    <!-- CERITA & DOKUMENTASI TAMU MENGINAP (GUEST PHOTO REVIEWS) -->
+<!-- CERITA & DOKUMENTASI TAMU MENGINAP (8-CARD CAROUSEL SLIDER) -->
     <section id="ulasan-tamu" class="py-14 lg:py-20 bg-linen-soft border-t border-linen-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <!-- Header & Navigation Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 pb-4 border-b border-linen-border">
                 <div>
                     <span class="font-mono text-xs uppercase tracking-widest text-ochre font-semibold">GUEST STORIES &amp; PHOTO JOURNAL</span>
                     <h2 class="font-serif font-bold text-3xl sm:text-4xl text-pine mt-1">
                         Cerita &amp; Dokumentasi Tamu Menginap di LembahPinus
                     </h2>
-                    <p class="text-sm text-ink-muted mt-1">
-                        Foto asli dokumentasi keluarga, pasangan bulan madu, dan rombongan kantor yang telah menginap di unit villa &amp; kabin kami.
+                    <p class="text-sm text-ink-muted mt-1 max-w-2xl">
+                        Ulasan asli dan dokumentasi keluarga, pasangan bulan madu, serta rombongan outing yang telah menikmati ketenangan villa &amp; glamping kami.
                     </p>
                 </div>
-                <div class="bg-linen px-4 py-3 rounded-xl editorial-border flex items-center gap-3 shrink-0">
-                    <div class="text-ochre text-sm flex items-center gap-0.5">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <div class="flex items-center gap-4 shrink-0">
+                    <div class="bg-linen px-3.5 py-2.5 rounded-xl editorial-border flex items-center gap-3">
+                        <div class="text-ochre text-sm flex items-center gap-0.5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="font-mono text-xs">
+                            <div class="font-bold text-pine">4.95 / 5.0</div>
+                            <div class="text-ink-muted text-[10px]">920+ Verified Stays</div>
+                        </div>
                     </div>
-                    <div class="font-mono text-xs">
-                        <div class="font-bold text-pine">4.95 / 5.0 Guest Satisfaction</div>
-                        <div class="text-ink-muted text-[11px]">920+ Keluarga &amp; Korporat</div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" id="sanctuaryReviewPrevBtn" aria-label="Ulasan sebelumnya"
+                            class="w-10 h-10 rounded-xl border border-linen-border bg-linen hover:bg-pine hover:text-linen text-pine flex items-center justify-center transition shadow-sm">
+                            <i class="fa-solid fa-arrow-left text-sm"></i>
+                        </button>
+                        <button type="button" id="sanctuaryReviewNextBtn" aria-label="Ulasan berikutnya"
+                            class="w-10 h-10 rounded-xl border border-linen-border bg-linen hover:bg-pine hover:text-linen text-pine flex items-center justify-center transition shadow-sm">
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- 4 Guest Photo Review Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Guest Card 1 -->
-                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="assets/images/exp-floating-breakfast.jpg" alt="Dokumentasi Tamu Private Pool" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
-                                Dokumentasi Tamu • Warm Pool 32°C
-                            </span>
-                        </div>
-                        <div class="p-5 space-y-2.5">
-                            <div class="flex items-center gap-1 text-ochre text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Verified Stay</span>
+            <!-- Carousel Viewport & Track -->
+            <div class="overflow-hidden -mx-2 py-2" id="sanctuaryReviewWrap">
+                <div class="flex transition-transform duration-500 ease-out" id="sanctuaryReviewTrack">
+                    <!-- Slide 1 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/exp-floating-breakfast.jpg" alt="Dokumentasi Tamu Private Pool" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Warm Pool 32°C
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Verified Stay</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Air kolam renangnya beneran hangat 32°C walaupun udara pagi Puncak lagi 17 derajat! Anak-anak betah berenang dari pagi, dan proses check-in pakai QR E-Voucher super praktis."
+                                    </p>
+                                </div>
                             </div>
-                            <p class="text-xs text-ink leading-relaxed">
-                                "Air kolam renangnya beneran hangat 32°C walaupun udara pagi Puncak lagi 17 derajat! Anak-anak betah berenang dari pagi, dan proses check-in pakai QR E-Voucher super praktis."
-                            </p>
-                        </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-avatar-1.jpg" alt="Ibu Clarissa" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Ibu Clarissa &amp; Keluarga</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">2 Malam • Villa Pinus Private Pool</div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
-                        <img src="assets/images/guest-avatar-1.jpg" alt="Ibu Clarissa" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
-                        <div class="text-xs">
-                            <div class="font-bold text-pine">Ibu Clarissa &amp; Keluarga</div>
-                            <div class="font-mono text-[10px] text-ink-muted">2 Malam • Villa Pinus Private Pool</div>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Guest Card 2 -->
-                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="assets/images/exp-bbq-grill.jpg" alt="Dokumentasi BBQ Malam" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
-                                Dokumentasi Tamu • Kambing Guling
-                            </span>
-                        </div>
-                        <div class="p-5 space-y-2.5">
-                            <div class="flex items-center gap-1 text-ochre text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Company Outing</span>
+                    <!-- Slide 2 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/exp-bbq-grill.jpg" alt="Dokumentasi BBQ Malam" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Kambing Guling
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Company Outing</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Sewa Grand Sanctuary Estate buat retreat tim 18 orang. WiFi Starlink 250 Mbps kencang buat Zoom meeting, malamnya tambah paket Kambing Guling &amp; Api Unggun, dagingnya empuk banget!"
+                                    </p>
+                                </div>
                             </div>
-                            <p class="text-xs text-ink leading-relaxed">
-                                "Sewa Grand Sanctuary Estate buat retreat tim 18 orang. WiFi Starlink 250 Mbps kencang buat Zoom meeting, malamnya tambah paket Kambing Guling &amp; Api Unggun, dagingnya empuk banget!"
-                            </p>
-                        </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-avatar-2.jpg" alt="Bpk. Aditya" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Bpk. Aditya Mahendra</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Rombongan 18 Org • Grand Sanctuary</div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
-                        <img src="assets/images/guest-avatar-2.jpg" alt="Bpk. Aditya" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
-                        <div class="text-xs">
-                            <div class="font-bold text-pine">Bpk. Aditya Mahendra</div>
-                            <div class="font-mono text-[10px] text-ink-muted">Rombongan 18 Org • Grand Sanctuary</div>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Guest Card 3 -->
-                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="assets/images/interior-bedroom.jpg" alt="Dokumentasi Interior Kabin" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
-                                Dokumentasi Tamu • Interior Kabin
-                            </span>
-                        </div>
-                        <div class="p-5 space-y-2.5">
-                            <div class="flex items-center gap-1 text-ochre text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Honeymoon Stay</span>
+                    <!-- Slide 3 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/interior-bedroom.jpg" alt="Dokumentasi Interior Kabin" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Interior Kabin
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Honeymoon Stay</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Menginap di Kabin A-Frame Cemara berdua suami. Sprei dan selimutnya wangi hotel bintang lima, Jacuzzi air hangatnya langsung menghadap hutan pinus berkabut."
+                                    </p>
+                                </div>
                             </div>
-                            <p class="text-xs text-ink leading-relaxed">
-                                "Menginap di Kabin A-Frame Cemara berdua suami. Sprei dan selimutnya wangi hotel bintang lima, Jacuzzi air hangatnya langsung menghadap hutan pinus berkabut."
-                            </p>
-                        </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-avatar-3.jpg" alt="Kak Larasati" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Kak Larasati &amp; Reza</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Couple Stay • Kabin A-Frame Cemara</div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
-                        <img src="assets/images/guest-avatar-3.jpg" alt="Kak Larasati" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
-                        <div class="text-xs">
-                            <div class="font-bold text-pine">Kak Larasati &amp; Reza</div>
-                            <div class="font-mono text-[10px] text-ink-muted">Couple Stay • Kabin A-Frame Cemara</div>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Guest Card 4 -->
-                <article class="bg-linen rounded-2xl overflow-hidden editorial-border unit-card flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="assets/images/exp-bonfire.jpg" alt="Dokumentasi Api Unggun" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
-                                Dokumentasi Tamu • Bonfire Night
-                            </span>
-                        </div>
-                        <div class="p-5 space-y-2.5">
-                            <div class="flex items-center gap-1 text-ochre text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                <span class="font-mono text-[10px] text-pine font-semibold ml-1">Family Gathering</span>
+                    <!-- Slide 4 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/exp-bonfire.jpg" alt="Dokumentasi Api Unggun" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Bonfire Night
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Family Gathering</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Suka sekali sama transparansi harganya: di web langsung kelihatan hitungan malam Kamis (Weekday) dan malam Jumat (Weekend), bisa kunci tanggal dulu pakai DP 50%."
+                                    </p>
+                                </div>
                             </div>
-                            <p class="text-xs text-ink leading-relaxed">
-                                "Suka sekali sama transparansi harganya: di web langsung kelihatan hitungan malam Kamis (Weekday) dan malam Jumat (Weekend), bisa kunci tanggal dulu pakai DP 50%."
-                            </p>
-                        </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-avatar-4.jpg" alt="Bpk. Hendra" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Bpk. Hendra Gunawan</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Family 6 Org • Forest Pavilion</div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                    <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
-                        <img src="assets/images/guest-avatar-4.jpg" alt="Bpk. Hendra" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
-                        <div class="text-xs">
-                            <div class="font-bold text-pine">Bpk. Hendra Gunawan</div>
-                            <div class="font-mono text-[10px] text-ink-muted">Family 6 Org • Forest Pavilion</div>
-                        </div>
+
+                    <!-- Slide 5 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/rev-pool-morning.jpg" alt="Dokumentasi Pagi Private Pool" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Morning Mist
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Staycation Keluarga</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Udara pagi Puncak bikin pikiran beneran fresh. Kolam renang air hangatnya juara, anak-anak nggak mau keluar air dari jam 7 pagi sambil sarapan floating breakfast."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-5.jpg" alt="dr. Dimas Wicaksono" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">dr. Dimas Wicaksono</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Family 5 Org • Villa Pinus Suite</div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                </article>
+
+                    <!-- Slide 6 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/rev-cabin-view.jpg" alt="Dokumentasi Balkon Kabin" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Forest Balcony
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Weekend Getaway</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Spot foto Instagramable di setiap sudut kabin. Estetika interior kayu minimalis dan view jendela kaca lantai dua langsung tembus ke hutan pinus berkabut tebal."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-6.jpg" alt="Nadia Salsabila" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Nadia Salsabila &amp; Besties</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">4 Sahabat • Kabin A-Frame Pinus</div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/rev-glamping-tent.jpg" alt="Dokumentasi Tenda Glamping" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-pine/90 text-linen font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Glamping Mewah
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Glamping Safari</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Glamping rasa hotel bintang 5. Kasurnya empuk, water heater kencang, dan malamnya bakar sate bareng keluarga di halaman pribadi tanpa terganggu tamu unit lain."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-7.jpg" alt="Bpk. Rahmat Santoso" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Bpk. Rahmat Santoso</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Family 4 Org • Safari Luxury Dome</div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="sanctuary-review-slide min-w-full sm:min-w-[50%] lg:min-w-[25%] p-2">
+                        <article class="bg-linen rounded-2xl overflow-hidden editorial-border h-full flex flex-col justify-between shadow-sm hover:shadow-md transition">
+                            <div>
+                                <div class="relative h-48 overflow-hidden">
+                                    <img src="assets/images/rev-bbq-night.jpg" alt="Dokumentasi BBQ Retreat" class="w-full h-full object-cover">
+                                    <span class="absolute top-3 left-3 bg-ochre text-white font-mono text-[10px] font-semibold px-2.5 py-1 rounded">
+                                        Dokumentasi Tamu • Corporate Retreat
+                                    </span>
+                                </div>
+                                <div class="p-5 space-y-2.5">
+                                    <div class="flex items-center gap-1 text-ochre text-xs">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        <span class="font-mono text-[10px] text-pine font-semibold ml-1">Team Building</span>
+                                    </div>
+                                    <p class="text-xs text-ink leading-relaxed">
+                                        "Acara gathering kantor sukses besar! Api unggun hangat, audio karaoke jernih, dan pemesanan via website langsung dapet E-Voucher resmi QR Code tanpa ribet."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="p-4 border-t border-linen-border bg-linen-soft flex items-center gap-3">
+                                <img src="assets/images/guest-8.jpg" alt="Stephanie Tan" class="w-10 h-10 rounded-full object-cover border border-ochre shrink-0">
+                                <div class="text-xs">
+                                    <div class="font-bold text-pine">Stephanie Tan &amp; Tim</div>
+                                    <div class="font-mono text-[10px] text-ink-muted">Outing 16 Org • LembahPinus Pavilion</div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dots Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-6" id="sanctuaryReviewDotsRow">
+                <!-- Injected via JS -->
             </div>
         </div>
     </section>
@@ -1601,6 +1879,194 @@
                 document.body.classList.remove('overflow-hidden');
             }
         }
+
+
+        // --- VIDEO SWITCHER LOGIC ---
+        const sanctuaryVideoPlayer = document.getElementById('sanctuaryVideoPlayer');
+        const sanctuaryVideoSource = document.getElementById('sanctuaryVideoSource');
+        const btnSanctuaryPool = document.getElementById('btnSanctuaryPool');
+        const btnSanctuaryBonfire = document.getElementById('btnSanctuaryBonfire');
+        const sanctuaryTogglePlayBtn = document.getElementById('sanctuaryTogglePlayBtn');
+        const sanctuaryPlayIcon = document.getElementById('sanctuaryPlayIcon');
+        const sanctuaryToggleMuteBtn = document.getElementById('sanctuaryToggleMuteBtn');
+        const sanctuaryMuteIcon = document.getElementById('sanctuaryMuteIcon');
+        const sanctuaryVideoTitleBadge = document.getElementById('sanctuaryVideoTitleBadge');
+        const sanctuaryPhaseTag = document.getElementById('sanctuaryPhaseTag');
+        const sanctuaryHeadingTitle = document.getElementById('sanctuaryHeadingTitle');
+
+        const sanctuaryVideoData = {
+            pool: {
+                src: 'assets/videos/video-villa-pool.mp4',
+                titleBadge: 'PRIVATE HEATED POOL 32°C // FOREST MIST MORNING',
+                phaseTag: 'STANDAR FASILITAS // PRIVATE WARM POOL & FOREST LIVING',
+                heading: 'Fasilitas Standar Resort Bintang 5 di Setiap Unit'
+            },
+            bonfire: {
+                src: 'assets/videos/video-bonfire.mp4',
+                titleBadge: 'CAMPFIRE NIGHT // BBQ GRILL & COLD BREEZE',
+                phaseTag: 'SUASANA MALAM // API UNGGUN, BARBECUE & KEBERSAMAAN',
+                heading: 'Sensasi Hangat Malam Dingin Puncak Bersama Sahabat'
+            }
+        };
+
+        function switchSanctuaryVideo(type) {
+            const data = sanctuaryVideoData[type];
+            if (!data || !sanctuaryVideoPlayer || !sanctuaryVideoSource) return;
+
+            sanctuaryVideoSource.src = data.src;
+            sanctuaryVideoPlayer.load();
+            sanctuaryVideoPlayer.play().catch(() => {});
+
+            if (sanctuaryPlayIcon) sanctuaryPlayIcon.className = 'fa-solid fa-pause text-xs';
+            if (sanctuaryVideoTitleBadge) sanctuaryVideoTitleBadge.textContent = data.titleBadge;
+            if (sanctuaryPhaseTag) sanctuaryPhaseTag.textContent = data.phaseTag;
+            if (sanctuaryHeadingTitle) sanctuaryHeadingTitle.textContent = data.heading;
+
+            if (type === 'pool') {
+                btnSanctuaryPool?.classList.add('active', 'border-ochre', 'bg-ochre/20', 'text-linen');
+                btnSanctuaryPool?.classList.remove('border-linen-border/50', 'bg-pine', 'text-linen/70');
+                btnSanctuaryBonfire?.classList.remove('active', 'border-ochre', 'bg-ochre/20', 'text-linen');
+                btnSanctuaryBonfire?.classList.add('border-linen-border/50', 'bg-pine', 'text-linen/70');
+            } else {
+                btnSanctuaryBonfire?.classList.add('active', 'border-ochre', 'bg-ochre/20', 'text-linen');
+                btnSanctuaryBonfire?.classList.remove('border-linen-border/50', 'bg-pine', 'text-linen/70');
+                btnSanctuaryPool?.classList.remove('active', 'border-ochre', 'bg-ochre/20', 'text-linen');
+                btnSanctuaryPool?.classList.add('border-linen-border/50', 'bg-pine', 'text-linen/70');
+            }
+        }
+
+        btnSanctuaryPool?.addEventListener('click', () => switchSanctuaryVideo('pool'));
+        btnSanctuaryBonfire?.addEventListener('click', () => switchSanctuaryVideo('bonfire'));
+
+        sanctuaryTogglePlayBtn?.addEventListener('click', () => {
+            if (!sanctuaryVideoPlayer) return;
+            if (sanctuaryVideoPlayer.paused) {
+                sanctuaryVideoPlayer.play();
+                if (sanctuaryPlayIcon) sanctuaryPlayIcon.className = 'fa-solid fa-pause text-xs';
+            } else {
+                sanctuaryVideoPlayer.pause();
+                if (sanctuaryPlayIcon) sanctuaryPlayIcon.className = 'fa-solid fa-play text-xs';
+            }
+        });
+
+        sanctuaryToggleMuteBtn?.addEventListener('click', () => {
+            if (!sanctuaryVideoPlayer) return;
+            sanctuaryVideoPlayer.muted = !sanctuaryVideoPlayer.muted;
+            if (sanctuaryMuteIcon) {
+                sanctuaryMuteIcon.className = sanctuaryVideoPlayer.muted ? 'fa-solid fa-volume-xmark text-xs' : 'fa-solid fa-volume-high text-xs';
+            }
+        });
+
+        // --- 8-CARD GUEST REVIEW CAROUSEL SLIDER ---
+        const sanctuaryReviewTrack = document.getElementById('sanctuaryReviewTrack');
+        const sanctuaryReviewWrap = document.getElementById('sanctuaryReviewWrap');
+        const sanctuaryReviewPrevBtn = document.getElementById('sanctuaryReviewPrevBtn');
+        const sanctuaryReviewNextBtn = document.getElementById('sanctuaryReviewNextBtn');
+        const sanctuaryReviewDotsRow = document.getElementById('sanctuaryReviewDotsRow');
+        const sanctuaryReviewSlides = document.querySelectorAll('.sanctuary-review-slide');
+
+        let currentSanctuarySlide = 0;
+        let sanctuaryReviewTimer = null;
+
+        function getSanctuaryVisibleSlides() {
+            if (window.innerWidth >= 1024) return 4;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        function getMaxSanctuaryIndex() {
+            const vis = getSanctuaryVisibleSlides();
+            return Math.max(0, sanctuaryReviewSlides.length - vis);
+        }
+
+        function updateSanctuaryDots() {
+            if (!sanctuaryReviewDotsRow) return;
+            const maxIdx = getMaxSanctuaryIndex();
+            sanctuaryReviewDotsRow.innerHTML = '';
+            for (let i = 0; i <= maxIdx; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Lihat ulasan halaman ${i + 1}`);
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSanctuarySlide ? 'bg-ochre w-7' : 'bg-linen-border hover:bg-ochre/50'}`;
+                dot.addEventListener('click', () => {
+                    currentSanctuarySlide = i;
+                    renderSanctuaryCarousel();
+                    resetSanctuaryTimer();
+                });
+                sanctuaryReviewDotsRow.appendChild(dot);
+            }
+        }
+
+        function renderSanctuaryCarousel() {
+            if (!sanctuaryReviewTrack) return;
+            const maxIdx = getMaxSanctuaryIndex();
+            if (currentSanctuarySlide > maxIdx) currentSanctuarySlide = maxIdx;
+            if (currentSanctuarySlide < 0) currentSanctuarySlide = 0;
+
+            const vis = getSanctuaryVisibleSlides();
+            const slidePercent = 100 / vis;
+            sanctuaryReviewTrack.style.transform = `translateX(-${currentSanctuarySlide * slidePercent}%)`;
+            updateSanctuaryDots();
+        }
+
+        function nextSanctuarySlide() {
+            const maxIdx = getMaxSanctuaryIndex();
+            currentSanctuarySlide = currentSanctuarySlide >= maxIdx ? 0 : currentSanctuarySlide + 1;
+            renderSanctuaryCarousel();
+        }
+
+        function prevSanctuarySlide() {
+            const maxIdx = getMaxSanctuaryIndex();
+            currentSanctuarySlide = currentSanctuarySlide <= 0 ? maxIdx : currentSanctuarySlide - 1;
+            renderSanctuaryCarousel();
+        }
+
+        sanctuaryReviewNextBtn?.addEventListener('click', () => {
+            nextSanctuarySlide();
+            resetSanctuaryTimer();
+        });
+
+        sanctuaryReviewPrevBtn?.addEventListener('click', () => {
+            prevSanctuarySlide();
+            resetSanctuaryTimer();
+        });
+
+        function resetSanctuaryTimer() {
+            if (sanctuaryReviewTimer) clearInterval(sanctuaryReviewTimer);
+            sanctuaryReviewTimer = setInterval(nextSanctuarySlide, 5000);
+        }
+
+        sanctuaryReviewWrap?.addEventListener('mouseenter', () => {
+            if (sanctuaryReviewTimer) clearInterval(sanctuaryReviewTimer);
+        });
+
+        sanctuaryReviewWrap?.addEventListener('mouseleave', resetSanctuaryTimer);
+
+        // Touch swipe support
+        let sanctuaryTouchStartX = 0;
+        let sanctuaryTouchEndX = 0;
+        sanctuaryReviewWrap?.addEventListener('touchstart', (e) => {
+            sanctuaryTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        sanctuaryReviewWrap?.addEventListener('touchend', (e) => {
+            sanctuaryTouchEndX = e.changedTouches[0].screenX;
+            if (sanctuaryTouchStartX - sanctuaryTouchEndX > 50) {
+                nextSanctuarySlide();
+                resetSanctuaryTimer();
+            } else if (sanctuaryTouchEndX - sanctuaryTouchStartX > 50) {
+                prevSanctuarySlide();
+                resetSanctuaryTimer();
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            renderSanctuaryCarousel();
+        });
+
+        // Initialize carousel on load
+        renderSanctuaryCarousel();
+        resetSanctuaryTimer();
+
 
         window.addEventListener('DOMContentLoaded', () => {
             // Default check-in: 2 days from now (spanning 1 weekday + 1 weekend or 2 nights)

@@ -637,114 +637,378 @@
     </main>
 
     <!-- ULASAN PELANGGAN & FOTO HASIL LAYANAN -->
-    <section id="ulasan-pelanggan" class="bg-slate-50 border-t border-slate-200 py-16">
+        <!-- 04. VIDEO AKSI & PROSEDUR LAYANAN SPESIALIS -->
+    <section id="video-layanan" class="bg-slate-900 text-white py-16 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
                 <div>
-                    <span class="font-mono text-xs text-indigo-600 uppercase tracking-wider font-semibold">Hasil Nyata & Kepuasan Klien</span>
-                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Ulasan & Foto Pelanggan <span class="text-indigo-600">Terverifikasi</span></h2>
+                    <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-indigo-400 font-bold mb-2 bg-slate-950 px-3 py-1 border border-indigo-500/30 rounded-lg">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        // 04. AKSI NYATA SPESIALIS &amp; HIGIENITAS RUANGAN
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
+                        Keahlian Profesional &amp; Standar Sterilisasi
+                    </h2>
                 </div>
-                <p class="text-sm text-slate-500 max-w-md">
-                    Sistem reservasi ini juga berfungsi sebagai media promosi yang menampilkan keahlian spesialis dan dokumentasi hasil layanan nyata.
+                <p class="text-sm text-slate-400 max-w-md leading-relaxed">
+                    Saksikan ketelitian para spesialis kami di lapangan: teknik potong fade presisi, handuk hangat aromaterapi, serta lighting studio foto yang memukau.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Review 1: Barbershop -->
-                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/hero-barber.jpg" alt="Hasil Potong Rambut" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-amber-900/90 text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Hasil Barbershop</span>
+            <!-- Video Switcher Buttons -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button type="button" id="btnServiceBarber" data-video="barber"
+                    class="service-video-btn active px-5 py-3 rounded-xl border border-indigo-500 bg-indigo-500/20 text-white font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-scissors text-indigo-400"></i>
+                    <span>AKSI 1: Barber Haircut Fade &amp; Hot Towel Shave (Gentleman's Cut)</span>
+                </button>
+                <button type="button" id="btnServiceStudio" data-video="studio"
+                    class="service-video-btn px-5 py-3 rounded-xl border border-slate-700 bg-slate-950 text-slate-300 hover:border-slate-500 font-mono text-xs sm:text-sm font-bold flex items-center gap-2.5 transition">
+                    <i class="fa-solid fa-camera text-violet-400"></i>
+                    <span>AKSI 2: Sesi Pemotretan Self-Photo Studio &amp; Cetak Strip (KuyPhoto)</span>
+                </button>
+            </div>
+
+            <!-- Video Player Card Container -->
+            <div class="border border-slate-700/80 bg-slate-950 rounded-2xl overflow-hidden shadow-2xl">
+                <!-- Top Status Bar -->
+                <div class="bg-slate-950 px-6 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 text-[11px] font-bold uppercase rounded-md">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span> LIVE TREATMENT
+                        </span>
+                        <span class="text-slate-200 font-bold" id="serviceVideoTitleBadge">GENTLEMAN'S CUT // FADE PRECISION &amp; GROOMING</span>
                     </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            "Booking capster favorit gak perlu antri lagi. Dateng sesuai jadwal, langsung potong. Hasilnya selalu rapi, fade-nya presisi banget."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
-                        <img src="assets/images/cust-1.jpg" alt="Dimas P." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
-                        <div>
-                            <div class="text-xs font-bold text-slate-900">Dimas Prasetyo</div>
-                            <div class="text-[10px] font-mono text-slate-400">Gentleman's Cut • Reguler</div>
-                        </div>
+                    <div class="flex items-center gap-4 text-slate-400 text-[11px]">
+                        <span><i class="fa-solid fa-shield text-indigo-400 mr-1"></i> Sterilisasi Sinar UV</span>
+                        <span><i class="fa-solid fa-clock text-indigo-400 mr-1"></i> Durasi: ~45 Menit</span>
                     </div>
                 </div>
 
-                <!-- Review 2: Klinik Gigi -->
-                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/hero-clinic.jpg" alt="Perawatan Klinik" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-emerald-900/90 text-emerald-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Perawatan Klinik</span>
+                <!-- Video Element with Controls -->
+                <div class="relative aspect-video max-h-[500px] w-full bg-black overflow-hidden flex items-center justify-center">
+                    <video id="serviceVideoPlayer" autoplay loop muted playsinline class="w-full h-full object-cover">
+                        <source id="serviceVideoSource" src="assets/videos/video-barber.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung pemutar video MP4.
+                    </video>
+
+                    <!-- Overlay Controls (Play/Pause, Sound Toggle) -->
+                    <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
+                        <button type="button" id="serviceTogglePlayBtn" aria-label="Play atau Pause Video"
+                            class="w-10 h-10 rounded-full bg-slate-950/80 hover:bg-indigo-600 text-white border border-slate-700 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-pause text-xs" id="servicePlayIcon"></i>
+                        </button>
+                        <button type="button" id="serviceToggleMuteBtn" aria-label="Nyalakan atau Matikan Suara"
+                            class="w-10 h-10 rounded-full bg-slate-950/80 hover:bg-indigo-600 text-white border border-slate-700 flex items-center justify-center transition shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-volume-xmark text-xs" id="serviceMuteIcon"></i>
+                        </button>
                     </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            "Bisa pilih dokter dan jam sendiri lewat website. Scaling + bleaching hasilnya kelihatan beda jauh! Ruang perawatan bersih dan steril."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
-                        <img src="assets/images/cust-2.jpg" alt="Anisa F." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
-                        <div>
-                            <div class="text-xs font-bold text-slate-900">Anisa Fitrianti</div>
-                            <div class="text-[10px] font-mono text-slate-400">Scaling & Bleaching Gigi</div>
-                        </div>
+
+                    <!-- Watermark Tag -->
+                    <div class="absolute top-4 left-4 bg-slate-950/85 backdrop-blur-sm px-3.5 py-1.5 rounded-lg border border-slate-700 text-[11px] font-mono text-indigo-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-award"></i>
+                        <span>DOKUMENTASI ASLI RESERVASIKU PORTAL</span>
                     </div>
                 </div>
 
-                <!-- Review 3: Self-Photo Studio -->
-                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/hero-studio.jpg" alt="Sesi Self-Photo Studio" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-violet-900/90 text-violet-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Sesi Studio</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">4.8</span>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            "Self-photo studio-nya aesthetic banget, backdrop banyak pilihan. Booking 30 menit sesi couple, dapat 4 strip foto gratis. Seru!"
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
-                        <img src="assets/images/cust-3.jpg" alt="Putri N." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
+                <!-- Structured Method Breakdown Underneath Video -->
+                <div class="p-6 sm:p-8 bg-slate-900 border-t border-slate-800">
+                    <div class="mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                         <div>
-                            <div class="text-xs font-bold text-slate-900">Putri Nabilah</div>
-                            <div class="text-[10px] font-mono text-slate-400">Sesi Couple 30 Min</div>
+                            <span class="font-mono text-xs text-indigo-400 font-bold uppercase" id="servicePhaseTag">SOP LAYANAN // BARBER &amp; GROOMING PRIA</span>
+                            <h3 class="font-display text-xl sm:text-2xl text-white font-bold mt-0.5" id="serviceHeadingTitle">3 Langkah Standar Perawatan Rambut Presisi</h3>
                         </div>
+                        <span class="font-mono text-xs text-slate-400 bg-slate-950 px-3 py-1 border border-slate-800 rounded-lg">Standar Higienis 2026</span>
                     </div>
-                </div>
 
-                <!-- Review 4: Barbershop Member -->
-                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div class="relative h-44 overflow-hidden">
-                        <img src="assets/images/spec-barber-1.jpg" alt="Capster Senior" class="w-full h-full object-cover" />
-                        <span class="absolute bottom-2 left-2 bg-slate-900/90 text-slate-200 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Spesialis Capster</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span class="font-mono text-[11px] text-slate-900 font-semibold ml-1">5.0</span>
+                    <!-- Dynamic Steps Grid -->
+                    <div class="grid sm:grid-cols-3 gap-4" id="serviceStepsContainer">
+                        <!-- Step 1 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-indigo-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-indigo-400">01</span>
+                                <span class="font-mono text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">KONSULTASI</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Analisis Bentuk Wajah &amp; Jenis Rambut</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Capster senior mendiskusikan referensi potongan rambut yang proporsional dengan garis rahang dan gaya hidup klien sebelum pemotongan dimulai.
+                            </p>
                         </div>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            "Sudah 2 tahun langganan di sini. Sistem reservasi online bikin saya gak pernah buang waktu nunggu. Capster Mas Rizky memang terbaik."
-                        </p>
-                    </div>
-                    <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
-                        <img src="assets/images/cust-4.jpg" alt="Arif S." class="w-8 h-8 rounded-full object-cover border border-slate-200" />
-                        <div>
-                            <div class="text-xs font-bold text-slate-900">Arif Setiawan</div>
-                            <div class="text-[10px] font-mono text-slate-400">Member Gold • 24 Kunjungan</div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-indigo-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-indigo-400">02</span>
+                                <span class="font-mono text-[10px] bg-indigo-950 text-indigo-400 border border-indigo-800 px-2 py-0.5 rounded">EKSEKUSI</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Pemotongan Fade &amp; Pisau Steril Sekali Pakai</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Clipper berpresisi mikrometer untuk gradasi fade halus, diiringi pisau cukur steril berbilah baru untuk pencukuran kumis dan jenggot.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-indigo-400/50 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-2xl font-bold text-indigo-400">03</span>
+                                <span class="font-mono text-[10px] bg-slate-800 text-indigo-400 border border-slate-700 px-2 py-0.5 rounded">FINISHING</span>
+                            </div>
+                            <h4 class="font-bold text-white text-sm mb-1.5">Hot Towel, Head Massage &amp; Tonic Styling</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Relaksasi handuk hangat beraroma minyak esensial herbal, pijat relaksasi pundak dan kepala, diakhiri penataan rambut dengan pomade premium.
+                            </p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. ULASAN & FOTO PELANGGAN (CAROUSEL SLIDER) -->
+    <section id="ulasan-pelanggan" class="bg-slate-50 border-t border-slate-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header & Navigation Buttons -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-200">
+                <div>
+                    <span class="font-mono text-xs text-indigo-600 uppercase tracking-wider font-semibold block mb-1">
+                        // 05. DOKUMENTASI HASIL &amp; ULASAN TERVERIFIKASI
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 mt-1">
+                        Ulasan Kepuasan Klien <span class="text-indigo-600">3 Layanan Unggulan</span>
+                    </h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono text-slate-500 mr-2 hidden sm:inline">Geser ulasan:</span>
+                    <button type="button" id="salonReviewPrevBtn" aria-label="Ulasan sebelumnya"
+                        class="w-10 h-10 rounded-xl border border-slate-300 bg-white hover:bg-indigo-600 hover:text-white text-slate-800 flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-left text-sm"></i>
+                    </button>
+                    <button type="button" id="salonReviewNextBtn" aria-label="Ulasan berikutnya"
+                        class="w-10 h-10 rounded-xl border border-slate-300 bg-white hover:bg-indigo-600 hover:text-white text-slate-800 flex items-center justify-center transition shadow-sm">
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carousel Viewport -->
+            <div class="overflow-hidden" id="salonReviewWrap">
+                <div class="flex gap-6 transition-transform duration-500 ease-out" id="salonReviewTrack">
+                    
+                    <!-- Slide 1: Barbershop -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-haircut.jpg" alt="Hasil Potong Rambut Fade" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-amber-900/90 text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Fade Cut Presisi</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Booking capster favorit gak perlu antri lagi. Datang sesuai slot jam 14.00 langsung duduk di kursi potong. Fade cut-nya rapi banget."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-1.jpg" alt="Dimas P." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Dimas Prasetyo</div>
+                                <div class="text-[10px] font-mono text-indigo-600">Gentleman's Cut • Reguler</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Dental Clinic -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-scaling.jpg" alt="Perawatan Klinik Gigi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-emerald-900/90 text-emerald-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Scaling &amp; Bleaching</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Pilih dokter spesialis dan jam praktek langsung dari ponsel. Scaling gigi tidak sakit sama sekali, alat steril tersegel baru. Puas!"
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-2.jpg" alt="Anisa F." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Anisa Fitrianti</div>
+                                <div class="text-[10px] font-mono text-emerald-600">SenyumSehat • Dental</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Photo Studio -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-photostrip.jpg" alt="Sesi Self-Photo Studio" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-violet-900/90 text-violet-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Cetak Strip 4-Pose</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">4.9</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Studio self-photo super aesthetic. Wireless shutter remote responsif, lighting softbox pas, dapat printout fisik plus semua soft file via Google Drive."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-3.jpg" alt="Putri N." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Putri Nabilah</div>
+                                <div class="text-[10px] font-mono text-violet-600">KuyPhoto • Sesi Couple</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Barbershop Shave -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/spec-barber-1.jpg" alt="Capster Senior" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-slate-900/90 text-slate-200 text-[10px] font-mono px-2.5 py-1 rounded-lg">Hot Towel Shave</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Paket komplit potong rambut dan cukur jenggot dengan handuk hangat benar-benar bikin rileks setelah seminggu bekerja lembur."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-4.jpg" alt="Arif S." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Arif Setiawan</div>
+                                <div class="text-[10px] font-mono text-indigo-600">Member VIP Barbershop</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Facial Aesthetic -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/rev-facial.jpg" alt="Facial Aesthetic Glow" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-emerald-900/90 text-emerald-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Facial Glow &amp; Serum</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Dokter kecantikannya sangat komunikatif menjelaskan kondisi kulit. Serum dan masker dingin bikin wajah cerah seketika."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-5.jpg" alt="dr. Nadia R." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">dr. Nadia Rahma</div>
+                                <div class="text-[10px] font-mono text-emerald-600">SenyumSehat • Estetika</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Studio Photobox -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/hero-studio.jpg" alt="Foto Wisuda Studio" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-violet-900/90 text-violet-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Foto Kelulusan 6 Pax</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Foto kelulusan bareng geng kampus 6 orang. Ruangan AC dingin, aksesoris kacamata &amp; topi lucu lengkap, gak kaku karena jepret sendiri."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-6.jpg" alt="Fauzan H." class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Fauzan Hafiz</div>
+                                <div class="text-[10px] font-mono text-violet-600">KuyPhoto • Sesi Grup</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Hair Coloring -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/spec-barber-2.jpg" alt="Hair Coloring Ash Brown" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-amber-900/90 text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Coloring Ash Brown</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">4.9</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Pewarnaan rambut ash brown hasilnya merata tanpa bikin rambut kering. Capster paham betul formula bleaching yang aman untuk kulit kepala."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-7.jpg" alt="Rio Pratama" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Rio Pratama</div>
+                                <div class="text-[10px] font-mono text-indigo-600">Gentleman's Cut • Hair Color</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Klinik Veneer -->
+                    <div class="salon-review-slide w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-44 overflow-hidden">
+                                <img src="assets/images/spec-clinic-1.jpg" alt="Veneer Gigi Komposit" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                                <span class="absolute bottom-2 left-2 bg-emerald-900/90 text-emerald-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">Direct Veneer Gigi</span>
+                                <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded">5.0</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    "Senyum jadi jauh lebih percaya diri setelah perawatan direct veneer 4 gigi depan. Bentuk rapi natural, warnanya putih alami tidak mencolok."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 border-t border-slate-100 flex items-center gap-3">
+                            <img src="assets/images/cust-8.jpg" alt="Maya Indah" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0" />
+                            <div>
+                                <div class="text-xs font-bold text-slate-900">Maya Indah</div>
+                                <div class="text-[10px] font-mono text-emerald-600">SenyumSehat • Dental Veneer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Dots Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-8" id="salonReviewDotsRow">
+                <!-- Dots populated by JS -->
             </div>
         </div>
     </section>
@@ -1654,9 +1918,244 @@
             }
         }
 
+        
+        // --- VIDEO SERVICE SWITCHER & CONTROLS ---
+        const serviceVideoPlayer = document.getElementById('serviceVideoPlayer');
+        const serviceVideoSource = document.getElementById('serviceVideoSource');
+        const btnServiceBarber = document.getElementById('btnServiceBarber');
+        const btnServiceStudio = document.getElementById('btnServiceStudio');
+        const serviceTogglePlayBtn = document.getElementById('serviceTogglePlayBtn');
+        const serviceToggleMuteBtn = document.getElementById('serviceToggleMuteBtn');
+        const servicePlayIcon = document.getElementById('servicePlayIcon');
+        const serviceMuteIcon = document.getElementById('serviceMuteIcon');
+        const serviceVideoTitleBadge = document.getElementById('serviceVideoTitleBadge');
+        const servicePhaseTag = document.getElementById('servicePhaseTag');
+        const serviceHeadingTitle = document.getElementById('serviceHeadingTitle');
+        const serviceStepsContainer = document.getElementById('serviceStepsContainer');
+
+        const serviceVideoData = {
+            barber: {
+                src: 'assets/videos/video-barber.mp4',
+                titleBadge: 'GENTLEMAN\'S CUT // FADE PRECISION & GROOMING',
+                phaseTag: 'SOP LAYANAN // BARBER & GROOMING PRIA',
+                heading: '3 Langkah Standar Perawatan Rambut Presisi',
+                steps: [
+                    { no: '01', badge: 'KONSULTASI', title: 'Analisis Bentuk Wajah & Jenis Rambut', desc: 'Capster senior mendiskusikan referensi potongan rambut yang proporsional dengan garis rahang dan gaya hidup klien sebelum pemotongan dimulai.' },
+                    { no: '02', badge: 'EKSEKUSI', title: 'Pemotongan Fade & Pisau Steril Sekali Pakai', desc: 'Clipper berpresisi mikrometer untuk gradasi fade halus, diiringi pisau cukur steril berbilah baru untuk pencukuran kumis dan jenggot.' },
+                    { no: '03', badge: 'FINISHING', title: 'Hot Towel, Head Massage & Tonic Styling', desc: 'Relaksasi handuk hangat beraroma minyak esensial herbal, pijat relaksasi pundak dan kepala, diakhiri penataan rambut dengan pomade premium.' }
+                ]
+            },
+            studio: {
+                src: 'assets/videos/video-studio.mp4',
+                titleBadge: 'KUYPHOTO STUDIO // SELF-PHOTO & PRINT STRIP',
+                phaseTag: 'SOP STUDIO // PEMOTRETAN MANDIRI & CETAK FISIK',
+                heading: '3 Kemudahan Sesi Pemotretan Bebas Gaya Tanpa Malu',
+                steps: [
+                    { no: '01', badge: 'LIGHTING', title: 'Softbox Studio Lighting & Live Monitor', desc: 'Dua lampu continuous softbox profesional menghasilkan cahaya lembut merata. Layar monitor live preview memudahkan Anda mengecek pose langsung.' },
+                    { no: '02', badge: 'REMOTE', title: 'Wireless Shutter Clicker Bebas Jepret', desc: 'Ambil foto sepuasnya selama durasi sesi (15/30 menit) menggunakan remote nirkabel di tangan tanpa fotografer yang melihat.' },
+                    { no: '03', badge: 'PRINT & DRIVE', title: 'Cetak Strip Foto 30 Detik & Soft Files', desc: 'Pilih layout strip favorit dan foto langsung tercetak tajam dengan kertas foto anti luntur. Semua soft file resolusi tinggi dikirim via link cloud.' }
+                ]
+            }
+        };
+
+        function switchServiceVideo(type) {
+            const data = serviceVideoData[type];
+            if (!data || !serviceVideoPlayer || !serviceVideoSource) return;
+
+            serviceVideoSource.src = data.src;
+            serviceVideoPlayer.load();
+            serviceVideoPlayer.play().catch(() => {});
+
+            if (servicePlayIcon) servicePlayIcon.className = 'fa-solid fa-pause text-xs';
+            if (serviceVideoTitleBadge) serviceVideoTitleBadge.textContent = data.titleBadge;
+            if (servicePhaseTag) servicePhaseTag.textContent = data.phaseTag;
+            if (serviceHeadingTitle) serviceHeadingTitle.textContent = data.heading;
+
+            if (type === 'barber') {
+                btnServiceBarber?.classList.add('active', 'border-indigo-500', 'bg-indigo-500/20', 'text-white');
+                btnServiceBarber?.classList.remove('border-slate-700', 'bg-slate-950', 'text-slate-300');
+                btnServiceStudio?.classList.remove('active', 'border-indigo-500', 'bg-indigo-500/20', 'text-white');
+                btnServiceStudio?.classList.add('border-slate-700', 'bg-slate-950', 'text-slate-300');
+            } else {
+                btnServiceStudio?.classList.add('active', 'border-indigo-500', 'bg-indigo-500/20', 'text-white');
+                btnServiceStudio?.classList.remove('border-slate-700', 'bg-slate-950', 'text-slate-300');
+                btnServiceBarber?.classList.remove('active', 'border-indigo-500', 'bg-indigo-500/20', 'text-white');
+                btnServiceBarber?.classList.add('border-slate-700', 'bg-slate-950', 'text-slate-300');
+            }
+
+            if (serviceStepsContainer) {
+                serviceStepsContainer.innerHTML = data.steps.map(s => `
+                    <div class="bg-slate-950/70 p-5 rounded-xl border border-slate-800 relative group hover:border-indigo-400/50 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-2xl font-bold text-indigo-400">${s.no}</span>
+                            <span class="font-mono text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">${s.badge}</span>
+                        </div>
+                        <h4 class="font-bold text-white text-sm mb-1.5">${s.title}</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">${s.desc}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        btnServiceBarber?.addEventListener('click', () => switchServiceVideo('barber'));
+        btnServiceStudio?.addEventListener('click', () => switchServiceVideo('studio'));
+
+        serviceTogglePlayBtn?.addEventListener('click', () => {
+            if (!serviceVideoPlayer) return;
+            if (serviceVideoPlayer.paused) {
+                serviceVideoPlayer.play();
+                if (servicePlayIcon) servicePlayIcon.className = 'fa-solid fa-pause text-xs';
+            } else {
+                serviceVideoPlayer.pause();
+                if (servicePlayIcon) servicePlayIcon.className = 'fa-solid fa-play text-xs';
+            }
+        });
+
+        serviceToggleMuteBtn?.addEventListener('click', () => {
+            if (!serviceVideoPlayer) return;
+            serviceVideoPlayer.muted = !serviceVideoPlayer.muted;
+            if (serviceMuteIcon) {
+                serviceMuteIcon.className = serviceVideoPlayer.muted ? 'fa-solid fa-volume-xmark text-xs' : 'fa-solid fa-volume-high text-xs';
+            }
+        });
+
+        // --- 8-CARD SALON REVIEW CAROUSEL SLIDER ---
+        const salonReviewTrack = document.getElementById('salonReviewTrack');
+        const salonReviewWrap = document.getElementById('salonReviewWrap');
+        const salonReviewPrevBtn = document.getElementById('salonReviewPrevBtn');
+        const salonReviewNextBtn = document.getElementById('salonReviewNextBtn');
+        const salonReviewDotsRow = document.getElementById('salonReviewDotsRow');
+        const salonReviewSlides = document.querySelectorAll('.salon-review-slide');
+
+        let currentSalonSlide = 0;
+        let salonReviewTimer = null;
+
+        function getSalonVisibleSlides() {
+            if (window.innerWidth >= 1024) return 4;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        function getMaxSalonSlideIndex() {
+            const visible = getSalonVisibleSlides();
+            return Math.max(0, salonReviewSlides.length - visible);
+        }
+
+        function updateSalonReviewSlider() {
+            if (!salonReviewTrack || !salonReviewSlides.length) return;
+            const maxIdx = getMaxSalonSlideIndex();
+            if (currentSalonSlide > maxIdx) currentSalonSlide = maxIdx;
+            if (currentSalonSlide < 0) currentSalonSlide = 0;
+
+            const firstSlide = salonReviewSlides[0];
+            const slideWidth = firstSlide.offsetWidth;
+            const gap = 24;
+            const moveX = currentSalonSlide * (slideWidth + gap);
+
+            salonReviewTrack.style.transform = `translateX(-${moveX}px)`;
+
+            const dots = salonReviewDotsRow?.querySelectorAll('button');
+            dots?.forEach((d, idx) => {
+                if (idx === currentSalonSlide) {
+                    d.className = 'w-6 h-2 bg-indigo-600 rounded-full transition-all';
+                } else {
+                    d.className = 'w-2 h-2 bg-slate-300 hover:bg-slate-400 rounded-full transition-all';
+                }
+            });
+        }
+
+        function renderSalonReviewDots() {
+            if (!salonReviewDotsRow) return;
+            const maxIdx = getMaxSalonSlideIndex();
+            salonReviewDotsRow.innerHTML = '';
+            for (let i = 0; i <= maxIdx; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Menuju ulasan ${i + 1}`);
+                dot.className = i === currentSalonSlide ? 'w-6 h-2 bg-indigo-600 rounded-full transition-all' : 'w-2 h-2 bg-slate-300 hover:bg-slate-400 rounded-full transition-all';
+                dot.addEventListener('click', () => {
+                    currentSalonSlide = i;
+                    updateSalonReviewSlider();
+                    startSalonAutoplay();
+                });
+                salonReviewDotsRow.appendChild(dot);
+            }
+        }
+
+        function nextSalonReview() {
+            const maxIdx = getMaxSalonSlideIndex();
+            if (currentSalonSlide >= maxIdx) {
+                currentSalonSlide = 0;
+            } else {
+                currentSalonSlide++;
+            }
+            updateSalonReviewSlider();
+        }
+
+        function prevSalonReview() {
+            const maxIdx = getMaxSalonSlideIndex();
+            if (currentSalonSlide <= 0) {
+                currentSalonSlide = maxIdx;
+            } else {
+                currentSalonSlide--;
+            }
+            updateSalonReviewSlider();
+        }
+
+        function startSalonAutoplay() {
+            stopSalonAutoplay();
+            salonReviewTimer = setInterval(nextSalonReview, 5000);
+        }
+
+        function stopSalonAutoplay() {
+            if (salonReviewTimer) {
+                clearInterval(salonReviewTimer);
+                salonReviewTimer = null;
+            }
+        }
+
+        salonReviewPrevBtn?.addEventListener('click', () => {
+            prevSalonReview();
+            startSalonAutoplay();
+        });
+
+        salonReviewNextBtn?.addEventListener('click', () => {
+            nextSalonReview();
+            startSalonAutoplay();
+        });
+
+        salonReviewWrap?.addEventListener('mouseenter', stopSalonAutoplay);
+        salonReviewWrap?.addEventListener('mouseleave', startSalonAutoplay);
+
+        // Touch Swipe
+        let salonTouchStartX = 0;
+        let salonTouchEndX = 0;
+        salonReviewWrap?.addEventListener('touchstart', (e) => {
+            stopSalonAutoplay();
+            salonTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        salonReviewWrap?.addEventListener('touchend', (e) => {
+            salonTouchEndX = e.changedTouches[0].screenX;
+            if (salonTouchEndX < salonTouchStartX - 40) {
+                nextSalonReview();
+            } else if (salonTouchEndX > salonTouchStartX + 40) {
+                prevSalonReview();
+            }
+            startSalonAutoplay();
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            renderSalonReviewDots();
+            updateSalonReviewSlider();
+        });
+
         window.addEventListener('DOMContentLoaded', () => {
             initDates();
             switchIndustryMode('barber');
+            renderSalonReviewDots();
+            updateSalonReviewSlider();
+            startSalonAutoplay();
         });
     </script>
 </body>
