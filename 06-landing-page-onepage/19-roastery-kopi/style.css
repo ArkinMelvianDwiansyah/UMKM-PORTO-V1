@@ -209,33 +209,37 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  gap: 16px;
+  height: 68px;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .nav-brand img {
-  height: 42px;
+  height: 36px;
   width: auto;
+  max-width: 210px;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 2.5vw, 32px);
+  gap: clamp(10px, 1.4vw, 22px);
   list-style: none;
 }
 
 .nav-link {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.02em;
   position: relative;
   padding: 8px 0;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -259,17 +263,20 @@ button {
 .nav-cta-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background-color: var(--bg-dark);
   color: var(--text-light);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 9px 18px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--bg-dark);
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-cta-btn:hover {
@@ -2083,8 +2090,105 @@ button {
   fill: #FFFFFF;
 }
 
+/* --- Map Box Styling --- */
+.kontak-map-wrapper {
+  margin-top: 36px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.map-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.map-badge {
+  font-size: 0.6875rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: #E8E8E2;
+  color: var(--text-main);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.map-frame-box {
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background-color: #E5E5E0;
+}
+
+.map-frame-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(85%) contrast(1.05);
+  transition: filter var(--transition-normal);
+}
+
+.map-frame-box:hover iframe {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* --- Testimoni Enhanced Styling --- */
+.testimoni-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.testimoni-stars {
+  color: #0A0A0A;
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+}
+
+.testimoni-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: var(--bg-body);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
 /* --- 24. RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 1024px) {
+@media (max-width: 1040px) {
+  .nav-menu,
+  .nav-cta-btn {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
   .hero-grid,
   .tentang-grid,
   .kontak-grid,
@@ -2116,15 +2220,6 @@ button {
 }
 
 @media (max-width: 768px) {
-  .nav-menu,
-  .nav-cta-btn {
-    display: none;
-  }
-
-  .hamburger-btn {
-    display: flex;
-  }
-
   .keunggulan-grid,
   .origin-grid,
   .langganan-grid,

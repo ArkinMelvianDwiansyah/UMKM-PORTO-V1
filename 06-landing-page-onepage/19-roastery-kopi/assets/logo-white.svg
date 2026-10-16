@@ -8,6 +8,6 @@
     <circle cx="24" cy="41" r="1.5" fill="#8C8C88" />
   </g>
   <!-- Bespoke Editorial Typography Inverted -->
-  <text x="64" y="27" font-family="'Fraunces', 'Georgia', serif" font-size="18" font-weight="700" letter-spacing="0.08em" fill="#F5F5F0">SANGRAI &amp; SEDUH</text>
-  <text x="64.5" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em" fill="#A3A39E">ARTISAN ROASTERY &bull; JAKARTA</text>
+  <text x="64" y="27" font-family="'Fraunces', Georgia, serif" font-size="18" font-weight="700" letter-spacing="0.08em" fill="#F5F5F0">SANGRAI &amp; SEDUH</text>
+  <text x="64.5" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em" fill="#A3A39E">ARTISAN ROASTERY &#8226; JAKARTA</text>
 </svg>

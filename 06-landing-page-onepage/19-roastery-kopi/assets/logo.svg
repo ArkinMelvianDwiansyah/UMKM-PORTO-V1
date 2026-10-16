@@ -11,6 +11,6 @@
     <circle cx="24" cy="41" r="1.5" fill="#8C8C88" />
   </g>
   <!-- Bespoke Editorial Typography -->
-  <text x="64" y="27" font-family="'Fraunces', 'Georgia', serif" font-size="18" font-weight="700" letter-spacing="0.08em" fill="#0A0A0A">SANGRAI &amp; SEDUH</text>
-  <text x="64.5" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em" fill="#666663">ARTISAN ROASTERY &bull; JAKARTA</text>
+  <text x="64" y="27" font-family="'Fraunces', Georgia, serif" font-size="18" font-weight="700" letter-spacing="0.08em" fill="#0A0A0A">SANGRAI &amp; SEDUH</text>
+  <text x="64.5" y="42" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em" fill="#666663">ARTISAN ROASTERY &#8226; JAKARTA</text>
 </svg>
