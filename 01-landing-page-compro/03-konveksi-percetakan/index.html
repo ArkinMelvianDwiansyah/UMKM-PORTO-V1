@@ -288,7 +288,7 @@
     </section>
 
     <!-- INTERACTIVE KALKULATOR HARGA GROSIR BERTINGKAT (TIERED PRICING) -->
-    <section id="kalkulator-grosir" class="py-20 bg-white border-b border-zinc-300">
+    <section id="kalkulator-grosir" class="py-20 relative"><div id="kalkulator-harga" class="absolute -top-24"></div> bg-white border-b border-zinc-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                 <div>
@@ -855,9 +855,9 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
-                                <img src="assets/images/avatar-1.jpg" alt="Hendra Wijaya" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <img src="assets/images/avatar-1.jpg" alt="Bpk. Taufik Hidayat" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
                                 <div>
-                                    <div class="text-xs font-bold text-white">Hendra Wijaya</div>
+                                    <div class="text-xs font-bold text-white">Bpk. Taufik Hidayat</div>
                                     <div class="font-mono text-[10px] text-zinc-400">Procurement Lead • PT Kalimantan Energi</div>
                                 </div>
                             </div>
@@ -921,9 +921,9 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 px-6 py-4 bg-zinc-950/60 border-t border-zinc-800">
-                                <img src="assets/images/avatar-3.jpg" alt="Raka Pratama" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
+                                <img src="assets/images/avatar-3.jpg" alt="Bpk. Fajar Ramadhan" class="w-10 h-10 object-cover border border-zinc-600 shrink-0">
                                 <div>
-                                    <div class="text-xs font-bold text-white">Raka Pratama</div>
+                                    <div class="text-xs font-bold text-white">Bpk. Fajar Ramadhan</div>
                                     <div class="font-mono text-[10px] text-zinc-400">Ketua Panitia • BEM Universitas Negeri</div>
                                 </div>
                             </div>
@@ -950,7 +950,7 @@
                         <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
                     </button>
                     <div class="faq-content px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
-                        Minimum pemesanan adalah <strong>12 pcs (1 lusin) per desain/model</strong>. Untuk ukuran baju (S, M, L, XL, XXL, 3XL) bebas dicampur sesuai daftar anggota tim Anda. Semakin besar kuantitas (mulai 36 pcs dan 100 pcs), harga satuan otomatis turun mengikuti Tier Harga Grosir Pabrik.
+                        Minimum pemesanan adalah <strong>12 pcs (1 lusin) per desain/model</strong>. Untuk ukuran baju (S, M, L, XL, XXL, 3XL) bebas dicampur sesuai daftar anggota tim Anda. Semakin besar kuantitas (Tier Grosir mulai 50 pcs diskon 12%, dan Tier Pabrik mulai 120 pcs diskon 22%), harga satuan otomatis turun mengikuti Tier Harga Grosir Pabrik.
                     </div>
                 </div>
 
@@ -960,7 +960,7 @@
                         <i class="fa-solid fa-chevron-down text-[#FF4D1C] transition-transform"></i>
                     </button>
                     <div class="faq-content hidden px-6 py-4 text-sm text-zinc-600 bg-[#F6F5F2] border-t border-zinc-200 leading-relaxed">
-                        <strong>Mockup digital 3D 100% gratis</strong> tanpa syarat DP cukup dengan mengirimkan logo/sketsa via WhatsApp. Untuk pemesanan di atas 100 pcs (Tier Pabrik), kami juga menyediakan layanan pembuatan 1 pcs sampel fisik (sample proofing) sebelum seluruh batch naik mesin potong.
+                        <strong>Mockup digital 3D 100% gratis</strong> tanpa syarat DP cukup dengan mengirimkan logo/sketsa via WhatsApp. Untuk pemesanan di atas 120 pcs (Tier Pabrik), kami juga menyediakan layanan pembuatan 1 pcs sampel fisik (sample proofing) sebelum seluruh batch naik mesin potong.
                     </div>
                 </div>
 
@@ -1051,7 +1051,7 @@
                         </p>
                     </div>
                     <div class="flex flex-wrap items-center gap-3 shrink-0">
-                        <a href="#kalkulator-harga" class="px-5 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition shadow-lg inline-flex items-center gap-2 whitespace-nowrap">
+                        <a href="#kalkulator-grosir" class="px-5 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs transition shadow-lg inline-flex items-center gap-2 whitespace-nowrap">
                             <i class="fa-solid fa-calculator"></i>
                             <span>Simulasi Harga Grosir Bertingkat</span>
                         </a>
@@ -1087,11 +1087,11 @@
                 <div class="lg:col-span-3">
                     <h4 class="font-mono text-xs uppercase tracking-wider text-violet-400 font-bold mb-4">Lini Produksi Garmen</h4>
                     <ul class="space-y-2.5 text-xs text-slate-300">
-                        <li><a href="#kalkulator-harga" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Kemeja Kerja PDH/PDL Bordir Komputer</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                        <li><a href="#kalkulator-harga" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Kaos Sablon Plastisol &amp; DTF Premium</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                        <li><a href="#kalkulator-harga" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Jersey Full Sublimasi Printing</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                        <li><a href="#kalkulator-harga" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Jaket Bomber, Parka &amp; Hoodie</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                        <li><a href="#kalkulator-harga" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Totebag Canvas &amp; Kemasan Promosi</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                        <li><a href="#kalkulator-grosir" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Kemeja Kerja PDH/PDL Bordir Komputer</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                        <li><a href="#kalkulator-grosir" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Kaos Sablon Plastisol &amp; DTF Premium</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                        <li><a href="#kalkulator-grosir" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Jersey Full Sublimasi Printing</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                        <li><a href="#kalkulator-grosir" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Jaket Bomber, Parka &amp; Hoodie</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                        <li><a href="#kalkulator-grosir" class="hover:text-violet-400 transition flex items-center justify-between group"><span>Totebag Canvas &amp; Kemasan Promosi</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
                     </ul>
                 </div>
 

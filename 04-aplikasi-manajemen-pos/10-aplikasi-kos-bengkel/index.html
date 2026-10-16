@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KelolaPro UMKM — Sistem Manajemen Kos-Kosan & Bengkel Servis Kendaraan</title>
+    <title>KelolaPro UMKM — Sistem Manajemen Kos-Kosan &amp; Bengkel Servis Kendaraan</title>
+    <meta name="description" content="KelolaPro UMKM — 2-in-1 Web App Suite: Sistem denah visual kos-kosan interaktif 20 kamar dengan pengingat tagihan WhatsApp, dan sistem riwayat servis plat nomor serta PKB bengkel.">
+    <meta property="og:title" content="KelolaPro UMKM — Sistem Manajemen Kos &amp; Bengkel Servis">
+    <meta property="og:description" content="Demo web app manajemen kos-kosan &amp; bengkel kendaraan terpadu dengan integrasi WhatsApp.">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +42,23 @@
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- TOP FLOATING DEMO BAR -->
+    <div class="bg-slate-950 text-slate-300 border-b border-slate-800 text-xs px-4 py-1.5 flex items-center justify-between z-40 shrink-0">
+        <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-violet-400 hover:text-violet-300 transition-colors">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i>
+            <span>Kembali ke Katalog Portofolio UMKM</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 text-slate-400">
+            <span class="inline-block w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+            <span class="font-mono text-[11px]">PORTFOLIO #10 &bull; 2-IN-1 MANAJEMEN KOS &amp; BENGKEL</span>
+            <span class="text-slate-600">&bull;</span>
+            <span class="text-slate-200 font-semibold">JuraganKos &amp; BengkelPintar Live Suite</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-violet-500/10 text-violet-300 border border-violet-500/30 font-bold">Demo Simulasi</span>
+        </div>
+    </div>
 
     <!-- TOP BAR WITH 2-IN-1 APP SWITCHER -->
     <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30">
@@ -180,7 +201,8 @@
         <!-- ========================================================================================= -->
         <!-- APLIKASI A: JURAGANKOS — SISTEM MANAJEMEN KOS-KOSAN & KONTRAKAN (20 KAMAR LANTAI 1 & 2) -->
         <!-- ========================================================================================= -->
-        <main id="app-kos" class="max-w-7xl mx-auto space-y-5">
+        <main id="app-kos" class="max-w-7xl mx-auto space-y-5 relative">
+            <div id="appKos" class="absolute -top-20"></div>
 
             <!-- Financial Summary & Occupancy KPIs -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -198,8 +220,8 @@
                         <span class="text-xs font-bold text-slate-400 uppercase">Omset Sewa Bulan Ini</span>
                         <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-sack-dollar"></i></span>
                     </div>
-                    <p id="kosKpiOmset" class="text-2xl font-extrabold text-emerald-600 font-mono mt-2">Rp 23.400.000</p>
-                    <p class="text-[11px] text-slate-500 mt-1">Dari 13 kamar berstatus Lunas</p>
+                    <p id="kosKpiOmset" class="text-2xl font-extrabold text-emerald-600 font-mono mt-2">Rp 22.350.000</p>
+                    <p class="text-[11px] text-slate-500 mt-1">Dari 13 kamar lunas (6 VIP + 7 Reguler)</p>
                 </div>
 
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
@@ -207,8 +229,8 @@
                         <span class="text-xs font-bold text-slate-400 uppercase">Tagihan Belum Dibayar</span>
                         <span class="w-8 h-8 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-bell"></i></span>
                     </div>
-                    <p id="kosKpiUnpaid" class="text-2xl font-extrabold text-rose-600 font-mono mt-2">Rp 5.400.000</p>
-                    <p id="kosKpiUnpaidCount" class="text-[11px] text-rose-600 font-semibold mt-1">3 Kamar Jatuh Tempo / Nunggak</p>
+                    <p id="kosKpiUnpaid" class="text-2xl font-extrabold text-rose-600 font-mono mt-2">Rp 5.250.000</p>
+                    <p id="kosKpiUnpaidCount" class="text-[11px] text-rose-600 font-semibold mt-1">3 Kamar Jatuh Tempo (2 VIP + 1 Reguler)</p>
                 </div>
 
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
@@ -330,7 +352,8 @@
         <!-- ========================================================================================= -->
         <!-- APLIKASI B: BENGKELPINTAR — RIWAYAT SERVIS PLAT NOMOR, STOK OLI & KOMISI MEKANIK          -->
         <!-- ========================================================================================= -->
-        <main id="app-bengkel" class="hidden max-w-7xl mx-auto space-y-6">
+        <main id="app-bengkel" class="hidden max-w-7xl mx-auto space-y-6 relative">
+            <div id="appBengkel" class="absolute -top-20"></div>
 
             <!-- Top Bengkel Banner & Quick Stats -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -514,15 +537,15 @@
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-[11px] font-extrabold uppercase tracking-wider">
                         <i class="fa-solid fa-camera-retro"></i> Bukti Nyata Operasional UMKM
                     </span>
-                    <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Galeri Ulasan Penghuni Kos & Pelanggan Bengkel</h2>
-                    <p class="text-xs text-slate-500 mt-1">Dokumentasi langsung dari pemilik properti kos eksklusif dan pelanggan bengkel rekanan yang menggunakan sistem KelolaPro.</p>
+                    <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Galeri Ulasan Penghuni Kos &amp; Pelanggan Bengkel (Simulasi Portofolio)*</h2>
+                    <p class="text-xs text-slate-500 mt-1">Dokumentasi langsung dari pemilik properti kos eksklusif dan pelanggan bengkel rekanan yang menggunakan sistem KelolaPro (ilustrasi portofolio).</p>
                 </div>
                 <div class="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-sm shrink-0">
                     <div class="text-right">
                         <div class="flex items-center gap-1 text-amber-400 text-xs justify-end">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-[11px] font-bold text-slate-600 mt-0.5"><span class="font-mono font-extrabold text-slate-900">4.9/5.0</span> dari 640+ Ulasan Terverifikasi</p>
+                        <p class="text-[11px] font-bold text-slate-600 mt-0.5"><span class="font-mono font-extrabold text-slate-900">4.9/5.0</span> dari 640+ Ulasan (Contoh/Simulasi)*</p>
                     </div>
                 </div>
             </div>
@@ -547,9 +570,9 @@
                         </div>
                     </div>
                     <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
-                        <img src="assets/images/cust-1.jpg" alt="Dimas Anggara" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <img src="assets/images/cust-1.jpg" alt="Dian Anggara" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
                         <div class="min-w-0">
-                            <p class="text-xs font-extrabold text-slate-900 truncate">Dimas Anggara</p>
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Dian Anggara</p>
                             <p class="text-[10px] text-slate-500 truncate">Penghuni Kos Lantai 1 • 9 Bulan</p>
                         </div>
                     </div>
@@ -573,9 +596,9 @@
                         </div>
                     </div>
                     <div class="px-4 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2.5">
-                        <img src="assets/images/cust-2.jpg" alt="Shenina Cinnamon" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
+                        <img src="assets/images/cust-2.jpg" alt="Sherly Noviana" class="w-8 h-8 rounded-full object-cover shrink-0 border border-slate-200">
                         <div class="min-w-0">
-                            <p class="text-xs font-extrabold text-slate-900 truncate">Shenina Cinnamon</p>
+                            <p class="text-xs font-extrabold text-slate-900 truncate">Sherly Noviana</p>
                             <p class="text-[10px] text-slate-500 truncate">Penghuni Kamar 108 • Mahasiswi</p>
                         </div>
                     </div>
@@ -770,11 +793,11 @@
                     <nav aria-label="Modul JuraganKos" class="space-y-2.5">
                         <h4 class="font-mono text-[11px] uppercase tracking-wider text-indigo-400 font-bold">Modul JuraganKos</h4>
                         <ul class="space-y-2 text-xs text-slate-300">
-                            <li><a href="#appKos" onclick="switchApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Denah Visual 20 Kamar Interaktif</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appKos" onclick="switchApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Broadcast WA Tagihan &amp; Listrik</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appKos" onclick="switchApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Check-in Penghuni &amp; Data KTP</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appKos" onclick="switchApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Tiket Keluhan Perbaikan Fasilitas</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appKos" onclick="switchApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Laporan Arus Kas Bulanan</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appKos" onclick="switchMainApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Denah Visual 20 Kamar Interaktif</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appKos" onclick="switchMainApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Broadcast WA Tagihan &amp; Listrik</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appKos" onclick="switchMainApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Check-in Penghuni &amp; Data KTP</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appKos" onclick="switchMainApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Tiket Keluhan Perbaikan Fasilitas</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appKos" onclick="switchMainApp('kos')" class="hover:text-indigo-400 transition flex items-center justify-between group"><span>Laporan KPI Okupansi &amp; Omset Bulanan</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
                         </ul>
                     </nav>
 
@@ -782,11 +805,11 @@
                     <nav aria-label="Modul BengkelPintar" class="space-y-2.5">
                         <h4 class="font-mono text-[11px] uppercase tracking-wider text-amber-400 font-bold">Modul BengkelPintar</h4>
                         <ul class="space-y-2 text-xs text-slate-300">
-                            <li><a href="#appBengkel" onclick="switchApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Riwayat Servis per Plat Nomor</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appBengkel" onclick="switchApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Perintah Kerja Bengkel (PKB)</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appBengkel" onclick="switchApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Perhitungan Komisi Mekanik 40%</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appBengkel" onclick="switchApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Inventori Sparepart &amp; Stok Oli</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
-                            <li><a href="#appBengkel" onclick="switchApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Cetak Struk Servis Thermal 58mm</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appBengkel" onclick="switchMainApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Riwayat Servis per Plat Nomor</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appBengkel" onclick="switchMainApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Perintah Kerja Bengkel (PKB)</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appBengkel" onclick="switchMainApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Perhitungan Komisi Mekanik 40%</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appBengkel" onclick="switchMainApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Katalog Jasa Servis &amp; Sparepart Oli</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
+                            <li><a href="#appBengkel" onclick="switchMainApp('bengkel')" class="hover:text-amber-400 transition flex items-center justify-between group"><span>Cetak Struk Servis Thermal 58mm</span><i class="fa-solid fa-angle-right text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i></a></li>
                         </ul>
                     </nav>
 
@@ -976,39 +999,40 @@
                 calculateWoTotals();
             }
         }
+        function switchApp(app) { switchMainApp(app); }
 
         // ============================================================================
         // DATA & LOGIC FOR APLIKASI A: JURAGANKOS (20 KAMAR)
         // ============================================================================
         const kosRooms = [
             // Floor 1 (101 - 110)
-            { number: '101', floor: 1, status: 'paid', tenant: 'Dimas Anggara', wa: '0812-3456-7801', checkIn: '10 Jan 2026', rate: 1800000, kwh: '342 kWh' },
-            { number: '102', floor: 1, status: 'paid', tenant: 'Putri Marino', wa: '0812-3456-7802', checkIn: '05 Feb 2026', rate: 1800000, kwh: '218 kWh' },
-            { number: '103', floor: 1, status: 'overdue', tenant: 'Rizky Nazar', wa: '0812-3456-7803', checkIn: '12 Mar 2026', rate: 1800000, kwh: '410 kWh' },
-            { number: '104', floor: 1, status: 'paid', tenant: 'Anya Geraldine', wa: '0812-3456-7804', checkIn: '01 Apr 2026', rate: 1800000, kwh: '295 kWh' },
+            { number: '101', floor: 1, status: 'paid', tenant: 'Dian Anggara', wa: '0812-3456-7801', checkIn: '10 Jan 2026', rate: 1800000, kwh: '342 kWh' },
+            { number: '102', floor: 1, status: 'paid', tenant: 'Putri Maharani', wa: '0812-3456-7802', checkIn: '05 Feb 2026', rate: 1800000, kwh: '218 kWh' },
+            { number: '103', floor: 1, status: 'overdue', tenant: 'Rizky Ananda', wa: '0812-3456-7803', checkIn: '12 Mar 2026', rate: 1800000, kwh: '410 kWh' },
+            { number: '104', floor: 1, status: 'paid', tenant: 'Anindya Putri', wa: '0812-3456-7804', checkIn: '01 Apr 2026', rate: 1800000, kwh: '295 kWh' },
             { number: '105', floor: 1, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1800000, kwh: '0 kWh' },
-            { number: '106', floor: 1, status: 'paid', tenant: 'Iqbaal Ramadhan', wa: '0812-3456-7806', checkIn: '18 Jan 2026', rate: 1800000, kwh: '310 kWh' },
-            { number: '107', floor: 1, status: 'overdue', tenant: 'Jefri Nichol', wa: '0812-3456-7807', checkIn: '20 Mei 2026', rate: 1800000, kwh: '512 kWh' },
-            { number: '108', floor: 1, status: 'paid', tenant: 'Shenina Cinnamon', wa: '0812-3456-7808', checkIn: '14 Feb 2026', rate: 1800000, kwh: '190 kWh' },
+            { number: '106', floor: 1, status: 'paid', tenant: 'Ikhsan Ramadhan', wa: '0812-3456-7806', checkIn: '18 Jan 2026', rate: 1800000, kwh: '310 kWh' },
+            { number: '107', floor: 1, status: 'overdue', tenant: 'Joko Nugroho', wa: '0812-3456-7807', checkIn: '20 Mei 2026', rate: 1800000, kwh: '512 kWh' },
+            { number: '108', floor: 1, status: 'paid', tenant: 'Sherly Noviana', wa: '0812-3456-7808', checkIn: '14 Feb 2026', rate: 1800000, kwh: '190 kWh' },
             { number: '109', floor: 1, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1800000, kwh: '0 kWh' },
-            { number: '110', floor: 1, status: 'paid', tenant: 'Angga Yunanda', wa: '0812-3456-7810', checkIn: '03 Jun 2026', rate: 1800000, kwh: '275 kWh' },
+            { number: '110', floor: 1, status: 'paid', tenant: 'Agung Pratama', wa: '0812-3456-7810', checkIn: '03 Jun 2026', rate: 1800000, kwh: '275 kWh' },
             // Floor 2 (201 - 210)
-            { number: '201', floor: 2, status: 'paid', tenant: 'Prilly Latuconsina', wa: '0813-8899-2201', checkIn: '09 Jan 2026', rate: 1650000, kwh: '185 kWh' },
-            { number: '202', floor: 2, status: 'paid', tenant: 'Bryan Domani', wa: '0813-8899-2202', checkIn: '11 Mar 2026', rate: 1650000, kwh: '260 kWh' },
+            { number: '201', floor: 2, status: 'paid', tenant: 'Prita Larasati', wa: '0813-8899-2201', checkIn: '09 Jan 2026', rate: 1650000, kwh: '185 kWh' },
+            { number: '202', floor: 2, status: 'paid', tenant: 'Bagus Danuarta', wa: '0813-8899-2202', checkIn: '11 Mar 2026', rate: 1650000, kwh: '260 kWh' },
             { number: '203', floor: 2, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1650000, kwh: '0 kWh' },
-            { number: '204', floor: 2, status: 'paid', tenant: 'Caitlin Halderman', wa: '0813-8899-2204', checkIn: '22 Apr 2026', rate: 1650000, kwh: '230 kWh' },
-            { number: '205', floor: 2, status: 'overdue', tenant: 'Abidzar Al-Ghifari', wa: '0813-8899-2205', checkIn: '02 Feb 2026', rate: 1650000, kwh: '490 kWh' },
-            { number: '206', floor: 2, status: 'paid', tenant: 'Syifa Hadju', wa: '0813-8899-2206', checkIn: '19 Mei 2026', rate: 1650000, kwh: '205 kWh' },
-            { number: '207', floor: 2, status: 'paid', tenant: 'Refal Hady', wa: '0813-8899-2207', checkIn: '01 Jul 2026', rate: 1650000, kwh: '312 kWh' },
+            { number: '204', floor: 2, status: 'paid', tenant: 'Citra Handayani', wa: '0813-8899-2204', checkIn: '22 Apr 2026', rate: 1650000, kwh: '230 kWh' },
+            { number: '205', floor: 2, status: 'overdue', tenant: 'Aditya Firdaus', wa: '0813-8899-2205', checkIn: '02 Feb 2026', rate: 1650000, kwh: '490 kWh' },
+            { number: '206', floor: 2, status: 'paid', tenant: 'Siti Hajar', wa: '0813-8899-2206', checkIn: '19 Mei 2026', rate: 1650000, kwh: '205 kWh' },
+            { number: '207', floor: 2, status: 'paid', tenant: 'Reza Firmansyah', wa: '0813-8899-2207', checkIn: '01 Jul 2026', rate: 1650000, kwh: '312 kWh' },
             { number: '208', floor: 2, status: 'empty', tenant: '-', wa: '-', checkIn: '-', rate: 1650000, kwh: '0 kWh' },
-            { number: '209', floor: 2, status: 'paid', tenant: 'Febby Rastanty', wa: '0813-8899-2209', checkIn: '15 Jun 2026', rate: 1650000, kwh: '198 kWh' },
-            { number: '210', floor: 2, status: 'paid', tenant: 'Dikta Wicaksono', wa: '0813-8899-2210', checkIn: '25 Jan 2026', rate: 1650000, kwh: '280 kWh' }
+            { number: '209', floor: 2, status: 'paid', tenant: 'Fani Rahmawati', wa: '0813-8899-2209', checkIn: '15 Jun 2026', rate: 1650000, kwh: '198 kWh' },
+            { number: '210', floor: 2, status: 'paid', tenant: 'Dodi Wicaksana', wa: '0813-8899-2210', checkIn: '25 Jan 2026', rate: 1650000, kwh: '280 kWh' }
         ];
 
         const kosComplaints = [
-            { id: 1, room: '103', tenant: 'Rizky Nazar', issue: 'AC kurang dingin, perlu cuci evaporator', status: 'Proses Teknisi' },
-            { id: 2, room: '205', tenant: 'Abidzar', issue: 'Keran wastafel kamar mandi menetes', status: 'Menunggu Sparepart' },
-            { id: 3, room: '108', tenant: 'Shenina', issue: 'Lampu balkon luar minta diganti LED baru', status: 'Baru Masuk' }
+            { id: 1, room: '103', tenant: 'Rizky Ananda', issue: 'AC kurang dingin, perlu cuci evaporator', status: 'Proses Teknisi' },
+            { id: 2, room: '205', tenant: 'Aditya', issue: 'Keran wastafel kamar mandi menetes', status: 'Menunggu Sparepart' },
+            { id: 3, room: '108', tenant: 'Sherly', issue: 'Lampu balkon luar minta diganti LED baru', status: 'Baru Masuk' }
         ];
 
         function renderKosFloorMap() {
@@ -1102,7 +1126,7 @@
                     <form onsubmit="checkInNewTenant(event, '${r.number}')" class="space-y-3">
                         <div>
                             <label class="font-bold text-slate-700 block mb-1">Nama Penghuni Baru</label>
-                            <input id="newTenantName" required type="text" placeholder="Contoh: Mas Fajar Sadboy" value="Bpk. Vino G. Bastian" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-semibold">
+                            <input id="newTenantName" required type="text" placeholder="Contoh: Bpk. Valentino Pratama" value="Bpk. Valentino Pratama" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-semibold">
                         </div>
                         <div>
                             <label class="font-bold text-slate-700 block mb-1">Nomor WhatsApp</label>
@@ -1175,7 +1199,7 @@
             if (!r) return;
             r.tenant = document.getElementById('newTenantName').value;
             r.wa = document.getElementById('newTenantWa').value;
-            r.checkIn = '12 Okt 2026';
+            r.checkIn = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             r.status = 'paid';
             r.kwh = '120 kWh';
             closeKosModal();
@@ -1339,9 +1363,14 @@
                 };
             }
 
+            const todayStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+            const nextDate = new Date();
+            nextDate.setDate(nextDate.getDate() + 60);
+            const nextMonthYear = nextDate.toLocaleDateString('id-ID', { month: 'short', year: 'numeric' });
+
             vehicleDatabase[plate].nextServiceKm = `${(kmNum + 2000).toLocaleString('id-ID')} KM`;
             vehicleDatabase[plate].history.unshift({
-                date: '12 Okt 2026 (Baru)',
+                date: `${todayStr} (Baru)`,
                 km: `${kmNum.toLocaleString('id-ID')} KM`,
                 complaint,
                 part: prtName,
@@ -1361,7 +1390,7 @@
             document.getElementById('pkbPartName').textContent = prtName;
             document.getElementById('pkbPartPrice').textContent = formatRp(prtPrice);
             document.getElementById('pkbTotal').textContent = formatRp(total);
-            document.getElementById('pkbNextOil').textContent = `${(kmNum + 2000).toLocaleString('id-ID')} KM / Des 2026`;
+            document.getElementById('pkbNextOil').textContent = `${(kmNum + 2000).toLocaleString('id-ID')} KM / ${nextMonthYear}`;
 
             const modal = document.getElementById('bengkelReceiptModal');
             modal.classList.remove('hidden');

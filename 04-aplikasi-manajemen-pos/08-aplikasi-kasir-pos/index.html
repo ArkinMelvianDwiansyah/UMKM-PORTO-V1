@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KasirPintar Pro — Sistem POS Kasir, QR Meja & Inventori Stok</title>
+    <title>KasirPintar Pro — Sistem POS Kasir, QR Meja &amp; Inventori Stok</title>
+    <meta name="description" content="KasirPintar Pro — Demo sistem aplikasi POS kasir touchscreen, cetak struk thermal 58mm, QR Meja mandiri, manajemen stok bahan baku &amp; laporan laba rugi outlet UMKM.">
+    <meta property="og:title" content="KasirPintar Pro — Sistem POS Kasir &amp; Inventori Stok">
+    <meta property="og:description" content="Demo web application Point of Sale modern untuk cafe, resto &amp; retail UMKM.">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -75,6 +79,23 @@
 </head>
 <body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
 
+    <!-- TOP FLOATING DEMO BAR -->
+    <div class="bg-slate-950 text-slate-300 border-b border-slate-800 text-xs px-4 py-1.5 flex items-center justify-between z-40 shrink-0">
+        <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i>
+            <span>Kembali ke Katalog Portofolio UMKM</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 text-slate-400">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-mono text-[11px]">PORTFOLIO #08 &bull; APLIKASI WEB KASIR (POS)</span>
+            <span class="text-slate-600">&bull;</span>
+            <span class="text-slate-200 font-semibold">Simulasi Interaktif POS, Stok &amp; Laba Rugi</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 font-bold">Demo Simulasi</span>
+        </div>
+    </div>
+
     <!-- TOP NAVIGATION BAR -->
     <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-4 border-b border-slate-800 shrink-0 z-30">
         <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
@@ -129,7 +150,7 @@
             </div>
             <div class="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl text-right font-mono tabular-nums shrink-0 whitespace-nowrap">
                 <div id="liveClock" class="text-xs font-bold text-emerald-400 whitespace-nowrap">10:42:19 WIB</div>
-                <div id="liveDate" class="text-[10px] text-slate-400 whitespace-nowrap">12 Okt 2026</div>
+                <div id="liveDate" class="text-[10px] text-slate-400 whitespace-nowrap">Live Date</div>
             </div>
 
             <!-- Mobile Hamburger Toggle Button -->
@@ -284,6 +305,17 @@
         <main id="view-pos" class="flex-1 flex flex-col lg:flex-row overflow-hidden">
             <!-- Left/Center Product Catalog -->
             <div class="flex-1 flex flex-col overflow-hidden bg-slate-100">
+                <!-- Above-the-fold Context Banner -->
+                <div class="px-3.5 py-2 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between gap-3 text-xs text-emerald-950 shrink-0">
+                    <div class="flex items-center gap-2 overflow-hidden">
+                        <span class="px-2 py-0.5 rounded-md bg-emerald-600 text-white font-mono text-[10px] font-bold shrink-0">DEMO APLIKASI</span>
+                        <p class="truncate text-[11px] text-emerald-900 font-medium">
+                            <strong>Simulasi Kasir &amp; Inventori:</strong> Klik menu untuk menambah ke kasir, coba scan barcode atau cetak struk thermal 58mm. Tab <strong>Stok Barang</strong> &amp; <strong>Laporan Laba</strong> di navigasi atas aktif &amp; interaktif.
+                        </p>
+                    </div>
+                    <span class="text-[10px] text-emerald-700 font-mono shrink-0 hidden sm:inline">&bull; 100% Interaktif</span>
+                </div>
+
                 <!-- Search & Barcode Bar -->
                 <div class="p-3 lg:p-4 bg-white border-b border-slate-200 flex flex-wrap items-center gap-2.5 justify-between">
                     <div class="relative flex-1 min-w-[220px]">
@@ -315,10 +347,10 @@
                     <section id="ulasan-mitra" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
                         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 pb-3 border-b border-slate-100">
                             <div>
-                                <span class="font-mono text-[11px] font-bold text-emerald-600 uppercase tracking-wider">BUKTI IMPLEMENTASI OUTLET UMKM</span>
+                                <span class="font-mono text-[11px] font-bold text-emerald-600 uppercase tracking-wider">BUKTI IMPLEMENTASI OUTLET UMKM (CONTOH/SIMULASI)*</span>
                                 <h3 class="text-lg font-extrabold text-slate-900 mt-0.5">Ulasan &amp; Foto Outlet Pengguna KasirPintar Pro</h3>
                             </div>
-                            <span class="font-mono text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-lg">1.450+ Outlet Aktif</span>
+                            <span class="font-mono text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-lg">1.450+ Outlet Aktif (Ilustrasi)*</span>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -326,7 +358,7 @@
                             <div class="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between">
                                 <div>
                                     <div class="relative h-36 overflow-hidden">
-                                        <img src="assets/images/prod-kop-01.jpg" alt="Outlet Kopi Senja" class="w-full h-full object-cover">
+                                        <img src="assets/images/prod-kop-01.jpg" alt="Outlet Kopi Seduh Hayu" class="w-full h-full object-cover">
                                         <span class="absolute bottom-2 left-2 bg-slate-900/90 text-emerald-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded">Foto Produk • Coffee Shop</span>
                                     </div>
                                     <div class="p-3.5">
@@ -337,10 +369,10 @@
                                     </div>
                                 </div>
                                 <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
-                                    <img src="assets/images/cust-1.jpg" alt="Raka Pratama" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <img src="assets/images/cust-1.jpg" alt="Bpk. Rian Hidayat" class="w-7 h-7 rounded-full object-cover border border-slate-300">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-900">Raka Pratama</div>
-                                        <div class="text-[10px] text-slate-500">Owner Kopi Senja • Bandung</div>
+                                        <div class="text-xs font-bold text-slate-900">Bpk. Rian Hidayat</div>
+                                        <div class="text-[10px] text-slate-500">Owner Kopi Seduh Hayu • Bandung</div>
                                     </div>
                                 </div>
                             </div>
@@ -360,9 +392,9 @@
                                     </div>
                                 </div>
                                 <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
-                                    <img src="assets/images/cust-2.jpg" alt="Hj. Dewi Sartika" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <img src="assets/images/cust-2.jpg" alt="Hj. Dewi Handayani" class="w-7 h-7 rounded-full object-cover border border-slate-300">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-900">Hj. Dewi Sartika</div>
+                                        <div class="text-xs font-bold text-slate-900">Hj. Dewi Handayani</div>
                                         <div class="text-[10px] text-slate-500">RM Dapur Sunda • Bekasi</div>
                                     </div>
                                 </div>
@@ -383,9 +415,9 @@
                                     </div>
                                 </div>
                                 <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
-                                    <img src="assets/images/cust-3.jpg" alt="Clarissa Tan" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <img src="assets/images/cust-3.jpg" alt="Ibu Michelle Suryadi" class="w-7 h-7 rounded-full object-cover border border-slate-300">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-900">Clarissa Tan</div>
+                                        <div class="text-xs font-bold text-slate-900">Ibu Michelle Suryadi</div>
                                         <div class="text-[10px] text-slate-500">Artisan Bakery • Surabaya</div>
                                     </div>
                                 </div>
@@ -406,9 +438,9 @@
                                     </div>
                                 </div>
                                 <div class="px-3.5 py-2.5 border-t border-slate-200 bg-white flex items-center gap-2.5">
-                                    <img src="assets/images/cust-4.jpg" alt="Budi Hartono" class="w-7 h-7 rounded-full object-cover border border-slate-300">
+                                    <img src="assets/images/cust-4.jpg" alt="Bpk. Budi Santoso" class="w-7 h-7 rounded-full object-cover border border-slate-300">
                                     <div>
-                                        <div class="text-xs font-bold text-slate-900">H. Budi Hartono</div>
+                                        <div class="text-xs font-bold text-slate-900">Bpk. Budi Santoso</div>
                                         <div class="text-[10px] text-slate-500">Berkah Mart • Yogyakarta</div>
                                     </div>
                                 </div>
@@ -1570,11 +1602,18 @@
             if (tx) openReceiptModal(tx);
         }
 
-        // Live Clock
+        // Live Clock & Dynamic Date
         function updateClock() {
             const now = new Date();
-            document.getElementById('liveClock').textContent = now.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB';
+            const clockEl = document.getElementById('liveClock');
+            if (clockEl) clockEl.textContent = now.toLocaleTimeString('id-ID', { hour12: false }) + ' WIB';
+            const dateEl = document.getElementById('liveDate');
+            if (dateEl) {
+                const options = { day: 'numeric', month: 'short', year: 'numeric' };
+                dateEl.textContent = now.toLocaleDateString('id-ID', options);
+            }
         }
+        updateClock();
         setInterval(updateClock, 1000);
 
         // Toggle Mobile Navigation Drawer

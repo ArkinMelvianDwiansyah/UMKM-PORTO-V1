@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartWash Laundry — Aplikasi Kasir, Kanban Produksi & Cek Status Cucian WA</title>
+    <title>SmartWash Laundry — Aplikasi Kasir, Kanban Produksi &amp; Cek Status Cucian WA</title>
+    <meta name="description" content="SmartWash Laundry — Demo aplikasi web manajemen binatu &amp; POS kasir laundry: input nota kilat, papan kanban 5 kolom produksi, dan portal cek status cucian via WhatsApp.">
+    <meta property="og:title" content="SmartWash Laundry — Aplikasi Kasir &amp; Kanban Binatu">
+    <meta property="og:description" content="Demo web app kasir, kanban operasional, dan tracking cucian otomatis via WhatsApp.">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +42,23 @@
     </style>
 </head>
 <body class="bg-sky-50/60 text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+    <!-- TOP FLOATING DEMO BAR -->
+    <div class="bg-slate-950 text-slate-300 border-b border-slate-800 text-xs px-4 py-1.5 flex items-center justify-between z-40 shrink-0">
+        <a href="../../index.html" class="inline-flex items-center gap-2 font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+            <i class="fa-solid fa-arrow-left text-[11px]"></i>
+            <span>Kembali ke Katalog Portofolio UMKM</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 text-slate-400">
+            <span class="inline-block w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span class="font-mono text-[11px]">PORTFOLIO #09 &bull; APLIKASI WEB MANAJEMEN LAUNDRY</span>
+            <span class="text-slate-600">&bull;</span>
+            <span class="text-slate-200 font-semibold">Kasir POS, Kanban Produksi &amp; Tracking WA</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-sky-500/10 text-sky-300 border border-sky-500/30 font-bold">Demo Simulasi</span>
+        </div>
+    </div>
 
     <!-- TOP NAVIGATION BAR -->
     <header class="bg-slate-900 text-white h-16 px-4 lg:px-6 flex items-center justify-between gap-3 border-b border-slate-800 shrink-0 z-30">
@@ -216,7 +237,7 @@
                                 <label class="block font-bold text-slate-700 mb-1">Nama Pelanggan <span class="text-rose-500">*</span></label>
                                 <div class="relative">
                                     <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                    <input id="ldrCustomerName" required type="text" value="Ibu Nadine Amizah" placeholder="Misal: Bpk. Budi / Ibu Sari" class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-semibold focus:outline-none focus:border-sky-500">
+                                    <input id="ldrCustomerName" required type="text" value="Ibu Nadia Kirana" placeholder="Misal: Bpk. Budi / Ibu Sari" class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl font-semibold focus:outline-none focus:border-sky-500">
                                 </div>
                             </div>
                             <div>
@@ -311,7 +332,7 @@
                             </div>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
-                            <div class="flex justify-between"><span class="text-slate-500">Pelanggan:</span><span id="prvCustomer" class="font-bold text-slate-900">Ibu Nadine Amizah</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Pelanggan:</span><span id="prvCustomer" class="font-bold text-slate-900">Ibu Nadia Kirana</span></div>
                             <div class="flex justify-between"><span class="text-slate-500">Layanan:</span><span id="prvService" class="font-bold text-sky-700">Cuci Komplit Setrika</span></div>
                             <div class="flex justify-between"><span class="text-slate-500">Kuantitas:</span><span id="prvQty" class="font-mono font-bold tabular-nums">5 kg x Rp 8.000</span></div>
                             <div class="flex justify-between"><span class="text-slate-500">Aroma Parfum:</span><span id="prvPerfume" class="font-semibold">Sakura Blossom</span></div>
@@ -326,7 +347,8 @@
                             <i class="fa-brands fa-whatsapp text-emerald-600 text-xl mt-0.5"></i>
                             <div class="text-[11px] text-emerald-950 leading-relaxed">
                                 <p class="font-bold">Fitur Unggulan SmartWash:</p>
-                                <p>Begitu klik <strong>"Simpan Nota & Kirim WA"</strong>, nota otomatis masuk ke kolom <strong>Antrean Masuk</strong> di Papan Kanban dan pelanggan menerima link pelacakan cucian tanpa perlu install aplikasi!</p>
+                                <p>Begitu klik <strong>"Simpan Nota &amp; Kirim WA"</strong>, nota otomatis masuk ke kolom <strong>Antrean Masuk</strong> di Papan Kanban dan pelanggan menerima link pelacakan cucian tanpa perlu install aplikasi!</p>
+                                <p class="text-[10px] text-emerald-800 mt-1.5 pt-1.5 border-t border-emerald-200/60">*Fitur Notifikasi WhatsApp otomatis memerlukan integrasi API WhatsApp Gateway resmi (tersedia sebagai add-on/panduan setup).</p>
                             </div>
                         </div>
                     </div>
@@ -401,15 +423,15 @@
                 <section id="section-ulasan" class="bg-white rounded-3xl border border-slate-200 p-6 lg:p-8 shadow-sm">
                     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
                         <div>
-                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Bukti Kualitas & Testimoni</span>
-                            <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Ulasan Pelanggan & Dokumentasi Hasil Cucian</h2>
-                            <p class="text-xs text-slate-500 mt-1">Foto asli hasil pengerjaan tim SmartWash Laundry dari ulasan pelanggan langganan kami.</p>
+                            <span class="text-[11px] font-extrabold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Bukti Kualitas &amp; Testimoni (Simulasi)*</span>
+                            <h2 class="text-xl lg:text-2xl font-extrabold text-slate-900 mt-2">Ulasan Pelanggan &amp; Dokumentasi Hasil Cucian</h2>
+                            <p class="text-xs text-slate-500 mt-1">Foto asli hasil pengerjaan tim SmartWash Laundry dari ulasan pelanggan langganan kami (ilustrasi portofolio).</p>
                         </div>
                         <div class="flex items-center gap-3 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shrink-0">
                             <div class="text-amber-400 text-lg"><i class="fa-solid fa-star"></i></div>
                             <div class="tabular-nums">
                                 <div class="text-sm font-extrabold leading-none">4.97 / 5.0</div>
-                                <div class="text-[10px] text-slate-400 mt-0.5">1.420+ Ulasan Google Maps</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">1.420+ Ulasan Google Maps (Contoh/Simulasi)*</div>
                             </div>
                         </div>
                     </div>
@@ -424,9 +446,9 @@
                                 </div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2.5 mb-2.5">
-                                        <img src="assets/images/cust-1.jpg" alt="Ibu Nadine Amizah" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <img src="assets/images/cust-1.jpg" alt="Ibu Nadia Kirana" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
                                         <div class="min-w-0">
-                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Nadine Amizah</h4>
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Nadia Kirana</h4>
                                             <div class="flex items-center gap-1 text-[10px] text-amber-500">
                                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                                 <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
@@ -451,9 +473,9 @@
                                 </div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2.5 mb-2.5">
-                                        <img src="assets/images/cust-2.jpg" alt="Mas Ardhito Pramono" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <img src="assets/images/cust-2.jpg" alt="Mas Arya Perkasa" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
                                         <div class="min-w-0">
-                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Mas Ardhito Pramono</h4>
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Mas Arya Perkasa</h4>
                                             <div class="flex items-center gap-1 text-[10px] text-amber-500">
                                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                                 <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
@@ -478,9 +500,9 @@
                                 </div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2.5 mb-2.5">
-                                        <img src="assets/images/cust-3.jpg" alt="Ibu Dian Sastrowardoyo" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <img src="assets/images/cust-3.jpg" alt="Ibu Ratna Dewi" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
                                         <div class="min-w-0">
-                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Dian Sastrowardoyo</h4>
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Ibu Ratna Dewi</h4>
                                             <div class="flex items-center gap-1 text-[10px] text-amber-500">
                                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                                 <span class="text-slate-400 font-semibold ml-1 tabular-nums">5.0</span>
@@ -505,9 +527,9 @@
                                 </div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2.5 mb-2.5">
-                                        <img src="assets/images/cust-4.jpg" alt="Bpk. Reza Rahadian" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
+                                        <img src="assets/images/cust-4.jpg" alt="Bpk. Rendy Kusuma" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm shrink-0">
                                         <div class="min-w-0">
-                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Bpk. Reza Rahadian</h4>
+                                            <h4 class="text-xs font-extrabold text-slate-900 truncate">Bpk. Rendy Kusuma</h4>
                                             <div class="flex items-center gap-1 text-[10px] text-amber-500">
                                                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                                                 <span class="text-slate-400 font-semibold ml-1 tabular-nums">4.9</span>
@@ -562,7 +584,7 @@
                                     <i id="faq-icon-3" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
                                 </button>
                                 <div id="faq-ans-3" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
-                                    Tentu! Kami menghitung jumlah potong pakaian di depan pelanggan dan menyortir pakaian putih/berwarna sebelum dicuci. Kami memberikan <strong>Garansi Cuci Ulang Gratis 100%</strong> bila kurang bersih/rapi, serta jaminan ganti rugi hingga 10x nilai nota bila terjadi kerusakan akibat kelalaian tim kami.
+                                    Tentu! Kami menghitung jumlah potong pakaian di depan pelanggan dan menyortir pakaian putih/berwarna sebelum dicuci. Kami memberikan <strong>Garansi Cuci Ulang Gratis 100%</strong> bila kurang bersih/rapi, serta jaminan ganti rugi hingga 10x nilai nota bila terjadi kerusakan akibat kelalaian tim kami (mengacu pada S&amp;K SOP Standar Layanan).
                                 </div>
                             </div>
 
@@ -583,6 +605,16 @@
                                 </button>
                                 <div id="faq-ans-5" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
                                     Kami menerima pembayaran <strong>QRIS Semua E-Wallet & Mobile Banking</strong> (GoPay, OVO, Dana, ShopeePay, BCA, Mandiri, BRI), Transfer Bank, maupun <strong>Tunai</strong>. Anda dapat memilih bayar di awal (Lunas) atau bayar saat pengambilan cucian.
+                                </div>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                                <button type="button" onclick="toggleLaundryFaq(6)" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left font-extrabold text-slate-900 transition">
+                                    <span>6. Apakah notifikasi WhatsApp otomatis membutuhkan WhatsApp Gateway berbayar?</span>
+                                    <i id="faq-icon-6" class="fa-solid fa-chevron-down text-sky-600 transition-transform"></i>
+                                </button>
+                                <div id="faq-ans-6" class="hidden p-4 bg-white text-slate-600 leading-relaxed border-t border-slate-200">
+                                    Benar. Dalam aplikasi operasional nyata, fitur <strong>Pengiriman Notifikasi WhatsApp Otomatis</strong> memerlukan integrasi API WhatsApp Gateway resmi (seperti Fonnte, Wablas, atau WhatsApp Cloud API resmi). Tim JalaninWeb menyediakan panduan integrasi gratis dan opsi paket add-on WhatsApp Gateway resmi sesuai kapasitas pesan outlet Anda.
                                 </div>
                             </div>
                         </div>
@@ -876,7 +908,7 @@
                         </div>
                         <div class="space-y-0.5 text-[10px] border-b border-dashed border-slate-400 pb-2">
                             <div class="flex justify-between"><span>NO NOTA:</span><span id="mdlId" class="font-extrabold">INV-LDR-093</span></div>
-                            <div class="flex justify-between"><span>PELANGGAN:</span><span id="mdlCustomer" class="font-bold">Ibu Nadine</span></div>
+                            <div class="flex justify-between"><span>PELANGGAN:</span><span id="mdlCustomer" class="font-bold">Ibu Nadia</span></div>
                             <div class="flex justify-between"><span>NO WA:</span><span id="mdlWa">0812-8765-4321</span></div>
                             <div class="flex justify-between"><span>LOKASI RAK:</span><span id="mdlRack" class="font-extrabold">RAK-A1</span></div>
                         </div>
@@ -956,7 +988,7 @@
         const laundryOrders = [
             {
                 id: 'INV-LDR-089',
-                customer: 'Kak Reza Rahadian',
+                customer: 'Bpk. Rendy Kusuma',
                 wa: '0811-2233-4455',
                 service: 'Kilat Express 6 Jam',
                 qty: 4,
@@ -971,7 +1003,7 @@
             },
             {
                 id: 'INV-LDR-090',
-                customer: 'Ibu Dian Sastro',
+                customer: 'Ibu Ratna Dewi',
                 wa: '0812-9988-1122',
                 service: 'Cuci Komplit Setrika',
                 qty: 6.5,
@@ -986,7 +1018,7 @@
             },
             {
                 id: 'INV-LDR-091',
-                customer: 'Bpk. Lukman Sardi',
+                customer: 'Bpk. Hendra Wijaya',
                 wa: '0813-7766-5544',
                 service: 'Cuci Bedcover Besar',
                 qty: 2,
@@ -1001,7 +1033,7 @@
             },
             {
                 id: 'INV-LDR-092',
-                customer: 'Mas Ardhito Pramono',
+                customer: 'Mas Arya Perkasa',
                 wa: '0815-4433-2211',
                 service: 'Cuci Sepatu Deep Clean',
                 qty: 2,
@@ -1016,7 +1048,7 @@
             },
             {
                 id: 'INV-LDR-088',
-                customer: 'Ibu Ratna Galih',
+                customer: 'Ibu Siti Fatimah',
                 wa: '0812-3344-5566',
                 service: 'Cuci Komplit Setrika',
                 qty: 5,

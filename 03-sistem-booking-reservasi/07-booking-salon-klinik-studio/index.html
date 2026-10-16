@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <meta name="description" content="Contoh portofolio sistem reservasi online barbershop, klinik gigi/estetika, dan self-photo studio dengan wizard booking 4 tahap, pemilihan spesialis/dokter, dan kartu antrean digital.">
+    <meta property="og:title" content="ReservasiKu Multi-Booking — Portofolio JalaninWeb">
+    <meta property="og:description" content="Sistem reservasi online 3-in-1 untuk barbershop, klinik estetika & self-photo studio.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReservasiKu Multi-Booking — Sistem Reservasi Online Barbershop, Klinik Gigi/Kecantikan & Self-Photo Studio</title>
@@ -321,7 +324,7 @@
     </header>
 
     <!-- MAIN 4-STEP INTERACTIVE BOOKING WIZARD -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <main id="wizard-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full relative"><div id="wizardSection" class="absolute -top-24"></div>
 
         <!-- WIZARD STEP PROGRESS NAVIGATION BAR -->
         <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:p-4 mb-8 shadow-sm">
@@ -999,7 +1002,7 @@
                 <div class="bg-slate-100 rounded-2xl p-3.5 space-y-1.5">
                     <div class="flex justify-between">
                         <span class="text-slate-500">Tanggal Kedatangan:</span>
-                        <strong id="ticketDateText" class="text-slate-900">Hari Ini, 12 Okt 2026</strong>
+                        <strong id="ticketDateText" class="text-slate-900">-</strong>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-slate-500">Jadwal Sesi:</span>
