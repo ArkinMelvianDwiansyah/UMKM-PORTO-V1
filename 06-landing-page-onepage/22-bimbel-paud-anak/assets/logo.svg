@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56" fill="none">
+  <!-- Brand Icon: Sprout nestled inside a loving smiling house -->
+  <g transform="translate(4, 4)">
+    <!-- House outline/silhouette with soft rounded corners -->
+    <path d="M24 4L4 19V42C4 44.2091 5.79086 46 8 46H40C42.2091 46 44 44.2091 44 42V19L24 4Z" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Sunny warmth glow behind sprout -->
+    <circle cx="24" cy="25" r="11" fill="#FDE68A" />
+    <!-- Happy Sun Rays -->
+    <path d="M24 10V6" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M34.5 14.5L37.5 11.5" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M13.5 14.5L10.5 11.5" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+    <!-- Sprout stem and leaves (Growth symbol) -->
+    <path d="M24 38V24" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+    <path d="M24 30C20 28 15 31 16 35C19 36 23 33 24 30Z" fill="#10B981"/>
+    <path d="M24 26C28 23 33 26 32 30C29 31 25 28 24 26Z" fill="#059669"/>
+    <!-- Little playful heart sparkle -->
+    <path d="M36 36C36 34.5 34.5 33.5 33 34.5C31.5 33.5 30 34.5 30 36C30 38 33 40 33 40C33 40 36 38 36 36Z" fill="#F43F5E"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="58" y="27" font-family="'Baloo 2', 'Fredoka', 'Nunito', sans-serif" font-size="20" font-weight="800" fill="#0F172A" letter-spacing="-0.02em">RUMAH TUMBUH</text>
+  <text x="58" y="44" font-family="'Nunito', sans-serif" font-size="10.5" font-weight="700" fill="#D97706" letter-spacing="0.06em">PAUD • DAYCARE • BIMBEL</text>
+</svg>

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manis Lagi — Kafe Dessert, Artisan Pastry &amp; Brunch Cantik di Senopati Jakarta</title>
+  <meta name="description" content="Kafe dessert, artisan pastry, dan brunch di Senopati Jakarta Selatan. Menyajikan croissant mentega Prancis, Basque burnt cheesecake, matcha mille crepe, dan spot foto estetik.">
+  <meta name="keywords" content="kafe dessert senopati, bakery jakarta selatan, croissant prancis, basque cheesecake jakarta, tempat brunch estetik, kafe instagrammable senopati">
+  <meta name="author" content="Manis Lagi Dessert &amp; Brunch">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Manis Lagi — Kafe Dessert &amp; Brunch Senopati">
+  <meta property="og:description" content="Pastry hangat yang dipanggang segar tiap pagi, dessert manis lembut, dan sudut foto cantik di Senopati.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-dessert.jpg">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Manis Lagi Dessert & Brunch",
+    "image": "assets/images/hero-dessert.jpg",
+    "description": "Kafe artisan pastry, dessert lembut, dan menu brunch di Senopati Jakarta Selatan.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Senopati No. 42, Selong",
+      "addressLocality": "Jakarta Selatan",
+      "addressRegion": "DKI Jakarta",
+      "postalCode": "12110",
+      "addressCountry": "ID"
+    },
+    "telephone": "+6281291902121",
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 1. TOP DEMO NOTICE BAR (Wajib Katalog) -->
+  <div class="demo-banner" role="banner" aria-label="Pemberitahuan Demo">
+    <div class="container demo-banner-content">
+      <div class="demo-banner-text">
+        <span class="demo-tag">Demo Portofolio</span>
+        <span>Contoh Tampilan / Landing Page Portofolio JalaninWeb (Data &amp; Entitas Fiktif)</span>
+      </div>
+      <a href="../../index.html" class="demo-back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        Kembali ke Katalog
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. NAVBAR STICKY -->
+  <header class="navbar-sticky" id="navbar">
+    <div class="container nav-wrapper">
+      <a href="#beranda" class="nav-brand" aria-label="Manis Lagi Beranda">
+        <img src="assets/logo.svg" alt="Logo Manis Lagi Kafe Dessert" width="220" height="40">
+      </a>
+
+      <nav class="nav-desktop" aria-label="Navigasi Utama">
+        <ul class="nav-menu">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#tentang" class="nav-link">Cerita Kami</a></li>
+          <li><a href="#menu-andalan" class="nav-link">Menu Favorit</a></li>
+          <li><a href="#paket-acara" class="nav-link">Paket Acara</a></li>
+          <li><a href="#galeri" class="nav-link">Spot Foto</a></li>
+          <li><a href="#kontak" class="nav-link">Lokasi &amp; Reservasi</a></li>
+        </ul>
+      </nav>
+
+      <a href="#kontak" class="nav-cta-btn">
+        Reservasi Meja
+      </a>
+
+      <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu Mobile" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <img src="assets/logo.svg" alt="Manis Lagi" width="160" height="34">
+        <button type="button" class="drawer-close-btn" id="closeDrawerBtn" aria-label="Tutup Menu">&times;</button>
+      </div>
+      <ul class="drawer-menu">
+        <li><a href="#beranda" class="drawer-link">Beranda</a></li>
+        <li><a href="#keunggulan" class="drawer-link">Keunggulan Dapur</a></li>
+        <li><a href="#tentang" class="drawer-link">Cerita Brand</a></li>
+        <li><a href="#layanan" class="drawer-link">Layanan Kafe</a></li>
+        <li><a href="#menu-andalan" class="drawer-link">Menu Andalan</a></li>
+        <li><a href="#paket-acara" class="drawer-link">Paket Pesta &amp; Hampers</a></li>
+        <li><a href="#galeri" class="drawer-link">Galeri Spot Foto</a></li>
+        <li><a href="#proses" class="drawer-link">Proses Panggang</a></li>
+        <li><a href="#testimoni" class="drawer-link">Ulasan Sahabat Manis</a></li>
+        <li><a href="#faq" class="drawer-link">Tanya Jawab</a></li>
+        <li><a href="#kontak" class="drawer-link">Alamat &amp; Reservasi</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="#kontak" class="btn-pink" style="width: 100%; text-align: center;">Reservasi Meja Sekarang</a>
+      <div style="font-size: 0.8125rem; color: var(--text-muted); text-align: center; margin-top: 16px;">
+        <span class="data-phone">0812-9190-2121</span><br>
+        Jl. Senopati No. 42, Jakarta Selatan
+      </div>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- 3. #beranda — HERO SECTION -->
+    <section class="hero-section" id="beranda" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-sticker-pill">
+            <span>✨ Fresh Baked Daily at 05.00 WIB &bull; 100% Halal</span>
+          </div>
+          <h1 class="hero-title" id="hero-heading">
+            Hari Baik Dimulai Dari Sepotong <span class="highlight-pink">Pastry Hangat.</span>
+          </h1>
+          <p class="hero-lead">
+            Selamat datang di sudut manis Senopati. Kami memanggang croissant mentega Prancis berlayer renyah, kue basque cheesecake lumer, dan menu brunch gurih yang bikin Anda ingin mampir lagi dan lagi.
+          </p>
+          <div class="hero-actions">
+            <a href="#menu-andalan" class="btn-pink">
+              Lihat Menu Favorit 🍰
+            </a>
+            <a href="#kontak" class="btn-outline">
+              Booking Meja Cantik
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <strong>100% Mentega Prancis</strong>
+              <span>Elle &amp; Vire Pure Butter</span>
+            </div>
+            <div class="stat-item">
+              <strong>Baking Tiap Subuh</strong>
+              <span>Tanpa Pengawet Buatan</span>
+            </div>
+            <div class="stat-item">
+              <strong>Pet Friendly Area</strong>
+              <span>Outdoor Seating Nyaman</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual-box">
+          <div class="hero-blob-bg"></div>
+          <div class="hero-sticker-badge">Best Seller! 🥐</div>
+          <div class="hero-visual-frame">
+            <img src="assets/images/hero-dessert.jpg" alt="Pilihan pastry dan kue dessert manis cantik di meja Manis Lagi" width="600" height="460">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. #keunggulan — STRIP KEUNGGULAN -->
+    <section class="keunggulan-section" id="keunggulan" aria-label="Keunggulan Manis Lagi">
+      <div class="container">
+        <div class="keunggulan-grid">
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">🧈</div>
+            <h3 class="keunggulan-title">Bahan Baku Premium</h3>
+            <p class="keunggulan-desc">Menggunakan pure French butter AOP, cokelat Belgia Callebaut, dan buah beri segar tanpa pewarna sintetis.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">🥐</div>
+            <h3 class="keunggulan-title">Laminasi 72 Layer</h3>
+            <p class="keunggulan-desc">Croissant kami melewati proses fermentasi lambat 24 jam untuk menghasilkan pori sarang lebah yang renyah di luar dan lembut di dalam.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">☕</div>
+            <h3 class="keunggulan-title">Specialty Coffee &amp; Tea</h3>
+            <p class="keunggulan-desc">Biji kopi arabika Nusantara disangrai khusus untuk melengkapi manisnya kue, ditambah racikan artisanal tea blend.</p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">📸</div>
+            <h3 class="keunggulan-title">Banyak Sudut Estetik</h3>
+            <p class="keunggulan-desc">Dirancang dengan pencahayaan hangat, dekorasi pastel modern, dan cermin swafoto yang ramah untuk tangkapan foto media sosial Anda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. #tentang — CERITA BRAND SINGKAT -->
+    <section class="tentang-section" id="tentang" aria-labelledby="tentang-heading">
+      <div class="container tentang-grid">
+        <div class="tentang-visual">
+          <img src="assets/images/baking-process.jpg" alt="Proses pembuatan adonan pastry segar di dapur Manis Lagi" width="560" height="480">
+        </div>
+
+        <div class="tentang-content">
+          <div class="section-tag">Dapur &amp; Kisah Kami</div>
+          <h2 class="section-title" id="tentang-heading">Tempat Pelarian Santai di Tengah Keramaian Kota.</h2>
+          <blockquote class="lead-quote">
+            "Bagi kami, dessert bukan sekadar hidangan penutup, tapi sebuah pelukan hangat di penghujung hari yang melelahkan."
+          </blockquote>
+          <p>
+            Manis Lagi berawal dari kecintaan seorang pastry chef muda pada tradisi baking Eropa klasik yang dipadukan dengan selera manis seimbang khas Nusantara. Kami percaya kue yang enak tidak boleh membuat Anda cepat enek (less sweet, more flavour).
+          </p>
+          <p>
+            Di kafe Senopati kami, Anda bisa menikmati brunch santai di hari Minggu bersama sahabat, mengerjakan tugas ditemani secangkir latte dan kue tart buah segar, atau merayakan momen ulang tahun kecil yang berkesan.
+          </p>
+
+          <div class="tentang-badges-grid">
+            <div class="badge-box">
+              <strong>Kapasitas Tempat Duduk</strong>
+              <span>65 Kursi (Area AC &amp; Outdoor Pet Friendly)</span>
+            </div>
+            <div class="badge-box">
+              <strong>Jaminan Bahan Halal</strong>
+              <span>Bebas Rum, Gelatin Babi &amp; Minuman Beralkohol</span>
+            </div>
+            <div class="badge-box">
+              <strong>Fasilitas Kafe</strong>
+              <span>Stopkontak di Tiap Meja, WiFi Cepat &amp; Parkir Valet</span>
+            </div>
+            <div class="badge-box">
+              <strong>Waktu Panggang</strong>
+              <span>Dua Kali Sehari (05.30 WIB &amp; 13.00 WIB)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. #layanan — PILAR LAYANAN -->
+    <section class="layanan-section" id="layanan" aria-labelledby="layanan-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Pilihan Menikmati</span>
+          <h2 class="section-title" id="layanan-heading">Layanan Manis Untuk Segala Suasana.</h2>
+          <p class="section-desc">Nikmati sajian kami di tempat, bawa pulang untuk keluarga, atau rayakan momen istimewa bersama kami.</p>
+        </div>
+
+        <div class="layanan-grid">
+          <!-- Layanan 1 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <span style="font-size:2rem;">🍽️</span>
+              <h3>Dine-In &amp; Brunch Santai</h3>
+              <p>Makan di tempat dengan suasana kafe yang sejuk dan musik akustik santai. Tersedia menu brunch mengenyangkan mulai jam 08.00 pagi.</p>
+              <ul class="layanan-card-perks">
+                <li>Penyajian hangat langsung dari piring saji</li>
+                <li>Pilihan susu oatmilk &amp; almond untuk kopi</li>
+                <li>Pelayanan ramah oleh barista kami</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-outline" style="text-align: center; margin-top: 20px;">Reservasi Meja</a>
+          </article>
+
+          <!-- Layanan 2 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <span style="font-size:2rem;">🎁</span>
+              <h3>Dessert Box &amp; Hampers Cantik</h3>
+              <p>Paket bingkisan manis dengan kotak pita pastel elegan, cocok untuk hadiah ulang tahun, hantaran hari raya, atau apresiasi rekan kerja.</p>
+              <ul class="layanan-card-perks">
+                <li>Kotak kokoh food-grade ramah lingkungan</li>
+                <li>Kartu ucapan custom gratis ditulis tangan</li>
+                <li>Pengiriman aman kurir mobil same-day</li>
+              </ul>
+            </div>
+            <a href="#paket-acara" class="btn-outline" style="text-align: center; margin-top: 20px;">Lihat Pilihan Hampers</a>
+          </article>
+
+          <!-- Layanan 3 -->
+          <article class="layanan-card">
+            <div class="layanan-card-header">
+              <span style="font-size:2rem;">🎉</span>
+              <h3>Private Table &amp; Sweet Corner</h3>
+              <p>Pemesanan meja dekorasi khusus untuk bridal shower, arisan keluarga, atau perayaan ulang tahun kecil dengan dessert table estetik.</p>
+              <ul class="layanan-card-perks">
+                <li>Pilihan sudut foto terbaik di kafe</li>
+                <li>Kustomisasi tulisan pada kue tart</li>
+                <li>Bebas foto tanpa biaya sewa kamera tambahan</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-pink" style="text-align: center; margin-top: 20px;">Konsultasi Acara</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECTION KHAS INDUSTRI 1: #menu-andalan (Menu Favorit & Harga Statis) -->
+    <section class="menu-section" id="menu-andalan" aria-labelledby="menu-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Menu Terlaris</span>
+          <h2 class="section-title" id="menu-heading">Sajian Bintang yang Selalu Dicari.</h2>
+          <p class="section-desc">Pilihan menu yang paling banyak dipesan dan disukai para pengunjung setia Manis Lagi.</p>
+        </div>
+
+        <div class="menu-grid">
+          <!-- Menu 1 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-croissant.jpg" alt="Golden Butter Croissant renyah berlapis" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Paling Diminati</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Golden Butter Croissant</h3>
+              <p class="menu-item-desc">Croissant mentega klasik Prancis dengan tekstur renyah di luar, lembut di dalam, dan aroma mentega yang semerbak.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 32.000</span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Menu 2 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-cheesecake.jpg" alt="Basque Burnt Cheesecake lumer" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Signature</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Basque Burnt Cheesecake</h3>
+              <p class="menu-item-desc">Kue keju khas Spanyol dengan permukaan karamel terbakar gurih dan bagian tengah yang meleleh lumer di lidah.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 48.000 <small style="font-size:0.75rem; color:var(--text-muted);">/ slice</small></span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Menu 3 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-millecrepe.jpg" alt="Matcha Uji Mille Crepe lembut" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Less Sweet</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Matcha Uji Mille Crepe</h3>
+              <p class="menu-item-desc">24 lapisan crepe tipis dengan krim diplomat matcha murni dari Uji, Kyoto. Sedikit pahit seimbang dengan manis lembut.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 52.000 <small style="font-size:0.75rem; color:var(--text-muted);">/ slice</small></span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Menu 4 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-avotoast.jpg" alt="Avocado Sourdough Toast brunch" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Brunch Favorit</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Avocado Poached Egg Toast</h3>
+              <p class="menu-item-desc">Roti sourdough panggang diselimuti alpukat segar tumbuk, telur rebus meleleh (poached egg), keju feta, dan biji labu.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 58.000</span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Menu 5 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-mocktail.jpg" alt="Berry Cloud Mocktail segar" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Segar Alami</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Berry Cloud Sparkler</h3>
+              <p class="menu-item-desc">Minuman mocktail dingin segar dari puree stroberi asli, sari buah lemon, soda berkarbonasi, dan topping buih vanila lembut.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 38.000</span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Menu 6 -->
+          <article class="menu-item-card">
+            <div class="menu-img-wrap">
+              <img src="assets/images/menu-pancake.jpg" alt="Fluffy Souffle Pancake lembut" loading="lazy" width="400" height="220">
+              <span class="menu-tag-pill">Souffle Halus</span>
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-item-title">Fluffy Souffle Pancake</h3>
+              <p class="menu-item-desc">Pancake souffle Jepang yang super goyang dan mengembang ringan, disajikan bersama sirup maple dan mentega madu.</p>
+              <div class="menu-card-footer">
+                <span class="menu-price">Mulai Rp 45.000</span>
+                <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SECTION KHAS INDUSTRI 2: #paket-acara (Pricelist Acara Statis) -->
+    <section class="paket-section" id="paket-acara" aria-labelledby="paket-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Paket Istimewa</span>
+          <h2 class="section-title" id="paket-heading">Paket Perayaan &amp; Hampers Manis.</h2>
+          <p class="section-desc">Pilihan paket siap pesan untuk pesta intim, traktiran kantor, atau kado perayaan.</p>
+        </div>
+
+        <div class="paket-grid">
+          <!-- Paket 1 -->
+          <article class="paket-card">
+            <div>
+              <h3 class="paket-tier">Dessert Box Hampers</h3>
+              <p style="font-size:0.875rem; color:var(--text-muted);">Paket bingkisan manis isi 4 varian favorit.</p>
+              <div class="paket-price">Rp 280.000</div>
+              <ul class="paket-perks">
+                <li>2 Pcs Signature Croissant (Butter &amp; Almond)</li>
+                <li>2 Slice Basque Burnt Cheesecake</li>
+                <li>Kotak kado berpita satin + kartu ucapan</li>
+                <li>Bisa dikirim same-day se-Jabodetabek</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-outline" style="width: 100%; text-align: center;">Pesan Hampers</a>
+          </article>
+
+          <!-- Paket 2 (Featured) -->
+          <article class="paket-card featured">
+            <div>
+              <div style="font-size:0.6875rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-pink); margin-bottom:4px;">Paling Laris</div>
+              <h3 class="paket-tier">Sweet Table Mini Party</h3>
+              <p style="font-size:0.875rem; color:var(--text-muted);">Sajian kue pesta mini untuk 6–8 orang sahabat.</p>
+              <div class="paket-price">Rp 650.000</div>
+              <ul class="paket-perks">
+                <li>1 Whole Cake Ukuran 16cm (Bebas Pilih Varian)</li>
+                <li>8 Pcs Mini French Pastries Assorted</li>
+                <li>1 Pitcher Berry Cloud Sparkler / Iced Tea</li>
+                <li>Dekorasi meja lilin perayaan &amp; topi pesta mini</li>
+                <li>Meja cadangan khusus selama 3 jam di kafe</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-pink" style="width: 100%; text-align: center;">Booking Meja Pesta</a>
+          </article>
+
+          <!-- Paket 3 -->
+          <article class="paket-card">
+            <div>
+              <h3 class="paket-tier">Private Bridal &amp; Arisan</h3>
+              <p style="font-size:0.875rem; color:var(--text-muted);">Reservasi area semi-privat untuk 10–15 orang.</p>
+              <div class="paket-price">Rp 1.200.000</div>
+              <ul class="paket-perks">
+                <li>Sajian kombinasi 5 menu savoury brunch + 5 dessert</li>
+                <li>Free-flow teh artisan hangat selama 3 jam</li>
+                <li>Sudut foto bertema khusus dengan bunga meja</li>
+                <li>Pelayanan kru khusus untuk dokumentasi acara</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-outline" style="width: 100%; text-align: center;">Konsultasi Acara</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SECTION KHAS INDUSTRI 3: #galeri (Showcase Spot Foto & Suasana Kafe) -->
+    <section class="galeri-section" id="galeri" aria-labelledby="galeri-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Sudut Kafe</span>
+          <h2 class="section-title" id="galeri-heading">Suasana Nyaman &amp; Spot Foto Estetik.</h2>
+          <p class="section-desc">Setiap sudut kafe kami dirancang cantik untuk momen bersantai dan berswafoto.</p>
+        </div>
+
+        <div class="galeri-grid">
+          <div class="galeri-item">
+            <img src="assets/images/spot-1.jpg" alt="Interior kafe pastel hangat dengan sofa empuk" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <h4 class="galeri-item-title">Sudut Sofa Pastel</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/spot-2.jpg" alt="Meja brunch dekat jendela bermandikan cahaya matahari" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <h4 class="galeri-item-title">Jendela Pagi Senopati</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/spot-3.jpg" alt="Area outdoor pet-friendly teduh di bawah pohon" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <h4 class="galeri-item-title">Teras Outdoor Rindang</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Spot Kafe">
+      <div class="lightbox-content">
+        <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Tutup Foto">&times;</button>
+        <img src="assets/images/spot-1.jpg" alt="Foto Spot Diperbesar" id="lightboxImg">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+
+    <!-- 10. #proses — ALUR KERJA (Baking Fresh 4 Langkah) -->
+    <section class="proses-section" id="proses" aria-labelledby="proses-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Standar Dapur</span>
+          <h2 class="section-title" id="proses-heading">Cara Kami Menghadirkan Kerenyahan Terbaik.</h2>
+          <p class="section-desc">Komitmen kesegaran dari dapur kue kami setiap hari tanpa kompromi rasa.</p>
+        </div>
+
+        <div class="proses-grid">
+          <div class="proses-step-card">
+            <div class="proses-num">01</div>
+            <h3 class="proses-title">Adonan Fermentasi Dingin</h3>
+            <p class="proses-desc">Adonan croissant diistirahatkan 24 jam dalam suhu terkontrol agar mentega menyatu sempurna menghasilkan lapisan berongga.</p>
+          </div>
+          <div class="proses-step-card">
+            <div class="proses-num">02</div>
+            <h3 class="proses-title">Pemanggangan Subuh</h3>
+            <p class="proses-desc">Oven konveksi dinyalakan sejak jam 05.00 pagi setiap hari agar aroma mentega hangat menyambut tamu pertama yang datang.</p>
+          </div>
+          <div class="proses-step-card">
+            <div class="proses-num">03</div>
+            <h3 class="proses-title">Quality &amp; Glaze Check</h3>
+            <p class="proses-desc">Setiap kue dan pastry diperiksa warna kecokelatannya, dilapisi glasir kilap buah murni, dan dihias sebelum masuk etalase.</p>
+          </div>
+          <div class="proses-step-card">
+            <div class="proses-num">04</div>
+            <h3 class="proses-title">Penyajian Hangat di Meja</h3>
+            <p class="proses-desc">Disajikan hangat di piring keramik cantik atau dikemas dalam kotak bertutup rapat untuk dinikmati di rumah.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. #testimoni — TESTIMONI (3 ulasan autentik) -->
+    <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Ulasan Sahabat Manis</span>
+          <h2 class="section-title" id="testimoni-heading">Kesan Manis Dari Para Pengunjung.</h2>
+          <p class="section-desc">Cerita dari mereka yang sering menghabiskan sore santai di Manis Lagi. <span style="font-size:0.75rem; color:var(--text-muted);">(Contoh ulasan pelanggan)</span></p>
+        </div>
+
+        <div class="testimoni-grid">
+          <!-- Testimoni 1 -->
+          <article class="testimoni-card">
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge">Pencinta Pastry</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              "Croissant almond di sini beneran salah satu yang terbaik di Senopati! Isian pasta almondnya generous tapi gak bikin enek, pinggirannya renyah berderak pas digigit. Tempatnya gemas banget buat nongkrong sore."
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-1.jpg" alt="Foto Nadia Pratiwi" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Nadia Pratiwi</strong>
+                <span>Pengunjung Rutin &bull; Bintaro</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimoni 2 -->
+          <article class="testimoni-card">
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge">Work From Cafe</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              "Suka banget sama suasananya yang tenang di jam 9–12 siang. Wifi stabil, stopkontak banyak, dan avocado sourdough toast-nya ngenyangin banget buat brunch sambil beresin kerjaan laptop."
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-2.jpg" alt="Foto Dimas Erlangga" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Dimas Erlangga</strong>
+                <span>Desainer Grafis &bull; Kebayoran Baru</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimoni 3 -->
+          <article class="testimoni-card">
+            <div class="testimoni-header-bar">
+              <span class="testimoni-stars">★★★★★</span>
+              <span class="testimoni-badge">Bridal Shower Party</span>
+            </div>
+            <blockquote class="testimoni-quote">
+              "Pesan paket Sweet Table Mini Party untuk bridal shower sahabatku kemarin. Dekorasi mejanya rapi banget, kue cheesecake-nya lumer dan semua teman-teman suka. Baristanya super ramah bantuin kami foto-foto!"
+            </blockquote>
+            <div class="testimoni-author">
+              <img src="assets/images/avatar-3.jpg" alt="Foto Tara Kirana" class="testimoni-avatar" width="44" height="44">
+              <div class="author-info">
+                <strong>Tara Kirana</strong>
+                <span>Penyelenggara Acara &bull; Jakarta Selatan</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. #faq — FAQ ACCORDION -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Tanya Jawab</span>
+          <h2 class="section-title" id="faq-heading">Pertanyaan Seputar Kafe &amp; Pemesanan.</h2>
+          <p class="section-desc">Jawaban lengkap seputar bahan baku, reservasi meja, dan pemesanan hampers.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah semua makanan dan minuman di Manis Lagi halal?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Ya, 100% halal. Seluruh bahan baku kue dan masakan kami bebas dari rum, mirin, alkohol, gelatin hewani non-halal, dan minyak babi. Semua daging untuk menu brunch bersertifikasi halal resmi.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah harus reservasi terlebih dahulu sebelum datang ke kafe?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Untuk kunjungan santai 1–4 orang, Anda dapat langsung datang (walk-in). Namun untuk rombongan lebih dari 5 orang atau kunjungan saat akhir pekan (Sabtu &amp; Minggu), kami sangat menyarankan reservasi terlebih dahulu via WhatsApp agar meja siap tanpa mengantre.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah kafe ini ramah hewan peliharaan (pet friendly)?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Ya, area teras luar (outdoor seating) kami ramah hewan peliharaan. Anabul kesayangan Anda dipersilakan menemani santai asalkan memakai tali pengikat atau popok demi kenyamanan bersama.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Bisakah saya memesan kue utuh (whole cake) custom untuk ulang tahun?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Bisa! Kami melayani pemesanan whole cake diameter 16 cm, 20 cm, dan 24 cm dengan kustomisasi tulisan cokelat dan lilin estetik. Mohon pesan minimal H-1 sebelum tanggal pengambilan atau pengiriman.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Bagaimana dengan ketersediaan tempat parkir di Manis Lagi Senopati?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Kami menyediakan area parkir mobil dan motor yang memadai di pelataran kafe, dilengkapi layanan juru parkir valet gratis demi kenyamanan Anda saat berkunjung.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn" aria-expanded="false">
+              <span>Apakah tersedia opsi susu nabati (plant-based) untuk menu kopi?</span>
+              <span class="faq-icon-cross">&plus;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Tentu tersedia. Anda dapat mengganti susu sapi biasa dengan Oatside Oatmilk atau Almond Milk untuk semua minuman kopi dan matcha kami.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. #cta — BAND AJAKAN PENUTUP -->
+    <section class="cta-band-section" id="cta" aria-labelledby="cta-heading">
+      <div class="container cta-band-grid">
+        <div>
+          <h2 class="cta-band-title" id="cta-heading">Maniskan Harimu di Senopati Bersama Kami.</h2>
+          <p class="cta-band-desc">
+            Croissant hangat baru saja keluar dari oven. Segera booking meja santai Anda atau pesan paket hampers favorit sekarang juga.
+          </p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+          <a href="#kontak" class="btn-pink" style="font-size:0.9375rem;">Reservasi Meja di WhatsApp &rarr;</a>
+          <span style="font-size:0.8125rem; color:var(--text-muted); font-weight:700;">Buka setiap hari mulai pukul 08.00 pagi</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. #kontak — KONTAK + JAM + FORM + PETA INTERAKTIF GOOGLE MAPS -->
+    <section class="kontak-section" id="kontak" aria-labelledby="kontak-heading">
+      <div class="container">
+        <div class="kontak-grid">
+          <!-- Info Kafe -->
+          <div class="kontak-info-box">
+            <div class="section-tag">Lokasi &amp; Jam Buka</div>
+            <h3 id="kontak-heading">Kunjungi Kafe Manis Lagi Senopati</h3>
+            <p>
+              Temukan tempat bersantai yang nyaman dengan aroma mentega dan kopi segar di kawasan kuliner Senopati.
+            </p>
+
+            <div class="kontak-details-list">
+              <div class="kontak-detail-row">
+                <div class="detail-label">Alamat Kafe</div>
+                <div class="detail-val data-address">Jl. Senopati No. 42, Selong, Kebayoran Baru, Jakarta Selatan 12110</div>
+              </div>
+              <div class="kontak-detail-row">
+                <div class="detail-label">Jam Operasional Hari Kerja</div>
+                <div class="detail-val data-hours-weekdays">Senin – Jumat: 08.00 – 21.00 WIB</div>
+              </div>
+              <div class="kontak-detail-row">
+                <div class="detail-label">Jam Operasional Akhir Pekan</div>
+                <div class="detail-val data-hours-weekends">Sabtu – Minggu: 07.30 – 22.00 WIB</div>
+              </div>
+              <div class="kontak-detail-row">
+                <div class="detail-label">WhatsApp Hotline Reservasi</div>
+                <div class="detail-val data-phone">0812-9190-2121</div>
+              </div>
+              <div class="kontak-detail-row">
+                <div class="detail-label">Email Tim Kafe</div>
+                <div class="detail-val"><a href="mailto:halo@manislagi.demo" class="data-email" style="color:var(--accent-pink);">halo@manislagi.demo</a></div>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com/?q=Senopati+Kebayoran+Baru+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; text-align: center;">
+              Buka Petunjuk Arah Google Maps &rarr;
+            </a>
+          </div>
+
+          <!-- Form Reservasi Meja -> WhatsApp -->
+          <div class="kontak-form-card">
+            <h3>Reservasi Meja Santai</h3>
+            <p class="form-sub">Isi formulir di bawah ini untuk mengonfirmasi meja Anda langsung via chat WhatsApp.</p>
+
+            <form id="kontakForm">
+              <div class="form-group">
+                <label for="formNama" class="form-label">Nama Tamu</label>
+                <input type="text" id="formNama" class="form-input" placeholder="Contoh: Nadia Pratiwi" required>
+              </div>
+
+              <div class="form-group">
+                <label for="formKontak" class="form-label">Nomor WhatsApp Aktif</label>
+                <input type="text" id="formKontak" class="form-input" placeholder="Contoh: 0812-xxxx-xxxx" required>
+              </div>
+
+              <div class="form-group">
+                <label for="formTamu" class="form-label">Jumlah Orang</label>
+                <select id="formTamu" class="form-select">
+                  <option value="1 - 2 Orang">1 - 2 Orang (Meja Santai)</option>
+                  <option value="3 - 4 Orang">3 - 4 Orang (Meja Standar)</option>
+                  <option value="5 - 8 Orang">5 - 8 Orang (Meja Rombongan)</option>
+                  <option value="Diatas 8 Orang (Private Area)">Diatas 8 Orang (Area Khusus)</option>
+                </select>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:12px;">
+                <div class="form-group">
+                  <label for="formTanggal" class="form-label">Rencana Tanggal</label>
+                  <input type="date" id="formTanggal" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="formJam" class="form-label">Jam Datang</label>
+                  <input type="time" id="formJam" class="form-input" value="14:00">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="formAcara" class="form-label">Keperluan Kunjungan</label>
+                <select id="formAcara" class="form-select">
+                  <option value="Brunch / Nongkrong Santai">Brunch / Nongkrong Santai</option>
+                  <option value="Perayaan Ulang Tahun">Perayaan Ulang Tahun</option>
+                  <option value="Bridal Shower / Arisan">Bridal Shower / Arisan</option>
+                  <option value="Work From Cafe / Rapat Santai">Work From Cafe / Rapat Santai</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="formCatatan" class="form-label">Catatan Tambahan (Misal: Request Baby Chair / Area Outdoor)</label>
+                <textarea id="formCatatan" class="form-textarea" placeholder="Tuliskan permintaan khusus Anda di sini..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-pink" style="width: 100%;">
+                Kirim Booking ke WhatsApp
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- PETA INTERAKTIF GOOGLE MAPS (SENOPATI) -->
+        <div class="kontak-map-wrapper">
+          <div class="map-header">
+            <div class="map-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Peta Lokasi Kafe Manis Lagi Senopati</span>
+              <span class="map-badge">Interaktif &bull; Geser &amp; Zoom</span>
+            </div>
+            <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</span>
+          </div>
+          <div class="map-frame-box">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.297491873199!2d106.8078564!3d-6.2307521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f145452f13f1%3A0x6b7ef5d89f4f46ec!2sJl.%20Senopati%2C%20Kec.%20Kby.%20Baru%2C%20Kota%20Jakarta%20Selatan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Lokasi Kafe Manis Lagi Senopati">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 15. FOOTER RELEVAN INDUSTRI (Nol Link Mati, Modal Legal, 4 Kolom) -->
+  <footer class="site-footer" id="kontak-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Kolom 1 -->
+        <div class="footer-brand-col">
+          <img src="assets/logo-white.svg" alt="Manis Lagi Kafe" width="220" height="40">
+          <p>
+            Kafe artisan dessert, pastry hangat, dan brunch santai di Senopati, Jakarta Selatan. Menemani momen manis harian Anda dengan bahan baku murni berkualitas.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/manislagi.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram Manis Lagi">IG</a>
+            <a href="https://tiktok.com/@manislagi.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="TikTok Manis Lagi">TT</a>
+            <a href="https://youtube.com/@manislagi.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="YouTube Manis Lagi">YT</a>
+          </div>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div>
+          <h4 class="footer-col-title">Navigasi Kafe</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#beranda" class="footer-nav-link">Beranda</a></li>
+            <li><a href="#tentang" class="footer-nav-link">Cerita Dapur Kami</a></li>
+            <li><a href="#menu-andalan" class="footer-nav-link">Menu Pastry &amp; Kue</a></li>
+            <li><a href="#paket-acara" class="footer-nav-link">Paket Pesta &amp; Hampers</a></li>
+            <li><a href="#galeri" class="footer-nav-link">Spot Foto Estetik</a></li>
+            <li><a href="#kontak" class="footer-nav-link">Reservasi Meja</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div>
+          <h4 class="footer-col-title">Menu Favorit</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#menu-andalan" class="footer-nav-link">Golden Butter Croissant</a></li>
+            <li><a href="#menu-andalan" class="footer-nav-link">Basque Burnt Cheesecake</a></li>
+            <li><a href="#menu-andalan" class="footer-nav-link">Matcha Uji Mille Crepe</a></li>
+            <li><a href="#menu-andalan" class="footer-nav-link">Avocado Poached Egg Toast</a></li>
+            <li><a href="#faq" class="footer-nav-link">Info Bahan Halal</a></li>
+            <li><a href="#kontak" class="footer-nav-link">Pemesanan Whole Cake</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4 -->
+        <div>
+          <h4 class="footer-col-title">Kafe Senopati</h4>
+          <div class="footer-contact-info">
+            <div>
+              <span style="display:block; font-size:0.6875rem; text-transform:uppercase; color:#8D91A5;">Alamat Kafe</span>
+              <strong class="data-address">Jl. Senopati No. 42, Jakarta Selatan</strong>
+            </div>
+            <div>
+              <span style="display:block; font-size:0.6875rem; text-transform:uppercase; color:#8D91A5;">Jam Buka</span>
+              <span class="data-hours-weekdays">Senin – Jumat: 08.00 – 21.00 WIB</span><br>
+              <span class="data-hours-weekends">Sabtu – Minggu: 07.30 – 22.00 WIB</span>
+            </div>
+            <div>
+              <span style="display:block; font-size:0.6875rem; text-transform:uppercase; color:#8D91A5;">WhatsApp Reservasi</span>
+              <a href="https://wa.me/6281291902121" target="_blank" rel="noopener noreferrer" style="color:#FFD6A5; font-weight:700;" class="data-phone">0812-9190-2121</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span class="dynamic-year">2026</span> Manis Lagi Dessert &amp; Brunch. Hak Cipta Dilindungi. Portofolio UMKM JalaninWeb.
+        </div>
+        <div style="display:flex; gap:20px;">
+          <button type="button" class="legal-btn" id="termsModalBtn">Syarat &amp; Ketentuan</button>
+          <button type="button" class="legal-btn" id="privacyModalBtn">Kebijakan Privasi</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 16. MODAL LEGAL: Syarat & Ketentuan -->
+  <div class="legal-modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="termsTitle">Syarat &amp; Ketentuan Kafe</h3>
+        <button type="button" class="drawer-close-btn" id="closeTermsBtn" aria-label="Tutup Syarat">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Ketentuan Reservasi Meja</h4>
+        <p>Reservasi meja akan ditahan maksimal 15 menit dari jam reservasi yang telah disepakati. Jika terlambat tanpa konfirmasi, meja dapat dialihkan kepada tamu walk-in yang sedang mengantre.</p>
+        <h4>2. Kebijakan Makanan Dari Luar</h4>
+        <p>Demi menjaga higienitas dan standar kehalalan dapur, pengunjung tidak diperkenankan membawa makanan atau minuman berat dari luar kafe, kecuali makanan bayi (MPASI).</p>
+        <h4>3. Pemesanan Whole Cake &amp; Pembatalan</h4>
+        <p>Pemesanan kue utuh membutuhkan uang muka 50%. Pembatalan pesanan H-1 tidak dapat dikembalikan namun tanggal pengambilan dapat dijadwalkan ulang.</p>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="btn-pink" id="closeTermsFooterBtn" style="padding: 10px 20px; font-size: 0.75rem;">Saya Mengerti</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17. MODAL LEGAL: Kebijakan Privasi -->
+  <div class="legal-modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="privacyTitle">Kebijakan Privasi Pengunjung</h3>
+        <button type="button" class="drawer-close-btn" id="closePrivacyBtn" aria-label="Tutup Privasi">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <h4>1. Penggunaan Data Reservasi</h4>
+        <p>Nomor kontak dan nama tamu yang dikirimkan melalui formulir reservasi hanya dipakai untuk keperluan konfirmasi kedatangan dan pengingat meja oleh staf kafe kami.</p>
+        <h4>2. Perlindungan Privasi</h4>
+        <p>Kami tidak pernah membagikan data kontak pengunjung kepada pihak ketiga mana pun untuk tujuan promosi spam.</p>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="btn-pink" id="closePrivacyFooterBtn" style="padding: 10px 20px; font-size: 0.75rem;">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18. FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/6281291902121?text=Halo%20Manis%20Lagi%20Senopati,%20saya%20mau%20tanya%20menu%20dan%20reservasi." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" aria-label="Hubungi WhatsApp Manis Lagi">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.766.8 5.342 2.183 7.518L2.05 30.12a.8.8 0 00.98.98l6.732-2.115A13.916 13.916 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.536 11.536 0 01-5.888-1.608l-.422-.25-4.47 1.405 1.424-4.385-.274-.436A11.547 11.547 0 014.4 16C4.4 9.603 9.603 4.4 16 4.4c6.397 0 11.6 5.203 11.6 11.6 0 6.397-5.203 11.6-11.6 11.6zm6.388-8.683c-.35-.175-2.072-1.023-2.393-1.14-.321-.117-.554-.175-.788.175-.233.35-.905 1.14-1.109 1.373-.204.233-.408.262-.758.087-.35-.175-1.478-.545-2.815-1.737-1.04-.928-1.742-2.075-1.946-2.425-.204-.35-.022-.54.153-.714.157-.157.35-.408.525-.612.175-.204.233-.35.35-.583.117-.233.058-.438-.029-.613-.087-.175-.788-1.898-1.08-2.6-.284-.684-.572-.591-.788-.602l-.67-.012c-.233 0-.613.087-.934.437-.321.35-1.226 1.2-1.226 2.924 0 1.725 1.255 3.391 1.43 3.624.175.233 2.47 3.771 5.984 5.289.836.362 1.488.578 1.996.74.839.266 1.603.229 2.207.139.674-.101 2.072-.847 2.364-1.664.292-.817.292-1.517.204-1.664-.087-.146-.321-.233-.671-.408z"/>
+    </svg>
+  </a>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

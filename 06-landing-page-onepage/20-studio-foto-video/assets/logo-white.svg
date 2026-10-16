@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" width="280" height="56" fill="none">
+  <!-- Minimalist Cinematic Aperture / Shutter Blade Emblem Inverted -->
+  <g transform="translate(4, 4)">
+    <rect width="48" height="48" rx="6" fill="#FFFFFF" />
+    <circle cx="24" cy="24" r="16" stroke="#000000" stroke-width="1.8" />
+    <path d="M24 8L33 24H15L24 8Z" fill="#F0F0F0" stroke="#000000" stroke-width="1.2" />
+    <path d="M38 18L30 34L20 22L38 18Z" fill="#F0F0F0" stroke="#000000" stroke-width="1.2" />
+    <path d="M30 38L15 33L22 20L30 38Z" fill="#F0F0F0" stroke="#000000" stroke-width="1.2" />
+    <circle cx="24" cy="24" r="4.5" fill="#000000" />
+  </g>
+  <!-- Cinematic Typography Inverted -->
+  <text x="64" y="27" font-family="'Syne', -apple-system, sans-serif" font-size="18" font-weight="800" letter-spacing="0.12em" fill="#FFFFFF">LENSA HENING</text>
+  <text x="64.5" y="42" font-family="'DM Sans', -apple-system, sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.24em" fill="#AAAAAA">CINEMATIC PHOTO &#38; FILM &#8226; JAKARTA</text>
+</svg>
