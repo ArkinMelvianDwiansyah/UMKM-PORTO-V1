@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let currentId = '';
-    const scrollPosition = window.scrollY + 160;
+    const scrollPosition = window.scrollY + 180;
 
     sections.forEach(section => {
       const top = section.offsetTop;
@@ -91,8 +91,139 @@ document.addEventListener('DOMContentLoaded', () => {
   drawerOverlay?.addEventListener('click', closeDrawer);
   drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
 
-  // --- 4. SPOT FOTO LIGHTBOX MODAL (#galeri) ---
+  // --- 4. HERO SECTION INTERACTIVE MULTI-SLIDE SLIDER ---
+  const heroSlider = document.getElementById('heroSlider');
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.slider-dot');
+  const heroCurrentNum = document.getElementById('heroSlideCurrent');
+  const heroPrevBtn = document.getElementById('heroSlidePrev');
+  const heroNextBtn = document.getElementById('heroSlideNext');
+  let currentHeroSlide = 0;
+  let heroInterval = null;
+
+  function showHeroSlide(index) {
+    if (!heroSlides.length) return;
+    if (index >= heroSlides.length) index = 0;
+    if (index < 0) index = heroSlides.length - 1;
+
+    currentHeroSlide = index;
+    heroSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentHeroSlide);
+    });
+
+    heroDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentHeroSlide);
+    });
+
+    if (heroCurrentNum) {
+      heroCurrentNum.textContent = String(currentHeroSlide + 1).padStart(2, '0');
+    }
+  }
+
+  function nextHeroSlide() {
+    showHeroSlide(currentHeroSlide + 1);
+  }
+
+  function prevHeroSlide() {
+    showHeroSlide(currentHeroSlide - 1);
+  }
+
+  function startHeroAutoplay() {
+    stopHeroAutoplay();
+    heroInterval = setInterval(nextHeroSlide, 4500);
+  }
+
+  function stopHeroAutoplay() {
+    if (heroInterval) {
+      clearInterval(heroInterval);
+      heroInterval = null;
+    }
+  }
+
+  heroPrevBtn?.addEventListener('click', () => {
+    prevHeroSlide();
+    startHeroAutoplay();
+  });
+
+  heroNextBtn?.addEventListener('click', () => {
+    nextHeroSlide();
+    startHeroAutoplay();
+  });
+
+  heroDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetIndex = parseInt(dot.getAttribute('data-slide') || '0', 10);
+      showHeroSlide(targetIndex);
+      startHeroAutoplay();
+    });
+  });
+
+  heroSlider?.addEventListener('mouseenter', stopHeroAutoplay);
+  heroSlider?.addEventListener('mouseleave', startHeroAutoplay);
+
+  // Touch Swipe for Hero Slider
+  let heroTouchStartX = 0;
+  let heroTouchEndX = 0;
+
+  heroSlider?.addEventListener('touchstart', (e) => {
+    stopHeroAutoplay();
+    heroTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  heroSlider?.addEventListener('touchend', (e) => {
+    heroTouchEndX = e.changedTouches[0].screenX;
+    if (heroTouchEndX < heroTouchStartX - 40) {
+      nextHeroSlide();
+    } else if (heroTouchEndX > heroTouchStartX + 40) {
+      prevHeroSlide();
+    }
+    startHeroAutoplay();
+  }, { passive: true });
+
+  startHeroAutoplay();
+
+  // --- 5. VIDEO SPOTLIGHT SWITCHER (#tentang) ---
+  const videoElement = document.getElementById('bakingVideo');
+  const videoSwitchBtns = document.querySelectorAll('.video-switch-btn');
+
+  videoSwitchBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetSrc = btn.getAttribute('data-video');
+      if (!targetSrc || !videoElement) return;
+
+      videoSwitchBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (videoElement.src !== targetSrc) {
+        videoElement.src = targetSrc;
+        videoElement.play().catch(() => {});
+      }
+    });
+  });
+
+  // --- 6. SPOT FOTO FILTER TABS (#galeri) ---
+  const filterBtns = document.querySelectorAll('.galeri-filter-btn');
   const galeriItems = document.querySelectorAll('.galeri-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterVal = btn.getAttribute('data-filter') || 'all';
+
+      galeriItems.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (filterVal === 'all' || cat === filterVal) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // --- 7. SPOT FOTO LIGHTBOX MODAL (#galeri) ---
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
@@ -102,13 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', () => {
       const img = item.querySelector('img');
       const title = item.querySelector('.galeri-item-title')?.textContent || '';
+      const sub = item.querySelector('.galeri-item-sub')?.textContent || '';
 
       if (lightboxImg && img) {
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
       }
       if (lightboxCaption) {
-        lightboxCaption.textContent = title;
+        lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="font-size:0.875rem; color:#FFD6A5;">${sub}</span>`;
       }
       lightboxModal?.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -125,7 +257,142 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === lightboxModal) closeLightbox();
   });
 
-  // --- 5. FAQ ACCORDION (#faq) ---
+  // --- 8. TESTIMONI CAROUSEL SLIDER (8 ULASAN BERKELAS) ---
+  const testiTrack = document.getElementById('testiTrack');
+  const testiCards = document.querySelectorAll('.testimoni-card');
+  const testiPrevBtn = document.getElementById('testiPrevBtn');
+  const testiNextBtn = document.getElementById('testiNextBtn');
+  const testiDotsRow = document.getElementById('testiDotsRow');
+  const testiWrap = document.getElementById('testiCarouselWrap');
+
+  let currentTestiIndex = 0;
+  let testiInterval = null;
+
+  function getCardsPerView() {
+    const w = window.innerWidth;
+    if (w <= 820) return 1;
+    if (w <= 1080) return 2;
+    return 3;
+  }
+
+  function getMaxTestiIndex() {
+    const cardsPerView = getCardsPerView();
+    return Math.max(0, testiCards.length - cardsPerView);
+  }
+
+  function renderTestiDots() {
+    if (!testiDotsRow) return;
+    testiDotsRow.innerHTML = '';
+    const maxIndex = getMaxTestiIndex();
+    const totalDots = maxIndex + 1;
+
+    for (let i = 0; i < totalDots; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `testi-dot ${i === currentTestiIndex ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Ke ulasan ${i + 1}`);
+      dot.addEventListener('click', () => {
+        currentTestiIndex = i;
+        updateTestiSlider();
+        startTestiAutoplay();
+      });
+      testiDotsRow.appendChild(dot);
+    }
+  }
+
+  function updateTestiSlider() {
+    if (!testiTrack || !testiCards.length) return;
+    const maxIndex = getMaxTestiIndex();
+    if (currentTestiIndex > maxIndex) currentTestiIndex = maxIndex;
+    if (currentTestiIndex < 0) currentTestiIndex = 0;
+
+    const firstCard = testiCards[0];
+    const cardRect = firstCard.getBoundingClientRect();
+    const gap = 24;
+    const moveAmount = (cardRect.width + gap) * currentTestiIndex;
+
+    testiTrack.style.transform = `translateX(-${moveAmount}px)`;
+
+    const dots = testiDotsRow?.querySelectorAll('.testi-dot');
+    dots?.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentTestiIndex);
+    });
+  }
+
+  function nextTesti() {
+    const maxIndex = getMaxTestiIndex();
+    if (currentTestiIndex >= maxIndex) {
+      currentTestiIndex = 0;
+    } else {
+      currentTestiIndex++;
+    }
+    updateTestiSlider();
+  }
+
+  function prevTesti() {
+    const maxIndex = getMaxTestiIndex();
+    if (currentTestiIndex <= 0) {
+      currentTestiIndex = maxIndex;
+    } else {
+      currentTestiIndex--;
+    }
+    updateTestiSlider();
+  }
+
+  function startTestiAutoplay() {
+    stopTestiAutoplay();
+    testiInterval = setInterval(nextTesti, 5000);
+  }
+
+  function stopTestiAutoplay() {
+    if (testiInterval) {
+      clearInterval(testiInterval);
+      testiInterval = null;
+    }
+  }
+
+  testiPrevBtn?.addEventListener('click', () => {
+    prevTesti();
+    startTestiAutoplay();
+  });
+
+  testiNextBtn?.addEventListener('click', () => {
+    nextTesti();
+    startTestiAutoplay();
+  });
+
+  testiWrap?.addEventListener('mouseenter', stopTestiAutoplay);
+  testiWrap?.addEventListener('mouseleave', startTestiAutoplay);
+
+  // Touch Swipe for Testimonials
+  let testiTouchStartX = 0;
+  let testiTouchEndX = 0;
+
+  testiWrap?.addEventListener('touchstart', (e) => {
+    stopTestiAutoplay();
+    testiTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  testiWrap?.addEventListener('touchend', (e) => {
+    testiTouchEndX = e.changedTouches[0].screenX;
+    if (testiTouchEndX < testiTouchStartX - 40) {
+      nextTesti();
+    } else if (testiTouchEndX > testiTouchStartX + 40) {
+      prevTesti();
+    }
+    startTestiAutoplay();
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    renderTestiDots();
+    updateTestiSlider();
+  });
+
+  renderTestiDots();
+  updateTestiSlider();
+  startTestiAutoplay();
+
+  // --- 9. FAQ ACCORDION (#faq) ---
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question-btn');
@@ -147,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 6. FORM RESERVASI MEJA -> WHATSAPP COMPILER (#kontak) ---
+  // --- 10. FORM RESERVASI MEJA -> WHATSAPP COMPILER (#kontak) ---
   const kontakForm = document.getElementById('kontakForm');
   kontakForm?.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -166,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const textLines = [
-      `Halo Manis Lagi Senopati, saya mau reservasi meja cafe:`,
+      `Halo Manis Lagi Senopati, saya mau reservasi meja kafe:`,
       `• Nama Tamu: ${nama}`,
       `• No. WhatsApp: ${kontak}`,
       `• Jumlah Orang: ${tamu}`,
@@ -181,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(waUrl, '_blank', 'noopener,noreferrer');
   });
 
-  // --- 7. LEGAL MODALS (Syarat & Privasi) ---
+  // --- 11. LEGAL MODALS (Syarat & Privasi) ---
   const termsBtn = document.getElementById('termsModalBtn');
   const privacyBtn = document.getElementById('privacyModalBtn');
   const termsModal = document.getElementById('termsModal');

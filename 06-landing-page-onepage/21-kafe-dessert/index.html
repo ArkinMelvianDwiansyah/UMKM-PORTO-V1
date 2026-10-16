@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manis Lagi — Kafe Dessert, Artisan Pastry &amp; Brunch Cantik di Senopati Jakarta</title>
-  <meta name="description" content="Kafe dessert, artisan pastry, dan brunch di Senopati Jakarta Selatan. Menyajikan croissant mentega Prancis, Basque burnt cheesecake, matcha mille crepe, dan spot foto estetik.">
+  <meta name="description" content="Kafe dessert, artisan pastry, dan brunch estetik di Senopati Jakarta Selatan. Menyajikan croissant mentega Prancis 72 layer, Basque burnt cheesecake, matcha mille crepe, dan sudut swafoto estetik.">
   <meta name="keywords" content="kafe dessert senopati, bakery jakarta selatan, croissant prancis, basque cheesecake jakarta, tempat brunch estetik, kafe instagrammable senopati">
   <meta name="author" content="Manis Lagi Dessert &amp; Brunch">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Manis Lagi — Kafe Dessert &amp; Brunch Senopati">
-  <meta property="og:description" content="Pastry hangat yang dipanggang segar tiap pagi, dessert manis lembut, dan sudut foto cantik di Senopati.">
+  <meta property="og:description" content="Pastry hangat yang dipanggang segar tiap subuh, dessert manis lembut, dan sudut foto cantik di Senopati.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/hero-dessert.jpg">
+  <meta property="og:image" content="assets/images/hero-slide-1.jpg">
   <meta property="og:locale" content="id_ID">
 
   <!-- Favicon -->
@@ -27,7 +27,7 @@
     "@context": "https://schema.org",
     "@type": "Bakery",
     "name": "Manis Lagi Dessert & Brunch",
-    "image": "assets/images/hero-dessert.jpg",
+    "image": "assets/images/hero-slide-1.jpg",
     "description": "Kafe artisan pastry, dessert lembut, dan menu brunch di Senopati Jakarta Selatan.",
     "address": {
       "@type": "PostalAddress",
@@ -62,16 +62,18 @@
   <header class="navbar-sticky" id="navbar">
     <div class="container nav-wrapper">
       <a href="#beranda" class="nav-brand" aria-label="Manis Lagi Beranda">
-        <img src="assets/logo.svg" alt="Logo Manis Lagi Kafe Dessert" width="220" height="40">
+        <img src="assets/logo.svg" alt="Logo Manis Lagi Kafe Dessert" width="220" height="44">
       </a>
 
       <nav class="nav-desktop" aria-label="Navigasi Utama">
         <ul class="nav-menu">
           <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#tentang" class="nav-link">Cerita Kami</a></li>
+          <li><a href="#tentang" class="nav-link">Cerita Dapur</a></li>
+          <li><a href="#layanan" class="nav-link">Layanan</a></li>
           <li><a href="#menu-andalan" class="nav-link">Menu Favorit</a></li>
           <li><a href="#paket-acara" class="nav-link">Paket Acara</a></li>
           <li><a href="#galeri" class="nav-link">Spot Foto</a></li>
+          <li><a href="#testimoni" class="nav-link">Ulasan</a></li>
           <li><a href="#kontak" class="nav-link">Lokasi &amp; Reservasi</a></li>
         </ul>
       </nav>
@@ -99,7 +101,7 @@
       <ul class="drawer-menu">
         <li><a href="#beranda" class="drawer-link">Beranda</a></li>
         <li><a href="#keunggulan" class="drawer-link">Keunggulan Dapur</a></li>
-        <li><a href="#tentang" class="drawer-link">Cerita Brand</a></li>
+        <li><a href="#tentang" class="drawer-link">Cerita Dapur &amp; Video</a></li>
         <li><a href="#layanan" class="drawer-link">Layanan Kafe</a></li>
         <li><a href="#menu-andalan" class="drawer-link">Menu Andalan</a></li>
         <li><a href="#paket-acara" class="drawer-link">Paket Pesta &amp; Hampers</a></li>
@@ -121,117 +123,258 @@
 
   <main id="main-content">
 
-    <!-- 3. #beranda — HERO SECTION -->
+    <!-- 3. #beranda — HERO SECTION (DENGAN SLIDER INTERAKTIF) -->
     <section class="hero-section" id="beranda" aria-labelledby="hero-heading">
       <div class="container hero-grid">
+        <!-- Kolom Teks Hero -->
         <div class="hero-content">
           <div class="hero-sticker-pill">
-            <span>✨ Fresh Baked Daily at 05.00 WIB &bull; 100% Halal</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/></svg>
+            <span>Dipanggang Segar Tiap Subuh &bull; 100% Halal Pure Butter</span>
           </div>
+
           <h1 class="hero-title" id="hero-heading">
             Hari Baik Dimulai Dari Sepotong <span class="highlight-pink">Pastry Hangat.</span>
           </h1>
+
           <p class="hero-lead">
-            Selamat datang di sudut manis Senopati. Kami memanggang croissant mentega Prancis berlayer renyah, kue basque cheesecake lumer, dan menu brunch gurih yang bikin Anda ingin mampir lagi dan lagi.
+            Selamat datang di sudut manis Senopati. Kami memanggang croissant mentega Prancis 72 layer renyah, kue basque cheesecake lumer, dan menu brunch gurih yang bikin Anda ingin mampir lagi dan lagi.
           </p>
+
           <div class="hero-actions">
             <a href="#menu-andalan" class="btn-pink">
-              Lihat Menu Favorit 🍰
+              Lihat Menu Favorit
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
             <a href="#kontak" class="btn-outline">
               Booking Meja Cantik
             </a>
           </div>
+
           <div class="hero-stats">
             <div class="stat-item">
               <strong>100% Mentega Prancis</strong>
-              <span>Elle &amp; Vire Pure Butter</span>
+              <span>Elle &amp; Vire Pure Butter AOP</span>
             </div>
             <div class="stat-item">
               <strong>Baking Tiap Subuh</strong>
-              <span>Tanpa Pengawet Buatan</span>
+              <span>Dua Kali Sehari (05.30 &amp; 13.00)</span>
             </div>
             <div class="stat-item">
               <strong>Pet Friendly Area</strong>
-              <span>Outdoor Seating Nyaman</span>
+              <span>Teras Asri Ramah Anabul</span>
             </div>
           </div>
         </div>
 
+        <!-- Kolom Slider Visual Hero -->
         <div class="hero-visual-box">
           <div class="hero-blob-bg"></div>
-          <div class="hero-sticker-badge">Best Seller! 🥐</div>
-          <div class="hero-visual-frame">
-            <img src="assets/images/hero-dessert.jpg" alt="Pilihan pastry dan kue dessert manis cantik di meja Manis Lagi" width="600" height="460">
+
+          <!-- Hero Slider Component -->
+          <div class="hero-slider-wrap" id="heroSlider" role="region" aria-label="Koleksi Andalan Manis Lagi">
+            <div class="hero-slider-track" id="heroSliderTrack">
+              <!-- Slide 1 -->
+              <div class="hero-slide active" data-index="0">
+                <img src="assets/images/hero-slide-1.jpg" alt="French Butter Croissant 72 layer dipanggang segar keemasan" width="600" height="460">
+                <div class="hero-slide-overlay">
+                  <span class="slide-tag">Signature Pastry</span>
+                  <h3 class="slide-title">Golden Butter Croissant</h3>
+                  <p class="slide-desc">Laminasi 72 layer mentega Prancis dengan rongga sarang lebah yang renyah.</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="hero-slide" data-index="1">
+                <img src="assets/images/hero-slide-2.jpg" alt="Basque burnt cheesecake lumer dengan karamel panggang gurih" width="600" height="460">
+                <div class="hero-slide-overlay">
+                  <span class="slide-tag">Dessert Favorit</span>
+                  <h3 class="slide-title">Basque Burnt Cheesecake</h3>
+                  <p class="slide-desc">Lapisan karamel gurih dengan bagian tengah lembut meleleh di lidah.</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="hero-slide" data-index="2">
+                <img src="assets/images/hero-slide-3.jpg" alt="Souffle pancake lembut goyang disajikan dengan buah beri dan madu" width="600" height="460">
+                <div class="hero-slide-overlay">
+                  <span class="slide-tag">Fluffy Souffle</span>
+                  <h3 class="slide-title">Japanese Souffle Pancake</h3>
+                  <p class="slide-desc">Pancake goyang super lembut disajikan bersama pure buah beri segar.</p>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="hero-slide" data-index="3">
+                <img src="assets/images/hero-slide-4.jpg" alt="Sajian meja brunch estetik lengkap dengan avocado toast dan latte" width="600" height="460">
+                <div class="hero-slide-overlay">
+                  <span class="slide-tag">Weekend Brunch</span>
+                  <h3 class="slide-title">Avocado Toast &amp; Specialty Latte</h3>
+                  <p class="slide-desc">Roti sourdough artisan dengan telur rebus meleleh dan seduhan kopi segar.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls: Counter, Arrows, Dots -->
+            <div class="hero-slider-nav">
+              <div class="hero-slider-counter">
+                <span id="heroSlideCurrent">01</span>
+                <span class="counter-divider">/</span>
+                <span>04</span>
+              </div>
+              <div class="hero-slider-dots" id="heroSliderDots">
+                <button type="button" class="slider-dot active" aria-label="Ke slide 1" data-slide="0"></button>
+                <button type="button" class="slider-dot" aria-label="Ke slide 2" data-slide="1"></button>
+                <button type="button" class="slider-dot" aria-label="Ke slide 3" data-slide="2"></button>
+                <button type="button" class="slider-dot" aria-label="Ke slide 4" data-slide="3"></button>
+              </div>
+              <div class="hero-slider-arrows">
+                <button type="button" class="slider-arrow-btn" id="heroSlidePrev" aria-label="Slide sebelumnya">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button type="button" class="slider-arrow-btn" id="heroSlideNext" aria-label="Slide berikutnya">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. #keunggulan — STRIP KEUNGGULAN -->
+    <!-- 4. #keunggulan — STRIP KEUNGGULAN (ZERO AI SLOP - BESPOKE SVG ICONS) -->
     <section class="keunggulan-section" id="keunggulan" aria-label="Keunggulan Manis Lagi">
       <div class="container">
         <div class="keunggulan-grid">
           <div class="keunggulan-card">
-            <div class="keunggulan-icon">🧈</div>
-            <h3 class="keunggulan-title">Bahan Baku Premium</h3>
-            <p class="keunggulan-desc">Menggunakan pure French butter AOP, cokelat Belgia Callebaut, dan buah beri segar tanpa pewarna sintetis.</p>
+            <div class="keunggulan-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8H4v-8"/><path d="m4 12 1.5-6h13L20 12"/><path d="M12 6V2"/></svg>
+            </div>
+            <h3 class="keunggulan-title">Bahan Baku Grade A</h3>
+            <p class="keunggulan-desc">Menggunakan pure French butter Elle &amp; Vire AOP, cokelat Belgia Callebaut, dan buah beri segar tanpa perisa buatan.</p>
           </div>
+
           <div class="keunggulan-card">
-            <div class="keunggulan-icon">🥐</div>
+            <div class="keunggulan-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M7 9a4.5 4.5 0 0 1 4.5-4.5H13"/><path d="M7 13h10"/></svg>
+            </div>
             <h3 class="keunggulan-title">Laminasi 72 Layer</h3>
-            <p class="keunggulan-desc">Croissant kami melewati proses fermentasi lambat 24 jam untuk menghasilkan pori sarang lebah yang renyah di luar dan lembut di dalam.</p>
+            <p class="keunggulan-desc">Croissant melewati fermentasi lambat 24 jam untuk menghasilkan rongga sarang lebah yang renyah di luar dan lembut di dalam.</p>
           </div>
+
           <div class="keunggulan-card">
-            <div class="keunggulan-icon">☕</div>
+            <div class="keunggulan-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+            </div>
             <h3 class="keunggulan-title">Specialty Coffee &amp; Tea</h3>
-            <p class="keunggulan-desc">Biji kopi arabika Nusantara disangrai khusus untuk melengkapi manisnya kue, ditambah racikan artisanal tea blend.</p>
+            <p class="keunggulan-desc">Biji kopi arabika Nusantara disangrai khusus untuk mengimbangi manisnya pastry, dipadu racikan artisan tea blend harum.</p>
           </div>
+
           <div class="keunggulan-card">
-            <div class="keunggulan-icon">📸</div>
-            <h3 class="keunggulan-title">Banyak Sudut Estetik</h3>
-            <p class="keunggulan-desc">Dirancang dengan pencahayaan hangat, dekorasi pastel modern, dan cermin swafoto yang ramah untuk tangkapan foto media sosial Anda.</p>
+            <div class="keunggulan-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            </div>
+            <h3 class="keunggulan-title">Sudut Estetik &amp; Nyaman</h3>
+            <p class="keunggulan-desc">Dirancang dengan pencahayaan hangat alami, sofa beludru pastel, dan cermin swafoto estetik untuk momen berfoto santai.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. #tentang — CERITA BRAND SINGKAT -->
+    <!-- 5. #tentang — CERITA BRAND & VIDEO SPOTLIGHT AUTOPLAY -->
     <section class="tentang-section" id="tentang" aria-labelledby="tentang-heading">
-      <div class="container tentang-grid">
-        <div class="tentang-visual">
-          <img src="assets/images/baking-process.jpg" alt="Proses pembuatan adonan pastry segar di dapur Manis Lagi" width="560" height="480">
+      <div class="container">
+        <!-- Baris Cerita Brand -->
+        <div class="tentang-grid">
+          <div class="tentang-visual">
+            <img src="assets/images/baking-process.jpg" alt="Proses pembuatan adonan pastry segar di dapur Manis Lagi" width="560" height="480">
+            <div class="tentang-visual-badge">
+              <strong>Sejak 2021</strong>
+              <span>Dapur Pastry Senopati</span>
+            </div>
+          </div>
+
+          <div class="tentang-content">
+            <div class="section-tag">Dapur &amp; Kisah Kami</div>
+            <h2 class="section-title" id="tentang-heading">Tempat Pelarian Santai di Tengah Keramaian Kota.</h2>
+            <blockquote class="lead-quote">
+              &ldquo;Bagi kami, dessert bukan sekadar hidangan penutup, tapi sebuah pelukan hangat di penghujung hari yang melelahkan.&rdquo;
+            </blockquote>
+            <p>
+              Manis Lagi berawal dari kecintaan seorang pastry chef muda pada tradisi baking klasik Eropa yang dipadukan dengan selera manis seimbang khas Indonesia. Kami percaya bahwa hidangan manis terbaik adalah yang tidak membuat cepat enek (<em>less sweet, more flavour</em>).
+            </p>
+            <p>
+              Di kafe Senopati kami, Anda bisa menikmati brunch santai di akhir pekan bersama sahabat, mengerjakan tugas ditemani secangkir flat white dan cake slice lembut, atau merayakan momen ulang tahun kecil yang berkesan.
+            </p>
+
+            <div class="tentang-badges-grid">
+              <div class="badge-box">
+                <strong>Kapasitas Tempat Duduk</strong>
+                <span>65 Kursi (Area AC &amp; Teras Pet Friendly)</span>
+              </div>
+              <div class="badge-box">
+                <strong>Jaminan Bahan Halal</strong>
+                <span>Bebas Rum, Alkohol &amp; Gelatin Non-Halal</span>
+              </div>
+              <div class="badge-box">
+                <strong>Fasilitas Kafe</strong>
+                <span>Stopkontak di Tiap Meja, WiFi &amp; Valet</span>
+              </div>
+              <div class="badge-box">
+                <strong>Waktu Panggang</strong>
+                <span>Dua Kali Sehari (05.30 WIB &amp; 13.00 WIB)</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="tentang-content">
-          <div class="section-tag">Dapur &amp; Kisah Kami</div>
-          <h2 class="section-title" id="tentang-heading">Tempat Pelarian Santai di Tengah Keramaian Kota.</h2>
-          <blockquote class="lead-quote">
-            "Bagi kami, dessert bukan sekadar hidangan penutup, tapi sebuah pelukan hangat di penghujung hari yang melelahkan."
-          </blockquote>
-          <p>
-            Manis Lagi berawal dari kecintaan seorang pastry chef muda pada tradisi baking Eropa klasik yang dipadukan dengan selera manis seimbang khas Nusantara. Kami percaya kue yang enak tidak boleh membuat Anda cepat enek (less sweet, more flavour).
-          </p>
-          <p>
-            Di kafe Senopati kami, Anda bisa menikmati brunch santai di hari Minggu bersama sahabat, mengerjakan tugas ditemani secangkir latte dan kue tart buah segar, atau merayakan momen ulang tahun kecil yang berkesan.
-          </p>
+        <!-- VIDEO SPOTLIGHT CARD (VIDEO AUTOPLAY + EXPLANATION OF BAKING METHOD) -->
+        <div class="video-spotlight-card">
+          <div class="video-card-header">
+            <div class="video-header-left">
+              <span class="video-live-pill">
+                <span class="live-dot"></span>
+                DAPUR PRODUKSI LIVE
+              </span>
+              <h3 class="video-card-title">Melihat Dapur Pastry: Metode Laminasi Mentega Prancis &amp; Baking Subuh</h3>
+            </div>
+            <!-- Video Switcher Buttons -->
+            <div class="video-switcher-group">
+              <button type="button" class="video-switch-btn active" data-video="assets/videos/baking-pastry.mp4">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Laminasi &amp; Baking Croissant
+              </button>
+              <button type="button" class="video-switch-btn" data-video="assets/videos/cafe-ambience.mp4">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Suasana &amp; Bar Senopati
+              </button>
+            </div>
+          </div>
 
-          <div class="tentang-badges-grid">
-            <div class="badge-box">
-              <strong>Kapasitas Tempat Duduk</strong>
-              <span>65 Kursi (Area AC &amp; Outdoor Pet Friendly)</span>
+          <!-- Video Player Box -->
+          <div class="video-frame-box">
+            <video id="bakingVideo" class="baking-video-element" autoplay loop muted playsinline poster="assets/images/baking-process.jpg" src="assets/videos/baking-pastry.mp4"></video>
+            <div class="video-watermark-badge">
+              <span>Manis Lagi Kitchen &bull; Pure Butter 72 Layers</span>
             </div>
-            <div class="badge-box">
-              <strong>Jaminan Bahan Halal</strong>
-              <span>Bebas Rum, Gelatin Babi &amp; Minuman Beralkohol</span>
+          </div>
+
+          <!-- Method Breakdown Under Video -->
+          <div class="video-method-breakdown">
+            <div class="method-col">
+              <div class="method-num">Tahap 01</div>
+              <h4 class="method-name">Tournage Mentega Dingin</h4>
+              <p class="method-desc">Mentega Elle &amp; Vire AOP dingin digilas bersama adonan terigu dalam ruangan bertemperatur 16&deg;C untuk membentuk 72 lapisan tipis yang presisi tanpa meleleh.</p>
             </div>
-            <div class="badge-box">
-              <strong>Fasilitas Kafe</strong>
-              <span>Stopkontak di Tiap Meja, WiFi Cepat &amp; Parkir Valet</span>
+            <div class="method-col">
+              <div class="method-num">Tahap 02</div>
+              <h4 class="method-name">Fermentasi Lambat 24 Jam</h4>
+              <p class="method-desc">Adonan diistirahatkan dalam chiller selama 24 jam agar ragi alami berkembang perlahan, menciptakan aroma mentega panggang yang kaya dan rongga sarang lebah lembut.</p>
             </div>
-            <div class="badge-box">
-              <strong>Waktu Panggang</strong>
-              <span>Dua Kali Sehari (05.30 WIB &amp; 13.00 WIB)</span>
+            <div class="method-col">
+              <div class="method-num">Tahap 03</div>
+              <h4 class="method-name">Deck Oven Steam Baking</h4>
+              <p class="method-desc">Dipanggang pada suhu 210&deg;C dengan injeksi uap air bertekanan tinggi di menit awal untuk mengunci kerenyahan kerak luar keemasan dan menjaga kelembutan mentega di dalamnya.</p>
             </div>
           </div>
         </div>
@@ -251,13 +394,15 @@
           <!-- Layanan 1 -->
           <article class="layanan-card">
             <div class="layanan-card-header">
-              <span style="font-size:2rem;">🍽️</span>
+              <div class="layanan-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v20M6 2v20M2 12h20"/></svg>
+              </div>
               <h3>Dine-In &amp; Brunch Santai</h3>
-              <p>Makan di tempat dengan suasana kafe yang sejuk dan musik akustik santai. Tersedia menu brunch mengenyangkan mulai jam 08.00 pagi.</p>
+              <p>Makan di tempat dengan suasana kafe yang sejuk dan alunan musik santai. Tersedia menu brunch mengenyangkan mulai jam 08.00 pagi.</p>
               <ul class="layanan-card-perks">
-                <li>Penyajian hangat langsung dari piring saji</li>
-                <li>Pilihan susu oatmilk &amp; almond untuk kopi</li>
-                <li>Pelayanan ramah oleh barista kami</li>
+                <li>Penyajian hangat langsung dari piring keramik</li>
+                <li>Pilihan susu oatmilk &amp; almond untuk sajian kopi</li>
+                <li>Pelayanan ramah oleh staf barista kami</li>
               </ul>
             </div>
             <a href="#kontak" class="btn-outline" style="text-align: center; margin-top: 20px;">Reservasi Meja</a>
@@ -266,11 +411,13 @@
           <!-- Layanan 2 -->
           <article class="layanan-card">
             <div class="layanan-card-header">
-              <span style="font-size:2rem;">🎁</span>
+              <div class="layanan-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M12 7V3"/><path d="M8 3h8"/><path d="M12 7v14"/></svg>
+              </div>
               <h3>Dessert Box &amp; Hampers Cantik</h3>
-              <p>Paket bingkisan manis dengan kotak pita pastel elegan, cocok untuk hadiah ulang tahun, hantaran hari raya, atau apresiasi rekan kerja.</p>
+              <p>Paket bingkisan manis dengan kotak pita satin pastel, pas untuk hadiah ulang tahun, hantaran hari raya, atau apresiasi rekan kerja.</p>
               <ul class="layanan-card-perks">
-                <li>Kotak kokoh food-grade ramah lingkungan</li>
+                <li>Kotak kokoh food-grade berpita satin</li>
                 <li>Kartu ucapan custom gratis ditulis tangan</li>
                 <li>Pengiriman aman kurir mobil same-day</li>
               </ul>
@@ -281,12 +428,14 @@
           <!-- Layanan 3 -->
           <article class="layanan-card">
             <div class="layanan-card-header">
-              <span style="font-size:2rem;">🎉</span>
+              <div class="layanan-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+              </div>
               <h3>Private Table &amp; Sweet Corner</h3>
               <p>Pemesanan meja dekorasi khusus untuk bridal shower, arisan keluarga, atau perayaan ulang tahun kecil dengan dessert table estetik.</p>
               <ul class="layanan-card-perks">
                 <li>Pilihan sudut foto terbaik di kafe</li>
-                <li>Kustomisasi tulisan pada kue tart</li>
+                <li>Kustomisasi tulisan nama pada kue tart</li>
                 <li>Bebas foto tanpa biaya sewa kamera tambahan</li>
               </ul>
             </div>
@@ -314,7 +463,7 @@
             </div>
             <div class="menu-card-body">
               <h3 class="menu-item-title">Golden Butter Croissant</h3>
-              <p class="menu-item-desc">Croissant mentega klasik Prancis dengan tekstur renyah di luar, lembut di dalam, dan aroma mentega yang semerbak.</p>
+              <p class="menu-item-desc">Croissant mentega klasik Prancis dengan tekstur renyah di luar, lembut di dalam, dan aroma mentega harum.</p>
               <div class="menu-card-footer">
                 <span class="menu-price">Mulai Rp 32.000</span>
                 <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
@@ -346,7 +495,7 @@
             </div>
             <div class="menu-card-body">
               <h3 class="menu-item-title">Matcha Uji Mille Crepe</h3>
-              <p class="menu-item-desc">24 lapisan crepe tipis dengan krim diplomat matcha murni dari Uji, Kyoto. Sedikit pahit seimbang dengan manis lembut.</p>
+              <p class="menu-item-desc">24 lapisan crepe tipis dengan krim diplomat matcha murni dari Uji, Kyoto. Pahit lembut seimbang dengan manis krim.</p>
               <div class="menu-card-footer">
                 <span class="menu-price">Mulai Rp 52.000 <small style="font-size:0.75rem; color:var(--text-muted);">/ slice</small></span>
                 <a href="#kontak" class="btn-outline" style="padding: 6px 14px; font-size: 0.75rem;">Pesan WA</a>
@@ -424,8 +573,8 @@
               <ul class="paket-perks">
                 <li>2 Pcs Signature Croissant (Butter &amp; Almond)</li>
                 <li>2 Slice Basque Burnt Cheesecake</li>
-                <li>Kotak kado berpita satin + kartu ucapan</li>
-                <li>Bisa dikirim same-day se-Jabodetabek</li>
+                <li>Kotak kado berpita satin + kartu ucapan custom</li>
+                <li>Bisa dikirim same-day kurir se-Jabodetabek</li>
               </ul>
             </div>
             <a href="#kontak" class="btn-outline" style="width: 100%; text-align: center;">Pesan Hampers</a>
@@ -434,15 +583,15 @@
           <!-- Paket 2 (Featured) -->
           <article class="paket-card featured">
             <div>
-              <div style="font-size:0.6875rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-pink); margin-bottom:4px;">Paling Laris</div>
+              <div class="paket-badge-best">Paling Diminati</div>
               <h3 class="paket-tier">Sweet Table Mini Party</h3>
-              <p style="font-size:0.875rem; color:var(--text-muted);">Sajian kue pesta mini untuk 6–8 orang sahabat.</p>
+              <p style="font-size:0.875rem; color:var(--text-muted);">Sajian meja perayaan manis untuk 6–8 orang sahabat.</p>
               <div class="paket-price">Rp 650.000</div>
               <ul class="paket-perks">
                 <li>1 Whole Cake Ukuran 16cm (Bebas Pilih Varian)</li>
                 <li>8 Pcs Mini French Pastries Assorted</li>
                 <li>1 Pitcher Berry Cloud Sparkler / Iced Tea</li>
-                <li>Dekorasi meja lilin perayaan &amp; topi pesta mini</li>
+                <li>Dekorasi meja lilin perayaan cantik &amp; perlengkapan</li>
                 <li>Meja cadangan khusus selama 3 jam di kafe</li>
               </ul>
             </div>
@@ -468,32 +617,102 @@
       </div>
     </section>
 
-    <!-- 9. SECTION KHAS INDUSTRI 3: #galeri (Showcase Spot Foto & Suasana Kafe) -->
+    <!-- 9. SECTION KHAS INDUSTRI 3: #galeri (Showcase Spot Foto & Suasana Kafe - 8 FOTO + FILTER) -->
     <section class="galeri-section" id="galeri" aria-labelledby="galeri-heading">
       <div class="container">
         <div class="section-header center">
-          <span class="section-tag">Sudut Kafe</span>
+          <span class="section-tag">Eksplorasi Kafe</span>
           <h2 class="section-title" id="galeri-heading">Suasana Nyaman &amp; Spot Foto Estetik.</h2>
-          <p class="section-desc">Setiap sudut kafe kami dirancang cantik untuk momen bersantai dan berswafoto.</p>
+          <p class="section-desc">Setiap sudut kafe kami dirancang cantik dengan pencahayaan alami untuk momen bersantai dan berswafoto.</p>
         </div>
 
+        <!-- Filter Tabs Kategori Spot Foto -->
+        <div class="galeri-filter-bar">
+          <button type="button" class="galeri-filter-btn active" data-filter="all">Semua Sudut (8)</button>
+          <button type="button" class="galeri-filter-btn" data-filter="indoor">Area Indoor &amp; Bar (4)</button>
+          <button type="button" class="galeri-filter-btn" data-filter="outdoor">Teras Outdoor &amp; Anabul (2)</button>
+          <button type="button" class="galeri-filter-btn" data-filter="swafoto">Sudut Swafoto (2)</button>
+        </div>
+
+        <!-- Galeri Grid (8 Spot Estetik) -->
         <div class="galeri-grid">
-          <div class="galeri-item">
-            <img src="assets/images/spot-1.jpg" alt="Interior kafe pastel hangat dengan sofa empuk" loading="lazy" width="400" height="280">
+          <!-- Spot 1 -->
+          <div class="galeri-item" data-category="indoor">
+            <img src="assets/images/spot-1.jpg" alt="Interior kafe pastel hangat dengan sofa beludru empuk" loading="lazy" width="400" height="280">
             <div class="galeri-overlay">
-              <h4 class="galeri-item-title">Sudut Sofa Pastel</h4>
+              <span class="galeri-cat-badge">Area Indoor</span>
+              <h4 class="galeri-item-title">Sudut Sofa Velvet Pastel</h4>
+              <p class="galeri-item-sub">Sofa empuk dengan pencahayaan hangat untuk obrolan berjam-jam.</p>
             </div>
           </div>
-          <div class="galeri-item">
-            <img src="assets/images/spot-2.jpg" alt="Meja brunch dekat jendela bermandikan cahaya matahari" loading="lazy" width="400" height="280">
+
+          <!-- Spot 2 -->
+          <div class="galeri-item" data-category="indoor">
+            <img src="assets/images/spot-2.jpg" alt="Meja brunch dekat jendela bermandikan cahaya matahari pagi" loading="lazy" width="400" height="280">
             <div class="galeri-overlay">
-              <h4 class="galeri-item-title">Jendela Pagi Senopati</h4>
+              <span class="galeri-cat-badge">Area Indoor</span>
+              <h4 class="galeri-item-title">Meja Jendela Pagi Senopati</h4>
+              <p class="galeri-item-sub">Bermandikan cahaya alami pagi hari, spot terfavorit para fotografer kuliner.</p>
             </div>
           </div>
-          <div class="galeri-item">
-            <img src="assets/images/spot-3.jpg" alt="Area outdoor pet-friendly teduh di bawah pohon" loading="lazy" width="400" height="280">
+
+          <!-- Spot 3 -->
+          <div class="galeri-item" data-category="outdoor">
+            <img src="assets/images/spot-3.jpg" alt="Area outdoor pet-friendly teduh di bawah tanaman hijau" loading="lazy" width="400" height="280">
             <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Teras Outdoor &amp; Anabul</span>
               <h4 class="galeri-item-title">Teras Outdoor Rindang</h4>
+              <p class="galeri-item-sub">Area terbuka hijau ramah anjing dan kucing kesayangan Anda.</p>
+            </div>
+          </div>
+
+          <!-- Spot 4 -->
+          <div class="galeri-item" data-category="swafoto">
+            <img src="assets/images/spot-4.jpg" alt="Cermin lengkung estetik dengan dekorasi bunga kering untuk swafoto" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Sudut Swafoto</span>
+              <h4 class="galeri-item-title">Cermin Lengkung Swafoto</h4>
+              <p class="galeri-item-sub">Cermin lengkung full-body berhiaskan tanaman kering dan pencahayaan lembut.</p>
+            </div>
+          </div>
+
+          <!-- Spot 5 -->
+          <div class="galeri-item" data-category="indoor">
+            <img src="assets/images/spot-5.jpg" alt="Etalase kaca transparan berisi susunan pastry dan croissant segar" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Area Indoor</span>
+              <h4 class="galeri-item-title">Etalase Kaca Pastry Bar</h4>
+              <p class="galeri-item-sub">Aroma mentega hangat menyapa langsung dari etalase kaca terbuka kami.</p>
+            </div>
+          </div>
+
+          <!-- Spot 6 -->
+          <div class="galeri-item" data-category="indoor">
+            <img src="assets/images/spot-6.jpg" alt="Meja komunal kayu dengan stopkontak dan tanaman hias sejuk" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Area Indoor</span>
+              <h4 class="galeri-item-title">Meja Komunal Laptop &amp; Baca</h4>
+              <p class="galeri-item-sub">Meja panjang kayu dengan stopkontak tiap kursi dan koneksi WiFi cepat.</p>
+            </div>
+          </div>
+
+          <!-- Spot 7 -->
+          <div class="galeri-item" data-category="swafoto">
+            <img src="assets/images/spot-7.jpg" alt="Sudut meja bundar marmer dengan vas bunga krisan segar" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Sudut Swafoto</span>
+              <h4 class="galeri-item-title">Sudut Meja Marmer &amp; Bunga</h4>
+              <p class="galeri-item-sub">Meja marmer bulat estetik dengan vas bunga segar untuk flatlay dessert.</p>
+            </div>
+          </div>
+
+          <!-- Spot 8 -->
+          <div class="galeri-item" data-category="outdoor">
+            <img src="assets/images/spot-8.jpg" alt="Bar barista seduhan kopi dan teh menghadap taman kafe" loading="lazy" width="400" height="280">
+            <div class="galeri-overlay">
+              <span class="galeri-cat-badge">Teras Outdoor &amp; Anabul</span>
+              <h4 class="galeri-item-title">Bar Kopi &amp; Taman Terbuka</h4>
+              <p class="galeri-item-sub">Tempat memesan kopi dingin dan mocktail sambil menikmati semilir angin luar.</p>
             </div>
           </div>
         </div>
@@ -532,7 +751,7 @@
           <div class="proses-step-card">
             <div class="proses-num">03</div>
             <h3 class="proses-title">Quality &amp; Glaze Check</h3>
-            <p class="proses-desc">Setiap kue dan pastry diperiksa warna kecokelatannya, dilapisi glasir kilap buah murni, dan dihias sebelum masuk etalase.</p>
+            <p class="proses-desc">Setiap kue dan pastry diperiksa warna kecokelatannya, dilapisi glasir buah murni, dan dihias sebelum masuk etalase saji.</p>
           </div>
           <div class="proses-step-card">
             <div class="proses-num">04</div>
@@ -543,69 +762,277 @@
       </div>
     </section>
 
-    <!-- 11. #testimoni — TESTIMONI (3 ulasan autentik) -->
+    <!-- 11. #testimoni — ULASAN PENGUNJUNG DENGAN FOTO ASLI & CAROUSEL SLIDER BERKELAS -->
     <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
       <div class="container">
-        <div class="section-header center">
-          <span class="section-tag">Ulasan Sahabat Manis</span>
-          <h2 class="section-title" id="testimoni-heading">Kesan Manis Dari Para Pengunjung.</h2>
-          <p class="section-desc">Cerita dari mereka yang sering menghabiskan sore santai di Manis Lagi. <span style="font-size:0.75rem; color:var(--text-muted);">(Contoh ulasan pelanggan)</span></p>
+        <div class="testimoni-top-bar">
+          <div>
+            <span class="section-tag">Ulasan Sahabat Manis</span>
+            <h2 class="section-title" id="testimoni-heading">Kesan Manis Dari Para Pengunjung.</h2>
+            <p class="section-desc">Cerita asli dari mereka yang menikmati sore santai dan sarapan pastry di Senopati. <span style="font-size:0.75rem; color:var(--text-muted);">(Contoh ulasan pelanggan)</span></p>
+          </div>
+
+          <!-- Carousel Controls: Prev & Next -->
+          <div class="testimoni-controls">
+            <button type="button" class="testi-arrow-btn" id="testiPrevBtn" aria-label="Ulasan sebelumnya">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="testi-arrow-btn" id="testiNextBtn" aria-label="Ulasan berikutnya">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
 
-        <div class="testimoni-grid">
-          <!-- Testimoni 1 -->
-          <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Pencinta Pastry</span>
-            </div>
-            <blockquote class="testimoni-quote">
-              "Croissant almond di sini beneran salah satu yang terbaik di Senopati! Isian pasta almondnya generous tapi gak bikin enek, pinggirannya renyah berderak pas digigit. Tempatnya gemas banget buat nongkrong sore."
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-1.jpg" alt="Foto Nadia Pratiwi" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Nadia Pratiwi</strong>
-                <span>Pengunjung Rutin &bull; Bintaro</span>
-              </div>
-            </div>
-          </article>
+        <!-- Carousel Slider Track (8 Reviews with Authentic Dining Photos) -->
+        <div class="testimoni-carousel-wrap" id="testiCarouselWrap">
+          <div class="testimoni-track" id="testiTrack">
 
-          <!-- Testimoni 2 -->
-          <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Work From Cafe</span>
-            </div>
-            <blockquote class="testimoni-quote">
-              "Suka banget sama suasananya yang tenang di jam 9–12 siang. Wifi stabil, stopkontak banyak, dan avocado sourdough toast-nya ngenyangin banget buat brunch sambil beresin kerjaan laptop."
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-2.jpg" alt="Foto Dimas Erlangga" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Dimas Erlangga</strong>
-                <span>Desainer Grafis &bull; Kebayoran Baru</span>
+            <!-- Review 1 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-1-dessert.jpg" alt="Nadia Pratiwi menikmati croissant almond dan flat white" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Pencinta Croissant</span>
               </div>
-            </div>
-          </article>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Croissant Almond + Flat White</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Croissant almond di sini beneran salah satu yang terbaik di Senopati! Pori sarang lebahnya keliatan banget, renyah berderak pas digigit tapi menteganya berasa gurih legit tanpa bikin enek. Pasti balik lagi!&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-1.jpg" alt="Nadia Pratiwi" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Nadia Pratiwi</strong>
+                    <span>Pengunjung Rutin &bull; Bintaro</span>
+                  </div>
+                </div>
+              </div>
+            </article>
 
-          <!-- Testimoni 3 -->
-          <article class="testimoni-card">
-            <div class="testimoni-header-bar">
-              <span class="testimoni-stars">★★★★★</span>
-              <span class="testimoni-badge">Bridal Shower Party</span>
-            </div>
-            <blockquote class="testimoni-quote">
-              "Pesan paket Sweet Table Mini Party untuk bridal shower sahabatku kemarin. Dekorasi mejanya rapi banget, kue cheesecake-nya lumer dan semua teman-teman suka. Baristanya super ramah bantuin kami foto-foto!"
-            </blockquote>
-            <div class="testimoni-author">
-              <img src="assets/images/avatar-3.jpg" alt="Foto Tara Kirana" class="testimoni-avatar" width="44" height="44">
-              <div class="author-info">
-                <strong>Tara Kirana</strong>
-                <span>Penyelenggara Acara &bull; Jakarta Selatan</span>
+            <!-- Review 2 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-2-dessert.jpg" alt="Dimas Erlangga dengan slice basque cheesecake dan matcha latte" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Work From Cafe</span>
               </div>
-            </div>
-          </article>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Basque Burnt Cheesecake + Iced Matcha</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Tempat pelarian paling nyaman kalau lagi butuh inspirasi kerja laptopan. Basque cheesecake-nya punya tekstur tengah yang lumer meleleh di mulut, manisnya pas, dan WiFi kafe kencang stabil.&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-2.jpg" alt="Dimas Erlangga" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Dimas Erlangga</strong>
+                    <span>Desainer Grafis &bull; Kebayoran Baru</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 3 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-3-dessert.jpg" alt="Tara Kirana menikmati fluffy souffle pancake dengan teh hangat" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Bridal Shower Party</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Sweet Table Mini Party</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Pesan paket Sweet Table Mini Party untuk bridal shower sahabatku. Dekorasi mejanya estetik banget, kue cheesecake-nya lumer dan teman-teman suka semua. Stafnya super ramah bantuin foto!&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-3.jpg" alt="Tara Kirana" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Tara Kirana</strong>
+                    <span>Penyelenggara Acara &bull; Jakarta Selatan</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 4 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-4-dessert.jpg" alt="Sheila Wardani dengan sajian avocado sourdough toast dan cappuccino" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Brunch Akhir Pekan</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Avocado Poached Egg + Cappuccino</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Sourdough-nya punya crust renyah dengan remah yang empuk kenyal. Telur poached-nya sempurna lumer saat dipotong garpu, disajikan sama alpukat segar berbumbu gurih. Brunch terbaik di Senopati!&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-4.jpg" alt="Sheila Wardani" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Sheila Wardani</strong>
+                    <span>Food Content Creator &bull; Kemang</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 5 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-5-dessert.jpg" alt="Adrian Mahendra duduk santai di teras outdoor pet friendly" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Pet-Friendly Brunch</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Pain au Chocolat + Cold Brew</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Jarang nemu kafe dessert di Senopati yang benar-benar pet friendly dengan area outdoor yang adem dan bersih. Bawa puppy kesayangan jalan pagi, mampir sarapan kopi dan pain au chocolat cokelat Belgia.&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-5.jpg" alt="Adrian Mahendra" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Adrian Mahendra</strong>
+                    <span>Pencinta Anabul &bull; Jaksel</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 6 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-6-dessert.jpg" alt="Felicia Tania menikmati matcha mille crepe dan berry sparkler" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Mille Crepe Fan</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Matcha Uji Mille Crepe + Sparkler</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Mille crepenya 24 layer beneran tipis halus! Krim matchanya otentik dari Uji Kyoto dengan rasa creamy legit dan sedikit earthy. Cermin lengkung swafotonya juga wajib banget dicoba kalau ke sini.&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-6.jpg" alt="Felicia Tania" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Felicia Tania</strong>
+                    <span>Mahasiswi &bull; SCBD</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 7 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-7-dessert.jpg" alt="Rendra Saputra merayakan ulang tahun dengan whole cake manis" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Perayaan Ulang Tahun</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Whole Basque Cheesecake 20cm</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Pesan whole cake Basque Cheesecake untuk surprise ulang tahun istri. Packing box-nya rapi mewah dengan pita satin, rasanya gurih manis mewah, semua keluarga memuji enak banget.&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-7.jpg" alt="Rendra Saputra" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Rendra Saputra</strong>
+                    <span>Pegawai Swasta &bull; Tebet</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Review 8 -->
+            <article class="testimoni-card">
+              <div class="testimoni-photo-frame">
+                <img src="assets/images/review-8-dessert.jpg" alt="Clarissa Handoko duduk santai membaca buku di sudut kafe" loading="lazy" width="400" height="220">
+                <span class="testimoni-visit-tag">Sore Santai &bull; Me Time</span>
+              </div>
+              <div class="testimoni-body">
+                <div class="testimoni-stars-row">
+                  <span class="svg-stars" aria-label="Rating 5 dari 5 bintang">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </span>
+                  <span class="order-chip">Pesanan: Artisan Tea Blend + Strawberry Tart</span>
+                </div>
+                <blockquote class="testimoni-quote">
+                  &ldquo;Pencahayaan sore hari di dekat jendela Senopati ini benar-benar calming. Musiknya pas, stafnya perhatian, dan paduan teh mawar dengan tart buah stroberinya menyegarkan pikiran.&rdquo;
+                </blockquote>
+                <div class="testimoni-author">
+                  <img src="assets/images/avatar-review-8.jpg" alt="Clarissa Handoko" class="testimoni-avatar" width="48" height="48">
+                  <div class="author-info">
+                    <strong>Clarissa Handoko</strong>
+                    <span>Arsitek Lanskap &bull; Pondok Indah</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Carousel Pagination Dots -->
+        <div class="testi-dots-row" id="testiDotsRow">
+          <!-- Dots dynamically created / synched via script -->
         </div>
       </div>
     </section>
@@ -693,7 +1120,10 @@
           </p>
         </div>
         <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
-          <a href="#kontak" class="btn-pink" style="font-size:0.9375rem;">Reservasi Meja di WhatsApp &rarr;</a>
+          <a href="#kontak" class="btn-pink" style="font-size:0.9375rem;">
+            Reservasi Meja di WhatsApp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
           <span style="font-size:0.8125rem; color:var(--text-muted); font-weight:700;">Buka setiap hari mulai pukul 08.00 pagi</span>
         </div>
       </div>
@@ -830,7 +1260,7 @@
       <div class="footer-top-grid">
         <!-- Kolom 1 -->
         <div class="footer-brand-col">
-          <img src="assets/logo-white.svg" alt="Manis Lagi Kafe" width="220" height="40">
+          <img src="assets/logo-white.svg" alt="Manis Lagi Kafe" width="220" height="44">
           <p>
             Kafe artisan dessert, pastry hangat, dan brunch santai di Senopati, Jakarta Selatan. Menemani momen manis harian Anda dengan bahan baku murni berkualitas.
           </p>
@@ -847,9 +1277,11 @@
           <ul class="footer-nav-list">
             <li><a href="#beranda" class="footer-nav-link">Beranda</a></li>
             <li><a href="#tentang" class="footer-nav-link">Cerita Dapur Kami</a></li>
+            <li><a href="#layanan" class="footer-nav-link">Layanan Kafe</a></li>
             <li><a href="#menu-andalan" class="footer-nav-link">Menu Pastry &amp; Kue</a></li>
             <li><a href="#paket-acara" class="footer-nav-link">Paket Pesta &amp; Hampers</a></li>
             <li><a href="#galeri" class="footer-nav-link">Spot Foto Estetik</a></li>
+            <li><a href="#testimoni" class="footer-nav-link">Ulasan Pengunjung</a></li>
             <li><a href="#kontak" class="footer-nav-link">Reservasi Meja</a></li>
           </ul>
         </div>
