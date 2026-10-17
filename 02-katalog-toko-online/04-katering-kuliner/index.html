@@ -101,12 +101,12 @@
 <body class="font-sans antialiased selection:bg-terracotta-600 selection:text-white">
 
     <!-- TOP FLOATING PORTFOLIO DEMO BAR -->
-    <div class="bg-[#1C1917] text-stone-200 text-xs py-2.5 px-4 border-b border-stone-800 relative z-50">
+    <div class="bg-[#1C1917] text-stone-200 text-xs py-2 sm:py-2.5 px-3 sm:px-4 border-b border-stone-800 relative z-50">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-3">
                 <a href="../../index.html" class="inline-flex items-center gap-2 font-mono text-amber-400 hover:text-amber-300 font-semibold transition-colors">
                     <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                    <span>KEMBALI KE KATALOG PORTOFOLIO UMKM</span>
+                    <span class="hidden sm:inline">KEMBALI KE KATALOG PORTOFOLIO UMKM</span><span class="sm:hidden text-xs">Katalog UMKM</span>
                 </a>
                 <span class="hidden md:inline-flex items-center gap-1.5 text-stone-400 font-mono text-[11px]">
                     | PROYEK #04 // KATALOG KATERING, AQIQAH & FROZEN FOOD
@@ -115,7 +115,7 @@
             <div class="flex items-center gap-3 text-xs">
                 <button onclick="fillSampleOrder50Box()" class="bg-halal-600 hover:bg-halal-700 text-white px-3 py-1 font-mono text-[11px] font-semibold transition flex items-center gap-1.5">
                     <i class="fa-solid fa-sliders text-amber-300"></i>
-                    <span>SIMULASI 50 BOX (DISKON 10%)</span>
+                    <span class="hidden sm:inline">SIMULASI 50 BOX (DISKON 10%)</span><span class="sm:hidden text-[10px]">SIMULASI 50 BOX</span>
                 </button>
             </div>
         </div>
@@ -137,14 +137,14 @@
 
     <!-- STICKY HEADER / NAVBAR -->
     <header class="sticky top-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-stone-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="assets/logo.svg" alt="Dapur Berkah Nusantara" class="h-11 w-auto shrink-0">
+                <img src="assets/logo.svg" alt="Dapur Berkah Nusantara" class="h-8 sm:h-11 w-auto max-w-[150px] sm:max-w-none shrink-0">
             </a>
 
             <!-- Navigation Links -->
-            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-stone-700 whitespace-nowrap">
+            <nav class="hidden lg:flex items-center gap-3.5 xl:gap-6 text-xs xl:text-sm font-semibold text-stone-700 whitespace-nowrap">
                 <a href="#katalog-menu" class="whitespace-nowrap hover:text-terracotta-600 transition">Katalog Menu</a>
                 <a href="#kalkulator-acara" class="whitespace-nowrap hover:text-terracotta-600 transition">Simulasi Porsi</a>
                 <a href="#keunggulan" class="whitespace-nowrap hover:text-terracotta-600 transition">Standar Dapur</a>
@@ -154,12 +154,12 @@
 
             <!-- Right Actions: WA Consult & Cart Button -->
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah." target="_blank" rel="noopener noreferrer" class="whitespace-nowrap hidden md:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-semibold text-xs transition">
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Dapur%20Berkah%20Nusantara,%20saya%20ingin%20konsultasi%20menu%20katering/aqiqah." target="_blank" rel="noopener noreferrer" class="whitespace-nowrap hidden xl:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-semibold text-xs transition">
                     <i class="fa-brands fa-whatsapp text-sm text-halal-600"></i>
                     <span>Konsultasi Menu</span>
                 </a>
 
-                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-2.5 sm:gap-3 bg-[#1C1917] hover:bg-terracotta-600 text-white font-bold px-3 sm:px-4 py-2.5 transition">
+                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-2 sm:gap-3 bg-[#1C1917] hover:bg-terracotta-600 text-white font-bold px-2.5 sm:px-4 py-2 sm:py-2.5 transition">
                     <div class="relative flex items-center gap-1.5">
                         <i class="fa-solid fa-basket-shopping text-base text-amber-400"></i>
                         <span id="cartCountBadge" class="bg-terracotta-600 text-white font-mono text-[11px] font-bold min-w-[22px] h-5 px-1.5 inline-flex items-center justify-center">0</span>
@@ -171,7 +171,7 @@
                 </button>
 
                 <!-- Mobile Hamburger Button -->
-                <button id="mobileNavToggle" onclick="toggleMobileDrawer()" aria-label="Buka Menu Navigasi" class="lg:hidden w-10 h-10 border border-stone-300 bg-white text-stone-900 hover:bg-[#1C1917] hover:text-white transition flex items-center justify-center shrink-0">
+                <button id="mobileNavToggle" onclick="toggleMobileDrawer()" aria-label="Buka Menu Navigasi" class="lg:hidden w-8 h-8 sm:w-10 sm:h-10 border border-stone-300 bg-white text-stone-900 hover:bg-[#1C1917] hover:text-white transition flex items-center justify-center shrink-0">
                     <i id="mobileNavIcon" class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
@@ -180,7 +180,7 @@
 
     <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-stone-950/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#1C1917] text-stone-200 border-l border-stone-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#1C1917] text-stone-200 border-l border-stone-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out font-mono">
         <!-- Drawer Header -->
         <div class="p-5 border-b border-stone-800 flex items-center justify-between bg-black">
             <div class="flex items-center gap-2.5">
@@ -1223,7 +1223,7 @@
          ========================================== -->
     <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-stone-950/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
 
-    <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col border-l-2 border-[#1C1917]">
+    <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-white z-50 shadow-2xl transform translate-x-full invisible transition-transform duration-300 flex flex-col border-l-2 border-[#1C1917]">
         <!-- Drawer Header -->
         <div class="p-4 sm:p-5 bg-[#1C1917] text-white flex items-center justify-between shrink-0">
             <div class="flex items-center gap-3">

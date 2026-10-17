@@ -115,12 +115,12 @@
 <body class="font-sans antialiased selection:bg-terracotta selection:text-white">
 
     <!-- TOP PORTFOLIO DEMO BAR -->
-    <div class="bg-charcoal text-cream text-xs py-2.5 px-4 border-b border-stone-800 relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap overflow-x-auto">
+    <div class="bg-charcoal text-cream text-xs py-2 sm:py-2.5 px-3 sm:px-4 border-b border-stone-800 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 flex-nowrap overflow-x-auto">
             <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
                 <a href="../../index.html" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-terracotta text-cream font-semibold px-3.5 py-1 rounded-full transition-colors duration-200 border border-stone-700 whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-arrow-left text-[11px]"></i>
-                    <span>Kembali ke Katalog Portofolio</span>
+                    <span class="hidden sm:inline">Kembali ke Katalog Portofolio</span><span class="sm:hidden text-xs">Katalog UMKM</span>
                 </a>
                 <span class="hidden lg:inline-flex items-center gap-2 text-stone-300 font-medium whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-terracotta shrink-0"></span>
@@ -139,7 +139,7 @@
 
     <!-- TOP ANNOUNCEMENT TICKER -->
     <div class="bg-terracotta text-white text-xs py-2 px-4 border-b-[1.5px] border-charcoal font-semibold">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 flex-nowrap">
             <div class="flex items-center gap-2 whitespace-nowrap truncate">
                 <span class="bg-charcoal text-mustard font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shrink-0">SAME-DAY DELIVERY</span>
                 <span class="truncate">Order Pakan &amp; Pasir sebelum pukul 17.00 WIB dikirim hari ini via GoSend / GrabExpress Instant!</span>
@@ -215,7 +215,7 @@
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)" class="fixed inset-0 bg-charcoal/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
     <!-- MOBILE SLIDE-OVER DRAWER (TACTILE POP PET MART THEME) -->
-    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-cream text-charcoal z-50 flex flex-col justify-between shadow-2xl border-l-[2px] border-charcoal transform translate-x-full transition-transform duration-300 ease-out">
+    <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-cream text-charcoal z-50 flex flex-col justify-between shadow-2xl border-l-[2px] border-charcoal transform translate-x-full invisible transition-transform duration-300 ease-out">
         <div class="p-5 overflow-y-auto">
             <!-- Drawer Header -->
             <div class="flex items-center justify-between pb-4 border-b-[1.5px] border-charcoal">
@@ -291,7 +291,7 @@
         <div class="p-5 border-t-[1.5px] border-charcoal bg-cream-soft">
             <a href="../../index.html" class="flex items-center justify-center gap-2 text-charcoal-muted hover:text-charcoal font-mono text-xs font-semibold py-2 transition">
                 <i class="fa-solid fa-arrow-left text-[11px] text-terracotta"></i>
-                <span>Kembali ke Katalog UMKM</span>
+                <span class="hidden sm:inline">Kembali ke Katalog UMKM</span><span class="sm:hidden text-xs">Katalog UMKM</span>
             </a>
             <div class="mt-2 text-center text-[10px] text-charcoal-muted font-mono">
                 PawHaus Pet Mart &bull; Grooming &amp; Stay &copy; 2026
@@ -1295,7 +1295,7 @@
 
     <!-- SLIDE-OVER CART DRAWER WITH INSTANT COURIER ESTIMATOR -->
     <div id="cartDrawerBackdrop" onclick="closeCartDrawer()" class="fixed inset-0 bg-charcoal/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-200"></div>
-    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream border-l-2 border-charcoal z-50 translate-x-full transition-transform duration-300 flex flex-col">
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream border-l-2 border-charcoal z-50 translate-x-full invisible transition-transform duration-300 flex flex-col">
         <!-- Drawer Header -->
         <div class="p-5 bg-charcoal text-cream flex items-center justify-between border-b border-stone-800">
             <div class="flex items-center gap-2.5">

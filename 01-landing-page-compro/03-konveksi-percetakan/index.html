@@ -76,11 +76,11 @@
 <body class="bg-[#F6F5F2] text-[#111315] font-sans antialiased selection:bg-[#FF4D1C] selection:text-white">
 
     <!-- TOP DEMO BAR -->
-    <div class="bg-[#111315] text-zinc-300 border-b border-zinc-800 text-xs py-2.5 px-4 relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <div class="bg-[#111315] text-zinc-300 border-b border-zinc-800 text-xs py-2 sm:py-2.5 px-3 sm:px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
             <a href="../../index.html" class="inline-flex items-center gap-2 font-mono font-medium text-[#FF4D1C] hover:text-orange-300 transition-colors whitespace-nowrap shrink-0">
                 <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                <span>KEMBALI KE KATALOG PORTOFOLIO UMKM</span>
+                <span class="hidden sm:inline">KEMBALI KE KATALOG PORTOFOLIO UMKM</span><span class="sm:hidden text-xs">Katalog UMKM</span>
             </a>
             <div class="flex items-center gap-4 text-zinc-400 font-mono text-[11px] shrink-0">
                 <span class="hidden md:inline-flex items-center gap-2 whitespace-nowrap">
@@ -136,7 +136,7 @@
 
     <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0A0B0D]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#111315] text-zinc-200 border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#111315] text-zinc-200 border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out font-mono">
         <!-- Drawer Header -->
         <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-black">
             <div class="flex items-center gap-2.5">

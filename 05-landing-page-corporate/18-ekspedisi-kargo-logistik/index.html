@@ -99,14 +99,13 @@
 <body class="bg-maritime-950 text-slate-100 font-sans antialiased selection:bg-cargo-500 selection:text-white min-h-screen flex flex-col">
 
   <!-- Top Demo Bar (Mandatory Rule #1) -->
-  <aside class="bg-cargo-600 text-white px-4 py-2 text-xs font-semibold tracking-wide flex flex-wrap items-center justify-between border-b border-cargo-700 z-50">
+  <aside class="bg-cargo-600 text-white px-3 sm:px-4 py-2 text-xs font-semibold tracking-wide flex items-center justify-between gap-2 border-b border-cargo-700 z-50">
     <div class="flex items-center gap-2">
       <span class="bg-maritime-950 text-cargo-400 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider">Demo B2B</span>
       <span>Contoh Tampilan / Demo Portofolio JalaninWeb — <strong>Ekspedisi &amp; Logistik Kargo</strong> (Data &amp; Entitas Fiktif)</span>
     </div>
     <a href="../../index.html" class="inline-flex items-center gap-1.5 underline hover:text-amber-200 font-bold ml-auto sm:ml-0">
-      <i class="fa-solid fa-arrow-left"></i> Kembali ke Katalog Portofolio
-    </a>
+      <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">Kembali ke Katalog Portofolio</span><span class="sm:hidden">Katalog UMKM</span></a>
   </aside>
 
   <!-- Top Utility Strip -->
@@ -185,7 +184,7 @@
   <div id="mobileBackdrop" class="fixed inset-0 bg-maritime-950/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
 
   <!-- Mobile Drawer -->
-  <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-maritime-900 border-l border-maritime-800 z-50 p-6 flex flex-col justify-between overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+  <div id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-maritime-900 border-l border-maritime-800 z-50 p-6 flex flex-col justify-between overflow-y-auto transform translate-x-full invisible transition-transform duration-300 ease-in-out shadow-2xl">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-maritime-800">
         <div class="flex items-center gap-2.5">

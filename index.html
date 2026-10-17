@@ -85,12 +85,12 @@
 
   <!-- Main Sticky Navigation -->
   <header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-line">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-6">
+    <div class="max-w-7xl mx-auto px-3 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-6">
       <a href="#top" class="flex items-center shrink-0" aria-label="Kembali ke atas">
-        <img src="assets/logo.svg" alt="jalaninweb.site" class="h-11 w-auto" />
+        <img src="assets/logo.svg" alt="jalaninweb.site" class="h-8 sm:h-11 w-auto" />
       </a>
 
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-ink">
+      <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs xl:text-sm font-semibold text-ink">
         <a href="#katalog" class="whitespace-nowrap hover:text-accent transition">Contoh Website</a>
         <a href="#simulasi-biaya" class="whitespace-nowrap hover:text-accent transition">Simulasi Biaya</a>
         <a href="#alur-kerja" class="whitespace-nowrap hover:text-accent transition">Cara Kerja</a>
@@ -99,24 +99,24 @@
         <a href="#faq" class="whitespace-nowrap hover:text-accent transition">FAQ</a>
       </nav>
 
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <!-- Desktop WhatsApp CTA -->
         <a href="https://wa.me/6289680551957?text=Halo%20jalaninweb.site%2C%20saya%20ingin%20konsultasi%20pembuatan%20website%20untuk%20usaha%20saya."
            target="_blank" rel="noopener noreferrer"
-           class="hidden sm:flex whitespace-nowrap bg-ink hover:bg-accent text-surface font-semibold text-xs sm:text-sm px-5 py-3 rounded-lg items-center gap-2.5 transition shadow-sm">
-          <i class="fa-brands fa-whatsapp text-base text-emerald-400"></i>
+           class="hidden sm:flex whitespace-nowrap bg-ink hover:bg-accent text-surface font-semibold text-xs sm:text-sm px-3.5 xl:px-5 py-2.5 xl:py-3 rounded-lg items-center gap-2 transition shadow-sm">
+          <i class="fa-brands fa-whatsapp text-sm sm:text-base text-emerald-400"></i>
           <span>Konsultasi WA</span>
         </a>
         <!-- Mobile WhatsApp Quick Icon -->
         <a href="https://wa.me/6289680551957?text=Halo%20jalaninweb.site%2C%20saya%20ingin%20konsultasi%20pembuatan%20website."
            target="_blank" rel="noopener noreferrer"
-           class="sm:hidden w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition flex items-center justify-center shrink-0 border border-emerald-500/20" aria-label="Konsultasi WhatsApp">
-          <i class="fa-brands fa-whatsapp text-lg"></i>
+           class="sm:hidden w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-600 hover:text-white transition flex items-center justify-center shrink-0 border border-emerald-500/20" aria-label="Konsultasi WhatsApp">
+          <i class="fa-brands fa-whatsapp text-base"></i>
         </a>
         <!-- Mobile Hamburger Toggle Button -->
         <button id="mobileNavToggle" onclick="toggleMobileDrawer()" type="button" aria-label="Buka Menu Navigasi"
-                class="lg:hidden w-10 h-10 border border-line bg-paper text-ink hover:bg-ink hover:text-surface rounded-lg transition flex items-center justify-center shrink-0 shadow-xs">
-          <i id="mobileNavIcon" class="fa-solid fa-bars text-lg"></i>
+                class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 border border-line bg-paper text-ink hover:bg-ink hover:text-surface rounded-lg transition flex items-center justify-center shrink-0 shadow-xs">
+          <i id="mobileNavIcon" class="fa-solid fa-bars text-base sm:text-lg"></i>
         </button>
       </div>
     </div>
@@ -124,7 +124,7 @@
 
   <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
   <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0B0D11]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-  <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#111215] text-[#A1A1AA] border-l border-stone-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out">
+  <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[350px] max-w-[85vw] bg-[#111215] text-[#A1A1AA] border-l border-stone-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out">
     <!-- Drawer Header -->
     <div class="p-5 border-b border-stone-800 flex items-center justify-between bg-stone-900/60">
       <div class="flex items-center gap-2.5">
@@ -1822,10 +1822,18 @@
 
       <!-- Ringkasan Perbandingan Paket (Tema JalaninWeb) -->
       <div class="mt-16 sm:mt-20">
-        <div class="text-xs font-mono uppercase tracking-widest text-forest font-semibold">KOMPARASI FITUR</div>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink mt-1 mb-6 tracking-tight">
-          Ringkasan Perbandingan Paket
-        </h3>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-forest font-semibold">KOMPARASI FITUR</div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-ink mt-1 tracking-tight">
+              Ringkasan Perbandingan Paket
+            </h3>
+          </div>
+          <span class="inline-flex sm:hidden items-center gap-1.5 text-[11px] font-mono text-muted bg-paper px-2.5 py-1 border border-line rounded w-fit">
+            <i class="fa-solid fa-arrows-left-right text-accent text-[10px]"></i>
+            <span>Geser tabel ke samping</span>
+          </span>
+        </div>
         <div class="overflow-x-auto border border-line bg-surface shadow-sm">
           <table class="w-full text-xs text-left border-collapse min-w-[620px]">
             <thead>
@@ -2315,18 +2323,22 @@
     <div class="h-14 sm:h-16 bg-surface border-b border-line px-3 sm:px-6 flex items-center justify-between gap-2">
       <div class="flex items-center gap-2 sm:gap-3 min-w-0">
         <span class="w-2.5 h-2.5 rounded-full bg-forest shrink-0"></span>
-        <h4 id="modalTitle" class="text-xs sm:text-sm font-bold text-ink truncate max-w-[130px] sm:max-w-xs md:max-w-md">Live Preview</h4>
+        <h4 id="modalTitle" class="text-xs sm:text-sm font-bold text-ink truncate max-w-[120px] sm:max-w-xs md:max-w-md">Live Preview</h4>
       </div>
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <button onclick="setViewport('desktop')" id="btnDesktop" class="hidden xs:inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-ink text-surface">
-          <i class="fa-solid fa-desktop text-[10px]"></i>
-          <span class="hidden sm:inline">Desktop</span>
+        <button onclick="setViewport('desktop')" id="btnDesktop" title="Tampilan Desktop (100%)" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line hover:border-ink transition">
+          <i class="fa-solid fa-desktop text-[11px]"></i>
+          <span>Desktop</span>
         </button>
-        <button onclick="setViewport('mobile')" id="btnMobile" class="hidden xs:inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-paper text-ink border border-line">
-          <i class="fa-solid fa-mobile-screen text-[10px]"></i>
-          <span class="hidden sm:inline">HP (412px)</span>
+        <button onclick="setViewport('tablet')" id="btnTablet" title="Tampilan Tablet (768px)" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line hover:border-ink transition">
+          <i class="fa-solid fa-tablet-screen-button text-[11px]"></i>
+          <span>Tablet</span>
         </button>
-        <a id="modalFullLink" href="#" target="_blank" class="px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-accent text-surface inline-flex items-center gap-1">
+        <button onclick="setViewport('mobile')" id="btnMobile" title="Tampilan HP (390px)" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono font-semibold bg-ink text-surface transition">
+          <i class="fa-solid fa-mobile-screen text-[11px]"></i>
+          <span>HP</span>
+        </button>
+        <a id="modalFullLink" href="#" target="_blank" class="px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono font-semibold bg-accent text-surface inline-flex items-center gap-1 hover:bg-[#b03d25] transition">
           <span>Buka Penuh</span> &nearr;
         </a>
         <button onclick="closePreviewModal()" class="w-7 h-7 sm:w-8 sm:h-8 bg-paper border border-line hover:bg-ink hover:text-surface text-ink flex items-center justify-center transition shrink-0" aria-label="Tutup Preview">
@@ -2334,8 +2346,8 @@
         </button>
       </div>
     </div>
-    <div class="flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-      <div id="iframeWrapper" class="w-full h-full bg-white overflow-hidden shadow-2xl border border-line transition-all duration-300">
+    <div class="flex-1 flex items-center justify-center p-0 sm:p-4 overflow-hidden">
+      <div id="iframeWrapper" class="w-full h-full bg-white overflow-hidden shadow-2xl transition-all duration-300">
         <iframe id="previewIframe" src="about:blank" class="w-full h-full border-0"></iframe>
       </div>
     </div>
@@ -2838,7 +2850,11 @@
       document.getElementById('previewIframe').src = url;
       document.getElementById('modalFullLink').href = url;
       document.getElementById('previewModal').classList.remove('hidden');
-      setViewport('mobile');
+      if (window.innerWidth < 640) {
+        setViewport('fullmobile');
+      } else {
+        setViewport('mobile');
+      }
     }
 
     function closePreviewModal() {
@@ -2849,21 +2865,39 @@
     function setViewport(mode) {
       const wrapper = document.getElementById('iframeWrapper');
       const btnD = document.getElementById('btnDesktop');
+      const btnT = document.getElementById('btnTablet');
       const btnM = document.getElementById('btnMobile');
+
+      const inactiveClass = 'hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line hover:border-ink transition';
+      const activeClass = 'hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-mono font-semibold bg-ink text-surface shadow-xs transition';
+
+      if (btnD) btnD.className = inactiveClass;
+      if (btnT) btnT.className = inactiveClass;
+      if (btnM) btnM.className = inactiveClass;
+
       if (mode === 'mobile') {
-        wrapper.style.maxWidth = '420px';
+        wrapper.style.maxWidth = '390px';
         wrapper.style.height = '94%';
-        wrapper.style.borderRadius = '24px';
-        wrapper.style.borderWidth = '8px';
-        btnM.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface';
-        btnD.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line';
-      } else {
+        wrapper.style.borderRadius = '28px';
+        wrapper.style.border = '8px solid #161615';
+        if (btnM) btnM.className = activeClass;
+      } else if (mode === 'tablet') {
+        wrapper.style.maxWidth = '768px';
+        wrapper.style.height = '96%';
+        wrapper.style.borderRadius = '16px';
+        wrapper.style.border = '8px solid #161615';
+        if (btnT) btnT.className = activeClass;
+      } else if (mode === 'desktop') {
         wrapper.style.maxWidth = '100%';
         wrapper.style.height = '100%';
-        wrapper.style.borderRadius = '4px';
-        wrapper.style.borderWidth = '1px';
-        btnD.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-ink text-surface';
-        btnM.className = 'px-3 py-1.5 text-xs font-mono font-semibold bg-paper text-ink border border-line';
+        wrapper.style.borderRadius = '0px';
+        wrapper.style.border = '1px solid #DDD7CC';
+        if (btnD) btnD.className = activeClass;
+      } else if (mode === 'fullmobile') {
+        wrapper.style.maxWidth = '100%';
+        wrapper.style.height = '100%';
+        wrapper.style.borderRadius = '0px';
+        wrapper.style.border = 'none';
       }
     }
 
@@ -2935,12 +2969,13 @@
       if (!drawer || !backdrop) return;
       const isClosed = drawer.classList.contains('translate-x-full');
       if (isClosed) {
-        drawer.classList.remove('translate-x-full');
+        drawer.classList.remove('translate-x-full', 'invisible');
         backdrop.classList.remove('opacity-0', 'pointer-events-none');
         backdrop.classList.add('opacity-100', 'pointer-events-auto');
         document.body.classList.add('overflow-hidden');
       } else {
         drawer.classList.add('translate-x-full');
+        setTimeout(() => { if (drawer.classList.contains('translate-x-full')) drawer.classList.add('invisible'); }, 300);
         backdrop.classList.remove('opacity-100', 'pointer-events-auto');
         backdrop.classList.add('opacity-0', 'pointer-events-none');
         document.body.classList.remove('overflow-hidden');

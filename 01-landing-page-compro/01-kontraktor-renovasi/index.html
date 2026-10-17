@@ -97,14 +97,14 @@
 
     <!-- TOP ARCHITECTURAL INDEX BAR -->
     <div class="bg-stonearch-900 text-stonearch-200 border-b border-zinc-800 text-xs py-2 px-4 relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 overflow-x-auto">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto">
             <div class="flex items-center gap-2 shrink-0">
                 <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-bold">Demo Portofolio</span>
-                <span class="text-zinc-300 text-xs hidden sm:inline">Contoh Tampilan Website Kontraktor & Renovasi — <strong>JalaninWeb</strong> (Data & Entitas Simulasi)</span>
+                <span class="text-zinc-300 text-xs hidden lg:inline">Website Kontraktor &amp; Renovasi &bull; <strong>JalaninWeb</strong></span>
             </div>
             <a href="../../index.html" class="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider text-ochre-400 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 text-xs font-bold">
                 <i class="fa-solid fa-arrow-left text-[10px]"></i>
-                <span>Kembali ke Katalog</span>
+                <span class="hidden sm:inline">Kembali ke Katalog</span><span class="sm:hidden text-xs">Katalog UMKM</span>
             </a>
         </div>
     </div>
@@ -118,7 +118,7 @@
             </a>
 
             <!-- Desktop Menu -->
-            <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-xs font-mono uppercase tracking-wider font-semibold text-zinc-700">
+            <nav class="hidden xl:flex items-center gap-5 xl:gap-7 text-xs font-mono uppercase tracking-wider font-semibold text-zinc-700">
                 <a href="#layanan" class="hover:text-ochre-600 transition-colors whitespace-nowrap">Layanan</a>
                 <a href="#kalkulator-rab" class="text-ochre-600 flex items-center gap-1.5 font-bold whitespace-nowrap">
                     <i class="fa-solid fa-sliders text-[10px]"></i> Kalkulator RAB
@@ -147,7 +147,7 @@
 
     <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0E0F10]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#18181B] text-[#E4E4E7] border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-mono">
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#18181B] text-[#E4E4E7] border-l border-zinc-800 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out font-mono">
         <!-- Drawer Header -->
         <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
             <div class="flex items-center gap-2.5">

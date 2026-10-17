@@ -104,12 +104,12 @@
 <body class="font-sans antialiased selection:bg-pine selection:text-linen">
 
     <!-- TOP PORTFOLIO DEMO BAR -->
-    <div class="bg-pine-dark text-linen text-xs py-2.5 px-4 border-b border-pine-muted relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap overflow-x-auto">
+    <div class="bg-pine-dark text-linen text-xs py-2 sm:py-2.5 px-3 sm:px-4 border-b border-pine-muted relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 flex-nowrap overflow-x-auto">
             <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
                 <a href="../../index.html" class="inline-flex items-center gap-2 bg-pine-muted/70 hover:bg-ochre text-linen font-semibold px-3.5 py-1 rounded-full transition-colors duration-200 border border-linen/15 whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-arrow-left text-[11px]"></i>
-                    <span>Kembali ke Katalog Portofolio</span>
+                    <span class="hidden sm:inline">Kembali ke Katalog Portofolio</span><span class="sm:hidden text-xs">Katalog UMKM</span>
                 </a>
                 <span class="hidden lg:inline-flex items-center gap-2 text-linen/80 font-mono text-[11px] whitespace-nowrap">
                     <span class="w-1.5 h-1.5 rounded-full bg-ochre shrink-0"></span>
@@ -167,7 +167,7 @@
 
     <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#0A1410]/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#16261E] text-linen z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out border-l border-linen/15">
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#16261E] text-linen z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out border-l border-linen/15">
         <!-- Drawer Header -->
         <div class="p-5 border-b border-linen/15 flex items-center justify-between bg-[#111F18]">
             <div class="flex items-center gap-2.5">

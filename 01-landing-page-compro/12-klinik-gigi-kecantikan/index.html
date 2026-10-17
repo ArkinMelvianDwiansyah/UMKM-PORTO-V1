@@ -112,11 +112,11 @@
 <body class="font-sans antialiased selection:bg-teal selection:text-ivory">
 
     <!-- TOP DEMO NAVIGATION BAR -->
-    <div class="bg-teal-dark text-ivory border-b border-teal-light text-xs py-2.5 px-4 relative z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <div class="bg-teal-dark text-ivory border-b border-teal-light text-xs py-2 sm:py-2.5 px-3 sm:px-4 relative z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
             <a href="../../index.html" class="inline-flex items-center gap-2 font-medium text-ivory hover:text-champagne transition-colors whitespace-nowrap shrink-0">
                 <i class="fa-solid fa-arrow-left text-[11px] text-champagne"></i>
-                <span>Kembali ke Katalog Portofolio UMKM</span>
+                <span class="hidden sm:inline">Kembali ke Katalog Portofolio UMKM</span><span class="sm:hidden text-xs">Katalog UMKM</span>
             </a>
             <div class="flex items-center gap-4 text-ivory/80 shrink-0">
                 <span class="hidden md:inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider whitespace-nowrap">
@@ -173,7 +173,7 @@
 
     <!-- MOBILE DRAWER BACKDROP & SLIDE-OVER SHEET -->
     <div id="mobileDrawerBackdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-[#071F21]/75 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#0D3B3E] text-ivory border-l border-teal-light/20 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out font-sans">
+    <aside id="mobileDrawer" class="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[86vw] bg-[#0D3B3E] text-ivory border-l border-teal-light/20 z-50 flex flex-col justify-between shadow-2xl transform translate-x-full invisible transition-transform duration-300 ease-out font-sans">
         <!-- Drawer Header -->
         <div class="p-5 border-b border-teal-light/20 flex items-center justify-between bg-[#072426]">
             <div class="flex items-center gap-2.5">
