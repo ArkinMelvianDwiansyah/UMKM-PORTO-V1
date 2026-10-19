@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator Link Undangan — Habib & Adiba | Jalan Undangan</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #140409 radial-gradient(circle at 50% 20%, #300816 0%, #120308 100%);
+      color: #334155;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 20px;
+      padding: 30px 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 22px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 18px;
+    }
+    .badge {
+      display: inline-block;
+      background: #fdf2f4;
+      color: #87414C;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 20px;
+      color: #1e293b;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #64748b;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #1e293b;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input[type="text"]:focus, textarea:focus {
+      border-color: #87414C;
+      box-shadow: 0 0 0 3px rgba(135, 65, 76, 0.12);
+    }
+    .btn-row {
+      display: flex;
+      gap: 8px;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: #87414C;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #73343e;
+    }
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #ffffff;
+    }
+    .btn-wa:hover {
+      background: #1ebd5a;
+    }
+    .btn-preview {
+      background: #fff;
+      color: #87414C;
+      border: 1px solid #87414C;
+    }
+    .btn-preview:hover {
+      background: #fdf2f4;
+    }
+    .copy-success {
+      background: #16a34a !important;
+      color: #fff !important;
+      border-color: #16a34a !important;
+    }
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22, 163, 74, 0.95);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      display: none;
+      z-index: 99999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <div class="badge">Jalan Undangan Tool</div>
+      <h1>Generator Link Tamu</h1>
+      <p class="subtitle">Buat link personal dan pesan WhatsApp otomatis untuk membagikan undangan</p>
+    </div>
+
+    <!-- NAMA TAMU -->
+    <div class="form-group">
+      <label for="guestName"><i class="fas fa-user" style="color:#87414C; margin-right:4px;"></i> Nama Tamu / Keluarga:</label>
+      <input type="text" id="guestName" placeholder="Contoh: Bapak Joko Widodo & Ibu" value="Bapak Joko Widodo & Ibu" autofocus>
+    </div>
+
+    <!-- URL WEBSITE -->
+    <div class="form-group">
+      <label for="baseUrl"><i class="fas fa-link" style="color:#87414C; margin-right:4px;"></i> URL Domain Undangan:</label>
+      <input type="text" id="baseUrl" value="https://jalanundangan.site/wedding/">
+    </div>
+
+    <!-- LINK UNDANGAN HASIL -->
+    <div class="form-group">
+      <label><i class="fas fa-share-nodes" style="color:#87414C; margin-right:4px;"></i> Link Undangan Siap Kirim:</label>
+      <div class="btn-row">
+        <input type="text" id="outputLink" readonly style="background:#f8fafc; font-size:13px; color:#475569;">
+        <button type="button" class="btn btn-primary" id="btnCopyLink">
+          <i class="fas fa-copy"></i> Salin
+        </button>
+        <button type="button" class="btn btn-preview" id="btnOpenPreview" title="Buka Undangan Langsung">
+          <i class="fas fa-external-link-alt"></i> Buka
+        </button>
+      </div>
+    </div>
+
+    <!-- PESAN WHATSAPP -->
+    <div class="form-group">
+      <label for="outputWa"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:4px;"></i> Pesan WhatsApp Otomatis:</label>
+      <textarea id="outputWa" rows="7" readonly style="background:#f8fafc; font-size:12px; line-height:1.5; color:#334155; resize:none;"></textarea>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="btn-row" style="margin-top:18px;">
+      <button type="button" class="btn btn-secondary" id="btnCopyWa" style="flex:1;">
+        <i class="fas fa-copy"></i> Salin Pesan WA
+      </button>
+      <button type="button" class="btn btn-wa" id="btnSendWa" style="flex:1.2;">
+        <i class="fab fa-whatsapp"></i> Buka WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <div id="toast">Berhasil disalin!</div>
+
+  <script>
+    const guestInput = document.getElementById('guestName');
+    const baseInput = document.getElementById('baseUrl');
+    const outputLink = document.getElementById('outputLink');
+    const outputWa = document.getElementById('outputWa');
+    const toast = document.getElementById('toast');
+
+    // Auto-detect URL from current location if opened directly
+    if (window.location.protocol.startsWith('http')) {
+      const detected = window.location.origin + window.location.pathname.replace(/generator\.html$/, '');
+      baseInput.value = detected;
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+
+    function update() {
+      const name = guestInput.value.trim() || 'Nama Tamu';
+      let base = baseInput.value.trim();
+      if (!base.endsWith('/')) base += '/';
+      
+      const link = base + '?to=' + encodeURIComponent(name);
+      outputLink.value = link;
+
+      const waMsg = 
+`*Yth. ${name}*
+
+Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami:
+
+*Habib & Adiba*
+📅 Senin, 28 Desember 2026
+⏰ 08:00 WIB
+📍 Ds Pagu Kec. Wates, Kab. Kediri, Jawa Timur
+
+Detail & Undangan Digital lengkap dapat diakses melalui link berikut:
+${link}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+
+Terima kasih.
+_Habib & Adiba_`;
+
+      outputWa.value = waMsg;
+    }
+
+    function copyToClipboard(text, btn, successText) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      const orig = btn.innerHTML;
+      btn.classList.add('copy-success');
+      btn.innerHTML = '<i class="fas fa-check"></i> ' + successText;
+      showToast(successText + '!');
+      setTimeout(() => {
+        btn.classList.remove('copy-success');
+        btn.innerHTML = orig;
+      }, 2000);
+    }
+
+    guestInput.addEventListener('input', update);
+    baseInput.addEventListener('input', update);
+
+    document.getElementById('btnCopyLink').addEventListener('click', function() {
+      copyToClipboard(outputLink.value, this, 'Link Tersalin');
+    });
+
+    document.getElementById('btnCopyWa').addEventListener('click', function() {
+      copyToClipboard(outputWa.value, this, 'Pesan Tersalin');
+    });
+
+    document.getElementById('btnOpenPreview').addEventListener('click', function() {
+      let url = './?to=' + encodeURIComponent(guestInput.value.trim() || 'Nama Tamu');
+      window.open(url, '_blank');
+    });
+
+    document.getElementById('btnSendWa').addEventListener('click', function() {
+      const text = encodeURIComponent(outputWa.value);
+      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+    });
+
+    update();
+  </script>
+</body>
+</html>

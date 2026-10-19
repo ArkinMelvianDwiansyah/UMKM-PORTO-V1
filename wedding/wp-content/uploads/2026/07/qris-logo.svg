@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" height="34">
+  <path d="M12 8 L32 8 C38 8 42 12 42 18 C42 24 38 28 32 28 L22 28 L34 40 L24 40 L14 30 L12 30 L12 40 L4 40 L4 8 Z M12 14 L12 24 L30 24 C33 24 35 22 35 19 C35 16 33 14 30 14 Z" fill="#D32F2F"/>
+  <path d="M46 8 L54 8 L54 40 L46 40 Z" fill="#1e1e1e"/>
+  <path d="M60 8 L80 8 C86 8 90 12 90 18 C90 23 87 26 83 27 L92 40 L82 40 L74 28 L68 28 L68 40 L60 40 Z M68 14 L68 22 L78 22 C81 22 83 20 83 18 C83 16 81 14 78 14 Z" fill="#1e1e1e"/>
+  <path d="M96 8 L104 8 L104 40 L96 40 Z" fill="#1e1e1e"/>
+  <path d="M110 32 C112 34 116 35 120 35 C125 35 128 33 128 30 C128 24 112 26 112 15 C112 10 116 7 122 7 C127 7 131 9 134 11 L130 17 C128 15 125 13 122 13 C118 13 116 15 116 17 C116 22 132 20 132 31 C132 37 127 41 120 41 C114 41 109 38 106 35 Z" fill="#1e1e1e"/>
+  <text x="80" y="47" font-family="'Segoe UI', Roboto, sans-serif" font-size="5" font-weight="700" fill="#666" text-anchor="middle" letter-spacing="0.5">QUICK RESPONSE CODE INDONESIAN STANDARD</text>
+</svg>

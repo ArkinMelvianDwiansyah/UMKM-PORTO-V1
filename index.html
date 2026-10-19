@@ -314,7 +314,7 @@
       <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 xl:pb-0" id="categoryTabs">
         <button onclick="filterPortfolio('all')" data-cat="all"
                 class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface shrink-0 transition">
-          Semua (22)
+          Semua (23)
         </button>
         <button onclick="filterPortfolio('cat1')" data-cat="cat1"
                 class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
@@ -339,6 +339,10 @@
         <button onclick="filterPortfolio('cat6')" data-cat="cat6"
                 class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
           Landing Page One Page (4)
+        </button>
+        <button onclick="filterPortfolio('cat7')" data-cat="cat7"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
+          Undangan Digital & Wedding (1)
         </button>
       </div>
 
@@ -1211,12 +1215,50 @@
         </div>
       </article>
 
+      <!-- UNDANGAN DIGITAL & WEDDING (THE WEDDING OF DIO & IKA) -->
+      <article class="porto-card bg-surface border border-line flex flex-col justify-between"
+               data-category="cat7" data-keywords="wedding undangan pernikahan digital invitation dio ika akad resepsi rsvp love story amplop cashless kediri">
+        <div>
+          <div class="relative h-52 overflow-hidden border-b border-line bg-stone-900 group">
+            <img src="assets/images/thumb-23-wedding-invitation.jpg" alt="The Wedding of Dio &amp; Ika" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" />
+            <div class="absolute top-3 left-3 bg-surface/95 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider font-semibold text-ink border border-line">
+              UNDANGAN DIGITAL
+            </div>
+            <div class="absolute top-3 right-3 bg-accent text-surface px-2.5 py-1 text-[10px] font-mono font-semibold">
+              PREMIUM THEME
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold">Wedding • Undangan Website • RSVP Interaktif</div>
+            <h3 class="text-xl font-bold text-ink mt-1 leading-snug">The Wedding of Dio &amp; Ika — Undangan Digital</h3>
+            <p class="text-xs text-muted mt-2 leading-relaxed">
+              Website undangan pernikahan digital eksklusif dengan musik autoplay, countdown timer hari H, galeri foto prewedding lightbox, love story timeline, Google Maps, animasi amplop kado digital (SeaBank &amp; BNI), serta form RSVP buku tamu real-time tanpa reload.
+            </p>
+            <div class="mt-4 pt-4 border-t border-line space-y-1.5 text-xs text-ink">
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>RSVP Kehadiran &amp; Buku Tamu Interaktif (Tanpa Reload)</span></div>
+              <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent"></span><span>Amplop Digital Cashless (Salin Rekening &amp; Konfirmasi WA)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="wedding/index.html" target="_blank"
+               class="bg-ink hover:bg-accent text-surface font-semibold text-xs py-3 px-3 text-center transition">
+              Buka Live Demo
+            </a>
+            <button onclick="openPreviewModal('wedding/index.html', 'The Wedding of Dio &amp; Ika — Undangan Digital')"
+                    class="bg-paper hover:bg-line text-ink border border-line font-semibold text-xs py-3 px-3 text-center transition">
+              Simulator HP
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
 
     <!-- Pagination Bar (Max 10 per halaman) -->
     <div id="portoPagination" class="mt-10 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="text-xs font-mono text-muted" id="portoPaginationInfo">
-        Menampilkan <span class="font-bold text-ink" id="pageRangeText">1–10</span> dari <span class="font-bold text-ink" id="totalFilteredText">22</span> portofolio
+        Menampilkan <span class="font-bold text-ink" id="pageRangeText">1–10</span> dari <span class="font-bold text-ink" id="totalFilteredText">23</span> portofolio
       </div>
       <div class="flex items-center gap-1.5 flex-wrap justify-center" id="paginationButtons">
         <!-- Rendered by JavaScript -->
@@ -2511,6 +2553,7 @@
             <li><a href="#katalog" onclick="filterPortfolio('cat3')" class="hover:text-accent transition-colors block py-0.5">Sistem Booking Jadwal Real-Time</a></li>
             <li><a href="#katalog" onclick="filterPortfolio('cat4')" class="hover:text-accent transition-colors block py-0.5">Aplikasi Kasir POS &amp; Manajemen</a></li>
             <li><a href="#katalog" onclick="filterPortfolio('cat5')" class="hover:text-accent transition-colors block py-0.5 font-medium text-white">Corporate B2B, Kontraktor &amp; Kargo</a></li>
+            <li><a href="#katalog" onclick="filterPortfolio('cat7')" class="hover:text-accent transition-colors block py-0.5">Undangan Digital &amp; Wedding</a></li>
           </ul>
         </nav>
 
