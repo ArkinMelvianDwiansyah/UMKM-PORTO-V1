@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generator Link Undangan — Habib & Adiba | Jalan Undangan</title>
+  <title>Generator Link Undangan — Dio &amp; Ika | jalaninweb.site &amp; jalanundangan.com</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2387414C'/><text x='50%' y='64%' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='38' font-weight='bold'>D&amp;I</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +21,7 @@
     .card {
       background: #ffffff;
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
       border-radius: 20px;
       padding: 30px 26px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
@@ -146,15 +147,31 @@
       display: none;
       z-index: 99999;
     }
+    .footer-promo {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px dashed #e2e8f0;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .footer-promo a {
+      color: #87414C;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .footer-promo a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <div class="card">
     <div class="header">
-      <div class="badge">Jalan Undangan Tool</div>
-      <h1>Generator Link Tamu</h1>
-      <p class="subtitle">Buat link personal dan pesan WhatsApp otomatis untuk membagikan undangan</p>
+      <div class="badge">jalanundangan.com &amp; jalaninweb.site</div>
+      <h1>Generator Link Tamu Dio &amp; Ika</h1>
+      <p class="subtitle">Buat link personal dan pesan WhatsApp otomatis untuk membagikan undangan pernikahan Dio &amp; Ika</p>
     </div>
 
     <!-- NAMA TAMU -->
@@ -166,7 +183,7 @@
     <!-- URL WEBSITE -->
     <div class="form-group">
       <label for="baseUrl"><i class="fas fa-link" style="color:#87414C; margin-right:4px;"></i> URL Domain Undangan:</label>
-      <input type="text" id="baseUrl" value="https://jalanundangan.site/wedding/">
+      <input type="text" id="baseUrl" value="https://jalaninweb.site/wedding/">
     </div>
 
     <!-- LINK UNDANGAN HASIL -->
@@ -186,7 +203,7 @@
     <!-- PESAN WHATSAPP -->
     <div class="form-group">
       <label for="outputWa"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:4px;"></i> Pesan WhatsApp Otomatis:</label>
-      <textarea id="outputWa" rows="7" readonly style="background:#f8fafc; font-size:12px; line-height:1.5; color:#334155; resize:none;"></textarea>
+      <textarea id="outputWa" rows="8" readonly style="background:#f8fafc; font-size:12px; line-height:1.55; color:#334155; resize:none;"></textarea>
     </div>
 
     <!-- ACTION BUTTONS -->
@@ -197,6 +214,13 @@
       <button type="button" class="btn btn-wa" id="btnSendWa" style="flex:1.2;">
         <i class="fab fa-whatsapp"></i> Buka WhatsApp
       </button>
+    </div>
+
+    <div class="footer-promo">
+      Dibuat secara profesional oleh 
+      <a href="https://jalanundangan.com" target="_blank">jalanundangan.com</a> 
+      &amp; 
+      <a href="https://jalaninweb.site" target="_blank">jalaninweb.site</a>
     </div>
   </div>
 
@@ -209,7 +233,7 @@
     const outputWa = document.getElementById('outputWa');
     const toast = document.getElementById('toast');
 
-    // Auto-detect URL from current location if opened directly
+    // Auto-detect URL from current location if opened on live server
     if (window.location.protocol.startsWith('http')) {
       const detected = window.location.origin + window.location.pathname.replace(/generator\.html$/, '');
       baseInput.value = detected;
@@ -234,10 +258,15 @@
 
 Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami:
 
-*Habib & Adiba*
-📅 Senin, 28 Desember 2026
-⏰ 08:00 WIB
-📍 Ds Pagu Kec. Wates, Kab. Kediri, Jawa Timur
+*Dio & Ika*
+(Millendio Wahyu Ramadhana & Ika Meilina)
+
+🗓 *Kamis, 29 Oktober 2026*
+⏰ Akad Nikah: 08:00 WIB
+⏰ Resepsi: 12:00 WIB - Selesai
+📍 *Kediaman Mempelai Wanita*
+Jln. Cemara RT 05 RW 03, Desa Ketami, Pesantren, Kota Kediri
+🗺 Link Maps: https://maps.app.goo.gl/fGNtyagnvRovkxU69
 
 Detail & Undangan Digital lengkap dapat diakses melalui link berikut:
 ${link}
@@ -245,7 +274,7 @@ ${link}
 Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
 
 Terima kasih.
-_Habib & Adiba_`;
+_Dio & Ika_`;
 
       outputWa.value = waMsg;
     }
