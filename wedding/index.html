@@ -1183,8 +1183,8 @@ var bisdevBrowserProtection = {"mode":"off","redirectUrl":""};
 					        
         <div class="idb-audio-box idb-align-right" data-inited="1" id="weddingMusicBox" style="display:flex; align-items:center; justify-content:center;">
           <audio id="idb-audio-43467063" class="idb-audio-el" preload="auto" loop playsinline>
-            <source src="wp-content/uploads/2026/07/bruno-risk-it-all.m4a" type="audio/mp4">
-            <source src="wp-content/uploads/2026/07/bruno-risk-it-all.mp3" type="audio/mpeg">
+            <source src="wp-content/uploads/2026/07/bruno-risk-it-all.m4a#t=71.5" type="audio/mp4">
+            <source src="wp-content/uploads/2026/07/bruno-risk-it-all.mp3#t=71.5" type="audio/mpeg">
           </audio>
           <div id="weddingMusicToggleBtn" class="wedding-music-pill is-playing" role="button" tabindex="0" aria-label="Play atau Pause Musik (Bruno - Risk it all)" title="Bruno Mars - Risk It All">
             <i id="weddingMusicIcon" class="far fa-pause-circle"></i>
@@ -1324,7 +1324,12 @@ function playMusic(){
   if(btn){ btn.click(); return; }
 
   const audio = getAudio();
-  if(audio) audio.play().catch(()=>{});
+  if(audio) {
+    if (audio.currentTime < 1) {
+      try { audio.currentTime = 71.5; } catch(e){}
+    }
+    audio.play().catch(()=>{});
+  }
 }
 
 function pauseMusic(){
@@ -2966,8 +2971,39 @@ jQuery(document).ready(function($) {
     var audio = document.getElementById('idb-audio-43467063');
     var musicBtn = $('#weddingMusicToggleBtn');
     var musicIcon = $('#weddingMusicIcon');
+    var SONG_CHORUS_START = 71.5;
+    var hasSetChorusStart = false;
 
     window.__BISDEV_MUSIC_ALLOWED = true;
+
+    function ensureChorusStart() {
+      if (!audio) return;
+      if (!hasSetChorusStart || audio.currentTime < 1) {
+        try {
+          if (audio.readyState >= 1) {
+            audio.currentTime = SONG_CHORUS_START;
+            hasSetChorusStart = true;
+          } else {
+            audio.addEventListener('loadedmetadata', function onMeta() {
+              audio.removeEventListener('loadedmetadata', onMeta);
+              try { audio.currentTime = SONG_CHORUS_START; } catch(err){}
+              hasSetChorusStart = true;
+            }, { once: true });
+          }
+        } catch(err) {
+          console.warn('Set chorus start error:', err);
+        }
+      }
+    }
+
+    if (audio) {
+      ensureChorusStart();
+      audio.addEventListener('timeupdate', function() {
+        if (audio.currentTime < 1 && hasSetChorusStart) {
+          audio.currentTime = SONG_CHORUS_START;
+        }
+      });
+    }
 
     // Scroll to top and lock scrolling until cover is opened
     window.scrollTo(0, 0);
@@ -2999,13 +3035,16 @@ jQuery(document).ready(function($) {
         $('html, body').css({ overflow: '' });
       }, 1400);
 
-      if (audio && audio.paused) {
-        window.__BISDEV_MUSIC_ALLOWED = true;
-        audio.play().then(function() {
-          setMusicState(true);
-        }).catch(function(err) {
-          console.warn('Audio autoplay failed:', err);
-        });
+      if (audio) {
+        ensureChorusStart();
+        if (audio.paused) {
+          window.__BISDEV_MUSIC_ALLOWED = true;
+          audio.play().then(function() {
+            setMusicState(true);
+          }).catch(function(err) {
+            console.warn('Audio autoplay failed:', err);
+          });
+        }
       }
     });
 
@@ -3019,6 +3058,7 @@ jQuery(document).ready(function($) {
       window.__BISDEV_MUSIC_ALLOWED = true;
 
       if (audio.paused) {
+        ensureChorusStart();
         setMusicState(true);
         var p = audio.play();
         if (p && typeof p.catch === 'function') {
