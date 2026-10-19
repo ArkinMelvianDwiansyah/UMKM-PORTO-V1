@@ -868,40 +868,49 @@ var bisdevBrowserProtection = {"mode":"off","redirectUrl":""};
 				<div class="elementor-element elementor-widget elementor-widget-bisdev_kirim_hadiah" style="margin-top:14px;">
 				<div class="elementor-widget-container">
                     <div class="idb-kirim-hadiah">
-                <div class="idb-kirim-hadiah__icon">
-                    <i aria-hidden="true" class="fas fa-gift"></i>                </div>
-                <div class="idb-kirim-hadiah__title">
-                    Kirim Kado Ke Alamat                </div>
-                <div class="idb-kirim-hadiah__list">
-                                    <div class="idb-kirim-hadiah__line">
-                        <span class="idb-kirim-hadiah__label">Penerima</span>
-                        <span class="idb-kirim-hadiah__sep">:</span>
-                        <span class="idb-kirim-hadiah__value" id="namaPenerimaKado">IKA</span>
-                    </div>
-                                    <div class="idb-kirim-hadiah__line">
-                        <span class="idb-kirim-hadiah__label">No HP</span>
-                        <span class="idb-kirim-hadiah__sep">:</span>
-                        <span class="idb-kirim-hadiah__value" id="telpPenerimaKado">085755063219</span>
-                    </div>
-                                    <div class="idb-kirim-hadiah__line idb-kirim-hadiah__line--alamat">
-                        <span class="idb-kirim-hadiah__label">Alamat</span>
-                        <span class="idb-kirim-hadiah__sep">:</span>
-                        <span class="idb-kirim-hadiah__value" id="alamatPenerimaText">JLN CEMARA RT 05 RW 03 DESA KETAMI PESANTREN KOTA KEDIRI</span>
+                        <div class="idb-kirim-hadiah__box" style="background:#ffffff; border-radius:16px; padding:18px 16px; box-shadow:0 8px 24px rgba(135,65,76,0.08); border:1.5px solid rgba(135,65,76,0.14); box-sizing:border-box;">
+                            <div class="idb-kirim-hadiah__header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding-bottom:10px; border-bottom:1px dashed #e2e8f0;">
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <div style="width:30px; height:30px; border-radius:8px; background:rgba(135,65,76,0.1); color:#87414C; display:flex; align-items:center; justify-content:center; font-size:14px;">
+                                        <i class="fas fa-gift"></i>
+                                    </div>
+                                    <span style="font-size:13px; font-weight:700; color:#87414C; letter-spacing:0.8px; text-transform:uppercase;">Kirim Kado Fisik</span>
+                                </div>
+                                <span style="font-size:11px; color:#87414C; font-weight:600; background:rgba(135,65,76,0.08); padding:3px 10px; border-radius:12px;">Alamat Rumah</span>
+                            </div>
+
+                            <div class="idb-kirim-hadiah__list" style="display:flex; flex-direction:column; gap:7px; font-size:12.5px; color:#334155;">
+                                <div class="idb-kirim-hadiah__line" style="display:flex; align-items:baseline; gap:8px;">
+                                    <span class="idb-kirim-hadiah__label" style="width:68px; color:#64748b; font-weight:600; flex-shrink:0;">Penerima</span>
+                                    <span class="idb-kirim-hadiah__sep" style="color:#94a3b8;">:</span>
+                                    <strong class="idb-kirim-hadiah__value" id="namaPenerimaKado" style="color:#1e293b; font-weight:700; font-size:13px;">IKA</strong>
+                                </div>
+                                <div class="idb-kirim-hadiah__line" style="display:flex; align-items:baseline; gap:8px;">
+                                    <span class="idb-kirim-hadiah__label" style="width:68px; color:#64748b; font-weight:600; flex-shrink:0;">No HP</span>
+                                    <span class="idb-kirim-hadiah__sep" style="color:#94a3b8;">:</span>
+                                    <strong class="idb-kirim-hadiah__value" id="telpPenerimaKado" style="color:#1e293b; font-weight:600; font-size:13px;">085755063219</strong>
+                                </div>
+                                <div class="idb-kirim-hadiah__line idb-kirim-hadiah__line--alamat" style="display:flex; align-items:baseline; gap:8px;">
+                                    <span class="idb-kirim-hadiah__label" style="width:68px; color:#64748b; font-weight:600; flex-shrink:0;">Alamat</span>
+                                    <span class="idb-kirim-hadiah__sep" style="color:#94a3b8;">:</span>
+                                    <span class="idb-kirim-hadiah__value" id="alamatPenerimaText" style="color:#1e293b; font-weight:500; line-height:1.45; word-break:break-word;">JLN CEMARA RT 05 RW 03 DESA KETAMI PESANTREN KOTA KEDIRI</span>
+                                </div>
+                            </div>
+
+                            <div class="kado-buttons-row" style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px; margin-top:16px; width:100%; box-sizing:border-box;">
+                                <button type="button" class="idb-kirim-hadiah__copy-btn idb-copy-alamat__btn" style="flex:1 1 0; min-width:0; background:#ffffff; border:1.5px solid #cbd5e1; font-weight:600; padding:10px 6px; border-radius:10px; cursor:pointer; color:#334155; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:12.5px; white-space:nowrap; box-sizing:border-box; transition:all 0.2s;">
+                                    <i class="fas fa-copy" style="color:#87414C; font-size:13px;"></i>
+                                    <span class="idb-copy-alamat__text">Salin Alamat</span>
+                                </button>
+                                <a href="https://api.whatsapp.com/send?phone=6285755063219&text=Halo%20Ika,%20saya%20sudah%20mengirimkan%20kado%20pernikahan%20ke%20alamat%20Anda." target="_blank" rel="noopener noreferrer" class="idb-kirim-hadiah__wa-btn" style="flex:1 1 0; min-width:0; background:#25D366; color:#ffffff; font-weight:600; padding:10px 6px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:12.5px; white-space:nowrap; box-sizing:border-box; box-shadow:0 4px 10px rgba(37,211,102,0.25); transition:all 0.2s;">
+                                    <i class="fab fa-whatsapp" style="font-size:15px;"></i>
+                                    <span>Konfirmasi Kado</span>
+                                </a>
+                            </div>
+                            <div class="idb-kirim-hadiah__toast" aria-live="polite" aria-atomic="true"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="kado-buttons-row" style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px; margin-top:16px; width:100%; box-sizing:border-box;">
-                    <button type="button" class="idb-kirim-hadiah__copy-btn idb-copy-alamat__btn" style="flex:1 1 0; min-width:0; background:#ffffff; border:1.5px solid #cbd5e1; font-weight:600; padding:10px 6px; border-radius:10px; cursor:pointer; color:#334155; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:12.5px; white-space:nowrap; box-sizing:border-box;">
-                        <i class="fas fa-copy" style="color:#87414C; font-size:13px;"></i>
-                        <span class="idb-copy-alamat__text">Salin Alamat</span>
-                    </button>
-                    <a href="https://api.whatsapp.com/send?phone=6285755063219&text=Halo%20Ika,%20saya%20sudah%20mengirimkan%20kado%20pernikahan%20ke%20alamat%20Anda." target="_blank" rel="noopener noreferrer" class="idb-kirim-hadiah__wa-btn" style="flex:1 1 0; min-width:0; background:#25D366; color:#ffffff; font-weight:600; padding:10px 6px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-size:12.5px; white-space:nowrap; box-sizing:border-box;">
-                        <i class="fab fa-whatsapp" style="font-size:15px;"></i>
-                        <span>Konfirmasi Kado</span>
-                    </a>
-                </div>
-                <div class="idb-kirim-hadiah__toast" aria-live="polite" aria-atomic="true"></div>
-            </div>
-                				</div>
 				</div>
 				</div></div>
 				<div class="elementor-element elementor-element-7d4c826f elementor-widget elementor-widget-spacer" data-id="7d4c826f" data-element_type="widget" data-e-type="widget" data-widget_type="spacer.default">
@@ -3349,7 +3358,7 @@ jQuery(document).ready(function($) {
       setTimeout(function() {
         textSpan.text(oldText);
         btn.css({ background: '#ffffff', color: '#334155', borderColor: '#cbd5e1' });
-        btn.find('i').css('color', '#9f3e52');
+        btn.find('i').css('color', '#87414C');
       }, 2000);
     });
   }
