@@ -40,16 +40,23 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#keunggulan" class="nav-link">Keunggulan</a></li>
           <li><a href="#tentang" class="nav-link">Tentang</a></li>
           <li><a href="#program" class="nav-link">Program Diet</a></li>
           <li><a href="#menu" class="nav-link">Rotasi Menu</a></li>
-          <li><a href="#harga" class="nav-link">Paket Harga</a></li>
-          <li><a href="#galeri" class="nav-link">Galeri</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
           <li><a href="#kontak" class="nav-link">Langganan</a></li>
         </ul>
       </nav>
+      <div class="nav-social-icons">
+        <a href="https://instagram.com/vitalmeals.id" target="_blank" rel="noopener noreferrer" title="Instagram @vitalmeals.id" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://tiktok.com/@vitalmeals.diet" target="_blank" rel="noopener noreferrer" title="TikTok @vitalmeals.diet" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://facebook.com/vitalmealsdiet" target="_blank" rel="noopener noreferrer" title="Facebook VITAL MEALS" aria-label="Facebook">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </div>
       <a href="https://wa.me/6281234567890?text=Halo%20VITAL%20MEALS%2C%20saya%20mau%20konsultasi%20paket%20katering%20diet" target="_blank" class="nav-cta-btn">
         <i class="fa-brands fa-whatsapp"></i> Mulai Langganan
       </a>
@@ -69,14 +76,10 @@
     </div>
     <ul class="drawer-links">
       <li><a href="#beranda">Beranda</a></li>
-      <li><a href="#keunggulan">Keunggulan</a></li>
-      <li><a href="#tentang">Tentang Kami</a></li>
+      <li><a href="#tentang">Tentang</a></li>
       <li><a href="#program">Program Diet</a></li>
       <li><a href="#menu">Rotasi Menu</a></li>
-      <li><a href="#harga">Paket Harga</a></li>
-      <li><a href="#galeri">Galeri Menu</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#kontak">Pesan Langganan</a></li>
+      <li><a href="#kontak">Langganan</a></li>
     </ul>
     <a href="https://wa.me/6281234567890?text=Halo%20VITAL%20MEALS%2C%20saya%20mau%20tanya%20menu%20diet" target="_blank" class="btn-primary" style="text-align: center; justify-content: center;">
       <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
@@ -179,7 +182,7 @@
     </div>
   </section>
 
-  <!-- 5. TENTANG & VIDEO SPOTLIGHT -->
+  <!-- 5. TENTANG & VIDEO SPOTLIGHT (SINGLE VIDEO BESAR) -->
   <section class="tentang-section" id="tentang">
     <div class="container">
       <div class="tentang-grid">
@@ -197,7 +200,7 @@
               <i class="fa-solid fa-circle-check"></i> Bahan sayuran hidroponik bebas pestisida dipanen langsung dari mitra petani lokal.
             </div>
             <div class="tentang-feature-item">
-              <i class="fa-solid fa-circle-check"></i> Daging ayam probiotik non-suntik hormon & daging sapi Australia pilihan segar.
+              <i class="fa-solid fa-circle-check"></i> Daging ayam probiotik non-suntik hormon &amp; daging sapi Australia pilihan segar.
             </div>
             <div class="tentang-feature-item">
               <i class="fa-solid fa-circle-check"></i> Fleksibilitas 'Pause Langganan' jika Anda sedang bepergian luar kota atau cuti.
@@ -205,22 +208,60 @@
           </div>
         </div>
 
-        <!-- Video Spotlight Card -->
-        <div class="video-spotlight-card">
-          <div class="video-container">
+        <!-- Video Spotlight Card (Single Video 1 Besar) -->
+        <div class="video-spotlight-card single-video">
+          <div class="video-container single">
             <video id="mainVideoPlayer" class="video-player" controls autoplay muted loop playsinline poster="assets/images/diet-prep.jpg">
               <source src="assets/videos/video-dapur-katering.mp4" type="video/mp4">
               Browser Anda tidak mendukung tag video.
             </video>
+            <div class="video-overlay-tag">
+              <i class="fa-solid fa-kitchen-set"></i> Dapur Steril UV-C &amp; Higienitas Produksi
+            </div>
           </div>
-          <div class="video-switcher-tabs">
-            <button class="video-tab-btn active" data-video="assets/videos/video-dapur-katering.mp4">
-              <i class="fa-solid fa-kitchen-set"></i> 1. Higienitas & Dapur Produksi
-            </button>
-            <button class="video-tab-btn" data-video="assets/videos/video-plating-saji.mp4">
-              <i class="fa-solid fa-utensils"></i> 2. Plating & Takaran Nutrisi
-            </button>
-          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.1. FULL-WIDTH VIDEO SPOTLIGHT & KETERANGAN CARD -->
+  <section class="full-video-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 36px;">
+        <span class="section-badge" style="background: rgba(16, 185, 129, 0.2); color: #34D399;">Food Quality &amp; Plating</span>
+        <h2 class="section-title" style="color: #FFFFFF;">Standar Penyajian &amp; Presisi Makronutrisi</h2>
+        <p class="section-subtitle" style="color: #94A3B8;">Saksikan proses penimbangan gramasi, peracikan bumbu alami tanpa MSG, dan plating higienis di wadah eco-friendly food grade.</p>
+      </div>
+
+      <!-- Full-Width Video Player -->
+      <div class="full-video-wrapper">
+        <video class="full-video-player" controls autoplay muted loop playsinline poster="assets/images/diet-salmon.jpg">
+          <source src="assets/videos/video-plating-saji.mp4" type="video/mp4">
+          Browser Anda tidak mendukung tag video.
+        </video>
+      </div>
+
+      <!-- Keterangan Cards Underneath -->
+      <div class="video-cards-grid">
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>Timbangan Gramasi Digital</h4>
+          <p>Tiap gram protein, karbohidrat kompleks, dan sayuran ditimbang teliti sesuai anjuran Nutritionist klinis.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-box-tissue"></i></div>
+          <h4>Wadah Microwavable BPA-Free</h4>
+          <p>Dikemas dalam wadah food grade ramah lingkungan yang aman langsung dipanaskan ke microwave tanpa kontaminasi.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-fire-burner"></i></div>
+          <h4>Fresh Cooked Tiap Subuh</h4>
+          <p>Dimasak pagi hari dan langsung dikirim tanpa bahan pengawet sehingga kesegaran dan cita rasa rempah tetap prima.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div>
+          <h4>Thermal Bag &amp; Kurir Khusus</h4>
+          <p>Pengantaran menggunakan thermal bag berinsulasi dingin/hangat menjamin hidangan sampai tepat waktu sebelum jam makan.</p>
         </div>
       </div>
     </div>

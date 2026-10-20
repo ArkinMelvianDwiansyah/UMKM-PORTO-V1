@@ -910,12 +910,12 @@ button {
 }
 
 .layanan-card-footer {
-  padding: 16px 22px;
+  padding: 16px 20px;
   background: #F8FAFC;
   border-top: 1px solid var(--border-light);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .layanan-price-tag span {
@@ -1084,6 +1084,7 @@ button {
   position: relative;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  height: 100%;
 }
 
 .paket-card.featured {
@@ -1154,13 +1155,11 @@ button {
 
 .paket-features li {
   display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.paket-features li i {
-  color: var(--accent);
-  font-size: 0.875rem;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .paket-card .btn-primary, .paket-card .btn-secondary {
@@ -1824,4 +1823,24 @@ button {
   .footer-top-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* --- NAV SOCIAL ICONS --- */
+.nav-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 12px;
+}
+.nav-social-icons a {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  transition: var(--transition);
+}
+.nav-social-icons a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+  .nav-social-icons { display: none; }
 }

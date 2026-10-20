@@ -84,18 +84,25 @@
       <nav class="nav-desktop" aria-label="Navigasi Utama">
         <ul class="nav-menu">
           <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#keunggulan" class="nav-link">Keunggulan</a></li>
-          <li><a href="#tentang" class="nav-link">Workshop</a></li>
           <li><a href="#layanan" class="nav-link">Layanan</a></li>
-          <li><a href="#before-after" class="nav-link">Before-After</a></li>
-          <li><a href="#paket" class="nav-link">Paket Harga</a></li>
-          <li><a href="#galeri" class="nav-link">Galeri</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#kalkulator-cuci" class="nav-link">Kalkulator Biaya</a></li>
+          <li><a href="#cabang" class="nav-link">Cabang Kami</a></li>
           <li><a href="#kontak" class="nav-link">Kontak</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
+        <div class="nav-social-icons">
+          <a href="https://instagram.com/shoelab.care" target="_blank" rel="noopener noreferrer" title="Instagram @shoelab.care" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@shoelab.id" target="_blank" rel="noopener noreferrer" title="TikTok @shoelab.id" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://facebook.com/shoelabindonesia" target="_blank" rel="noopener noreferrer" title="Facebook Shoe Lab" aria-label="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+        </div>
         <a href="#kontak" class="nav-cta-btn">
           <i class="fa-brands fa-whatsapp"></i>
           Booking Jemput
@@ -119,17 +126,10 @@
       </div>
       <ul class="drawer-menu">
         <li><a href="#beranda" class="drawer-link">Beranda</a></li>
-        <li><a href="#keunggulan" class="drawer-link">Keunggulan Layanan</a></li>
-        <li><a href="#tentang" class="drawer-link">Workshop &amp; Video</a></li>
-        <li><a href="#layanan" class="drawer-link">Pilihan Treatment</a></li>
-        <li><a href="#before-after" class="drawer-link">Before &amp; After Slider</a></li>
-        <li><a href="#perawatan-khusus" class="drawer-link">Spesialisasi Material</a></li>
-        <li><a href="#paket" class="drawer-link">Paket Bundling</a></li>
-        <li><a href="#galeri" class="drawer-link">Galeri Hasil Cuci</a></li>
-        <li><a href="#proses" class="drawer-link">Alur Pemesanan</a></li>
-        <li><a href="#testimoni" class="drawer-link">Ulasan Pelanggan</a></li>
-        <li><a href="#faq" class="drawer-link">Tanya Jawab (FAQ)</a></li>
-        <li><a href="#kontak" class="drawer-link">Lokasi &amp; Form Booking</a></li>
+        <li><a href="#layanan" class="drawer-link">Layanan</a></li>
+        <li><a href="#kalkulator-cuci" class="drawer-link">Kalkulator Biaya</a></li>
+        <li><a href="#cabang" class="drawer-link">Cabang Kami</a></li>
+        <li><a href="#kontak" class="drawer-link">Kontak</a></li>
       </ul>
     </div>
     <div class="drawer-footer">
@@ -616,6 +616,98 @@
       </div>
     </section>
 
+    <!-- 9.1. SECTION KALKULATOR INTERAKTIF ADD-ON & JUMLAH SEPATU -->
+    <section class="kalkulator-cuci-section" id="kalkulator-cuci">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Kalkulator Estimasi Instan</span>
+          <h2 class="section-title">Hitung Biaya Cuci &amp; Add-on Sesuai Kebutuhan Anda.</h2>
+          <p class="section-desc">Pilih jumlah pasang sepatu, tipe pencucian, dan add-on perlindungan tambahan. Estimasi biaya langsung terangkum otomatis.</p>
+        </div>
+
+        <div class="calc-cuci-wrapper">
+          <div class="calc-cuci-grid">
+            <!-- Left Form Controls -->
+            <div class="calc-controls-col">
+              <!-- Jumlah Pasang -->
+              <div class="calc-group">
+                <label class="calc-label">
+                  <i class="fa-solid fa-shoe-prints" style="color: var(--accent); margin-right: 6px;"></i> 1. Jumlah Sepatu yang Dicuci:
+                </label>
+                <div class="shoe-count-buttons">
+                  <button type="button" class="shoe-count-btn active" data-count="1">1 Pasang</button>
+                  <button type="button" class="shoe-count-btn" data-count="2">2 Pasang</button>
+                  <button type="button" class="shoe-count-btn" data-count="3">3 Pasang <span class="badge-disc">Disc 10%</span></button>
+                  <button type="button" class="shoe-count-btn" data-count="4">4 Pasang <span class="badge-disc">Disc 10%</span></button>
+                  <button type="button" class="shoe-count-btn" data-count="5">5+ Pasang <span class="badge-disc">Disc 15%</span></button>
+                </div>
+              </div>
+
+              <!-- Pilihan Layanan Dasar -->
+              <div class="calc-group">
+                <label for="shoeServiceType" class="calc-label">
+                  <i class="fa-solid fa-soap" style="color: var(--accent); margin-right: 6px;"></i> 2. Pilih Tipe Pencucian Dasar:
+                </label>
+                <select id="shoeServiceType" class="calc-select">
+                  <option value="fast" data-price="35000">Fast Cleaning (Upper &amp; Midsole) — Rp 35.000 / pasang</option>
+                  <option value="deep" data-price="50000" selected>Deep Cleaning (Full Luar Dalam + Tali) — Rp 50.000 / pasang</option>
+                  <option value="leather" data-price="85000">Leather &amp; Suede Spa Treatment — Rp 85.000 / pasang</option>
+                  <option value="kids" data-price="30000">Kids Shoes Cleaning — Rp 30.000 / pasang</option>
+                </select>
+              </div>
+
+              <!-- Pilihan Add-On -->
+              <div class="calc-group">
+                <label class="calc-label">
+                  <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent); margin-right: 6px;"></i> 3. Layanan Add-On Tambahan (Opsional):
+                </label>
+                <div class="addon-checkbox-list">
+                  <label class="addon-checkbox-label">
+                    <input type="checkbox" id="addonUnyellowing" value="35000">
+                    <span><strong>Sol Unyellowing De-Oxidation</strong> (+Rp 35.000 / pasang)</span>
+                  </label>
+                  <label class="addon-checkbox-label">
+                    <input type="checkbox" id="addonRepaint" value="50000">
+                    <span><strong>Repaint &amp; Retouch Midsole</strong> (+Rp 50.000 / pasang)</span>
+                  </label>
+                  <label class="addon-checkbox-label">
+                    <input type="checkbox" id="addonWaterproof" value="25000">
+                    <span><strong>Nano Waterproof &amp; Stain Shield</strong> (+Rp 25.000 / pasang)</span>
+                  </label>
+                  <label class="addon-checkbox-label">
+                    <input type="checkbox" id="addonDeodorizer" value="15000">
+                    <span><strong>UV-C Sterilization &amp; Antiseptic Anti-Bau</strong> (+Rp 15.000 / pasang)</span>
+                  </label>
+                  <label class="addon-checkbox-label">
+                    <input type="checkbox" id="addonExpress" value="30000">
+                    <span><strong>Express Service 24 Jam Selesai</strong> (+Rp 30.000 / pasang)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Calculation Summary Card -->
+            <div class="calc-summary-card">
+              <div class="calc-summary-tag">Rincian Estimasi Biaya</div>
+              <div id="shoeCalcBreakdown" class="calc-breakdown-list">
+                <!-- dynamic breakdown rows -->
+              </div>
+              <div class="calc-total-row">
+                <span>TOTAL BIAYA:</span>
+                <span id="shoeCalcTotal">Rp 50.000</span>
+              </div>
+              <div class="calc-note">
+                <i class="fa-solid fa-circle-check" style="color: #10B981;"></i> Gratis biaya antar jemput untuk minimal 2 pasang sepatu.
+              </div>
+              <a href="#" id="shoeCalcWaBtn" target="_blank" class="calc-wa-btn">
+                <i class="fa-brands fa-whatsapp"></i> Pesan Cuci via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 10. #galeri — SHOWCASE HASIL CUCI & LIGHTBOX -->
     <section class="galeri-section" id="galeri" aria-labelledby="galeri-heading">
       <div class="container">
@@ -859,6 +951,95 @@
             <i class="fa-brands fa-whatsapp"></i>
             Booking Penjemputan Sekarang
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14.1. SECTION CABANG WORKSHOP JABODETABEK -->
+    <section class="cabang-section" id="cabang">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Jaringan Workshop</span>
+          <h2 class="section-title">Lokasi Cabang Workshop &amp; Drop Point Shoe Lab.</h2>
+          <p class="section-desc">Kunjungi gerai workshop terdekat di kota Anda atau manfaatkan layanan kurir antar-jemput gratis langsung ke tempat Anda.</p>
+        </div>
+
+        <div class="cabang-grid">
+          <!-- Cabang 1 -->
+          <div class="cabang-card">
+            <div class="cabang-card-top">
+              <span class="cabang-badge pusat">PUSAT &amp; LAB</span>
+              <span class="cabang-status"><i class="fa-solid fa-circle"></i> Buka 09.00 - 21.00</span>
+            </div>
+            <h3 class="cabang-title">Shoe Lab Tebet</h3>
+            <p class="cabang-address">
+              Jl. Tebet Timur Dalam Raya No. 42, Tebet, Jakarta Selatan 12820 (Dekat Stasiun Tebet)
+            </p>
+            <div class="cabang-features">
+              <div><i class="fa-solid fa-truck"></i> Free Pick-up Radius 5 km</div>
+              <div><i class="fa-solid fa-shield-virus"></i> Fasilitas UV Chamber Terlengkap</div>
+            </div>
+            <a href="https://wa.me/6281291902424?text=Halo%20Shoe%20Lab%20Tebet%2C%20saya%20mau%20cuci%20sepatu" target="_blank" class="cabang-btn">
+              <i class="fa-brands fa-whatsapp"></i> Hubungi Cabang Tebet
+            </a>
+          </div>
+
+          <!-- Cabang 2 -->
+          <div class="cabang-card">
+            <div class="cabang-card-top">
+              <span class="cabang-badge bintaro">CABANG TANGSEL</span>
+              <span class="cabang-status"><i class="fa-solid fa-circle"></i> Buka 09.00 - 21.00</span>
+            </div>
+            <h3 class="cabang-title">Shoe Lab Bintaro</h3>
+            <p class="cabang-address">
+              Ruko Bintaro Arcade 2 Blok B No. 8, Bintaro Sektor 7, Pondok Aren, Tangerang Selatan 15224
+            </p>
+            <div class="cabang-features">
+              <div><i class="fa-solid fa-truck"></i> Antar Jemput BSD, Bintaro &amp; Ciputat</div>
+              <div><i class="fa-solid fa-box"></i> Smart Drop Box 24 Jam</div>
+            </div>
+            <a href="https://wa.me/6281291902424?text=Halo%20Shoe%20Lab%20Bintaro%2C%20saya%20mau%20cuci%20sepatu" target="_blank" class="cabang-btn">
+              <i class="fa-brands fa-whatsapp"></i> Hubungi Cabang Bintaro
+            </a>
+          </div>
+
+          <!-- Cabang 3 -->
+          <div class="cabang-card">
+            <div class="cabang-card-top">
+              <span class="cabang-badge gading">CABANG JAKUT</span>
+              <span class="cabang-status"><i class="fa-solid fa-circle"></i> Buka 09.00 - 21.00</span>
+            </div>
+            <h3 class="cabang-title">Shoe Lab Kelapa Gading</h3>
+            <p class="cabang-address">
+              Boulevard Raya Blok QA 1 No. 12, Kelapa Gading Barat, Jakarta Utara 14240
+            </p>
+            <div class="cabang-features">
+              <div><i class="fa-solid fa-truck"></i> Coverage Sunter &amp; Kelapa Gading</div>
+              <div><i class="fa-solid fa-wand-magic-sparkles"></i> Spesialis Luxury &amp; Suede</div>
+            </div>
+            <a href="https://wa.me/6281291902424?text=Halo%20Shoe%20Lab%20Kelapa%20Gading%2C%20saya%20mau%20cuci%20sepatu" target="_blank" class="cabang-btn">
+              <i class="fa-brands fa-whatsapp"></i> Hubungi Cabang Gading
+            </a>
+          </div>
+
+          <!-- Cabang 4 -->
+          <div class="cabang-card">
+            <div class="cabang-card-top">
+              <span class="cabang-badge kemang">CABANG KEMANG</span>
+              <span class="cabang-status"><i class="fa-solid fa-circle"></i> Buka 10.00 - 22.00</span>
+            </div>
+            <h3 class="cabang-title">Shoe Lab Kemang</h3>
+            <p class="cabang-address">
+              Jl. Kemang Raya No. 27B, Bangka, Mampang Prapatan, Jakarta Selatan 12730
+            </p>
+            <div class="cabang-features">
+              <div><i class="fa-solid fa-mug-saucer"></i> Sneaker Lounge &amp; Coffee Bar</div>
+              <div><i class="fa-solid fa-bolt"></i> Layanan Express Same-Day 6 Jam</div>
+            </div>
+            <a href="https://wa.me/6281291902424?text=Halo%20Shoe%20Lab%20Kemang%2C%20saya%20mau%20cuci%20sepatu" target="_blank" class="cabang-btn">
+              <i class="fa-brands fa-whatsapp"></i> Hubungi Cabang Kemang
+            </a>
+          </div>
         </div>
       </div>
     </section>

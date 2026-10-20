@@ -289,4 +289,113 @@ Mohon info ketersediaan kurir & konfirmasi penjemputan. Terima kasih!`;
       }
     });
   });
+
+  // --- SHOE CALCULATOR WITH ADD-ONS ---
+  let shoeCount = 1;
+  const shoeCountBtns = document.querySelectorAll('.shoe-count-btn');
+  const shoeServiceSelect = document.getElementById('shoeServiceType');
+  const addonCheckboxes = document.querySelectorAll('.addon-checkbox-label input[type="checkbox"]');
+  const shoeCalcBreakdown = document.getElementById('shoeCalcBreakdown');
+  const shoeCalcTotal = document.getElementById('shoeCalcTotal');
+  const shoeCalcWaBtn = document.getElementById('shoeCalcWaBtn');
+
+  function updateShoeCalculator() {
+    if (!shoeServiceSelect || !shoeCalcTotal) return;
+
+    const selectedOption = shoeServiceSelect.options[shoeServiceSelect.selectedIndex];
+    const basePricePerPair = parseInt(selectedOption.getAttribute('data-price') || '50000', 10);
+    const serviceName = selectedOption.text.split('—')[0].trim();
+
+    let addonTotalPerPair = 0;
+    const selectedAddons = [];
+
+    addonCheckboxes.forEach(cb => {
+      if (cb.checked) {
+        const addonVal = parseInt(cb.value, 10);
+        addonTotalPerPair += addonVal;
+        const addonName = cb.parentElement.querySelector('strong').textContent;
+        selectedAddons.push({ name: addonName, price: addonVal });
+      }
+    });
+
+    const subtotal = (basePricePerPair + addonTotalPerPair) * shoeCount;
+    let discount = 0;
+    let discountNote = '';
+
+    if (shoeCount >= 5) {
+      discount = Math.round(subtotal * 0.15);
+      discountNote = ' (Diskon 15%)';
+    } else if (shoeCount >= 3) {
+      discount = Math.round(subtotal * 0.10);
+      discountNote = ' (Diskon 10%)';
+    }
+
+    const finalTotal = subtotal - discount;
+
+    if (shoeCalcBreakdown) {
+      let rows = `
+        <div style="display: flex; justify-content: space-between;">
+          <span>${shoeCount}x ${serviceName}:</span>
+          <span style="color: #F8FAFC; font-weight: 700;">Rp ${(basePricePerPair * shoeCount).toLocaleString('id-ID')}</span>
+        </div>
+      `;
+
+      selectedAddons.forEach(a => {
+        rows += `
+          <div style="display: flex; justify-content: space-between;">
+            <span>+ ${shoeCount}x ${a.name}:</span>
+            <span style="color: #F8FAFC;">Rp ${(a.price * shoeCount).toLocaleString('id-ID')}</span>
+          </div>
+        `;
+      });
+
+      if (discount > 0) {
+        rows += `
+          <div style="display: flex; justify-content: space-between; color: var(--accent);">
+            <span>Diskon Spesial ${discountNote}:</span>
+            <span>- Rp ${discount.toLocaleString('id-ID')}</span>
+          </div>
+        `;
+      }
+
+      rows += `
+        <div style="display: flex; justify-content: space-between; color: #10B981;">
+          <span>Ongkos Antar Jemput:</span>
+          <span>${shoeCount >= 2 ? 'GRATIS (Min. 2 Pasang)' : 'Rp 15.000'}</span>
+        </div>
+      `;
+
+      shoeCalcBreakdown.innerHTML = rows;
+    }
+
+    const deliveryFee = shoeCount >= 2 ? 0 : 15000;
+    const grandTotal = finalTotal + deliveryFee;
+    shoeCalcTotal.textContent = 'Rp ' + grandTotal.toLocaleString('id-ID');
+
+    if (shoeCalcWaBtn) {
+      let waText = `Halo Admin SHOE LAB, saya ingin pesan layanan cuci sepatu via kalkulator website:\n\n` +
+        `• Jumlah: ${shoeCount} Pasang Sepatu\n` +
+        `• Tipe Cuci: ${serviceName}\n`;
+      if (selectedAddons.length > 0) {
+        waText += `• Add-On: ${selectedAddons.map(a => a.name).join(', ')}\n`;
+      }
+      waText += `• Total Estimasi: Rp ${grandTotal.toLocaleString('id-ID')}\n\n` +
+        `Mohon jadwal penjemputan ke alamat saya. Terima kasih!`;
+      shoeCalcWaBtn.href = `https://wa.me/6281291902424?text=${encodeURIComponent(waText)}`;
+    }
+  }
+
+  shoeCountBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      shoeCountBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      shoeCount = parseInt(btn.getAttribute('data-count') || '1', 10);
+      updateShoeCalculator();
+    });
+  });
+
+  shoeServiceSelect?.addEventListener('change', updateShoeCalculator);
+  addonCheckboxes.forEach(cb => cb.addEventListener('change', updateShoeCalculator));
+  updateShoeCalculator();
+
 });

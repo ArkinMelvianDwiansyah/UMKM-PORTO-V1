@@ -40,16 +40,23 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-          <li><a href="#keunggulan" class="nav-link">Keunggulan</a></li>
           <li><a href="#tentang" class="nav-link">Tentang</a></li>
           <li><a href="#layanan" class="nav-link">Layanan</a></li>
-          <li><a href="#armada" class="nav-link">Armada & Tarif</a></li>
-          <li><a href="#harga" class="nav-link">Paket Harga</a></li>
-          <li><a href="#galeri" class="nav-link">Galeri</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#armada" class="nav-link">Armada &amp; Tarif</a></li>
           <li><a href="#kontak" class="nav-link">Kontak</a></li>
         </ul>
       </nav>
+      <div class="nav-social-icons">
+        <a href="https://instagram.com/angkutin.id" target="_blank" rel="noopener noreferrer" title="Instagram @angkutin.id" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://tiktok.com/@angkutin.logistik" target="_blank" rel="noopener noreferrer" title="TikTok @angkutin.logistik" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://facebook.com/angkutinlogistik" target="_blank" rel="noopener noreferrer" title="Facebook ANGKUTIN" aria-label="Facebook">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </div>
       <a href="https://wa.me/6281234567890?text=Halo%20ANGKUTIN%2C%20saya%20mau%20tanya%20jadwal%20dan%20sewa%20armada%20pindahan" target="_blank" class="nav-cta-btn">
         <i class="fa-brands fa-whatsapp"></i> Pesan Armada
       </a>
@@ -69,14 +76,10 @@
     </div>
     <ul class="drawer-links">
       <li><a href="#beranda">Beranda</a></li>
-      <li><a href="#keunggulan">Keunggulan</a></li>
-      <li><a href="#tentang">Tentang Kami</a></li>
-      <li><a href="#layanan">Layanan Pindahan</a></li>
-      <li><a href="#armada">Armada & Tarif</a></li>
-      <li><a href="#harga">Paket Harga</a></li>
-      <li><a href="#galeri">Galeri Armada</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#kontak">Kontak & Booking</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#armada">Armada &amp; Tarif</a></li>
+      <li><a href="#kontak">Kontak</a></li>
     </ul>
     <a href="https://wa.me/6281234567890?text=Halo%20ANGKUTIN%2C%20saya%20mau%20booking%20pindahan" target="_blank" class="btn-primary" style="text-align: center; justify-content: center;">
       <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
@@ -179,7 +182,7 @@
     </div>
   </section>
 
-  <!-- 5. TENTANG & VIDEO SPOTLIGHT -->
+  <!-- 5. TENTANG & VIDEO SPOTLIGHT (SINGLE VIDEO BESAR) -->
   <section class="tentang-section" id="tentang">
     <div class="container">
       <div class="tentang-grid">
@@ -194,33 +197,71 @@
           </p>
           <div class="tentang-features">
             <div class="tentang-feature-item">
-              <i class="fa-solid fa-check-circle"></i> Seluruh helper bersertifikasi standar handling barang rapuh (fragile).
+              <i class="fa-solid fa-circle-check"></i> Seluruh helper bersertifikasi standar handling barang rapuh (fragile).
             </div>
             <div class="tentang-feature-item">
-              <i class="fa-solid fa-check-circle"></i> Opsi asuransi perlindungan penuh barang pindahan hingga 100 juta rupiah.
+              <i class="fa-solid fa-circle-check"></i> Opsi asuransi perlindungan penuh barang pindahan hingga 100 juta rupiah.
             </div>
             <div class="tentang-feature-item">
-              <i class="fa-solid fa-check-circle"></i> Tersedia jasa bongkar-pasang furnitur lemari sliding, dipan ranjang, & water heater.
+              <i class="fa-solid fa-circle-check"></i> Tersedia jasa bongkar-pasang furnitur lemari sliding, dipan ranjang, &amp; AC.
             </div>
           </div>
         </div>
         
-        <!-- Video Spotlight Card -->
-        <div class="video-spotlight-card">
-          <div class="video-container">
+        <!-- Video Spotlight Card (Single Video 1 Besar) -->
+        <div class="video-spotlight-card single-video">
+          <div class="video-container single">
             <video id="mainVideoPlayer" class="video-player" controls autoplay muted loop playsinline poster="assets/images/warehouse-logistics.jpg">
               <source src="assets/videos/video-pergudangan-truk.mp4" type="video/mp4">
               Browser Anda tidak mendukung tag video.
             </video>
+            <div class="video-overlay-tag">
+              <i class="fa-solid fa-boxes-packing"></i> Simulasi Muat &amp; Safety Packing Truk
+            </div>
           </div>
-          <div class="video-switcher-tabs">
-            <button class="video-tab-btn active" data-video="assets/videos/video-pergudangan-truk.mp4">
-              <i class="fa-solid fa-boxes-packing"></i> 1. Muat & Packing Barang
-            </button>
-            <button class="video-tab-btn" data-video="assets/videos/video-roadtrip.mp4">
-              <i class="fa-solid fa-truck-moving"></i> 2. Pengawalan Perjalanan
-            </button>
-          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.1. FULL-WIDTH VIDEO SPOTLIGHT & KETERANGAN CARD -->
+  <section class="full-video-section">
+    <div class="container">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 36px;">
+        <span class="section-badge" style="background: rgba(245, 158, 11, 0.15); color: #B45309;">Dokumentasi Perjalanan</span>
+        <h2 class="section-title">Pengawalan Armada Aman Lintas Kota &amp; Tol Trans Jawa</h2>
+        <p class="section-subtitle">Tonton perjalanan armada ANGKUTIN mengantarkan barang pindahan dengan pengikatan ganda, suspensi stabil, dan live tracking sepanjang rute.</p>
+      </div>
+
+      <!-- Full-Width Video Player -->
+      <div class="full-video-wrapper">
+        <video class="full-video-player" controls autoplay muted loop playsinline poster="assets/images/truck-fuso.jpg">
+          <source src="assets/videos/video-roadtrip.mp4" type="video/mp4">
+          Browser Anda tidak mendukung tag video.
+        </video>
+      </div>
+
+      <!-- Keterangan Cards Underneath -->
+      <div class="video-cards-grid">
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+          <h4>Driver Berlisensi &amp; Jam Terbang Tinggi</h4>
+          <p>Seluruh pengemudi memiliki SIM B1/B2 resmi dan berpengalaman rute tol antar provinsi Jawa, Bali &amp; Sumatera.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h4>Live Tracking GPS Real-Time</h4>
+          <p>Pelanggan mendapatkan link live share lokasi untuk memantau titik armada dan estimasi jam tiba secara presisi.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-gas-pump"></i></div>
+          <h4>Tarif All-In Bensin &amp; Tol</h4>
+          <p>Biaya yang Anda bayar sudah mencakup BBM, tol, dan tiket kapal penyeberangan (jika lintas pulau) tanpa biaya siluman.</p>
+        </div>
+        <div class="video-feature-card">
+          <div class="video-feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4>Garansi Keutuhan Barang 100%</h4>
+          <p>Jaminan kompensasi atau klaim penggantian jika barang terbukti lecet atau rusak selama proses perjalanan.</p>
         </div>
       </div>
     </div>
