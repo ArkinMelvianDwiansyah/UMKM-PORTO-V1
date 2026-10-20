@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" fill="none">
+  <!-- Crown Icon -->
+  <path d="M12 36L6 18L18 24L26 12L34 24L46 18L40 36H12Z" fill="#D97706" stroke="#B45309" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="6" cy="18" r="3" fill="#F59E0B"/>
+  <circle cx="26" cy="12" r="3.5" fill="#FBBF24"/>
+  <circle cx="46" cy="18" r="3" fill="#F59E0B"/>
+  <rect x="12" y="37" width="28" height="4" rx="2" fill="#B45309"/>
+
+  <!-- Brand Typography -->
+  <text x="58" y="27" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="900" letter-spacing="1.5" fill="#0F172A">MAHKOTA</text>
+  <text x="58" y="41" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="#D97706">WEDDING &amp; EVENT RENTAL</text>
+</svg>
