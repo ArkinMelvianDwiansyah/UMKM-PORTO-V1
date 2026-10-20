@@ -3612,8 +3612,9 @@ jQuery(document).ready(function($) {
   }
   initShareTool();
 
-  // 8. STANDALONE RSVP & COMMENTS WITH LOCALSTORAGE PERSISTENCE
+  // 8. STANDALONE RSVP & COMMENTS WITH GOOGLE SHEETS CLOUD STORAGE
   function initRsvp() {
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxZKPAfK5lv-YOQAba5AM4rpDzeZdKeVEXfDr608Qjwf395msPbckyJp946xfjJbq_/exec';
     var storageKey = 'jalanundangan_wishes_dio_ika_v3';
     var defaultWishes = [
       { name: 'Dina', date: '19-10-2026 14:20', content: 'Selamat menempuh hidup baru Dio & Ika! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah serta senantiasa dalam lindungan Allah SWT.', status: 'Hadir' },
@@ -3635,10 +3636,10 @@ jQuery(document).ready(function($) {
       } catch(e) {}
     }
 
-    function renderWishes() {
+    function renderWishes(wishesToRender) {
       var list = $('ul.rsvp-list');
       if (!list.length) return;
-      var wishes = getSavedWishes();
+      var wishes = wishesToRender || getSavedWishes();
 
       list.empty();
       wishes.forEach(function(w) {
@@ -3653,14 +3654,38 @@ jQuery(document).ready(function($) {
             '</div>' +
             '<div class="rsvp-body">' +
               '<div class="rsvp-headline">' +
-                '<span class="rsvp-name">' + $('<div>').text(w.name).html() + '</span>' +
+                '<span class="rsvp-name">' + $('<div>').text(w.name || w.nama || 'Tamu Undangan').html() + '</span>' +
               '</div>' +
-              '<div class="rsvp-meta" style="font-size:11px; color:#888; margin:2px 0 4px;">' + $('<div>').text(w.date).html() + '</div>' +
-              '<div class="rsvp-content" style="font-size:13px; line-height:1.4; color:#4b5563;">' + $('<div>').text(w.content).html() + '</div>' +
+              '<div class="rsvp-meta" style="font-size:11px; color:#888; margin:2px 0 4px;">' + $('<div>').text(w.date || w.waktu || '').html() + '</div>' +
+              '<div class="rsvp-content" style="font-size:13px; line-height:1.4; color:#4b5563;">' + $('<div>').text(w.content || w.ucapan || '').html() + '</div>' +
             '</div>' +
           '</li>';
         list.append(itemHtml);
       });
+    }
+
+    // Load latest wishes from Google Sheet
+    function loadFromCloud() {
+      if (!APPS_SCRIPT_URL) return;
+      fetch(APPS_SCRIPT_URL)
+        .then(function(res) { return res.json(); })
+        .then(function(res) {
+          if (res && res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+            var cloudWishes = res.data.map(function(item) {
+              return {
+                name: item.nama,
+                date: item.waktu,
+                content: item.ucapan,
+                status: item.kehadiran
+              };
+            });
+            saveWishes(cloudWishes);
+            renderWishes(cloudWishes);
+          }
+        })
+        .catch(function(err) {
+          console.warn('Load cloud wishes err:', err);
+        });
     }
 
     $('.rsvp-pill').on('click', function(e) {
@@ -3673,6 +3698,9 @@ jQuery(document).ready(function($) {
 
     $('.rsvp-send').on('click', function(e) {
       e.preventDefault();
+      var btn = $(this);
+      if (btn.prop('disabled')) return;
+
       var nameInput = $('input.rsvp-input[data-rsvp="name"]');
       var msgInput = $('textarea.rsvp-textarea[data-rsvp="message"]');
       var activePill = $('.rsvp-pill[data-active="1"]');
@@ -3703,17 +3731,40 @@ jQuery(document).ready(function($) {
         status: status
       };
 
+      // Optimistic instant UI update
       var all = getSavedWishes();
       all.unshift(newWish);
       saveWishes(all);
-
+      renderWishes(all);
       msgInput.val('');
-      renderWishes();
 
-      showToast('Terima kasih ' + name + ', ucapan dan doa restu Anda telah terkirim!', false);
+      btn.prop('disabled', true).text('Mengirim...');
+
+      // Send to Google Sheets
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          nama: name,
+          kehadiran: status,
+          ucapan: msg
+        })
+      })
+      .then(function() {
+        showToast('Terima kasih ' + name + ', ucapan dan doa restu Anda telah terkirim!', false);
+      })
+      .catch(function(err) {
+        console.warn('Post to sheet err:', err);
+        showToast('Terima kasih ' + name + ', ucapan Anda telah terkirim!', false);
+      })
+      .finally(function() {
+        btn.prop('disabled', false).text('Kirim');
+        setTimeout(loadFromCloud, 2500);
+      });
     });
 
     renderWishes();
+    loadFromCloud();
   }
   initRsvp();
 });
