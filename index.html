@@ -1306,19 +1306,19 @@
       
       <!-- Section Header -->
       <div class="max-w-3xl mb-12">
-        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">PROSES PRODUKSI &amp; SIMULASI HARGA</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2 tracking-tight">Proses Pembuatan Website &amp; Simulasi Investasi</h2>
+        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">PROSES PRODUKSI &amp; PILIHAN PAKET RESMI</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-2 tracking-tight">Dokumentasi Produksi &amp; Pilihan Paket Investasi</h2>
         <p class="text-xs sm:text-sm text-muted mt-2 leading-relaxed">
-          Dibangun presisi dengan arsitektur modern (Laravel &amp; Tailwind CSS) tanpa template berat. Saksikan proses pengerjaan kami dan hitung estimasi biaya sesuai paket resmi usaha Anda.
+          Dibangun presisi dengan arsitektur modern (Laravel &amp; Tailwind CSS) tanpa template berat. Tonton 3 video dokumentasi asli studio kami dan tentukan paket website resmi yang paling tepat untuk bisnis Anda.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Left: Authentic Studio Workflow Video & 4 SOP Steps -->
-        <div class="lg:col-span-6 space-y-6">
+        <!-- Left: Authentic Studio Workflow Video (Enlarged) & 3 Video Switchers -->
+        <div class="lg:col-span-7 space-y-6">
           
-          <!-- Video Frame Mockup -->
+          <!-- Video Frame Mockup (Enlarged) -->
           <div class="bg-surface border border-line overflow-hidden shadow-sm">
             <!-- Browser Top Mockup Bar -->
             <div class="px-4 py-3 bg-paper border-b border-line flex items-center justify-between">
@@ -1326,39 +1326,82 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
-                <span class="ml-2 text-[11px] font-mono text-muted">jalaninweb.site/studio-production.mp4</span>
+                <span id="workflowVideoUrl" class="ml-2 text-[11px] font-mono text-muted">jalaninweb.site/studio-coding.mp4</span>
               </div>
               <div class="inline-flex items-center gap-1 text-[10px] font-mono text-forest font-semibold bg-emerald-50 px-2 py-0.5 border border-emerald-200">
                 <span class="w-1.5 h-1.5 rounded-full bg-forest animate-pulse"></span>
-                <span>ORIGINAL WORKFLOW</span>
+                <span id="workflowVideoBadge">LARAVEL &amp; TAILWIND</span>
               </div>
             </div>
 
-            <!-- Video Player -->
+            <!-- Video Player (Enlarged & Cinematic) -->
             <div class="relative bg-stone-900 group">
               <video id="workflowVideo"
-                     class="w-full h-64 sm:h-72 object-cover"
+                     class="w-full h-72 sm:h-96 lg:h-[430px] object-cover"
                      autoplay muted loop playsinline controls
-                     poster="assets/images/thumb-20-studio.jpg">
+                     poster="assets/images/thumb-20-studio-foto.jpg">
                 <source src="06-landing-page-onepage/20-studio-foto-video/assets/videos/video-studio-sinematik.mp4" type="video/mp4">
                 Browser Anda tidak mendukung video tag HTML5.
               </video>
-              <div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 border border-line text-[11px] font-mono font-semibold text-ink">
-                Behind The Scene &bull; Studio Coding JalaninWeb
+              <div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-sm px-3 py-1.5 border border-line text-xs font-mono font-semibold text-ink flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                <span id="workflowVideoTitleText">01. Studio Coding &amp; Arsitektur Modern • Behind The Scene JalaninWeb</span>
+              </div>
+            </div>
+
+            <!-- 3 Video Switcher Cards -->
+            <div class="p-4 bg-surface border-t border-line">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-muted font-bold">PILIH TAMPILAN VIDEO PRODUKSI (3 MACAM):</span>
+                <span class="text-[10px] font-mono text-accent font-semibold">KLIK UNTUK MEMUTAR</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="videoSwitcherGrid">
+                <!-- Video 1 -->
+                <button type="button" onclick="switchWorkflowVideo(0)" data-video-idx="0"
+                        class="video-switch-btn p-3 border border-ink bg-ink text-surface text-left transition relative rounded-sm shadow-sm group">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono font-bold text-amber-300">VIDEO 01</span>
+                    <span class="video-status-pill text-[9px] font-mono bg-accent text-surface px-1.5 py-0.2">MEMUTAR</span>
+                  </div>
+                  <div class="text-xs font-bold text-surface mt-1 group-hover:text-amber-200">Studio Coding</div>
+                  <div class="text-[10px] opacity-80 mt-0.5 line-clamp-1">Laravel 11 &amp; Tailwind CSS</div>
+                </button>
+
+                <!-- Video 2 -->
+                <button type="button" onclick="switchWorkflowVideo(1)" data-video-idx="1"
+                        class="video-switch-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-sm group">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono font-bold text-muted">VIDEO 02</span>
+                    <span class="video-status-pill hidden text-[9px] font-mono bg-accent text-surface px-1.5 py-0.2">MEMUTAR</span>
+                  </div>
+                  <div class="text-xs font-bold text-ink mt-1 group-hover:text-accent">Aplikasi Kasir POS</div>
+                  <div class="text-[10px] text-muted mt-0.5 line-clamp-1">Sistem &amp; Transaksi Instan</div>
+                </button>
+
+                <!-- Video 3 -->
+                <button type="button" onclick="switchWorkflowVideo(2)" data-video-idx="2"
+                        class="video-switch-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-sm group">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-mono font-bold text-muted">VIDEO 03</span>
+                    <span class="video-status-pill hidden text-[9px] font-mono bg-accent text-surface px-1.5 py-0.2">MEMUTAR</span>
+                  </div>
+                  <div class="text-xs font-bold text-ink mt-1 group-hover:text-accent">Visual Branding</div>
+                  <div class="text-[10px] text-muted mt-0.5 line-clamp-1">Photoshoot &amp; Sinematik</div>
+                </button>
               </div>
             </div>
 
             <!-- Modern Tech Badges Strip -->
-            <div class="p-3.5 bg-surface border-t border-line grid grid-cols-3 gap-2 text-center text-[11px] font-mono text-ink">
-              <div class="p-2 bg-paper border border-line">
+            <div class="p-3.5 bg-paper border-t border-line grid grid-cols-3 gap-2 text-center text-[11px] font-mono text-ink">
+              <div class="p-2 bg-surface border border-line">
                 <span class="block text-accent font-bold">LARAVEL 11</span>
                 <span class="text-[10px] text-muted">Backend Aman</span>
               </div>
-              <div class="p-2 bg-paper border border-line">
+              <div class="p-2 bg-surface border border-line">
                 <span class="block text-forest font-bold">TAILWIND CSS</span>
                 <span class="text-[10px] text-muted">Mobile-First</span>
               </div>
-              <div class="p-2 bg-paper border border-line">
+              <div class="p-2 bg-surface border border-line">
                 <span class="block text-ink font-bold">&lt; 1 DETIK</span>
                 <span class="text-[10px] text-muted">PageSpeed 90+</span>
               </div>
@@ -1396,8 +1439,8 @@
 
         </div>
 
-        <!-- Right: Synchronized Interactive Pricelist Calculator -->
-        <div class="lg:col-span-6 space-y-6">
+        <!-- Right: Clean Official Package Selector & Direct WhatsApp Consultation -->
+        <div class="lg:col-span-5 space-y-6">
           
           <div class="bg-surface border border-line p-6 sm:p-7 space-y-5">
             <!-- Step 1: Select Official Package -->
@@ -1440,79 +1483,10 @@
               </div>
             </div>
 
-            <!-- Step 2: Addon Options -->
-            <div class="pt-4 border-t border-line">
-              <label class="block text-xs font-mono uppercase tracking-wider font-bold text-ink mb-3">
-                2. Fitur Tambahan &amp; Kebutuhan Khusus (Opsional)
-              </label>
-
-              <div class="space-y-2.5 text-xs text-ink">
-                <!-- Addon 1: Domain .com / .id -->
-                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
-                  <div class="flex items-center gap-2.5">
-                    <input type="checkbox" id="featDomain" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                    <div>
-                      <span class="font-semibold block">Upgrade Domain Bergengsi (.com / .id) &amp; NVMe</span>
-                      <span class="text-[11px] text-muted" id="featDomainNote">Gratis sudah termasuk di Paket Growth &amp; Enterprise</span>
-                    </div>
-                  </div>
-                  <span id="featDomainPrice" class="font-mono text-emerald-700 font-bold shrink-0">Termasuk</span>
-                </label>
-
-                <!-- Addon 2: Kalender & Booking -->
-                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
-                  <div class="flex items-center gap-2.5">
-                    <input type="checkbox" id="featBooking" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                    <div>
-                      <span class="font-semibold block">Sistem Kalender &amp; Booking Jadwal</span>
-                      <span class="text-[11px] text-muted">Pilih tanggal &amp; slot jam otomatis anti bentrok langsung ke WA</span>
-                    </div>
-                  </div>
-                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 350.000</span>
-                </label>
-
-                <!-- Addon 3: QRIS / Payment -->
-                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
-                  <div class="flex items-center gap-2.5">
-                    <input type="checkbox" id="featQris" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                    <div>
-                      <span class="font-semibold block">Integrasi Scan QRIS / DP Otomatis</span>
-                      <span class="text-[11px] text-muted">Scan QRIS instan dari GoPay/OVO/BCA langsung di halaman website</span>
-                    </div>
-                  </div>
-                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 250.000</span>
-                </label>
-
-                <!-- Addon 4: Custom Calculator -->
-                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
-                  <div class="flex items-center gap-2.5">
-                    <input type="checkbox" id="featCalc" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                    <div>
-                      <span class="font-semibold block">Kalkulator Hitung Biaya Custom</span>
-                      <span class="text-[11px] text-muted">Contoh: hitung RAB m² konstruksi, grosir produk, atau sewa per hari</span>
-                    </div>
-                  </div>
-                  <span class="font-mono text-ink font-semibold shrink-0">+Rp 250.000</span>
-                </label>
-
-                <!-- Addon 5: CMS Admin -->
-                <label class="flex items-center justify-between p-3 bg-paper border border-line hover:border-ink transition cursor-pointer">
-                  <div class="flex items-center gap-2.5">
-                    <input type="checkbox" id="featCms" onchange="calculateEstimator()" class="accent-ink w-4 h-4 cursor-pointer" />
-                    <div>
-                      <span class="font-semibold block">Dashboard Admin CMS Mandiri</span>
-                      <span class="text-[11px] text-muted" id="featCmsNote">Sudah termasuk gratis di Paket Growth &amp; Enterprise</span>
-                    </div>
-                  </div>
-                  <span id="featCmsPrice" class="font-mono text-emerald-700 font-bold shrink-0">Termasuk</span>
-                </label>
-              </div>
-            </div>
-
             <!-- Live Calculation Result Card -->
             <div class="p-5 bg-ink text-surface rounded-lg space-y-4 shadow-md">
               <div class="flex items-center justify-between pb-3 border-b border-stone-800 text-xs font-mono">
-                <span class="text-stone-400 uppercase tracking-wider">RINGKASAN SIMULASI</span>
+                <span class="text-stone-400 uppercase tracking-wider">RINGKASAN PAKET</span>
                 <span class="text-emerald-400 font-bold flex items-center gap-1.5">
                   <i class="fa-solid fa-shield-halved text-xs"></i> 100% Hak Milik Anda
                 </span>
@@ -1526,15 +1500,11 @@
 
               <div class="p-3.5 bg-stone-900 border border-stone-800 space-y-1.5 text-xs">
                 <div class="flex items-center justify-between text-stone-400">
-                  <span>Paket Dasar:</span>
+                  <span>Investasi Layanan:</span>
                   <span id="estBasePrice" class="font-mono text-surface font-semibold">Rp 899.000</span>
                 </div>
-                <div class="flex items-center justify-between text-stone-400">
-                  <span>Fitur Tambahan:</span>
-                  <span id="estAddonPrice" class="font-mono text-surface font-semibold">Rp 0</span>
-                </div>
                 <div class="pt-2 border-t border-stone-800 flex items-baseline justify-between">
-                  <span class="text-xs font-mono uppercase text-amber-400 font-bold">TOTAL ESTIMASI:</span>
+                  <span class="text-xs font-mono uppercase text-amber-400 font-bold">TOTAL INVESTASI:</span>
                   <span id="estTotalPrice" class="text-2xl font-extrabold font-mono text-amber-300">Rp 899.000</span>
                 </div>
               </div>
@@ -1562,6 +1532,29 @@
                   *Bebas konsultasi &amp; diskusikan kebutuhan langsung di WhatsApp. Tanpa biaya komitmen.
                 </p>
               </div>
+            </div>
+
+            <!-- Standard Official Inclusions -->
+            <div class="p-4 bg-paper border border-line space-y-2 text-xs">
+              <div class="font-mono text-[10px] font-bold text-muted uppercase tracking-wider">FASILITAS STANDAR TERMASUK:</div>
+              <ul class="space-y-1.5 text-muted text-[11px]">
+                <li class="flex items-center gap-2">
+                  <i class="fa-solid fa-check text-forest text-xs"></i>
+                  <span>Domain resmi (.com / .id) &amp; Cloud Server NVMe (Growth &amp; Enterprise)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="fa-solid fa-check text-forest text-xs"></i>
+                  <span>Desain 100% Responsive Mobile-First, loading ultra-cepat &lt; 1 detik</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="fa-solid fa-check text-forest text-xs"></i>
+                  <span>Tombol direct WhatsApp &amp; integrasi Google Maps interaktif</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="fa-solid fa-check text-forest text-xs"></i>
+                  <span>Garansi perbaikan bug &amp; video panduan pengelolaan website</span>
+                </li>
+              </ul>
             </div>
 
           </div>
@@ -2753,31 +2746,94 @@
       renderPortfolio();
     }
 
-    // --- Interactive Estimator Logic (Tersinkron dengan Pricelist Resmi) ---
+    // --- 3 Video Workflow Switcher Logic ---
+    const WORKFLOW_VIDEOS = [
+      {
+        title: '01. Studio Coding & Arsitektur Modern • Behind The Scene JalaninWeb',
+        url: 'jalaninweb.site/studio-coding.mp4',
+        badge: 'LARAVEL & TAILWIND',
+        poster: 'assets/images/thumb-20-studio-foto.jpg',
+        src: '06-landing-page-onepage/20-studio-foto-video/assets/videos/video-studio-sinematik.mp4'
+      },
+      {
+        title: '02. Sistem Web App & Transaksi Kasir POS • Integrasi Real-Time',
+        url: 'jalaninweb.site/demo-kasir-pos.mp4',
+        badge: 'WEB APP & DATABASE',
+        poster: 'assets/images/thumb-08-kasir-pos.jpg',
+        src: '04-aplikasi-manajemen-pos/08-aplikasi-kasir-pos/assets/videos/video-transaksi-kasir.mp4'
+      },
+      {
+        title: '03. Visual Branding & Photoshoot Studio • Konten Sinematik UMKM',
+        url: 'jalaninweb.site/visual-branding.mp4',
+        badge: 'KONTEN SINEMATIK',
+        poster: 'assets/images/thumb-20-studio-foto.jpg',
+        src: '06-landing-page-onepage/20-studio-foto-video/assets/videos/video-photoshoot-kamera.mp4'
+      }
+    ];
+
+    function switchWorkflowVideo(idx) {
+      const vData = WORKFLOW_VIDEOS[idx];
+      if (!vData) return;
+
+      const video = document.getElementById('workflowVideo');
+      const urlText = document.getElementById('workflowVideoUrl');
+      const titleText = document.getElementById('workflowVideoTitleText');
+      const badgeText = document.getElementById('workflowVideoBadge');
+
+      if (video) {
+        const srcEl = video.querySelector('source');
+        if (srcEl) srcEl.src = vData.src;
+        video.src = vData.src;
+        video.poster = vData.poster;
+        video.load();
+        video.play().catch(() => {});
+      }
+      if (urlText) urlText.textContent = vData.url;
+      if (titleText) titleText.textContent = vData.title;
+      if (badgeText) badgeText.textContent = vData.badge;
+
+      document.querySelectorAll('.video-switch-btn').forEach(btn => {
+        const btnIdx = parseInt(btn.dataset.videoIdx, 10);
+        const pill = btn.querySelector('.video-status-pill');
+        const num = btn.querySelector('.font-mono');
+        const title = btn.querySelector('.text-xs');
+        const sub = btn.querySelector('.text-\\[10px\\]') || btn.querySelector('.opacity-80') || btn.querySelector('.text-muted');
+
+        if (btnIdx === idx) {
+          btn.className = 'video-switch-btn p-3 border border-ink bg-ink text-surface text-left transition relative rounded-sm shadow-sm group';
+          if (pill) pill.classList.remove('hidden');
+          if (num) num.className = 'text-[10px] font-mono font-bold text-amber-300';
+          if (title) title.className = 'text-xs font-bold text-surface mt-1 group-hover:text-amber-200';
+          if (sub) sub.className = 'text-[10px] opacity-80 mt-0.5 line-clamp-1';
+        } else {
+          btn.className = 'video-switch-btn p-3 border border-line bg-paper text-ink text-left transition hover:border-ink rounded-sm group';
+          if (pill) pill.classList.add('hidden');
+          if (num) num.className = 'text-[10px] font-mono font-bold text-muted';
+          if (title) title.className = 'text-xs font-bold text-ink mt-1 group-hover:text-accent';
+          if (sub) sub.className = 'text-[10px] text-muted mt-0.5 line-clamp-1';
+        }
+      });
+    }
+
+    // --- Interactive Estimator Logic (Pilihan Paket Resmi Bersih) ---
     const ESTIMATOR_PACKAGES = {
       starter: {
         name: 'Paket Starter (Landing Page 1 Halaman)',
         basePrice: 399000,
         desc: 'Solusi landing page serbacepat untuk promosi produk tunggal atau iklan berbayar (Meta/Google Ads).',
-        duration: '1 – 3 Hari Kerja',
-        hasDomainIncluded: false,
-        hasCmsIncluded: false
+        duration: '1 – 3 Hari Kerja'
       },
       growth: {
         name: 'Paket Growth (3–6 Halaman + CMS)',
         basePrice: 899000,
         desc: 'Paling diminati UMKM & jasa lokal. Website multi-halaman lengkap dengan Dashboard Admin CMS mandiri & Google Search Console.',
-        duration: '3 – 7 Hari Kerja',
-        hasDomainIncluded: true,
-        hasCmsIncluded: true
+        duration: '3 – 7 Hari Kerja'
       },
       enterprise: {
         name: 'Paket Enterprise (Custom & API)',
         basePrice: 1950000,
         desc: 'Solusi sistem kustom, integrasi API, booking database kompleks, dan traffic tinggi.',
-        duration: '2 – 4 Minggu',
-        hasDomainIncluded: true,
-        hasCmsIncluded: true
+        duration: '2 – 4 Minggu'
       }
     };
 
@@ -2790,13 +2846,13 @@
           btn.className = 'est-type-btn p-3.5 border border-ink bg-ink text-surface text-left transition relative';
           const title = btn.querySelector('.text-sm');
           if (title) title.className = 'text-sm font-extrabold text-surface mt-0.5';
-          const sub = btn.querySelector('.text-\\[10px\\]');
+          const sub = btn.querySelector('.text-\\[10px\\]') || btn.querySelector('.opacity-80') || btn.querySelector('.text-muted');
           if (sub) sub.className = 'text-[10px] opacity-80 mt-1';
         } else {
           btn.className = 'est-type-btn p-3.5 border border-line bg-paper text-ink text-left transition hover:border-ink';
           const title = btn.querySelector('.text-sm');
           if (title) title.className = 'text-sm font-extrabold text-ink mt-0.5';
-          const sub = btn.querySelector('.text-\\[10px\\]');
+          const sub = btn.querySelector('.text-\\[10px\\]') || btn.querySelector('.opacity-80') || btn.querySelector('.text-muted');
           if (sub) sub.className = 'text-[10px] text-muted mt-1';
         }
       });
@@ -2805,80 +2861,30 @@
 
     function calculateEstimator() {
       const pkg = ESTIMATOR_PACKAGES[currentEstimatorType] || ESTIMATOR_PACKAGES.growth;
-      let addonTotal = 0;
-      const selectedAddons = [];
-
-      // Update CMS & Domain addon labels based on package
-      const featCmsEl = document.getElementById('featCms');
-      const featCmsNote = document.getElementById('featCmsNote');
-      const featCmsPrice = document.getElementById('featCmsPrice');
-      if (pkg.hasCmsIncluded) {
-        if (featCmsEl) { featCmsEl.checked = true; featCmsEl.disabled = true; }
-        if (featCmsNote) featCmsNote.textContent = 'Sudah termasuk gratis di Paket Growth & Enterprise';
-        if (featCmsPrice) { featCmsPrice.textContent = 'Termasuk'; featCmsPrice.className = 'font-mono text-emerald-700 font-bold shrink-0'; }
-      } else {
-        if (featCmsEl) { featCmsEl.disabled = false; }
-        if (featCmsNote) featCmsNote.textContent = 'Dashboard Admin CMS mandiri untuk ganti foto & teks kapan saja';
-        if (featCmsPrice) { featCmsPrice.textContent = '+Rp 450.000'; featCmsPrice.className = 'font-mono text-ink font-semibold shrink-0'; }
-        if (featCmsEl?.checked) {
-          addonTotal += 450000;
-          selectedAddons.push('Dashboard Admin CMS (+450rb)');
-        }
-      }
-
-      const featDomainEl = document.getElementById('featDomain');
-      const featDomainNote = document.getElementById('featDomainNote');
-      const featDomainPrice = document.getElementById('featDomainPrice');
-      if (pkg.hasDomainIncluded) {
-        if (featDomainEl) { featDomainEl.checked = true; featDomainEl.disabled = true; }
-        if (featDomainNote) featDomainNote.textContent = 'Domain .com / .id & Cloud Server NVMe sudah termasuk';
-        if (featDomainPrice) { featDomainPrice.textContent = 'Termasuk'; featDomainPrice.className = 'font-mono text-emerald-700 font-bold shrink-0'; }
-      } else {
-        if (featDomainEl) { featDomainEl.disabled = false; }
-        if (featDomainNote) featDomainNote.textContent = 'Upgrade ke domain bergengsi .com / .id (default: .my.id / .site)';
-        if (featDomainPrice) { featDomainPrice.textContent = '+Rp 150.000'; featDomainPrice.className = 'font-mono text-ink font-semibold shrink-0'; }
-        if (featDomainEl?.checked) {
-          addonTotal += 150000;
-          selectedAddons.push('Upgrade Domain .com/.id (+150rb)');
-        }
-      }
-
-      if (document.getElementById('featBooking')?.checked) {
-        addonTotal += 350000;
-        selectedAddons.push('Sistem Kalender & Booking (+350rb)');
-      }
-      if (document.getElementById('featQris')?.checked) {
-        addonTotal += 250000;
-        selectedAddons.push('Integrasi QRIS Otomatis (+250rb)');
-      }
-      if (document.getElementById('featCalc')?.checked) {
-        addonTotal += 250000;
-        selectedAddons.push('Kalkulator Hitung Biaya Custom (+250rb)');
-      }
-
-      const total = pkg.basePrice + addonTotal;
       const formatRp = (num) => 'Rp ' + num.toLocaleString('id-ID');
 
-      document.getElementById('estPackageName').textContent = pkg.name;
-      document.getElementById('estPackageDesc').textContent = pkg.desc;
-      document.getElementById('estBasePrice').textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(pkg.basePrice) : formatRp(pkg.basePrice);
-      document.getElementById('estAddonPrice').textContent = formatRp(addonTotal);
-      document.getElementById('estTotalPrice').textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(total) : formatRp(total);
-      document.getElementById('estDuration').textContent = pkg.duration;
+      const pkgNameEl = document.getElementById('estPackageName');
+      const pkgDescEl = document.getElementById('estPackageDesc');
+      const basePriceEl = document.getElementById('estBasePrice');
+      const totalPriceEl = document.getElementById('estTotalPrice');
+      const durationEl = document.getElementById('estDuration');
+
+      if (pkgNameEl) pkgNameEl.textContent = pkg.name;
+      if (pkgDescEl) pkgDescEl.textContent = pkg.desc;
+      if (basePriceEl) basePriceEl.textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(pkg.basePrice) : formatRp(pkg.basePrice);
+      if (totalPriceEl) totalPriceEl.textContent = (currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(pkg.basePrice) : formatRp(pkg.basePrice);
+      if (durationEl) durationEl.textContent = pkg.duration;
 
       // Construct WhatsApp prefilled message
-      let waText = `Halo jalaninweb.site, saya ingin konsultasi pembuatan website dengan rincian berikut:\n` +
-                   `• Paket Terpilih: ${pkg.name}\n` +
-                   `• Estimasi Biaya: ${formatRp(total)}\n` +
-                   `• Waktu Pengerjaan: ${pkg.duration}\n`;
-      if (selectedAddons.length > 0) {
-        waText += `• Fitur Tambahan: ${selectedAddons.join(', ')}\n`;
-      }
-      waText += `Mohon dibantu info alur pengerjaan dan diskusinya. Terima kasih!`;
+      let waText = 'Halo jalaninweb.site, saya ingin konsultasi pembuatan website dengan rincian berikut:\n' +
+                   '• Paket Terpilih: ' + pkg.name + '\n' +
+                   '• Investasi Layanan: ' + ((currentEstimatorType === 'enterprise') ? 'Mulai ' + formatRp(pkg.basePrice) : formatRp(pkg.basePrice)) + '\n' +
+                   '• Waktu Pengerjaan: ' + pkg.duration + '\n' +
+                   'Mohon dibantu info alur pengerjaan dan diskusinya. Terima kasih!';
 
       const waBtn = document.getElementById('estWaButton');
       if (waBtn) {
-        waBtn.href = `https://wa.me/6289680551957?text=${encodeURIComponent(waText)}`;
+        waBtn.href = 'https://wa.me/6289680551957?text=' + encodeURIComponent(waText);
       }
     }
 
