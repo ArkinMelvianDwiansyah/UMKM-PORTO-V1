@@ -2802,8 +2802,18 @@ body[style*="position:fixed"] #kolom{
       <button type="button" id="btnCopyShareLink" style="background:#9f3e52; color:#fff; border:none; padding:8px 14px; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap;">Salin Link</button>
     </div>
 
+    <label style="font-size:12px; font-weight:600; color:#374151; display:block; margin-bottom:6px;">Pilih Gaya Template Pesan:</label>
+    <select id="selectShareTemplate" style="width:100%; padding:9px 12px; border:1px solid #d1d5db; border-radius:8px; font-size:13px; color:#1f2937; background:#fff; margin-bottom:12px; outline:none; cursor:pointer;">
+      <option value="islami" selected>🕌 1. Islami Lengkap (Assalamu'alaikum &amp; Bismillah)</option>
+      <option value="formal">🕊️ 2. Universal &amp; Fleksibel (Tanpa Agama)</option>
+      <option value="waktu">☀️ 3. Salam Waktu (Pagi/Siang/Malam)</option>
+      <option value="teman">🤝 4. Teman &amp; Sahabat (Hangat &amp; Akrab)</option>
+      <option value="santai">🎉 5. Santai &amp; Casual (Bestie &amp; Tongkrongan)</option>
+      <option value="singkat">⚡ 6. Singkat &amp; Padat (To-the-Point)</option>
+    </select>
+
     <label style="font-size:12px; font-weight:600; color:#374151; display:block; margin-bottom:6px;">Pesan WhatsApp Siap Kirim:</label>
-    <textarea id="outputShareWa" rows="8" readonly style="width:100%; padding:10px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; color:#374151; box-sizing:border-box; resize:none; margin-bottom:14px; line-height:1.4;"></textarea>
+    <textarea id="outputShareWa" rows="9" readonly style="width:100%; padding:10px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; color:#374151; box-sizing:border-box; resize:none; margin-bottom:14px; line-height:1.45;"></textarea>
 
     <div style="display:flex; gap:10px;">
       <button type="button" id="btnCopyShareWa" style="flex:1; background:#f3f4f6; color:#1e1e1e; border:1px solid #d1d5db; padding:10px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer;">
@@ -3466,6 +3476,87 @@ jQuery(document).ready(function($) {
       }
     });
 
+    var selectTemplate = $('#selectShareTemplate');
+
+    var SHARE_TEMPLATES = {
+      islami: function(guest, link) {
+        return "Assalamu'alaikum Wr. Wb.\n" +
+          "Bismillahirrahmanirrahim.\n\n" +
+          "Yth. " + guest + "\n\n" +
+          "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n" +
+          "Ika & Dio\n\n" +
+          "Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:\n" +
+          link + "\n\n" +
+          "Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n" +
+          "Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n" +
+          "Wassalamu'alaikum Wr. Wb.\n" +
+          "Terima Kasih.";
+      },
+
+      formal: function(guest, link) {
+        return "Kepada Yth.\n" +
+          guest + "\n" +
+          "di Tempat\n\n" +
+          "Salam sejahtera,\n\n" +
+          "Tanpa mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu/Saudara/i untuk berkenan menghadiri acara pernikahan kami:\n\n" +
+          "Ika & Dio\n\n" +
+          "Untuk informasi lengkap mengenai detail rangkaian acara, waktu, serta lokasi, silakan kunjungi tautan undangan online kami berikut:\n" +
+          link + "\n\n" +
+          "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu bagi perjalanan baru kami.\n\n" +
+          "Mohon maaf perihal undangan hanya disampaikan secara digital melalui pesan ini. Terima kasih banyak atas perhatian dan doa baiknya.\n\n" +
+          "Salam hormat kami,\n" +
+          "Ika & Dio";
+      },
+
+      waktu: function(guest, link) {
+        return "Selamat Pagi / Siang / Malam,\n" +
+          "Yth. " + guest + "\n\n" +
+          "Semoga Bapak/Ibu/Saudara/i sekeluarga senantiasa dalam keadaan sehat dan penuh berkah.\n\n" +
+          "Dengan rasa syukur yang mendalam, perkenankan kami menyampaikan kabar bahagia dan mengundang Bapak/Ibu/Saudara/i untuk hadir pada momen pernikahan kami:\n\n" +
+          "Ika & Dio\n\n" +
+          "Informasi lengkap terkait agenda acara, waktu, serta denah lokasi Google Maps dapat diakses melalui link berikut:\n" +
+          link + "\n\n" +
+          "Kehadiran serta doa restu dari Bapak/Ibu/Saudara/i merupakan kebahagiaan dan kehormatan yang teramat besar bagi kami dan keluarga.\n\n" +
+          "Terima kasih atas segala perhatian dan kebaikan Bapak/Ibu/Saudara/i.\n\n" +
+          "Hormat kami,\n" +
+          "Ika & Dio";
+      },
+
+      teman: function(guest, link) {
+        return "Halo " + guest + "! 👋\n\n" +
+          "Semoga kabarmu selalu sehat dan bahagia yaa.\n\n" +
+          "Dengan penuh kebahagiaan, kami ingin mengundang kamu, teman sekaligus sahabat tercinta, untuk hadir dan merayakan hari pernikahan kami:\n\n" +
+          "Ika & Dio\n\n" +
+          "Untuk detail waktu, rundown acara, dan peta lokasi, bisa langsung klik link undangan di bawah ini ya:\n" +
+          link + "\n\n" +
+          "Kehadiran dan doa restu kamu bakal berharga banget buat kami berdua. Semoga kita bisa bersua dan bernostalgia di hari bahagia nanti!\n\n" +
+          "Sampai jumpa di hari H ya! Terima kasih banyak! ✨\n\n" +
+          "Salam hangat,\n" +
+          "Ika & Dio";
+      },
+
+      santai: function(guest, link) {
+        return "Hai " + guest + "! ✨🎉\n\n" +
+          "Kabar bahagia nih! Akhirnya waktu yang ditunggu tiba juga, kami memutuskan untuk melangkah ke jenjang pernikahan:\n\n" +
+          "Ika & Dio\n\n" +
+          "Biar lebih lengkap, yuk kepoin detail jadwal dan lokasinya di link undangan digital kita:\n" +
+          link + "\n\n" +
+          "Ditunggu banget kehadirannya yaa! Doa dan senyum kamu bikin hari bahagia kami makin berkesan dan seru.\n\n" +
+          "See you on our wedding day and thank you so much! 🥳🙌";
+      },
+
+      singkat: function(guest, link) {
+        return "Yth. " + guest + ",\n\n" +
+          "Tanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri acara pernikahan kami:\n\n" +
+          "Ika & Dio\n\n" +
+          "Link Undangan:\n" +
+          link + "\n\n" +
+          "Merupakan kebahagiaan dan kehormatan bagi kami apabila Anda berkenan hadir dan memberikan doa restu. Terima kasih banyak.\n\n" +
+          "Salam hangat,\n" +
+          "Ika & Dio";
+      }
+    };
+
     function updateShareOutput() {
       var guestName = inputGuest.val().trim() || 'Nama Tamu';
       var baseUrl = window.location.origin + window.location.pathname;
@@ -3477,15 +3568,9 @@ jQuery(document).ready(function($) {
       cleanLink = cleanLink + '/?to=' + encodeURIComponent(guestName);
       outputLink.val(cleanLink);
 
-      var waMsg = 
-        'Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n' +
-        'Dio dan Ika\n\n' +
-        'Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:\n\n' +
-        'LINK : ' + cleanLink + '\n\n' +
-        'Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n' +
-        'Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n' +
-        'Wassalamu\'alaikum Wr. Wb.\n' +
-        'Terima Kasih.';
+      var tplKey = selectTemplate.val() || 'islami';
+      var builder = SHARE_TEMPLATES[tplKey] || SHARE_TEMPLATES.islami;
+      var waMsg = builder(guestName, cleanLink);
 
       outputWa.val(waMsg);
     }
@@ -3508,6 +3593,7 @@ jQuery(document).ready(function($) {
     });
 
     inputGuest.on('input', updateShareOutput);
+    selectTemplate.on('change', updateShareOutput);
 
     $('#btnCopyShareLink').on('click', function() {
       copyTextToClipboard(outputLink.val());

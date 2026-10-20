@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generator Link Undangan — Dio &amp; Ika | jalaninweb.site &amp; jalanundangan.com</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2387414C'/><text x='50%' y='64%' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='38' font-weight='bold'>D&amp;I</text></svg>" />
+  <title>Generator Link Undangan — Ika &amp; Dio | jalaninweb.site &amp; jalanundangan.com</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2387414C'/><text x='50%' y='64%' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='38' font-weight='bold'>I&amp;D</text></svg>" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,12 +16,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 24px 16px;
     }
     .card {
       background: #ffffff;
       width: 100%;
-      max-width: 540px;
+      max-width: 580px;
       border-radius: 20px;
       padding: 30px 26px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
@@ -46,7 +46,7 @@
       margin-bottom: 8px;
     }
     h1 {
-      font-size: 20px;
+      font-size: 21px;
       color: #1e293b;
       margin-bottom: 4px;
       font-weight: 700;
@@ -54,6 +54,7 @@
     .subtitle {
       font-size: 13px;
       color: #64748b;
+      line-height: 1.4;
     }
     .form-group {
       margin-bottom: 16px;
@@ -73,7 +74,7 @@
       font-size: 14px;
       color: #1e293b;
       outline: none;
-      transition: border 0.2s;
+      transition: border 0.2s, box-shadow 0.2s;
     }
     input[type="text"]:focus, textarea:focus {
       border-color: #87414C;
@@ -132,6 +133,50 @@
       color: #fff !important;
       border-color: #16a34a !important;
     }
+
+    /* Template Picker Pills */
+    .template-pills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+    @media (max-width: 480px) {
+      .template-pills {
+        grid-template-columns: 1fr;
+      }
+    }
+    .template-pill {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-align: left;
+    }
+    .template-pill:hover {
+      background: #fdf2f4;
+      border-color: #87414C;
+      color: #87414C;
+      transform: translateY(-1px);
+    }
+    .template-pill.active {
+      background: #87414C;
+      border-color: #87414C;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(135, 65, 76, 0.25);
+    }
+    .template-pill.active i {
+      color: #ffccd5;
+    }
+
     #toast {
       position: fixed;
       bottom: 24px;
@@ -170,23 +215,23 @@
   <div class="card">
     <div class="header">
       <div class="badge">jalanundangan.com &amp; jalaninweb.site</div>
-      <h1>Generator Link Tamu Dio &amp; Ika</h1>
-      <p class="subtitle">Buat link personal dan pesan WhatsApp otomatis untuk membagikan undangan pernikahan Dio &amp; Ika</p>
+      <h1>Generator Undangan Tamu Ika &amp; Dio</h1>
+      <p class="subtitle">Buat link personal dan pilih template pesan WhatsApp otomatis sesuai tipe tamu (Islami, Universal, Salam Waktu, Teman/Sahabat, atau Santai)</p>
     </div>
 
-    <!-- NAMA TAMU -->
+    <!-- 1. NAMA TAMU -->
     <div class="form-group">
-      <label for="guestName"><i class="fas fa-user" style="color:#87414C; margin-right:4px;"></i> Nama Tamu / Keluarga:</label>
-      <input type="text" id="guestName" placeholder="Contoh: Bapak Joko Widodo & Ibu" value="Bapak Joko Widodo & Ibu" autofocus>
+      <label for="guestName"><i class="fas fa-user" style="color:#87414C; margin-right:4px;"></i> Nama Tamu / Keluarga / Sahabat:</label>
+      <input type="text" id="guestName" placeholder="Contoh: Bapak Joko Widodo &amp; Ibu / Bro Rendy / Sahabat Dhea" value="Bapak Joko Widodo &amp; Ibu" autofocus>
     </div>
 
-    <!-- URL WEBSITE -->
+    <!-- 2. URL WEBSITE -->
     <div class="form-group">
       <label for="baseUrl"><i class="fas fa-link" style="color:#87414C; margin-right:4px;"></i> URL Domain Undangan:</label>
       <input type="text" id="baseUrl" value="https://jalaninweb.site/wedding/">
     </div>
 
-    <!-- LINK UNDANGAN HASIL -->
+    <!-- 3. LINK UNDANGAN HASIL -->
     <div class="form-group">
       <label><i class="fas fa-share-nodes" style="color:#87414C; margin-right:4px;"></i> Link Undangan Siap Kirim:</label>
       <div class="btn-row">
@@ -200,19 +245,50 @@
       </div>
     </div>
 
-    <!-- PESAN WHATSAPP -->
+    <!-- 4. PILIHAN TEMPLATE PESAN -->
     <div class="form-group">
-      <label for="outputWa"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:4px;"></i> Pesan WhatsApp Otomatis:</label>
-      <textarea id="outputWa" rows="12" readonly style="background:#f8fafc; font-size:12px; line-height:1.55; color:#334155; resize:none;"></textarea>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <label style="margin-bottom:0;"><i class="fas fa-layer-group" style="color:#87414C; margin-right:4px;"></i> Pilih Gaya Template Pesan WA:</label>
+        <span id="activeBadge" style="font-size:11px; font-weight:700; color:#87414C; background:#fdf2f4; padding:2px 8px; border-radius:12px;">🕌 Islami Lengkap</span>
+      </div>
+      <div class="template-pills">
+        <button type="button" class="template-pill active" data-template="islami">
+          <i class="fas fa-mosque"></i> 1. Islami (Assalamu'alaikum)
+        </button>
+        <button type="button" class="template-pill" data-template="formal">
+          <i class="fas fa-dove"></i> 2. Universal (Tanpa Agama)
+        </button>
+        <button type="button" class="template-pill" data-template="waktu">
+          <i class="fas fa-clock"></i> 3. Salam Waktu (Pagi/Siang)
+        </button>
+        <button type="button" class="template-pill" data-template="teman">
+          <i class="fas fa-user-group"></i> 4. Teman &amp; Sahabat
+        </button>
+        <button type="button" class="template-pill" data-template="santai">
+          <i class="fas fa-wand-magic-sparkles"></i> 5. Santai &amp; Casual (Bestie)
+        </button>
+        <button type="button" class="template-pill" data-template="singkat">
+          <i class="fas fa-bolt"></i> 6. Singkat &amp; Padat
+        </button>
+      </div>
     </div>
 
-    <!-- ACTION BUTTONS -->
+    <!-- 5. PREVIEW PESAN WHATSAPP -->
+    <div class="form-group">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <label for="outputWa" style="margin-bottom:0;"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:4px;"></i> Pesan WhatsApp Siap Kirim:</label>
+        <span style="font-size:11px; color:#64748b;">(Teks bisa diedit manual jika perlu)</span>
+      </div>
+      <textarea id="outputWa" rows="13" style="background:#f8fafc; font-size:12.5px; line-height:1.55; color:#334155; resize:vertical;"></textarea>
+    </div>
+
+    <!-- 6. ACTION BUTTONS -->
     <div class="btn-row" style="margin-top:18px;">
       <button type="button" class="btn btn-secondary" id="btnCopyWa" style="flex:1;">
         <i class="fas fa-copy"></i> Salin Pesan WA
       </button>
       <button type="button" class="btn btn-wa" id="btnSendWa" style="flex:1.2;">
-        <i class="fab fa-whatsapp"></i> Buka WhatsApp
+        <i class="fab fa-whatsapp"></i> Buka WhatsApp Langsung
       </button>
     </div>
 
@@ -232,12 +308,146 @@
     const outputLink = document.getElementById('outputLink');
     const outputWa = document.getElementById('outputWa');
     const toast = document.getElementById('toast');
+    const activeBadge = document.getElementById('activeBadge');
+    const templatePills = document.querySelectorAll('.template-pill');
+
+    let currentTemplateKey = 'islami';
 
     // Auto-detect URL from current location if opened on live server
     if (window.location.protocol.startsWith('http')) {
       const detected = window.location.origin + window.location.pathname.replace(/generator\.html$/, '');
       baseInput.value = detected;
     }
+
+    // 6 VARIATIONS OF INVITATION MESSAGE TEMPLATES
+    const TEMPLATES = {
+      islami: {
+        name: '🕌 Islami Lengkap',
+        build: (guest, link) => 
+`Assalamu'alaikum Wr. Wb.
+Bismillahirrahmanirrahim.
+
+Yth. ${guest}
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:
+
+Ika & Dio
+
+Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:
+${link}
+
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+
+Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.
+
+Wassalamu'alaikum Wr. Wb.
+Terima Kasih.`
+      },
+
+      formal: {
+        name: '🕊️ Universal & Fleksibel',
+        build: (guest, link) =>
+`Kepada Yth.
+${guest}
+di Tempat
+
+Salam sejahtera,
+
+Tanpa mengurangi rasa hormat, melalui pesan ini kami mengundang Bapak/Ibu/Saudara/i untuk berkenan menghadiri acara pernikahan kami:
+
+Ika & Dio
+
+Untuk informasi lengkap mengenai detail rangkaian acara, waktu, serta lokasi, silakan kunjungi tautan undangan online kami berikut:
+${link}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu bagi perjalanan baru kami.
+
+Mohon maaf perihal undangan hanya disampaikan secara digital melalui pesan ini. Terima kasih banyak atas perhatian dan doa baiknya.
+
+Salam hormat kami,
+Ika & Dio`
+      },
+
+      waktu: {
+        name: '☀️ Salam Waktu (Pagi/Siang/Malam)',
+        build: (guest, link) =>
+`Selamat Pagi / Siang / Malam,
+Yth. ${guest}
+
+Semoga Bapak/Ibu/Saudara/i sekeluarga senantiasa dalam keadaan sehat dan penuh berkah.
+
+Dengan rasa syukur yang mendalam, perkenankan kami menyampaikan kabar bahagia dan mengundang Bapak/Ibu/Saudara/i untuk hadir pada momen pernikahan kami:
+
+Ika & Dio
+
+Informasi lengkap terkait agenda acara, waktu, serta denah lokasi Google Maps dapat diakses melalui link berikut:
+${link}
+
+Kehadiran serta doa restu dari Bapak/Ibu/Saudara/i merupakan kebahagiaan dan kehormatan yang teramat besar bagi kami dan keluarga.
+
+Terima kasih atas segala perhatian dan kebaikan Bapak/Ibu/Saudara/i.
+
+Hormat kami,
+Ika & Dio`
+      },
+
+      teman: {
+        name: '🤝 Teman & Sahabat',
+        build: (guest, link) =>
+`Halo ${guest}! 👋
+
+Semoga kabarmu selalu sehat dan bahagia yaa.
+
+Dengan penuh kebahagiaan, kami ingin mengundang kamu, teman sekaligus sahabat tercinta, untuk hadir dan merayakan hari pernikahan kami:
+
+Ika & Dio
+
+Untuk detail waktu, rundown acara, dan peta lokasi, bisa langsung klik link undangan di bawah ini ya:
+${link}
+
+Kehadiran dan doa restu kamu bakal berharga banget buat kami berdua. Semoga kita bisa bersua dan bernostalgia di hari bahagia nanti!
+
+Sampai jumpa di hari H ya! Terima kasih banyak! ✨
+
+Salam hangat,
+Ika & Dio`
+      },
+
+      santai: {
+        name: '🎉 Santai & Casual (Bestie)',
+        build: (guest, link) =>
+`Hai ${guest}! ✨🎉
+
+Kabar bahagia nih! Akhirnya waktu yang ditunggu tiba juga, kami memutuskan untuk melangkah ke jenjang pernikahan:
+
+Ika & Dio
+
+Biar lebih lengkap, yuk kepoin detail jadwal dan lokasinya di link undangan digital kita:
+${link}
+
+Ditunggu banget kehadirannya yaa! Doa dan senyum kamu bikin hari bahagia kami makin berkesan dan seru.
+
+See you on our wedding day and thank you so much! 🥳🙌`
+      },
+
+      singkat: {
+        name: '⚡ Singkat & Padat',
+        build: (guest, link) =>
+`Yth. ${guest},
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri acara pernikahan kami:
+
+Ika & Dio
+
+Link Undangan:
+${link}
+
+Merupakan kebahagiaan dan kehormatan bagi kami apabila Anda berkenan hadir dan memberikan doa restu. Terima kasih banyak.
+
+Salam hangat,
+Ika & Dio`
+      }
+    };
 
     function showToast(msg) {
       toast.textContent = msg;
@@ -253,24 +463,23 @@
       const link = base + '?to=' + encodeURIComponent(name);
       outputLink.value = link;
 
-      const waMsg = 
-`Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:
+      const templateObj = TEMPLATES[currentTemplateKey] || TEMPLATES.islami;
+      outputWa.value = templateObj.build(name, link);
 
-Dio dan Ika
-
-Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:
-
-LINK : ${link}
-
-Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
-
-Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.
-
-Wassalamu'alaikum Wr. Wb.
-Terima Kasih.`;
-
-      outputWa.value = waMsg;
+      if (activeBadge) {
+        activeBadge.textContent = templateObj.name;
+      }
     }
+
+    // Pill click handler
+    templatePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        templatePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentTemplateKey = pill.getAttribute('data-template') || 'islami';
+        update();
+      });
+    });
 
     function copyToClipboard(text, btn, successText) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
