@@ -90,10 +90,10 @@
     <!-- STICKY HEADER & CART TRIGGER -->
     <header class="sticky top-0 z-40 bg-sand/95 backdrop-blur-md border-b border-sand-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20 gap-6">
+            <div class="flex items-center justify-between h-20 gap-2 sm:gap-6">
                 <!-- Local Vector Logo -->
                 <a href="#" class="flex items-center shrink-0 focus:outline-none">
-                    <img src="assets/logo.svg" alt="KayuArta Jepara Heritage & Living" class="h-11 w-auto block">
+                    <img src="assets/logo.svg" alt="KayuArta Jepara Heritage & Living" class="h-8 sm:h-11 w-auto max-w-[140px] sm:max-w-none block">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -109,13 +109,13 @@
                 </nav>
 
                 <!-- Cart & Action Buttons -->
-                <div class="flex items-center gap-3 shrink-0">
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                     <a href="#custom-order" class="hidden xl:inline-flex items-center gap-2 border border-teak text-teak hover:bg-teak hover:text-sand text-xs font-bold uppercase tracking-wider px-4 py-3 transition whitespace-nowrap shrink-0">
                         <i class="fa-solid fa-ruler-combined text-brass"></i>
                         <span>Custom Ukuran</span>
                     </a>
 
-                    <button type="button" onclick="toggleCartDrawer(true)" class="inline-flex items-center gap-2.5 bg-teak hover:bg-teak-light text-sand text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-3 transition whitespace-nowrap shrink-0">
+                    <button type="button" onclick="toggleCartDrawer(true)" class="inline-flex items-center gap-1.5 sm:gap-2.5 bg-teak hover:bg-teak-light text-sand text-xs font-bold uppercase tracking-wider px-2.5 sm:px-5 py-2 sm:py-3 transition whitespace-nowrap shrink-0">
                         <i class="fa-solid fa-truck-ramp-box text-brass"></i>
                         <span class="hidden sm:inline">Daftar Pesanan</span>
                         <span id="headerCartCount" class="bg-brass text-white font-mono text-[11px] px-2 py-0.5">0</span>
@@ -322,9 +322,9 @@
                 </div>
 
                 <!-- Status Filter -->
-                <div class="flex items-center gap-2">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
                     <label for="statusFilterSelect" class="text-xs font-mono uppercase text-teak-muted whitespace-nowrap">Status Produksi:</label>
-                    <select id="statusFilterSelect" onchange="setStatusFilter(this.value)" class="bg-sand-card border border-sand-line px-3.5 py-2.5 text-xs font-mono font-semibold text-teak focus:outline-none focus:border-brass">
+                    <select id="statusFilterSelect" onchange="setStatusFilter(this.value)" class="bg-sand-card border border-sand-line px-3.5 py-2.5 text-xs font-mono font-semibold text-teak focus:outline-none focus:border-brass w-full sm:w-auto max-w-full">
                         <option value="all">Semua Status (Ready &amp; Pre-Order)</option>
                         <option value="Ready Stock Siap Kirim">Ready Stock Siap Kirim</option>
                         <option value="Pre-Order Custom 14 Hari">Pre-Order Custom 14 Hari</option>

@@ -136,10 +136,10 @@
 
     <!-- STICKY HEADER / NAVBAR -->
     <header class="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-stone-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 sm:gap-4">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 shrink-0">
-                <img src="assets/logo.svg" alt="Azzahra & GlowLokal Atelier" class="h-11 w-auto shrink-0">
+                <img src="assets/logo.svg" alt="Azzahra & GlowLokal Atelier" class="h-8 sm:h-11 w-auto max-w-[150px] sm:max-w-none shrink-0">
             </a>
 
             <!-- Navigation Links -->
@@ -161,13 +161,13 @@
             </div>
 
             <!-- Right Actions: Size Guide & Cart Drawer Trigger -->
-            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 <button onclick="openSizeGuideModal()" class="whitespace-nowrap hidden md:inline-flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-mono font-semibold text-xs transition">
                     <i class="fa-solid fa-ruler-horizontal text-rosegold-600"></i>
                     <span>SIZE GUIDE</span>
                 </button>
 
-                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-3 bg-[#121212] hover:bg-rosegold-600 text-white font-bold px-4 py-2.5 transition">
+                <button id="headerCartBtn" onclick="toggleCartDrawer(true)" class="whitespace-nowrap relative inline-flex items-center gap-2 sm:gap-3 bg-[#121212] hover:bg-rosegold-600 text-white font-bold px-2.5 sm:px-4 py-2 sm:py-2.5 transition">
                     <div class="relative flex items-center gap-1.5">
                         <i class="fa-solid fa-bag-shopping text-base text-rose-300"></i>
                         <span id="cartCountBadge" class="bg-rosegold-600 text-white font-mono text-[11px] font-bold min-w-[22px] h-5 px-1.5 inline-flex items-center justify-center">0</span>

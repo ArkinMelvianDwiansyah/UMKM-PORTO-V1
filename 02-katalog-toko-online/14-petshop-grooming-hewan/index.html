@@ -157,11 +157,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4 flex-nowrap">
             <!-- Local SVG Logo -->
             <a href="#" class="flex items-center gap-3 shrink-0 group">
-                <img src="assets/logo.svg" alt="PawHaus Pet Mart, Grooming & Stay" class="h-11 w-auto shrink-0 transition-transform group-hover:scale-[1.02]">
+                <img src="assets/logo.svg" alt="PawHaus Pet Mart, Grooming & Stay" class="h-9 sm:h-11 w-auto max-w-[160px] sm:max-w-none shrink-0 transition-transform group-hover:scale-[1.02]">
             </a>
 
             <!-- DUAL-MODE NAVIGATION SWITCHER + QUICK LINKS -->
-            <div class="hidden lg:flex items-center gap-3 shrink-0 whitespace-nowrap">
+            <nav class="hidden xl:flex items-center gap-3 shrink-0 whitespace-nowrap" aria-label="Navigasi Utama">
                 <div class="flex items-center bg-cream-soft p-1 rounded-xl border-[1.5px] border-charcoal shadow-tactile-sm shrink-0">
                     <button id="navModeMart" onclick="switchMode('mart')" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tracking-tight transition flex items-center gap-2 bg-charcoal text-cream whitespace-nowrap">
                         <i class="fa-solid fa-bag-shopping text-terracotta"></i>
@@ -176,7 +176,7 @@
                 </div>
                 <a href="#ulasan-pelanggan" class="px-2.5 py-1.5 text-xs font-extrabold text-charcoal hover:text-terracotta transition whitespace-nowrap shrink-0">Ulasan Foto</a>
                 <a href="#faq" class="px-2.5 py-1.5 text-xs font-extrabold text-charcoal hover:text-terracotta transition whitespace-nowrap shrink-0">FAQ</a>
-            </div>
+            </nav>
 
             <!-- Right Actions: Subscription Toggle & Cart Button -->
             <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
@@ -185,21 +185,21 @@
                     <span id="headerSubLabel">Langganan: OFF (-10%)</span>
                 </button>
 
-                <button onclick="openCartDrawer()" class="relative inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-bold text-xs sm:text-sm tactile-btn whitespace-nowrap shrink-0">
+                <button onclick="openCartDrawer()" class="relative inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-display font-bold text-xs sm:text-sm tactile-btn whitespace-nowrap shrink-0">
                     <i class="fa-solid fa-basket-shopping"></i>
-                    <span>Keranjang</span>
+                    <span class="hidden sm:inline">Keranjang</span>
                     <span id="cartCountBadge" class="bg-charcoal text-mustard font-mono text-xs font-bold px-2 py-0.5 rounded-md border border-white/20">0</span>
                 </button>
 
                 <!-- Mobile Hamburger Toggle Button -->
-                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="lg:hidden w-10 h-10 rounded-xl bg-cream border-[1.5px] border-charcoal text-charcoal hover:bg-cream-dark flex items-center justify-center shrink-0 transition tactile-btn" aria-label="Buka Menu Navigasi">
+                <button id="mobileNavToggleBtn" onclick="toggleMobileDrawer(true)" class="xl:hidden w-10 h-10 rounded-xl bg-cream border-[1.5px] border-charcoal text-charcoal hover:bg-cream-dark flex items-center justify-center shrink-0 transition tactile-btn" aria-label="Buka Menu Navigasi">
                     <i class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Dual-Mode Switcher Bar -->
-        <div class="lg:hidden px-4 pb-3 flex gap-2">
+        <div class="xl:hidden px-4 pb-3 flex gap-2">
             <button id="mobileModeMart" onclick="switchMode('mart')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold border-[1.5px] border-charcoal bg-charcoal text-cream flex items-center justify-center gap-1.5">
                 <i class="fa-solid fa-bag-shopping text-terracotta"></i>
                 <span>Belanja Pakan</span>
