@@ -203,7 +203,7 @@
     <!-- PESAN WHATSAPP -->
     <div class="form-group">
       <label for="outputWa"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:4px;"></i> Pesan WhatsApp Otomatis:</label>
-      <textarea id="outputWa" rows="8" readonly style="background:#f8fafc; font-size:12px; line-height:1.55; color:#334155; resize:none;"></textarea>
+      <textarea id="outputWa" rows="12" readonly style="background:#f8fafc; font-size:12px; line-height:1.55; color:#334155; resize:none;"></textarea>
     </div>
 
     <!-- ACTION BUTTONS -->
@@ -254,27 +254,20 @@
       outputLink.value = link;
 
       const waMsg = 
-`*Yth. ${name}*
+`Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:
 
-Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami:
+Dio dan Ika
 
-*Dio & Ika*
-(Millendio Wahyu Ramadhana & Ika Meilina)
+Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:
 
-🗓 *Kamis, 29 Oktober 2026*
-⏰ Akad Nikah: 08:00 WIB
-⏰ Resepsi: 12:00 WIB - Selesai
-📍 *Kediaman Mempelai Wanita*
-Jln. Cemara RT 05 RW 03, Desa Ketami, Pesantren, Kota Kediri
-🗺 Link Maps: https://maps.app.goo.gl/fGNtyagnvRovkxU69
+LINK : ${link}
 
-Detail & Undangan Digital lengkap dapat diakses melalui link berikut:
-${link}
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
 
-Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.
 
-Terima kasih.
-_Dio & Ika_`;
+Wassalamu'alaikum Wr. Wb.
+Terima Kasih.`;
 
       outputWa.value = waMsg;
     }

@@ -2803,7 +2803,7 @@ body[style*="position:fixed"] #kolom{
     </div>
 
     <label style="font-size:12px; font-weight:600; color:#374151; display:block; margin-bottom:6px;">Pesan WhatsApp Siap Kirim:</label>
-    <textarea id="outputShareWa" rows="5" readonly style="width:100%; padding:10px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; color:#374151; box-sizing:border-box; resize:none; margin-bottom:14px; line-height:1.4;"></textarea>
+    <textarea id="outputShareWa" rows="8" readonly style="width:100%; padding:10px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; color:#374151; box-sizing:border-box; resize:none; margin-bottom:14px; line-height:1.4;"></textarea>
 
     <div style="display:flex; gap:10px;">
       <button type="button" id="btnCopyShareWa" style="flex:1; background:#f3f4f6; color:#1e1e1e; border:1px solid #d1d5db; padding:10px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer;">
@@ -3478,21 +3478,14 @@ jQuery(document).ready(function($) {
       outputLink.val(cleanLink);
 
       var waMsg = 
-        '*Yth. ' + guestName + '*\n\n' +
-        'Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami:\n\n' +
-        '*Dio & Ika*\n' +
-        '(Millendio Wahyu Ramadhana & Ika Meilina)\n\n' +
-        '🗓 *Kamis, 29 Oktober 2026*\n' +
-        '⏰ Akad Nikah: 08:00 WIB\n' +
-        '⏰ Resepsi: 12:00 WIB - Selesai\n' +
-        '📍 *Kediaman Mempelai Wanita*\n' +
-        'Jln. Cemara RT 05 RW 03, Desa Ketami, Pesantren, Kota Kediri\n' +
-        '🗺 Maps: https://maps.app.goo.gl/fGNtyagnvRovkxU69\n\n' +
-        'Detail & Undangan Digital lengkap dapat diakses melalui link berikut:\n' +
-        cleanLink + '\n\n' +
-        'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.\n\n' +
-        'Terima kasih.\n' +
-        '_Dio & Ika_';
+        'Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i, teman sekaligus sahabat, untuk menghadiri acara pernikahan kami:\n\n' +
+        'Dio dan Ika\n\n' +
+        'Berikut link undangan kami untuk info lengkap dari acara bisa kunjungi:\n\n' +
+        'LINK : ' + cleanLink + '\n\n' +
+        'Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n' +
+        'Mohon maaf perihal undangan hanya dibagikan melalui pesan ini. Terima kasih banyak atas perhatiannya.\n\n' +
+        'Wassalamu\'alaikum Wr. Wb.\n' +
+        'Terima Kasih.';
 
       outputWa.val(waMsg);
     }
