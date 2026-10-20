@@ -1737,14 +1737,18 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .nav-links,
-  .nav-cta-btn {
+  .nav-cta-btn,
+  .nav-social-icons {
     display: none;
   }
   .mobile-menu-btn {
     display: block;
   }
+}
+
+@media (max-width: 768px) {
   .hero-title {
     font-size: 2.15rem;
   }
@@ -1894,8 +1898,30 @@ button {
 
 @media (max-width: 992px) {
   .video-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu-detail-grid { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 768px) {
   .video-cards-grid { grid-template-columns: 1fr; }
   .nav-social-icons { display: none; }
+  .menu-rotator-card { padding: 24px 18px; }
+  .hero-trust-row { justify-content: center; }
 }
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 1.875rem; line-height: 1.25; }
+  .hero-action-group { flex-direction: column; }
+  .hero-action-group a { width: 100%; justify-content: center; text-align: center; }
+  .menu-rotator-card { padding: 18px 14px; border-radius: var(--radius-md); }
+  .day-tab-btn { padding: 8px 14px; font-size: 0.8125rem; }
+  .menu-dish-img { height: 220px; }
+  .macro-panel { padding: 18px 14px; }
+  .calorie-highlight { font-size: 2rem; }
+  .macros-grid { gap: 8px; }
+  .macro-stat-box { padding: 8px 4px; }
+  .macro-stat-val { font-size: 1.05rem; }
+  .pricing-card { padding: 24px 18px; }
+  .section-title { font-size: 1.625rem; }
+}
+

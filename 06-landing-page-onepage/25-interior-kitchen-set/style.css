@@ -1130,18 +1130,21 @@ button {
 .paket-pricing {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
 }
 
 .paket-price {
-  font-size: 2.1rem;
+  font-size: 1.875rem;
   font-weight: 900;
   color: var(--text-main);
+  white-space: nowrap;
 }
 
 .paket-period {
   font-size: 0.8125rem;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .paket-features {
@@ -1782,13 +1785,16 @@ button {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-desktop, .nav-actions .nav-cta-btn {
+@media (max-width: 992px) {
+  .nav-desktop, .nav-actions .nav-cta-btn, .nav-social-icons {
     display: none;
   }
   .hamburger-btn {
     display: flex;
   }
+}
+
+@media (max-width: 768px) {
   .hero-title {
     font-size: 2.25rem;
   }
@@ -1843,4 +1849,19 @@ button {
 }
 @media (max-width: 768px) {
   .nav-social-icons { display: none; }
+  .paket-grid { max-width: 100%; }
 }
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 1.875rem; line-height: 1.25; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+  .paket-card { padding: 24px 18px; }
+  .paket-price { font-size: 1.625rem; }
+  .paket-pricing { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .calc-wrapper { padding: 20px 14px; }
+  .galeri-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.625rem; }
+}
+

@@ -1729,14 +1729,18 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .nav-links,
-  .nav-cta-btn {
+  .nav-cta-btn,
+  .nav-social-icons {
     display: none;
   }
   .mobile-menu-btn {
     display: block;
   }
+}
+
+@media (max-width: 768px) {
   .hero-title {
     font-size: 2.15rem;
   }
@@ -1885,8 +1889,27 @@ button {
 
 @media (max-width: 992px) {
   .video-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .fleet-calc-grid { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 768px) {
   .video-cards-grid { grid-template-columns: 1fr; }
   .nav-social-icons { display: none; }
+  .fleet-selector-box { padding: 24px 18px; }
 }
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 1.875rem; line-height: 1.25; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+  .fleet-selector-box { padding: 18px 14px; border-radius: var(--radius-md); }
+  .fleet-tab-btn { padding: 8px 14px; font-size: 0.8125rem; }
+  .fleet-specs-overlay { grid-template-columns: repeat(3, 1fr); padding: 10px 8px; gap: 4px; }
+  .fleet-spec-title { font-size: 0.58rem; }
+  .fleet-spec-val { font-size: 0.78rem; }
+  .fleet-preview-img { height: 210px; }
+  .calc-est-total { font-size: 1.75rem; }
+  .section-title { font-size: 1.625rem; }
+}
+

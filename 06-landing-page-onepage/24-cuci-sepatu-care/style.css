@@ -1794,13 +1794,16 @@ button {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-desktop, .nav-actions .nav-cta-btn {
+@media (max-width: 992px) {
+  .nav-desktop, .nav-actions .nav-cta-btn, .nav-social-icons {
     display: none;
   }
   .hamburger-btn {
     display: flex;
   }
+}
+
+@media (max-width: 768px) {
   .hero-title {
     font-size: 2.25rem;
   }
@@ -2130,7 +2133,29 @@ button {
   .calc-cuci-grid { grid-template-columns: 1fr; }
   .cabang-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 768px) {
-  .cabang-grid { grid-template-columns: 1fr; }
+  .nav-desktop, .nav-actions .nav-cta-btn { display: none; }
   .nav-social-icons { display: none; }
+  .hamburger-btn { display: flex; }
+  .cabang-grid { grid-template-columns: 1fr; }
+  .hero-trust-metrics { justify-content: center; }
+  .calc-cuci-wrapper { padding: 28px 20px; }
 }
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-title { font-size: 1.875rem; line-height: 1.25; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+  .calc-cuci-wrapper { padding: 20px 14px; border-radius: var(--radius-md); }
+  .shoe-count-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .shoe-count-btn { width: 100%; text-align: center; padding: 8px 10px; font-size: 0.8125rem; }
+  .shoe-count-btn:last-child { grid-column: span 2; }
+  .calc-summary-card { padding: 20px 16px; border-radius: var(--radius-md); }
+  .calc-total-amount { font-size: 1.75rem; }
+  .calc-wa-btn { font-size: 0.875rem; padding: 13px; }
+  .cabang-card { padding: 20px 16px; }
+  .galeri-grid { grid-template-columns: 1fr; }
+}
+
