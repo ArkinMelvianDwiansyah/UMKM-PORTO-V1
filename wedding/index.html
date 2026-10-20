@@ -3617,9 +3617,30 @@ jQuery(document).ready(function($) {
     var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxZKPAfK5lv-YOQAba5AM4rpDzeZdKeVEXfDr608Qjwf395msPbckyJp946xfjJbq_/exec';
     var storageKey = 'jalanundangan_wishes_dio_ika_v3';
     var defaultWishes = [
-      { name: 'Dina', date: '19-10-2026 14:20', content: 'Selamat menempuh hidup baru Dio & Ika! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah serta senantiasa dalam lindungan Allah SWT.', status: 'Hadir' },
-      { name: 'Mincha', date: '19-10-2026 15:05', content: 'Happy wedding Dio & Ika! Lancar lancar sampai hari H ya.', status: 'Hadir' }
+      { name: 'Dina', date: '19 Okt 2026, 14:20', content: 'Selamat menempuh hidup baru Dio & Ika! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah serta senantiasa dalam lindungan Allah SWT.', status: 'Hadir' },
+      { name: 'Mincha', date: '19 Okt 2026, 15:05', content: 'Happy wedding Dio & Ika! Lancar lancar sampai hari H ya.', status: 'Hadir' }
     ];
+
+    var MAX_VISIBLE_DEFAULT = 5;
+    var isExpanded = false;
+
+    // Helper format tanggal agar rapi dan tidak panjang seperti raw Date JS
+    function formatWishDate(rawDate) {
+      if (!rawDate) return '';
+      try {
+        var d = new Date(rawDate);
+        if (!isNaN(d.getTime())) {
+          var day = ('0' + d.getDate()).slice(-2);
+          var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+          var month = monthNames[d.getMonth()] || ('0' + (d.getMonth() + 1)).slice(-2);
+          var year = d.getFullYear();
+          var hours = ('0' + d.getHours()).slice(-2);
+          var mins = ('0' + d.getMinutes()).slice(-2);
+          return day + ' ' + month + ' ' + year + ', ' + hours + ':' + mins;
+        }
+      } catch(e) {}
+      return rawDate;
+    }
 
     function getSavedWishes() {
       try {
@@ -3642,7 +3663,10 @@ jQuery(document).ready(function($) {
       var wishes = wishesToRender || getSavedWishes();
 
       list.empty();
-      wishes.forEach(function(w) {
+
+      var visibleWishes = isExpanded ? wishes : wishes.slice(0, MAX_VISIBLE_DEFAULT);
+
+      visibleWishes.forEach(function(w) {
         var itemHtml = 
           '<li class="rsvp-item">' +
             '<div class="rsvp-ava">' +
@@ -3656,12 +3680,36 @@ jQuery(document).ready(function($) {
               '<div class="rsvp-headline">' +
                 '<span class="rsvp-name">' + $('<div>').text(w.name || w.nama || 'Tamu Undangan').html() + '</span>' +
               '</div>' +
-              '<div class="rsvp-meta" style="font-size:11px; color:#888; margin:2px 0 4px;">' + $('<div>').text(w.date || w.waktu || '').html() + '</div>' +
+              '<div class="rsvp-meta" style="font-size:11px; color:#888; margin:2px 0 4px;">' + $('<div>').text(formatWishDate(w.date || w.waktu || '')).html() + '</div>' +
               '<div class="rsvp-content" style="font-size:13px; line-height:1.4; color:#4b5563;">' + $('<div>').text(w.content || w.ucapan || '').html() + '</div>' +
             '</div>' +
           '</li>';
         list.append(itemHtml);
       });
+
+      // Update or create Toggle Button
+      var moreWrap = $('#rsvpMoreBtnWrap');
+      if (!moreWrap.length) {
+        moreWrap = $('<div id="rsvpMoreBtnWrap" style="text-align:center; margin-top:14px;"></div>');
+        $('.rsvp-comments-wrap').append(moreWrap);
+      }
+
+      moreWrap.empty();
+      if (wishes.length > MAX_VISIBLE_DEFAULT) {
+        var btnText = isExpanded 
+          ? '<span>Sembunyikan Sebagian</span> <i class="fas fa-chevron-up" style="font-size:11px; margin-left:6px;"></i>' 
+          : '<span>Lihat Semua Ucapan (' + wishes.length + ')</span> <i class="fas fa-chevron-down" style="font-size:11px; margin-left:6px;"></i>';
+
+        var btn = $('<button type="button" class="btn-toggle-wishes" style="background:#FAF4EC; color:#87414C; border:1px solid #87414C; border-radius:20px; padding:8px 18px; font-size:12.5px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; transition:all 0.2s ease; box-shadow:0 2px 6px rgba(135,65,76,0.12);">' + btnText + '</button>');
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          isExpanded = !isExpanded;
+          renderWishes();
+        });
+
+        moreWrap.append(btn);
+      }
     }
 
     // Load latest wishes from Google Sheet
