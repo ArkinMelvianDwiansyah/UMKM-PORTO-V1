@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#064E3B"/>
+  <!-- Leaf & Bowl Shape -->
+  <path d="M16 34C16 43.941 24.059 52 34 52C43.941 52 52 43.941 52 34H16Z" fill="#10B981"/>
+  <path d="M32 14C24 18 20 25 22 32C28 32 35 28 38 22C40 18 36 15 32 14Z" fill="#34D399"/>
+  <path d="M35 20C42 18 46 23 44 28C40 28 35 25 35 20Z" fill="#6EE7B7"/>
+  <circle cx="28" cy="28" r="2.5" fill="#FFFFFF"/>
+</svg>

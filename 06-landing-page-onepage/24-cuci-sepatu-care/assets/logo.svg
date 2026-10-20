@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none">
+  <!-- Sneaker Emblem -->
+  <rect x="4" y="4" width="40" height="40" rx="10" fill="#0F172A"/>
+  <path d="M12 28C14 28 17 26.5 21 24C25 21.5 29 19 33 18C36 17 38 19 37 22C35 25 32 29 27 30C22 31 14 31 12 28Z" fill="#84CC16"/>
+  <circle cx="34" cy="12" r="2.5" fill="#0EA5E9"/>
+  <!-- Typography -->
+  <text x="56" y="26" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="20" fill="#0F172A" letter-spacing="1">SHOE<tspan fill="#65A30D">LAB</tspan></text>
+  <text x="56" y="38" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#64748B" letter-spacing="2">SNEAKER &amp; LEATHER CARE</text>
+</svg>

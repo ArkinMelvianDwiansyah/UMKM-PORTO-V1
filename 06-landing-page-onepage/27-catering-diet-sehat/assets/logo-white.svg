@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 48" fill="none">
+  <!-- Healthy Bowl Emblem -->
+  <rect x="4" y="4" width="40" height="40" rx="10" fill="#047857"/>
+  <path d="M12 25C12 32 17 37 24 37C31 37 36 32 36 25H12Z" fill="#34D399"/>
+  <path d="M24 12C18 15 15 20 16.5 24C21 24 26 21 28 17C29 14 26.5 12.5 24 12Z" fill="#A7F3D0"/>
+  <!-- Typography -->
+  <text x="56" y="25" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" letter-spacing="1.5">VITAL<tspan fill="#34D399">MEALS</tspan></text>
+  <text x="56" y="38" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#A7F3D0" letter-spacing="2">HEALTHY DIET &amp; MEAL PREP</text>
+</svg>

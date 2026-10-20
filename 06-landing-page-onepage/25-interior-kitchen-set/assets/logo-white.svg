@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 48" fill="none">
+  <!-- House / Cabinet Architecture Emblem -->
+  <rect x="4" y="4" width="40" height="40" rx="10" fill="#334155" stroke="#475569"/>
+  <path d="M14 36V22L24 15L34 22V36H14Z" stroke="#F8FAFC" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="18" y="25" width="5" height="8" rx="1" fill="#FB923C"/>
+  <rect x="25" y="25" width="5" height="8" rx="1" fill="#EA580C"/>
+  <!-- Typography -->
+  <text x="56" y="25" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="19" fill="#F8FAFC" letter-spacing="1.5">GRAHA<tspan fill="#FB923C">KREASI</tspan></text>
+  <text x="56" y="38" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="8.5" fill="#CBD5E1" letter-spacing="2">KITCHEN SET &amp; INTERIOR</text>
+</svg>

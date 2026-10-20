@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOE LAB — Cuci &amp; Perawatan Sepatu Premium Jakarta Selatan | Free Antar-Jemput</title>
+  <meta name="description" content="Layanan cuci sepatu profesional &amp; sneaker care di Tebet Jakarta Selatan. Spesialis deep cleaning, unyellowing, reglue, leather care dengan 100% sabun organik dan gratis penjemputan radius 5 km.">
+  <meta name="keywords" content="cuci sepatu jakarta selatan, cuci sepatu tebet, sneaker cleaning jakarta, unyellowing sepatu, perawatan sepatu kulit, jasa cuci sneaker premium, antar jemput cuci sepatu">
+  <meta name="author" content="SHOE LAB Indonesia">
+
+  <!-- Open Graph / Meta Sosial -->
+  <meta property="og:title" content="SHOE LAB — Cuci &amp; Perawatan Sepatu Premium Jakarta">
+  <meta property="og:description" content="Sepatu kotor jadi baru lagi tanpa repot keluar rumah. Gratis antar-jemput radius 5 km &amp; garansi bersih higienis.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-shoe-cleaning.jpg">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data Schema.org (LocalBusiness / ShoeRepair) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ShoeRepair",
+    "name": "SHOE LAB — Sneaker & Leather Care",
+    "image": "assets/images/hero-shoe-cleaning.jpg",
+    "description": "Layanan perawatan dan cuci sepatu sneaker premium bergaransi dengan fasilitas antar jemput gratis di Jakarta Selatan.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Tebet Timur Dalam Raya No. 42, Tebet",
+      "addressLocality": "Jakarta Selatan",
+      "addressRegion": "DKI Jakarta",
+      "postalCode": "12820",
+      "addressCountry": "ID"
+    },
+    "telephone": "+6281291902424",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 1. TOP DEMO NOTICE BAR (Wajib Katalog) -->
+  <div class="demo-banner" role="banner" aria-label="Pemberitahuan Demo">
+    <div class="container demo-banner-content">
+      <div class="demo-banner-text">
+        <span class="demo-tag">Demo Portofolio</span>
+        <span>Contoh Landing Page One Page UMKM — JalaninWeb (Data &amp; Entitas Fiktif)</span>
+      </div>
+      <a href="../../index.html" class="demo-back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Kembali ke Katalog UMKM</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. NAVBAR STICKY (Scroll-Spy + Drawer Mobile) -->
+  <header class="navbar-sticky" id="navbar">
+    <div class="container nav-wrapper">
+      <a href="#beranda" class="nav-brand" aria-label="SHOE LAB Beranda">
+        <img src="assets/logo-white.svg" alt="Logo SHOE LAB Sneaker Care" width="180" height="38">
+      </a>
+
+      <nav class="nav-desktop" aria-label="Navigasi Utama">
+        <ul class="nav-menu">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#keunggulan" class="nav-link">Keunggulan</a></li>
+          <li><a href="#tentang" class="nav-link">Workshop</a></li>
+          <li><a href="#layanan" class="nav-link">Layanan</a></li>
+          <li><a href="#before-after" class="nav-link">Before-After</a></li>
+          <li><a href="#paket" class="nav-link">Paket Harga</a></li>
+          <li><a href="#galeri" class="nav-link">Galeri</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#kontak" class="nav-cta-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          Booking Jemput
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Buka Menu Navigasi">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu Mobile" aria-hidden="true">
+    <div>
+      <div class="drawer-header">
+        <img src="assets/logo-white.svg" alt="SHOE LAB" width="150" height="32">
+        <button type="button" class="drawer-close-btn" id="closeDrawerBtn" aria-label="Tutup Menu">&times;</button>
+      </div>
+      <ul class="drawer-menu">
+        <li><a href="#beranda" class="drawer-link">Beranda</a></li>
+        <li><a href="#keunggulan" class="drawer-link">Keunggulan Layanan</a></li>
+        <li><a href="#tentang" class="drawer-link">Workshop &amp; Video</a></li>
+        <li><a href="#layanan" class="drawer-link">Pilihan Treatment</a></li>
+        <li><a href="#before-after" class="drawer-link">Before &amp; After Slider</a></li>
+        <li><a href="#perawatan-khusus" class="drawer-link">Spesialisasi Material</a></li>
+        <li><a href="#paket" class="drawer-link">Paket Bundling</a></li>
+        <li><a href="#galeri" class="drawer-link">Galeri Hasil Cuci</a></li>
+        <li><a href="#proses" class="drawer-link">Alur Pemesanan</a></li>
+        <li><a href="#testimoni" class="drawer-link">Ulasan Pelanggan</a></li>
+        <li><a href="#faq" class="drawer-link">Tanya Jawab (FAQ)</a></li>
+        <li><a href="#kontak" class="drawer-link">Lokasi &amp; Form Booking</a></li>
+      </ul>
+    </div>
+    <div class="drawer-footer">
+      <a href="#kontak" class="btn-primary" style="width: 100%; text-align: center;">
+        <i class="fa-brands fa-whatsapp"></i> Booking Antar-Jemput
+      </a>
+      <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 14px;">
+        Jl. Tebet Timur Dalam Raya No. 42, Jaksel<br>
+        Buka Setiap Hari 09.00 - 21.00 WIB
+      </div>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- 3. #beranda — HERO SECTION -->
+    <section class="hero-section" id="beranda" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-pill">
+            <span class="rec-dot"></span>
+            Free Pick-Up &amp; Delivery Radius 5 KM &bull; Tebet &amp; Jaksel
+          </div>
+          <h1 class="hero-title" id="hero-heading">
+            Sepatu Kotor Jadi <span class="highlight">Baru Lagi</span> Tanpa Repot Keluar Rumah.
+          </h1>
+          <p class="hero-lead">
+            Layanan cuci sepatu profesional dengan 100% sabun organik ramah serat kain, sterilisasi lampu UV-C anti-bakteri, serta garansi cuci ulang gratis jika Anda belum 100% puas.
+          </p>
+          <div class="hero-actions">
+            <a href="#kontak" class="btn-primary">
+              <i class="fa-brands fa-whatsapp"></i>
+              Booking Penjemputan Sepatu
+            </a>
+            <a href="#before-after" class="btn-secondary">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              Lihat Before &amp; After
+            </a>
+          </div>
+          <div class="hero-trust-metrics">
+            <div class="metric-item">
+              <strong>4.9 / 5.0</strong>
+              <span>1.850+ Ulasan Pelanggan</span>
+            </div>
+            <div class="metric-item">
+              <strong>100% Organik</strong>
+              <span>Aman Kanvas, Suede &amp; Kulit</span>
+            </div>
+            <div class="metric-item">
+              <strong>Garansi Bersih</strong>
+              <span>Cuci Ulang Bebas Biaya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-card">
+            <img src="assets/images/hero-shoe-cleaning.jpg" alt="Teknisi SHOE LAB membersihkan sneaker dengan sikat bulu kuda premium" width="600" height="440">
+            <div class="hero-floating-badge">
+              <div class="badge-info">
+                <strong>Sneaker Detailing Lab</strong>
+                <span>Standar Treatment Internasional</span>
+              </div>
+              <div class="badge-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. #keunggulan — STRIP KEUNGGULAN (Trust Badges) -->
+    <section class="keunggulan-section" id="keunggulan" aria-label="Keunggulan Layanan">
+      <div class="container">
+        <div class="keunggulan-grid">
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="keunggulan-text">
+              <h4>Free Pick-Up &amp; Delivery</h4>
+              <p>Kurir kami siap jemput ke rumah, kos, atau kantor radius 5 km tanpa biaya transport tambahan.</p>
+            </div>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="keunggulan-text">
+              <h4>100% Eco-Cleaner Organik</h4>
+              <p>Menggunakan pembersih berbasis minyak kelapa &amp; jojoba oil, tanpa pemutih keras perusak lem.</p>
+            </div>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon"><i class="fa-solid fa-sun"></i></div>
+            <div class="keunggulan-text">
+              <h4>UV-C Sterilization 99.9%</h4>
+              <p>Ruang sterilisasi ozon &amp; UV-C membasmi bakteri penyebab bau kaki tak sedap hingga ke pori terdalam.</p>
+            </div>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="keunggulan-text">
+              <h4>Garansi Cuci Ulang</h4>
+              <p>Jika masih ada noda yang tertinggal dari standar paket, kami proses ulang gratis tanpa banyak tanya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. #tentang — CERITA BRAND & VIDEO SPOTLIGHT AUTOPLAY -->
+    <section class="tentang-section" id="tentang" aria-labelledby="tentang-heading">
+      <div class="container">
+        <!-- Cerita Brand Grid -->
+        <div class="tentang-grid">
+          <div class="tentang-visual">
+            <img src="assets/images/service-deep-clean.jpg" alt="Suasana workshop Shoe Lab Tebet" width="560" height="380">
+            <div class="tentang-visual-badge">
+              <strong>Est. 2021 &bull; Tebet Selatan</strong>
+              <span>Sneaker Detailing Workshop</span>
+            </div>
+          </div>
+
+          <div class="tentang-content">
+            <span class="section-tag">Filosofi Workshop</span>
+            <h2 class="section-title" id="tentang-heading">Merawat Setiap Pasang dengan Sentuhan Presisi.</h2>
+            <blockquote class="lead-quote">
+              &ldquo;Sepatu bukan sekadar alas kaki, tapi cerminan karakter dan langkah perjalanan pemiliknya.&rdquo;
+            </blockquote>
+            <p>
+              SHOE LAB didirikan oleh para pencinta sneakers yang jenuh dengan layanan laundry biasa yang seringkali mencuci sepatu dengan detergen baju berbusa banyak yang justru merusak lem, memudarkan suede, dan membuat sol menguning (*yellowing*).
+            </p>
+            <p>
+              Di workshop kami, setiap pasang diinspeksi materialnya terlebih dahulu. Kami memisahkan sikat bulu kuda untuk suede lembut, bulu sintetis untuk kanvas tebal, serta menggunakan formula enzim pengurai noda minyak yang aman 100%.
+            </p>
+
+            <div class="tentang-badges-grid">
+              <div class="badge-box">
+                <strong>Kapasitas Produksi</strong>
+                <span>120–150 Pasang / Hari Terawat</span>
+              </div>
+              <div class="badge-box">
+                <strong>Dry Room Suhu Rendah</strong>
+                <span>Pengeringan Sirkulasi Angin Dingin</span>
+              </div>
+              <div class="badge-box">
+                <strong>Teknisi Tersertifikasi</strong>
+                <span>Paham Anatomi Knit, Leather &amp; Suede</span>
+              </div>
+              <div class="badge-box">
+                <strong>Pelindung Anti Jamur</strong>
+                <span>Silica Gel &amp; Sealed Packaging Rapi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIDEO SPOTLIGHT CARD (VIDEO AUTOPLAY + METHOD EXPLANATION) -->
+        <div class="video-spotlight-card">
+          <div class="video-card-header">
+            <div class="video-header-left">
+              <span class="video-live-pill">
+                <span class="live-dot"></span>
+                WORKSHOP LAB LIVE
+              </span>
+              <h3 class="video-card-title">Melihat Proses Pengerjaan: Sikat Mikro, Sol Unyellowing &amp; Sterilisasi UV-C</h3>
+            </div>
+            <!-- Video Switcher Buttons -->
+            <div class="video-switcher-group">
+              <button type="button" class="video-switch-btn active" data-video="assets/videos/video-deep-cleaning.mp4" data-watermark="Shoe Lab Workshop • Deep Cleaning Foam & Micro Brush">
+                <i class="fa-solid fa-play"></i> Sesi Deep Cleaning
+              </button>
+              <button type="button" class="video-switch-btn" data-video="assets/videos/video-treatment-care.mp4" data-watermark="Shoe Lab Workshop • Unyellowing & Hydro Vacuum Extract">
+                <i class="fa-solid fa-play"></i> Hydro Vacuum &amp; Detailing
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Player Box -->
+          <div class="video-frame-box">
+            <video id="shoeVideoPlayer" autoplay loop muted playsinline poster="assets/images/hero-shoe-cleaning.jpg" src="assets/videos/video-deep-cleaning.mp4"></video>
+            <div class="video-watermark-badge">
+              <span id="videoWatermark">Shoe Lab Workshop • Deep Cleaning Foam &amp; Micro Brush</span>
+            </div>
+          </div>
+
+          <!-- 3 Method Pillars Under Video -->
+          <div class="video-method-breakdown">
+            <div class="method-col">
+              <div class="method-num">Tahap 01</div>
+              <h4 class="method-name">Dry Brushing &amp; Pengangkatan Partikel</h4>
+              <p class="method-desc">Menyikat debu kering, kerikil sol, dan serat kotoran mikroskopis sebelum terkena air agar tidak meresap ke dalam pori rajutan knit.</p>
+            </div>
+            <div class="method-col">
+              <div class="method-num">Tahap 02</div>
+              <h4 class="method-name">Active Organic Foam Scrubbing</h4>
+              <p class="method-desc">Pembersihan dengan busa organik berkadar air minim. Sikat lembut khusus mengembalikan warna cerah tanpa melukai serat benang.</p>
+            </div>
+            <div class="method-col">
+              <div class="method-num">Tahap 03</div>
+              <h4 class="method-name">Cold-Air Dry &amp; UV-C Sanitizing</h4>
+              <p class="method-desc">Sepatu dikeringkan di ruangan bersuhu sejuk 22&deg;C tanpa panas matahari langsung, lalu disterilkan dengan sinar UV-C agar bebas kuman.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. #layanan — PILAR LAYANAN -->
+    <section class="layanan-section" id="layanan" aria-labelledby="layanan-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Menu Perawatan</span>
+          <h2 class="section-title" id="layanan-heading">Pilihan Treatment Sesuai Kondisi Sepatu Anda.</h2>
+          <p class="section-desc">Dari pembersihan harian ekspres hingga restorasi total sepatu kulit dan sol yang menguning.</p>
+        </div>
+
+        <div class="layanan-grid">
+          <!-- Layanan 1 -->
+          <div class="layanan-card">
+            <div>
+              <div class="layanan-card-img">
+                <img src="assets/images/service-fast-clean.jpg" alt="Fast Clean Service" width="300" height="190">
+                <span class="layanan-duration-badge">24 Jam Kilat</span>
+              </div>
+              <div class="layanan-card-body">
+                <h3 class="layanan-title">Fast Cleaning</h3>
+                <p class="layanan-desc">Pembersihan cepat bagian luar yang terlihat untuk sepatu harian yang butuh tampil prima esok hari.</p>
+                <ul class="layanan-checklist">
+                  <li><i class="fa-solid fa-check"></i> Upper exterior cleaning</li>
+                  <li><i class="fa-solid fa-check"></i> Midsole wipe &amp; scrub</li>
+                  <li><i class="fa-solid fa-check"></i> Deodorizing spray wangi segar</li>
+                </ul>
+              </div>
+            </div>
+            <div class="layanan-card-footer">
+              <div class="layanan-price-tag">
+                <span>Mulai dari</span>
+                <strong>Rp 35.000</strong>
+              </div>
+              <a href="#kontak" class="layanan-btn-order">Pilih Layanan</a>
+            </div>
+          </div>
+
+          <!-- Layanan 2 -->
+          <div class="layanan-card">
+            <div>
+              <div class="layanan-card-img">
+                <img src="assets/images/service-deep-clean.jpg" alt="Deep Clean Service" width="300" height="190">
+                <span class="layanan-duration-badge">2–3 Hari Teliti</span>
+              </div>
+              <div class="layanan-card-body">
+                <h3 class="layanan-title">Deep Cleaning</h3>
+                <p class="layanan-desc">Pencucian menyeluruh luar dan dalam untuk sepatu berdebu tebal, berlumpur, atau berbau apek.</p>
+                <ul class="layanan-checklist">
+                  <li><i class="fa-solid fa-check"></i> Upper, insole &amp; outsole teliti</li>
+                  <li><i class="fa-solid fa-check"></i> Pencucian tali sepatu (*laces*)</li>
+                  <li><i class="fa-solid fa-check"></i> Sterilisasi UV-C anti-bakteri</li>
+                </ul>
+              </div>
+            </div>
+            <div class="layanan-card-footer">
+              <div class="layanan-price-tag">
+                <span>Mulai dari</span>
+                <strong>Rp 50.000</strong>
+              </div>
+              <a href="#kontak" class="layanan-btn-order">Pilih Layanan</a>
+            </div>
+          </div>
+
+          <!-- Layanan 3 -->
+          <div class="layanan-card">
+            <div>
+              <div class="layanan-card-img">
+                <img src="assets/images/shoe-after.jpg" alt="Unyellowing & Whitening" width="300" height="190">
+                <span class="layanan-duration-badge">3–4 Hari Khusus</span>
+              </div>
+              <div class="layanan-card-body">
+                <h3 class="layanan-title">Unyellowing Boost</h3>
+                <p class="layanan-desc">Treatment oksidasi khusus untuk mengembalikan sol karet / boost yang menguning akibat usia dan panas.</p>
+                <ul class="layanan-checklist">
+                  <li><i class="fa-solid fa-check"></i> Midsole de-oxidation paste</li>
+                  <li><i class="fa-solid fa-check"></i> UV chamber light activation</li>
+                  <li><i class="fa-solid fa-check"></i> Termasuk Deep Clean gratis</li>
+                </ul>
+              </div>
+            </div>
+            <div class="layanan-card-footer">
+              <div class="layanan-price-tag">
+                <span>Mulai dari</span>
+                <strong>Rp 80.000</strong>
+              </div>
+              <a href="#kontak" class="layanan-btn-order">Pilih Layanan</a>
+            </div>
+          </div>
+
+          <!-- Layanan 4 -->
+          <div class="layanan-card">
+            <div>
+              <div class="layanan-card-img">
+                <img src="assets/images/hero-shoe-cleaning.jpg" alt="Leather & Suede Treatment" width="300" height="190">
+                <span class="layanan-duration-badge">3 Hari Spa</span>
+              </div>
+              <div class="layanan-card-body">
+                <h3 class="layanan-title">Leather &amp; Suede Care</h3>
+                <p class="layanan-desc">Perawatan khusus sepatu formal kulit asli, boots Docmart, dan suede sneakers agar tidak kaku &amp; berjamur.</p>
+                <ul class="layanan-checklist">
+                  <li><i class="fa-solid fa-check"></i> Natural leather balm &amp; polish</li>
+                  <li><i class="fa-solid fa-check"></i> Suede re-fluffing brass brush</li>
+                  <li><i class="fa-solid fa-check"></i> Water-repellent nano coating</li>
+                </ul>
+              </div>
+            </div>
+            <div class="layanan-card-footer">
+              <div class="layanan-price-tag">
+                <span>Mulai dari</span>
+                <strong>Rp 85.000</strong>
+              </div>
+              <a href="#kontak" class="layanan-btn-order">Pilih Layanan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECTION KHAS INDUSTRI 1: #before-after (BEFORE & AFTER COMPARISON SLIDER) -->
+    <section class="before-after-section" id="before-after" aria-labelledby="ba-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Bukti Keberhasilan</span>
+          <h2 class="section-title" id="ba-heading">Geser Slider Untuk Melihat Transformasi Hasil Cuci.</h2>
+          <p class="section-desc">Perbedaan nyata antara sneaker penuh noda kotoran jalanan versus hasil pembersihan teliti di Shoe Lab.</p>
+        </div>
+
+        <div class="ba-slider-container">
+          <div class="ba-slider-wrapper" id="baWrapper">
+            <!-- Label Tag -->
+            <span class="ba-label-after">Sesudah di Shoe Lab</span>
+            <span class="ba-label-before">Sebelum Dicuci</span>
+
+            <!-- Gambar Before (Bawah) -->
+            <img src="assets/images/shoe-before.jpg" alt="Sepatu kotor penuh lumpur dan noda sebelum dicuci" class="ba-img ba-before" id="baBeforeImg">
+
+            <!-- Gambar After (Atas dengan width terpotong) -->
+            <div class="ba-after-wrapper" id="baAfterWrapper">
+              <img src="assets/images/shoe-after.jpg" alt="Sepatu putih bersih kinclong setelah dicuci di Shoe Lab" class="ba-img" id="baAfterImg">
+            </div>
+
+            <!-- Handle Pemisah Slider -->
+            <div class="ba-handle" id="baHandle">
+              <div class="ba-handle-btn">
+                <i class="fa-solid fa-arrows-left-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tombol Cepat Kontrol Slider -->
+          <div class="ba-controls">
+            <button type="button" class="ba-ctrl-btn" id="btnShowBefore">Lihat Sebelum (Kotor)</button>
+            <button type="button" class="ba-ctrl-btn active" id="btnShowMiddle">Perbandingan 50 : 50</button>
+            <button type="button" class="ba-ctrl-btn" id="btnShowAfter">Lihat Hasil Bersih (After)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SECTION KHAS INDUSTRI 2: #perawatan-khusus (Spesialisasi Material) -->
+    <section class="perawatan-section" id="perawatan-khusus" style="padding: 80px 0; background: var(--bg-surface);">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Metode Khusus Tiap Material</span>
+          <h2 class="section-title">Teknik Berbeda Untuk Setiap Jenis Sepatu.</h2>
+          <p class="section-desc">Kami tidak pernah menggunakan satu formula sabun untuk semua material. Setiap bahan memiliki perlakuan khas.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-light); padding: 24px; border-radius: var(--radius-md);">
+            <div style="color: var(--accent); font-size: 1.5rem; margin-bottom: 12px;"><i class="fa-solid fa-socks"></i></div>
+            <h4 style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 8px;">Primeknit &amp; Mesh</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6;">
+              Dibersihkan dengan sikat bulu babi super-lembut agar serat rajutan (seperti Yeezy &amp; Ultraboost) tidak berbulu atau melar.
+            </p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-light); padding: 24px; border-radius: var(--radius-md);">
+            <div style="color: var(--accent); font-size: 1.5rem; margin-bottom: 12px;"><i class="fa-solid fa-gem"></i></div>
+            <h4 style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 8px;">Suede &amp; Nubuck</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6;">
+              Tanpa air berlebih (*dry foam wash*) untuk mencegah bulu suede mengeras, diikuti teknik *nap revival* penyisiran lembut.
+            </p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-light); padding: 24px; border-radius: var(--radius-md);">
+            <div style="color: var(--accent); font-size: 1.5rem; margin-bottom: 12px;"><i class="fa-solid fa-shoe-prints"></i></div>
+            <h4 style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 8px;">Full-Grain Leather</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6;">
+              Dibersihkan dengan leather saddle soap organik, lalu dilapisi conditioner minyak alami agar kulit lentur &amp; bebas retak.
+            </p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border-light); padding: 24px; border-radius: var(--radius-md);">
+            <div style="color: var(--accent); font-size: 1.5rem; margin-bottom: 12px;"><i class="fa-solid fa-shield-virus"></i></div>
+            <h4 style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 8px;">Canvas &amp; Daily Sneakers</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6;">
+              Pembersihan mendalam untuk sepatu Vans &amp; Converse harian, menghilangkan lumpur tanpa meninggalkan bercak kuning (*water marks*).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SECTION KHAS INDUSTRI 3: #paket (Pricelist & Paket Hemat) -->
+    <section class="paket-section" id="paket" aria-labelledby="paket-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Pricelist Hemat</span>
+          <h2 class="section-title" id="paket-heading">Paket Perawatan Paling Menguntungkan.</h2>
+          <p class="section-desc">Pilihan paket bundling cuci sepatu terbaik dengan potongan harga dan gratis fasilitas penjemputan.</p>
+        </div>
+
+        <div class="paket-grid">
+          <!-- Paket 1 -->
+          <div class="paket-card">
+            <div>
+              <div class="paket-header">
+                <span class="paket-tagline">Paket Pelajar &amp; Kampus</span>
+                <h3 class="paket-name">Starter Fast Clean</h3>
+                <div class="paket-pricing">
+                  <span class="paket-price">Rp 35.000</span>
+                  <span class="paket-period">/ 1 Pasang</span>
+                </div>
+              </div>
+              <ul class="paket-features">
+                <li><i class="fa-solid fa-circle-check"></i> Fast cleaning upper &amp; midsole</li>
+                <li><i class="fa-solid fa-circle-check"></i> Pengerjaan kilat 24 jam</li>
+                <li><i class="fa-solid fa-circle-check"></i> Semprot parfum anti-apek</li>
+                <li style="color: var(--text-dim);"><i class="fa-solid fa-circle-xmark"></i> Tidak termasuk deep cleaning insole</li>
+                <li style="color: var(--text-dim);"><i class="fa-solid fa-circle-xmark"></i> Jemput minimal 2 pasang</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-secondary">Pesan Paket Ini</a>
+          </div>
+
+          <!-- Paket 2 (Featured) -->
+          <div class="paket-card featured">
+            <span class="paket-badge-pill">Paling Populer &bull; Hemat 25%</span>
+            <div>
+              <div class="paket-header">
+                <span class="paket-tagline">Rekomendasi Terbaik</span>
+                <h3 class="paket-name">Duo Clean Combo</h3>
+                <div class="paket-pricing">
+                  <span class="paket-price">Rp 75.000</span>
+                  <span class="paket-period">/ 2 Pasang Sekaligus</span>
+                </div>
+              </div>
+              <ul class="paket-features">
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Deep Cleaning 2 Pasang</strong> menyeluruh</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>GRATIS Antar-Jemput</strong> radius 5 km</li>
+                <li><i class="fa-solid fa-circle-check"></i> Pembersihan tali (*laces*) &amp; insole</li>
+                <li><i class="fa-solid fa-circle-check"></i> Sterilisasi kabin UV-C anti-bakteri</li>
+                <li><i class="fa-solid fa-circle-check"></i> Plastik segel &amp; silica gel proteksi</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-primary">Pilih Paket Terfavorit</a>
+          </div>
+
+          <!-- Paket 3 -->
+          <div class="paket-card">
+            <div>
+              <div class="paket-header">
+                <span class="paket-tagline">Sneakerhead &amp; Kolektor</span>
+                <h3 class="paket-name">Ultimate Restoration</h3>
+                <div class="paket-pricing">
+                  <span class="paket-price">Rp 135.000</span>
+                  <span class="paket-period">/ 1 Pasang Lengkap</span>
+                </div>
+              </div>
+              <ul class="paket-features">
+                <li><i class="fa-solid fa-circle-check"></i> Deep Clean menyeluruh luar-dalam</li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Unyellowing Sol Treatment</strong></li>
+                <li><i class="fa-solid fa-circle-check"></i> <strong>Nano Water Repellent Coating</strong></li>
+                <li><i class="fa-solid fa-circle-check"></i> Gratis antar-jemput VIP</li>
+                <li><i class="fa-solid fa-circle-check"></i> Garansi proteksi hingga 30 hari</li>
+              </ul>
+            </div>
+            <a href="#kontak" class="btn-secondary">Pesan Paket Ultimate</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. #galeri — SHOWCASE HASIL CUCI & LIGHTBOX -->
+    <section class="galeri-section" id="galeri" aria-labelledby="galeri-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Showcase Sepatu</span>
+          <h2 class="section-title" id="galeri-heading">Portofolio Sneaker Yang Telah Kami Tangani.</h2>
+          <p class="section-desc">Klik salah satu foto untuk melihat detail kebersihan dan kerapian pengerjaan kami.</p>
+        </div>
+
+        <div class="galeri-grid">
+          <div class="galeri-item">
+            <img src="assets/images/shoe-after.jpg" alt="Air Jordan 1 High White Cleaned" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Jordan Series</span>
+              <h4 class="galeri-item-title">Air Jordan 1 High — Deep Clean &amp; Unyellowing</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/hero-shoe-cleaning.jpg" alt="Nike Dunk Low Panda Cleaning" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Leather Sneakers</span>
+              <h4 class="galeri-item-title">Nike Dunk Low — Leather Restoration</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/service-deep-clean.jpg" alt="Yeezy Boost 350 Primeknit Wash" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Primeknit Care</span>
+              <h4 class="galeri-item-title">Yeezy Boost 350 — Gentle Foam Wash</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/service-fast-clean.jpg" alt="New Balance 990v5 Suede Restoration" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Suede Revival</span>
+              <h4 class="galeri-item-title">New Balance 990v5 — Suede Treatment</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/shoe-before.jpg" alt="Converse 70s Trail Mud Clean" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Canvas Wash</span>
+              <h4 class="galeri-item-title">Converse 70s Chuck Taylor — Mud Removal</h4>
+            </div>
+          </div>
+          <div class="galeri-item">
+            <img src="assets/images/service-deep-clean.jpg" alt="Dr. Martens 1460 Boots Conditioning" width="400" height="300">
+            <div class="galeri-overlay">
+              <span class="galeri-item-tag">Leather Boots</span>
+              <h4 class="galeri-item-title">Dr. Martens 1460 — Wax &amp; Shine Conditioning</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. #proses — CARA KERJA / CARA PESAN (4 Langkah) -->
+    <section class="proses-section" id="proses" aria-labelledby="proses-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Alur Transaksi Mudah</span>
+          <h2 class="section-title" id="proses-heading">4 Langkah Praktis Sepatu Kembali Segar.</h2>
+          <p class="section-desc">Tidak perlu macet-macetan ke mall atau gerai cuci. Semua selesai dari kenyamanan rumah Anda.</p>
+        </div>
+
+        <div class="proses-grid">
+          <div class="proses-card">
+            <div class="proses-step-num">01</div>
+            <h4 class="proses-title">Isi Form / Chat WA</h4>
+            <p class="proses-desc">Tentukan jumlah sepatu, pilihan treatment, dan jadwal penjemputan via WhatsApp admin kami.</p>
+          </div>
+          <div class="proses-card">
+            <div class="proses-step-num">02</div>
+            <h4 class="proses-title">Kurir Menjemput</h4>
+            <p class="proses-desc">Kurir Shoe Lab mengambil sepatu di alamat Anda dan memberikan nota digital resmi.</p>
+          </div>
+          <div class="proses-card">
+            <div class="proses-step-num">03</div>
+            <h4 class="proses-title">Pencucian &amp; QC Lab</h4>
+            <p class="proses-desc">Sepatu dicuci sesuai SOP material, dikeringkan suhu sejuk, dan disterilkan lampu UV-C.</p>
+          </div>
+          <div class="proses-card">
+            <div class="proses-step-num">04</div>
+            <h4 class="proses-title">Diantar Kembali</h4>
+            <p class="proses-desc">Sepatu wangi, bersih, terbungkus rapi diantar ke tangan Anda. Pembayaran aman via transfer / COD.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. #testimoni — ULASAN PELANGGAN -->
+    <section class="testimoni-section" id="testimoni" aria-labelledby="testimoni-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Testimoni Nyata</span>
+          <h2 class="section-title" id="testimoni-heading">Apa Kata Mereka Tentang Layanan Shoe Lab?</h2>
+          <p class="section-desc">Ulasan asli dari para pemilik sneakers, pekerja kantoran, dan pengguna harian di Jabodetabek.</p>
+        </div>
+
+        <div class="testimoni-grid">
+          <div class="testimoni-card">
+            <div>
+              <div class="testimoni-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimoni-quote">
+                &ldquo;Yeezy 350 saya yang kena kecap pas makan sate tadinya saya kira udah pasrah. Kirim ke Shoe Lab via paket Duo Clean, balik-balik benang rajutannya putih bersih lagi tanpa bikin melar! Mantap banget.&rdquo;
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-1.jpg" alt="Kevin Pratama" class="testimoni-avatar">
+              <div>
+                <h5 class="testimoni-name">Kevin Pratama</h5>
+                <span class="testimoni-role">Sneakerhead &bull; Tebet Barat</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimoni-card">
+            <div>
+              <div class="testimoni-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimoni-quote">
+                &ldquo;Layanan antar-jemputnya sangat menolong untuk orang kantoran yang ga sempat mampir ke mall. Jam 8 pagi dijemput di lobi kantor SCBD, 2 hari kemudian diantar wangi dan tersegel rapi.&rdquo;
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-2.jpg" alt="Dina Safitri" class="testimoni-avatar">
+              <div>
+                <h5 class="testimoni-name">Dina Safitri</h5>
+                <span class="testimoni-role">Product Manager &bull; SCBD Jakarta</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimoni-card">
+            <div>
+              <div class="testimoni-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="testimoni-quote">
+                &ldquo;Treatment unyellowing sol untuk Air Jordan 1 saya hasilnya beneran keliatan seperti baru keluar dari kardus. Harga sangat masuk akal dibanding beli sepatu baru lagi.&rdquo;
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="assets/images/cust-3.jpg" alt="Rizky Ramadhan" class="testimoni-avatar">
+              <div>
+                <h5 class="testimoni-name">Rizky Ramadhan</h5>
+                <span class="testimoni-role">Content Creator &bull; Kemang</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. #faq — FAQ ACCORDION -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Bantuan &amp; Tanya Jawab</span>
+          <h2 class="section-title" id="faq-heading">Pertanyaan Yang Sering Diajukan.</h2>
+          <p class="section-desc">Punya pertanyaan seputar layanan kami? Temukan jawabannya secara transparan di bawah ini.</p>
+        </div>
+
+        <div class="faq-container">
+          <details class="faq-item" open>
+            <summary>
+              <span>Apakah ada biaya tambahan untuk antar-jemput sepatu?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Tidak ada! Penjemputan dan pengantaran 100% <strong>GRATIS</strong> untuk wilayah radius hingga 5 km dari workshop kami di Tebet Timur (mencakup Tebet, Manggarai, Pancoran, Casablanka, dan sekitarnya) dengan pemesanan minimal 2 pasang sepatu (atau paket Duo Clean). Untuk jarak lebih dari 5 km dikenakan tarif flat kurir hemat Rp 10.000–15.000.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Berapa lama estimasi waktu pengerjaan cuci sepatu?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Untuk layanan <em>Fast Cleaning</em> memakan waktu 24 jam. Layanan <em>Deep Cleaning</em> memerlukan 2–3 hari kerja untuk memastikan pengeringan alami suhu rendah tanpa merusak lem. Sedangkan treatment khusus seperti <em>Unyellowing</em> memerlukan waktu 3–4 hari karena proses aktivasi UV bertahap.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Bagaimana jika noda pada sepatu tidak hilang sepenuhnya?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Kami memberikan <strong>Garansi Cuci Ulang Bebas Biaya</strong>. Jika saat diterima sepatu masih terdapat noda yang seharusnya bisa diangkat pada paket tersebut, cukup hubungi admin kami dalam 1x24 jam dan kurir kami akan menjemput untuk dicuci ulang hingga bersih optimal.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Apakah sabun yang digunakan aman untuk sepatu suede dan kulit asli?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Sangat aman. Kami menggunakan formula sabun organik khusus tanpa deterjen pemutih keras, dengan minyak jojoba dan ekstrak kelapa. Untuk bahan kulit asli kami menggunakan pelumas pelembap (*leather conditioner*), dan untuk suede kami menggunakan dry foam berkadar air minimal agar serat beludru tidak kaku.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Bagaimana metode pembayaran yang tersedia?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Pembayaran sangat fleksibel. Anda dapat membayar setelah sepatu selesai dicuci dan diterima kembali via transfer Bank (BCA, Mandiri, BNI, BRI), QRIS semua e-wallet (GoPay, OVO, ShopeePay, Dana), atau bayar tunai (COD) langsung ke kurir kami.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span>Bagaimana cara mengetahui status pengerjaan sepatu saya?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-content">
+              Tim admin Shoe Lab akan mengirimkan foto dokumentasi kondisi sepatu saat tiba di workshop (*check-in photo*), serta foto hasil sesudah pengerjaan (*finish photo*) langsung ke nomor WhatsApp Anda sebelum sepatu dikirim kembali.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. #cta — BAND AJAKAN PENUTUP -->
+    <section class="cta-section" id="cta" aria-label="Ajakan Penutup">
+      <div class="container">
+        <div class="cta-box">
+          <span class="section-tag">Kuota Penjemputan Terbatas</span>
+          <h2 class="cta-title">Sepatu Kesayangan Anda Siap Dibuat Kinclong Hari Ini?</h2>
+          <p class="cta-desc">
+            Ambil promo <strong>Duo Clean Combo (Rp 75.000 / 2 pasang)</strong> + Gratis Antar-Jemput sekarang juga. Tim kurir kami siap menjemput sesuai jadwal yang Anda tentukan!
+          </p>
+          <a href="#kontak" class="btn-primary" style="font-size: 1.0625rem; padding: 16px 36px;">
+            <i class="fa-brands fa-whatsapp"></i>
+            Booking Penjemputan Sekarang
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. #kontak — KONTAK + FORM BOOKING ANTAR-JEMPUT + PETA INTERAKTIF GOOGLE MAPS -->
+    <section class="kontak-section" id="kontak" aria-labelledby="kontak-heading">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Booking &amp; Lokasi Workshop</span>
+          <h2 class="section-title" id="kontak-heading">Jadwalkan Penjemputan Sepatu Anda.</h2>
+          <p class="section-desc">Isi formulir ringkas di bawah ini untuk tersambung otomatis ke WhatsApp admin kami, atau kunjungi workshop kami secara langsung.</p>
+        </div>
+
+        <div class="kontak-grid">
+          <!-- FORM BOOKING ANTAR-JEMPUT (AUTO-WA) -->
+          <div class="kontak-form-card">
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;">Formulir Booking Antar-Jemput</h3>
+            <p class="form-sub">Pesan disusun rapi otomatis ke WhatsApp tanpa perlu mengetik manual.</p>
+
+            <form id="kontakForm">
+              <div class="form-group">
+                <label for="formNama" class="form-label">Nama Lengkap</label>
+                <input type="text" id="formNama" class="form-input" placeholder="Contoh: Dimas Aditya" required>
+              </div>
+
+              <div class="form-group">
+                <label for="formKontak" class="form-label">Nomor WhatsApp Aktif</label>
+                <input type="tel" id="formKontak" class="form-input" placeholder="Contoh: 0812-3456-7890" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px;">
+                <div class="form-group">
+                  <label for="formLayanan" class="form-label">Pilihan Treatment</label>
+                  <select id="formLayanan" class="form-select">
+                    <option value="Duo Clean Combo (Rp 75rb - 2 Pasang)">Duo Clean Combo (Rp 75rb / 2 Pasang)</option>
+                    <option value="Fast Cleaning (Rp 35rb / Pasang)">Fast Cleaning (Rp 35rb / Pasang)</option>
+                    <option value="Deep Cleaning (Rp 50rb / Pasang)">Deep Cleaning (Rp 50rb / Pasang)</option>
+                    <option value="Unyellowing Boost (Rp 80rb / Pasang)">Unyellowing Boost (Rp 80rb / Pasang)</option>
+                    <option value="Leather & Suede Spa (Rp 85rb / Pasang)">Leather &amp; Suede Spa (Rp 85rb / Pasang)</option>
+                    <option value="Ultimate Restoration (Rp 135rb)">Ultimate Restoration (Rp 135rb)</option>
+                    <option value="Konsultasi Kondisi Sepatu Dahulu">Konsultasi Kondisi Sepatu Dahulu</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="formJumlah" class="form-label">Jumlah Sepatu</label>
+                  <select id="formJumlah" class="form-select">
+                    <option value="1">1 Pasang</option>
+                    <option value="2" selected>2 Pasang</option>
+                    <option value="3">3 Pasang</option>
+                    <option value="4+">4 Pasang atau Lebih</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="formTanggal" class="form-label">Rencana Tanggal Penjemputan</label>
+                <input type="date" id="formTanggal" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label for="formAlamat" class="form-label">Alamat Penjemputan Lengkap</label>
+                <textarea id="formAlamat" class="form-textarea" placeholder="Tuliskan nama jalan, nomor rumah/kantor, patokan, atau nama apartemen..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="formCatatan" class="form-label">Catatan Sepatu (Opsional)</label>
+                <input type="text" id="formCatatan" class="form-input" placeholder="Contoh: Jordan 1 noda oli di midsole, converse sol menguning">
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%;">
+                <i class="fa-brands fa-whatsapp"></i>
+                Kirim Jadwal Jemput ke WhatsApp
+              </button>
+            </form>
+          </div>
+
+          <!-- GOOGLE MAPS INTERAKTIF & INFO WORKSHOP -->
+          <div class="kontak-map-card">
+            <div class="map-header-card">
+              <h4>
+                <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i>
+                SHOE LAB Workshop Tebet
+              </h4>
+              <p>Jl. Tebet Timur Dalam Raya No. 42, RT.04/RW.06, Tebet Timur, Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta 12820</p>
+              <div style="display: flex; gap: 16px; margin-top: 12px; font-size: 0.78125rem; color: var(--accent); font-weight: 700;">
+                <span><i class="fa-regular fa-clock"></i> Buka Setiap Hari: 09.00 – 21.00 WIB</span>
+                <span><i class="fa-solid fa-motorcycle"></i> Radius Antar-Jemput Gratis: 5 KM</span>
+              </div>
+            </div>
+
+            <!-- Frame Google Maps Iframe Responsif -->
+            <div class="map-frame-box">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.284285871329!2d106.8529272!3d-6.2262078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f38f1f582f33%3A0x6b9d628867a0753b!2sJl.%20Tebet%20Timur%20Dalam%20Raya%2C%20Kec.%20Tebet%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Peta Lokasi Workshop SHOE LAB Tebet">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 16. FOOTER RELEVAN INDUSTRI (Nol Link Mati, Modal Legal, 4 Kolom) -->
+  <footer class="site-footer" id="kontak-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Kolom 1: Brand Info -->
+        <div class="footer-brand-col">
+          <img src="assets/logo-white.svg" alt="SHOE LAB Sneaker Care" width="160" height="34">
+          <p>
+            Spesialis cuci dan perawatan sneaker premium di Jakarta Selatan. Berkomitmen menjaga nilai estetika dan umur pakai sepatu Anda melalui teknik pembersihan berstandar internasional.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/shoelab.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram SHOE LAB">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@shoelab.demo" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="TikTok SHOE LAB">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://wa.me/6281291902424" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WhatsApp SHOE LAB">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Navigasi Cepat -->
+        <div>
+          <h4 class="footer-title">Navigasi</h4>
+          <ul class="footer-links">
+            <li><a href="#beranda">Beranda Utama</a></li>
+            <li><a href="#keunggulan">Keunggulan Layanan</a></li>
+            <li><a href="#tentang">Filosofi &amp; Video</a></li>
+            <li><a href="#layanan">Pilihan Treatment</a></li>
+            <li><a href="#before-after">Before &amp; After</a></li>
+            <li><a href="#paket">Paket Bundling</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Layanan Populer -->
+        <div>
+          <h4 class="footer-title">Layanan</h4>
+          <ul class="footer-links">
+            <li><a href="#layanan">Fast Clean 24 Jam</a></li>
+            <li><a href="#layanan">Deep Cleaning Total</a></li>
+            <li><a href="#layanan">Unyellowing Boost</a></li>
+            <li><a href="#layanan">Leather &amp; Suede Spa</a></li>
+            <li><a href="#layanan">Nano Coating Shield</a></li>
+            <li><a href="#layanan">Repaint &amp; Reglue Sol</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Workshop & Jam Operasional -->
+        <div>
+          <h4 class="footer-title">Workshop Tebet</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+            Jl. Tebet Timur Dalam Raya No. 42, Tebet, Jakarta Selatan 12820
+          </p>
+          <p style="font-size: 0.8125rem; color: var(--accent); font-weight: 700; line-height: 1.6;">
+            <i class="fa-solid fa-clock"></i> Senin – Minggu: 09.00 – 21.00 WIB
+          </p>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 6px;">
+            <i class="fa-solid fa-phone"></i> 0812-9190-2424
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>SHOE LAB</strong>. Seluruh hak cipta dilindungi. Portofolio Landing Page One Page oleh <a href="../../index.html" style="color: var(--accent); text-decoration: underline;">JalaninWeb.site</a>.
+        </div>
+        <div class="footer-bottom-links">
+          <button type="button" onclick="openLegalModal('terms')">Syarat &amp; Ketentuan</button>
+          <span>&bull;</span>
+          <button type="button" onclick="openLegalModal('privacy')">Kebijakan Privasi</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 17. MODAL LEGAL: Syarat & Ketentuan -->
+  <div class="legal-modal" id="modalTerms" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="termsTitle">Syarat &amp; Ketentuan Layanan</h3>
+        <button type="button" onclick="closeLegalModal('terms')" style="color: var(--text-muted); font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <p><strong>1. Penjemputan dan Pengantaran:</strong> Layanan gratis antar-jemput berlaku untuk radius 5 km dari workshop Shoe Lab Tebet dengan minimum order 2 pasang sepatu atau paket promo tertentu.</p>
+        <p><strong>2. Inspeksi Awal:</strong> Teknisi kami akan mendokumentasikan kondisi fisik awal sepatu (cacat bawaan, sol getas, noda permanen) sebelum proses pencucian dimulai dan mengonfirmasi ke pelanggan.</p>
+        <p><strong>3. Garansi Cuci Ulang:</strong> Klaim garansi cuci ulang berlaku maksimal 1x24 jam setelah sepatu diterima pelanggan jika terdapat noda yang belum terangkat dari standar layanan.</p>
+        <p><strong>4. Sepatu Tua &amp; Getas:</strong> Untuk sepatu berumur di atas 5 tahun dengan kondisi midsole getas (*hydrolysis*), kami akan memberitahukan risiko sebelum treatment dilanjutkan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18. MODAL LEGAL: Kebijakan Privasi -->
+  <div class="legal-modal" id="modalPrivacy" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <h3 id="privacyTitle">Kebijakan Privasi</h3>
+        <button type="button" onclick="closeLegalModal('privacy')" style="color: var(--text-muted); font-size: 1.5rem;">&times;</button>
+      </div>
+      <div class="legal-modal-body">
+        <p><strong>1. Pengumpulan Data:</strong> Kami hanya mengumpulkan nama, nomor telepon WhatsApp, dan alamat penjemputan semata-mata untuk keperluan operasional pengiriman dan komunikasi pesanan.</p>
+        <p><strong>2. Keamanan Informasi:</strong> Data kontak Anda tidak akan pernah dijual, disebarluaskan, atau disalahgunakan kepada pihak ketiga mana pun.</p>
+        <p><strong>3. Dokumentasi Foto:</strong> Foto hasil sepatu yang dijadikan showcase portofolio di website dan media sosial kami tidak memuat identitas pribadi pemilik.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19. MODAL LIGHTBOX: Pratinjau Foto Galeri -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true">
+    <div class="lightbox-content">
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Tutup Pratinjau">&times;</button>
+      <img src="" alt="Pratinjau Foto Sepatu" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- 20. FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/6281291902424?text=Halo%20Admin%20Shoe%20Lab%2C%20saya%20mau%20tanya%20layanan%20cuci%20sepatu%20antar-jemput."
+     target="_blank"
+     rel="noopener noreferrer"
+     class="floating-wa-btn"
+     aria-label="Chat WhatsApp Admin Shoe Lab">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
