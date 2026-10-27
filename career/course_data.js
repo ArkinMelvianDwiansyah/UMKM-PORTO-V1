@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AAMON Network Academy & Continuous Learning Studio
  * Standardized Curriculum Data Module
  * Compliant with Master Specification (Sections 0 to 8)
@@ -263,10 +263,10 @@ const STANDARDIZED_COURSE_DATA = [
 </svg>
             `,
             legend: [
-                { color: "#fbbf24", label: "Default Route 0.0.0.0/0 (Internet Uplink)" },
-                { color: "#38bdf8", label: "Point-to-Point Inter-Router Subnet (10.0.0.0/30)" },
-                { color: "#34d399", label: "Local LAN Subnet (/24)" },
-                { color: "#c084fc", label: "Static Route Inter-Branch Subnet" }
+                { color: "#fbbf24", label: "Default Route 0.0.0.0/0", desc: "Internet Uplink ISP (Next-Hop 103.28.12.49)" },
+                { color: "#38bdf8", label: "Point-to-Point Link", desc: "Inter-Router Subnet (10.0.0.0/30)" },
+                { color: "#34d399", label: "Local LAN Subnet", desc: "LAN HQ (192.168.88.0/24)" },
+                { color: "#c084fc", label: "Static Route Inter-Branch", desc: "Subnet Cabang (192.168.10.0/24)" }
             ],
             alt: "Topologi Laboratorium Static & Default Route MikroTik RouterOS v7 antara R1-Core HQ dan R2-Branch"
         },
@@ -284,7 +284,15 @@ const STANDARDIZED_COURSE_DATA = [
                 model: "MikroTik RB4011iGS+RM",
                 type: "Router Core / Gateway Utama",
                 role: "Gateway Utama HQ, ISP BGP/Static Edge, & Router Inter-Branch Master",
-                specs: "Quad-Core 1.4GHz Alpine AL21400 CPU, 1GB RAM, 10x Gigabit Ethernet (10/100/1000), 1x SFP+ 10Gbps, RouterOS v7 (Level 5 License)",
+                specs: {
+                    ports: "10x Gigabit RJ45 + 1x SFP+ 10Gbps",
+                    cpu: "Quad-Core 1.4GHz Alpine AL21400",
+                    throughput: "9.7 Gbps Switching / 5 Gbps Routing",
+                    ram: "1GB RAM / 512MB NAND Storage",
+                    os: "RouterOS v7 (Level 5 License)"
+                },
+                credit: "mikrotik.com official product catalog",
+                sourceUrl: "https://mikrotik.com/product/rb4011igs_rm",
                 image: "assets/devices/mikrotik/rb4011.webp",
                 imageSource: {
                     name: "mikrotik.com official product catalog",
@@ -297,7 +305,15 @@ const STANDARDIZED_COURSE_DATA = [
                 model: "MikroTik hEX S (RB760iGS)",
                 type: "Branch Router / CPE Edge",
                 role: "Gateway Kantor Cabang, Local DHCP Server, & Forwarder ke HQ",
-                specs: "Dual-Core 880MHz MT7621A CPU (4 threads), 256MB RAM, 5x Gigabit Ethernet, 1x SFP 1.25G, RouterOS v7 (Level 4 License)",
+                specs: {
+                    ports: "5x Gigabit RJ45 + 1x SFP 1.25G",
+                    cpu: "Dual-Core 880MHz MT7621A (4 Threads)",
+                    throughput: "1.9 Gbps Fastpath / 470 Mbps Routing",
+                    ram: "256MB RAM / 16MB Flash + microSD",
+                    os: "RouterOS v7 (Level 4 License)"
+                },
+                credit: "mikrotik.com official product catalog",
+                sourceUrl: "https://mikrotik.com/product/hex_s",
                 image: "assets/devices/mikrotik/hex_s.webp",
                 imageSource: {
                     name: "mikrotik.com official product catalog",
@@ -310,7 +326,15 @@ const STANDARDIZED_COURSE_DATA = [
                 model: "Provider Edge Carrier Router",
                 type: "Carrier Uplink Router",
                 role: "Internet Gateway Public ISP (Next-Hop 103.28.12.49/29)",
-                specs: "Carrier Grade Core Router (Ilustrasi Cloud Gateway)",
+                specs: {
+                    ports: "Multi-Port 10G/100G Carrier Interface",
+                    cpu: "Carrier-Grade Multicore NPU",
+                    throughput: "40 Gbps+ Carrier Backbone",
+                    ram: "16GB ECC RAM Redundant",
+                    os: "Carrier Core OS / BGP Engine"
+                },
+                credit: "Ilustrasi Standar Jaringan ISP",
+                sourceUrl: "https://mikrotik.com",
                 image: "", // Generic SVG Illustration
                 imageSource: {
                     name: "Ilustrasi Standar Jaringan",

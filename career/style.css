@@ -388,58 +388,329 @@ body.light-theme .bg-stone-900\/60,
 body.light-theme .bg-stone-900\/70,
 body.light-theme .bg-stone-900\/80,
 body.light-theme .bg-stone-900\/90 {
-  background-color: #f1f5f9 !important;
+  background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
 }
 
-/* KEEP CLI TERMINAL BLOCKS DARK & PRISTINE IN LIGHT MODE */
 body.light-theme .bg-stone-950,
+body.light-theme .bg-stone-950\/30,
 body.light-theme .bg-stone-950\/40,
 body.light-theme .bg-stone-950\/50,
 body.light-theme .bg-stone-950\/60,
-body.light-theme .bg-stone-950\/80,
-body.light-theme #sec-content-sec4 .bg-stone-950,
-body.light-theme #sec-content-sec6 .bg-stone-950,
-body.light-theme pre.font-mono {
-  background-color: #0b0f19 !important;
+body.light-theme .bg-stone-950\/80 {
+  background-color: #f1f4f8 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* ========================================================================== */
+/* DEDICATED CLI TERMINAL WINDOW (ALWAYS DARK CONSOLE IN ALL THEMES)          */
+/* ========================================================================== */
+.cli-terminal-window {
+  background-color: #090d16 !important;
+  border-color: #1e293b !important;
+  border-radius: 0.75rem;
+}
+.cli-terminal-window * {
+  color-scheme: dark;
+}
+.cli-terminal-window .terminal-header {
+  background-color: #0f172a !important;
   border-color: #1e293b !important;
   color: #f8fafc !important;
 }
-body.light-theme .bg-stone-950 pre.font-mono,
-body.light-theme pre.font-mono {
-  color: #fde047 !important;
-}
-body.light-theme .bg-stone-950 * {
-  border-color: #1e293b;
-}
-body.light-theme .bg-stone-950 .text-white,
-body.light-theme .bg-stone-950 .text-stone-200,
-body.light-theme .bg-stone-950 .text-stone-300 {
+.cli-terminal-window .terminal-header * {
   color: #f8fafc !important;
 }
-body.light-theme .bg-stone-950 .text-stone-400,
-body.light-theme .bg-stone-950 .text-stone-500 {
-  color: #94a3b8 !important;
+.cli-terminal-window .terminal-header i.text-amber-400 {
+  color: #fbbf24 !important;
 }
-body.light-theme .bg-stone-950 .bg-stone-900,
-body.light-theme .bg-stone-950 .bg-stone-900\/80,
-body.light-theme .bg-stone-950 .bg-stone-900\/90 {
-  background-color: #111827 !important;
-  border-color: #1f2937 !important;
+.cli-terminal-window .terminal-header i.text-emerald-400 {
+  color: #34d399 !important;
 }
-body.light-theme .bg-stone-950 button {
-  background-color: #1f2937 !important;
-  color: #f3f4f6 !important;
-  border-color: #374151 !important;
+.cli-terminal-window .terminal-body,
+.cli-terminal-window pre {
+  background-color: #090d16 !important;
+  color: #fde047 !important;
 }
-body.light-theme .bg-stone-950 button:hover {
-  background-color: #374151 !important;
+.cli-terminal-window .terminal-copy-btn {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+.cli-terminal-window .terminal-copy-btn:hover {
+  background-color: #334155 !important;
   color: #ffffff !important;
 }
 
-/* Modals & Inputs in Light Mode */
+/* ========================================================================== */
+/* LIGHT THEME COMPONENT SPECIFIC POLISH                                      */
+/* ========================================================================== */
+
+/* 1. Global Pastel Badges in Light Mode (WCAG AA High Contrast) */
+body.light-theme [class*="bg-amber-950"],
+body.light-theme .badge-pastel-yellow {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
+}
+body.light-theme [class*="bg-emerald-950"],
+body.light-theme .badge-pastel-green {
+  background-color: #ecfdf5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+body.light-theme [class*="bg-blue-950"],
+body.light-theme [class*="bg-sky-950"] {
+  background-color: #eff6ff !important;
+  color: #1e40af !important;
+  border-color: #bfdbfe !important;
+}
+body.light-theme [class*="bg-purple-950"],
+body.light-theme .badge-pastel-purple {
+  background-color: #faf5ff !important;
+  color: #6b21a8 !important;
+  border-color: #e9d5ff !important;
+}
+body.light-theme [class*="bg-rose-950"],
+body.light-theme .badge-pastel-red {
+  background-color: #fff1f2 !important;
+  color: #9f1239 !important;
+  border-color: #fecdd3 !important;
+}
+body.light-theme [class*="bg-teal-950"] {
+  background-color: #f0fdfa !important;
+  color: #115e59 !important;
+  border-color: #99f6e4 !important;
+}
+
+/* 2. Step Configuration Cards in Light Mode */
+body.light-theme .step-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+body.light-theme .step-card:hover {
+  border-color: #cbd5e1 !important;
+}
+body.light-theme .step-number-badge {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fde68a !important;
+}
+body.light-theme .step-target-badge {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+body.light-theme .step-target-badge i {
+  color: #475569 !important;
+}
+body.light-theme .step-title {
+  color: #0f172a !important;
+}
+body.light-theme .step-goal-box {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #1e293b !important;
+}
+body.light-theme .step-goal-label {
+  background-color: #fef3c7 !important;
+  border-color: #fcd34d !important;
+  color: #b45309 !important;
+}
+body.light-theme .step-goal-text {
+  color: #1e293b !important;
+}
+body.light-theme .step-explanation-box {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+body.light-theme .step-explanation-header {
+  color: #475569 !important;
+}
+body.light-theme .step-explanation-box code {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #b45309 !important;
+}
+body.light-theme .step-explanation-box .exp-why {
+  color: #334155 !important;
+}
+body.light-theme .step-checkpoint-box {
+  background-color: #f0f9ff !important;
+  border-color: #bae6fd !important;
+}
+body.light-theme .step-checkpoint-title {
+  color: #0369a1 !important;
+}
+body.light-theme .step-checkpoint-cmd {
+  background-color: #ffffff !important;
+  border-color: #bae6fd !important;
+  color: #0284c7 !important;
+}
+body.light-theme .step-checkpoint-output {
+  color: #1e293b !important;
+  border-color: #e0f2fe !important;
+}
+body.light-theme .step-checkpoint-output span {
+  color: #0284c7 !important;
+}
+body.light-theme .step-warning-box {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+  color: #9f1239 !important;
+}
+body.light-theme .step-warning-box strong {
+  color: #be123c !important;
+}
+
+/* 3. Device Cards in Light Mode */
+body.light-theme .device-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+body.light-theme .device-image-box {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .device-title {
+  color: #0f172a !important;
+}
+body.light-theme .device-subtitle {
+  color: #64748b !important;
+}
+body.light-theme .device-specs-box {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .specs-label {
+  color: #64748b !important;
+}
+body.light-theme .specs-val {
+  color: #1e293b !important;
+}
+body.light-theme .device-alt {
+  color: #475569 !important;
+}
+body.light-theme .device-footer {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .device-credit {
+  color: #64748b !important;
+}
+
+/* 4. Legend Items in Light Mode */
+body.light-theme .legend-item-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+body.light-theme .legend-item-label {
+  color: #0f172a !important;
+}
+body.light-theme .legend-item-desc {
+  color: #64748b !important;
+}
+
+/* 5. Parameter Table in Light Mode */
+body.light-theme .param-table thead tr {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .param-table tbody tr {
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .param-table tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+body.light-theme .param-table td {
+  color: #1e293b !important;
+}
+body.light-theme .param-name {
+  color: #b45309 !important;
+}
+
+/* 6. Troubleshooting Cards in Light Mode */
+body.light-theme .trouble-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+body.light-theme .trouble-check-box {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+body.light-theme .trouble-check-box code {
+  color: #0f172a !important;
+}
+body.light-theme .trouble-solution-box {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+/* 7. Challenges & Best Practice in Light Mode */
+body.light-theme .challenge-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+body.light-theme .challenge-hint {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #1e293b !important;
+}
+body.light-theme .bp-do-box {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+body.light-theme .bp-do-box ul {
+  color: #065f46 !important;
+}
+body.light-theme .bp-dont-box {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+body.light-theme .bp-dont-box ul {
+  color: #9f1239 !important;
+}
+body.light-theme .bp-sec-box {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+body.light-theme .lab-tool-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* 8. Curriculum Navigation in Light Mode */
+body.light-theme .curriculum-item-active {
+  background-color: #fef3c7 !important;
+  border-color: #f59e0b !important;
+  color: #92400e !important;
+}
+body.light-theme .curriculum-item-inactive {
+  color: #334155 !important;
+}
+body.light-theme .curriculum-item-inactive:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+body.light-theme .curriculum-locked {
+  background-color: #f8fafc !important;
+  color: #94a3b8 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* 9. Modals & Inputs in Light Mode */
 body.light-theme .modal-backdrop {
-  background-color: rgba(15, 23, 42, 0.4) !important;
+  background-color: rgba(15, 23, 42, 0.45) !important;
 }
 body.light-theme input,
 body.light-theme select,
@@ -451,15 +722,15 @@ body.light-theme textarea {
 body.light-theme input:focus,
 body.light-theme select:focus,
 body.light-theme textarea:focus {
-  border-color: #64748b !important;
-  box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.15) !important;
+  border-color: #475569 !important;
+  box-shadow: 0 0 0 2px rgba(71, 85, 105, 0.15) !important;
 }
 body.light-theme input::placeholder,
 body.light-theme textarea::placeholder {
   color: #94a3b8 !important;
 }
 
-/* Tables in Light Theme */
+/* 10. Tables in Light Mode */
 body.light-theme thead tr {
   background-color: #f1f5f9 !important;
   border-color: #e2e8f0 !important;
@@ -470,5 +741,20 @@ body.light-theme tbody tr {
 body.light-theme tbody tr:hover {
   background-color: #f8fafc !important;
 }
+
+/* 11. Table of Contents Links in Light Mode */
+body.light-theme .toc-link {
+  color: #475569 !important;
+}
+body.light-theme .toc-link:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+body.light-theme .toc-link.active {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  font-weight: 700;
+}
+
 
 

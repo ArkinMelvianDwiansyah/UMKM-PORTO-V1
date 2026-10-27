@@ -3400,10 +3400,13 @@ function copyStepCli(buttonEl) {
 // --- Theme Management (Dark / Light Mode) ---
 function getAppTheme() {
     try {
-        return localStorage.getItem('aamon_theme') || 'dark';
-    } catch (e) {
-        return 'dark';
+        const saved = localStorage.getItem('aamon_theme');
+        if (saved === 'dark' || saved === 'light') return saved;
+    } catch (e) {}
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
     }
+    return 'dark';
 }
 
 function applyAppTheme(theme) {
@@ -3457,6 +3460,181 @@ function toggleAppTheme() {
 
 function initAppTheme() {
     applyAppTheme(getAppTheme());
+    if (typeof window !== 'undefined' && window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+            if (!localStorage.getItem('aamon_theme')) {
+                applyAppTheme(e.matches ? 'light' : 'dark');
+            }
+        });
+    }
+}
+
+// Master Normalization Layer to guarantee 100% clean data without undefined
+function normalizeStandardizedMateri(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+
+    // Normalisasi Devices
+    const normalizedDevices = (raw.devices || []).map(dev => {
+        let specsObj = {
+            ports: '-',
+            cpu: '-',
+            throughput: '-',
+            ram: '-',
+            os: '-'
+        };
+
+        if (dev.specs && typeof dev.specs === 'object') {
+            specsObj = {
+                ports: dev.specs.ports || '-',
+                cpu: dev.specs.cpu || '-',
+                throughput: dev.specs.throughput || '-',
+                ram: dev.specs.ram || '-',
+                os: dev.specs.os || '-'
+            };
+        } else if (typeof dev.specs === 'string') {
+            specsObj = {
+                ports: 'Gigabit Ethernet & SFP',
+                cpu: dev.specs.split(',')[0] || 'Embedded CPU',
+                throughput: 'Wire-speed Forwarding',
+                ram: 'Standard Memory',
+                os: 'RouterOS v7'
+            };
+        }
+
+        const credit = (dev.imageSource && dev.imageSource.name) || dev.credit || 'mikrotik.com official product catalog';
+        const sourceUrl = (dev.imageSource && dev.imageSource.url) || dev.sourceUrl || 'https://mikrotik.com';
+        const image = dev.image && dev.image.trim() !== '' ? dev.image : 'assets/devices/generic-router.svg';
+        const alternatives = Array.isArray(dev.alternatives) && dev.alternatives.length > 0 
+            ? dev.alternatives 
+            : ['MikroTik CHR Lab Instance'];
+
+        return {
+            name: dev.name || 'Perangkat Jaringan',
+            model: dev.model || dev.name || 'Router MikroTik',
+            type: dev.type || 'Router / Switch',
+            role: dev.role || 'Peran di Topologi',
+            specs: specsObj,
+            image: image,
+            credit: credit,
+            sourceUrl: sourceUrl,
+            alternatives: alternatives
+        };
+    });
+
+    // Normalisasi Legend Topologi
+    const normalizedLegend = (raw.topology && Array.isArray(raw.topology.legend) ? raw.topology.legend : []).map(item => ({
+        color: item.color || '#38bdf8',
+        label: item.label || 'Tautan Jaringan',
+        desc: item.desc || item.description || (item.label ? item.label.replace(/\(.*\)/, '').trim() : 'Link Protokol')
+    }));
+
+    // Normalisasi Steps
+    const normalizedSteps = (raw.steps || []).map((step, idx) => {
+        const stepNum = step.no || step.step || (idx + 1);
+        const cliCommands = step.commands || step.cli || '';
+        
+        let normalizedExplanations = [];
+        if (Array.isArray(step.explanation)) {
+            normalizedExplanations = step.explanation.map(exp => {
+                if (typeof exp === 'object' && exp !== null) {
+                    return {
+                        line: exp.line || '',
+                        why: exp.why || exp.desc || ''
+                    };
+                }
+                return {
+                    line: '',
+                    why: String(exp || '')
+                };
+            });
+        } else if (step.explanation) {
+            normalizedExplanations = [{ line: '', why: String(step.explanation) }];
+        }
+
+        return {
+            no: stepNum,
+            title: step.title || `Langkah ${stepNum}`,
+            goal: step.goal || 'Menerapkan parameter konfigurasi pada router.',
+            targetDevice: step.targetDevice || 'Target Router',
+            commands: cliCommands,
+            explanation: normalizedExplanations,
+            checkpoint: step.checkpoint && typeof step.checkpoint === 'object' ? {
+                command: step.checkpoint.command || step.checkpoint.cmd || '/ip route print',
+                expected: step.checkpoint.expected || step.checkpoint.output || 'Status konfigurasi aktif dan running.'
+            } : null,
+            warning: step.warning || step.riskNote || ''
+        };
+    });
+
+    // Normalisasi Parameters
+    const normalizedParameters = (raw.parameters || []).map(p => ({
+        name: p.name || '-',
+        function: p.function || p.func || '-',
+        example: p.example || '-',
+        default: p.default || p.range || '-',
+        note: p.note || p.notes || '-'
+    }));
+
+    // Normalisasi Verification
+    const normalizedVerification = (raw.verification || []).map(v => ({
+        command: v.command || v.cmd || '/ip route print detail',
+        desc: v.desc || 'Perintah Uji Status',
+        expectedOutput: v.expectedOutput || v.output || 'Flags: D - DYNAMIC; A - ACTIVE;'
+    }));
+
+    // Normalisasi Troubleshooting
+    const normalizedTroubleshooting = (raw.troubleshooting || []).map(t => ({
+        issue: t.issue || t.title || 'Kasus Masalah Jaringan',
+        symptom: t.symptom || 'Gejala error atau rute unreachable.',
+        cause: t.cause || 'Kemungkinan interface mati atau nexthop salah ketik.',
+        check: t.check || 'Cek status tabel routing dan link fisik.',
+        fix: t.fix || t.solution || 'Perbaiki nexthop gateway dan pastikan link running.'
+    }));
+
+    // Normalisasi Conclusion
+    const conclusion = raw.conclusion || {};
+    const normalizedConclusion = {
+        summary: Array.isArray(conclusion.summary) ? conclusion.summary : ['Pahami konsep rute static dan default nexthop.'],
+        do: Array.isArray(conclusion.do) ? conclusion.do : ['Gunakan IP nexthop pada media Ethernet broadcast.'],
+        dont: Array.isArray(conclusion.dont) ? conclusion.dont : ['Jangan mengarahkan rute default ke nama interface saja.'],
+        security: conclusion.security || 'Tutup port servis yang tidak digunakan.'
+    };
+
+    // Normalisasi Exercises
+    const normalizedExercises = (raw.exercises || []).map((ex, idx) => ({
+        task: ex.task || ex.title || `Tantangan Lab #${idx + 1}`,
+        desc: ex.desc || '',
+        hint: ex.hint || 'Gunakan CLI print untuk verifikasi.'
+    }));
+
+    // Normalisasi Lab Tools
+    const normalizedLabTools = Array.isArray(raw.labTools) ? raw.labTools : ['MikroTik CHR (v7)', 'EVE-NG / GNS3', 'Cisco Packet Tracer'];
+
+    return {
+        ...raw,
+        order: raw.order || 1,
+        title: raw.title || 'Materi Jaringan',
+        category: raw.category || 'MikroTik MTCNA',
+        vendor: raw.vendor || 'MikroTik',
+        osVersion: raw.osVersion || 'RouterOS v7.14+',
+        level: raw.level || 'Dasar',
+        estimatedMinutes: raw.estimatedMinutes || 35,
+        prerequisites: Array.isArray(raw.prerequisites) ? raw.prerequisites : [],
+        problemSolved: raw.problemSolved || '-',
+        realWorldUse: raw.realWorldUse || '-',
+        devices: normalizedDevices,
+        topology: {
+            ...(raw.topology || {}),
+            legend: normalizedLegend
+        },
+        steps: normalizedSteps,
+        parameters: normalizedParameters,
+        verification: normalizedVerification,
+        troubleshooting: normalizedTroubleshooting,
+        conclusion: normalizedConclusion,
+        exercises: normalizedExercises,
+        labTools: normalizedLabTools
+    };
 }
 
 function copyCliSnippet(buttonEl, textToCopy) {
@@ -3517,7 +3695,8 @@ function toggleSectionCollapse(sectionId) {
 
 function openTopologyZoomModal(materiId) {
     if (typeof STANDARDIZED_COURSE_DATA === 'undefined') return;
-    const materi = STANDARDIZED_COURSE_DATA.find(m => m.id === materiId) || STANDARDIZED_COURSE_DATA[0];
+    const rawMateri = STANDARDIZED_COURSE_DATA.find(m => m.id === materiId) || STANDARDIZED_COURSE_DATA[0];
+    const materi = typeof normalizeStandardizedMateri === 'function' ? normalizeStandardizedMateri(rawMateri) : rawMateri;
     if (!materi || !materi.topology || !materi.topology.svg) return;
 
     const modal = document.getElementById('imageZoomModal');
@@ -3567,7 +3746,8 @@ function renderStandardizedCourseStudio(targetId) {
     }
 
     const activeId = targetId || currentStudioMateriId || STANDARDIZED_COURSE_DATA[0].id;
-    const currentMateri = STANDARDIZED_COURSE_DATA.find(m => m.id === activeId) || STANDARDIZED_COURSE_DATA[0];
+    const rawMateri = STANDARDIZED_COURSE_DATA.find(m => m.id === activeId) || STANDARDIZED_COURSE_DATA[0];
+    const currentMateri = typeof normalizeStandardizedMateri === 'function' ? normalizeStandardizedMateri(rawMateri) : rawMateri;
     currentStudioMateriId = currentMateri.id;
 
     const completedList = getStandardizedCourseProgress();
@@ -3697,7 +3877,7 @@ function renderStandardizedCourseStudio(targetId) {
 
                                     if (isAvailable) {
                                         return `
-                                            <button type="button" onclick="selectStudioMateri('${item.id}')" class="w-full text-left p-2 rounded-md transition text-xs flex items-center justify-between gap-2 ${isThisActive ? 'bg-amber-400/10 border border-amber-500/40 text-amber-200 font-bold' : 'hover:bg-stone-800 text-stone-300'}">
+                                            <button type="button" onclick="selectStudioMateri('${item.id}')" class="w-full text-left p-2 rounded-md transition text-xs flex items-center justify-between gap-2 ${isThisActive ? 'curriculum-item-active bg-amber-400/10 border border-amber-500/40 text-amber-200 font-bold' : 'curriculum-item-inactive hover:bg-stone-800 text-stone-300'}">
                                                 <div class="flex items-center gap-2 truncate">
                                                     <i class="fa-solid ${isThisDone ? 'fa-circle-check text-emerald-400' : (isThisActive ? 'fa-play text-amber-400' : 'fa-circle text-stone-600')} text-[10px] shrink-0"></i>
                                                     <span class="truncate">[${item.order}] ${item.title}</span>
@@ -3709,7 +3889,7 @@ function renderStandardizedCourseStudio(targetId) {
                                         `;
                                     } else {
                                         return `
-                                            <div class="w-full p-2 rounded-md text-xs text-stone-500 flex items-center justify-between gap-2 bg-stone-950/30 opacity-75 cursor-not-allowed">
+                                            <div class="curriculum-locked w-full p-2 rounded-md text-xs text-stone-500 flex items-center justify-between gap-2 bg-stone-950/30 opacity-75 cursor-not-allowed">
                                                 <div class="flex items-center gap-2 truncate">
                                                     <i class="fa-solid fa-lock text-[10px] text-stone-600 shrink-0"></i>
                                                     <span class="truncate">[${item.order}] ${item.title}</span>
@@ -3771,7 +3951,7 @@ function renderStandardizedCourseStudio(targetId) {
                         </div>
                         <button type="button" onclick="toggleMateriCompleted('${currentMateri.id}')" class="py-2 px-4 rounded-lg ${isCompleted ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-300' : 'bg-white hover:bg-stone-200 text-stone-950'} font-bold text-xs transition flex items-center gap-2">
                             <i class="fa-solid ${isCompleted ? 'fa-circle-check text-emerald-400' : 'fa-circle-dot'}"></i>
-                            <span>${isCompleted ? 'Selesai âœ” (Klik Batal)' : 'Tandai Selesai'}</span>
+                            <span>${isCompleted ? 'Selesai (Klik Batal)' : 'Tandai Selesai'}</span>
                         </button>
                     </div>
                 </div>
@@ -3815,11 +3995,11 @@ function renderStandardizedCourseStudio(targetId) {
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-[11px] font-mono">
                                 ${currentMateri.topology.legend.map(item => `
-                                    <div class="flex items-center gap-2 p-1.5 rounded bg-stone-950/50 border border-stone-800/80">
+                                    <div class="legend-item-card flex items-center gap-2 p-1.5 rounded bg-stone-950/50 border border-stone-800/80">
                                         <span class="w-3 h-3 rounded-sm shrink-0" style="background-color: ${item.color};"></span>
                                         <div class="truncate">
-                                            <span class="text-white font-bold block truncate">${item.label}</span>
-                                            <span class="text-[9px] text-stone-400 block truncate">${item.desc}</span>
+                                            <span class="legend-item-label text-white font-bold block truncate">${item.label}</span>
+                                            <span class="legend-item-desc text-[9px] text-stone-400 block truncate">${item.desc}</span>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -3913,10 +4093,10 @@ function renderStandardizedCourseStudio(targetId) {
                     <div id="sec-content-sec3" class="p-4 sm:p-6 space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             ${currentMateri.devices.map(dev => `
-                                <div class="rounded-xl bg-stone-900/60 border border-stone-800 overflow-hidden flex flex-col justify-between">
+                                <div class="device-card rounded-xl bg-stone-900/60 border border-stone-800 overflow-hidden flex flex-col justify-between">
                                     <div class="p-4 space-y-3">
                                         <!-- Photo & Badges -->
-                                        <div class="relative bg-stone-950 rounded-lg p-3 border border-stone-800/80 flex items-center justify-center min-h-[140px] group">
+                                        <div class="device-image-box relative bg-stone-950 rounded-lg p-3 border border-stone-800/80 flex items-center justify-center min-h-[140px] group">
                                             <img src="${dev.image}" alt="${dev.model}" class="max-h-28 object-contain transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null; this.src='assets/devices/generic-router.svg';">
                                             <div class="absolute top-2 left-2 flex items-center gap-1.5">
                                                 <span class="font-mono text-[10px] text-amber-300 bg-amber-950/80 border border-amber-800/80 px-2 py-0.5 rounded font-bold">${dev.role}</span>
@@ -3927,36 +4107,36 @@ function renderStandardizedCourseStudio(targetId) {
                                         </div>
 
                                         <div>
-                                            <h4 class="text-sm font-bold text-white">${dev.model}</h4>
-                                            <p class="text-[11px] text-stone-400 mt-0.5">${dev.specs.ports} • ${dev.specs.cpu}</p>
+                                            <h4 class="device-title text-sm font-bold text-white">${dev.model}</h4>
+                                            <p class="device-subtitle text-[11px] text-stone-400 mt-0.5">${dev.specs.ports} • ${dev.specs.cpu}</p>
                                         </div>
 
                                         <!-- Specifications Table -->
-                                        <div class="p-2.5 rounded-lg bg-stone-950/50 border border-stone-800/60 space-y-1 font-mono text-[11px]">
-                                            <div class="flex justify-between text-stone-400">
+                                        <div class="device-specs-box p-2.5 rounded-lg bg-stone-950/50 border border-stone-800/60 space-y-1 font-mono text-[11px]">
+                                            <div class="flex justify-between specs-label text-stone-400">
                                                 <span>Throughput:</span>
-                                                <span class="text-stone-200">${dev.specs.throughput}</span>
+                                                <span class="specs-val text-stone-200 font-semibold">${dev.specs.throughput}</span>
                                             </div>
-                                            <div class="flex justify-between text-stone-400">
+                                            <div class="flex justify-between specs-label text-stone-400">
                                                 <span>RAM / Storage:</span>
-                                                <span class="text-stone-200">${dev.specs.ram}</span>
+                                                <span class="specs-val text-stone-200 font-semibold">${dev.specs.ram}</span>
                                             </div>
-                                            <div class="flex justify-between text-stone-400">
+                                            <div class="flex justify-between specs-label text-stone-400">
                                                 <span>OS Compatibility:</span>
-                                                <span class="text-emerald-400 font-bold">${dev.specs.os}</span>
+                                                <span class="specs-val text-emerald-400 font-bold">${dev.specs.os}</span>
                                             </div>
                                         </div>
 
                                         <!-- Alternatives -->
-                                        <div class="text-[11px] text-stone-400">
-                                            <span class="font-mono text-stone-500">Alternatif Praktik:</span>
-                                            <span class="text-stone-300 ml-1 font-medium">${dev.alternatives.join(', ')}</span>
+                                        <div class="device-alt text-[11px] text-stone-400">
+                                            <span class="font-mono text-stone-500 font-semibold">Alternatif Praktik:</span>
+                                            <span class="text-stone-300 ml-1 font-medium">${(dev.alternatives || []).join(', ')}</span>
                                         </div>
                                     </div>
 
                                     <!-- Credit & Official Link -->
-                                    <div class="px-4 py-2.5 bg-stone-950/80 border-t border-stone-800 flex items-center justify-between text-[10px] font-mono">
-                                        <span class="text-stone-500">Sumber: ${dev.credit}</span>
+                                    <div class="device-footer px-4 py-2.5 bg-stone-950/80 border-t border-stone-800 flex items-center justify-between text-[10px] font-mono">
+                                        <span class="device-credit text-stone-500">Sumber: ${dev.credit}</span>
                                         <a href="${dev.sourceUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 flex items-center gap-1 transition">
                                             <span>Situs Resmi</span>
                                             <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
@@ -3999,45 +4179,45 @@ function renderStandardizedCourseStudio(targetId) {
                                 const explanations = Array.isArray(step.explanation) ? step.explanation : (step.explanation ? [step.explanation] : []);
                                 
                                 return `
-                                <div class="rounded-xl bg-stone-900/50 border border-stone-800 p-4 sm:p-5 space-y-3.5 transition hover:border-stone-700 shadow-sm">
+                                <div class="step-card rounded-xl bg-stone-900/50 border border-stone-800 p-4 sm:p-5 space-y-3.5 transition hover:border-stone-700 shadow-sm">
                                     <!-- Step Header -->
                                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-800/60 pb-3">
                                         <div class="flex items-center gap-2.5">
-                                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-950/70 border border-amber-800/70 text-amber-300 shadow-sm">
+                                            <span class="step-number-badge font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-950/70 border border-amber-800/70 text-amber-300 shadow-sm">
                                                 STEP ${formattedStepNum}
                                             </span>
-                                            <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-stone-800 border border-stone-700 text-stone-200 font-bold flex items-center gap-1.5 shadow-sm">
+                                            <span class="step-target-badge font-mono text-xs px-2.5 py-0.5 rounded bg-stone-800 border border-stone-700 text-stone-200 font-bold flex items-center gap-1.5 shadow-sm">
                                                 <i class="fa-solid fa-server text-stone-400 text-[10px]"></i>
                                                 ${step.targetDevice || 'Target Perangkat'}
                                             </span>
                                         </div>
-                                        <h4 class="text-xs sm:text-sm font-bold text-white">${step.title || 'Langkah Konfigurasi'}</h4>
+                                        <h4 class="step-title text-xs sm:text-sm font-bold text-white">${step.title || 'Langkah Konfigurasi'}</h4>
                                     </div>
 
                                     <!-- Goal -->
-                                    <div class="text-xs text-stone-300 font-sans leading-relaxed flex items-start gap-2 bg-stone-950/40 p-2.5 rounded-lg border border-stone-800/40">
-                                        <span class="font-mono font-bold text-amber-400 shrink-0 text-[10px] uppercase bg-amber-950/50 px-1.5 py-0.5 rounded border border-amber-900/60">Tujuan:</span>
-                                        <span class="text-stone-300">${step.goal || '-'}</span>
+                                    <div class="step-goal-box text-xs text-stone-300 font-sans leading-relaxed flex items-start gap-2 bg-stone-950/40 p-2.5 rounded-lg border border-stone-800/40">
+                                        <span class="step-goal-label font-mono font-bold text-amber-400 shrink-0 text-[10px] uppercase bg-amber-950/50 px-1.5 py-0.5 rounded border border-amber-900/60">Tujuan:</span>
+                                        <span class="step-goal-text text-stone-300">${step.goal || '-'}</span>
                                     </div>
 
-                                    <!-- CLI Block -->
-                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden relative group shadow-inner">
-                                        <div class="px-3.5 py-2 bg-stone-900/90 border-b border-stone-800/80 flex items-center justify-between text-[11px] font-mono text-stone-400">
-                                            <span class="flex items-center gap-2 text-stone-200 font-semibold">
+                                    <!-- CLI Block (Always Dedicated Dark Console Window) -->
+                                    <div class="cli-terminal-window rounded-xl bg-[#090d16] border border-[#1e293b] overflow-hidden relative group shadow-inner">
+                                        <div class="terminal-header px-3.5 py-2 bg-[#0f172a] border-b border-[#1e293b] flex items-center justify-between text-[11px] font-mono text-stone-300">
+                                            <span class="flex items-center gap-2 text-white font-semibold">
                                                 <i class="fa-solid fa-terminal text-amber-400 text-xs"></i>
                                                 <span>RouterOS Terminal CLI</span>
                                             </span>
-                                            <button type="button" onclick="copyStepCli(this)" class="py-1 px-3 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1.5 border border-stone-700 cursor-pointer shadow-sm active:scale-95">
+                                            <button type="button" onclick="copyStepCli(this)" class="terminal-copy-btn py-1 px-3 rounded bg-[#1e293b] hover:bg-[#334155] text-stone-200 text-[11px] font-mono transition flex items-center gap-1.5 border border-[#334155] cursor-pointer shadow-sm active:scale-95">
                                                 <i class="fa-regular fa-copy"></i>
                                                 <span>Salin Perintah</span>
                                             </button>
                                         </div>
-                                        <pre class="p-3.5 font-mono text-xs text-amber-300/95 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${escapeHtml(cliCode)}</pre>
+                                        <pre class="terminal-body p-3.5 font-mono text-xs text-[#fde047] whitespace-pre-wrap leading-relaxed select-all overflow-x-auto bg-[#090d16]">${escapeHtml(cliCode)}</pre>
                                     </div>
 
                                     <!-- Line by Line Explanation -->
-                                    <div class="p-3.5 rounded-lg bg-stone-950/40 border border-stone-800/60 space-y-2">
-                                        <div class="text-[11px] font-mono text-stone-400 font-bold uppercase flex items-center gap-1.5">
+                                    <div class="step-explanation-box p-3.5 rounded-lg bg-stone-950/40 border border-stone-800/60 space-y-2">
+                                        <div class="step-explanation-header text-[11px] font-mono text-stone-400 font-bold uppercase flex items-center gap-1.5">
                                             <i class="fa-solid fa-circle-info text-sky-400"></i>
                                             <span>Penjelasan Parameter & Logika Teknis:</span>
                                         </div>
@@ -4049,7 +4229,7 @@ function renderStandardizedCourseStudio(targetId) {
                                                             <i class="fa-solid fa-angle-right text-amber-400 text-[10px] mt-1 shrink-0"></i>
                                                             <div class="space-y-0.5 flex-1 min-w-0">
                                                                 ${exp.line ? `<code class="font-mono text-[11px] text-amber-300 bg-stone-900/90 px-1.5 py-0.5 rounded border border-stone-800 break-all inline-block">${escapeHtml(exp.line)}</code>` : ''}
-                                                                <p class="text-xs text-stone-300 mt-0.5 leading-relaxed">${exp.why || ''}</p>
+                                                                <p class="exp-why text-xs text-stone-300 mt-0.5 leading-relaxed">${exp.why || ''}</p>
                                                             </div>
                                                         </li>
                                                     `;
@@ -4057,7 +4237,7 @@ function renderStandardizedCourseStudio(targetId) {
                                                     return `
                                                         <li class="leading-relaxed flex items-start gap-2.5">
                                                             <i class="fa-solid fa-angle-right text-amber-400 text-[10px] mt-1 shrink-0"></i>
-                                                            <span class="text-xs text-stone-300 leading-relaxed">${exp}</span>
+                                                            <span class="exp-why text-xs text-stone-300 leading-relaxed">${exp}</span>
                                                         </li>
                                                     `;
                                                 }
@@ -4067,15 +4247,15 @@ function renderStandardizedCourseStudio(targetId) {
 
                                     <!-- Checkpoint Verification -->
                                     ${step.checkpoint ? `
-                                        <div class="p-3.5 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1.5 font-mono text-xs">
-                                            <div class="flex items-center justify-between text-blue-400 font-bold text-[11px] flex-wrap gap-2">
+                                        <div class="step-checkpoint-box p-3.5 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1.5 font-mono text-xs">
+                                            <div class="step-checkpoint-title flex items-center justify-between text-blue-400 font-bold text-[11px] flex-wrap gap-2">
                                                 <span class="flex items-center gap-1.5">
                                                     <i class="fa-solid fa-clipboard-check"></i>
                                                     CHECKPOINT VERIFIKASI:
                                                 </span>
-                                                <code class="text-stone-200 bg-stone-900 px-2 py-0.5 rounded border border-blue-900/50">${escapeHtml(step.checkpoint.command || step.checkpoint.cmd || '')}</code>
+                                                <code class="step-checkpoint-cmd text-stone-200 bg-stone-900 px-2 py-0.5 rounded border border-blue-900/50">${escapeHtml(step.checkpoint.command || step.checkpoint.cmd || '')}</code>
                                             </div>
-                                            <div class="text-stone-300 text-[11px] pt-1.5 border-t border-blue-900/30">
+                                            <div class="step-checkpoint-output text-stone-300 text-[11px] pt-1.5 border-t border-blue-900/30">
                                                 <span class="text-blue-300 font-semibold">Output Diharapkan:</span> ${escapeHtml(step.checkpoint.expected || step.checkpoint.output || '')}
                                             </div>
                                         </div>
@@ -4083,7 +4263,7 @@ function renderStandardizedCourseStudio(targetId) {
 
                                     <!-- Warning Alert if any -->
                                     ${warningText ? `
-                                        <div class="p-3 rounded-lg bg-rose-950/25 border border-rose-900/40 text-xs text-rose-300 flex items-start gap-2.5">
+                                        <div class="step-warning-box p-3 rounded-lg bg-rose-950/25 border border-rose-900/40 text-xs text-rose-300 flex items-start gap-2.5">
                                             <i class="fa-solid fa-triangle-exclamation text-rose-400 mt-0.5 shrink-0"></i>
                                             <div class="leading-relaxed">
                                                 <strong class="font-mono uppercase text-[11px] text-rose-400">Peringatan Risiko:</strong> ${warningText}
@@ -4107,18 +4287,18 @@ function renderStandardizedCourseStudio(targetId) {
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 ${(Array.isArray(currentMateri.fullConfig) ? currentMateri.fullConfig : []).map(cfg => `
-                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden shadow-inner group">
-                                        <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
+                                    <div class="cli-terminal-window rounded-xl bg-[#090d16] border border-[#1e293b] overflow-hidden shadow-inner group">
+                                        <div class="terminal-header p-2.5 bg-[#0f172a] border-b border-[#1e293b] flex items-center justify-between text-xs">
                                             <span class="font-bold text-white flex items-center gap-1.5 font-mono">
                                                 <i class="fa-solid fa-server text-amber-400"></i>
                                                 ${cfg.device}
                                             </span>
-                                            <button type="button" onclick="copyStepCli(this)" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700 cursor-pointer shadow-sm active:scale-95">
+                                            <button type="button" onclick="copyStepCli(this)" class="terminal-copy-btn py-1 px-2.5 rounded bg-[#1e293b] hover:bg-[#334155] text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-[#334155] cursor-pointer shadow-sm active:scale-95">
                                                 <i class="fa-regular fa-copy"></i>
                                                 <span>Salin Semua ${cfg.device}</span>
                                             </button>
                                         </div>
-                                        <pre class="p-3 font-mono text-[11px] text-amber-300/95 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${escapeHtml(cfg.commands || cfg.script || '')}</pre>
+                                        <pre class="terminal-body p-3 font-mono text-[11px] text-[#fde047] whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all bg-[#090d16]">${escapeHtml(cfg.commands || cfg.script || '')}</pre>
                                     </div>
                                 `).join('')}
                             </div>
@@ -4147,7 +4327,7 @@ function renderStandardizedCourseStudio(targetId) {
                     </div>
 
                     <div id="sec-content-sec5" class="p-4 sm:p-6 overflow-x-auto">
-                        <table class="w-full text-left text-xs border-collapse">
+                        <table class="param-table w-full text-left text-xs border-collapse">
                             <thead>
                                 <tr class="border-b border-stone-800 font-mono text-[11px] text-stone-400 uppercase bg-stone-900/60">
                                     <th class="p-3 font-bold">Parameter</th>
@@ -4160,7 +4340,7 @@ function renderStandardizedCourseStudio(targetId) {
                             <tbody class="divide-y divide-stone-800/60 font-sans">
                                 ${(currentMateri.parameters || []).map(p => `
                                     <tr class="hover:bg-stone-900/30 transition">
-                                        <td class="p-3 font-mono font-bold text-amber-300 whitespace-nowrap">${p.name}</td>
+                                        <td class="param-name p-3 font-mono font-bold text-amber-300 whitespace-nowrap">${p.name}</td>
                                         <td class="p-3 text-stone-300 leading-relaxed">${p.function || p.func || ''}</td>
                                         <td class="p-3 font-mono text-stone-200 whitespace-nowrap">${p.example || ''}</td>
                                         <td class="p-3 font-mono text-stone-400 whitespace-nowrap">${p.default || p.range || ''}</td>
@@ -4202,15 +4382,15 @@ function renderStandardizedCourseStudio(targetId) {
 
                             <div class="grid grid-cols-1 gap-4">
                                 ${(currentMateri.verification || []).map(v => `
-                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
-                                        <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs font-mono">
+                                    <div class="cli-terminal-window rounded-xl bg-[#090d16] border border-[#1e293b] overflow-hidden">
+                                        <div class="terminal-header p-2.5 bg-[#0f172a] border-b border-[#1e293b] flex items-center justify-between text-xs font-mono">
                                             <span class="text-emerald-400 font-bold flex items-center gap-2">
                                                 <i class="fa-solid fa-circle-check text-[10px]"></i>
                                                 ${v.desc || v.command}
                                             </span>
-                                            <span class="text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">${v.command || v.cmd || ''}</span>
+                                            <span class="text-stone-300 bg-[#1e293b] px-2 py-0.5 rounded border border-[#334155]">${v.command || v.cmd || ''}</span>
                                         </div>
-                                        <pre class="p-3.5 font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${v.expectedOutput || v.output || ''}</pre>
+                                        <pre class="terminal-body p-3.5 font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto bg-[#090d16]">${v.expectedOutput || v.output || ''}</pre>
                                     </div>
                                 `).join('')}
                             </div>
@@ -4225,7 +4405,7 @@ function renderStandardizedCourseStudio(targetId) {
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 ${(currentMateri.troubleshooting || []).map((t, idx) => `
-                                    <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 space-y-2.5">
+                                    <div class="trouble-card rounded-xl bg-stone-900/60 border border-stone-800 p-4 space-y-2.5">
                                         <div class="flex items-center gap-2 border-b border-stone-800 pb-2">
                                             <span class="font-mono text-[10px] text-rose-400 bg-rose-950/60 border border-rose-800/60 px-2 py-0.5 rounded font-bold">
                                                 KASUS 0${idx + 1}
@@ -4266,7 +4446,7 @@ function renderStandardizedCourseStudio(targetId) {
                                 <span class="font-mono text-[10px] text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">Operational Safety</span>
                             </div>
 
-                            <pre class="font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all bg-stone-950 p-3.5 rounded-lg border border-stone-800">${typeof currentMateri.rollback === 'string' ? currentMateri.rollback : ((currentMateri.rollback && currentMateri.rollback.safeMode) || '')}</pre>
+                            <pre class="cli-terminal-window font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all bg-[#090d16] p-3.5 rounded-lg border border-[#1e293b]">${typeof currentMateri.rollback === 'string' ? currentMateri.rollback : ((currentMateri.rollback && currentMateri.rollback.safeMode) || '')}</pre>
                         </div>
 
                     </div>
@@ -4311,7 +4491,7 @@ function renderStandardizedCourseStudio(targetId) {
                         <!-- Do and Don't Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                             <!-- Wajib Dilakukan -->
-                            <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/40 space-y-2">
+                            <div class="bp-do-box p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/40 space-y-2">
                                 <h5 class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                     <span>Wajib Dilakukan (Best Practice)</span>
@@ -4327,7 +4507,7 @@ function renderStandardizedCourseStudio(targetId) {
                             </div>
 
                             <!-- Jangan Dilakukan -->
-                            <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-900/40 space-y-2">
+                            <div class="bp-dont-box p-4 rounded-xl bg-rose-950/20 border border-rose-900/40 space-y-2">
                                 <h5 class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider flex items-center gap-2">
                                     <i class="fa-solid fa-ban"></i>
                                     <span>Jangan Dilakukan (Anti-Pattern)</span>
@@ -4344,7 +4524,7 @@ function renderStandardizedCourseStudio(targetId) {
                         </div>
 
                         <!-- Security Notes -->
-                        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-1.5">
+                        <div class="bp-sec-box p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-1.5">
                             <h5 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
                                 <i class="fa-solid fa-shield-halved"></i>
                                 <span>Catatan Keamanan & Hardening Jaringan</span>
@@ -4402,7 +4582,7 @@ function renderStandardizedCourseStudio(targetId) {
 
                             <div class="space-y-4">
                                 ${(currentMateri.exercises || []).map((ex, idx) => `
-                                    <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 sm:p-5 space-y-2.5">
+                                    <div class="challenge-card rounded-xl bg-stone-900/60 border border-stone-800 p-4 sm:p-5 space-y-2.5">
                                         <div class="flex items-center justify-between">
                                             <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-950 border border-teal-800 text-teal-300">
                                                 TANTANGAN #${idx + 1}
@@ -4411,7 +4591,7 @@ function renderStandardizedCourseStudio(targetId) {
                                         </div>
                                         <h5 class="text-sm font-bold text-white">${ex.task}</h5>
                                         ${ex.desc ? `<p class="text-xs text-stone-300 leading-relaxed font-sans">${ex.desc}</p>` : ''}
-                                        <div class="p-3 rounded-lg bg-stone-950/60 border border-stone-800/80 font-mono text-[11px] text-stone-400 flex items-start gap-2">
+                                        <div class="challenge-hint p-3 rounded-lg bg-stone-950/60 border border-stone-800/80 font-mono text-[11px] text-stone-400 flex items-start gap-2">
                                             <i class="fa-regular fa-lightbulb text-amber-400 mt-0.5 shrink-0"></i>
                                             <div>
                                                 <strong class="text-stone-300">Petunjuk Pengerjaan:</strong> ${ex.hint}
@@ -4430,7 +4610,7 @@ function renderStandardizedCourseStudio(targetId) {
                             </h4>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
                                 ${currentMateri.labTools.map(tool => `
-                                    <div class="p-2.5 rounded bg-stone-950 border border-stone-800 text-stone-300 flex items-center gap-2">
+                                    <div class="lab-tool-card p-2.5 rounded bg-stone-950 border border-stone-800 text-stone-300 flex items-center gap-2">
                                         <i class="fa-solid fa-server text-stone-500 text-[10px]"></i>
                                         <span>${tool}</span>
                                     </div>
