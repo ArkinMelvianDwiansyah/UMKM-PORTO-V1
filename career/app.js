@@ -2014,6 +2014,7 @@ function showToastNotification(title, msg) {
 
 // --- 7. Initialization on DOM Loaded ---
 document.addEventListener('DOMContentLoaded', () => {
+    initAppTheme();
     // Restore sidebar state
     if (store.isSidebarCollapsed) {
         const sidebar = document.getElementById('sidebar');
@@ -3377,6 +3378,87 @@ function toggleMateriCompleted(materiId) {
     );
 }
 
+function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function copyStepCli(buttonEl) {
+    if (!buttonEl) return;
+    const container = buttonEl.closest('.group') || buttonEl.closest('.rounded-xl') || buttonEl.parentElement.parentElement;
+    if (!container) return;
+    const preEl = container.querySelector('pre');
+    if (!preEl) return;
+    copyCliSnippet(buttonEl, preEl.innerText.trim());
+}
+
+// --- Theme Management (Dark / Light Mode) ---
+function getAppTheme() {
+    try {
+        return localStorage.getItem('aamon_theme') || 'dark';
+    } catch (e) {
+        return 'dark';
+    }
+}
+
+function applyAppTheme(theme) {
+    const isDark = theme === 'dark';
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+
+    if (isDark) {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+        if (bodyEl) bodyEl.classList.remove('light-theme');
+    } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        if (bodyEl) bodyEl.classList.add('light-theme');
+    }
+
+    try {
+        localStorage.setItem('aamon_theme', theme);
+    } catch (e) {}
+
+    // Update all theme toggle buttons across app
+    const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+    toggleBtns.forEach(btn => {
+        const icon = btn.querySelector('.theme-toggle-icon') || btn.querySelector('i');
+        const text = btn.querySelector('.theme-toggle-text');
+        if (icon) {
+            if (isDark) {
+                icon.className = 'theme-toggle-icon fa-regular fa-sun text-amber-400 text-xs';
+            } else {
+                icon.className = 'theme-toggle-icon fa-solid fa-moon text-indigo-600 text-xs';
+            }
+        }
+        if (text) {
+            text.textContent = isDark ? 'Mode Terang' : 'Mode Gelap';
+        }
+        btn.setAttribute('title', isDark ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap');
+        btn.setAttribute('aria-label', isDark ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap');
+    });
+}
+
+function toggleAppTheme() {
+    const current = getAppTheme();
+    const nextTheme = current === 'dark' ? 'light' : 'dark';
+    applyAppTheme(nextTheme);
+    showToastNotification(
+        nextTheme === 'dark' ? 'Mode Gelap Aktif' : 'Mode Terang Aktif',
+        nextTheme === 'dark' ? 'Tema kontras tinggi malam hari diaktifkan.' : 'Tema bersih modern siang hari diaktifkan.'
+    );
+}
+
+function initAppTheme() {
+    applyAppTheme(getAppTheme());
+}
+
 function copyCliSnippet(buttonEl, textToCopy) {
     if (!buttonEl || !textToCopy) return;
 
@@ -3909,106 +3991,134 @@ function renderStandardizedCourseStudio(targetId) {
                         
                         <!-- Stepper Items -->
                         <div class="space-y-6">
-                            ${currentMateri.steps.map(step => `
-                                <div class="rounded-xl bg-stone-900/50 border border-stone-800 p-4 sm:p-5 space-y-3">
+                            ${(currentMateri.steps || []).map((step, idx) => {
+                                const stepNum = step.no || step.step || (idx + 1);
+                                const formattedStepNum = String(stepNum).padStart(2, '0');
+                                const cliCode = step.commands || step.cli || '';
+                                const warningText = step.warning || step.riskNote || '';
+                                const explanations = Array.isArray(step.explanation) ? step.explanation : (step.explanation ? [step.explanation] : []);
+                                
+                                return `
+                                <div class="rounded-xl bg-stone-900/50 border border-stone-800 p-4 sm:p-5 space-y-3.5 transition hover:border-stone-700 shadow-sm">
                                     <!-- Step Header -->
                                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-800/60 pb-3">
                                         <div class="flex items-center gap-2.5">
-                                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-950/70 border border-amber-800/70 text-amber-300">
-                                                STEP ${String(step.step).padStart(2, '0')}
+                                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-950/70 border border-amber-800/70 text-amber-300 shadow-sm">
+                                                STEP ${formattedStepNum}
                                             </span>
-                                            <span class="font-mono text-xs px-2 py-0.5 rounded bg-stone-800 border border-stone-700 text-stone-200 font-bold flex items-center gap-1.5">
+                                            <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-stone-800 border border-stone-700 text-stone-200 font-bold flex items-center gap-1.5 shadow-sm">
                                                 <i class="fa-solid fa-server text-stone-400 text-[10px]"></i>
-                                                ${step.targetDevice}
+                                                ${step.targetDevice || 'Target Perangkat'}
                                             </span>
                                         </div>
-                                        <h4 class="text-xs sm:text-sm font-bold text-white">${step.title}</h4>
+                                        <h4 class="text-xs sm:text-sm font-bold text-white">${step.title || 'Langkah Konfigurasi'}</h4>
                                     </div>
 
                                     <!-- Goal -->
-                                    <p class="text-xs text-stone-300 font-sans leading-relaxed">
-                                        <strong>Tujuan step ini:</strong> ${step.goal}
-                                    </p>
+                                    <div class="text-xs text-stone-300 font-sans leading-relaxed flex items-start gap-2 bg-stone-950/40 p-2.5 rounded-lg border border-stone-800/40">
+                                        <span class="font-mono font-bold text-amber-400 shrink-0 text-[10px] uppercase bg-amber-950/50 px-1.5 py-0.5 rounded border border-amber-900/60">Tujuan:</span>
+                                        <span class="text-stone-300">${step.goal || '-'}</span>
+                                    </div>
 
                                     <!-- CLI Block -->
-                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden relative group">
-                                        <div class="px-3.5 py-1.5 bg-stone-900/80 border-b border-stone-800/80 flex items-center justify-between text-[11px] font-mono text-stone-400">
-                                            <span class="flex items-center gap-1.5 text-stone-300">
-                                                <i class="fa-solid fa-terminal text-amber-400 text-[10px]"></i>
-                                                RouterOS Terminal CLI
+                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden relative group shadow-inner">
+                                        <div class="px-3.5 py-2 bg-stone-900/90 border-b border-stone-800/80 flex items-center justify-between text-[11px] font-mono text-stone-400">
+                                            <span class="flex items-center gap-2 text-stone-200 font-semibold">
+                                                <i class="fa-solid fa-terminal text-amber-400 text-xs"></i>
+                                                <span>RouterOS Terminal CLI</span>
                                             </span>
-                                            <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(step.cli)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 text-[11px] transition flex items-center gap-1 border border-stone-700">
+                                            <button type="button" onclick="copyStepCli(this)" class="py-1 px-3 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1.5 border border-stone-700 cursor-pointer shadow-sm active:scale-95">
                                                 <i class="fa-regular fa-copy"></i>
                                                 <span>Salin Perintah</span>
                                             </button>
                                         </div>
-                                        <pre class="p-3.5 font-mono text-xs text-amber-200/90 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${step.cli}</pre>
+                                        <pre class="p-3.5 font-mono text-xs text-amber-300/95 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${escapeHtml(cliCode)}</pre>
                                     </div>
 
                                     <!-- Line by Line Explanation -->
-                                    <div class="p-3.5 rounded-lg bg-stone-950/40 border border-stone-800/60 space-y-1.5">
+                                    <div class="p-3.5 rounded-lg bg-stone-950/40 border border-stone-800/60 space-y-2">
                                         <div class="text-[11px] font-mono text-stone-400 font-bold uppercase flex items-center gap-1.5">
                                             <i class="fa-solid fa-circle-info text-sky-400"></i>
                                             <span>Penjelasan Parameter & Logika Teknis:</span>
                                         </div>
-                                        <ul class="space-y-1 text-xs text-stone-300 list-disc list-inside">
-                                            ${step.explanation.map(exp => `
-                                                <li class="leading-relaxed">${exp}</li>
-                                            `).join('')}
+                                        <ul class="space-y-2 text-xs text-stone-300">
+                                            ${explanations.map(exp => {
+                                                if (typeof exp === 'object' && exp !== null) {
+                                                    return `
+                                                        <li class="leading-relaxed flex items-start gap-2.5">
+                                                            <i class="fa-solid fa-angle-right text-amber-400 text-[10px] mt-1 shrink-0"></i>
+                                                            <div class="space-y-0.5 flex-1 min-w-0">
+                                                                ${exp.line ? `<code class="font-mono text-[11px] text-amber-300 bg-stone-900/90 px-1.5 py-0.5 rounded border border-stone-800 break-all inline-block">${escapeHtml(exp.line)}</code>` : ''}
+                                                                <p class="text-xs text-stone-300 mt-0.5 leading-relaxed">${exp.why || ''}</p>
+                                                            </div>
+                                                        </li>
+                                                    `;
+                                                } else {
+                                                    return `
+                                                        <li class="leading-relaxed flex items-start gap-2.5">
+                                                            <i class="fa-solid fa-angle-right text-amber-400 text-[10px] mt-1 shrink-0"></i>
+                                                            <span class="text-xs text-stone-300 leading-relaxed">${exp}</span>
+                                                        </li>
+                                                    `;
+                                                }
+                                            }).join('')}
                                         </ul>
                                     </div>
 
                                     <!-- Checkpoint Verification -->
-                                    <div class="p-3 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1 font-mono text-xs">
-                                        <div class="flex items-center justify-between text-blue-400 font-bold text-[11px]">
-                                            <span class="flex items-center gap-1.5">
-                                                <i class="fa-solid fa-clipboard-check"></i>
-                                                CHECKPOINT VERIFIKASI:
-                                            </span>
-                                            <span class="text-stone-400">${step.checkpoint.command}</span>
+                                    ${step.checkpoint ? `
+                                        <div class="p-3.5 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1.5 font-mono text-xs">
+                                            <div class="flex items-center justify-between text-blue-400 font-bold text-[11px] flex-wrap gap-2">
+                                                <span class="flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-clipboard-check"></i>
+                                                    CHECKPOINT VERIFIKASI:
+                                                </span>
+                                                <code class="text-stone-200 bg-stone-900 px-2 py-0.5 rounded border border-blue-900/50">${escapeHtml(step.checkpoint.command || step.checkpoint.cmd || '')}</code>
+                                            </div>
+                                            <div class="text-stone-300 text-[11px] pt-1.5 border-t border-blue-900/30">
+                                                <span class="text-blue-300 font-semibold">Output Diharapkan:</span> ${escapeHtml(step.checkpoint.expected || step.checkpoint.output || '')}
+                                            </div>
                                         </div>
-                                        <div class="text-stone-300 text-[11px] pt-1 border-t border-blue-900/30">
-                                            <span class="text-blue-300">Output Diharapkan:</span> ${step.checkpoint.expected}
-                                        </div>
-                                    </div>
+                                    ` : ''}
 
                                     <!-- Warning Alert if any -->
-                                    ${step.warning ? `
-                                        <div class="p-3 rounded-lg bg-rose-950/25 border border-rose-900/40 text-xs text-rose-300 flex items-start gap-2">
+                                    ${warningText ? `
+                                        <div class="p-3 rounded-lg bg-rose-950/25 border border-rose-900/40 text-xs text-rose-300 flex items-start gap-2.5">
                                             <i class="fa-solid fa-triangle-exclamation text-rose-400 mt-0.5 shrink-0"></i>
                                             <div class="leading-relaxed">
-                                                <strong class="font-mono uppercase text-[11px] text-rose-400">Peringatan Risiko:</strong> ${step.warning}
+                                                <strong class="font-mono uppercase text-[11px] text-rose-400">Peringatan Risiko:</strong> ${warningText}
                                             </div>
                                         </div>
                                     ` : ''}
                                 </div>
-                            `).join('')}
+                                `;
+                            }).join('')}
                         </div>
 
                         <!-- Konfigurasi Lengkap Per Perangkat (All-in-One 1-Click Copy) -->
                         <div class="space-y-3 pt-4 border-t border-stone-800">
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
                                 <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
                                     <i class="fa-solid fa-file-code text-amber-400"></i>
                                     <span>Script Konfigurasi Lengkap (Sekali Salin Per Perangkat)</span>
                                 </h4>
-                                <span class="font-mono text-[10px] text-stone-400">Zero-to-Hero Factory Reset Config</span>
+                                <span class="font-mono text-[10px] text-stone-400 bg-stone-900 px-2 py-0.5 rounded border border-stone-800">Zero-to-Hero Factory Reset Config</span>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 ${(Array.isArray(currentMateri.fullConfig) ? currentMateri.fullConfig : []).map(cfg => `
-                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
+                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden shadow-inner group">
                                         <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
                                             <span class="font-bold text-white flex items-center gap-1.5 font-mono">
                                                 <i class="fa-solid fa-server text-amber-400"></i>
                                                 ${cfg.device}
                                             </span>
-                                            <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(cfg.commands || cfg.script || '')})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
+                                            <button type="button" onclick="copyStepCli(this)" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700 cursor-pointer shadow-sm active:scale-95">
                                                 <i class="fa-regular fa-copy"></i>
                                                 <span>Salin Semua ${cfg.device}</span>
                                             </button>
                                         </div>
-                                        <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${cfg.commands || cfg.script || ''}</pre>
+                                        <pre class="p-3 font-mono text-[11px] text-amber-300/95 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${escapeHtml(cfg.commands || cfg.script || '')}</pre>
                                     </div>
                                 `).join('')}
                             </div>
