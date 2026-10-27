@@ -17,128 +17,249 @@ const STANDARDIZED_COURSE_DATA = [
         prerequisites: [],
         topology: {
             svg: `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="100%" height="360" class="w-full max-w-5xl select-none">
-    <!-- Background Frame -->
-    <rect width="960" height="360" rx="12" fill="#0c0a09" stroke="#292524" stroke-width="1.5" />
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 480" width="100%" height="480" class="w-full max-w-5xl select-none font-sans">
+  <defs>
+    <!-- Dark Studio Glow Filters -->
+    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Cable Gradients -->
+    <linearGradient id="grad-wan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+    <linearGradient id="grad-p2p" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="grad-lan-hq" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+    <linearGradient id="grad-lan-br" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#a78bfa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base Container -->
+  <rect width="1020" height="480" rx="14" fill="#090807" stroke="#262320" stroke-width="1.5" />
+  
+  <!-- Subtle Grid Pattern -->
+  <g opacity="0.08" stroke="#78716c" stroke-width="1">
+    <line x1="60" y1="0" x2="60" y2="480" /><line x1="180" y1="0" x2="180" y2="480" />
+    <line x1="300" y1="0" x2="300" y2="480" /><line x1="420" y1="0" x2="420" y2="480" />
+    <line x1="540" y1="0" x2="540" y2="480" /><line x1="660" y1="0" x2="660" y2="480" />
+    <line x1="780" y1="0" x2="780" y2="480" /><line x1="900" y1="0" x2="900" y2="480" />
+    <line x1="0" y1="70" x2="1020" y2="70" /><line x1="0" y1="150" x2="1020" y2="150" />
+    <line x1="0" y1="230" x2="1020" y2="230" /><line x1="0" y1="310" x2="1020" y2="310" />
+    <line x1="0" y1="390" x2="1020" y2="390" />
+  </g>
+
+  <!-- Top Lab Header Bar -->
+  <rect width="1020" height="40" rx="14" fill="#141210" />
+  <rect y="30" width="1020" height="10" fill="#141210" />
+  <line x1="0" y1="40" x2="1020" y2="40" stroke="#262320" stroke-width="1" />
+  
+  <circle cx="24" cy="20" r="4.5" fill="#ef4444" opacity="0.85" />
+  <circle cx="40" cy="20" r="4.5" fill="#f59e0b" opacity="0.85" />
+  <circle cx="56" cy="20" r="4.5" fill="#10b981" opacity="0.85" />
+  <text x="76" y="24" fill="#e7e5e4" font-family="monospace" font-size="11.5" font-weight="bold">TOPOLOGI LAB HARDWARE ASLI — PT ARUNIKA MANDIRI (ROUTING STATIC &amp; DEFAULT)</text>
+  <circle cx="875" cy="20" r="3.5" fill="#34d399" />
+  <text x="1000" y="24" text-anchor="end" fill="#34d399" font-family="monospace" font-size="10.5" font-weight="bold">SIMULASI CHR / EVE-NG READY</text>
+
+  <!-- ========================================================================= -->
+  <!-- PHYSICAL & LOGICAL CABLING (Underneath Devices)                            -->
+  <!-- ========================================================================= -->
+
+  <!-- Cable 1: ISP CCR2004 to R-PUSAT RB4011 (WAN Uplink) -->
+  <path d="M 185 145 L 375 145" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" filter="url(#drop-shadow)" />
+  <path d="M 185 145 L 375 145" stroke="#fef08a" stroke-width="1" stroke-dasharray="4,6" opacity="0.9" />
+
+  <!-- Cable 2: R-PUSAT to R-CABANG (P2P Inter-Branch 10.255.0.0/30) -->
+  <path d="M 545 145 L 735 145" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round" filter="url(#drop-shadow)" />
+  <path d="M 545 145 L 735 145" stroke="#bae6fd" stroke-width="1.2" stroke-dasharray="6,6" opacity="0.9" />
+
+  <!-- Cable 3: R-PUSAT to LAN PC HQ (10.10.20.0/24) -->
+  <path d="M 460 215 L 460 330" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" filter="url(#drop-shadow)" />
+  <path d="M 460 215 L 460 330" stroke="#a7f3d0" stroke-width="1" stroke-dasharray="4,4" opacity="0.8" />
+
+  <!-- Cable 4: R-CABANG to LAN PC Branch (10.20.20.0/24) -->
+  <path d="M 815 215 L 815 330" stroke="#8b5cf6" stroke-width="3.5" stroke-linecap="round" filter="url(#drop-shadow)" />
+  <path d="M 815 215 L 815 330" stroke="#ddd6fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.8" />
+
+  <!-- ========================================================================= -->
+  <!-- ROUTE OVERLAY BADGES ON CABLES                                            -->
+  <!-- ========================================================================= -->
+
+  <!-- WAN Route Badge -->
+  <g transform="translate(280, 105)">
+    <rect x="-65" y="-12" width="130" height="24" rx="5" fill="#1c1917" stroke="#f59e0b" stroke-width="1.2" filter="url(#drop-shadow)" />
+    <text x="0" y="3" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9.5" font-weight="bold">0.0.0.0/0 (Dist=1)</text>
+    <text x="0" y="24" text-anchor="middle" fill="#d97706" font-family="monospace" font-size="8">WAN: 203.0.113.0/30</text>
+  </g>
+
+  <!-- P2P Route Badge -->
+  <g transform="translate(640, 105)">
+    <rect x="-75" y="-12" width="150" height="24" rx="5" fill="#1c1917" stroke="#38bdf8" stroke-width="1.2" filter="url(#drop-shadow)" />
+    <text x="0" y="3" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9.5" font-weight="bold">P2P: 10.255.0.0/30</text>
+    <text x="0" y="24" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="8">Static: 10.20.20.0/24 -&gt; .2</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DEVICE 1: ISP 1 UPLINK (MikroTik CCR2004 Core Router)                    -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 75)">
+    <!-- Hardware Pedestal Frame -->
+    <rect x="0" y="0" width="145" height="140" rx="10" fill="#141210" stroke="#44403c" stroke-width="1.2" filter="url(#drop-shadow)" />
+    <rect x="0" y="0" width="145" height="24" rx="10" fill="#292524" />
+    <rect y="14" width="145" height="10" fill="#292524" />
+    <text x="72" y="16" text-anchor="middle" fill="#e7e5e4" font-size="10" font-weight="bold">ISP 1 (TELKOM)</text>
+
+    <!-- REAL HARDWARE PHOTO: MikroTik CCR2004 -->
+    <rect x="12" y="32" width="121" height="52" rx="4" fill="#0c0a09" stroke="#1c1917" />
+    <image href="assets/devices/mikrotik/ccr2004.webp" x="14" y="35" width="117" height="46" preserveAspectRatio="xMidYMid meet" />
+
+    <!-- Specs & Details -->
+    <text x="72" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">Gateway ISP 1</text>
+    <text x="72" y="112" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9.5" font-weight="bold">203.0.113.1/30</text>
+    <text x="72" y="127" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="8.5">CCR2004-16G-2S+</text>
+
+    <!-- Interface Badge -->
+    <rect x="125" y="60" width="48" height="18" rx="3" fill="#1c1917" stroke="#f59e0b" stroke-width="1.2" />
+    <text x="149" y="72" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8.5" font-weight="bold">sfp-sfpplus1</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- DEVICE 2: R-PUSAT (MikroTik RB4011iGS+RM)                                 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(375, 65)">
+    <!-- Hardware Pedestal Frame with Golden Glow Accent -->
+    <rect x="0" y="0" width="170" height="155" rx="12" fill="#161412" stroke="#d97706" stroke-width="1.8" filter="url(#drop-shadow)" />
+    <rect x="0" y="0" width="170" height="26" rx="12" fill="#78350f" opacity="0.9" />
+    <rect y="16" width="170" height="10" fill="#78350f" opacity="0.9" />
+    <text x="85" y="18" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="extrabold" letter-spacing="0.5">R-PUSAT (HQ JAKARTA)</text>
+
+    <!-- Port Badges on Frame -->
+    <!-- ether1 (WAN) -->
+    <rect x="-35" y="70" width="44" height="18" rx="3" fill="#1c1917" stroke="#f59e0b" stroke-width="1.2" />
+    <text x="-13" y="82" text-anchor="middle" fill="#fef08a" font-family="monospace" font-size="8.5" font-weight="bold">ether1</text>
     
-    <!-- Top Bar -->
-    <rect width="960" height="34" rx="12" fill="#181614" />
-    <rect y="26" width="960" height="8" fill="#181614" />
-    <line x1="0" y1="34" x2="960" y2="34" stroke="#292524" stroke-width="1" />
-    <circle cx="22" cy="17" r="4.5" fill="#ef4444" opacity="0.8" />
-    <circle cx="36" cy="17" r="4.5" fill="#f59e0b" opacity="0.8" />
-    <circle cx="50" cy="17" r="4.5" fill="#10b981" opacity="0.8" />
-    <text x="70" y="21" fill="#e7e5e4" font-family="monospace" font-size="11" font-weight="bold">[TOPOLOGY LAB] MikroTik Static &amp; Default Route Inter-Branch Lab</text>
-    <text x="940" y="21" text-anchor="end" fill="#34d399" font-family="monospace" font-size="10" font-weight="bold">[OK] STATUS: LINK ACTIVE (1Gbps FDX)</text>
+    <!-- ether2 (P2P) -->
+    <rect x="160" y="70" width="44" height="18" rx="3" fill="#1c1917" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="182" y="82" text-anchor="middle" fill="#bae6fd" font-family="monospace" font-size="8.5" font-weight="bold">ether2</text>
 
-    <!-- Background Grid Dots -->
-    <g opacity="0.15">
-        <circle cx="100" cy="80" r="1" fill="#78716c"/><circle cx="200" cy="80" r="1" fill="#78716c"/><circle cx="300" cy="80" r="1" fill="#78716c"/><circle cx="400" cy="80" r="1" fill="#78716c"/><circle cx="500" cy="80" r="1" fill="#78716c"/><circle cx="600" cy="80" r="1" fill="#78716c"/><circle cx="700" cy="80" r="1" fill="#78716c"/><circle cx="800" cy="80" r="1" fill="#78716c"/><circle cx="900" cy="80" r="1" fill="#78716c"/>
-        <circle cx="100" cy="160" r="1" fill="#78716c"/><circle cx="200" cy="160" r="1" fill="#78716c"/><circle cx="300" cy="160" r="1" fill="#78716c"/><circle cx="400" cy="160" r="1" fill="#78716c"/><circle cx="500" cy="160" r="1" fill="#78716c"/><circle cx="600" cy="160" r="1" fill="#78716c"/><circle cx="700" cy="160" r="1" fill="#78716c"/><circle cx="800" cy="160" r="1" fill="#78716c"/><circle cx="900" cy="160" r="1" fill="#78716c"/>
-        <circle cx="100" cy="240" r="1" fill="#78716c"/><circle cx="200" cy="240" r="1" fill="#78716c"/><circle cx="300" cy="240" r="1" fill="#78716c"/><circle cx="400" cy="240" r="1" fill="#78716c"/><circle cx="500" cy="240" r="1" fill="#78716c"/><circle cx="600" cy="240" r="1" fill="#78716c"/><circle cx="700" cy="240" r="1" fill="#78716c"/><circle cx="800" cy="240" r="1" fill="#78716c"/><circle cx="900" cy="240" r="1" fill="#78716c"/>
-    </g>
+    <!-- ether3 (LAN) -->
+    <rect x="63" y="145" width="44" height="18" rx="3" fill="#1c1917" stroke="#10b981" stroke-width="1.2" />
+    <text x="85" y="157" text-anchor="middle" fill="#a7f3d0" font-family="monospace" font-size="8.5" font-weight="bold">ether3</text>
 
-    <!-- LINK 1: ISP Cloud <-> R1-Core (Default Route) -->
-    <line x1="160" y1="130" x2="380" y2="130" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" />
-    <line x1="160" y1="130" x2="380" y2="130" stroke="#fbbf24" stroke-width="3" stroke-dasharray="6,4">
-        <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.4s" repeatCount="indefinite" />
-    </line>
+    <!-- REAL HARDWARE PHOTO: MikroTik RB4011 -->
+    <rect x="12" y="34" width="146" height="54" rx="4" fill="#080706" stroke="#292524" />
+    <image href="assets/devices/mikrotik/rb4011.webp" x="15" y="37" width="140" height="48" preserveAspectRatio="xMidYMid meet" />
 
-    <!-- LINK 2: R1-Core <-> R2-Branch (Point-to-Point Subnet /30) -->
-    <line x1="470" y1="130" x2="710" y2="130" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
-    <line x1="470" y1="130" x2="710" y2="130" stroke="#38bdf8" stroke-width="3.5" stroke-dasharray="8,6">
-        <animate attributeName="stroke-dashoffset" from="42" to="0" dur="1.8s" repeatCount="indefinite" />
-    </line>
+    <!-- Specs & Details -->
+    <text x="85" y="103" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">MikroTik RB4011iGS+</text>
+    <text x="85" y="118" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9">WAN: 203.0.113.2/30</text>
+    <text x="85" y="131" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9">P2P: 10.255.0.1/30</text>
+    <text x="85" y="144" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="8.5">LAN: 10.10.20.1/24 (VLAN20)</text>
+  </g>
 
-    <!-- LINK 3: R1-Core <-> PC-HQ (LAN Subnet /24) -->
-    <line x1="425" y1="160" x2="425" y2="250" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+  <!-- ========================================================================= -->
+  <!-- DEVICE 3: R-CABANG (MikroTik hEX S RB760iGS)                              -->
+  <!-- ========================================================================= -->
+  <g transform="translate(735, 65)">
+    <!-- Hardware Pedestal Frame with Cyan Glow Accent -->
+    <rect x="0" y="0" width="160" height="155" rx="12" fill="#121618" stroke="#0284c7" stroke-width="1.8" filter="url(#drop-shadow)" />
+    <rect x="0" y="0" width="160" height="26" rx="12" fill="#0c4a6e" opacity="0.9" />
+    <rect y="16" width="160" height="10" fill="#0c4a6e" opacity="0.9" />
+    <text x="80" y="18" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="extrabold" letter-spacing="0.5">R-CABANG (SURABAYA)</text>
 
-    <!-- LINK 4: R2-Branch <-> PC-Branch (LAN Subnet /24) -->
-    <line x1="755" y1="160" x2="755" y2="250" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Port Badges on Frame -->
+    <!-- ether1 (P2P to HQ) -->
+    <rect x="-35" y="70" width="44" height="18" rx="3" fill="#1c1917" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="-13" y="82" text-anchor="middle" fill="#bae6fd" font-family="monospace" font-size="8.5" font-weight="bold">ether1</text>
 
-    <!-- Link Badges & Annotations -->
-    <!-- ISP to R1 Badge -->
-    <rect x="210" y="104" width="125" height="18" rx="4" fill="#09090b" stroke="#fbbf24" stroke-width="1.2" />
-    <text x="272" y="117" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="bold">0.0.0.0/0 (Dist=1)</text>
+    <!-- ether2 (LAN Users) -->
+    <rect x="58" y="145" width="44" height="18" rx="3" fill="#1c1917" stroke="#8b5cf6" stroke-width="1.2" />
+    <text x="80" y="157" text-anchor="middle" fill="#ddd6fe" font-family="monospace" font-size="8.5" font-weight="bold">ether2</text>
 
-    <rect x="170" y="138" width="80" height="15" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="210" y="149" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="8.5">GW: 103.28.12.49</text>
+    <!-- REAL HARDWARE PHOTO: MikroTik hEX S -->
+    <rect x="25" y="34" width="110" height="54" rx="4" fill="#080706" stroke="#292524" />
+    <image href="assets/devices/mikrotik/hex_s.webp" x="30" y="36" width="100" height="50" preserveAspectRatio="xMidYMid meet" />
 
-    <rect x="300" y="138" width="75" height="15" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="337" y="149" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="8.5">ether1 (.50/29)</text>
+    <!-- Specs & Details -->
+    <text x="80" y="103" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">MikroTik hEX S</text>
+    <text x="80" y="118" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9">P2P: 10.255.0.2/30</text>
+    <text x="80" y="132" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="9">LAN: 10.20.20.1/24 (V120)</text>
+    <text x="80" y="144" text-anchor="middle" fill="#9ca3af" font-family="monospace" font-size="8.5">Default GW: 10.255.0.1</text>
+  </g>
 
-    <!-- P2P R1 to R2 Badge -->
-    <rect x="525" y="98" width="130" height="20" rx="4" fill="#082f49" stroke="#38bdf8" stroke-width="1.2" />
-    <text x="590" y="112" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="9.5" font-weight="bold">P2P: 10.0.0.0/30</text>
+  <!-- ========================================================================= -->
+  <!-- CLIENT DEVICES: WORKSTATIONS & SERVERS (Bottom Layer)                     -->
+  <!-- ========================================================================= -->
 
-    <rect x="520" y="142" width="140" height="18" rx="3" fill="#3b0764" stroke="#c084fc" stroke-width="1" />
-    <text x="590" y="154" text-anchor="middle" fill="#e9d5ff" font-family="monospace" font-size="8.5">Static: 192.168.10.0/24 -&gt; .2</text>
+  <!-- PC-PUSAT (Staff User Kantor Pusat) -->
+  <g transform="translate(385, 330)">
+    <rect x="0" y="0" width="150" height="110" rx="8" fill="#141210" stroke="#10b981" stroke-width="1.2" filter="url(#drop-shadow)" />
+    
+    <!-- Monitor & Workstation Illustration -->
+    <rect x="35" y="12" width="80" height="46" rx="4" fill="#0c0a09" stroke="#292524" />
+    <rect x="40" y="16" width="70" height="36" rx="2" fill="#022c22" stroke="#059669" stroke-width="0.8" />
+    <!-- Terminal Text Effect -->
+    <line x1="44" y1="23" x2="65" y2="23" stroke="#34d399" stroke-width="1.5" />
+    <line x1="44" y1="29" x2="85" y2="29" stroke="#34d399" stroke-width="1.2" opacity="0.7" />
+    <line x1="44" y1="35" x2="75" y2="35" stroke="#34d399" stroke-width="1.2" opacity="0.7" />
+    <!-- Stand -->
+    <rect x="71" y="58" width="8" height="8" fill="#292524" />
+    <rect x="63" y="66" width="24" height="3" rx="1.5" fill="#44403c" />
 
-    <rect x="475" y="118" width="46" height="16" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="498" y="130" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="8.5">ether2</text>
+    <text x="75" y="82" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">PC-HQ (Staff Jakarta)</text>
+    <text x="75" y="94" text-anchor="middle" fill="#34d399" font-family="monospace" font-size="9" font-weight="bold">10.10.20.50/24</text>
+    <text x="75" y="105" text-anchor="middle" fill="#78716c" font-family="monospace" font-size="8">GW: 10.10.20.1 (VLAN 20)</text>
+  </g>
 
-    <rect x="660" y="118" width="46" height="16" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="683" y="130" text-anchor="middle" fill="#7dd3fc" font-family="monospace" font-size="8.5">ether1</text>
+  <!-- PC-CABANG (Staff User Kantor Cabang Surabaya) -->
+  <g transform="translate(740, 330)">
+    <rect x="0" y="0" width="150" height="110" rx="8" fill="#141210" stroke="#8b5cf6" stroke-width="1.2" filter="url(#drop-shadow)" />
+    
+    <!-- Monitor & Workstation Illustration -->
+    <rect x="35" y="12" width="80" height="46" rx="4" fill="#0c0a09" stroke="#292524" />
+    <rect x="40" y="16" width="70" height="36" rx="2" fill="#2e1065" stroke="#7c3aed" stroke-width="0.8" />
+    <!-- Terminal Text Effect -->
+    <line x1="44" y1="23" x2="65" y2="23" stroke="#a78bfa" stroke-width="1.5" />
+    <line x1="44" y1="29" x2="85" y2="29" stroke="#a78bfa" stroke-width="1.2" opacity="0.7" />
+    <line x1="44" y1="35" x2="75" y2="35" stroke="#a78bfa" stroke-width="1.2" opacity="0.7" />
+    <!-- Stand -->
+    <rect x="71" y="58" width="8" height="8" fill="#292524" />
+    <rect x="63" y="66" width="24" height="3" rx="1.5" fill="#44403c" />
 
-    <!-- LAN Interface Badges -->
-    <rect x="432" y="180" width="80" height="15" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="472" y="191" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="8.5">ether3 (.88.1)</text>
+    <text x="75" y="82" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold">PC-Branch (Surabaya)</text>
+    <text x="75" y="94" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-size="9" font-weight="bold">10.20.20.50/24</text>
+    <text x="75" y="105" text-anchor="middle" fill="#78716c" font-family="monospace" font-size="8">GW: 10.20.20.1 (VLAN 120)</text>
+  </g>
 
-    <rect x="762" y="180" width="80" height="15" rx="3" fill="#1c1917" stroke="#44403c" />
-    <text x="802" y="191" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="8.5">ether2 (.10.1)</text>
-
-    <!-- NODE 1: ISP Cloud Gateway -->
-    <g transform="translate(110, 130)">
-        <path d="M -35 15 A 22 22 0 0 1 -28 -18 A 30 30 0 0 1 20 -24 A 26 26 0 0 1 45 -4 A 22 22 0 0 1 38 20 A 24 24 0 0 1 -15 22 Z" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" />
-        <text x="0" y="2" text-anchor="middle" fill="#c7d2fe" font-family="sans-serif" font-size="11" font-weight="bold">ISP CLOUD</text>
-        <text x="0" y="38" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold">Gateway Provider</text>
-        <text x="0" y="52" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="9.5">103.28.12.49/29</text>
-    </g>
-
-    <!-- NODE 2: R1-Core (RB4011) -->
-    <g transform="translate(425, 130)">
-        <rect x="-48" y="-30" width="96" height="60" rx="8" fill="#1c1917" stroke="#fbbf24" stroke-width="2" />
-        <circle cx="0" cy="-3" r="17" fill="#292524" stroke="#78716c" />
-        <path d="M -10 -3 L 10 -3 M 0 -13 L 0 7 M 10 -3 L 6 -7 M 10 -3 L 6 1" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" />
-        <circle cx="-32" cy="18" r="3" fill="#34d399" />
-        <circle cx="-22" cy="18" r="3" fill="#34d399" />
-        <circle cx="-12" cy="18" r="3" fill="#38bdf8" />
-        <text x="0" y="44" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">R1-Core (HQ)</text>
-        <text x="0" y="58" text-anchor="middle" fill="#fbbf24" font-family="monospace" font-size="10">RB4011iGS+RM</text>
-        <text x="0" y="71" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="9">RouterOS v7.14</text>
-    </g>
-
-    <!-- NODE 3: R2-Branch (hEX S) -->
-    <g transform="translate(755, 130)">
-        <rect x="-48" y="-30" width="96" height="60" rx="8" fill="#1c1917" stroke="#38bdf8" stroke-width="2" />
-        <circle cx="0" cy="-3" r="17" fill="#292524" stroke="#78716c" />
-        <path d="M -10 -3 L 10 -3 M 0 -13 L 0 7 M -10 -3 L -6 -7 M -10 -3 L -6 1" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
-        <circle cx="-32" cy="18" r="3" fill="#34d399" />
-        <circle cx="-22" cy="18" r="3" fill="#34d399" />
-        <text x="0" y="44" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">R2-Branch</text>
-        <text x="0" y="58" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="10">hEX S (RB760iGS)</text>
-        <text x="0" y="71" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="9">RouterOS v7.14</text>
-    </g>
-
-    <!-- NODE 4: PC-HQ -->
-    <g transform="translate(425, 275)">
-        <rect x="-30" y="-20" width="60" height="38" rx="5" fill="#1c1917" stroke="#34d399" stroke-width="1.8" />
-        <rect x="-25" y="-16" width="50" height="25" rx="2" fill="#064e3b" />
-        <path d="M -8 18 L 8 18 L 12 26 L -12 26 Z" fill="#292524" />
-        <text x="0" y="42" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="10.5" font-weight="bold">PC-HQ (Staff)</text>
-        <text x="0" y="55" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="9.5">192.168.88.50/24</text>
-        <text x="0" y="67" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="8.5">GW: 192.168.88.1</text>
-    </g>
-
-    <!-- NODE 5: PC-Branch -->
-    <g transform="translate(755, 275)">
-        <rect x="-30" y="-20" width="60" height="38" rx="5" fill="#1c1917" stroke="#34d399" stroke-width="1.8" />
-        <rect x="-25" y="-16" width="50" height="25" rx="2" fill="#064e3b" />
-        <path d="M -8 18 L 8 18 L 12 26 L -12 26 Z" fill="#292524" />
-        <text x="0" y="42" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="10.5" font-weight="bold">PC-Branch (User)</text>
-        <text x="0" y="55" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="9.5">192.168.10.50/24</text>
-        <text x="0" y="67" text-anchor="middle" fill="#a8a29e" font-family="monospace" font-size="8.5">GW: 192.168.10.1</text>
-    </g>
+  <!-- ========================================================================= -->
+  <!-- BOTTOM INFORMATION BAR / PING CHECKPOINTS                                 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 448)">
+    <rect width="940" height="24" rx="4" fill="#141210" stroke="#292524" />
+    <text x="15" y="16" fill="#a8a29e" font-family="monospace" font-size="9.5">
+      <tspan fill="#34d399" font-weight="bold">[OK] PING UJI LINTAS KANTOR:</tspan> ping 10.20.20.50 from 10.10.20.50 (RTT &lt; 15ms)  |  <tspan fill="#fbbf24" font-weight="bold">INTERNET:</tspan> ping 8.8.8.8 via 203.0.113.1 (NAT Masquerade Active)
+    </text>
+  </g>
 </svg>
             `,
             legend: [
