@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AAMON - CAREER COMMAND & PORTFOLIO HUB
  * Warm Monochrome Architecture, Collapsible Sidebar, Multi-CV Vault & Tracker Engine
  */
@@ -2893,25 +2893,8 @@ function renderLearningAcademy() {
 
     const completedSubtopics = getAcademyCompletedSubtopics();
 
-    // Calculate Overall Stats
-    let totalSubtopicsCount = 0;
-    let completedSubtopicsCount = 0;
-
-    ACADEMY_MODULES.forEach(m => {
-        m.subtopics.forEach(s => {
-            totalSubtopicsCount++;
-            if (completedSubtopics.includes(s.id)) {
-                completedSubtopicsCount++;
-            }
-        });
-    });
-
-    const overallPct = totalSubtopicsCount > 0 ? Math.round((completedSubtopicsCount / totalSubtopicsCount) * 100) : 0;
-
-    const progressBadge = document.getElementById('academyOverallProgressBadge');
-    const progressBar = document.getElementById('academyOverallProgressBar');
-    if (progressBadge) progressBadge.textContent = `${completedSubtopicsCount} / ${totalSubtopicsCount} (${overallPct}%) Selesai`;
-    if (progressBar) progressBar.style.width = `${overallPct}%`;
+    // Unified Global Progress Bar Update (Single Source of Truth)
+    updateGlobalLearningProgress();
 
     // Update Category Filter Buttons
     document.querySelectorAll('.academy-cat-btn').forEach(btn => {
@@ -3209,203 +3192,1296 @@ function calculateFtthLoss() {
 }
 
 // ===================================================================
-// 9. INTERACTIVE NETWORK LEARNING PLAYER STUDIO
-// Format: 1. Gambar -> 2. Config -> 3. Penjelasan -> 4. Conclusion -> 5. Next
+// 9. STANDARDIZED INTERACTIVE NETWORK LEARNING STUDIO
+// Master Template Specification (Sections 0 to 8)
+// Single Source of Truth Progress Tracking & JSON Export/Import
 // ===================================================================
 
-let currentCourseMateriNum = parseInt(localStorage.getItem('aamon_current_course_materi') || '1');
+let currentStudioMateriId = localStorage.getItem('aamon_active_materi_id') || 'mikrotik-01-routing';
+let studioSearchFilter = '';
+let collapsedSectionsMap = {};
 
-function getCompletedCourseMateri() {
+// Unified Progress Tracking (Single Source of Truth)
+function getStandardizedCourseProgress() {
     try {
-        const stored = localStorage.getItem('aamon_completed_course_materi');
-        return stored ? JSON.parse(stored) : [];
+        const stored = localStorage.getItem('aamon_course_progress');
+        if (stored) {
+            return JSON.parse(stored);
+        }
+        // Migration fallback from legacy keys
+        const legacyStored = localStorage.getItem('aamon_completed_course_materi');
+        if (legacyStored) {
+            const list = JSON.parse(legacyStored);
+            if (Array.isArray(list) && list.includes(1)) {
+                return ['mikrotik-01-routing'];
+            }
+        }
+        return [];
     } catch (e) {
         return [];
     }
 }
 
-function saveCompletedCourseMateri(list) {
+function saveStandardizedCourseProgress(list) {
     try {
-        localStorage.setItem('aamon_completed_course_materi', JSON.stringify(list));
+        localStorage.setItem('aamon_course_progress', JSON.stringify(list));
     } catch (e) {}
+    updateGlobalLearningProgress();
 }
 
-function renderCoursePlayer() {
-    const playerSection = document.getElementById('coursePlayerSection');
-    if (!playerSection || typeof COURSE_MATERI_DATA === 'undefined' || COURSE_MATERI_DATA.length === 0) return;
-
-    // Bounds check
-    if (isNaN(currentCourseMateriNum) || currentCourseMateriNum < 1) currentCourseMateriNum = 1;
-    if (currentCourseMateriNum > COURSE_MATERI_DATA.length) currentCourseMateriNum = COURSE_MATERI_DATA.length;
-
-    localStorage.setItem('aamon_current_course_materi', currentCourseMateriNum.toString());
-
-    const materi = COURSE_MATERI_DATA.find(m => m.num === currentCourseMateriNum) || COURSE_MATERI_DATA[0];
-    const completedList = getCompletedCourseMateri();
-    const isCompleted = completedList.includes(materi.num);
-    const totalMaterials = COURSE_MATERI_DATA.length;
+function updateGlobalLearningProgress() {
+    const completedList = getStandardizedCourseProgress();
+    // Total outlined curriculum lessons across all 7 tracks is 45
+    const totalLessons = 45;
     const completedCount = completedList.length;
-    const progressPct = totalMaterials > 0 ? Math.round((completedCount / totalMaterials) * 100) : 0;
+    const percentage = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
+    const progressLabel = `${completedCount} / ${totalLessons} (${percentage}%)`;
 
-    // 1. Header Badges & Title
-    const badgeEl = document.getElementById('playerTrackBadge');
-    const numBadgeEl = document.getElementById('playerMateriNumberBadge');
-    const titleEl = document.getElementById('playerMateriTitle');
-    if (badgeEl) badgeEl.textContent = materi.badge || materi.track;
-    if (numBadgeEl) numBadgeEl.textContent = `Materi ${materi.num} / ${totalMaterials}`;
-    if (titleEl) titleEl.textContent = materi.title;
+    // 1. Academy Hero Header Progress
+    const academyBadge = document.getElementById('academyOverallProgressBadge');
+    const academyBar = document.getElementById('academyOverallProgressBar');
+    if (academyBadge) academyBadge.textContent = progressLabel;
+    if (academyBar) academyBar.style.width = `${percentage}%`;
 
-    // 2. Dropdown Jump Select
-    const selectEl = document.getElementById('playerJumpSelect');
-    if (selectEl) {
-        selectEl.innerHTML = COURSE_MATERI_DATA.map(m => {
-            const doneMark = completedList.includes(m.num) ? 'âœ” ' : '';
-            return `<option value="${m.num}" ${m.num === materi.num ? 'selected' : ''}>${doneMark}[${m.num}/${totalMaterials}] ${m.title.replace('Materi ' + m.num + ': ', '')}</option>`;
-        }).join('');
-    }
+    // 2. Studio Internal Progress Badges
+    const studioBadge = document.getElementById('studioProgressBadge');
+    const studioBar = document.getElementById('studioProgressBar');
+    if (studioBadge) studioBadge.textContent = progressLabel;
+    if (studioBar) studioBar.style.width = `${percentage}%`;
 
-    // 3. Status Button
-    const statusBtn = document.getElementById('playerStatusBtn');
-    const statusIcon = document.getElementById('playerStatusIcon');
-    const statusText = document.getElementById('playerStatusText');
-    if (statusBtn && statusIcon && statusText) {
-        if (isCompleted) {
-            statusBtn.className = 'py-2 px-3.5 rounded-lg bg-emerald-950/60 border border-emerald-800/60 text-xs font-semibold text-emerald-400 transition flex items-center gap-2 shadow-sm';
-            statusIcon.className = 'fa-solid fa-circle-check text-emerald-400';
-            statusText.textContent = 'Materi Sudah Selesai';
-        } else {
-            statusBtn.className = 'py-2 px-3.5 rounded-lg bg-stone-900 border border-stone-800 hover:border-stone-700 text-xs font-semibold text-stone-300 transition flex items-center gap-2';
-            statusIcon.className = 'fa-regular fa-circle text-stone-500';
-            statusText.textContent = 'Tandai Selesai';
-        }
-    }
-
-    // 4. Gambar (Rendered SVG Vector Graphic)
-    const svgContainer = document.getElementById('playerSvgContainer');
-    if (svgContainer) {
-        if (typeof generateCourseSvg === 'function') {
-            svgContainer.innerHTML = generateCourseSvg(materi);
-        } else {
-            svgContainer.innerHTML = `<div class="text-xs text-stone-500 font-mono py-8">Engine grafis vector SVG sedang dimuat...</div>`;
-        }
-    }
-
-    // 5. Config (Terminal CLI / Script)
-    const cliContainer = document.getElementById('playerCliContainer');
-    if (cliContainer) {
-        cliContainer.textContent = materi.cli || '# Tidak ada konfigurasi CLI khusus untuk materi ini.';
-    }
-
-    // 6. Penjelasan (Technical Concept & Deep-Dive)
-    const penjelasanContainer = document.getElementById('playerPenjelasanContainer');
-    if (penjelasanContainer) {
-        penjelasanContainer.innerHTML = materi.penjelasan || '<p class="text-stone-400">Penjelasan sedang dipersiapkan.</p>';
-    }
-
-    // 7. Conclusion (Takeaways & Best Practices)
-    const conclusionContainer = document.getElementById('playerConclusionContainer');
-    if (conclusionContainer) {
-        conclusionContainer.innerHTML = materi.conclusion || '<p class="text-stone-400">Pahami konsep dasar sebelum melanjutkan.</p>';
-    }
-
-    // 8. Navigation Controls & Progress
-    const prevBtn = document.getElementById('playerPrevBtn');
-    const nextBtn = document.getElementById('playerNextBtn');
-    const navProgText = document.getElementById('playerNavProgressText');
-    const navProgBar = document.getElementById('playerNavProgressBar');
-
-    if (prevBtn) {
-        prevBtn.disabled = materi.num <= 1;
-        if (materi.num <= 1) {
-            prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
-        } else {
-            prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
-        }
-    }
-
-    if (nextBtn) {
-        if (materi.num >= totalMaterials) {
-            nextBtn.innerHTML = `<span>Selamat! Seluruh 45 Materi Selesai</span> <i class="fa-solid fa-trophy text-amber-400"></i>`;
-        } else {
-            nextBtn.innerHTML = `<span>Centang Selesai & Lanjut Materi Berikutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
-        }
-    }
-
-    if (navProgText) {
-        navProgText.textContent = `${completedCount} / ${totalMaterials} (${progressPct}%) Selesai`;
-    }
-    if (navProgBar) {
-        navProgBar.style.width = `${progressPct}%`;
-    }
+    // 3. Roadmap / Dashboard Stats Sync (if present)
+    const roadmapBadge = document.getElementById('roadmapProgressPercent');
+    const roadmapBar = document.getElementById('roadmapProgressBar');
+    if (roadmapBadge) roadmapBadge.textContent = `${percentage}%`;
+    if (roadmapBar) roadmapBar.style.width = `${percentage}%`;
 }
 
-function nextCourseMateri(markDone) {
-    if (typeof COURSE_MATERI_DATA === 'undefined') return;
-
-    if (markDone) {
-        const completedList = getCompletedCourseMateri();
-        if (!completedList.includes(currentCourseMateriNum)) {
-            completedList.push(currentCourseMateriNum);
-            saveCompletedCourseMateri(completedList);
+// Progress Export / Import JSON
+function exportCourseProgress() {
+    const completedList = getStandardizedCourseProgress();
+    const payload = {
+        app: "AAMON Network Academy & Continuous Learning Studio",
+        version: "2.5",
+        exportedAt: new Date().toISOString(),
+        student: {
+            name: "Arkin Melvian Dwiansyah",
+            role: "Network Operations Center (NOC) & Network Engineer"
+        },
+        progress: {
+            totalCurriculumLessons: 45,
+            completedCount: completedList.length,
+            percentage: Math.round((completedList.length / 45) * 100),
+            completedMaterialIds: completedList
         }
-    }
+    };
 
-    if (currentCourseMateriNum < COURSE_MATERI_DATA.length) {
-        currentCourseMateriNum++;
-        renderCoursePlayer();
-        const playerSec = document.getElementById('coursePlayerSection');
-        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
-        showToastNotification('Materi Selanjutnya', `Membuka materi #${currentCourseMateriNum}: ${COURSE_MATERI_DATA[currentCourseMateriNum - 1].title}`);
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `aamon_learning_progress_${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToastNotification('Ekspor Berhasil', 'Data progres belajar berhasil diunduh dalam format JSON.');
+}
+
+function importCourseProgress(fileInput) {
+    if (!fileInput.files || fileInput.files.length === 0) return;
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (data && data.progress && Array.isArray(data.progress.completedMaterialIds)) {
+                saveStandardizedCourseProgress(data.progress.completedMaterialIds);
+                renderStandardizedCourseStudio(currentStudioMateriId);
+                showToastNotification('Impor Berhasil', `Memulihkan progres: ${data.progress.completedMaterialIds.length} materi telah selesai.`);
+            } else if (Array.isArray(data)) {
+                saveStandardizedCourseProgress(data);
+                renderStandardizedCourseStudio(currentStudioMateriId);
+                showToastNotification('Impor Berhasil', `Memulihkan ${data.length} materi selesai.`);
+            } else {
+                alert('Format file JSON tidak valid. Pastikan mengekspor dari AAMON Studio.');
+            }
+        } catch (err) {
+            alert('Gagal membaca file JSON: ' + err.message);
+        }
+    };
+
+    reader.readAsText(file);
+    fileInput.value = ''; // Reset input
+}
+
+function toggleMateriCompleted(materiId) {
+    const list = getStandardizedCourseProgress();
+    const idx = list.indexOf(materiId);
+    let isNowDone = false;
+
+    if (idx > -1) {
+        list.splice(idx, 1);
+        isNowDone = false;
     } else {
-        renderCoursePlayer();
-        showToastNotification('Selamat!', 'Anda telah menuntaskan seluruh 45 materi kurikulum!');
+        list.push(materiId);
+        isNowDone = true;
+    }
+
+    saveStandardizedCourseProgress(list);
+    renderStandardizedCourseStudio(materiId);
+    showToastNotification(
+        'Progres Materi Diperbarui',
+        isNowDone ? 'Materi ditandai SELESAI!' : 'Materi dikembalikan ke status BELUM SELESAI.'
+    );
+}
+
+function copyCliSnippet(buttonEl, textToCopy) {
+    if (!buttonEl || !textToCopy) return;
+
+    const performCopy = () => {
+        const originalHtml = buttonEl.innerHTML;
+        buttonEl.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i><span class="text-emerald-400">Tersalin!</span>`;
+        buttonEl.classList.add('border-emerald-600', 'bg-emerald-950/40');
+
+        setTimeout(() => {
+            buttonEl.innerHTML = originalHtml;
+            buttonEl.classList.remove('border-emerald-600', 'bg-emerald-950/40');
+        }, 2000);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(performCopy).catch(() => {
+            fallbackCopyText(textToCopy);
+            performCopy();
+        });
+    } else {
+        fallbackCopyText(textToCopy);
+        performCopy();
     }
 }
 
-function prevCourseMateri() {
-    if (currentCourseMateriNum > 1) {
-        currentCourseMateriNum--;
-        renderCoursePlayer();
-        const playerSec = document.getElementById('coursePlayerSection');
-        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
+function fallbackCopyText(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {}
+    document.body.removeChild(textArea);
+}
+
+function toggleSectionCollapse(sectionId) {
+    const content = document.getElementById(`sec-content-${sectionId}`);
+    const icon = document.getElementById(`sec-chevron-${sectionId}`);
+    if (!content) return;
+
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        if (icon) icon.className = 'fa-solid fa-chevron-up text-stone-400 text-xs transition-transform';
+        collapsedSectionsMap[sectionId] = false;
+    } else {
+        content.classList.add('hidden');
+        if (icon) icon.className = 'fa-solid fa-chevron-down text-stone-400 text-xs transition-transform';
+        collapsedSectionsMap[sectionId] = true;
     }
+}
+
+function openTopologyZoomModal(materiId) {
+    if (typeof STANDARDIZED_COURSE_DATA === 'undefined') return;
+    const materi = STANDARDIZED_COURSE_DATA.find(m => m.id === materiId) || STANDARDIZED_COURSE_DATA[0];
+    if (!materi || !materi.topology || !materi.topology.svg) return;
+
+    const modal = document.getElementById('imageZoomModal');
+    const svgBox = document.getElementById('imageZoomSvgContainer');
+    const imgBox = document.getElementById('imageZoomSrc');
+    const titleEl = document.getElementById('imageZoomTitle');
+    const openBtn = document.getElementById('imageZoomOpenBtn');
+
+    if (!modal) return;
+
+    if (titleEl) titleEl.textContent = `Topologi: ${materi.title} (${materi.vendor} ${materi.osVersion})`;
+    if (openBtn) {
+        openBtn.style.display = 'none'; // SVG inline
+    }
+
+    if (imgBox) imgBox.classList.add('hidden');
+    if (svgBox) {
+        svgBox.classList.remove('hidden');
+        svgBox.innerHTML = materi.topology.svg;
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function selectStudioMateri(materiId) {
+    currentStudioMateriId = materiId;
+    localStorage.setItem('aamon_active_materi_id', materiId);
+    renderStandardizedCourseStudio(materiId);
+    const studioEl = document.getElementById('courseStudioApp');
+    if (studioEl) studioEl.scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleStudioSearch(query) {
+    studioSearchFilter = (query || '').toLowerCase().trim();
+    renderStandardizedCourseStudio(currentStudioMateriId);
+}
+
+// Master Render Function
+function renderStandardizedCourseStudio(targetId) {
+    const studioContainer = document.getElementById('courseStudioApp');
+    if (!studioContainer) return;
+
+    if (typeof STANDARDIZED_COURSE_DATA === 'undefined' || STANDARDIZED_COURSE_DATA.length === 0) {
+        studioContainer.innerHTML = `<div class="p-8 text-center text-stone-400 font-mono text-sm bg-stoneCard rounded-2xl border border-stoneBorder">Modul data kurikulum sedang dipersiapkan...</div>`;
+        return;
+    }
+
+    const activeId = targetId || currentStudioMateriId || STANDARDIZED_COURSE_DATA[0].id;
+    const currentMateri = STANDARDIZED_COURSE_DATA.find(m => m.id === activeId) || STANDARDIZED_COURSE_DATA[0];
+    currentStudioMateriId = currentMateri.id;
+
+    const completedList = getStandardizedCourseProgress();
+    const isCompleted = completedList.includes(currentMateri.id);
+    const totalLessons = 45;
+    const completedCount = completedList.length;
+    const progressPct = Math.round((completedCount / totalLessons) * 100);
+
+    // Filter categories outline by search
+    const outline = typeof COURSE_CATALOG_OUTLINE !== 'undefined' ? COURSE_CATALOG_OUTLINE : [];
+
+    let filteredOutline = outline;
+    if (studioSearchFilter) {
+        filteredOutline = outline.map(cat => {
+            const matchedItems = cat.items.filter(item => 
+                item.title.toLowerCase().includes(studioSearchFilter) ||
+                item.track.toLowerCase().includes(studioSearchFilter) ||
+                item.vendor.toLowerCase().includes(studioSearchFilter) ||
+                cat.title.toLowerCase().includes(studioSearchFilter)
+            );
+            return { ...cat, items: matchedItems };
+        }).filter(cat => cat.items.length > 0);
+    }
+
+    studioContainer.innerHTML = `
+        <!-- STUDIO TOP BAR: Branding, Vendor OS, Export/Import -->
+        <div class="clean-card p-5 sm:p-6 rounded-2xl border border-stoneBorder bg-stoneCard">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-amber-400 font-bold bg-amber-950/40 border border-amber-800/40 px-2.5 py-0.5 rounded flex items-center gap-1.5">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            STUDIO BELAJAR INTERAKTIF
+                        </span>
+                        <span class="font-mono text-[11px] text-stone-300 bg-stone-900 border border-stone-800 px-2.5 py-0.5 rounded">
+                            Template Baku Arsitektur Multi-Vendor
+                        </span>
+                        <span class="font-mono text-[11px] text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-0.5 rounded">
+                            ${currentMateri.vendor} ${currentMateri.osVersion}
+                        </span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight">
+                        ${currentMateri.order}. ${currentMateri.title}
+                    </h2>
+                    <p class="text-xs text-stone-400">
+                        Sistem pembelajaran terstruktur 8-Section: Topologi ➔ Tujuan ➔ Hardware ➔ Step CLI ➔ Parameter ➔ Troubleshooting ➔ Best Practice ➔ Lab Mandiri.
+                    </p>
+                </div>
+
+                <!-- Export & Import Controls -->
+                <div class="flex items-center gap-2 shrink-0 flex-wrap">
+                    <button type="button" onclick="exportCourseProgress()" class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-mono font-semibold transition flex items-center gap-1.5" title="Unduh file progres belajar JSON">
+                        <i class="fa-solid fa-file-export text-amber-400"></i>
+                        <span>Ekspor JSON</span>
+                    </button>
+                    <label class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-mono font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Pulihkan progres dari file JSON">
+                        <i class="fa-solid fa-file-import text-sky-400"></i>
+                        <span>Impor JSON</span>
+                        <input type="file" accept=".json" onchange="importCourseProgress(this)" class="hidden">
+                    </label>
+                    <button type="button" onclick="toggleMateriCompleted('${currentMateri.id}')" class="py-2 px-4 rounded-lg ${isCompleted ? 'bg-emerald-950/70 border border-emerald-700/80 text-emerald-300 hover:bg-emerald-900/80' : 'bg-white hover:bg-stone-200 text-stone-950'} font-bold text-xs transition flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid ${isCompleted ? 'fa-circle-check text-emerald-400' : 'fa-check text-stone-950'}"></i>
+                        <span>${isCompleted ? 'Materi Selesai (Klik Batal)' : 'Tandai Selesai'}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN 3-COLUMN STUDIO LAYOUT -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- ============================================================ -->
+            <!-- LEFT COLUMN (col-span-3): CURRICULUM NAVIGATOR & OUTLINE     -->
+            <!-- ============================================================ -->
+            <div class="lg:col-span-4 xl:col-span-3 space-y-4">
+                
+                <!-- Progress Summary Card -->
+                <div class="clean-card p-4 rounded-xl border border-stoneBorder bg-stoneCard space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                        <span class="text-stone-400 font-bold uppercase">Progres Kurikulum</span>
+                        <span id="studioProgressBadge" class="text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-800/40 px-2 py-0.5 rounded">
+                            ${completedCount} / ${totalLessons} (${progressPct}%)
+                        </span>
+                    </div>
+                    <div class="w-full bg-stone-900 rounded-full h-2 overflow-hidden border border-stone-800">
+                        <div id="studioProgressBar" class="bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300 h-full rounded-full transition-all duration-300" style="width: ${progressPct}%"></div>
+                    </div>
+                    <div class="text-[11px] text-stone-400 flex items-center justify-between">
+                        <span>Golden Reference:</span>
+                        <span class="text-amber-400 font-mono font-bold">Materi 1 (Aktif)</span>
+                    </div>
+                </div>
+
+                <!-- Curriculum Search -->
+                <div class="clean-card p-3 rounded-xl border border-stoneBorder bg-stoneCard">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-500 text-xs"></i>
+                        <input type="text" oninput="handleStudioSearch(this.value)" value="${studioSearchFilter}" placeholder="Cari materi, vendor, topik..." class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-stone-900 border border-stone-800 text-stone-200 text-xs focus:outline-none focus:border-stone-600 transition font-sans">
+                    </div>
+                </div>
+
+                <!-- Categories & Materials Accordion -->
+                <div class="clean-card p-3 rounded-xl border border-stoneBorder bg-stoneCard space-y-3 max-h-[85vh] overflow-y-auto pr-1">
+                    <div class="flex items-center justify-between px-1 text-[11px] font-mono uppercase text-stone-400 font-bold">
+                        <span>Daftar Modul & Materi</span>
+                        <span>45 Silabus</span>
+                    </div>
+
+                    ${filteredOutline.map(cat => `
+                        <div class="rounded-lg bg-stone-900/50 border border-stone-800 overflow-hidden">
+                            <div class="p-2.5 bg-stone-900/90 flex items-center justify-between border-b border-stone-800/60">
+                                <div class="flex items-center gap-2">
+                                    <i class="${cat.icon || 'fa-solid fa-network-wired'} text-xs text-amber-400"></i>
+                                    <span class="text-xs font-bold text-white tracking-wide">${cat.title}</span>
+                                </div>
+                                <span class="font-mono text-[10px] text-stone-400 bg-stone-800 px-1.5 py-0.5 rounded">
+                                    ${cat.items.length} materi
+                                </span>
+                            </div>
+                            <div class="p-1.5 space-y-1">
+                                ${cat.items.map(item => {
+                                    const isThisActive = item.id === currentMateri.id;
+                                    const isThisDone = completedList.includes(item.id);
+                                    const isAvailable = item.id === 'mikrotik-01-routing'; // Only Materi 1 implemented per rule F.1
+
+                                    if (isAvailable) {
+                                        return `
+                                            <button type="button" onclick="selectStudioMateri('${item.id}')" class="w-full text-left p-2 rounded-md transition text-xs flex items-center justify-between gap-2 ${isThisActive ? 'bg-amber-400/10 border border-amber-500/40 text-amber-200 font-bold' : 'hover:bg-stone-800 text-stone-300'}">
+                                                <div class="flex items-center gap-2 truncate">
+                                                    <i class="fa-solid ${isThisDone ? 'fa-circle-check text-emerald-400' : (isThisActive ? 'fa-play text-amber-400' : 'fa-circle text-stone-600')} text-[10px] shrink-0"></i>
+                                                    <span class="truncate">[${item.num}] ${item.title}</span>
+                                                </div>
+                                                <span class="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded shrink-0 ${isThisDone ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-amber-950 text-amber-400 border border-amber-800'}">
+                                                    ${isThisDone ? 'SELESAI' : 'AKTIF'}
+                                                </span>
+                                            </button>
+                                        `;
+                                    } else {
+                                        return `
+                                            <div class="w-full p-2 rounded-md text-xs text-stone-500 flex items-center justify-between gap-2 bg-stone-950/30 opacity-75 cursor-not-allowed">
+                                                <div class="flex items-center gap-2 truncate">
+                                                    <i class="fa-solid fa-lock text-[10px] text-stone-600 shrink-0"></i>
+                                                    <span class="truncate">[${item.num}] ${item.title}</span>
+                                                </div>
+                                                <span class="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded bg-stone-900 text-stone-500 border border-stone-800 shrink-0">
+                                                    Locked
+                                                </span>
+                                            </div>
+                                        `;
+                                    }
+                                }).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- CENTER COLUMN (col-span-7): STANDARDIZED SECTIONS 0 TO 8     -->
+            <!-- ============================================================ -->
+            <div class="lg:col-span-8 xl:col-span-7 space-y-6">
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 0: HEADER MATERI                                 -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-0-header" class="clean-card p-6 rounded-2xl border border-stoneBorder bg-stoneCard space-y-4 scroll-mt-24">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="font-mono text-xs uppercase px-2.5 py-0.5 rounded bg-stone-900 border border-stone-800 text-stone-400 font-bold">
+                            Section 0 • Header
+                        </span>
+                        <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-amber-950/50 border border-amber-800/50 text-amber-300 font-bold">
+                            ${currentMateri.category}
+                        </span>
+                        <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-stone-900 border border-stone-800 text-stone-300">
+                            Vendor: <strong class="text-white">${currentMateri.vendor}</strong> (${currentMateri.osVersion})
+                        </span>
+                        <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-blue-950/50 border border-blue-800/50 text-blue-300">
+                            Level: ${currentMateri.level}
+                        </span>
+                        <span class="font-mono text-xs px-2.5 py-0.5 rounded bg-purple-950/50 border border-purple-800/50 text-purple-300 flex items-center gap-1">
+                            <i class="fa-regular fa-clock"></i>
+                            ${currentMateri.estimatedMinutes} Menit
+                        </span>
+                    </div>
+
+                    <div class="space-y-1">
+                        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                            ${currentMateri.title}
+                        </h1>
+                        <p class="text-xs text-stone-400 font-sans">
+                            Prasyarat Materi: ${currentMateri.prerequisites.length > 0 ? currentMateri.prerequisites.join(', ') : '<span class="text-emerald-400 font-medium">None (Siap dimulai dari router factory reset)</span>'}
+                        </p>
+                    </div>
+
+                    <div class="pt-3 border-t border-stone-800/80 flex items-center justify-between flex-wrap gap-3">
+                        <div class="flex items-center gap-2 text-xs font-mono text-stone-400">
+                            <i class="fa-solid fa-code-branch text-amber-400"></i>
+                            <span>Single Source Progress: <strong>${isCompleted ? '<span class="text-emerald-400">Tersimpan di Storage (Selesai)</span>' : '<span class="text-amber-400">Belum Selesai</span>'}</strong></span>
+                        </div>
+                        <button type="button" onclick="toggleMateriCompleted('${currentMateri.id}')" class="py-2 px-4 rounded-lg ${isCompleted ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-300' : 'bg-white hover:bg-stone-200 text-stone-950'} font-bold text-xs transition flex items-center gap-2">
+                            <i class="fa-solid ${isCompleted ? 'fa-circle-check text-emerald-400' : 'fa-circle-dot'}"></i>
+                            <span>${isCompleted ? 'Selesai âœ” (Klik Batal)' : 'Tandai Selesai'}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 1: GAMBAR TOPOLOGI                               -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-1-topology" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-mono font-bold text-xs">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">GAMBAR TOPOLOGI JARINGAN</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Diagram SVG Inline Interaktif & Beresolusi Tinggi</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="openTopologyZoomModal('${currentMateri.id}')" class="py-1.5 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-mono transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-maximize text-amber-400"></i>
+                                <span>Perbesar Topologi</span>
+                            </button>
+                            <button type="button" onclick="toggleSectionCollapse('sec1')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                                <i id="sec-chevron-sec1" class="fa-solid fa-chevron-up text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sec-content-sec1" class="p-4 sm:p-6 space-y-4">
+                        <!-- SVG Container -->
+                        <div class="w-full bg-[#0c0a09] border border-stone-800 rounded-xl overflow-x-auto p-2 sm:p-4 flex items-center justify-center shadow-inner">
+                            ${currentMateri.topology.svg}
+                        </div>
+
+                        <!-- Topology Color Legend -->
+                        <div class="p-3.5 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
+                            <div class="text-[11px] font-mono text-stone-400 font-bold uppercase flex items-center gap-2">
+                                <i class="fa-solid fa-palette text-amber-400"></i>
+                                <span>Legenda Warna Garis & Protokol Link Topologi</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-[11px] font-mono">
+                                ${currentMateri.topology.legend.map(item => `
+                                    <div class="flex items-center gap-2 p-1.5 rounded bg-stone-950/50 border border-stone-800/80">
+                                        <span class="w-3 h-3 rounded-sm shrink-0" style="background-color: ${item.color};"></span>
+                                        <div class="truncate">
+                                            <span class="text-white font-bold block truncate">${item.label}</span>
+                                            <span class="text-[9px] text-stone-400 block truncate">${item.desc}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 2: TUJUAN                                        -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-2-objectives" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-sky-400/10 border border-sky-400/30 flex items-center justify-center text-sky-400 font-mono font-bold text-xs">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">TUJUAN PEMBELAJARAN & SKENARIO NYATA</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Capai Kompetensi, Solusi Masalah, & Implementasi Lapangan</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec2')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec2" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec2" class="p-4 sm:p-6 space-y-4">
+                        <!-- Apa yang dicapai -->
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span>Apa yang Dicapai (Target Kompetensi)</span>
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${currentMateri.objectives.map(obj => `
+                                    <div class="p-3 rounded-lg bg-emerald-950/20 border border-emerald-900/40 text-stone-200 text-xs flex items-start gap-2.5">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 text-xs mt-0.5 shrink-0"></i>
+                                        <span>${obj}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Masalah yang diselesaikan -->
+                        <div class="p-4 rounded-xl bg-stone-900/70 border border-stone-800 space-y-2">
+                            <h4 class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span>Masalah yang Diselesaikan</span>
+                            </h4>
+                            <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+                                ${currentMateri.problemSolved}
+                            </p>
+                        </div>
+
+                        <!-- Kapan dipakai di dunia nyata -->
+                        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                    <span>Kapan Dipakai di Dunia Nyata (Kasus Lapangan ISP / Enterprise)</span>
+                                </h4>
+                                <span class="font-mono text-[10px] text-amber-300 bg-amber-900/40 px-2 py-0.5 rounded border border-amber-700/40">Real Case Study</span>
+                            </div>
+                            <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+                                ${currentMateri.realWorldUse}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 3: PERANGKAT YANG DIGUNAKAN                      -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-3-devices" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-mono font-bold text-xs">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">PERANGKAT YANG DIGUNAKAN</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Foto Resmi Vendor MikroTik, Spesifikasi Asli & Alternatif</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec3')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec3" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec3" class="p-4 sm:p-6 space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${currentMateri.devices.map(dev => `
+                                <div class="rounded-xl bg-stone-900/60 border border-stone-800 overflow-hidden flex flex-col justify-between">
+                                    <div class="p-4 space-y-3">
+                                        <!-- Photo & Badges -->
+                                        <div class="relative bg-stone-950 rounded-lg p-3 border border-stone-800/80 flex items-center justify-center min-h-[140px] group">
+                                            <img src="${dev.image}" alt="${dev.model}" class="max-h-28 object-contain transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null; this.src='assets/devices/generic-router.svg';">
+                                            <div class="absolute top-2 left-2 flex items-center gap-1.5">
+                                                <span class="font-mono text-[10px] text-amber-300 bg-amber-950/80 border border-amber-800/80 px-2 py-0.5 rounded font-bold">${dev.role}</span>
+                                            </div>
+                                            <div class="absolute bottom-2 right-2">
+                                                <span class="font-mono text-[9px] text-stone-400 bg-stone-900/90 border border-stone-800 px-1.5 py-0.5 rounded">${dev.type}</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h4 class="text-sm font-bold text-white">${dev.model}</h4>
+                                            <p class="text-[11px] text-stone-400 mt-0.5">${dev.specs.ports} • ${dev.specs.cpu}</p>
+                                        </div>
+
+                                        <!-- Specifications Table -->
+                                        <div class="p-2.5 rounded-lg bg-stone-950/50 border border-stone-800/60 space-y-1 font-mono text-[11px]">
+                                            <div class="flex justify-between text-stone-400">
+                                                <span>Throughput:</span>
+                                                <span class="text-stone-200">${dev.specs.throughput}</span>
+                                            </div>
+                                            <div class="flex justify-between text-stone-400">
+                                                <span>RAM / Storage:</span>
+                                                <span class="text-stone-200">${dev.specs.ram}</span>
+                                            </div>
+                                            <div class="flex justify-between text-stone-400">
+                                                <span>OS Compatibility:</span>
+                                                <span class="text-emerald-400 font-bold">${dev.specs.os}</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Alternatives -->
+                                        <div class="text-[11px] text-stone-400">
+                                            <span class="font-mono text-stone-500">Alternatif Praktik:</span>
+                                            <span class="text-stone-300 ml-1 font-medium">${dev.alternatives.join(', ')}</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Credit & Official Link -->
+                                    <div class="px-4 py-2.5 bg-stone-950/80 border-t border-stone-800 flex items-center justify-between text-[10px] font-mono">
+                                        <span class="text-stone-500">Sumber: ${dev.credit}</span>
+                                        <a href="${dev.sourceUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 flex items-center gap-1 transition">
+                                            <span>Situs Resmi</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 4: LANGKAH KONFIGURASI (STEP BY STEP)            -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-4-steps" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-mono font-bold text-xs">
+                                4
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">LANGKAH KONFIGURASI (STEP BY STEP)</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Format Stepper Bernomor, Target Perangkat, CLI & Checkpoint</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec4')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec4" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec4" class="p-4 sm:p-6 space-y-6">
+                        
+                        <!-- Stepper Items -->
+                        <div class="space-y-6">
+                            ${currentMateri.steps.map(step => `
+                                <div class="rounded-xl bg-stone-900/50 border border-stone-800 p-4 sm:p-5 space-y-3">
+                                    <!-- Step Header -->
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-800/60 pb-3">
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-950/70 border border-amber-800/70 text-amber-300">
+                                                STEP ${String(step.step).padStart(2, '0')}
+                                            </span>
+                                            <span class="font-mono text-xs px-2 py-0.5 rounded bg-stone-800 border border-stone-700 text-stone-200 font-bold flex items-center gap-1.5">
+                                                <i class="fa-solid fa-server text-stone-400 text-[10px]"></i>
+                                                ${step.targetDevice}
+                                            </span>
+                                        </div>
+                                        <h4 class="text-xs sm:text-sm font-bold text-white">${step.title}</h4>
+                                    </div>
+
+                                    <!-- Goal -->
+                                    <p class="text-xs text-stone-300 font-sans leading-relaxed">
+                                        <strong>Tujuan step ini:</strong> ${step.goal}
+                                    </p>
+
+                                    <!-- CLI Block -->
+                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden relative group">
+                                        <div class="px-3.5 py-1.5 bg-stone-900/80 border-b border-stone-800/80 flex items-center justify-between text-[11px] font-mono text-stone-400">
+                                            <span class="flex items-center gap-1.5 text-stone-300">
+                                                <i class="fa-solid fa-terminal text-amber-400 text-[10px]"></i>
+                                                RouterOS Terminal CLI
+                                            </span>
+                                            <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(step.cli)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 text-[11px] transition flex items-center gap-1 border border-stone-700">
+                                                <i class="fa-regular fa-copy"></i>
+                                                <span>Salin Perintah</span>
+                                            </button>
+                                        </div>
+                                        <pre class="p-3.5 font-mono text-xs text-amber-200/90 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${step.cli}</pre>
+                                    </div>
+
+                                    <!-- Line by Line Explanation -->
+                                    <div class="p-3.5 rounded-lg bg-stone-950/40 border border-stone-800/60 space-y-1.5">
+                                        <div class="text-[11px] font-mono text-stone-400 font-bold uppercase flex items-center gap-1.5">
+                                            <i class="fa-solid fa-circle-info text-sky-400"></i>
+                                            <span>Penjelasan Parameter & Logika Teknis:</span>
+                                        </div>
+                                        <ul class="space-y-1 text-xs text-stone-300 list-disc list-inside">
+                                            ${step.explanation.map(exp => `
+                                                <li class="leading-relaxed">${exp}</li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>
+
+                                    <!-- Checkpoint Verification -->
+                                    <div class="p-3 rounded-lg bg-blue-950/20 border border-blue-900/40 space-y-1 font-mono text-xs">
+                                        <div class="flex items-center justify-between text-blue-400 font-bold text-[11px]">
+                                            <span class="flex items-center gap-1.5">
+                                                <i class="fa-solid fa-clipboard-check"></i>
+                                                CHECKPOINT VERIFIKASI:
+                                            </span>
+                                            <span class="text-stone-400">${step.checkpoint.command}</span>
+                                        </div>
+                                        <div class="text-stone-300 text-[11px] pt-1 border-t border-blue-900/30">
+                                            <span class="text-blue-300">Output Diharapkan:</span> ${step.checkpoint.expected}
+                                        </div>
+                                    </div>
+
+                                    <!-- Warning Alert if any -->
+                                    ${step.warning ? `
+                                        <div class="p-3 rounded-lg bg-rose-950/25 border border-rose-900/40 text-xs text-rose-300 flex items-start gap-2">
+                                            <i class="fa-solid fa-triangle-exclamation text-rose-400 mt-0.5 shrink-0"></i>
+                                            <div class="leading-relaxed">
+                                                <strong class="font-mono uppercase text-[11px] text-rose-400">Peringatan Risiko:</strong> ${step.warning}
+                                            </div>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <!-- Konfigurasi Lengkap Per Perangkat (All-in-One 1-Click Copy) -->
+                        <div class="space-y-3 pt-4 border-t border-stone-800">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-file-code text-amber-400"></i>
+                                    <span>Script Konfigurasi Lengkap (Sekali Salin Per Perangkat)</span>
+                                </h4>
+                                <span class="font-mono text-[10px] text-stone-400">Zero-to-Hero Factory Reset Config</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- R1 Core Full -->
+                                <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
+                                    <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
+                                        <span class="font-bold text-white flex items-center gap-1.5 font-mono">
+                                            <i class="fa-solid fa-server text-amber-400"></i>
+                                            ${currentMateri.fullConfig.r1.device}
+                                        </span>
+                                        <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(currentMateri.fullConfig.r1.script)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
+                                            <i class="fa-regular fa-copy"></i>
+                                            <span>Salin Semua R1</span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${currentMateri.fullConfig.r1.script}</pre>
+                                </div>
+
+                                <!-- R2 Branch Full -->
+                                <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
+                                    <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
+                                        <span class="font-bold text-white flex items-center gap-1.5 font-mono">
+                                            <i class="fa-solid fa-network-wired text-sky-400"></i>
+                                            ${currentMateri.fullConfig.r2.device}
+                                        </span>
+                                        <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(currentMateri.fullConfig.r2.script)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
+                                            <i class="fa-regular fa-copy"></i>
+                                            <span>Salin Semua R2</span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${currentMateri.fullConfig.r2.script}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 5: DETAIL PARAMETER                              -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-5-parameters" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-purple-400/10 border border-purple-400/30 flex items-center justify-center text-purple-400 font-mono font-bold text-xs">
+                                5
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">DETAIL PARAMETER & SINTAKS ROUTEROS V7</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Parameter Kunci, Nilai Default, dan Analisis Kesalahan Pemula</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec5')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec5" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec5" class="p-4 sm:p-6 overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="border-b border-stone-800 font-mono text-[11px] text-stone-400 uppercase bg-stone-900/60">
+                                    <th class="p-3 font-bold">Parameter</th>
+                                    <th class="p-3 font-bold">Fungsi Teknis</th>
+                                    <th class="p-3 font-bold">Nilai Contoh</th>
+                                    <th class="p-3 font-bold">Rentang / Default</th>
+                                    <th class="p-3 font-bold">Catatan & Peringatan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-800/60 font-sans">
+                                ${currentMateri.parameters.map(p => `
+                                    <tr class="hover:bg-stone-900/30 transition">
+                                        <td class="p-3 font-mono font-bold text-amber-300 whitespace-nowrap">${p.name}</td>
+                                        <td class="p-3 text-stone-300 leading-relaxed">${p.func}</td>
+                                        <td class="p-3 font-mono text-stone-200 whitespace-nowrap">${p.example}</td>
+                                        <td class="p-3 font-mono text-stone-400 whitespace-nowrap">${p.range}</td>
+                                        <td class="p-3 text-stone-400 leading-relaxed text-[11px]">${p.notes}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 6: VERIFIKASI & TROUBLESHOOTING                  -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-6-troubleshooting" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-rose-400/10 border border-rose-400/30 flex items-center justify-center text-rose-400 font-mono font-bold text-xs">
+                                6
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">VERIFIKASI & TROUBLESHOOTING</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Terminal Output Sukses, 4 Gejala Masalah & Rollback Safe Mode</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec6')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec6" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec6" class="p-4 sm:p-6 space-y-6">
+                        
+                        <!-- Terminal Verifications -->
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-terminal"></i>
+                                <span>Perintah Verifikasi & Contoh Output Sukses</span>
+                            </h4>
+
+                            <div class="grid grid-cols-1 gap-4">
+                                ${currentMateri.verification.map(v => `
+                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
+                                        <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs font-mono">
+                                            <span class="text-emerald-400 font-bold flex items-center gap-2">
+                                                <i class="fa-solid fa-circle-check text-[10px]"></i>
+                                                ${v.desc}
+                                            </span>
+                                            <span class="text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">${v.cmd}</span>
+                                        </div>
+                                        <pre class="p-3.5 font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${v.output}</pre>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- 4 Common Issues Matrix -->
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-bug"></i>
+                                <span>Matriks Troubleshooting: 4 Masalah Umum Routing MikroTik</span>
+                            </h4>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                ${currentMateri.troubleshooting.map((t, idx) => `
+                                    <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 space-y-2.5">
+                                        <div class="flex items-center gap-2 border-b border-stone-800 pb-2">
+                                            <span class="font-mono text-[10px] text-rose-400 bg-rose-950/60 border border-rose-800/60 px-2 py-0.5 rounded font-bold">
+                                                KASUS 0${idx + 1}
+                                            </span>
+                                            <h5 class="text-xs font-bold text-white truncate">${t.issue}</h5>
+                                        </div>
+
+                                        <div class="space-y-1.5 text-[11px]">
+                                            <div>
+                                                <span class="text-stone-400 font-mono">Gejala:</span>
+                                                <span class="text-rose-300 font-medium ml-1">${t.symptom}</span>
+                                            </div>
+                                            <div>
+                                                <span class="text-stone-400 font-mono">Penyebab:</span>
+                                                <span class="text-stone-300 ml-1">${t.cause}</span>
+                                            </div>
+                                            <div class="p-2 rounded bg-stone-950/60 border border-stone-800 font-mono text-[10px]">
+                                                <span class="text-sky-400 block font-bold mb-0.5">Cara Cek:</span>
+                                                <code class="text-stone-300">${t.check}</code>
+                                            </div>
+                                            <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-emerald-200">
+                                                <strong class="font-mono text-[10px] uppercase block text-emerald-400 mb-0.5">Solusi:</strong>
+                                                <span>${t.solution}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Rollback Procedure -->
+                        <div class="p-4 rounded-xl bg-stone-900/70 border border-stone-800 space-y-3">
+                            <div class="flex items-center justify-between border-b border-stone-800 pb-2">
+                                <h4 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                    <span>Prosedur Rollback & Safe Mode (Pencegahan Lockout)</span>
+                                </h4>
+                                <span class="font-mono text-[10px] text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">Operational Safety</span>
+                            </div>
+
+                            <p class="text-stone-300 text-xs leading-relaxed">
+                                ${currentMateri.rollback.safeMode}
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+                                <div class="p-3 rounded-lg bg-stone-950 border border-stone-800 space-y-1">
+                                    <span class="text-stone-400 text-[11px] block">Perintah Rollback CLI:</span>
+                                    <pre class="text-amber-200 select-all whitespace-pre-wrap">${currentMateri.rollback.cliRevert}</pre>
+                                </div>
+                                <div class="p-3 rounded-lg bg-stone-950 border border-stone-800 space-y-1">
+                                    <span class="text-stone-400 text-[11px] block">Backup Sebelum Eksekusi:</span>
+                                    <pre class="text-sky-200 select-all whitespace-pre-wrap">${currentMateri.rollback.backup}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 7: KESIMPULAN & BEST PRACTICE                    -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-7-conclusion" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-mono font-bold text-xs">
+                                7
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">KESIMPULAN & BEST PRACTICE</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Pedoman Wajib, Larangan Operasional, & Pengerasan Keamanan</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec7')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec7" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec7" class="p-4 sm:p-6 space-y-4">
+                        
+                        <!-- Core Takeaways -->
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                                Ringkasan Inti Materi
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                ${currentMateri.conclusion.summary.map(s => `
+                                    <div class="p-3 rounded-lg bg-stone-900/60 border border-stone-800 text-stone-200 flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 shrink-0"></i>
+                                        <span>${s}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Do and Don't Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <!-- Wajib Dilakukan -->
+                            <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/40 space-y-2">
+                                <h5 class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    <span>Wajib Dilakukan (Best Practice)</span>
+                                </h5>
+                                <ul class="space-y-1.5 text-xs text-stone-300">
+                                    ${currentMateri.conclusion.do.map(d => `
+                                        <li class="flex items-start gap-2">
+                                            <i class="fa-solid fa-circle-check text-emerald-400 text-[11px] mt-0.5 shrink-0"></i>
+                                            <span>${d}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+
+                            <!-- Jangan Dilakukan -->
+                            <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-900/40 space-y-2">
+                                <h5 class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-ban"></i>
+                                    <span>Jangan Dilakukan (Anti-Pattern)</span>
+                                </h5>
+                                <ul class="space-y-1.5 text-xs text-stone-300">
+                                    ${currentMateri.conclusion.dont.map(d => `
+                                        <li class="flex items-start gap-2">
+                                            <i class="fa-solid fa-circle-xmark text-rose-400 text-[11px] mt-0.5 shrink-0"></i>
+                                            <span>${d}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Security Notes -->
+                        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 space-y-1.5">
+                            <h5 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Catatan Keamanan & Hardening Jaringan</span>
+                            </h5>
+                            <p class="text-xs text-stone-300 leading-relaxed font-sans">
+                                ${currentMateri.conclusion.security}
+                            </p>
+                        </div>
+
+                        <!-- Navigation Next Button -->
+                        <div class="pt-4 border-t border-stone-800 flex items-center justify-between flex-wrap gap-3">
+                            <div class="text-xs font-mono text-stone-400">
+                                Selesai membaca? Lanjutkan ke tantangan latihan di bawah.
+                            </div>
+                            <button type="button" onclick="document.getElementById('sec-8-exercises').scrollIntoView({ behavior: 'smooth' })" class="py-2.5 px-5 rounded-lg bg-white hover:bg-stone-200 text-stone-950 font-bold text-xs transition flex items-center gap-2 shadow-sm">
+                                <span>Menuju Latihan Mandiri</span>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- -------------------------------------------------------- -->
+                <!-- SECTION 8: LATIHAN MANDIRI                               -->
+                <!-- -------------------------------------------------------- -->
+                <div id="sec-8-exercises" class="clean-card rounded-2xl border border-stoneBorder bg-stoneCard overflow-hidden scroll-mt-24">
+                    <div class="p-4 sm:p-5 border-b border-stone-800 flex items-center justify-between bg-stoneCardSubtle">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-teal-400/10 border border-teal-400/30 flex items-center justify-center text-teal-400 font-mono font-bold text-xs">
+                                8
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide">LATIHAN MANDIRI & TANTANGAN LAB</h3>
+                                <p class="text-[11px] text-stone-400 font-mono">Tantangan Studi Kasus Mandiri & Rekomendasi Simulator</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="toggleSectionCollapse('sec8')" class="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition">
+                            <i id="sec-chevron-sec8" class="fa-solid fa-chevron-up text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div id="sec-content-sec8" class="p-4 sm:p-6 space-y-6">
+                        
+                        <!-- Challenges -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-mono font-bold text-teal-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-flask-vial"></i>
+                                <span>2 Soal Tantangan Praktik Mandiri</span>
+                            </h4>
+
+                            <div class="space-y-4">
+                                ${currentMateri.exercises.map((ex, idx) => `
+                                    <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 sm:p-5 space-y-2.5">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-950 border border-teal-800 text-teal-300">
+                                                TANTANGAN #${idx + 1}
+                                            </span>
+                                            <span class="font-mono text-[10px] text-stone-400">Tingkat Kesulitan: Sedang</span>
+                                        </div>
+                                        <h5 class="text-sm font-bold text-white">${ex.task}</h5>
+                                        <p class="text-xs text-stone-300 leading-relaxed font-sans">${ex.desc}</p>
+                                        <div class="p-3 rounded-lg bg-stone-950/60 border border-stone-800/80 font-mono text-[11px] text-stone-400 flex items-start gap-2">
+                                            <i class="fa-regular fa-lightbulb text-amber-400 mt-0.5 shrink-0"></i>
+                                            <div>
+                                                <strong class="text-stone-300">Petunjuk Pengerjaan:</strong> ${ex.hint}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Simulator Recommendations -->
+                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
+                            <h4 class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>Rekomendasi Lingkungan Simulator Lab</span>
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
+                                ${currentMateri.labTools.map(tool => `
+                                    <div class="p-2.5 rounded bg-stone-950 border border-stone-800 text-stone-300 flex items-center gap-2">
+                                        <i class="fa-solid fa-server text-stone-500 text-[10px]"></i>
+                                        <span>${tool}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Completion Card -->
+                        <div class="p-5 rounded-xl bg-gradient-to-r from-stone-900 via-stone-900 to-stone-950 border border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="space-y-1 text-center sm:text-left">
+                                <h4 class="text-sm font-bold text-white">Selesai Menuntaskan Materi 1?</h4>
+                                <p class="text-xs text-stone-400 font-sans">
+                                    Simpan progres ke penyimpanan lokal dan beri masukan untuk materi berikutnya.
+                                </p>
+                            </div>
+                            <button type="button" onclick="toggleMateriCompleted('${currentMateri.id}')" class="py-2.5 px-6 rounded-lg ${isCompleted ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-300' : 'bg-white hover:bg-stone-200 text-stone-950'} font-bold text-xs transition flex items-center gap-2 shadow-sm shrink-0">
+                                <i class="fa-solid ${isCompleted ? 'fa-circle-check text-emerald-400' : 'fa-check'}"></i>
+                                <span>${isCompleted ? 'Materi 1 Ditandai Selesai' : 'Centang Selesai Materi 1'}</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- RIGHT COLUMN (col-span-2): STICKY ON-PAGE TABLE OF CONTENTS  -->
+            <!-- ============================================================ -->
+            <div class="hidden xl:block xl:col-span-2 space-y-4 sticky top-20">
+                <div class="clean-card p-4 rounded-xl border border-stoneBorder bg-stoneCard space-y-3">
+                    <div class="flex items-center gap-2 text-xs font-mono font-bold uppercase text-stone-400 border-b border-stone-800 pb-2">
+                        <i class="fa-solid fa-list-ol text-amber-400"></i>
+                        <span>Daftar Isi Section</span>
+                    </div>
+
+                    <nav class="space-y-1 font-mono text-[11px]" id="studioOnPageToc">
+                        <a href="#sec-0-header" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-0-header">
+                            <span class="w-4 text-stone-600 font-bold">0</span>
+                            <span class="truncate">Header Materi</span>
+                        </a>
+                        <a href="#sec-1-topology" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-1-topology">
+                            <span class="w-4 text-amber-500 font-bold">1</span>
+                            <span class="truncate">Gambar Topologi</span>
+                        </a>
+                        <a href="#sec-2-objectives" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-2-objectives">
+                            <span class="w-4 text-sky-500 font-bold">2</span>
+                            <span class="truncate">Tujuan & Skenario</span>
+                        </a>
+                        <a href="#sec-3-devices" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-3-devices">
+                            <span class="w-4 text-emerald-500 font-bold">3</span>
+                            <span class="truncate">Perangkat Digunakan</span>
+                        </a>
+                        <a href="#sec-4-steps" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-4-steps">
+                            <span class="w-4 text-amber-500 font-bold">4</span>
+                            <span class="truncate">Langkah Konfigurasi</span>
+                        </a>
+                        <a href="#sec-5-parameters" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-5-parameters">
+                            <span class="w-4 text-purple-500 font-bold">5</span>
+                            <span class="truncate">Detail Parameter</span>
+                        </a>
+                        <a href="#sec-6-troubleshooting" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-6-troubleshooting">
+                            <span class="w-4 text-rose-500 font-bold">6</span>
+                            <span class="truncate">Troubleshooting</span>
+                        </a>
+                        <a href="#sec-7-conclusion" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-7-conclusion">
+                            <span class="w-4 text-emerald-500 font-bold">7</span>
+                            <span class="truncate">Kesimpulan & Best Practice</span>
+                        </a>
+                        <a href="#sec-8-exercises" class="toc-link block px-2.5 py-1.5 rounded text-stone-400 hover:text-white hover:bg-stone-900 transition flex items-center gap-2" data-target="sec-8-exercises">
+                            <span class="w-4 text-teal-500 font-bold">8</span>
+                            <span class="truncate">Latihan Mandiri</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Fast Quick Action Widget -->
+                <div class="clean-card p-4 rounded-xl border border-stoneBorder bg-stoneCard space-y-2.5 text-xs font-mono">
+                    <span class="text-stone-400 font-bold uppercase text-[10px] block">Aksi Cepat</span>
+                    <button type="button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="w-full py-2 px-3 rounded bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 transition flex items-center justify-center gap-1.5 text-[11px]">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>Kembali ke Atas</span>
+                    </button>
+                    <button type="button" onclick="openTopologyZoomModal('${currentMateri.id}')" class="w-full py-2 px-3 rounded bg-stone-900 hover:bg-stone-800 text-amber-400 border border-stone-800 transition flex items-center justify-center gap-1.5 text-[11px]">
+                        <i class="fa-solid fa-maximize"></i>
+                        <span>Zoom Topologi</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    `;
+
+    // Initialize ScrollSpy for TOC
+    initStudioScrollSpy();
+
+    // Reapply collapsed state if any
+    Object.keys(collapsedSectionsMap).forEach(secId => {
+        if (collapsedSectionsMap[secId]) {
+            const content = document.getElementById(`sec-content-${secId}`);
+            const icon = document.getElementById(`sec-chevron-${secId}`);
+            if (content) content.classList.add('hidden');
+            if (icon) icon.className = 'fa-solid fa-chevron-down text-stone-400 text-xs transition-transform';
+        }
+    });
+
+    // Sync all global progress bars
+    updateGlobalLearningProgress();
+}
+
+function initStudioScrollSpy() {
+    const links = document.querySelectorAll('#studioOnPageToc .toc-link');
+    if (!links || links.length === 0) return;
+
+    const onScroll = () => {
+        const scrollPos = window.scrollY + 120;
+        let activeFound = false;
+
+        links.forEach(link => {
+            const targetId = link.getAttribute('data-target');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                const top = targetEl.offsetTop;
+                const height = targetEl.offsetHeight;
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    links.forEach(l => {
+                        l.classList.remove('bg-amber-400/10', 'text-amber-300', 'font-bold', 'border', 'border-amber-500/30');
+                        l.classList.add('text-stone-400');
+                    });
+                    link.classList.add('bg-amber-400/10', 'text-amber-300', 'font-bold', 'border', 'border-amber-500/30');
+                    link.classList.remove('text-stone-400');
+                    activeFound = true;
+                }
+            }
+        });
+    };
+
+    window.removeEventListener('scroll', window.__studioScrollSpyHandler);
+    window.__studioScrollSpyHandler = onScroll;
+    window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// Backward Compatibility Aliases for Legacy Calls
+function renderCoursePlayer() {
+    renderStandardizedCourseStudio(currentStudioMateriId);
 }
 
 function jumpToCourseMateri(num) {
-    if (typeof COURSE_MATERI_DATA === 'undefined') return;
-    const target = parseInt(num);
-    if (!isNaN(target) && target >= 1 && target <= COURSE_MATERI_DATA.length) {
-        currentCourseMateriNum = target;
-        renderCoursePlayer();
-        const playerSec = document.getElementById('coursePlayerSection');
-        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
+    if (num === 1) {
+        selectStudioMateri('mikrotik-01-routing');
     }
 }
 
 function togglePlayerMateriStatus() {
-    const completedList = getCompletedCourseMateri();
-    const idx = completedList.indexOf(currentCourseMateriNum);
-    let isNowDone = false;
-    if (idx > -1) {
-        completedList.splice(idx, 1);
-        isNowDone = false;
-    } else {
-        completedList.push(currentCourseMateriNum);
-        isNowDone = true;
+    toggleMateriCompleted('mikrotik-01-routing');
+}
+
+function nextCourseMateri(markDone) {
+    if (markDone) {
+        const list = getStandardizedCourseProgress();
+        if (!list.includes('mikrotik-01-routing')) {
+            list.push('mikrotik-01-routing');
+            saveStandardizedCourseProgress(list);
+        }
     }
-    saveCompletedCourseMateri(completedList);
-    renderCoursePlayer();
-    showToastNotification('Progres Materi Diperbarui', isNowDone ? `Materi #${currentCourseMateriNum} ditandai selesai!` : `Materi #${currentCourseMateriNum} dikembalikan ke status belum selesai.`);
+    renderStandardizedCourseStudio('mikrotik-01-routing');
+    showToastNotification('Pemberitahuan Kurikulum', 'Materi 1 adalah golden reference. Silakan review dan approve sebelum materi berikutnya diaktifkan.');
+}
+
+function prevCourseMateri() {
+    renderStandardizedCourseStudio('mikrotik-01-routing');
 }
 
 function copyCurrentCourseCli() {
-    if (typeof COURSE_MATERI_DATA === 'undefined') return;
-    const materi = COURSE_MATERI_DATA.find(m => m.num === currentCourseMateriNum);
-    if (!materi || !materi.cli) return;
-    copyTextToClipboard(materi.cli, `Perintah CLI untuk "${materi.title}" berhasil disalin!`);
+    if (typeof STANDARDIZED_COURSE_DATA !== 'undefined' && STANDARDIZED_COURSE_DATA[0]) {
+        copyTextToClipboard(STANDARDIZED_COURSE_DATA[0].fullConfig.r1.script, 'Konfigurasi R1-Core MikroTik berhasil disalin!');
+    }
 }
 
-// Legacy Simulator Stub (redirects to player)
 function renderSimulatorViewer() {
-    renderCoursePlayer();
+    renderStandardizedCourseStudio(currentStudioMateriId);
 }
