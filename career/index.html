@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arkin Melvian | Career Command Center & Portfolio Hub</title>
-    <meta name="description" content="Dashboard pribadi pelacak lamaran kerja, vault multi-CV per role pekerjaan, target harian/mingguan/bulanan, kalender agenda interview, dan showcase 28 portofolio nyata.">
+    <title>AAMON | Career Command Center & Portfolio Hub</title>
+    <meta name="description" content="Dashboard pribadi pelacak lamaran kerja, target harian/mingguan/bulanan, vault multi-CV per role pekerjaan, kalender agenda interview, dan showcase 28 portofolio nyata.">
 
-    <!-- Fonts -->
+    <!-- Fonts: Plus Jakarta Sans & IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -22,10 +22,13 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#090d16',
-                        darkCard: '#0f172a',
-                        darkSubtle: '#1e293b',
-                        brandAccent: '#6366f1'
+                        stoneBg: '#0c0a09',
+                        stoneSidebar: '#12100e',
+                        stoneCard: '#181614',
+                        stoneSubtle: '#201d1a',
+                        stoneBorder: '#292524',
+                        stoneText: '#fafaf9',
+                        stoneMuted: '#a8a29e'
                     },
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
@@ -39,477 +42,542 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col tech-grid-bg selection:bg-indigo-500 selection:text-white">
+<body class="bg-stoneBg text-stoneText min-h-screen flex flex-col md:flex-row warm-grid-bg selection:bg-stone-200 selection:text-stone-900">
 
-    <!-- TOP ANNOUNCEMENT / STATUS BAR -->
-    <div class="border-b border-slate-800 bg-slate-950/80 px-4 py-2 text-xs font-mono text-slate-400">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-                <span class="inline-flex items-center gap-1.5 text-emerald-400">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
-                    <span>ARKIN CAREER COMMAND v2.0</span>
-                </span>
-                <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline">28 Live Production Projects • Multi-CV Vault • Job Hunt Tracker</span>
+    <!-- ============================================================== -->
+    <!-- DESKTOP COLLAPSIBLE SIDEBAR                                    -->
+    <!-- ============================================================== -->
+    <aside id="sidebar" class="hidden md:flex flex-col justify-between w-64 bg-stoneSidebar border-r border-stoneBorder shrink-0 h-screen sticky top-0 z-30 select-none">
+        
+        <!-- Top Sidebar Brand & Toggle -->
+        <div>
+            <div class="h-16 px-4 border-b border-stoneBorder flex items-center justify-between">
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <div class="w-9 h-9 rounded-lg bg-white text-stone-950 font-mono font-extrabold flex items-center justify-center text-sm shrink-0 shadow-sm">
+                        A
+                    </div>
+                    <div class="sidebar-header-text overflow-hidden">
+                        <div class="font-extrabold text-sm tracking-wider text-white flex items-center gap-2">
+                            <span>AAMON</span>
+                            <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-stone-800 text-stone-300 border border-stone-700">HUB</span>
+                        </div>
+                        <div class="text-[10px] text-stone-400 font-mono truncate">Career & Portfolio</div>
+                    </div>
+                </div>
+
+                <!-- Collapse / Expand Toggle Button -->
+                <button type="button" onclick="toggleSidebar()" class="p-1.5 rounded hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Ciutkan / Buka Sidebar">
+                    <i class="fa-solid fa-bars-staggered text-xs"></i>
+                </button>
             </div>
-            <div class="flex items-center gap-3">
-                <div id="headerTodayPill" class="flex items-center gap-2 px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-[11px] font-semibold text-slate-300">
+
+            <!-- Quick Add Action Button inside Sidebar -->
+            <div class="p-3">
+                <button type="button" onclick="openAddApplicationModal()" class="w-full py-2.5 px-3 rounded-lg bg-white hover:bg-stone-200 text-stone-950 font-bold text-xs transition shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span class="sidebar-text">Catat Lamaran</span>
+                </button>
+            </div>
+
+            <!-- Nav Links List -->
+            <nav class="px-3 space-y-1 mt-1">
+                <button type="button" data-view="tracker" onclick="switchView('tracker')" class="sidebar-nav-item active w-full text-left" title="Pelacak Lamaran">
+                    <i class="fa-solid fa-list-check text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">Pelacak Lamaran</span>
+                </button>
+                <button type="button" data-view="targets" onclick="switchView('targets')" class="sidebar-nav-item w-full text-left" title="Target & Goals">
+                    <i class="fa-solid fa-bullseye text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">Target & Goals</span>
+                </button>
+                <button type="button" data-view="cvVault" onclick="switchView('cvVault')" class="sidebar-nav-item w-full text-left" title="Vault Multi-CV">
+                    <i class="fa-solid fa-folder-open text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">Vault CV Multi-Versi</span>
+                </button>
+                <button type="button" data-view="calendar" onclick="switchView('calendar')" class="sidebar-nav-item w-full text-left" title="Kalender Agenda">
+                    <i class="fa-regular fa-calendar-days text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">Kalender Agenda</span>
+                </button>
+                <button type="button" data-view="portfolio" onclick="switchView('portfolio')" class="sidebar-nav-item w-full text-left" title="Portofolio 28 Proyek">
+                    <i class="fa-solid fa-briefcase text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">28 Portofolio Live</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Bottom Sidebar Status Widget -->
+        <div class="p-3 border-t border-stoneBorder sidebar-footer-widget space-y-3">
+            <div class="p-3 rounded-lg bg-stoneCard border border-stoneBorder">
+                <div id="sidebarTodayPill" class="flex items-center justify-between text-xs text-stone-300">
                     <!-- Populated by JS -->
                 </div>
-                <a href="../index.html" class="text-indigo-400 hover:text-indigo-300 text-xs transition flex items-center gap-1">
-                    <span>JalaninWeb.site</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                <div class="w-full bg-stone-900 rounded-full h-1.5 mt-2 overflow-hidden border border-stone-800">
+                    <div id="sidebarTodayBar" class="bg-amber-300 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] font-mono text-stone-500 px-1">
+                <span>AAMON v2.1</span>
+                <a href="../index.html" class="hover:text-stone-300 transition flex items-center gap-1">
+                    <span>JalaninWeb</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
                 </a>
             </div>
         </div>
+    </aside>
+
+    <!-- ============================================================== -->
+    <!-- MOBILE TOP BAR & DRAWER                                        -->
+    <!-- ============================================================== -->
+    <div class="md:hidden border-b border-stoneBorder bg-stoneSidebar px-4 py-3 flex items-center justify-between sticky top-0 z-40">
+        <div class="flex items-center gap-2.5">
+            <button type="button" onclick="toggleMobileSidebar(true)" class="p-2 rounded bg-stone-900 text-stone-300 border border-stone-800">
+                <i class="fa-solid fa-bars text-sm"></i>
+            </button>
+            <div class="font-extrabold text-sm tracking-wider text-white">AAMON</div>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <button type="button" onclick="openAddApplicationModal()" class="py-1.5 px-3 rounded bg-white text-stone-950 font-bold text-xs">
+                + Catat
+            </button>
+        </div>
     </div>
 
-    <!-- MAIN NAVBAR -->
-    <header class="sticky top-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-            <!-- Brand / Logo -->
-            <div class="flex items-center gap-3 shrink-0">
-                <div class="w-10 h-10 rounded-lg bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 font-bold font-mono text-lg shadow-sm">
-                    A<span class="text-white">M</span>
-                </div>
-                <div>
-                    <h1 class="text-sm sm:text-base font-extrabold text-white tracking-tight flex items-center gap-2">
-                        <span>ARKIN MELVIAN</span>
-                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">DEV HUB</span>
-                    </h1>
-                    <p class="text-[11px] text-slate-400 font-mono">Job Hunter & Portfolio Command</p>
-                </div>
+    <!-- Mobile Drawer Off-Canvas -->
+    <div id="mobileSidebarBackdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden md:hidden"></div>
+    <div id="mobileSidebarDrawer" class="fixed top-0 bottom-0 left-0 w-72 bg-stoneSidebar border-r border-stoneBorder z-50 transform -translate-x-full transition-transform duration-300 p-4 flex flex-col justify-between md:hidden">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-stoneBorder">
+                <div class="font-extrabold text-base tracking-wider text-white">AAMON HUB</div>
+                <button type="button" onclick="toggleMobileSidebar(false)" class="p-2 text-stone-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
-
-            <!-- View Switcher Tabs (Desktop) -->
-            <nav class="hidden lg:flex items-center gap-1.5 p-1 bg-slate-900/90 border border-slate-800 rounded-lg">
-                <button type="button" data-view="tracker" onclick="switchView('tracker')" class="nav-tab-btn active px-3.5 py-1.5 text-xs font-semibold rounded-md text-slate-300 transition flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-xs"></i>
+            <nav class="space-y-1.5 mt-4">
+                <button type="button" data-view="tracker" onclick="switchView('tracker')" class="sidebar-nav-item active w-full text-left">
+                    <i class="fa-solid fa-list-check text-xs w-4"></i>
                     <span>Pelacak Lamaran</span>
                 </button>
-                <button type="button" data-view="targets" onclick="switchView('targets')" class="nav-tab-btn px-3.5 py-1.5 text-xs font-semibold rounded-md text-slate-300 transition flex items-center gap-2">
-                    <i class="fa-solid fa-bullseye text-xs"></i>
+                <button type="button" data-view="targets" onclick="switchView('targets')" class="sidebar-nav-item w-full text-left">
+                    <i class="fa-solid fa-bullseye text-xs w-4"></i>
                     <span>Target & Goals</span>
                 </button>
-                <button type="button" data-view="cvVault" onclick="switchView('cvVault')" class="nav-tab-btn px-3.5 py-1.5 text-xs font-semibold rounded-md text-slate-300 transition flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-xs"></i>
+                <button type="button" data-view="cvVault" onclick="switchView('cvVault')" class="sidebar-nav-item w-full text-left">
+                    <i class="fa-solid fa-folder-open text-xs w-4"></i>
                     <span>Vault CV Multi-Versi</span>
                 </button>
-                <button type="button" data-view="calendar" onclick="switchView('calendar')" class="nav-tab-btn px-3.5 py-1.5 text-xs font-semibold rounded-md text-slate-300 transition flex items-center gap-2">
-                    <i class="fa-regular fa-calendar-days text-xs"></i>
+                <button type="button" data-view="calendar" onclick="switchView('calendar')" class="sidebar-nav-item w-full text-left">
+                    <i class="fa-regular fa-calendar-days text-xs w-4"></i>
                     <span>Kalender Agenda</span>
                 </button>
-                <button type="button" data-view="portfolio" onclick="switchView('portfolio')" class="nav-tab-btn px-3.5 py-1.5 text-xs font-semibold rounded-md text-slate-300 transition flex items-center gap-2">
-                    <i class="fa-solid fa-briefcase text-xs"></i>
-                    <span>Portofolio 28 Proyek</span>
+                <button type="button" data-view="portfolio" onclick="switchView('portfolio')" class="sidebar-nav-item w-full text-left">
+                    <i class="fa-solid fa-briefcase text-xs w-4"></i>
+                    <span>28 Portofolio Live</span>
                 </button>
             </nav>
+        </div>
 
-            <!-- Quick Action Button -->
-            <div class="flex items-center gap-2">
-                <button type="button" onclick="openAddApplicationModal()" class="py-2 px-3.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition shadow-lg shadow-indigo-600/25 flex items-center gap-1.5 shrink-0">
-                    <i class="fa-solid fa-plus text-xs"></i>
-                    <span class="hidden sm:inline">Catat Lamaran Baru</span>
-                    <span class="sm:hidden">Apply</span>
+        <div class="pt-4 border-t border-stoneBorder text-xs text-stone-400 font-mono">
+            <div>AAMON Career Command</div>
+            <a href="../index.html" class="text-stone-300 hover:underline block mt-1">Kembali ke JalaninWeb.site</a>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- MAIN WORKSPACE CONTENT                                         -->
+    <!-- ============================================================== -->
+    <div class="flex-1 flex flex-col min-w-0">
+        
+        <!-- Top Clean Action Bar -->
+        <header class="h-16 px-4 sm:px-8 border-b border-stoneBorder bg-stoneBg/90 backdrop-blur-md flex items-center justify-between gap-4 sticky top-0 z-20">
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="toggleSidebar()" class="hidden md:inline-flex p-2 rounded hover:bg-stone-900 text-stone-400 hover:text-white transition" title="Toggle Sidebar">
+                    <i class="fa-solid fa-bars text-xs"></i>
                 </button>
-            </div>
-        </div>
-
-        <!-- Mobile View Navigation Tabs Bar -->
-        <div class="lg:hidden border-t border-slate-800 bg-slate-900/95 overflow-x-auto px-4 py-2 flex items-center gap-2 no-scrollbar">
-            <button type="button" data-view="tracker" onclick="switchView('tracker')" class="nav-tab-btn active px-3 py-1 text-xs font-semibold rounded text-slate-300 whitespace-nowrap">
-                <i class="fa-solid fa-list-check mr-1"></i> Pelacak
-            </button>
-            <button type="button" data-view="targets" onclick="switchView('targets')" class="nav-tab-btn px-3 py-1 text-xs font-semibold rounded text-slate-300 whitespace-nowrap">
-                <i class="fa-solid fa-bullseye mr-1"></i> Target
-            </button>
-            <button type="button" data-view="cvVault" onclick="switchView('cvVault')" class="nav-tab-btn px-3 py-1 text-xs font-semibold rounded text-slate-300 whitespace-nowrap">
-                <i class="fa-solid fa-folder-open mr-1"></i> Multi-CV
-            </button>
-            <button type="button" data-view="calendar" onclick="switchView('calendar')" class="nav-tab-btn px-3 py-1 text-xs font-semibold rounded text-slate-300 whitespace-nowrap">
-                <i class="fa-regular fa-calendar-days mr-1"></i> Kalender
-            </button>
-            <button type="button" data-view="portfolio" onclick="switchView('portfolio')" class="nav-tab-btn px-3 py-1 text-xs font-semibold rounded text-slate-300 whitespace-nowrap">
-                <i class="fa-solid fa-briefcase mr-1"></i> 28 Portofolio
-            </button>
-        </div>
-    </header>
-
-    <!-- MAIN BODY CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-
-        <!-- ============================================================== -->
-        <!-- VIEW 1: JOB TRACKER (PELACAK LAMARAN)                         -->
-        <!-- ============================================================== -->
-        <section id="trackerViewPanel" class="space-y-6">
-            
-            <!-- Quick Counters -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                <div class="bg-darkCard border border-slate-800 p-4 rounded-xl">
-                    <div class="flex items-center justify-between text-slate-400 text-xs font-mono">
-                        <span>TOTAL LAMARAN</span>
-                        <i class="fa-solid fa-paper-plane text-indigo-400"></i>
-                    </div>
-                    <div id="metricTotal" class="text-2xl font-extrabold text-white mt-1">0</div>
-                    <div class="text-[11px] text-slate-500 mt-1">Semua status lamaran</div>
-                </div>
-                <div class="bg-darkCard border border-slate-800 p-4 rounded-xl">
-                    <div class="flex items-center justify-between text-slate-400 text-xs font-mono">
-                        <span>SCREENING & TES</span>
-                        <i class="fa-solid fa-code text-sky-400"></i>
-                    </div>
-                    <div id="metricScreening" class="text-2xl font-extrabold text-sky-400 mt-1">0</div>
-                    <div class="text-[11px] text-slate-500 mt-1">Dalam proses review/tes</div>
-                </div>
-                <div class="bg-darkCard border border-slate-800 p-4 rounded-xl">
-                    <div class="flex items-center justify-between text-slate-400 text-xs font-mono">
-                        <span>INTERVIEW</span>
-                        <i class="fa-solid fa-user-tie text-amber-400"></i>
-                    </div>
-                    <div id="metricInterview" class="text-2xl font-extrabold text-amber-400 mt-1">0</div>
-                    <div class="text-[11px] text-slate-500 mt-1">Tahap wawancara HR/User</div>
-                </div>
-                <div class="bg-darkCard border border-slate-800 p-4 rounded-xl">
-                    <div class="flex items-center justify-between text-slate-400 text-xs font-mono">
-                        <span>OFFERING</span>
-                        <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                    </div>
-                    <div id="metricOffering" class="text-2xl font-extrabold text-emerald-400 mt-1">0</div>
-                    <div class="text-[11px] text-slate-500 mt-1">Penawaran kerja resmi</div>
-                </div>
-                <div class="bg-darkCard border border-slate-800 p-4 rounded-xl col-span-2 sm:col-span-1">
-                    <div class="flex items-center justify-between text-slate-400 text-xs font-mono">
-                        <span>DITOLAK / GHOSTED</span>
-                        <i class="fa-solid fa-circle-xmark text-red-400"></i>
-                    </div>
-                    <div id="metricRejected" class="text-2xl font-extrabold text-slate-400 mt-1">0</div>
-                    <div class="text-[11px] text-slate-500 mt-1">Belum sesuai / evaluasi</div>
-                </div>
+                <h2 id="topHeaderTitle" class="font-mono text-xs uppercase tracking-widest text-stone-300 font-bold">
+                    PELACAK LAMARAN KERJA
+                </h2>
             </div>
 
-            <!-- Filter, Search, & Actions Toolbar -->
-            <div class="bg-darkCard border border-slate-800 p-4 rounded-xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-                <div class="flex-1 flex flex-wrap items-center gap-2.5">
-                    <!-- Search input -->
-                    <div class="relative flex-1 min-w-[200px]">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-                        <input type="text" id="filterSearch" placeholder="Cari perusahaan, posisi, lokasi..." class="w-full bg-slate-900 border border-slate-700 text-xs rounded-lg pl-8 pr-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            <!-- Right Controls: Quick Add & Data Export -->
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="openAddApplicationModal()" class="py-2 px-3.5 rounded-lg bg-white hover:bg-stone-200 text-stone-950 font-bold text-xs transition shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>Catat Lamaran</span>
+                </button>
+
+                <!-- Data Backup Dropdown -->
+                <div class="relative group">
+                    <button type="button" class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 text-xs font-semibold border border-stone-800 flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-database text-[10px]"></i>
+                        <span class="hidden sm:inline">Cadangan Data</span>
+                        <i class="fa-solid fa-chevron-down text-[8px] text-stone-500"></i>
+                    </button>
+                    <div class="absolute right-0 top-full mt-1.5 w-48 bg-stone-900 border border-stone-800 rounded-lg shadow-2xl p-1.5 hidden group-hover:block z-30">
+                        <button type="button" onclick="exportDataJSON()" class="w-full text-left px-3 py-2 text-xs rounded hover:bg-stone-800 text-stone-200 flex items-center gap-2">
+                            <i class="fa-solid fa-file-code text-stone-400"></i>
+                            <span>Unduh Backup JSON</span>
+                        </button>
+                        <button type="button" onclick="exportDataCSV()" class="w-full text-left px-3 py-2 text-xs rounded hover:bg-stone-800 text-stone-200 flex items-center gap-2">
+                            <i class="fa-solid fa-file-csv text-emerald-300"></i>
+                            <span>Ekspor Laporan CSV</span>
+                        </button>
+                        <label class="w-full text-left px-3 py-2 text-xs rounded hover:bg-stone-800 text-stone-200 flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-file-import text-amber-300"></i>
+                            <span>Pulihkan dari JSON</span>
+                            <input type="file" accept=".json" onchange="handleImportJSON(this)" class="hidden">
+                        </label>
                     </div>
+                </div>
+            </div>
+        </header>
 
-                    <!-- Status Filter -->
-                    <select id="filterStatus" class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-3 py-2 text-slate-300 focus:outline-none focus:border-indigo-500">
-                        <option value="all">Semua Status</option>
-                        <option value="applied">🟡 Terkirim</option>
-                        <option value="screening">🔵 Screening CV</option>
-                        <option value="test">🟣 Tes Teknis</option>
-                        <option value="interview">🟠 Interview</option>
-                        <option value="offering">🟢 Offering</option>
-                        <option value="rejected">🔴 Ditolak</option>
-                        <option value="ghosted">⚪ No Reply</option>
-                    </select>
+        <!-- Main Body Inner Container -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full">
 
-                    <!-- CV Version Filter -->
-                    <select id="filterCvVersion" class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-3 py-2 text-slate-300 focus:outline-none focus:border-indigo-500">
-                        <option value="all">Semua Versi CV</option>
-                        <option value="cv_frontend">CV-A: Frontend</option>
-                        <option value="cv_fullstack">CV-B: Fullstack</option>
-                        <option value="cv_scraping">CV-C: Scraping</option>
-                        <option value="cv_general">CV-D: WordPress / Tech</option>
-                    </select>
-
-                    <!-- Platform Filter -->
-                    <select id="filterPlatform" class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-3 py-2 text-slate-300 focus:outline-none focus:border-indigo-500">
-                        <option value="all">Semua Platform</option>
-                        <option value="LinkedIn">LinkedIn</option>
-                        <option value="Glints">Glints</option>
-                        <option value="Jobstreet">Jobstreet</option>
-                        <option value="Kalibrr">Kalibrr</option>
-                        <option value="Direct Email">Direct Email</option>
-                        <option value="Referral">Referral / Kenalan</option>
-                    </select>
+            <!-- ============================================================== -->
+            <!-- VIEW 1: JOB TRACKER (PELACAK LAMARAN)                         -->
+            <!-- ============================================================== -->
+            <section id="trackerViewPanel" class="space-y-6">
+                
+                <!-- Quick Counters Grid (Clean Monochrome Cards with Pastel Dots) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <div class="clean-card p-4">
+                        <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
+                            <span>TOTAL LAMARAN</span>
+                            <span class="w-2 h-2 rounded-full bg-stone-400"></span>
+                        </div>
+                        <div id="metricTotal" class="text-2xl font-extrabold text-white mt-1">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1">Semua riwayat lamaran</div>
+                    </div>
+                    <div class="clean-card p-4">
+                        <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
+                            <span>SCREENING & TES</span>
+                            <span class="w-2 h-2 rounded-full bg-purple-300"></span>
+                        </div>
+                        <div id="metricScreening" class="text-2xl font-extrabold text-purple-200 mt-1">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1">Dalam proses evaluasi</div>
+                    </div>
+                    <div class="clean-card p-4">
+                        <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
+                            <span>INTERVIEW</span>
+                            <span class="w-2 h-2 rounded-full bg-amber-300"></span>
+                        </div>
+                        <div id="metricInterview" class="text-2xl font-extrabold text-amber-200 mt-1">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1">Wawancara HR / User</div>
+                    </div>
+                    <div class="clean-card p-4">
+                        <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
+                            <span>OFFERING</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-300"></span>
+                        </div>
+                        <div id="metricOffering" class="text-2xl font-extrabold text-emerald-200 mt-1">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1">Penawaran kerja resmi</div>
+                    </div>
+                    <div class="clean-card p-4 col-span-2 sm:col-span-1">
+                        <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
+                            <span>DITOLAK / GHOSTED</span>
+                            <span class="w-2 h-2 rounded-full bg-red-300"></span>
+                        </div>
+                        <div id="metricRejected" class="text-2xl font-extrabold text-red-200 mt-1">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1">Belum sesuai kriteria</div>
+                    </div>
                 </div>
 
-                <!-- Display Mode Toggle & Export Tools -->
-                <div class="flex items-center gap-2 justify-end shrink-0">
-                    <div class="p-1 bg-slate-900 border border-slate-700 rounded-lg flex items-center">
-                        <button type="button" id="btnViewTable" onclick="setTrackerDisplayMode('table')" class="px-2.5 py-1 text-xs font-semibold rounded bg-indigo-600 text-white" title="Tampilan Tabel">
+                <!-- Filters & Search Toolbar -->
+                <div class="clean-card p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                    <div class="flex-1 flex flex-wrap items-center gap-2.5">
+                        <div class="relative flex-1 min-w-[200px]">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-500 text-xs"></i>
+                            <input type="text" id="filterSearch" placeholder="Cari perusahaan, posisi, lokasi..." class="w-full bg-stone-900 border border-stone-800 text-xs rounded-lg pl-8 pr-3 py-2 text-white placeholder-stone-500 focus:outline-none focus:border-stone-600">
+                        </div>
+
+                        <select id="filterStatus" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                            <option value="all">Semua Status</option>
+                            <option value="applied">🟡 Terkirim</option>
+                            <option value="screening">⚪ Screening CV</option>
+                            <option value="test">🟣 Tes Teknis</option>
+                            <option value="interview">🟠 Interview</option>
+                            <option value="offering">🟢 Offering</option>
+                            <option value="rejected">🔴 Ditolak</option>
+                            <option value="ghosted">⚪ No Reply</option>
+                        </select>
+
+                        <select id="filterCvVersion" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                            <option value="all">Semua Versi CV</option>
+                            <option value="cv_frontend">CV-A: Frontend</option>
+                            <option value="cv_fullstack">CV-B: Fullstack</option>
+                            <option value="cv_scraping">CV-C: Scraping</option>
+                            <option value="cv_general">CV-D: WordPress / Tech</option>
+                        </select>
+
+                        <select id="filterPlatform" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                            <option value="all">Semua Platform</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Glints">Glints</option>
+                            <option value="Jobstreet">Jobstreet</option>
+                            <option value="Kalibrr">Kalibrr</option>
+                            <option value="Direct Email">Direct Email</option>
+                            <option value="Referral">Referral / Kenalan</option>
+                        </select>
+                    </div>
+
+                    <!-- Display Mode Toggle -->
+                    <div class="p-1 bg-stone-900 border border-stone-800 rounded-lg flex items-center self-end md:self-auto shrink-0">
+                        <button type="button" id="btnViewTable" onclick="setTrackerDisplayMode('table')" class="px-2.5 py-1 text-xs font-semibold rounded bg-white text-stone-950" title="Tampilan Tabel">
                             <i class="fa-solid fa-table-list"></i>
                         </button>
-                        <button type="button" id="btnViewKanban" onclick="setTrackerDisplayMode('kanban')" class="px-2.5 py-1 text-xs font-semibold rounded bg-slate-800 text-slate-400 hover:text-white" title="Tampilan Kanban Board">
+                        <button type="button" id="btnViewKanban" onclick="setTrackerDisplayMode('kanban')" class="px-2.5 py-1 text-xs font-semibold rounded bg-stone-900 text-stone-400 hover:text-white" title="Tampilan Kanban Board">
                             <i class="fa-solid fa-table-columns"></i>
                         </button>
                     </div>
+                </div>
 
-                    <div class="relative group">
-                        <button type="button" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-file-export text-[10px]"></i>
-                            <span>Backup & Data</span>
-                            <i class="fa-solid fa-chevron-down text-[9px] text-slate-500"></i>
-                        </button>
-                        <div class="absolute right-0 top-full mt-1.5 w-48 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-1.5 hidden group-hover:block z-20">
-                            <button type="button" onclick="exportDataJSON()" class="w-full text-left px-3 py-2 text-xs rounded hover:bg-slate-800 text-slate-200 flex items-center gap-2">
-                                <i class="fa-solid fa-file-code text-indigo-400"></i>
-                                <span>Unduh Backup JSON</span>
-                            </button>
-                            <button type="button" onclick="exportDataCSV()" class="w-full text-left px-3 py-2 text-xs rounded hover:bg-slate-800 text-slate-200 flex items-center gap-2">
-                                <i class="fa-solid fa-file-csv text-emerald-400"></i>
-                                <span>Ekspor Laporan CSV</span>
-                            </button>
-                            <label class="w-full text-left px-3 py-2 text-xs rounded hover:bg-slate-800 text-slate-200 flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-file-import text-amber-400"></i>
-                                <span>Pulihkan dari JSON</span>
-                                <input type="file" accept=".json" onchange="handleImportJSON(this)" class="hidden">
-                            </label>
+                <!-- TABLE VIEW CONTAINER -->
+                <div id="trackerTableWrapper" class="clean-card overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-stone-800 bg-stone-900/80 font-mono text-xs uppercase tracking-wider text-stone-400">
+                                    <th class="py-3 px-4">Tgl Apply</th>
+                                    <th class="py-3 px-4">Perusahaan & Lokasi</th>
+                                    <th class="py-3 px-4">Posisi & Gaji</th>
+                                    <th class="py-3 px-4">Versi CV</th>
+                                    <th class="py-3 px-4">Platform</th>
+                                    <th class="py-3 px-4">Status & Agenda</th>
+                                    <th class="py-3 px-4 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationTableBody" class="divide-y divide-stone-800/60 text-sm">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="trackerEmptyState" class="hidden text-center py-12 px-4">
+                        <div class="w-12 h-12 rounded-full bg-stone-800 text-stone-500 flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-inbox text-xl"></i>
                         </div>
+                        <h4 class="text-sm font-bold text-white">Tidak Ada Data Lamaran</h4>
+                        <p class="text-xs text-stone-400 mt-1">Coba sesuaikan filter pencarian atau catat lamaran baru Anda.</p>
+                        <button type="button" onclick="openAddApplicationModal()" class="mt-4 py-2 px-4 rounded-lg bg-white text-stone-950 text-xs font-bold transition hover:bg-stone-200">
+                            + Catat Lamaran Sekarang
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- TABLE VIEW CONTAINER -->
-            <div id="trackerTableWrapper" class="bg-darkCard border border-slate-800 rounded-xl overflow-hidden shadow-sm">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="border-b border-slate-800 bg-slate-900/80 font-mono text-xs uppercase tracking-wider text-slate-400">
-                                <th class="py-3 px-4">Tgl Apply</th>
-                                <th class="py-3 px-4">Perusahaan & Lokasi</th>
-                                <th class="py-3 px-4">Posisi & Gaji</th>
-                                <th class="py-3 px-4">Versi CV</th>
-                                <th class="py-3 px-4">Platform</th>
-                                <th class="py-3 px-4">Status & Agenda</th>
-                                <th class="py-3 px-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="applicationTableBody" class="divide-y divide-slate-800/60 text-sm">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
+                <!-- KANBAN BOARD VIEW CONTAINER -->
+                <div id="trackerKanbanWrapper" class="hidden overflow-x-auto pb-4">
+                    <div class="flex items-start gap-4 min-w-[1200px]">
+                        
+                        <!-- Col 1: Applied -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-stone-300">🟡 TERKIRIM</span>
+                                <span id="kanbanCount_applied" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-stone-300">0</span>
+                            </div>
+                            <div id="kanbanColApplied" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                        <!-- Col 2: Screening -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-stone-300">⚪ SCREENING CV</span>
+                                <span id="kanbanCount_screening" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-stone-300">0</span>
+                            </div>
+                            <div id="kanbanColScreening" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                        <!-- Col 3: Test -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-purple-300">🟣 TES TEKNIS</span>
+                                <span id="kanbanCount_test" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-purple-300">0</span>
+                            </div>
+                            <div id="kanbanColTest" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                        <!-- Col 4: Interview -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-amber-300">🟠 INTERVIEW</span>
+                                <span id="kanbanCount_interview" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-amber-300">0</span>
+                            </div>
+                            <div id="kanbanColInterview" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                        <!-- Col 5: Offering -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-emerald-300">🟢 OFFERING</span>
+                                <span id="kanbanCount_offering" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-emerald-300">0</span>
+                            </div>
+                            <div id="kanbanColOffering" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                        <!-- Col 6: Rejected -->
+                        <div class="flex-1 bg-stone-950/70 border border-stone-800 rounded-xl p-3 flex flex-col">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-800 mb-3">
+                                <span class="font-mono text-xs font-bold text-red-300">🔴 DITOLAK</span>
+                                <span id="kanbanCount_rejected" class="font-mono text-xs px-2 py-0.5 rounded bg-stone-900 text-red-300">0</span>
+                            </div>
+                            <div id="kanbanColRejected" class="kanban-column-scroll space-y-2.5"></div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <!-- Empty State -->
-                <div id="trackerEmptyState" class="hidden text-center py-12 px-4">
-                    <div class="w-14 h-14 rounded-full bg-slate-800/80 text-slate-500 flex items-center justify-center mx-auto mb-3">
-                        <i class="fa-solid fa-inbox text-2xl"></i>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- VIEW 2: TARGET & GOALS DASHBOARD                              -->
+            <!-- ============================================================== -->
+            <section id="targetsViewPanel" class="hidden space-y-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stoneBorder pb-5">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white">Target & Performa Pencarian Kerja</h2>
+                        <p class="text-xs sm:text-sm text-stone-400 mt-1">Pantau target harian, mingguan, dan bulanan secara terukur untuk mempercepat peluang diterima kerja.</p>
                     </div>
-                    <h4 class="text-sm font-bold text-white">Tidak Ada Data Lamaran</h4>
-                    <p class="text-xs text-slate-400 mt-1">Coba sesuaikan filter pencarian atau tambahkan catatan lamaran baru.</p>
-                    <button type="button" onclick="openAddApplicationModal()" class="mt-4 py-2 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">
-                        + Catat Lamaran Sekarang
+                    <button type="button" onclick="openTargetsSettingModal()" class="py-2 px-3.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 text-xs font-semibold transition flex items-center gap-2 self-start">
+                        <i class="fa-solid fa-sliders text-xs"></i>
+                        <span>Atur Target Saya</span>
                     </button>
                 </div>
-            </div>
 
-            <!-- KANBAN BOARD VIEW CONTAINER -->
-            <div id="trackerKanbanWrapper" class="hidden overflow-x-auto pb-4">
-                <div class="flex items-start gap-4 min-w-[1200px]">
-                    
-                    <!-- Col 1: Applied -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-slate-300">🟡 TERKIRIM</span>
-                            <span id="kanbanCount_applied" class="font-mono text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300">0</span>
+                <!-- Target Progress Cards (Harian, Mingguan, Bulanan) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Daily Goal -->
+                    <div class="clean-card p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between font-mono text-xs">
+                                <span class="text-amber-300 font-bold uppercase tracking-wider">🎯 TARGET HARIAN</span>
+                                <span class="text-stone-400">Hari ini</span>
+                            </div>
+                            <div class="text-3xl font-extrabold text-white mt-4" id="targetDailyText">0 / 5 Lamaran</div>
+                            <div class="w-full bg-stone-900 rounded-full h-2.5 mt-4 overflow-hidden border border-stone-800">
+                                <div id="targetDailyBar" class="bg-amber-300 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div id="kanbanColApplied" class="kanban-column-scroll space-y-2.5"></div>
+                        <p id="targetDailyHint" class="text-xs text-stone-400 mt-4 leading-relaxed"></p>
                     </div>
 
-                    <!-- Col 2: Screening -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-sky-400">🔵 SCREENING CV</span>
-                            <span id="kanbanCount_screening" class="font-mono text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-300">0</span>
+                    <!-- Weekly Goal -->
+                    <div class="clean-card p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between font-mono text-xs">
+                                <span class="text-stone-300 font-bold uppercase tracking-wider">🚀 TARGET MINGGUAN</span>
+                                <span class="text-stone-400">Senin – Minggu</span>
+                            </div>
+                            <div class="text-3xl font-extrabold text-white mt-4" id="targetWeeklyText">0 / 25 Lamaran</div>
+                            <div class="w-full bg-stone-900 rounded-full h-2.5 mt-4 overflow-hidden border border-stone-800">
+                                <div id="targetWeeklyBar" class="bg-white h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div id="kanbanColScreening" class="kanban-column-scroll space-y-2.5"></div>
+                        <p id="targetWeeklyHint" class="text-xs text-stone-400 mt-4 leading-relaxed"></p>
                     </div>
 
-                    <!-- Col 3: Test -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-purple-400">🟣 TES TEKNIS</span>
-                            <span id="kanbanCount_test" class="font-mono text-xs px-2 py-0.5 rounded bg-purple-950 text-purple-300">0</span>
+                    <!-- Monthly Goal -->
+                    <div class="clean-card p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between font-mono text-xs">
+                                <span class="text-emerald-300 font-bold uppercase tracking-wider">🏆 TARGET BULANAN</span>
+                                <span class="text-stone-400">Bulan Berjalan</span>
+                            </div>
+                            <div class="text-3xl font-extrabold text-white mt-4" id="targetMonthlyText">0 / 100 Lamaran</div>
+                            <div class="w-full bg-stone-900 rounded-full h-2.5 mt-4 overflow-hidden border border-stone-800">
+                                <div id="targetMonthlyBar" class="bg-emerald-300 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div id="kanbanColTest" class="kanban-column-scroll space-y-2.5"></div>
-                    </div>
-
-                    <!-- Col 4: Interview -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-amber-400">🟠 INTERVIEW</span>
-                            <span id="kanbanCount_interview" class="font-mono text-xs px-2 py-0.5 rounded bg-amber-950 text-amber-300">0</span>
-                        </div>
-                        <div id="kanbanColInterview" class="kanban-column-scroll space-y-2.5"></div>
-                    </div>
-
-                    <!-- Col 5: Offering -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-emerald-400">🟢 OFFERING</span>
-                            <span id="kanbanCount_offering" class="font-mono text-xs px-2 py-0.5 rounded bg-emerald-950 text-emerald-300">0</span>
-                        </div>
-                        <div id="kanbanColOffering" class="kanban-column-scroll space-y-2.5"></div>
-                    </div>
-
-                    <!-- Col 6: Rejected -->
-                    <div class="flex-1 bg-slate-950/70 border border-slate-800 rounded-xl p-3 flex flex-col">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-3">
-                            <span class="font-mono text-xs font-bold text-red-400">🔴 DITOLAK / CLOSED</span>
-                            <span id="kanbanCount_rejected" class="font-mono text-xs px-2 py-0.5 rounded bg-red-950 text-red-300">0</span>
-                        </div>
-                        <div id="kanbanColRejected" class="kanban-column-scroll space-y-2.5"></div>
-                    </div>
-
-                </div>
-            </div>
-
-        </section>
-
-        <!-- ============================================================== -->
-        <!-- VIEW 2: TARGET & GOALS DASHBOARD                              -->
-        <!-- ============================================================== -->
-        <section id="targetsViewPanel" class="hidden space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white">Target & Performa Pencarian Kerja</h2>
-                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Pantau target harian, mingguan, dan bulanan secara terukur untuk mempercepat peluang diterima kerja.</p>
-                </div>
-                <button type="button" onclick="openTargetsSettingModal()" class="py-2 px-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition flex items-center gap-2 self-start">
-                    <i class="fa-solid fa-sliders text-xs"></i>
-                    <span>Atur Target Saya</span>
-                </button>
-            </div>
-
-            <!-- Target Progress Cards (Harian, Mingguan, Bulanan) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Daily Goal -->
-                <div class="bg-darkCard border border-slate-800 rounded-xl p-6 glow-card flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between font-mono text-xs">
-                            <span class="text-amber-400 font-bold uppercase tracking-wider">🎯 TARGET HARIAN</span>
-                            <span class="text-slate-400">Hari ini</span>
-                        </div>
-                        <div class="text-3xl font-extrabold text-white mt-4" id="targetDailyText">0 / 5 Lamaran</div>
-                        <div class="w-full bg-slate-800 rounded-full h-3 mt-4 overflow-hidden">
-                            <div id="targetDailyBar" class="bg-amber-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <p id="targetDailyHint" class="text-xs text-slate-400 mt-4 leading-relaxed"></p>
-                </div>
-
-                <!-- Weekly Goal -->
-                <div class="bg-darkCard border border-slate-800 rounded-xl p-6 glow-card flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between font-mono text-xs">
-                            <span class="text-indigo-400 font-bold uppercase tracking-wider">🚀 TARGET MINGGUAN</span>
-                            <span class="text-slate-400">Senin – Minggu</span>
-                        </div>
-                        <div class="text-3xl font-extrabold text-white mt-4" id="targetWeeklyText">0 / 25 Lamaran</div>
-                        <div class="w-full bg-slate-800 rounded-full h-3 mt-4 overflow-hidden">
-                            <div id="targetWeeklyBar" class="bg-indigo-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <p id="targetWeeklyHint" class="text-xs text-slate-400 mt-4 leading-relaxed"></p>
-                </div>
-
-                <!-- Monthly Goal -->
-                <div class="bg-darkCard border border-slate-800 rounded-xl p-6 glow-card flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between font-mono text-xs">
-                            <span class="text-emerald-400 font-bold uppercase tracking-wider">🏆 TARGET BULANAN</span>
-                            <span class="text-slate-400">Bulan Berjalan</span>
-                        </div>
-                        <div class="text-3xl font-extrabold text-white mt-4" id="targetMonthlyText">0 / 100 Lamaran</div>
-                        <div class="w-full bg-slate-800 rounded-full h-3 mt-4 overflow-hidden">
-                            <div id="targetMonthlyBar" class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <p id="targetMonthlyHint" class="text-xs text-slate-400 mt-4 leading-relaxed"></p>
-                </div>
-            </div>
-
-            <!-- Conversion Rates -->
-            <div class="bg-darkCard border border-slate-800 rounded-xl p-6">
-                <h3 class="text-base font-bold text-white mb-4">Statistik Efektivitas CV & Peluang Respon</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono">
-                    <div class="p-4 rounded-lg bg-slate-900 border border-slate-800">
-                        <div class="text-xs text-slate-400">RESPONSE RATE (SCREENING+)</div>
-                        <div id="statResponseRate" class="text-2xl font-bold text-sky-400 mt-1">0%</div>
-                        <div class="text-[11px] text-slate-500 mt-1 font-sans">Persentase lamaran yang ditanggapi positif oleh HR/perusahaan.</div>
-                    </div>
-                    <div id="statInterviewBox" class="p-4 rounded-lg bg-slate-900 border border-slate-800">
-                        <div class="text-xs text-slate-400">INTERVIEW CONVERSION</div>
-                        <div id="statInterviewRate" class="text-2xl font-bold text-amber-400 mt-1">0%</div>
-                        <div class="text-[11px] text-slate-500 mt-1 font-sans">Persentase lamaran yang sukses berlanjut hingga sesi wawancara.</div>
-                    </div>
-                    <div class="p-4 rounded-lg bg-slate-900 border border-slate-800">
-                        <div class="text-xs text-slate-400">PIPELINE AKTIF</div>
-                        <div id="statActivePipeline" class="text-2xl font-bold text-emerald-400 mt-1">0 Berjalan</div>
-                        <div class="text-[11px] text-slate-500 mt-1 font-sans">Proses lamaran yang saat ini masih berpeluang tanpa status ditolak.</div>
+                        <p id="targetMonthlyHint" class="text-xs text-stone-400 mt-4 leading-relaxed"></p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- ============================================================== -->
-        <!-- VIEW 3: VAULT CV MULTI-VERSI & DATA PENTING                   -->
-        <!-- ============================================================== -->
-        <section id="cvVaultViewPanel" class="hidden space-y-8">
-            <div class="border-b border-slate-800 pb-5">
-                <span class="font-mono text-xs uppercase tracking-widest text-indigo-400 font-bold">MULTI-ROLE TAILORED CVS</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">Vault CV & Berkas Penting (Beda Loker, Beda CV)</h2>
-                <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                    Simpan dan unduh berkas CV PDF spesifik untuk tiap kategori pekerjaan. Seluruh file tersimpan secara privat & aman langsung di browser Anda menggunakan IndexedDB.
-                </p>
-            </div>
-
-            <!-- CV Profiles Cards Grid -->
-            <div id="cvProfilesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Populated dynamically by JS -->
-            </div>
-
-            <!-- Quick Copy Hub: Link & Templates -->
-            <div class="bg-darkCard border border-slate-800 rounded-xl p-6 sm:p-8">
-                <h3 class="text-lg font-bold text-white mb-2">Vault Data Penting & Template Cepat Salin</h3>
-                <p class="text-xs text-slate-400 mb-6">Salin tautan atau surat pengantar lamaran dalam 1 klik saat melamar pekerjaan di portal karir.</p>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Quick Links -->
-                    <div class="space-y-3 font-mono text-xs">
-                        <label class="block text-slate-400 uppercase font-bold text-[11px]">Tautan Portofolio Live</label>
-                        <div class="flex items-center gap-2">
-                            <input type="text" readonly value="https://jalaninweb.site" class="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-slate-200">
-                            <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site', 'Tautan portofolio disalin!')" class="py-2 px-3 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition shrink-0">
-                                Salin
-                            </button>
+                <!-- Conversion Rates -->
+                <div class="clean-card p-6">
+                    <h3 class="text-base font-bold text-white mb-4">Statistik Efektivitas CV & Peluang Respon</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono">
+                        <div class="p-4 rounded-lg bg-stone-900 border border-stone-800">
+                            <div class="text-xs text-stone-400">RESPONSE RATE (SCREENING+)</div>
+                            <div id="statResponseRate" class="text-2xl font-bold text-stone-200 mt-1">0%</div>
+                            <div class="text-[11px] text-stone-500 mt-1 font-sans">Persentase lamaran yang ditanggapi positif oleh HR/perusahaan.</div>
                         </div>
-
-                        <label class="block text-slate-400 uppercase font-bold text-[11px] mt-4">GitHub Repository URL</label>
-                        <div class="flex items-center gap-2">
-                            <input type="text" readonly value="https://github.com/ArkinMelvianDwiansyah" class="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-slate-200">
-                            <button type="button" onclick="copyTextToClipboard('https://github.com/ArkinMelvianDwiansyah', 'GitHub URL disalin!')" class="py-2 px-3 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition shrink-0">
-                                Salin
-                            </button>
+                        <div class="p-4 rounded-lg bg-stone-900 border border-stone-800">
+                            <div class="text-xs text-stone-400">INTERVIEW CONVERSION</div>
+                            <div id="statInterviewRate" class="text-2xl font-bold text-amber-300 mt-1">0%</div>
+                            <div class="text-[11px] text-stone-500 mt-1 font-sans">Persentase lamaran yang sukses berlanjut hingga sesi wawancara.</div>
                         </div>
-
-                        <label class="block text-slate-400 uppercase font-bold text-[11px] mt-4">Digital Wedding Project Demo</label>
-                        <div class="flex items-center gap-2">
-                            <input type="text" readonly value="https://jalaninweb.site/wedding/" class="flex-1 bg-slate-900 border border-slate-700 rounded px-3 py-2 text-slate-200">
-                            <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site/wedding/', 'Demo Wedding disalin!')" class="py-2 px-3 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition shrink-0">
-                                Salin
-                            </button>
+                        <div class="p-4 rounded-lg bg-stone-900 border border-stone-800">
+                            <div class="text-xs text-stone-400">PIPELINE AKTIF</div>
+                            <div id="statActivePipeline" class="text-2xl font-bold text-emerald-300 mt-1">0 Berjalan</div>
+                            <div class="text-[11px] text-stone-500 mt-1 font-sans">Proses lamaran yang saat ini masih berpeluang tanpa status ditolak.</div>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <!-- Quick Cover Letter Templates -->
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono uppercase text-slate-400 font-bold">Template Pesan Pengantar Lamaran (Cover Letter)</span>
-                            <button type="button" onclick="copyTextToClipboard(document.getElementById('coverLetterText').value, 'Template pesan lamaran berhasil disalin!')" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold transition flex items-center gap-1">
-                                <i class="fa-regular fa-copy"></i>
-                                <span>Salin Template</span>
-                            </button>
+            <!-- ============================================================== -->
+            <!-- VIEW 3: VAULT CV MULTI-VERSI & DATA PENTING                   -->
+            <!-- ============================================================== -->
+            <section id="cvVaultViewPanel" class="hidden space-y-8">
+                <div class="border-b border-stoneBorder pb-5">
+                    <span class="font-mono text-xs uppercase tracking-widest text-stone-400 font-bold">MULTI-ROLE TAILORED CVS</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">Vault CV & Berkas Penting (Beda Loker, Beda CV)</h2>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1">
+                        Simpan dan unduh berkas CV PDF spesifik untuk tiap kategori pekerjaan. Seluruh file tersimpan secara privat & aman langsung di browser Anda menggunakan IndexedDB.
+                    </p>
+                </div>
+
+                <!-- CV Profiles Cards Grid -->
+                <div id="cvProfilesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Populated dynamically by JS -->
+                </div>
+
+                <!-- Quick Copy Hub: Link & Templates -->
+                <div class="clean-card p-6 sm:p-8">
+                    <h3 class="text-lg font-bold text-white mb-2">Vault Data Penting & Template Cepat Salin</h3>
+                    <p class="text-xs text-stone-400 mb-6">Salin tautan atau surat pengantar lamaran dalam 1 klik saat melamar pekerjaan di portal karir.</p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Quick Links -->
+                        <div class="space-y-3 font-mono text-xs">
+                            <label class="block text-stone-400 uppercase font-bold text-[11px]">Tautan Portofolio Live</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" readonly value="https://jalaninweb.site" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
+                                <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site', 'Tautan portofolio disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
+                                    Salin
+                                </button>
+                            </div>
+
+                            <label class="block text-stone-400 uppercase font-bold text-[11px] mt-4">GitHub Repository URL</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" readonly value="https://github.com/ArkinMelvianDwiansyah" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
+                                <button type="button" onclick="copyTextToClipboard('https://github.com/ArkinMelvianDwiansyah', 'GitHub URL disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
+                                    Salin
+                                </button>
+                            </div>
+
+                            <label class="block text-stone-400 uppercase font-bold text-[11px] mt-4">Digital Wedding Project Demo</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" readonly value="https://jalaninweb.site/wedding/" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
+                                <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site/wedding/', 'Demo Wedding disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
+                                    Salin
+                                </button>
+                            </div>
                         </div>
-                        <textarea id="coverLetterText" rows="7" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs text-slate-300 leading-relaxed focus:outline-none focus:border-indigo-500 font-mono">Halo Tim HRD / Recruiter,
 
-Saya Arkin Melvian Dwiansyah, Web Developer dengan rekam jejak membangun lebih dari 28+ aplikasi web dan landing page berkinerja tinggi (kecepatan PageSpeed 95+, 0 external dependencies).
+                        <!-- Quick Cover Letter Templates -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono uppercase text-stone-400 font-bold">Template Pesan Pengantar Lamaran (Cover Letter)</span>
+                                <button type="button" onclick="copyTextToClipboard(document.getElementById('coverLetterText').value, 'Template pesan lamaran berhasil disalin!')" class="text-xs text-white hover:text-stone-300 font-bold transition flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span>Salin Template</span>
+                                </button>
+                            </div>
+                            <textarea id="coverLetterText" rows="7" class="w-full bg-stone-900 border border-stone-800 rounded-lg p-3 text-xs text-stone-300 leading-relaxed focus:outline-none focus:border-stone-600 font-mono">Halo Tim HRD / Recruiter,
+
+Saya adalah Web Developer dengan pengalaman membangun lebih dari 28+ aplikasi web dan landing page berkinerja tinggi (kecepatan PageSpeed 95+, 0 external dependencies).
 
 Saya tertarik untuk mengajukan diri pada posisi [NAMA POSISI] di [NAMA PERUSAHAAN]. Berdasarkan kebutuhan tim, pengalaman saya dalam JavaScript modern, Tailwind CSS, sistem kalkulator transaksi, serta arsitektur deployment Linux/Nginx sangat selaras untuk langsung berkontribusi pada produk Anda.
 
@@ -517,161 +585,163 @@ Portofolio live saya dapat ditinjau di: https://jalaninweb.site
 GitHub: https://github.com/ArkinMelvianDwiansyah
 
 Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================== -->
-        <!-- VIEW 4: KALENDER AGENDA INTERAKTIF                             -->
-        <!-- ============================================================== -->
-        <section id="calendarViewPanel" class="hidden space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white">Kalender Pelacak Lamaran & Agenda</h2>
-                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Klik tanggal mana pun untuk melihat lamaran yang dikirim atau menjadwalkan tes & wawancara kerja.</p>
-                </div>
-                
-                <!-- Month Navigator Controls -->
-                <div class="flex items-center gap-2">
-                    <button type="button" id="btnPrevMonth" class="p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Bulan Sebelumnya">
-                        <i class="fa-solid fa-chevron-left text-xs"></i>
-                    </button>
-                    <span id="calendarMonthYear" class="font-mono text-sm font-bold text-white px-3 py-1 bg-slate-900 border border-slate-700 rounded-lg min-w-[160px] text-center">
-                        Oktober 2026
-                    </span>
-                    <button type="button" id="btnNextMonth" class="p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Bulan Berikutnya">
-                        <i class="fa-solid fa-chevron-right text-xs"></i>
-                    </button>
-                    <button type="button" id="btnTodayMonth" class="py-1.5 px-3 text-xs font-semibold rounded bg-indigo-600 hover:bg-indigo-500 text-white transition ml-2">
-                        Hari Ini
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-                <!-- Left 3 Cols: Month Grid -->
-                <div class="lg:col-span-3 bg-darkCard border border-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-                    <!-- Day Headers (Mon - Sun) -->
-                    <div class="grid grid-cols-7 gap-1 text-center font-mono text-xs uppercase font-bold text-slate-400 mb-2">
-                        <div class="py-1.5">Sen</div>
-                        <div class="py-1.5">Sel</div>
-                        <div class="py-1.5">Rab</div>
-                        <div class="py-1.5">Kam</div>
-                        <div class="py-1.5">Jum</div>
-                        <div class="py-1.5 text-indigo-400">Sab</div>
-                        <div class="py-1.5 text-red-400">Min</div>
-                    </div>
-
-                    <!-- Days Cells Container (Populated by JS) -->
-                    <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1 sm:gap-1.5">
-                        <!-- Populated by JS -->
-                    </div>
-
-                    <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 mt-4 pt-4 border-t border-slate-800">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
-                            <span>Lamaran Dikirim</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                            <span>Jadwal Interview / Tes</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full border border-indigo-400 bg-indigo-500/20"></span>
-                            <span>Hari Ini</span>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Right 1 Col: Upcoming Agendas Sidebar -->
-                <div class="bg-darkCard border border-slate-800 rounded-xl p-5 shadow-sm">
-                    <h3 class="text-sm font-bold text-white flex items-center justify-between pb-3 border-b border-slate-800">
-                        <span>Agenda Mendatang</span>
-                        <i class="fa-regular fa-clock text-amber-400"></i>
-                    </h3>
-                    <div id="upcomingAgendasList" class="space-y-3 mt-4">
-                        <!-- Populated by JS -->
+            <!-- ============================================================== -->
+            <!-- VIEW 4: KALENDER AGENDA INTERAKTIF                             -->
+            <!-- ============================================================== -->
+            <section id="calendarViewPanel" class="hidden space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stoneBorder pb-5">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white">Kalender Pelacak Lamaran & Agenda</h2>
+                        <p class="text-xs sm:text-sm text-stone-400 mt-1">Klik tanggal mana pun untuk melihat lamaran yang dikirim atau menjadwalkan tes & wawancara kerja.</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================== -->
-        <!-- VIEW 5: PORTOFOLIO 28 PROYEK (SHOWCASE MODE)                   -->
-        <!-- ============================================================== -->
-        <section id="portfolioViewPanel" class="hidden space-y-8">
-            <!-- Hero Personal Introduction -->
-            <div class="bg-darkCard border border-slate-800 rounded-2xl p-6 sm:p-10 relative overflow-hidden">
-                <div class="max-w-3xl">
-                    <span class="font-mono text-xs uppercase tracking-widest text-indigo-400 font-bold">FULL-STACK & FRONTEND WEB DEVELOPER</span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2 leading-tight">
-                        Membangun Solusi Web Interaktif, Cepat & Bebas AI-Slop.
-                    </h2>
-                    <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
-                        Halo! Saya <strong>Arkin Melvian Dwiansyah</strong>. Berpengalaman mengembangkan lebih dari <strong>28 proyek aplikasi web komersial</strong> (POS Kasir, sistem booking real-time, katalog toko online, hingga portal digital wedding) dengan arsitektur aset mandiri, skor PageSpeed 95+, dan integrasi API yang tangguh.
-                    </p>
-                    <div class="flex flex-wrap items-center gap-3 mt-6">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Arkin%2C%20saya%20tertarik%20dengan%20portofolio%20Anda" target="_blank" class="py-2.5 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
-                            <span>Hubungi via WhatsApp</span>
-                        </a>
-                        <a href="https://github.com/ArkinMelvianDwiansyah" target="_blank" class="py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition flex items-center gap-2">
-                            <i class="fa-brands fa-github"></i>
-                            <span>GitHub Profile</span>
-                        </a>
-                        <button type="button" onclick="switchView('cvVault')" class="py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 font-semibold text-xs transition flex items-center gap-2">
-                            <i class="fa-solid fa-file-pdf"></i>
-                            <span>Lihat CV Saya</span>
+                    
+                    <!-- Month Navigator Controls -->
+                    <div class="flex items-center gap-2">
+                        <button type="button" id="btnPrevMonth" class="p-2 rounded bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 transition" title="Bulan Sebelumnya">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <span id="calendarMonthYear" class="font-mono text-sm font-bold text-white px-3 py-1 bg-stone-900 border border-stone-800 rounded-lg min-w-[160px] text-center">
+                            Oktober 2026
+                        </span>
+                        <button type="button" id="btnNextMonth" class="p-2 rounded bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 transition" title="Bulan Berikutnya">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        <button type="button" id="btnTodayMonth" class="py-1.5 px-3 text-xs font-semibold rounded bg-white text-stone-950 hover:bg-stone-200 transition ml-2">
+                            Hari Ini
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- 28 Projects Showcase -->
-            <div>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Galeri 28 Proyek Portofolio Nyata</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Semua demo web di bawah ini dapat diuji coba secara langsung tanpa dependensi eksternal.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+                    <!-- Left 3 Cols: Month Grid -->
+                    <div class="lg:col-span-3 clean-card p-4 sm:p-6 shadow-sm">
+                        <!-- Day Headers (Mon - Sun) -->
+                        <div class="grid grid-cols-7 gap-1 text-center font-mono text-xs uppercase font-bold text-stone-400 mb-2">
+                            <div class="py-1.5">Sen</div>
+                            <div class="py-1.5">Sel</div>
+                            <div class="py-1.5">Rab</div>
+                            <div class="py-1.5">Kam</div>
+                            <div class="py-1.5">Jum</div>
+                            <div class="py-1.5 text-stone-300">Sab</div>
+                            <div class="py-1.5 text-red-300">Min</div>
+                        </div>
+
+                        <!-- Days Cells Container (Populated by JS) -->
+                        <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1 sm:gap-1.5">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-400 mt-4 pt-4 border-t border-stone-800">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-stone-400"></span>
+                                <span>Lamaran Dikirim</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-300"></span>
+                                <span>Jadwal Interview / Tes</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full border border-white bg-white/20"></span>
+                                <span>Hari Ini</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="font-mono text-xs text-indigo-400 font-bold bg-indigo-500/10 px-3 py-1 rounded border border-indigo-500/20 self-start sm:self-auto">
-                        28 / 28 Proyek Aktif
-                    </span>
+
+                    <!-- Right 1 Col: Upcoming Agendas Sidebar -->
+                    <div class="clean-card p-5 shadow-sm">
+                        <h3 class="text-sm font-bold text-white flex items-center justify-between pb-3 border-b border-stone-800">
+                            <span>Agenda Mendatang</span>
+                            <i class="fa-regular fa-clock text-amber-300"></i>
+                        </h3>
+                        <div id="upcomingAgendasList" class="space-y-3 mt-4">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- VIEW 5: PORTOFOLIO 28 PROYEK (SHOWCASE MODE)                   -->
+            <!-- ============================================================== -->
+            <section id="portfolioViewPanel" class="hidden space-y-8">
+                <!-- Hero Personal Introduction -->
+                <div class="clean-card p-6 sm:p-10 relative overflow-hidden">
+                    <div class="max-w-3xl">
+                        <span class="font-mono text-xs uppercase tracking-widest text-stone-400 font-bold">FULL-STACK & FRONTEND WEB DEVELOPER</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2 leading-tight">
+                            Membangun Solusi Web Interaktif, Cepat & Bebas AI-Slop.
+                        </h2>
+                        <p class="text-stone-300 text-xs sm:text-sm mt-3 leading-relaxed">
+                            Berpengalaman mengembangkan lebih dari <strong>28 proyek aplikasi web komersial</strong> (POS Kasir, sistem booking real-time, katalog toko online, hingga portal digital wedding) dengan arsitektur aset mandiri, skor PageSpeed 95+, dan integrasi API yang tangguh.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-3 mt-6">
+                            <a href="https://wa.me/6281234567890?text=Halo%20AAMON%2C%20saya%20tertarik%20dengan%20portofolio%20Anda" target="_blank" class="py-2.5 px-4 rounded-lg bg-white text-stone-950 font-bold text-xs transition hover:bg-stone-200 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                                <span>Hubungi via WhatsApp</span>
+                            </a>
+                            <a href="https://github.com/ArkinMelvianDwiansyah" target="_blank" class="py-2.5 px-4 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-800 font-semibold text-xs transition flex items-center gap-2">
+                                <i class="fa-brands fa-github"></i>
+                                <span>GitHub Profile</span>
+                            </a>
+                            <button type="button" onclick="switchView('cvVault')" class="py-2.5 px-4 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 font-semibold text-xs transition flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>Lihat CV Saya</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="portfolioProjectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Populated by JS -->
+                <!-- 28 Projects Showcase -->
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Galeri 28 Proyek Portofolio Nyata</h3>
+                            <p class="text-xs text-stone-400 mt-0.5">Semua demo web di bawah ini dapat diuji coba secara langsung tanpa dependensi eksternal.</p>
+                        </div>
+                        <span class="font-mono text-xs text-stone-300 font-bold bg-stone-900 px-3 py-1 rounded border border-stone-800 self-start sm:self-auto">
+                            28 / 28 Proyek Aktif
+                        </span>
+                    </div>
+
+                    <div id="portfolioProjectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-stoneBorder bg-stoneSidebar py-6 text-center text-xs text-stone-500 font-mono mt-auto">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div>
+                    © 2026 <strong>AAMON</strong>. Career Command Center & Portfolio Hub.
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="../index.html" class="hover:text-white transition">Portal JalaninWeb</a>
+                    <span>•</span>
+                    <a href="../wedding/" target="_blank" class="hover:text-white transition">Wedding Project</a>
+                    <span>•</span>
+                    <a href="https://github.com/ArkinMelvianDwiansyah" target="_blank" class="hover:text-white transition">GitHub</a>
                 </div>
             </div>
-        </section>
+        </footer>
 
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800 bg-slate-950/80 py-6 text-center text-xs text-slate-500 font-mono">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div>
-                © 2026 <strong>Arkin Melvian Dwiansyah</strong>. Career Command Center & Portfolio Hub.
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="../index.html" class="hover:text-indigo-400 transition">Portal JalaninWeb</a>
-                <span>•</span>
-                <a href="../wedding/" target="_blank" class="hover:text-indigo-400 transition">Wedding Project</a>
-                <span>•</span>
-                <a href="https://github.com/ArkinMelvianDwiansyah" target="_blank" class="hover:text-indigo-400 transition">GitHub</a>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <!-- ============================================================== -->
-    <!-- MODALS & POPUPS                                                -->
+    <!-- MODALS & POPUPS (CLEAN, SPACIOUS & RESPONSIVE)                -->
     <!-- ============================================================== -->
 
     <!-- 1. Modal Form Tambah / Edit Lamaran -->
     <div id="appFormModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-darkCard border border-slate-700 w-full max-w-xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative">
-            <button type="button" onclick="closeAppFormModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+        <div class="clean-card bg-stoneCard w-full max-w-xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative border border-stoneBorder">
+            <button type="button" onclick="closeAppFormModal()" class="absolute top-5 right-5 text-stone-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
@@ -682,19 +752,19 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Perusahaan *</label>
-                        <input type="text" id="formCompany" required placeholder="Contoh: PT Telkom Indonesia" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Perusahaan *</label>
+                        <input type="text" id="formCompany" required placeholder="Contoh: PT Telkom Indonesia" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500">
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Posisi / Role *</label>
-                        <input type="text" id="formPosition" required placeholder="Contoh: Frontend React Developer" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Posisi / Role *</label>
+                        <input type="text" id="formPosition" required placeholder="Contoh: Frontend React Developer" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Tipe Kerja</label>
-                        <select id="formJobType" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Tipe Kerja</label>
+                        <select id="formJobType" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2.5 text-stone-200 focus:outline-none focus:border-stone-500">
                             <option value="Full-time (Remote)">Full-time (Remote)</option>
                             <option value="Full-time (Hybrid)">Full-time (Hybrid)</option>
                             <option value="Full-time (On-site)">Full-time (On-site)</option>
@@ -703,12 +773,12 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Lokasi</label>
-                        <input type="text" id="formLocation" placeholder="Contoh: Jakarta / Remote" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Lokasi</label>
+                        <input type="text" id="formLocation" placeholder="Contoh: Jakarta / Remote" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500">
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Platform Loker</label>
-                        <select id="formPlatform" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Platform Loker</label>
+                        <select id="formPlatform" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2.5 text-stone-200 focus:outline-none focus:border-stone-500">
                             <option value="LinkedIn">LinkedIn</option>
                             <option value="Glints">Glints</option>
                             <option value="Jobstreet">Jobstreet</option>
@@ -722,8 +792,8 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Versi CV Digunakan *</label>
-                        <select id="formCvVersion" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Versi CV Digunakan *</label>
+                        <select id="formCvVersion" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2.5 text-stone-200 focus:outline-none focus:border-stone-500">
                             <option value="cv_frontend">CV-A: Frontend & UI</option>
                             <option value="cv_fullstack">CV-B: Fullstack & Web App</option>
                             <option value="cv_scraping">CV-C: Scraping & Automation</option>
@@ -731,14 +801,14 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Tanggal Apply *</label>
-                        <input type="date" id="formAppliedDate" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500 font-mono">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Tanggal Apply *</label>
+                        <input type="date" id="formAppliedDate" required class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500 font-mono">
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Tahap Status</label>
-                        <select id="formStatus" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Tahap Status</label>
+                        <select id="formStatus" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2.5 text-stone-200 focus:outline-none focus:border-stone-500">
                             <option value="applied">🟡 Terkirim (Applied)</option>
-                            <option value="screening">🔵 Screening CV</option>
+                            <option value="screening">⚪ Screening CV</option>
                             <option value="test">🟣 Tes Teknis</option>
                             <option value="interview">🟠 Interview</option>
                             <option value="offering">🟢 Offering / Lolos</option>
@@ -750,35 +820,35 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Ekspektasi Gaji (Opsional)</label>
-                        <input type="text" id="formSalaryRange" placeholder="Contoh: Rp 8.000.000 - Rp 12.000.000" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Ekspektasi Gaji (Opsional)</label>
+                        <input type="text" id="formSalaryRange" placeholder="Contoh: Rp 8.000.000 - Rp 12.000.000" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500">
                     </div>
                     <div>
-                        <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Tanggal Interview / Deadline Tes</label>
-                        <input type="date" id="formInterviewDate" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500 font-mono">
+                        <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Tanggal Interview / Deadline Tes</label>
+                        <input type="date" id="formInterviewDate" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500 font-mono">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Link Tautan Lowongan (Opsional)</label>
-                    <input type="url" id="formJobUrl" placeholder="https://linkedin.com/jobs/view/..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                    <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Link Tautan Lowongan (Opsional)</label>
+                    <input type="url" id="formJobUrl" placeholder="https://linkedin.com/jobs/view/..." class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-stone-500">
                 </div>
 
                 <div>
-                    <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Kualifikasi / Background Pekerjaan</label>
-                    <textarea id="formBackground" rows="2" placeholder="Catatan kriteria penting atau teknologi yang diminta loker..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500"></textarea>
+                    <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Kualifikasi / Background Pekerjaan</label>
+                    <textarea id="formBackground" rows="2" placeholder="Catatan kriteria penting atau teknologi yang diminta loker..." class="w-full bg-stone-900 border border-stone-800 rounded-lg p-3 text-white focus:outline-none focus:border-stone-500"></textarea>
                 </div>
 
                 <div>
-                    <label class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Catatan Tambahan & Follow Up</label>
-                    <textarea id="formNotes" rows="2" placeholder="Catatan interviewer, pertanyaan teknis, deadline tugas..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500"></textarea>
+                    <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Catatan Tambahan & Follow Up</label>
+                    <textarea id="formNotes" rows="2" placeholder="Catatan interviewer, pertanyaan teknis, deadline tugas..." class="w-full bg-stone-900 border border-stone-800 rounded-lg p-3 text-white focus:outline-none focus:border-stone-500"></textarea>
                 </div>
 
-                <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
-                    <button type="button" onclick="closeAppFormModal()" class="py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">
+                <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-800">
+                    <button type="button" onclick="closeAppFormModal()" class="py-2.5 px-4 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 font-semibold transition">
                         Batal
                     </button>
-                    <button type="submit" class="py-2.5 px-5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition shadow-lg shadow-indigo-600/30">
+                    <button type="submit" class="py-2.5 px-5 rounded-lg bg-white hover:bg-stone-200 text-stone-950 font-bold transition shadow-sm">
                         Simpan Catatan Lamaran
                     </button>
                 </div>
@@ -788,8 +858,8 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
     <!-- 2. Modal Detail Lamaran -->
     <div id="appDetailModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-darkCard border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative">
-            <button type="button" onclick="closeAppDetailModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+        <div class="clean-card bg-stoneCard w-full max-w-lg rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative border border-stoneBorder">
+            <button type="button" onclick="closeAppDetailModal()" class="absolute top-5 right-5 text-stone-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
@@ -797,58 +867,58 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                 <div>
                     <span id="detailStatusBadge"></span>
                     <h3 id="detailCompany" class="text-xl font-bold text-white mt-2"></h3>
-                    <div id="detailPosition" class="text-sm font-semibold text-indigo-300 mt-0.5"></div>
+                    <div id="detailPosition" class="text-sm font-semibold text-stone-300 mt-0.5"></div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3 my-5 py-4 border-y border-slate-800 text-xs">
+            <div class="grid grid-cols-2 gap-3 my-5 py-4 border-y border-stone-800 text-xs">
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">TANGGAL APPLY</span>
-                    <span id="detailAppliedDate" class="font-mono text-slate-200 font-bold"></span>
+                    <span class="font-mono text-stone-500 block text-[10px]">TANGGAL APPLY</span>
+                    <span id="detailAppliedDate" class="font-mono text-stone-200 font-bold"></span>
                 </div>
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">VERSI CV DIGUNAKAN</span>
+                    <span class="font-mono text-stone-500 block text-[10px]">VERSI CV DIGUNAKAN</span>
                     <div id="detailCvBadge" class="mt-0.5"></div>
                 </div>
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">LOKASI & TIPE KERJA</span>
-                    <span id="detailLocation" class="text-slate-300"></span> • <span id="detailJobType" class="text-slate-400"></span>
+                    <span class="font-mono text-stone-500 block text-[10px]">LOKASI & TIPE KERJA</span>
+                    <span id="detailLocation" class="text-stone-300"></span> • <span id="detailJobType" class="text-stone-400"></span>
                 </div>
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">PLATFORM / PORTAL</span>
-                    <span id="detailPlatform" class="text-slate-200 font-mono"></span>
+                    <span class="font-mono text-stone-500 block text-[10px]">PLATFORM / PORTAL</span>
+                    <span id="detailPlatform" class="text-stone-200 font-mono"></span>
                 </div>
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">EKPEKTASI GAJI</span>
-                    <span id="detailSalary" class="text-emerald-400 font-mono font-bold"></span>
+                    <span class="font-mono text-stone-500 block text-[10px]">EKSPEKTASI GAJI</span>
+                    <span id="detailSalary" class="text-emerald-300 font-mono font-bold"></span>
                 </div>
                 <div>
-                    <span class="font-mono text-slate-500 block text-[10px]">AGENDA / JADWAL</span>
-                    <span id="detailInterviewDate" class="text-amber-400 font-mono font-bold"></span>
+                    <span class="font-mono text-stone-500 block text-[10px]">AGENDA / JADWAL</span>
+                    <span id="detailInterviewDate" class="text-amber-300 font-mono font-bold"></span>
                 </div>
             </div>
 
             <div class="space-y-4 text-xs">
                 <div>
-                    <h5 class="font-mono text-[10px] uppercase text-slate-400 font-bold mb-1">Background Pekerjaan:</h5>
-                    <p id="detailBackground" class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 leading-relaxed"></p>
+                    <h5 class="font-mono text-[10px] uppercase text-stone-400 font-bold mb-1">Background Pekerjaan:</h5>
+                    <p id="detailBackground" class="p-3 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 leading-relaxed"></p>
                 </div>
                 <div>
-                    <h5 class="font-mono text-[10px] uppercase text-slate-400 font-bold mb-1">Catatan Pribadi & Interview:</h5>
-                    <p id="detailNotes" class="p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 leading-relaxed"></p>
+                    <h5 class="font-mono text-[10px] uppercase text-stone-400 font-bold mb-1">Catatan Pribadi & Interview:</h5>
+                    <p id="detailNotes" class="p-3 rounded-lg bg-stone-900 border border-stone-800 text-stone-300 leading-relaxed"></p>
                 </div>
             </div>
 
-            <div class="flex items-center justify-between gap-3 mt-6 pt-4 border-t border-slate-800">
-                <a id="detailJobLink" href="#" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1.5">
+            <div class="flex items-center justify-between gap-3 mt-6 pt-4 border-t border-stone-800">
+                <a id="detailJobLink" href="#" target="_blank" class="text-xs text-stone-300 hover:text-white font-semibold flex items-center gap-1.5 underline">
                     <span>Buka Lowongan Asli</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
                 <div class="flex items-center gap-2">
-                    <button type="button" id="detailEditBtn" class="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition">
+                    <button type="button" id="detailEditBtn" class="py-2 px-3 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold transition">
                         Edit Data
                     </button>
-                    <button type="button" onclick="closeAppDetailModal()" class="py-2 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">
+                    <button type="button" onclick="closeAppDetailModal()" class="py-2 px-4 rounded-lg bg-white text-stone-950 hover:bg-stone-200 text-xs font-bold transition">
                         Tutup
                     </button>
                 </div>
@@ -858,30 +928,30 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
     <!-- 3. Modal Atur Target -->
     <div id="targetSettingsModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4">
-        <div class="bg-darkCard border border-slate-700 w-full max-w-md rounded-2xl shadow-2xl p-6 relative">
-            <button type="button" onclick="closeTargetsSettingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+        <div class="clean-card bg-stoneCard w-full max-w-md rounded-2xl shadow-2xl p-6 relative border border-stoneBorder">
+            <button type="button" onclick="closeTargetsSettingModal()" class="absolute top-5 right-5 text-stone-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <h3 class="text-lg font-bold text-white mb-2">Pengaturan Target Lamaran</h3>
-            <p class="text-xs text-slate-400 mb-5">Tentukan kuota lamaran harian, mingguan, dan bulanan sesuai target karir Anda.</p>
+            <p class="text-xs text-stone-400 mb-5">Tentukan kuota lamaran harian, mingguan, dan bulanan sesuai target karir Anda.</p>
 
             <form id="targetsForm" class="space-y-4 text-xs font-mono">
                 <div>
-                    <label class="block text-slate-300 mb-1">TARGET HARIAN (Loker / Hari):</label>
-                    <input type="number" id="inputTargetDaily" min="1" max="50" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white font-bold">
+                    <label class="block text-stone-300 mb-1">TARGET HARIAN (Loker / Hari):</label>
+                    <input type="number" id="inputTargetDaily" min="1" max="50" required class="w-full bg-stone-900 border border-stone-800 rounded-lg p-2.5 text-white font-bold">
                 </div>
                 <div>
-                    <label class="block text-slate-300 mb-1">TARGET MINGGUAN (Loker / Minggu):</label>
-                    <input type="number" id="inputTargetWeekly" min="5" max="250" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white font-bold">
+                    <label class="block text-stone-300 mb-1">TARGET MINGGUAN (Loker / Minggu):</label>
+                    <input type="number" id="inputTargetWeekly" min="5" max="250" required class="w-full bg-stone-900 border border-stone-800 rounded-lg p-2.5 text-white font-bold">
                 </div>
                 <div>
-                    <label class="block text-slate-300 mb-1">TARGET BULANAN (Loker / Bulan):</label>
-                    <input type="number" id="inputTargetMonthly" min="10" max="1000" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white font-bold">
+                    <label class="block text-stone-300 mb-1">TARGET BULANAN (Loker / Bulan):</label>
+                    <input type="number" id="inputTargetMonthly" min="10" max="1000" required class="w-full bg-stone-900 border border-stone-800 rounded-lg p-2.5 text-white font-bold">
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-4">
-                    <button type="button" onclick="closeTargetsSettingModal()" class="py-2 px-3 rounded bg-slate-800 text-slate-300 font-semibold font-sans">Batal</button>
-                    <button type="submit" class="py-2 px-4 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold font-sans">Simpan Target</button>
+                <div class="flex items-center justify-end gap-2 pt-4 border-t border-stone-800">
+                    <button type="button" onclick="closeTargetsSettingModal()" class="py-2 px-3 rounded bg-stone-800 text-stone-300 font-semibold font-sans">Batal</button>
+                    <button type="submit" class="py-2 px-4 rounded bg-white text-stone-950 hover:bg-stone-200 font-bold font-sans">Simpan Target</button>
                 </div>
             </form>
         </div>
@@ -889,8 +959,8 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
 
     <!-- 4. Modal Agenda Tanggal Tertentu di Kalender -->
     <div id="dateDetailsModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4">
-        <div class="bg-darkCard border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl p-6 relative">
-            <button type="button" onclick="closeDateDetailsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">
+        <div class="clean-card bg-stoneCard w-full max-w-lg rounded-2xl shadow-2xl p-6 relative border border-stoneBorder">
+            <button type="button" onclick="closeDateDetailsModal()" class="absolute top-5 right-5 text-stone-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <h3 id="dateDetailsTitle" class="text-base font-bold text-white mb-4"></h3>
@@ -899,24 +969,24 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                 <!-- Populated by JS -->
             </div>
 
-            <div class="mt-5 pt-3 border-t border-slate-800 flex items-center justify-between">
-                <button type="button" id="dateDetailsNewAppBtn" class="py-2 px-3 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition flex items-center gap-1.5">
+            <div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+                <button type="button" id="dateDetailsNewAppBtn" class="py-2 px-3 rounded bg-white text-stone-950 font-bold text-xs transition hover:bg-stone-200 flex items-center gap-1.5">
                     <i class="fa-solid fa-plus text-xs"></i>
                     <span>+ Catat Lamaran di Tanggal Ini</span>
                 </button>
-                <button type="button" onclick="closeDateDetailsModal()" class="py-2 px-3 rounded bg-slate-800 text-slate-300 text-xs font-semibold">Tutup</button>
+                <button type="button" onclick="closeDateDetailsModal()" class="py-2 px-3 rounded bg-stone-800 text-stone-300 text-xs font-semibold">Tutup</button>
             </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION COMPONENT -->
-    <div id="appToastNotification" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 bg-slate-900 border border-indigo-500/50 shadow-2xl p-4 rounded-xl max-w-sm transition-all duration-300">
-        <div class="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
-            <i class="fa-solid fa-check"></i>
+    <div id="appToastNotification" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 bg-stoneCard border border-stone-700 shadow-2xl p-4 rounded-xl max-w-sm transition-all duration-300">
+        <div class="w-8 h-8 rounded-full bg-stone-800 text-stone-200 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-check text-xs"></i>
         </div>
         <div>
             <h5 id="appToastTitle" class="text-xs font-bold text-white">Sukses</h5>
-            <p id="appToastMsg" class="text-[11px] text-slate-400 mt-0.5"></p>
+            <p id="appToastMsg" class="text-[11px] text-stone-400 mt-0.5"></p>
         </div>
     </div>
 

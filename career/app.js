@@ -1,10 +1,10 @@
 /**
- * ARKIN.DEV - CAREER COMMAND & PORTFOLIO HUB
- * Core Application Logic, IndexedDB Vault, Job Tracker & Calendar Engine
+ * AAMON - CAREER COMMAND & PORTFOLIO HUB
+ * Warm Monochrome Architecture, Collapsible Sidebar, Multi-CV Vault & Tracker Engine
  */
 
 // --- 1. IndexedDB Helper for Storing Real CV & Document Files ---
-const DB_NAME = 'ArkinCareerVaultDB';
+const DB_NAME = 'AamonCareerVaultDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'vaultFiles';
 
@@ -34,7 +34,7 @@ async function saveFileToVault(key, fileObj) {
                 type: fileObj.type,
                 size: fileObj.size,
                 lastModified: fileObj.lastModified || Date.now(),
-                data: fileObj // Blob or File
+                data: fileObj
             };
             store.put(record);
             tx.oncomplete = () => resolve(true);
@@ -91,7 +91,6 @@ const CV_PROFILES = [
         code: 'CV-A',
         title: 'Frontend & UI Specialist',
         targetRoles: 'Frontend Developer, UI Developer, React.js / Vue.js Dev, Web Designer',
-        accentColor: 'indigo',
         description: 'Fokus pada arsitektur komponen modern, responsive layouts, Tailwind CSS, core web vitals, dan interaktivitas JavaScript ES6+.',
         keywords: ['Tailwind CSS', 'React.js', 'JavaScript ES6+', 'Responsive Design', 'PageSpeed 95+', 'Micro-Interactions']
     },
@@ -100,7 +99,6 @@ const CV_PROFILES = [
         code: 'CV-B',
         title: 'Full-stack & Web App Developer',
         targetRoles: 'Full-stack Developer, Web Application Engineer, Node.js / PHP Dev',
-        accentColor: 'emerald',
         description: 'Fokus pada pengembangan aplikasi end-to-end, REST API, integrasi database, arsitektur Nginx/Linux, dan logic POS/SaaS.',
         keywords: ['Node.js', 'PHP / Python', 'REST API', 'MySQL / SQLite', 'Nginx & Linux VPS', 'Full Lifecycle App']
     },
@@ -109,7 +107,6 @@ const CV_PROFILES = [
         code: 'CV-C',
         title: 'Web Scraping & Automation Specialist',
         targetRoles: 'Automation Engineer, Data Scraper, Python Bot Developer, ETL Specialist',
-        accentColor: 'amber',
         description: 'Fokus pada ekstraksi data terstruktur, anti-blocking proxy bypass, automated crawling, data pipeline, dan scheduled bots.',
         keywords: ['Python Scrapy', 'Selenium / Playwright', 'Data Mining', 'ETL Pipeline', 'Cron Automation', 'API Webhook']
     },
@@ -118,7 +115,6 @@ const CV_PROFILES = [
         code: 'CV-D',
         title: 'Tech Specialist & WordPress / CMS',
         targetRoles: 'WordPress Developer, IT Web Support, Tech Generalist, Freelance Lead',
-        accentColor: 'purple',
         description: 'Fokus pada pembuatan website cepat untuk UMKM/bisnis, integrasi payment gateway, custom theme/plugins, dan client handling.',
         keywords: ['WordPress / Elementor', 'Speed Optimization', 'Domain & DNS', 'WhatsApp Commerce', 'Security & Backup']
     }
@@ -243,6 +239,7 @@ class CareerStore {
         this.currentView = 'tracker'; // default active view
         this.trackerDisplayMode = 'table'; // 'table' or 'kanban'
         this.calendarDate = new Date(); // current month view in calendar
+        this.isSidebarCollapsed = localStorage.getItem('aamon_sidebar_collapsed') === 'true';
         this.filters = {
             search: '',
             status: 'all',
@@ -253,25 +250,25 @@ class CareerStore {
 
     loadApplications() {
         try {
-            const raw = localStorage.getItem('arkin_applications');
+            const raw = localStorage.getItem('aamon_applications') || localStorage.getItem('arkin_applications');
             if (raw) return JSON.parse(raw);
         } catch (e) {
-            console.error("Failed to load applications from localStorage:", e);
+            console.error("Failed to load applications:", e);
         }
         return [...INITIAL_APPLICATIONS];
     }
 
     saveApplications() {
         try {
-            localStorage.setItem('arkin_applications', JSON.stringify(this.applications));
+            localStorage.setItem('aamon_applications', JSON.stringify(this.applications));
         } catch (e) {
-            console.error("Failed to save applications to localStorage:", e);
+            console.error("Failed to save applications:", e);
         }
     }
 
     loadTargets() {
         try {
-            const raw = localStorage.getItem('arkin_targets');
+            const raw = localStorage.getItem('aamon_targets') || localStorage.getItem('arkin_targets');
             if (raw) return JSON.parse(raw);
         } catch (e) {}
         return { ...DEFAULT_TARGETS };
@@ -279,7 +276,7 @@ class CareerStore {
 
     saveTargets(targets) {
         this.targets = { ...this.targets, ...targets };
-        localStorage.setItem('arkin_targets', JSON.stringify(this.targets));
+        localStorage.setItem('aamon_targets', JSON.stringify(this.targets));
     }
 
     addApplication(appData) {
@@ -329,13 +326,13 @@ class CareerStore {
         const now = new Date();
         const todayStr = now.toISOString().split('T')[0];
 
-        // Start and end of current week (Monday to Sunday)
-        const dayOfWeek = now.getDay() || 7; // Sunday = 7
+        // Start of current week (Monday)
+        const dayOfWeek = now.getDay() || 7;
         const monday = new Date(now);
         monday.setDate(now.getDate() - (dayOfWeek - 1));
         const mondayStr = monday.toISOString().split('T')[0];
 
-        // Start and end of current month
+        // Start of current month
         const firstDayMonthStr = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
 
         let todayCount = 0;
@@ -391,41 +388,32 @@ class CareerStore {
     }
 }
 
-// Instantiate global store
 const store = new CareerStore();
 
-// --- 4. UI Helper Functions ---
+// --- 4. UI Helper Functions (Pastel Alerts & Clean Labels) ---
 function getStatusBadge(status) {
     const map = {
-        applied: { label: 'Terkirim', class: 'badge-applied', icon: 'fa-paper-plane' },
-        screening: { label: 'Screening CV', class: 'badge-screening', icon: 'fa-magnifying-glass' },
-        test: { label: 'Tes Teknis', class: 'badge-test', icon: 'fa-code' },
-        interview: { label: 'Interview', class: 'badge-interview', icon: 'fa-user-tie' },
-        offering: { label: 'Offering / Lolos', class: 'badge-offering', icon: 'fa-circle-check' },
-        rejected: { label: 'Ditolak', class: 'badge-rejected', icon: 'fa-circle-xmark' },
-        ghosted: { label: 'No Reply (>14 Hari)', class: 'badge-ghosted', icon: 'fa-ghost' }
+        applied: { label: 'Terkirim', class: 'badge-pastel-yellow', dot: '#fde047' },
+        screening: { label: 'Screening CV', class: 'badge-pastel-slate', dot: '#d6d3d1' },
+        test: { label: 'Tes Teknis', class: 'badge-pastel-purple', dot: '#d8b4fe' },
+        interview: { label: 'Interview', class: 'badge-pastel-yellow', dot: '#facc15' },
+        offering: { label: 'Offering / Lolos', class: 'badge-pastel-green', dot: '#86efac' },
+        rejected: { label: 'Ditolak', class: 'badge-pastel-red', dot: '#fca5a5' },
+        ghosted: { label: 'No Reply (>14 Hari)', class: 'badge-pastel-slate', dot: '#a8a29e' }
     };
     const s = map[status] || map.applied;
     return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md ${s.class}">
-        <i class="fa-solid ${s.icon} text-[10px]"></i>
+        <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${s.dot}"></span>
         <span>${s.label}</span>
     </span>`;
 }
 
 function getCvVersionBadge(cvId) {
     const found = CV_PROFILES.find(c => c.id === cvId);
-    if (!found) return `<span class="px-2 py-0.5 text-[11px] rounded bg-slate-800 text-slate-300 font-mono">CV Standar</span>`;
-    
-    const colorMap = {
-        indigo: 'bg-indigo-950 text-indigo-300 border-indigo-700/50',
-        emerald: 'bg-emerald-950 text-emerald-300 border-emerald-700/50',
-        amber: 'bg-amber-950 text-amber-300 border-amber-700/50',
-        purple: 'bg-purple-950 text-purple-300 border-purple-700/50'
-    };
-    const colorClass = colorMap[found.accentColor] || colorMap.indigo;
+    if (!found) return `<span class="px-2 py-0.5 text-[11px] rounded bg-stone-800 text-stone-300 font-mono">CV Standar</span>`;
 
-    return `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border ${colorClass}" title="${found.title}">
-        <strong>${found.code}</strong> • ${found.title.split('&')[0].trim()}
+    return `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border border-stone-700 bg-stone-800/80 text-stone-200" title="${found.title}">
+        <strong class="text-white">${found.code}</strong> • ${found.title.split('&')[0].trim()}
     </span>`;
 }
 
@@ -450,14 +438,16 @@ function formatDateIndo(dateStr) {
 function renderMetricsHeader() {
     const m = store.getMetrics();
     
-    // Header summary badge
-    const headerPill = document.getElementById('headerTodayPill');
-    if (headerPill) {
+    // Sidebar Widget Mini Status
+    const sidebarPill = document.getElementById('sidebarTodayPill');
+    const sidebarBar = document.getElementById('sidebarTodayBar');
+    if (sidebarPill) {
         const pct = Math.min(100, Math.round((m.todayCount / m.dailyTarget) * 100));
-        headerPill.innerHTML = `
-            <span class="w-2 h-2 rounded-full ${m.todayCount >= m.dailyTarget ? 'bg-emerald-400' : 'bg-amber-400'} pulse-dot"></span>
-            <span>Hari ini: <strong class="text-white">${m.todayCount}</strong> / ${m.dailyTarget} Loker (${pct}%)</span>
+        sidebarPill.innerHTML = `
+            <span>Hari ini: <strong class="text-white">${m.todayCount}</strong> / ${m.dailyTarget} Loker</span>
+            <span class="text-stone-400 font-mono">${pct}%</span>
         `;
+        if (sidebarBar) sidebarBar.style.width = `${pct}%`;
     }
 
     // Tracker page quick counters
@@ -473,7 +463,6 @@ function renderMetricsHeader() {
     if (countOffering) countOffering.textContent = m.offeringCount;
     if (countRejected) countRejected.textContent = m.rejectedCount;
 
-    // Target Dashboard progress
     renderTargetsDashboard(m);
 }
 
@@ -491,8 +480,8 @@ function renderTargetsDashboard(m) {
     if (dailyHint) {
         const rem = m.dailyTarget - m.todayCount;
         dailyHint.textContent = rem > 0 
-            ? `Sisa ${rem} lamaran lagi untuk mencapai target harian Anda!`
-            : `Target harian tercapai! Kerja bagus! 🔥`;
+            ? `Kurang ${rem} lamaran lagi untuk mencapai target harian Anda.`
+            : `Target harian telah terpenuhi dengan baik!`;
     }
 
     // Weekly
@@ -505,8 +494,8 @@ function renderTargetsDashboard(m) {
     if (weeklyHint) {
         const rem = m.weeklyTarget - m.weekCount;
         weeklyHint.textContent = rem > 0
-            ? `Sisa ${rem} lamaran untuk minggu ini.`
-            : `Target mingguan terpenuhi! 🎉`;
+            ? `Tersisa ${rem} lamaran untuk kuota minggu ini.`
+            : `Target mingguan sudah tercapai.`;
     }
 
     // Monthly
@@ -556,37 +545,37 @@ function renderTracker() {
 
     if (emptyState) emptyState.classList.add('hidden');
 
-    tableBody.innerHTML = list.map((app, index) => `
-        <tr class="border-b border-slate-800/80 hover:bg-slate-800/40 transition">
-            <td class="py-3.5 px-4 font-mono text-xs text-slate-400 whitespace-nowrap">
+    tableBody.innerHTML = list.map((app) => `
+        <tr class="border-b border-stone-800/80 hover:bg-stone-900/40 transition">
+            <td class="py-3.5 px-4 font-mono text-xs text-stone-400 whitespace-nowrap">
                 ${formatDateIndo(app.appliedDate)}
             </td>
             <td class="py-3.5 px-4">
                 <div class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
                     <span>${app.company}</span>
-                    ${app.jobUrl ? `<a href="${app.jobUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 text-xs" title="Buka tautan lowongan"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                    ${app.jobUrl ? `<a href="${app.jobUrl}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white text-xs" title="Buka tautan lowongan"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
                 </div>
-                <div class="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
-                    <span><i class="fa-solid fa-location-dot text-[10px] text-slate-500 mr-1"></i>${app.location || 'Indonesia'}</span>
+                <div class="text-xs text-stone-400 flex items-center gap-2 mt-0.5">
+                    <span><i class="fa-solid fa-location-dot text-[10px] text-stone-500 mr-1"></i>${app.location || 'Indonesia'}</span>
                     <span>•</span>
-                    <span class="text-indigo-300/80">${app.jobType || 'Full-time'}</span>
+                    <span class="text-stone-300">${app.jobType || 'Full-time'}</span>
                 </div>
             </td>
             <td class="py-3.5 px-4">
-                <div class="font-semibold text-slate-200 text-xs sm:text-sm">${app.position}</div>
-                ${app.salaryRange ? `<div class="font-mono text-[11px] text-emerald-400/90 mt-0.5">${app.salaryRange}</div>` : ''}
+                <div class="font-semibold text-stone-200 text-xs sm:text-sm">${app.position}</div>
+                ${app.salaryRange ? `<div class="font-mono text-[11px] text-stone-400 mt-0.5">${app.salaryRange}</div>` : ''}
             </td>
             <td class="py-3.5 px-4">
                 ${getCvVersionBadge(app.cvVersion)}
             </td>
-            <td class="py-3.5 px-4 font-mono text-xs text-slate-300">
-                <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/60">${app.platform || 'Direct'}</span>
+            <td class="py-3.5 px-4 font-mono text-xs text-stone-300">
+                <span class="px-2 py-0.5 rounded bg-stone-900 text-stone-300 border border-stone-800">${app.platform || 'Direct'}</span>
             </td>
             <td class="py-3.5 px-4">
                 <div class="flex items-center gap-2">
-                    <select onchange="updateApplicationStatus('${app.id}', this.value)" class="bg-slate-900 border border-slate-700 text-xs rounded px-2.5 py-1 text-slate-200 focus:outline-none focus:border-indigo-500 cursor-pointer">
+                    <select onchange="updateApplicationStatus('${app.id}', this.value)" class="bg-stone-900 border border-stone-700 text-xs rounded px-2.5 py-1 text-stone-200 focus:outline-none focus:border-stone-500 cursor-pointer">
                         <option value="applied" ${app.status === 'applied' ? 'selected' : ''}>🟡 Terkirim</option>
-                        <option value="screening" ${app.status === 'screening' ? 'selected' : ''}>🔵 Screening CV</option>
+                        <option value="screening" ${app.status === 'screening' ? 'selected' : ''}>⚪ Screening CV</option>
                         <option value="test" ${app.status === 'test' ? 'selected' : ''}>🟣 Tes Teknis</option>
                         <option value="interview" ${app.status === 'interview' ? 'selected' : ''}>🟠 Interview</option>
                         <option value="offering" ${app.status === 'offering' ? 'selected' : ''}>🟢 Offering</option>
@@ -594,17 +583,17 @@ function renderTracker() {
                         <option value="ghosted" ${app.status === 'ghosted' ? 'selected' : ''}>⚪ No Reply</option>
                     </select>
                 </div>
-                ${app.interviewDate ? `<div class="font-mono text-[10px] text-amber-400 mt-1 flex items-center gap-1"><i class="fa-regular fa-calendar-check"></i> Agenda: ${formatDateIndo(app.interviewDate)}</div>` : ''}
+                ${app.interviewDate ? `<div class="font-mono text-[10px] text-amber-300 mt-1 flex items-center gap-1"><i class="fa-regular fa-calendar-check"></i> Agenda: ${formatDateIndo(app.interviewDate)}</div>` : ''}
             </td>
             <td class="py-3.5 px-4 text-right">
                 <div class="flex items-center justify-end gap-1.5">
-                    <button onclick="viewApplicationDetail('${app.id}')" class="p-1.5 rounded hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Lihat Detail & Catatan">
+                    <button onclick="viewApplicationDetail('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Lihat Detail & Catatan">
                         <i class="fa-solid fa-eye text-xs"></i>
                     </button>
-                    <button onclick="openEditApplicationModal('${app.id}')" class="p-1.5 rounded hover:bg-slate-700 text-slate-300 hover:text-indigo-400 transition" title="Edit Lamaran">
+                    <button onclick="openEditApplicationModal('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Edit Lamaran">
                         <i class="fa-solid fa-pen text-xs"></i>
                     </button>
-                    <button onclick="deleteApplicationPrompt('${app.id}')" class="p-1.5 rounded hover:bg-slate-700 text-slate-400 hover:text-red-400 transition" title="Hapus">
+                    <button onclick="deleteApplicationPrompt('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-500 hover:text-red-400 transition" title="Hapus">
                         <i class="fa-solid fa-trash-can text-xs"></i>
                     </button>
                 </div>
@@ -624,7 +613,6 @@ function renderKanban(list) {
         rejected: document.getElementById('kanbanColRejected')
     };
 
-    // Clear columns
     Object.values(columns).forEach(col => { if (col) col.innerHTML = ''; });
 
     const counts = { applied: 0, screening: 0, test: 0, interview: 0, offering: 0, rejected: 0 };
@@ -636,25 +624,24 @@ function renderKanban(list) {
         if (columns[colKey]) {
             counts[colKey]++;
             const card = document.createElement('div');
-            card.className = 'bg-slate-900 border border-slate-800 p-3.5 rounded-lg mb-3 hover:border-slate-700 transition cursor-pointer shadow-sm';
+            card.className = 'bg-stone-900 border border-stone-800 p-3.5 rounded-lg mb-3 hover:border-stone-700 transition cursor-pointer shadow-sm';
             card.onclick = () => viewApplicationDetail(app.id);
             card.innerHTML = `
                 <div class="flex items-start justify-between gap-2">
                     <span class="font-bold text-white text-sm line-clamp-1">${app.company}</span>
-                    <span class="text-[10px] font-mono text-slate-500">${formatDateIndo(app.appliedDate)}</span>
+                    <span class="text-[10px] font-mono text-stone-500">${formatDateIndo(app.appliedDate)}</span>
                 </div>
-                <div class="text-xs text-indigo-300 font-medium mt-0.5 line-clamp-1">${app.position}</div>
+                <div class="text-xs text-stone-300 font-medium mt-0.5 line-clamp-1">${app.position}</div>
                 <div class="mt-2.5 flex items-center justify-between gap-2">
                     <div>${getCvVersionBadge(app.cvVersion)}</div>
-                    <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">${app.platform || 'Direct'}</span>
+                    <span class="text-[10px] font-mono text-stone-400 bg-stone-800 px-1.5 py-0.5 rounded">${app.platform || 'Direct'}</span>
                 </div>
-                ${app.interviewDate ? `<div class="mt-2 pt-2 border-t border-slate-800/80 text-[11px] font-mono text-amber-400 flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> ${formatDateIndo(app.interviewDate)}</div>` : ''}
+                ${app.interviewDate ? `<div class="mt-2 pt-2 border-t border-stone-800/80 text-[11px] font-mono text-amber-300 flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> ${formatDateIndo(app.interviewDate)}</div>` : ''}
             `;
             columns[colKey].appendChild(card);
         }
     });
 
-    // Update column counters
     Object.keys(counts).forEach(k => {
         const badge = document.getElementById(`kanbanCount_${k}`);
         if (badge) badge.textContent = counts[k];
@@ -666,48 +653,42 @@ async function renderCvVault() {
     const container = document.getElementById('cvProfilesGrid');
     if (!container) return;
 
-    // Check files stored in IndexedDB for each CV profile
     const cardsHtml = await Promise.all(CV_PROFILES.map(async (prof) => {
         const storedFile = await getFileFromVault(prof.id);
         const hasFile = !!storedFile;
         const fileSizeText = hasFile ? (storedFile.size / 1024).toFixed(1) + ' KB' : 'Belum diunggah';
         const fileDateText = hasFile ? formatDateIndo(new Date(storedFile.lastModified).toISOString().split('T')[0]) : '-';
-
-        // Count how many times this CV has been used
         const usageCount = store.applications.filter(a => a.cvVersion === prof.id).length;
 
         return `
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6 glow-card flex flex-col justify-between">
+            <div class="clean-card p-5 sm:p-6 flex flex-col justify-between">
                 <div>
-                    <!-- Header Badge -->
                     <div class="flex items-start justify-between gap-2">
-                        <span class="font-mono text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <span class="font-mono text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-stone-800 text-white border border-stone-700">
                             ${prof.code} // ${prof.title}
                         </span>
-                        <span class="font-mono text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+                        <span class="font-mono text-[11px] text-stone-400 bg-stone-900 border border-stone-800 px-2 py-0.5 rounded">
                             Digunakan: <strong class="text-white">${usageCount}x</strong>
                         </span>
                     </div>
 
-                    <h3 class="text-lg font-bold text-white mt-3">${prof.targetRoles}</h3>
-                    <p class="text-xs text-slate-400 mt-2 leading-relaxed">${prof.description}</p>
+                    <h3 class="text-base sm:text-lg font-bold text-white mt-3">${prof.targetRoles}</h3>
+                    <p class="text-xs text-stone-400 mt-2 leading-relaxed">${prof.description}</p>
 
-                    <!-- Keywords -->
-                    <div class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-slate-800">
-                        ${prof.keywords.map(k => `<span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded">${k}</span>`).join('')}
+                    <div class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-stone-800">
+                        ${prof.keywords.map(k => `<span class="text-[10px] font-mono bg-stone-900 text-stone-300 border border-stone-800 px-2 py-0.5 rounded">${k}</span>`).join('')}
                     </div>
 
-                    <!-- File Upload Status Box -->
-                    <div class="mt-4 p-3 rounded-lg border ${hasFile ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-dashed border-slate-700 bg-slate-800/40'}">
+                    <div class="mt-4 p-3 rounded-lg border ${hasFile ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-dashed border-stone-700 bg-stone-900/40'}">
                         <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded flex items-center justify-center shrink-0 ${hasFile ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-500'}">
+                            <div class="w-9 h-9 rounded flex items-center justify-center shrink-0 ${hasFile ? 'bg-emerald-500/10 text-emerald-300' : 'bg-stone-800 text-stone-500'}">
                                 <i class="fa-solid ${hasFile ? 'fa-file-pdf' : 'fa-cloud-arrow-up'} text-lg"></i>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <div class="text-xs font-bold ${hasFile ? 'text-white' : 'text-slate-400'} truncate">
+                                <div class="text-xs font-bold ${hasFile ? 'text-white' : 'text-stone-400'} truncate">
                                     ${hasFile ? storedFile.name : 'Belum ada file terunggah'}
                                 </div>
-                                <div class="font-mono text-[10px] text-slate-500 mt-0.5">
+                                <div class="font-mono text-[10px] text-stone-500 mt-0.5">
                                     ${hasFile ? `${fileSizeText} • Update: ${fileDateText}` : 'Mendukung PDF, DOCX (Maks 15MB)'}
                                 </div>
                             </div>
@@ -715,19 +696,18 @@ async function renderCvVault() {
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="mt-5 pt-4 border-t border-slate-800 flex items-center gap-2">
+                <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
                     <input type="file" id="fileInput_${prof.id}" class="hidden" accept=".pdf,.doc,.docx" onchange="handleCvFileUpload('${prof.id}', this)">
-                    <button onclick="document.getElementById('fileInput_${prof.id}').click()" class="flex-1 py-2 px-3 text-xs font-semibold rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center justify-center gap-1.5">
+                    <button onclick="document.getElementById('fileInput_${prof.id}').click()" class="flex-1 py-2 px-3 text-xs font-semibold rounded bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 transition flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-arrow-up-from-bracket text-[10px]"></i>
                         <span>${hasFile ? 'Ganti File' : 'Unggah CV'}</span>
                     </button>
                     ${hasFile ? `
-                        <button onclick="downloadVaultFile('${prof.id}')" class="py-2 px-3 text-xs font-semibold rounded bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center justify-center gap-1.5" title="Unduh File">
+                        <button onclick="downloadVaultFile('${prof.id}')" class="py-2 px-3 text-xs font-semibold rounded bg-white text-stone-950 hover:bg-stone-200 transition flex items-center justify-center gap-1.5" title="Unduh File">
                             <i class="fa-solid fa-download text-[10px]"></i>
                             <span>Unduh</span>
                         </button>
-                        <button onclick="deleteVaultFilePrompt('${prof.id}')" class="p-2 text-xs rounded hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition" title="Hapus Berkas">
+                        <button onclick="deleteVaultFilePrompt('${prof.id}')" class="p-2 text-xs rounded hover:bg-red-500/20 text-stone-400 hover:text-red-400 transition" title="Hapus Berkas">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     ` : ''}
@@ -754,9 +734,7 @@ function renderCalendar() {
     ];
     monthYearTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
-    // Calculate dates
-    const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay(); // Sunday=0, Monday=1
-    // Let's make Monday first column (0 = Monday, 6 = Sunday)
+    const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
     const startOffset = (firstDayIndex + 6) % 7; 
 
     const totalDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -765,7 +743,6 @@ function renderCalendar() {
     const today = new Date();
     const todayStr = today.toISOString().split('T')[0];
 
-    // Map applications by appliedDate & interviewDate
     const appsByDate = {};
     const interviewsByDate = {};
 
@@ -782,17 +759,15 @@ function renderCalendar() {
 
     let cellsHtml = '';
 
-    // Previous month filler days
     for (let i = startOffset - 1; i >= 0; i--) {
         const dayNum = prevMonthDays - i;
         cellsHtml += `
-            <div class="calendar-day-cell other-month p-2 border border-slate-800/50 bg-slate-950/40 text-slate-600 rounded">
+            <div class="calendar-day-cell other-month p-2 border border-stone-800/40 bg-stone-950/40 text-stone-600 rounded">
                 <span class="text-xs font-mono font-medium">${dayNum}</span>
             </div>
         `;
     }
 
-    // Current month days
     for (let day = 1; day <= totalDaysInMonth; day++) {
         const mStr = String(currentMonth + 1).padStart(2, '0');
         const dStr = String(day).padStart(2, '0');
@@ -803,21 +778,21 @@ function renderCalendar() {
         const dayInterviews = interviewsByDate[dateKey] || [];
 
         cellsHtml += `
-            <div onclick="openDateDetailsModal('${dateKey}')" class="calendar-day-cell p-2 border border-slate-800 bg-slate-900/60 rounded cursor-pointer ${isToday ? 'today' : ''} flex flex-col justify-between">
+            <div onclick="openDateDetailsModal('${dateKey}')" class="calendar-day-cell p-2 border border-stone-800 bg-stone-900/60 rounded cursor-pointer ${isToday ? 'today' : ''} flex flex-col justify-between">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono font-bold ${isToday ? 'text-indigo-400' : 'text-slate-300'}">${day}</span>
-                    ${isToday ? `<span class="text-[9px] font-mono px-1 rounded bg-indigo-500/20 text-indigo-300">Hari ini</span>` : ''}
+                    <span class="text-xs font-mono font-bold ${isToday ? 'text-white' : 'text-stone-300'}">${day}</span>
+                    ${isToday ? `<span class="text-[9px] font-mono px-1 rounded bg-stone-800 text-stone-200">Hari ini</span>` : ''}
                 </div>
 
                 <div class="space-y-1 mt-1.5">
                     ${dayApps.length > 0 ? `
-                        <div class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold truncate flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                        <div class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-stone-800 text-stone-200 font-semibold truncate flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
                             <span>${dayApps.length} Apply</span>
                         </div>
                     ` : ''}
                     ${dayInterviews.map(item => `
-                        <div class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold truncate flex items-center gap-1" title="Interview: ${item.company}">
+                        <div class="text-[10px] font-mono px-1.5 py-0.5 rounded badge-pastel-yellow font-bold truncate flex items-center gap-1" title="Interview: ${item.company}">
                             <i class="fa-solid fa-video text-[8px]"></i>
                             <span>${item.company}</span>
                         </div>
@@ -827,12 +802,11 @@ function renderCalendar() {
         `;
     }
 
-    // Next month filler days to complete grid rows
     const totalRendered = startOffset + totalDaysInMonth;
     const remaining = (7 - (totalRendered % 7)) % 7;
     for (let day = 1; day <= remaining; day++) {
         cellsHtml += `
-            <div class="calendar-day-cell other-month p-2 border border-slate-800/50 bg-slate-950/40 text-slate-600 rounded">
+            <div class="calendar-day-cell other-month p-2 border border-stone-800/40 bg-stone-950/40 text-stone-600 rounded">
                 <span class="text-xs font-mono font-medium">${day}</span>
             </div>
         `;
@@ -842,7 +816,6 @@ function renderCalendar() {
     renderUpcomingAgendas();
 }
 
-// Render Upcoming Agendas Sidebar in Calendar tab
 function renderUpcomingAgendas() {
     const container = document.getElementById('upcomingAgendasList');
     if (!container) return;
@@ -854,7 +827,7 @@ function renderUpcomingAgendas() {
 
     if (upcoming.length === 0) {
         container.innerHTML = `
-            <div class="text-center py-6 text-slate-500 text-xs font-mono">
+            <div class="text-center py-6 text-stone-500 text-xs font-mono">
                 Tidak ada agenda interview terdekat.
             </div>
         `;
@@ -862,13 +835,13 @@ function renderUpcomingAgendas() {
     }
 
     container.innerHTML = upcoming.map(app => `
-        <div onclick="viewApplicationDetail('${app.id}')" class="p-3 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/40 transition cursor-pointer">
+        <div onclick="viewApplicationDetail('${app.id}')" class="p-3 rounded-lg bg-stone-900 border border-stone-800 hover:border-stone-700 transition cursor-pointer">
             <div class="flex items-center justify-between text-xs">
                 <span class="font-bold text-white truncate">${app.company}</span>
-                <span class="font-mono text-[11px] text-amber-400 font-semibold">${formatDateIndo(app.interviewDate)}</span>
+                <span class="font-mono text-[11px] text-amber-300 font-semibold">${formatDateIndo(app.interviewDate)}</span>
             </div>
-            <div class="text-xs text-slate-400 mt-1">${app.position}</div>
-            ${app.notes ? `<div class="text-[11px] text-slate-500 italic mt-1.5 line-clamp-2">${app.notes}</div>` : ''}
+            <div class="text-xs text-stone-400 mt-1">${app.position}</div>
+            ${app.notes ? `<div class="text-[11px] text-stone-500 italic mt-1.5 line-clamp-2">${app.notes}</div>` : ''}
         </div>
     `).join('');
 }
@@ -879,25 +852,25 @@ function renderPortfolioGallery() {
     if (!grid) return;
 
     grid.innerHTML = PORTFOLIO_PROJECTS.map(p => `
-        <article class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden glow-card flex flex-col justify-between">
+        <article class="clean-card overflow-hidden flex flex-col justify-between">
             <div class="p-5">
                 <div class="flex items-center justify-between gap-2">
-                    <span class="font-mono text-[10px] font-bold text-indigo-400 uppercase tracking-widest">PROYEK #${p.id}</span>
-                    <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">${p.catName}</span>
+                    <span class="font-mono text-[10px] font-bold text-stone-400 uppercase tracking-widest">PROYEK #${p.id}</span>
+                    <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-stone-800 text-stone-300 border border-stone-700">${p.catName}</span>
                 </div>
-                <h4 class="font-bold text-white text-base mt-2 hover:text-indigo-400 transition">
+                <h4 class="font-bold text-white text-base mt-2 hover:text-stone-300 transition">
                     <a href="../${p.path}/index.html" target="_blank">${p.title}</a>
                 </h4>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">${p.desc}</p>
+                <p class="text-xs text-stone-400 mt-1.5 leading-relaxed">${p.desc}</p>
                 <div class="mt-3">
-                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-                        <i class="fa-solid fa-sparkles text-[9px]"></i>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-stone-800 text-stone-300 border border-stone-700">
+                        <i class="fa-solid fa-sparkles text-[9px] text-amber-300"></i>
                         <span>${p.tag}</span>
                     </span>
                 </div>
             </div>
             <div class="p-5 pt-0">
-                <a href="../${p.path}/index.html" target="_blank" class="w-full py-2.5 px-3 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                <a href="../${p.path}/index.html" target="_blank" class="w-full py-2.5 px-3 rounded bg-stone-800 hover:bg-white hover:text-stone-950 text-stone-200 text-xs font-semibold transition flex items-center justify-center gap-1.5">
                     <span>Buka Live Demo</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
@@ -906,14 +879,38 @@ function renderPortfolioGallery() {
     `).join('');
 }
 
-// --- 6. Event Handlers & Actions ---
+// --- 6. Event Handlers, Sidebar Toggle & Modals ---
 
-// Switch Active Tab View
+// Toggle Sidebar Collapse on Desktop
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    store.isSidebarCollapsed = !store.isSidebarCollapsed;
+    sidebar.classList.toggle('collapsed', store.isSidebarCollapsed);
+    localStorage.setItem('aamon_sidebar_collapsed', store.isSidebarCollapsed);
+}
+
+// Mobile Sidebar Drawer Toggle
+function toggleMobileSidebar(open) {
+    const mobileDrawer = document.getElementById('mobileSidebarDrawer');
+    const backdrop = document.getElementById('mobileSidebarBackdrop');
+    if (!mobileDrawer || !backdrop) return;
+
+    if (open) {
+        mobileDrawer.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+    } else {
+        mobileDrawer.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+    }
+}
+
+// Switch Active View
 function switchView(viewName) {
     store.currentView = viewName;
 
-    // Toggle Tab Buttons active state
-    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+    // Toggle Active Class on Nav Items (Desktop & Mobile)
+    document.querySelectorAll('.sidebar-nav-item').forEach(btn => {
         if (btn.dataset.view === viewName) {
             btn.classList.add('active');
         } else {
@@ -921,8 +918,8 @@ function switchView(viewName) {
         }
     });
 
-    // Toggle Content Panels
-    const panels = ['portfolio', 'tracker', 'targets', 'cvVault', 'calendar'];
+    // Toggle View Panels
+    const panels = ['tracker', 'targets', 'cvVault', 'calendar', 'portfolio'];
     panels.forEach(p => {
         const el = document.getElementById(`${p}ViewPanel`);
         if (el) {
@@ -933,6 +930,20 @@ function switchView(viewName) {
             }
         }
     });
+
+    // Update Header Breadcrumb Title
+    const headerTitle = document.getElementById('topHeaderTitle');
+    const titleMap = {
+        tracker: 'PELACAK LAMARAN KERJA',
+        targets: 'TARGET & GOALS DASHBOARD',
+        cvVault: 'VAULT CV MULTI-VERSI & DOKUMEN',
+        calendar: 'KALENDER AGENDA & JADWAL',
+        portfolio: 'SHOWCASE 28 PORTOFOLIO'
+    };
+    if (headerTitle) headerTitle.textContent = titleMap[viewName] || 'DASHBOARD';
+
+    // Close Mobile Drawer if open
+    toggleMobileSidebar(false);
 
     // Refresh contents
     if (viewName === 'tracker') renderTracker();
@@ -951,17 +962,16 @@ function setTrackerDisplayMode(mode) {
     const btnKanban = document.getElementById('btnViewKanban');
     if (btnTable && btnKanban) {
         if (mode === 'table') {
-            btnTable.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-indigo-600 text-white shadow-sm';
-            btnKanban.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-slate-800 text-slate-300 hover:bg-slate-700';
+            btnTable.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-white text-stone-950 shadow-sm';
+            btnKanban.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-stone-800 text-stone-300 hover:bg-stone-700';
         } else {
-            btnTable.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-slate-800 text-slate-300 hover:bg-slate-700';
-            btnKanban.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-indigo-600 text-white shadow-sm';
+            btnTable.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-stone-800 text-stone-300 hover:bg-stone-700';
+            btnKanban.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-white text-stone-950 shadow-sm';
         }
     }
     renderTracker();
 }
 
-// Quick Status Update
 function updateApplicationStatus(id, newStatus) {
     store.updateApplication(id, { status: newStatus });
     renderMetricsHeader();
@@ -978,8 +988,6 @@ function openAddApplicationModal(presetDate = '') {
     form.reset();
     document.getElementById('formAppId').value = '';
     document.getElementById('formModalTitle').textContent = 'Catat Lamaran Kerja Baru';
-    
-    // Set date to preset or today
     document.getElementById('formAppliedDate').value = presetDate || new Date().toISOString().split('T')[0];
 
     modal.classList.remove('hidden');
@@ -1021,7 +1029,6 @@ function closeAppFormModal() {
     }
 }
 
-// Save Application from Form
 function handleSaveApplication(e) {
     e.preventDefault();
     const id = document.getElementById('formAppId').value;
@@ -1049,7 +1056,7 @@ function handleSaveApplication(e) {
 
     if (id) {
         store.updateApplication(id, formData);
-        showToastNotification('Tersimpan', `Perubahan data ${formData.company} berhasil diperbarui.`);
+        showToastNotification('Tersimpan', `Data ${formData.company} berhasil diperbarui.`);
     } else {
         store.addApplication(formData);
         showToastNotification('Lamaran Tercatat!', `Berhasil menambahkan ${formData.company} ke pelacak kerja.`);
@@ -1061,7 +1068,6 @@ function handleSaveApplication(e) {
     if (store.currentView === 'calendar') renderCalendar();
 }
 
-// Delete Application Prompt
 function deleteApplicationPrompt(id) {
     const app = store.applications.find(a => a.id === id);
     if (!app) return;
@@ -1074,7 +1080,6 @@ function deleteApplicationPrompt(id) {
     }
 }
 
-// View Application Detail Modal
 function viewApplicationDetail(id) {
     const app = store.applications.find(a => a.id === id);
     if (!app) return;
@@ -1103,7 +1108,6 @@ function viewApplicationDetail(id) {
         jobLinkBtn.classList.add('hidden');
     }
 
-    // Set edit & delete shortcuts in modal
     document.getElementById('detailEditBtn').onclick = () => {
         closeAppDetailModal();
         openEditApplicationModal(app.id);
@@ -1121,7 +1125,6 @@ function closeAppDetailModal() {
     }
 }
 
-// Date Details in Calendar View Modal
 function openDateDetailsModal(dateKey) {
     const modal = document.getElementById('dateDetailsModal');
     if (!modal) return;
@@ -1139,23 +1142,23 @@ function openDateDetailsModal(dateKey) {
     let html = '';
 
     if (interviewsOnDate.length > 0) {
-        html += `<h5 class="text-xs font-mono uppercase text-amber-400 font-bold mb-2">Agenda Interview / Tes:</h5>`;
+        html += `<h5 class="text-xs font-mono uppercase text-amber-300 font-bold mb-2">Agenda Interview / Tes:</h5>`;
         html += interviewsOnDate.map(i => `
             <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg mb-2">
                 <div class="font-bold text-white text-sm">${i.company}</div>
-                <div class="text-xs text-amber-300 font-semibold">${i.position}</div>
-                ${i.notes ? `<div class="text-xs text-slate-400 mt-1">${i.notes}</div>` : ''}
+                <div class="text-xs text-amber-200 font-semibold">${i.position}</div>
+                ${i.notes ? `<div class="text-xs text-stone-300 mt-1">${i.notes}</div>` : ''}
             </div>
         `).join('');
     }
 
     if (appsOnDate.length > 0) {
-        html += `<h5 class="text-xs font-mono uppercase text-indigo-400 font-bold mt-4 mb-2">Lamaran Dikirim (${appsOnDate.length}):</h5>`;
+        html += `<h5 class="text-xs font-mono uppercase text-stone-400 font-bold mt-4 mb-2">Lamaran Dikirim (${appsOnDate.length}):</h5>`;
         html += appsOnDate.map(a => `
-            <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg mb-2 flex items-center justify-between">
+            <div class="p-3 bg-stone-900 border border-stone-800 rounded-lg mb-2 flex items-center justify-between">
                 <div>
                     <div class="font-bold text-white text-sm">${a.company}</div>
-                    <div class="text-xs text-slate-400">${a.position} • ${a.platform}</div>
+                    <div class="text-xs text-stone-400">${a.position} • ${a.platform}</div>
                 </div>
                 <div>${getStatusBadge(a.status)}</div>
             </div>
@@ -1163,7 +1166,7 @@ function openDateDetailsModal(dateKey) {
     }
 
     if (interviewsOnDate.length === 0 && appsOnDate.length === 0) {
-        html = `<div class="text-center py-6 text-slate-500 text-xs font-mono">Belum ada lamaran atau agenda tercatat di tanggal ini.</div>`;
+        html = `<div class="text-center py-6 text-stone-500 text-xs font-mono">Belum ada lamaran atau agenda tercatat di tanggal ini.</div>`;
     }
 
     container.innerHTML = html;
@@ -1179,12 +1182,10 @@ function closeDateDetailsModal() {
     }
 }
 
-// File Upload Handlers for CV Vault
 async function handleCvFileUpload(cvId, inputEl) {
     if (!inputEl.files || inputEl.files.length === 0) return;
     const file = inputEl.files[0];
 
-    // Check size max 15MB
     if (file.size > 15 * 1024 * 1024) {
         alert('Ukuran file maksimal 15MB.');
         return;
@@ -1192,10 +1193,10 @@ async function handleCvFileUpload(cvId, inputEl) {
 
     const success = await saveFileToVault(cvId, file);
     if (success) {
-        showToastNotification('CV Tersimpan!', `Berkas "${file.name}" berhasil diunggah ke Vault.`);
+        showToastNotification('CV Tersimpan!', `Berkas "${file.name}" berhasil diunggah.`);
         renderCvVault();
     } else {
-        alert('Gagal menyimpan file ke database lokal browser.');
+        alert('Gagal menyimpan file.');
     }
 }
 
@@ -1218,12 +1219,11 @@ async function downloadVaultFile(cvId) {
 async function deleteVaultFilePrompt(cvId) {
     if (confirm('Apakah Anda yakin ingin menghapus file CV ini dari penyimpanan lokal?')) {
         await deleteFileFromVault(cvId);
-        showToastNotification('File Dihapus', 'File CV telah dibersihkan dari penyimpanan.');
+        showToastNotification('File Dihapus', 'File CV telah dibersihkan.');
         renderCvVault();
     }
 }
 
-// Target Settings Modal
 function openTargetsSettingModal() {
     const modal = document.getElementById('targetSettingsModal');
     if (!modal) return;
@@ -1254,10 +1254,10 @@ function handleSaveTargets(e) {
     showToastNotification('Target Diperbarui', `Target harian: ${daily}, mingguan: ${weekly}, bulanan: ${monthly}`);
 }
 
-// Backup & Export / Import
 function exportDataJSON() {
     const data = {
-        version: '1.0',
+        version: '2.0',
+        brand: 'AAMON',
         exportedAt: new Date().toISOString(),
         targets: store.targets,
         applications: store.applications
@@ -1266,11 +1266,11 @@ function exportDataJSON() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `arkin-career-backup-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `aamon-career-backup-${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    showToastNotification('Backup Diunduh', 'File backup JSON berhasil disimpan ke komputer Anda.');
+    showToastNotification('Backup Diunduh', 'File backup JSON berhasil disimpan.');
 }
 
 function exportDataCSV() {
@@ -1301,7 +1301,7 @@ function exportDataCSV() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `laporan-lamaran-kerja-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `aamon-laporan-lamaran-${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -1324,20 +1324,18 @@ function handleImportJSON(inputEl) {
             renderMetricsHeader();
             renderTracker();
             renderCalendar();
-            showToastNotification('Import Berhasil!', 'Seluruh riwayat lamaran dan target berhasil dipulihkan.');
+            showToastNotification('Import Berhasil!', 'Data lamaran dan target berhasil dipulihkan.');
         } catch (err) {
-            alert('File JSON tidak valid atau rusak.');
+            alert('File JSON tidak valid.');
         }
     };
     reader.readAsText(file);
 }
 
-// Quick Copy Helper
-function copyTextToClipboard(text, successMsg = 'Teks berhasil disalin ke clipboard!') {
+function copyTextToClipboard(text, successMsg = 'Teks berhasil disalin!') {
     navigator.clipboard.writeText(text).then(() => {
         showToastNotification('Tersalin!', successMsg);
     }).catch(() => {
-        // Fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
@@ -1348,7 +1346,6 @@ function copyTextToClipboard(text, successMsg = 'Teks berhasil disalin ke clipbo
     });
 }
 
-// Toast Helper
 let toastTimer = null;
 function showToastNotification(title, msg) {
     const toast = document.getElementById('appToastNotification');
@@ -1371,14 +1368,18 @@ function showToastNotification(title, msg) {
 
 // --- 7. Initialization on DOM Loaded ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Initial Render
+    // Restore sidebar state
+    if (store.isSidebarCollapsed) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) sidebar.classList.add('collapsed');
+    }
+
     renderMetricsHeader();
     renderTracker();
     renderPortfolioGallery();
     renderCvVault();
     renderCalendar();
 
-    // Event Listeners for Filters
     const searchInput = document.getElementById('filterSearch');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -1411,7 +1412,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Calendar Month Navigation
     const btnPrevMonth = document.getElementById('btnPrevMonth');
     const btnNextMonth = document.getElementById('btnNextMonth');
     const btnTodayMonth = document.getElementById('btnTodayMonth');
@@ -1435,7 +1435,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Form Submit
     const appForm = document.getElementById('applicationForm');
     if (appForm) {
         appForm.addEventListener('submit', handleSaveApplication);

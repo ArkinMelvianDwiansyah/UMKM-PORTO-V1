@@ -1,19 +1,45 @@
-/* ARKIN.DEV - CAREER COMMAND & PORTFOLIO HUB STYLES */
+/* AAMON - CAREER COMMAND & PORTFOLIO HUB */
+/* Warm Monochrome Aesthetic + Pastel Accents + Collapsible Sidebar */
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 :root {
-  --primary-accent: #6366f1;
-  --primary-accent-hover: #4f46e5;
-  --bg-dark: #090d16;
-  --bg-card: #0f172a;
-  --bg-card-subtle: #1e293b;
-  --border-card: #1e293b;
+  --bg-main: #0c0a09;       /* Warm stone-950 */
+  --bg-sidebar: #12100e;    /* Warm stone-900 */
+  --bg-card: #181614;       /* Warm stone-850 */
+  --bg-card-subtle: #201d1a;
+  --border-subtle: #292524; /* Warm stone-800 */
+  --border-focus: #57534e;  /* Warm stone-600 */
+  --text-main: #fafaf9;     /* Warm stone-50 */
+  --text-muted: #a8a29e;    /* Warm stone-400 */
+  --text-dim: #78716c;      /* Warm stone-500 */
+
+  /* Pastel Accent Colors */
+  --pastel-green-bg: rgba(74, 222, 128, 0.12);
+  --pastel-green-text: #86efac;
+  --pastel-green-border: rgba(74, 222, 128, 0.3);
+
+  --pastel-yellow-bg: rgba(250, 204, 21, 0.12);
+  --pastel-yellow-text: #fde047;
+  --pastel-yellow-border: rgba(250, 204, 21, 0.3);
+
+  --pastel-red-bg: rgba(248, 113, 113, 0.12);
+  --pastel-red-text: #fca5a5;
+  --pastel-red-border: rgba(248, 113, 113, 0.3);
+
+  --pastel-purple-bg: rgba(192, 132, 252, 0.12);
+  --pastel-purple-text: #d8b4fe;
+  --pastel-purple-border: rgba(192, 132, 252, 0.3);
+
+  --pastel-slate-bg: rgba(168, 162, 158, 0.12);
+  --pastel-slate-text: #d6d3d1;
+  --pastel-slate-border: rgba(168, 162, 158, 0.3);
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-dark);
-  color: #f1f5f9;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   overflow-x: hidden;
 }
 
@@ -21,129 +47,159 @@ body {
   font-family: 'IBM Plex Mono', monospace;
 }
 
-/* Custom Scrollbar */
+/* Subtle Warm Grid Background */
+.warm-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #292524;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #44403c;
 }
 
-/* Tech Grid Background pattern */
-.tech-grid-bg {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Sidebar Transition */
+#sidebar {
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.glow-card {
-  position: relative;
-  transition: all 0.25s ease-in-out;
-}
-.glow-card:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+#sidebar.collapsed {
+  width: 72px;
 }
 
-/* Kanban Column Scroll */
+#sidebar.collapsed .sidebar-text,
+#sidebar.collapsed .sidebar-header-text,
+#sidebar.collapsed .sidebar-footer-widget {
+  display: none !important;
+}
+
+#sidebar.collapsed .sidebar-nav-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Nav Item Styling */
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.15s ease-in-out;
+  border: 1px solid transparent;
+}
+.sidebar-nav-item:hover {
+  background-color: #1c1917;
+  color: #ffffff;
+  border-color: #292524;
+}
+.sidebar-nav-item.active {
+  background-color: #ffffff;
+  color: #0c0a09;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.sidebar-nav-item.active i {
+  color: #0c0a09;
+}
+
+/* Pastel Badges */
+.badge-pastel-green {
+  background-color: var(--pastel-green-bg);
+  color: var(--pastel-green-text);
+  border: 1px solid var(--pastel-green-border);
+}
+
+.badge-pastel-yellow {
+  background-color: var(--pastel-yellow-bg);
+  color: var(--pastel-yellow-text);
+  border: 1px solid var(--pastel-yellow-border);
+}
+
+.badge-pastel-red {
+  background-color: var(--pastel-red-bg);
+  color: var(--pastel-red-text);
+  border: 1px solid var(--pastel-red-border);
+}
+
+.badge-pastel-purple {
+  background-color: var(--pastel-purple-bg);
+  color: var(--pastel-purple-text);
+  border: 1px solid var(--pastel-purple-border);
+}
+
+.badge-pastel-slate {
+  background-color: var(--pastel-slate-bg);
+  color: var(--pastel-slate-text);
+  border: 1px solid var(--pastel-slate-border);
+}
+
+/* Clean Monochrome Cards */
+.clean-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.clean-card:hover {
+  border-color: #44403c;
+}
+
+/* Calendar Cells */
+.calendar-day-cell {
+  min-height: 90px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.calendar-day-cell:hover {
+  background-color: #1f1c19;
+  border-color: #44403c;
+}
+.calendar-day-cell.today {
+  border-color: #fafaf9 !important;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.calendar-day-cell.other-month {
+  opacity: 0.3;
+}
+
+/* Kanban Columns */
 .kanban-column-scroll {
-  max-height: calc(100vh - 310px);
+  max-height: calc(100vh - 280px);
   min-height: 480px;
   overflow-y: auto;
 }
 
-/* Tab Navigation Active State */
-.nav-tab-btn.active {
-  background-color: #6366f1;
-  color: #ffffff;
-  border-color: #6366f1;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-}
-
-/* Status Badges */
-.badge-applied {
-  background-color: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-.badge-screening {
-  background-color: rgba(14, 165, 233, 0.15);
-  color: #38bdf8;
-  border: 1px solid rgba(14, 165, 233, 0.3);
-}
-.badge-test {
-  background-color: rgba(168, 85, 247, 0.15);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-}
-.badge-interview {
-  background-color: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-.badge-offering {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-.badge-rejected {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-.badge-ghosted {
-  background-color: rgba(148, 163, 184, 0.15);
-  color: #94a3b8;
-  border: 1px solid rgba(148, 163, 184, 0.3);
-}
-
-/* Calendar Day Styles */
-.calendar-day-cell {
-  min-height: 95px;
-  transition: all 0.15s ease;
-}
-.calendar-day-cell:hover {
-  background-color: rgba(30, 41, 59, 0.7);
-}
-.calendar-day-cell.today {
-  border-color: #6366f1 !important;
-  background-color: rgba(99, 102, 241, 0.08);
-}
-.calendar-day-cell.other-month {
-  opacity: 0.35;
-}
-
-/* Animated Pulse Dot */
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.15); }
-}
-.pulse-dot {
-  animation: pulse-subtle 2s infinite ease-in-out;
-}
-
-/* Modal backdrop fade */
+/* Modal Backdrop */
 .modal-backdrop {
-  backdrop-filter: blur(6px);
-  background-color: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(8px);
+  background-color: rgba(12, 10, 9, 0.85);
 }
 
-/* Print styling for reports */
-@media print {
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-  .no-print {
-    display: none !important;
-  }
+/* Smooth Pulse */
+@keyframes warm-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+.warm-pulse-dot {
+  animation: warm-pulse 2s infinite ease-in-out;
 }
