@@ -13,6 +13,7 @@ desktop.ini
 *.log
 *.tmp
 *.zip
+scratch/
 node_modules/
 
 __pycache__/

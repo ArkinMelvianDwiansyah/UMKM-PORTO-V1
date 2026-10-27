@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AAMON - CAREER COMMAND & PORTFOLIO HUB
  * Warm Monochrome Architecture, Collapsible Sidebar, Multi-CV Vault & Tracker Engine
  */
@@ -1034,7 +1034,7 @@ function switchView(viewName) {
     if (viewName === 'cvVault') renderCvVault();
     if (viewName === 'calendar') renderCalendar();
     if (viewName === 'portfolio') renderPortfolioGallery();
-    if (viewName === 'learning') renderLearningAcademy();
+    if (viewName === 'learning') { renderLearningAcademy(); renderCoursePlayer(); }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -2025,6 +2025,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPortfolioGallery();
     renderCvVault();
     renderCalendar();
+    renderLearningAcademy();
+    renderCoursePlayer();
 
     const searchInput = document.getElementById('filterSearch');
     if (searchInput) {
@@ -3107,7 +3109,7 @@ function renderLearningAcademy() {
         `;
     }).join('');
 
-    renderSimulatorViewer();
+    renderCoursePlayer();
 }
 
 
@@ -3128,7 +3130,7 @@ function selectSimulatorTab(tabKey) {
         }
     });
 
-    renderSimulatorViewer();
+    renderCoursePlayer();
 }
 
 function openImageModal(src, title) {
@@ -3206,725 +3208,204 @@ function calculateFtthLoss() {
     }
 }
 
-// Render Simulator Studio Content
-function renderSimulatorViewer() {
-    const container = document.getElementById('simulatorViewerContainer');
-    if (!container) return;
+// ===================================================================
+// 9. INTERACTIVE NETWORK LEARNING PLAYER STUDIO
+// Format: 1. Gambar -> 2. Config -> 3. Penjelasan -> 4. Conclusion -> 5. Next
+// ===================================================================
 
-    if (activeSimulatorTab === 'gns3-diamond') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-300 border border-emerald-800/40">GNS3 • MIKROTIK CHR v7</span>
-                            <span class="font-mono text-xs text-stone-400">Topologi Ring Mesh 4 Router</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Topologi Diamond 4 Router MikroTik CHR — OSPF Dynamic Routing & Dual-Link Redundancy</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Topologi mesh berkecepatan tinggi dengan 4 router virtual MikroTik CHR dan 4 Virtual PC (VPCS). Jika jalur CHR-1 ke CHR-2 terputus, OSPF otomatis mengalihkan jalur lewat CHR-3 dan CHR-4 dalam hitungan milidetik.</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="openImageModal('assets/simulators/sim_gns3_chr_diamond.png', '[GNS3] Topologi Diamond 4 Router MikroTik CHR - OSPF Dynamic Routing')" class="py-1.5 px-3 rounded-lg bg-white text-stone-950 font-bold text-xs hover:bg-stone-200 transition flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-expand text-xs"></i>
-                            <span>Perbesar Gambar</span>
-                        </button>
-                    </div>
-                </div>
+let currentCourseMateriNum = parseInt(localStorage.getItem('aamon_current_course_materi') || '1');
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- Image Card -->
-                    <div class="lg:col-span-7 rounded-xl bg-stone-950 border border-stone-800 p-2.5 space-y-2 group relative overflow-hidden">
-                        <div class="relative cursor-pointer overflow-hidden rounded-lg bg-black/40" onclick="openImageModal('assets/simulators/sim_gns3_chr_diamond.png', '[GNS3] Topologi Diamond 4 Router MikroTik CHR - OSPF Dynamic Routing')">
-                            <img src="assets/simulators/sim_gns3_chr_diamond.png" alt="GNS3 CHR Diamond Topology" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold">
-                                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
-                                <span>Klik untuk Memperbesar Resolusi Penuh</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] font-mono text-stone-400 px-1 pt-1">
-                            <span class="flex items-center gap-1.5 text-emerald-400">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span>Status Link: 8/8 Interface UP (Green LED)</span>
-                            </span>
-                            <span>GNS3 Workspace • 4 CHR + 4 VPCS</span>
-                        </div>
-                    </div>
-
-                    <!-- Technical Specification & Subnets -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-3">
-                            <h5 class="text-xs font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-table-list"></i>
-                                <span>Tabel Alokasi IP Subnet & Port Inter-Router</span>
-                            </h5>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-xs font-mono">
-                                    <thead class="text-stone-500 border-b border-stone-800 text-[10px] uppercase">
-                                        <tr>
-                                            <th class="pb-1.5">Link Antar Node</th>
-                                            <th class="pb-1.5">Subnet / Mask</th>
-                                            <th class="pb-1.5">Port Interface</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-stone-800/60 text-stone-300 text-[11px]">
-                                        <tr>
-                                            <td class="py-1.5 font-bold text-white">CHR-1 ↔ CHR-4</td>
-                                            <td class="py-1.5 text-emerald-400">10.0.14.0/30</td>
-                                            <td class="py-1.5 text-stone-400">eth1 (.1) ↔ eth1 (.2)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1.5 font-bold text-white">CHR-1 ↔ CHR-3</td>
-                                            <td class="py-1.5 text-emerald-400">10.0.13.0/30</td>
-                                            <td class="py-1.5 text-stone-400">eth2 (.1) ↔ eth1 (.2)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1.5 font-bold text-white">CHR-4 ↔ CHR-2</td>
-                                            <td class="py-1.5 text-emerald-400">10.0.24.0/30</td>
-                                            <td class="py-1.5 text-stone-400">eth2 (.1) ↔ eth1 (.2)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1.5 font-bold text-white">CHR-3 ↔ CHR-2</td>
-                                            <td class="py-1.5 text-emerald-400">10.0.23.0/30</td>
-                                            <td class="py-1.5 text-stone-400">eth2 (.1) ↔ eth2 (.2)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1.5 text-stone-400">PC1 (LAN CHR-1)</td>
-                                            <td class="py-1.5 text-sky-400">192.168.1.0/24</td>
-                                            <td class="py-1.5 text-stone-400">eth0 (GW: 192.168.1.1)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1.5 text-stone-400">PC2 (LAN CHR-3)</td>
-                                            <td class="py-1.5 text-sky-400">192.168.2.0/24</td>
-                                            <td class="py-1.5 text-stone-400">eth0 (GW: 192.168.2.1)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- OSPF Config Snippet for CHR-1 -->
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-white font-bold flex items-center gap-1.5">
-                                    <i class="fa-solid fa-code text-amber-400 text-[11px]"></i>
-                                    <span>CLI Konfigurasi OSPF CHR-1 (v7)</span>
-                                </span>
-                                <button type="button" onclick="copyTextToClipboard('/routing ospf instance add name=ospf-core router-id=10.255.255.1\n/routing ospf area add name=backbone instance=ospf-core area-id=0.0.0.0\n/routing ospf interface-template add area=backbone networks=10.0.14.0/30 type=ptp cost=10\n/routing ospf interface-template add area=backbone networks=10.0.13.0/30 type=ptp cost=10\n/routing ospf interface-template add area=backbone networks=192.168.1.0/24 passive=yes', 'CLI OSPF CHR-1 disalin!')" class="text-[10px] text-stone-400 hover:text-white px-2 py-0.5 rounded bg-stone-800 border border-stone-700 transition">
-                                    Salin CLI
-                                </button>
-                            </div>
-                            <pre class="font-mono text-[11px] text-stone-300 bg-stone-950 p-2.5 rounded-lg border border-stone-800/80 leading-relaxed overflow-x-auto select-all">/routing ospf instance add name=ospf-core router-id=10.255.255.1
-/routing ospf area add name=backbone instance=ospf-core area-id=0.0.0.0
-/routing ospf interface-template add area=backbone networks=10.0.14.0/30 type=ptp cost=10
-/routing ospf interface-template add area=backbone networks=10.0.13.0/30 type=ptp cost=10
-/routing ospf interface-template add area=backbone networks=192.168.1.0/24 passive=yes</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (activeSimulatorTab === 'winbox-v7') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-blue-950/40 text-blue-300 border border-blue-800/40">WINBOX 64-BIT v7.1</span>
-                            <span class="font-mono text-xs text-stone-400">RouterOS GUI Route List & Terminal</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Antarmuka Grafis MikroTik WinBox v7 — Route List, Status Flags & Terminal</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Tampilan nyata software manajemen Winbox v7 pada router RB5009. Menampilkan tabel rute dinamis OSPF/BGP, flag rute aktif (AS, DAC, DA), jendela detail rute, dan console CLI terminal internal.</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="openImageModal('assets/simulators/sim_winbox_v7.png', '[Winbox] RouterOS v7 GUI - Route List, Status Flags & Terminal')" class="py-1.5 px-3 rounded-lg bg-white text-stone-950 font-bold text-xs hover:bg-stone-200 transition flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-expand text-xs"></i>
-                            <span>Perbesar Gambar</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- Image Card -->
-                    <div class="lg:col-span-7 rounded-xl bg-stone-950 border border-stone-800 p-2.5 space-y-2 group relative overflow-hidden">
-                        <div class="relative cursor-pointer overflow-hidden rounded-lg bg-black/40" onclick="openImageModal('assets/simulators/sim_winbox_v7.png', '[Winbox] RouterOS v7 GUI - Route List, Status Flags & Terminal')">
-                            <img src="assets/simulators/sim_winbox_v7.png" alt="Winbox v7 Screenshot" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold">
-                                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
-                                <span>Klik untuk Memperbesar Resolusi Penuh</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] font-mono text-stone-400 px-1 pt-1">
-                            <span class="text-stone-300">admin@BGP Gateway Router [RB5009UG+S+]</span>
-                            <span>Winbox v7.1 (arm64)</span>
-                        </div>
-                    </div>
-
-                    <!-- Technical Explanation of Winbox UI -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-3">
-                            <h5 class="text-xs font-mono uppercase text-sky-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-flag"></i>
-                                <span>Panduan Membaca Flag Status Rute di Winbox v7</span>
-                            </h5>
-                            <div class="space-y-2 text-xs font-mono">
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800 flex items-start gap-2.5">
-                                    <span class="px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold text-[10px]">A</span>
-                                    <div>
-                                        <div class="font-bold text-white">Active Route</div>
-                                        <div class="text-[11px] text-stone-400">Rute terbaik yang saat ini aktif dimasukkan ke Forwarding Information Base (FIB) kernel router.</div>
-                                    </div>
-                                </div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800 flex items-start gap-2.5">
-                                    <span class="px-1.5 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800 font-bold text-[10px]">D</span>
-                                    <div>
-                                        <div class="font-bold text-white">Dynamic Route</div>
-                                        <div class="text-[11px] text-stone-400">Rute otomatis yang diperoleh melalui protokol dinamis (OSPF, BGP, atau interface connected).</div>
-                                    </div>
-                                </div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800 flex items-start gap-2.5">
-                                    <span class="px-1.5 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800 font-bold text-[10px]">S</span>
-                                    <div>
-                                        <div class="font-bold text-white">Static Route</div>
-                                        <div class="text-[11px] text-stone-400">Rute yang dibuat secara manual oleh administrator jaringan di menu IP -> Routes.</div>
-                                    </div>
-                                </div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800 flex items-start gap-2.5">
-                                    <span class="px-1.5 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800 font-bold text-[10px]">C</span>
-                                    <div>
-                                        <div class="font-bold text-white">Connect Route</div>
-                                        <div class="text-[11px] text-stone-400">Subnet yang langsung terhubung secara fisik pada port interface router (ethernet/vlan/bridge).</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2 text-xs">
-                            <div class="font-bold text-white flex items-center gap-1.5 font-mono">
-                                <i class="fa-solid fa-keyboard text-amber-400"></i>
-                                <span>Shortcut Esensial Winbox Engineer</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 font-mono text-[11px] text-stone-300 pt-1">
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800"><span class="text-amber-400 font-bold">Ctrl + E</span>: Buka Terminal</div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800"><span class="text-amber-400 font-bold">Ctrl + D</span>: Dashboard CPU/RAM</div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800"><span class="text-amber-400 font-bold">Safe Mode</span>: F4 Anti-Lockout</div>
-                                <div class="p-2 rounded bg-stone-950 border border-stone-800"><span class="text-amber-400 font-bold">Ctrl + N</span>: New Winbox Instance</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (activeSimulatorTab === 'gns3-userman') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-amber-950/40 text-amber-300 border border-amber-800/40">GNS3 • USER MANAGER RADIUS</span>
-                            <span class="font-mono text-xs text-stone-400">Arsitektur Core Gateway Kampus</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Topologi Kampus Skala Besar: Core Gateway, Multi-Subnet & User Manager Hotspot</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Simulasi perancangan jaringan perguruan tinggi berbasis GNS3 MUM. Router Core sentral (MikroTik Utama) mendistribusikan koneksi internet ke 8 segmen independen: Fakultas, Laboratorium A/B/C/D, Rektorat & SIA, Hotspot Lobby, dan Ruang Server.</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="openImageModal('assets/simulators/sim_gns3_userman.png', '[Campus] MUM Userman GNS3 - Arsitektur Core Gateway & Multi-Subnet Kampus')" class="py-1.5 px-3 rounded-lg bg-white text-stone-950 font-bold text-xs hover:bg-stone-200 transition flex items-center gap-1.5 shadow-sm">
-                            <i class="fa-solid fa-expand text-xs"></i>
-                            <span>Perbesar Gambar</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- Image Card -->
-                    <div class="lg:col-span-7 rounded-xl bg-stone-950 border border-stone-800 p-2.5 space-y-2 group relative overflow-hidden">
-                        <div class="relative cursor-pointer overflow-hidden rounded-lg bg-black/40" onclick="openImageModal('assets/simulators/sim_gns3_userman.png', '[Campus] MUM Userman GNS3 - Arsitektur Core Gateway & Multi-Subnet Kampus')">
-                            <img src="assets/simulators/sim_gns3_userman.png" alt="Campus Network Topology GNS3" class="w-full h-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-semibold">
-                                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
-                                <span>Klik untuk Memperbesar Resolusi Penuh</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] font-mono text-stone-400 px-1 pt-1">
-                            <span class="text-stone-300">Router Core MikrotikUtama (8 Interface Ethernet)</span>
-                            <span>GNS3 MUM Architecture</span>
-                        </div>
-                    </div>
-
-                    <!-- Port Allocation Table -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-3">
-                            <h5 class="text-xs font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-diagram-project"></i>
-                                <span>Alokasi 8 Port Gateway Router Core Kampus</span>
-                            </h5>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-xs font-mono">
-                                    <thead class="text-stone-500 border-b border-stone-800 text-[10px] uppercase">
-                                        <tr>
-                                            <th class="pb-1.5">Port ETH</th>
-                                            <th class="pb-1.5">IP Gateway Core</th>
-                                            <th class="pb-1.5">Tujuan Departemen</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-stone-800/60 text-stone-300 text-[11px]">
-                                        <tr>
-                                            <td class="py-1 text-amber-400 font-bold">ETH 1</td>
-                                            <td class="py-1">192.168.137.2/24</td>
-                                            <td class="py-1 text-stone-400">Cloud Uplink Gateway (.1)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 2</td>
-                                            <td class="py-1">10.10.20.1/24</td>
-                                            <td class="py-1 text-stone-400">Server Ruang Utama & Admin</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 3</td>
-                                            <td class="py-1">10.10.30.1/24</td>
-                                            <td class="py-1 text-stone-400">Gedung Fakultas MIPA/FISKOM</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 4</td>
-                                            <td class="py-1">10.10.40.1/24</td>
-                                            <td class="py-1 text-stone-400">Laboratorium Komputer A/B/C/D</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 5</td>
-                                            <td class="py-1">10.10.50.1/24</td>
-                                            <td class="py-1 text-stone-400">Gedung Selatan & Puskom</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 6</td>
-                                            <td class="py-1">10.10.60.1/24</td>
-                                            <td class="py-1 text-stone-400">Rektorat & SIA Akademik</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 7</td>
-                                            <td class="py-1">10.10.70.1/24</td>
-                                            <td class="py-1 text-stone-400">Hotspot Lobby Bawah (UserMan)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1 text-emerald-400 font-bold">ETH 8</td>
-                                            <td class="py-1">10.10.80.1/24</td>
-                                            <td class="py-1 text-stone-400">Ruang Administrasi BAAK</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2 text-xs">
-                            <div class="font-bold text-white flex items-center gap-1.5 font-mono">
-                                <i class="fa-solid fa-users text-purple-400"></i>
-                                <span>Peran MikroTik User Manager (RADIUS)</span>
-                            </div>
-                            <p class="text-stone-400 text-[11px] leading-relaxed">
-                                User Manager bertindak sebagai server otentikasi RADIUS internal. Setiap voucher hotspot mahasiswa dan dosen yang login di Lobby Bawah (ETH 7) divalidasi ke basis data sentral router core dengan batasan durasi waktu (Uptime) dan kuota data terukur.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (activeSimulatorTab === 'cisco-lan') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-sky-950/40 text-sky-300 border border-sky-800/40">CISCO PACKET TRACER</span>
-                            <span class="font-mono text-xs text-stone-400">Model Hierarki 3-Tier Enterprise</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Topologi Cisco Enterprise LAN: Core Layer 3, LACP EtherChannel & Inter-VLAN</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Arsitektur jaringan enterprise standar Cisco. Terdiri dari Switch Core Layer 3 (Catalyst 3560) sebagai routing gateway SVI, terhubung ke Switch Distribution (Catalyst 2960) menggunakan 802.1Q Trunk Port-Channel LACP redundant, mendistribusikan VLAN 10 (Corporate) dan VLAN 20 (Server).</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- SVG Interactive Vector Diagram -->
-                    <div class="lg:col-span-7 rounded-xl bg-stone-950 border border-stone-800 p-5 space-y-3">
-                        <div class="text-xs font-mono uppercase text-stone-400 font-bold flex items-center justify-between pb-2 border-b border-stone-800">
-                            <span>Diagram Skema Visual Topologi Cisco</span>
-                            <span class="text-emerald-400 text-[10px] flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span>L2/L3 Active</span>
-                            </span>
-                        </div>
-
-                        <!-- SVG Architecture Canvas -->
-                        <div class="w-full bg-stone-900/80 rounded-xl p-4 border border-stone-800 flex flex-col items-center justify-center">
-                            <!-- Core Layer -->
-                            <div class="p-3 rounded-lg bg-sky-950/70 border border-sky-700/60 text-center w-64 shadow-lg">
-                                <div class="font-mono text-[10px] uppercase text-sky-300 font-bold">CORE LAYER (L3 SWITCH)</div>
-                                <div class="font-bold text-white text-xs mt-0.5">Cisco Catalyst 3560-24PS</div>
-                                <div class="font-mono text-[10px] text-stone-300 mt-1">IP Routing Enabled • SVI VLAN 10 & 20 Gateway</div>
-                            </div>
-
-                            <!-- Dual Uplink Trunk Lines -->
-                            <div class="w-48 h-8 border-l-2 border-r-2 border-dashed border-sky-500/60 flex items-center justify-center">
-                                <span class="text-[9px] font-mono bg-stone-950 px-2 py-0.5 rounded text-amber-300 border border-stone-800">Port-Channel 1 (LACP)</span>
-                            </div>
-
-                            <!-- Distribution Layer -->
-                            <div class="grid grid-cols-2 gap-8 w-full max-w-md">
-                                <div class="p-2.5 rounded-lg bg-stone-950 border border-stone-700 text-center shadow-md">
-                                    <div class="font-mono text-[9px] uppercase text-stone-400">DISTRIBUTION SW-1</div>
-                                    <div class="font-bold text-white text-xs mt-0.5">Catalyst 2960</div>
-                                    <div class="text-[9px] font-mono text-emerald-400 mt-0.5">Trunk 802.1Q Native 99</div>
-                                </div>
-                                <div class="p-2.5 rounded-lg bg-stone-950 border border-stone-700 text-center shadow-md">
-                                    <div class="font-mono text-[9px] uppercase text-stone-400">DISTRIBUTION SW-2</div>
-                                    <div class="font-bold text-white text-xs mt-0.5">Catalyst 2960</div>
-                                    <div class="text-[9px] font-mono text-emerald-400 mt-0.5">Trunk 802.1Q Native 99</div>
-                                </div>
-                            </div>
-
-                            <!-- Access Links -->
-                            <div class="w-full max-w-md h-6 flex justify-between px-16">
-                                <div class="w-0.5 h-full bg-emerald-500/60"></div>
-                                <div class="w-0.5 h-full bg-purple-500/60"></div>
-                            </div>
-
-                            <!-- Access Endpoints -->
-                            <div class="grid grid-cols-2 gap-6 w-full max-w-md">
-                                <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-800/50 text-center">
-                                    <div class="font-mono text-[10px] font-bold text-emerald-300">VLAN 10: STAFF OFFICE</div>
-                                    <div class="font-mono text-[10px] text-stone-300 mt-0.5">192.168.10.0/24</div>
-                                    <div class="text-[9px] text-stone-400 mt-1">PC-1 (10.10), PC-2 (10.11)</div>
-                                </div>
-                                <div class="p-2.5 rounded-lg bg-purple-950/40 border border-purple-800/50 text-center">
-                                    <div class="font-mono text-[10px] font-bold text-purple-300">VLAN 20: SERVER FARM</div>
-                                    <div class="font-mono text-[10px] text-stone-300 mt-0.5">192.168.20.0/24</div>
-                                    <div class="text-[9px] text-stone-400 mt-1">Web Server (20.50), CCTV (20.80)</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between text-[11px] font-mono text-stone-400 px-1 pt-1">
-                            <span>Packet Tracer Workspace Reference</span>
-                            <span class="text-sky-400">Spanning Tree: Rapid-PVST+</span>
-                        </div>
-                    </div>
-
-                    <!-- Step-by-Step Config Guide -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-white font-bold flex items-center gap-1.5">
-                                    <i class="fa-solid fa-terminal text-sky-400"></i>
-                                    <span>Konfigurasi SVI di Core Switch L3</span>
-                                </span>
-                                <button type="button" onclick="copyTextToClipboard('conf t\nip routing\nvlan 10\n name Staff-Office\nvlan 20\n name Server-Farm\nexit\ninterface vlan 10\n ip address 192.168.10.1 255.255.255.0\n no shutdown\ninterface vlan 20\n ip address 192.168.20.1 255.255.255.0\n no shutdown', 'CLI SVI Cisco L3 disalin!')" class="text-[10px] text-stone-400 hover:text-white px-2 py-0.5 rounded bg-stone-800 border border-stone-700 transition">
-                                    Salin CLI
-                                </button>
-                            </div>
-                            <pre class="font-mono text-[11px] text-stone-300 bg-stone-950 p-2.5 rounded-lg border border-stone-800/80 leading-relaxed overflow-x-auto select-all">conf t
-ip routing
-vlan 10
- name Staff-Office
-vlan 20
- name Server-Farm
-exit
-interface vlan 10
- ip address 192.168.10.1 255.255.255.0
- no shutdown
-interface vlan 20
- ip address 192.168.20.1 255.255.255.0
- no shutdown</pre>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-white font-bold flex items-center gap-1.5">
-                                    <i class="fa-solid fa-code-fork text-amber-400"></i>
-                                    <span>Konfigurasi LACP EtherChannel Trunk</span>
-                                </span>
-                                <button type="button" onclick="copyTextToClipboard('conf t\ninterface range gigabitEthernet 0/1 - 2\n switchport trunk encapsulation dot1q\n switchport mode trunk\n channel-group 1 mode active\nexit\ninterface port-channel 1\n switchport mode trunk\n switchport trunk allowed vlan 10,20,99', 'CLI LACP disalin!')" class="text-[10px] text-stone-400 hover:text-white px-2 py-0.5 rounded bg-stone-800 border border-stone-700 transition">
-                                    Salin CLI
-                                </button>
-                            </div>
-                            <pre class="font-mono text-[11px] text-stone-300 bg-stone-950 p-2.5 rounded-lg border border-stone-800/80 leading-relaxed overflow-x-auto select-all">conf t
-interface range gigabitEthernet 0/1 - 2
- switchport trunk encapsulation dot1q
- switchport mode trunk
- channel-group 1 mode active
-exit
-interface port-channel 1
- switchport mode trunk
- switchport trunk allowed vlan 10,20,99</pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (activeSimulatorTab === 'ftth-gpon') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-rose-950/40 text-rose-300 border border-rose-800/40">STANDAR TELKOM • ITU-T G.984</span>
-                            <span class="font-mono text-xs text-stone-400">Arsitektur ODN & Redaman Cahaya Optik</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Skema Optical Distribution Network (ODN) FTTH & Kalkulator Redaman Optik (dBm)</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Jalur distribusi serat optik Single Mode G.652D dari pemancar OLT di Sentral Telkom melewati kabel Feeder, ODC (Splitter Primer), kabel Distribusi, ODP (Splitter Sekunder), kabel Drop Core, hingga penerima ONT di pelanggan.</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    <!-- Visual Optical Link Path Diagram -->
-                    <div class="lg:col-span-7 rounded-xl bg-stone-950 border border-stone-800 p-5 space-y-3">
-                        <div class="text-xs font-mono uppercase text-stone-400 font-bold flex items-center justify-between pb-2 border-b border-stone-800">
-                            <span>Diagram Alur Transmisi Cahaya GPON Telkom</span>
-                            <span class="text-rose-400 text-[10px] font-bold">1490 nm Downstream</span>
-                        </div>
-
-                        <!-- Visual Fiber Schematic -->
-                        <div class="space-y-3 font-mono text-xs pt-1">
-                            <!-- Node 1: OLT -->
-                            <div class="p-3 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-between">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-7 h-7 rounded bg-rose-950/80 border border-rose-800 text-rose-300 flex items-center justify-center font-bold text-xs">OLT</div>
-                                    <div>
-                                        <div class="font-bold text-white text-xs">Sentral Telepon Otomat (STO / CO)</div>
-                                        <div class="text-[10px] text-stone-400">SFP Class B+ / C+ GPON Transceiver</div>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-emerald-400 bg-stone-950 px-2 py-1 rounded border border-stone-800 text-[11px]">+3.0 dBm (TX)</span>
-                            </div>
-
-                            <div class="text-center text-[10px] text-stone-500 font-mono py-0.5">
-                                ↓ Kabel Feeder (5.0 km) • Redaman: -1.75 dB (@ 0.35 dB/km)
-                            </div>
-
-                            <!-- Node 2: ODC -->
-                            <div class="p-3 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-between">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-7 h-7 rounded bg-amber-950/80 border border-amber-800 text-amber-300 flex items-center justify-center font-bold text-xs">ODC</div>
-                                    <div>
-                                        <div class="font-bold text-white text-xs">Optical Distribution Cabinet (Rumah Kabel)</div>
-                                        <div class="text-[10px] text-stone-400">Passive Splitter Primer Rasio 1:4</div>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-amber-300 bg-stone-950 px-2 py-1 rounded border border-stone-800 text-[11px]">-7.2 dB (Loss)</span>
-                            </div>
-
-                            <div class="text-center text-[10px] text-stone-500 font-mono py-0.5">
-                                ↓ Kabel Distribusi (1.5 km) • Redaman: -0.52 dB
-                            </div>
-
-                            <!-- Node 3: ODP -->
-                            <div class="p-3 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-between">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-7 h-7 rounded bg-blue-950/80 border border-blue-800 text-blue-300 flex items-center justify-center font-bold text-xs">ODP</div>
-                                    <div>
-                                        <div class="font-bold text-white text-xs">Optical Distribution Point (Kotak Tiang)</div>
-                                        <div class="text-[10px] text-stone-400">Passive Splitter Sekunder Rasio 1:8</div>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-amber-300 bg-stone-950 px-2 py-1 rounded border border-stone-800 text-[11px]">-10.5 dB (Loss)</span>
-                            </div>
-
-                            <div class="text-center text-[10px] text-stone-500 font-mono py-0.5">
-                                ↓ Drop Core (150 m) + Sambungan Splicing + Roset Optik
-                            </div>
-
-                            <!-- Node 4: ONT -->
-                            <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-800/40 flex items-center justify-between">
-                                <div class="flex items-center gap-2.5">
-                                    <div class="w-7 h-7 rounded bg-emerald-950 border border-emerald-700 text-emerald-300 flex items-center justify-center font-bold text-xs">ONT</div>
-                                    <div>
-                                        <div class="font-bold text-white text-xs">Optical Network Terminal (Modem Pelanggan)</div>
-                                        <div class="text-[10px] text-stone-400">ZTE F609 / Huawei HG8245H5</div>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-emerald-300 bg-stone-950 px-2.5 py-1 rounded border border-emerald-700/60 text-xs">-17.52 dBm (RX Prima)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Live Optical Calculator -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-3">
-                            <h5 class="text-xs font-mono uppercase text-emerald-400 font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-calculator"></i>
-                                <span>Kalkulator Redaman Optik (Power Budget)</span>
-                            </h5>
-                            <div class="space-y-3 text-xs">
-                                <div>
-                                    <label class="block text-[11px] font-mono text-stone-400 mb-1">Panjang Kabel Feeder (STO ke ODC - km):</label>
-                                    <input type="number" id="calcFeederKm" value="5" step="0.5" oninput="calculateFtthLoss()" class="w-full bg-stone-950 border border-stone-800 rounded px-3 py-1.5 text-stone-200 font-mono text-xs">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-mono text-stone-400 mb-1">Panjang Kabel Distribusi (ODC ke ODP - km):</label>
-                                    <input type="number" id="calcDistKm" value="1.5" step="0.5" oninput="calculateFtthLoss()" class="w-full bg-stone-950 border border-stone-800 rounded px-3 py-1.5 text-stone-200 font-mono text-xs">
-                                </div>
-                                <div>
-                                    <label class="block text-[11px] font-mono text-stone-400 mb-1">Panjang Kabel Drop Core (ODP ke ONT - meter):</label>
-                                    <input type="number" id="calcDropM" value="150" step="10" oninput="calculateFtthLoss()" class="w-full bg-stone-950 border border-stone-800 rounded px-3 py-1.5 text-stone-200 font-mono text-xs">
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <div>
-                                        <label class="block text-[10px] font-mono text-stone-400 mb-1">Splitter ODC:</label>
-                                        <select id="calcOdcRatio" onchange="calculateFtthLoss()" class="w-full bg-stone-950 border border-stone-800 rounded px-2 py-1.5 text-stone-200 font-mono text-xs">
-                                            <option value="1:4" selected>1:4 (~7.2 dB)</option>
-                                            <option value="1:8">1:8 (~10.5 dB)</option>
-                                            <option value="1:2">1:2 (~3.5 dB)</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-[10px] font-mono text-stone-400 mb-1">Splitter ODP:</label>
-                                        <select id="calcOdpRatio" onchange="calculateFtthLoss()" class="w-full bg-stone-950 border border-stone-800 rounded px-2 py-1.5 text-stone-200 font-mono text-xs">
-                                            <option value="1:8" selected>1:8 (~10.5 dB)</option>
-                                            <option value="1:16">1:16 (~14.0 dB)</option>
-                                            <option value="1:4">1:4 (~7.2 dB)</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Result Box -->
-                                <div class="p-3.5 rounded-lg bg-stone-950 border border-stone-800 mt-2 space-y-1.5">
-                                    <div class="flex items-center justify-between text-xs font-mono">
-                                        <span class="text-stone-400">Total Redaman (Loss):</span>
-                                        <span id="calcResultLoss" class="text-white font-bold">20.52 dB</span>
-                                    </div>
-                                    <div class="flex items-center justify-between text-xs font-mono">
-                                        <span class="text-stone-400">Estimasi RX Power ONT:</span>
-                                        <span id="calcResultRx" class="text-emerald-400 font-bold text-sm">-17.52 dBm</span>
-                                    </div>
-                                    <div class="pt-1 text-center">
-                                        <span id="calcResultStatus" class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-emerald-950/50 text-emerald-400 border border-emerald-800/50 inline-block">
-                                            STANDAR PRIMA TELKOM (-14 s/d -23 dBm)
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    } else if (activeSimulatorTab === 'wireshark') {
-        container.innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-800">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-purple-950/40 text-purple-300 border border-purple-800/40">WIRESHARK FORENSIC SIMULATOR</span>
-                            <span class="font-mono text-xs text-stone-400">Packet Capture & TCP 3-Way Handshake</span>
-                        </div>
-                        <h4 class="text-base font-bold text-white mt-1">Simulasi Inspeksi Paket Wireshark: TCP 3-Way Handshake, Retransmission & Anomali</h4>
-                        <p class="text-xs text-stone-400 mt-0.5">Mockup tampilan real-time Wireshark. Menganalisis urutan pembentukan sesi TCP (SYN -> SYN-ACK -> ACK), negosiasi MSS dan Window Size, serta deteksi paket serangan SYN Flood dan transmisi ulang (retransmission).</p>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <!-- Wireshark Packet List Window -->
-                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden font-mono text-xs">
-                        <div class="bg-stone-900/90 px-4 py-2 border-b border-stone-800 flex items-center justify-between text-[11px] text-stone-400">
-                            <div class="flex items-center gap-2">
-                                <span class="text-stone-300 font-bold">Filter:</span>
-                                <span class="bg-stone-950 px-2 py-0.5 rounded border border-stone-800 text-emerald-400">tcp.port == 443 || tcp.analysis.retransmission</span>
-                            </div>
-                            <span>5 Frames Captured • Ethernet (en0)</span>
-                        </div>
-
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left">
-                                <thead class="bg-stone-900/50 text-stone-400 text-[10px] uppercase border-b border-stone-800">
-                                    <tr>
-                                        <th class="py-2 px-3">No.</th>
-                                        <th class="py-2 px-3">Time</th>
-                                        <th class="py-2 px-3">Source</th>
-                                        <th class="py-2 px-3">Destination</th>
-                                        <th class="py-2 px-3">Protocol</th>
-                                        <th class="py-2 px-3">Length</th>
-                                        <th class="py-2 px-3">Info / Flags</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-stone-800/70 text-[11px]">
-                                    <tr class="bg-sky-950/20 text-stone-200">
-                                        <td class="py-2 px-3 text-stone-500">1</td>
-                                        <td class="py-2 px-3 text-stone-400">0.000000</td>
-                                        <td class="py-2 px-3 text-sky-400">192.168.10.55</td>
-                                        <td class="py-2 px-3 text-amber-400">203.0.113.80</td>
-                                        <td class="py-2 px-3 text-stone-300">TCP</td>
-                                        <td class="py-2 px-3 text-stone-400">66</td>
-                                        <td class="py-2 px-3 font-semibold">54321 → 443 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 WS=256</td>
-                                    </tr>
-                                    <tr class="bg-sky-950/20 text-stone-200">
-                                        <td class="py-2 px-3 text-stone-500">2</td>
-                                        <td class="py-2 px-3 text-stone-400">0.015240</td>
-                                        <td class="py-2 px-3 text-amber-400">203.0.113.80</td>
-                                        <td class="py-2 px-3 text-sky-400">192.168.10.55</td>
-                                        <td class="py-2 px-3 text-stone-300">TCP</td>
-                                        <td class="py-2 px-3 text-stone-400">66</td>
-                                        <td class="py-2 px-3 font-semibold">443 → 54321 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0 MSS=1460</td>
-                                    </tr>
-                                    <tr class="bg-sky-950/20 text-stone-200">
-                                        <td class="py-2 px-3 text-stone-500">3</td>
-                                        <td class="py-2 px-3 text-stone-400">0.015302</td>
-                                        <td class="py-2 px-3 text-sky-400">192.168.10.55</td>
-                                        <td class="py-2 px-3 text-amber-400">203.0.113.80</td>
-                                        <td class="py-2 px-3 text-stone-300">TCP</td>
-                                        <td class="py-2 px-3 text-stone-400">54</td>
-                                        <td class="py-2 px-3 font-semibold">54321 → 443 [ACK] Seq=1 Ack=1 Win=64240 Len=0</td>
-                                    </tr>
-                                    <tr class="bg-purple-950/20 text-purple-200">
-                                        <td class="py-2 px-3 text-stone-500">4</td>
-                                        <td class="py-2 px-3 text-stone-400">0.021000</td>
-                                        <td class="py-2 px-3 text-sky-400">192.168.10.55</td>
-                                        <td class="py-2 px-3 text-amber-400">203.0.113.80</td>
-                                        <td class="py-2 px-3 text-purple-300">TLSv1.3</td>
-                                        <td class="py-2 px-3 text-stone-400">517</td>
-                                        <td class="py-2 px-3 font-semibold">Client Hello (SNI: jalaninweb.site)</td>
-                                    </tr>
-                                    <tr class="bg-rose-950/30 text-rose-300">
-                                        <td class="py-2 px-3 text-stone-500">5</td>
-                                        <td class="py-2 px-3 text-rose-400">1.250110</td>
-                                        <td class="py-2 px-3 text-rose-400">10.99.1.200</td>
-                                        <td class="py-2 px-3 text-stone-300">192.168.10.1</td>
-                                        <td class="py-2 px-3 text-rose-300 font-bold">TCP</td>
-                                        <td class="py-2 px-3 text-stone-400">54</td>
-                                        <td class="py-2 px-3 font-bold flex items-center gap-1.5">
-                                            <i class="fa-solid fa-triangle-exclamation text-amber-400 text-[10px]"></i>
-                                            <span>[TCP Retransmission] 80 → 49152 [RST, ACK] Seq=1 Win=0 (Anomali Serangan)</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Protocol Tree Breakdown -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
-                            <div class="font-bold text-white flex items-center gap-1.5">
-                                <i class="fa-solid fa-layer-group text-sky-400"></i>
-                                <span>Analisis Packet #1: TCP Handshake (SYN)</span>
-                            </div>
-                            <div class="space-y-1 text-[11px] text-stone-300 bg-stone-950 p-2.5 rounded-lg border border-stone-800/80">
-                                <div>• Source Port: <strong class="text-sky-300">54321</strong> (Ephemeral port client)</div>
-                                <div>• Destination Port: <strong class="text-amber-300">443</strong> (HTTPS Server)</div>
-                                <div>• Sequence Number: <strong class="text-emerald-300">0</strong> (Relative Seq)</div>
-                                <div>• Header Flags: <strong class="text-sky-300">0x002 (SYN = 1)</strong></div>
-                                <div>• Maximum Segment Size (MSS): <strong class="text-stone-300">1460 bytes</strong></div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2">
-                            <div class="font-bold text-white flex items-center gap-1.5">
-                                <i class="fa-solid fa-shield-virus text-rose-400"></i>
-                                <span>Deteksi Anomali Packet #5: Indikasi Serangan</span>
-                            </div>
-                            <div class="space-y-1 text-[11px] text-stone-300 bg-stone-950 p-2.5 rounded-lg border border-stone-800/80">
-                                <div>• Tipe Kejadian: <strong class="text-rose-400">TCP RST Unsolicited / Retransmit</strong></div>
-                                <div>• Analisis Keamanan: Client menerima flag RESET tanpa penutupan sesi 4-way FIN normal.</div>
-                                <div>• Diagnosa: Indikasi adanya pemblokiran oleh Firewall Stateful / IPS atau pemalsuan paket RST Spoofing.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+function getCompletedCourseMateri() {
+    try {
+        const stored = localStorage.getItem('aamon_completed_course_materi');
+        return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+        return [];
     }
+}
+
+function saveCompletedCourseMateri(list) {
+    try {
+        localStorage.setItem('aamon_completed_course_materi', JSON.stringify(list));
+    } catch (e) {}
+}
+
+function renderCoursePlayer() {
+    const playerSection = document.getElementById('coursePlayerSection');
+    if (!playerSection || typeof COURSE_MATERI_DATA === 'undefined' || COURSE_MATERI_DATA.length === 0) return;
+
+    // Bounds check
+    if (isNaN(currentCourseMateriNum) || currentCourseMateriNum < 1) currentCourseMateriNum = 1;
+    if (currentCourseMateriNum > COURSE_MATERI_DATA.length) currentCourseMateriNum = COURSE_MATERI_DATA.length;
+
+    localStorage.setItem('aamon_current_course_materi', currentCourseMateriNum.toString());
+
+    const materi = COURSE_MATERI_DATA.find(m => m.num === currentCourseMateriNum) || COURSE_MATERI_DATA[0];
+    const completedList = getCompletedCourseMateri();
+    const isCompleted = completedList.includes(materi.num);
+    const totalMaterials = COURSE_MATERI_DATA.length;
+    const completedCount = completedList.length;
+    const progressPct = totalMaterials > 0 ? Math.round((completedCount / totalMaterials) * 100) : 0;
+
+    // 1. Header Badges & Title
+    const badgeEl = document.getElementById('playerTrackBadge');
+    const numBadgeEl = document.getElementById('playerMateriNumberBadge');
+    const titleEl = document.getElementById('playerMateriTitle');
+    if (badgeEl) badgeEl.textContent = materi.badge || materi.track;
+    if (numBadgeEl) numBadgeEl.textContent = `Materi ${materi.num} / ${totalMaterials}`;
+    if (titleEl) titleEl.textContent = materi.title;
+
+    // 2. Dropdown Jump Select
+    const selectEl = document.getElementById('playerJumpSelect');
+    if (selectEl) {
+        selectEl.innerHTML = COURSE_MATERI_DATA.map(m => {
+            const doneMark = completedList.includes(m.num) ? 'âœ” ' : '';
+            return `<option value="${m.num}" ${m.num === materi.num ? 'selected' : ''}>${doneMark}[${m.num}/${totalMaterials}] ${m.title.replace('Materi ' + m.num + ': ', '')}</option>`;
+        }).join('');
+    }
+
+    // 3. Status Button
+    const statusBtn = document.getElementById('playerStatusBtn');
+    const statusIcon = document.getElementById('playerStatusIcon');
+    const statusText = document.getElementById('playerStatusText');
+    if (statusBtn && statusIcon && statusText) {
+        if (isCompleted) {
+            statusBtn.className = 'py-2 px-3.5 rounded-lg bg-emerald-950/60 border border-emerald-800/60 text-xs font-semibold text-emerald-400 transition flex items-center gap-2 shadow-sm';
+            statusIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            statusText.textContent = 'Materi Sudah Selesai';
+        } else {
+            statusBtn.className = 'py-2 px-3.5 rounded-lg bg-stone-900 border border-stone-800 hover:border-stone-700 text-xs font-semibold text-stone-300 transition flex items-center gap-2';
+            statusIcon.className = 'fa-regular fa-circle text-stone-500';
+            statusText.textContent = 'Tandai Selesai';
+        }
+    }
+
+    // 4. Gambar (Rendered SVG Vector Graphic)
+    const svgContainer = document.getElementById('playerSvgContainer');
+    if (svgContainer) {
+        if (typeof generateCourseSvg === 'function') {
+            svgContainer.innerHTML = generateCourseSvg(materi);
+        } else {
+            svgContainer.innerHTML = `<div class="text-xs text-stone-500 font-mono py-8">Engine grafis vector SVG sedang dimuat...</div>`;
+        }
+    }
+
+    // 5. Config (Terminal CLI / Script)
+    const cliContainer = document.getElementById('playerCliContainer');
+    if (cliContainer) {
+        cliContainer.textContent = materi.cli || '# Tidak ada konfigurasi CLI khusus untuk materi ini.';
+    }
+
+    // 6. Penjelasan (Technical Concept & Deep-Dive)
+    const penjelasanContainer = document.getElementById('playerPenjelasanContainer');
+    if (penjelasanContainer) {
+        penjelasanContainer.innerHTML = materi.penjelasan || '<p class="text-stone-400">Penjelasan sedang dipersiapkan.</p>';
+    }
+
+    // 7. Conclusion (Takeaways & Best Practices)
+    const conclusionContainer = document.getElementById('playerConclusionContainer');
+    if (conclusionContainer) {
+        conclusionContainer.innerHTML = materi.conclusion || '<p class="text-stone-400">Pahami konsep dasar sebelum melanjutkan.</p>';
+    }
+
+    // 8. Navigation Controls & Progress
+    const prevBtn = document.getElementById('playerPrevBtn');
+    const nextBtn = document.getElementById('playerNextBtn');
+    const navProgText = document.getElementById('playerNavProgressText');
+    const navProgBar = document.getElementById('playerNavProgressBar');
+
+    if (prevBtn) {
+        prevBtn.disabled = materi.num <= 1;
+        if (materi.num <= 1) {
+            prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+        } else {
+            prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+        }
+    }
+
+    if (nextBtn) {
+        if (materi.num >= totalMaterials) {
+            nextBtn.innerHTML = `<span>Selamat! Seluruh 45 Materi Selesai</span> <i class="fa-solid fa-trophy text-amber-400"></i>`;
+        } else {
+            nextBtn.innerHTML = `<span>Centang Selesai & Lanjut Materi Berikutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
+        }
+    }
+
+    if (navProgText) {
+        navProgText.textContent = `${completedCount} / ${totalMaterials} (${progressPct}%) Selesai`;
+    }
+    if (navProgBar) {
+        navProgBar.style.width = `${progressPct}%`;
+    }
+}
+
+function nextCourseMateri(markDone) {
+    if (typeof COURSE_MATERI_DATA === 'undefined') return;
+
+    if (markDone) {
+        const completedList = getCompletedCourseMateri();
+        if (!completedList.includes(currentCourseMateriNum)) {
+            completedList.push(currentCourseMateriNum);
+            saveCompletedCourseMateri(completedList);
+        }
+    }
+
+    if (currentCourseMateriNum < COURSE_MATERI_DATA.length) {
+        currentCourseMateriNum++;
+        renderCoursePlayer();
+        const playerSec = document.getElementById('coursePlayerSection');
+        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
+        showToastNotification('Materi Selanjutnya', `Membuka materi #${currentCourseMateriNum}: ${COURSE_MATERI_DATA[currentCourseMateriNum - 1].title}`);
+    } else {
+        renderCoursePlayer();
+        showToastNotification('Selamat!', 'Anda telah menuntaskan seluruh 45 materi kurikulum!');
+    }
+}
+
+function prevCourseMateri() {
+    if (currentCourseMateriNum > 1) {
+        currentCourseMateriNum--;
+        renderCoursePlayer();
+        const playerSec = document.getElementById('coursePlayerSection');
+        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function jumpToCourseMateri(num) {
+    if (typeof COURSE_MATERI_DATA === 'undefined') return;
+    const target = parseInt(num);
+    if (!isNaN(target) && target >= 1 && target <= COURSE_MATERI_DATA.length) {
+        currentCourseMateriNum = target;
+        renderCoursePlayer();
+        const playerSec = document.getElementById('coursePlayerSection');
+        if (playerSec) playerSec.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function togglePlayerMateriStatus() {
+    const completedList = getCompletedCourseMateri();
+    const idx = completedList.indexOf(currentCourseMateriNum);
+    let isNowDone = false;
+    if (idx > -1) {
+        completedList.splice(idx, 1);
+        isNowDone = false;
+    } else {
+        completedList.push(currentCourseMateriNum);
+        isNowDone = true;
+    }
+    saveCompletedCourseMateri(completedList);
+    renderCoursePlayer();
+    showToastNotification('Progres Materi Diperbarui', isNowDone ? `Materi #${currentCourseMateriNum} ditandai selesai!` : `Materi #${currentCourseMateriNum} dikembalikan ke status belum selesai.`);
+}
+
+function copyCurrentCourseCli() {
+    if (typeof COURSE_MATERI_DATA === 'undefined') return;
+    const materi = COURSE_MATERI_DATA.find(m => m.num === currentCourseMateriNum);
+    if (!materi || !materi.cli) return;
+    copyTextToClipboard(materi.cli, `Perintah CLI untuk "${materi.title}" berhasil disalin!`);
+}
+
+// Legacy Simulator Stub (redirects to player)
+function renderSimulatorViewer() {
+    renderCoursePlayer();
 }
