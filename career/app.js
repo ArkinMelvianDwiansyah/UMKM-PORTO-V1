@@ -601,33 +601,33 @@ function renderTracker() {
 
     tableBody.innerHTML = list.map((app) => `
         <tr class="border-b border-stone-800/80 hover:bg-stone-900/40 transition">
-            <td class="py-3.5 px-4 font-mono text-xs text-stone-400 whitespace-nowrap">
+            <td class="py-4 px-5 sm:px-6 font-mono text-xs text-stone-400 whitespace-nowrap">
                 ${formatDateIndo(app.appliedDate)}
             </td>
-            <td class="py-3.5 px-4">
+            <td class="py-4 px-5 sm:px-6">
                 <div class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
                     <span>${app.company}</span>
                     ${app.jobUrl ? `<a href="${app.jobUrl}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white text-xs" title="Buka tautan lowongan"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
                 </div>
-                <div class="text-xs text-stone-400 flex items-center gap-2 mt-0.5">
+                <div class="text-xs text-stone-400 flex items-center gap-2 mt-1">
                     <span><i class="fa-solid fa-location-dot text-[10px] text-stone-500 mr-1"></i>${app.location || 'Indonesia'}</span>
                     <span>•</span>
                     <span class="text-stone-300">${app.jobType || 'Full-time'}</span>
                 </div>
             </td>
-            <td class="py-3.5 px-4">
+            <td class="py-4 px-5 sm:px-6">
                 <div class="font-semibold text-stone-200 text-xs sm:text-sm">${app.position}</div>
-                ${app.salaryRange ? `<div class="font-mono text-[11px] text-stone-400 mt-0.5">${app.salaryRange}</div>` : ''}
+                ${app.salaryRange ? `<div class="font-mono text-[11px] text-stone-400 mt-1">${app.salaryRange}</div>` : ''}
             </td>
-            <td class="py-3.5 px-4 whitespace-nowrap">
+            <td class="py-4 px-5 sm:px-6 whitespace-nowrap">
                 ${getCvVersionBadge(app.cvVersion)}
             </td>
-            <td class="py-3.5 px-4 font-mono text-xs text-stone-300">
-                <span class="px-2 py-0.5 rounded bg-stone-900 text-stone-300 border border-stone-800">${app.platform || 'Direct'}</span>
+            <td class="py-4 px-5 sm:px-6 font-mono text-xs text-stone-300 whitespace-nowrap">
+                <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-300 border border-stone-800">${app.platform || 'Direct'}</span>
             </td>
-            <td class="py-3.5 px-4">
+            <td class="py-4 px-5 sm:px-6 whitespace-nowrap">
                 <div class="flex items-center gap-2">
-                    <select onchange="updateApplicationStatus('${app.id}', this.value)" class="bg-stone-900 border border-stone-700 text-xs rounded px-2.5 py-1 text-stone-200 focus:outline-none focus:border-stone-500 cursor-pointer">
+                    <select onchange="updateApplicationStatus('${app.id}', this.value)" class="bg-stone-900 border border-stone-700 text-xs rounded-lg px-2.5 py-1.5 text-stone-200 focus:outline-none focus:border-stone-500 cursor-pointer">
                         <option value="applied" ${app.status === 'applied' ? 'selected' : ''}>🟡 Terkirim</option>
                         <option value="screening" ${app.status === 'screening' ? 'selected' : ''}>⚪ Screening CV</option>
                         <option value="test" ${app.status === 'test' ? 'selected' : ''}>🟣 Tes Teknis</option>
@@ -637,17 +637,17 @@ function renderTracker() {
                         <option value="ghosted" ${app.status === 'ghosted' ? 'selected' : ''}>⚪ No Reply</option>
                     </select>
                 </div>
-                ${app.interviewDate ? `<div class="font-mono text-[10px] text-amber-300 mt-1 flex items-center gap-1"><i class="fa-regular fa-calendar-check"></i> Agenda: ${formatDateIndo(app.interviewDate)}</div>` : ''}
+                ${app.interviewDate ? `<div class="font-mono text-[11px] text-amber-300 mt-1.5 flex items-center gap-1.5"><i class="fa-regular fa-calendar-check"></i> Agenda: ${formatDateIndo(app.interviewDate)}</div>` : ''}
             </td>
-            <td class="py-3.5 px-4 text-right">
-                <div class="flex items-center justify-end gap-1.5">
-                    <button onclick="viewApplicationDetail('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Lihat Detail & Catatan">
+            <td class="py-4 px-5 sm:px-6 text-right whitespace-nowrap">
+                <div class="flex items-center justify-end gap-2">
+                    <button onclick="viewApplicationDetail('${app.id}')" class="p-2 rounded-lg hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Lihat Detail & Catatan">
                         <i class="fa-solid fa-eye text-xs"></i>
                     </button>
-                    <button onclick="openEditApplicationModal('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Edit Lamaran">
+                    <button onclick="openEditApplicationModal('${app.id}')" class="p-2 rounded-lg hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Edit Lamaran">
                         <i class="fa-solid fa-pen text-xs"></i>
                     </button>
-                    <button onclick="deleteApplicationPrompt('${app.id}')" class="p-1.5 rounded hover:bg-stone-800 text-stone-500 hover:text-red-400 transition" title="Hapus">
+                    <button onclick="deleteApplicationPrompt('${app.id}')" class="p-2 rounded-lg hover:bg-stone-800 text-stone-500 hover:text-red-400 transition" title="Hapus">
                         <i class="fa-solid fa-trash-can text-xs"></i>
                     </button>
                 </div>

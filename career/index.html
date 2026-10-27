@@ -232,67 +232,67 @@
             </div>
         </header>
 
-        <!-- Main Body Inner Container -->
-        <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full">
+        <!-- Main Body Inner Container (Full Width Mentok ke Kanan, No Bottleneck) -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 w-full">
 
             <!-- ============================================================== -->
             <!-- VIEW 1: JOB TRACKER (PELACAK LAMARAN)                         -->
             <!-- ============================================================== -->
             <section id="trackerViewPanel" class="space-y-6">
                 
-                <!-- Quick Counters Grid (Clean Monochrome Cards with Pastel Dots) -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                    <div class="clean-card p-4">
+                <!-- Quick Counters Grid (Clean Monochrome Cards with Pastel Dots - Full Width) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+                    <div class="clean-card p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
-                            <span>TOTAL LAMARAN</span>
-                            <span class="w-2 h-2 rounded-full bg-stone-400"></span>
+                            <span class="tracking-wider">TOTAL LAMARAN</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-stone-400"></span>
                         </div>
-                        <div id="metricTotal" class="text-2xl font-extrabold text-white mt-1">0</div>
-                        <div class="text-[11px] text-stone-500 mt-1">Semua riwayat lamaran</div>
+                        <div id="metricTotal" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1 font-mono">Semua riwayat lamaran</div>
                     </div>
-                    <div class="clean-card p-4">
+                    <div class="clean-card p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
-                            <span>SCREENING & TES</span>
-                            <span class="w-2 h-2 rounded-full bg-purple-300"></span>
+                            <span class="tracking-wider">SCREENING & TES</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-purple-300"></span>
                         </div>
-                        <div id="metricScreening" class="text-2xl font-extrabold text-purple-200 mt-1">0</div>
-                        <div class="text-[11px] text-stone-500 mt-1">Dalam proses evaluasi</div>
+                        <div id="metricScreening" class="text-2xl sm:text-3xl font-extrabold text-purple-200 mt-2">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1 font-mono">Dalam proses evaluasi</div>
                     </div>
-                    <div class="clean-card p-4">
+                    <div class="clean-card p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
-                            <span>INTERVIEW</span>
-                            <span class="w-2 h-2 rounded-full bg-amber-300"></span>
+                            <span class="tracking-wider">INTERVIEW</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-300"></span>
                         </div>
-                        <div id="metricInterview" class="text-2xl font-extrabold text-amber-200 mt-1">0</div>
-                        <div class="text-[11px] text-stone-500 mt-1">Wawancara HR / User</div>
+                        <div id="metricInterview" class="text-2xl sm:text-3xl font-extrabold text-amber-200 mt-2">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1 font-mono">Wawancara HR / User</div>
                     </div>
-                    <div class="clean-card p-4">
+                    <div class="clean-card p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
-                            <span>OFFERING</span>
-                            <span class="w-2 h-2 rounded-full bg-emerald-300"></span>
+                            <span class="tracking-wider">OFFERING</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-300"></span>
                         </div>
-                        <div id="metricOffering" class="text-2xl font-extrabold text-emerald-200 mt-1">0</div>
-                        <div class="text-[11px] text-stone-500 mt-1">Penawaran kerja resmi</div>
+                        <div id="metricOffering" class="text-2xl sm:text-3xl font-extrabold text-emerald-200 mt-2">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1 font-mono">Penawaran kerja resmi</div>
                     </div>
-                    <div class="clean-card p-4 col-span-2 sm:col-span-1">
+                    <div class="clean-card p-4 sm:p-5 lg:p-6 col-span-2 sm:col-span-1 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-stone-400 text-xs font-mono">
-                            <span>DITOLAK / GHOSTED</span>
-                            <span class="w-2 h-2 rounded-full bg-red-300"></span>
+                            <span class="tracking-wider">DITOLAK / GHOSTED</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-300"></span>
                         </div>
-                        <div id="metricRejected" class="text-2xl font-extrabold text-red-200 mt-1">0</div>
-                        <div class="text-[11px] text-stone-500 mt-1">Belum sesuai kriteria</div>
+                        <div id="metricRejected" class="text-2xl sm:text-3xl font-extrabold text-red-200 mt-2">0</div>
+                        <div class="text-[11px] text-stone-500 mt-1 font-mono">Belum sesuai kriteria</div>
                     </div>
                 </div>
 
-                <!-- Filters & Search Toolbar -->
-                <div class="clean-card p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-                    <div class="flex-1 flex flex-wrap items-center gap-2.5">
-                        <div class="relative flex-1 min-w-[200px]">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-500 text-xs"></i>
-                            <input type="text" id="filterSearch" placeholder="Cari perusahaan, posisi, lokasi..." class="w-full bg-stone-900 border border-stone-800 text-xs rounded-lg pl-8 pr-3 py-2 text-white placeholder-stone-500 focus:outline-none focus:border-stone-600">
+                <!-- Filters & Search Toolbar (Spacious & Full-Width) -->
+                <div class="clean-card p-4 sm:p-5 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
+                    <div class="flex-1 flex flex-wrap items-center gap-2.5 sm:gap-3">
+                        <div class="relative flex-1 min-w-[220px]">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500 text-xs"></i>
+                            <input type="text" id="filterSearch" placeholder="Cari perusahaan, posisi, lokasi..." class="w-full bg-stone-900 border border-stone-800 text-xs rounded-lg pl-9 pr-3.5 py-2.5 text-white placeholder-stone-500 focus:outline-none focus:border-stone-600">
                         </div>
 
-                        <select id="filterStatus" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                        <select id="filterStatus" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3.5 py-2.5 text-stone-300 focus:outline-none focus:border-stone-600">
                             <option value="all">Semua Status</option>
                             <option value="applied">🟡 Terkirim</option>
                             <option value="screening">⚪ Screening CV</option>
@@ -303,7 +303,7 @@
                             <option value="ghosted">⚪ No Reply</option>
                         </select>
 
-                        <select id="filterCvVersion" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                        <select id="filterCvVersion" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3.5 py-2.5 text-stone-300 focus:outline-none focus:border-stone-600">
                             <option value="all">Semua Versi CV</option>
                             <option value="cv_network">CV-NET: Network & NOC (Utama)</option>
                             <option value="cv_security">CV-SEC: Cyber Security</option>
@@ -312,7 +312,7 @@
                             <option value="cv_scraping">CV-AUTO: Scraping (Freelance)</option>
                         </select>
 
-                        <select id="filterPlatform" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
+                        <select id="filterPlatform" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3.5 py-2.5 text-stone-300 focus:outline-none focus:border-stone-600">
                             <option value="all">Semua Platform</option>
                             <option value="LinkedIn">LinkedIn</option>
                             <option value="Glints">Glints</option>
@@ -325,9 +325,9 @@
 
                     <!-- Display Mode Toggle & Reset Preset Button -->
                     <div class="flex items-center gap-2 self-end md:self-auto shrink-0">
-                        <button type="button" onclick="resetToNetworkPresets()" class="p-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white border border-stone-800 text-xs transition flex items-center gap-1.5" title="Muat Ulang Contoh Loker Network & NOC">
+                        <button type="button" onclick="resetToNetworkPresets()" class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white border border-stone-800 text-xs transition flex items-center gap-1.5" title="Muat Ulang Contoh Loker Network & NOC">
                             <i class="fa-solid fa-arrows-rotate text-xs"></i>
-                            <span class="hidden xl:inline text-[11px] font-mono">Preset Network</span>
+                            <span class="inline text-[11px] font-mono">Preset Network</span>
                         </button>
                         <div class="p-1 bg-stone-900 border border-stone-800 rounded-lg flex items-center">
                             <button type="button" id="btnViewTable" onclick="setTrackerDisplayMode('table')" class="px-2.5 py-1 text-xs font-semibold rounded bg-white text-stone-950" title="Tampilan Tabel">
@@ -340,19 +340,19 @@
                     </div>
                 </div>
 
-                <!-- TABLE VIEW CONTAINER -->
+                <!-- TABLE VIEW CONTAINER (Full Width, Mentok Kanan) -->
                 <div id="trackerTableWrapper" class="clean-card overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="border-b border-stone-800 bg-stone-900/80 font-mono text-xs uppercase tracking-wider text-stone-400">
-                                    <th class="py-3 px-4 whitespace-nowrap">Tgl Apply</th>
-                                    <th class="py-3 px-4">Perusahaan & Lokasi</th>
-                                    <th class="py-3 px-4">Posisi & Gaji</th>
-                                    <th class="py-3 px-4 whitespace-nowrap">Versi CV</th>
-                                    <th class="py-3 px-4 whitespace-nowrap">Platform</th>
-                                    <th class="py-3 px-4 whitespace-nowrap">Status & Agenda</th>
-                                    <th class="py-3 px-4 text-right whitespace-nowrap">Aksi</th>
+                                    <th class="py-3.5 px-5 sm:px-6 whitespace-nowrap">Tgl Apply</th>
+                                    <th class="py-3.5 px-5 sm:px-6 min-w-[220px]">Perusahaan & Lokasi</th>
+                                    <th class="py-3.5 px-5 sm:px-6 min-w-[220px]">Posisi & Gaji</th>
+                                    <th class="py-3.5 px-5 sm:px-6 whitespace-nowrap">Versi CV</th>
+                                    <th class="py-3.5 px-5 sm:px-6 whitespace-nowrap">Platform</th>
+                                    <th class="py-3.5 px-5 sm:px-6 whitespace-nowrap min-w-[180px]">Status & Agenda</th>
+                                    <th class="py-3.5 px-5 sm:px-6 text-right whitespace-nowrap">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="applicationTableBody" class="divide-y divide-stone-800/60 text-sm">
@@ -914,7 +914,7 @@ Terlampir berkas CV saya untuk ditinjau lebih lanjut. Saya sangat antusias untuk
 
         <!-- FOOTER -->
         <footer class="border-t border-stoneBorder bg-stoneSidebar py-6 text-center text-xs text-stone-500 font-mono mt-auto">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="w-full px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div>
                     © 2026 <strong>AAMON</strong>. Career Command Center & Portfolio Hub.
                 </div>
