@@ -87,119 +87,153 @@ const DEFAULT_TARGETS = {
 
 const CV_PROFILES = [
     {
-        id: 'cv_frontend',
-        code: 'CV-A',
-        title: 'Frontend & UI Specialist',
-        targetRoles: 'Frontend Developer, UI Developer, React.js / Vue.js Dev, Web Designer',
-        description: 'Fokus pada arsitektur komponen modern, responsive layouts, Tailwind CSS, core web vitals, dan interaktivitas JavaScript ES6+.',
-        keywords: ['Tailwind CSS', 'React.js', 'JavaScript ES6+', 'Responsive Design', 'PageSpeed 95+', 'Micro-Interactions']
+        id: 'cv_network',
+        code: 'CV-NET',
+        badge: 'UTAMA / FULL-TIME',
+        isPrimary: true,
+        title: 'Network Engineer & NOC Specialist',
+        targetRoles: 'Network Engineer, NOC Engineer, Network Administrator, ISP / Telco Engineer, L2/L3 Network Support',
+        description: 'Fokus utama pada monitoring jaringan ISP/Enterprise real-time, incident management & SLA/TTR, konfigurasi routing/switching multi-vendor (Cisco, Mikrotik, Huawei), infrastruktur fiber optic FTTH/FTTx, dan network automation (DevNet).',
+        keywords: ['Cisco CCNA', 'Mikrotik RouterOS', 'Cisco DevNet', 'Fiber Optic FTTH / BNSP TIFO', 'NOC Incident SLA/TTR', 'Zabbix / PRTG / Wireshark', 'Google Cyber Security', 'Cisco NetSec']
     },
     {
-        id: 'cv_fullstack',
-        code: 'CV-B',
-        title: 'Full-stack & Web App Developer',
-        targetRoles: 'Full-stack Developer, Web Application Engineer, Node.js / PHP Dev',
-        description: 'Fokus pada pengembangan aplikasi end-to-end, REST API, integrasi database, arsitektur Nginx/Linux, dan logic POS/SaaS.',
-        keywords: ['Node.js', 'PHP / Python', 'REST API', 'MySQL / SQLite', 'Nginx & Linux VPS', 'Full Lifecycle App']
+        id: 'cv_security',
+        code: 'CV-SEC',
+        badge: 'CYBERSECURITY',
+        isPrimary: false,
+        title: 'Cyber & Network Security Specialist',
+        targetRoles: 'Network Security Engineer, SOC Analyst (L1), Cyber Defense Specialist, IT Security Support',
+        description: 'Fokus pada pengamanan infrastruktur jaringan, analisis paket trafik anomali, konfigurasi firewall & ACL policy, mitigasi ancaman siber, dan audit kepatuhan keamanan Google & Cisco.',
+        keywords: ['Google Cyber Security Cert', 'Cisco Network Security', 'Firewall / ACL Rules', 'Threat Mitigation', 'Wireshark Packet Analysis', 'Security Incident Handling']
+    },
+    {
+        id: 'cv_support',
+        code: 'CV-TECH',
+        badge: 'INFRA & HARDWARE',
+        isPrimary: false,
+        title: 'IT Support & Infrastructure System',
+        targetRoles: 'IT Support Specialist, IT Helpdesk L1/L2, Hardware & Network Technician, System Support',
+        description: 'Fokus pada penanganan end-user computing, troubleshooting hardware & sistem operasi (Windows/Linux), pemeliharaan LAN/WLAN kantor, manajemen inventaris aset IT, dan resolusi tiket SLA.',
+        keywords: ['Coursera IT Support Cert', 'Hardware Troubleshooting', 'Windows & Linux OS', 'LAN/WLAN Maintenance', 'Asset & Inventory IT', 'Helpdesk SLA Management']
+    },
+    {
+        id: 'cv_frontend',
+        code: 'CV-DEV',
+        badge: 'FREELANCE TRACK',
+        isPrimary: false,
+        title: 'Frontend Web Developer (Freelance)',
+        targetRoles: 'Frontend Developer, UI Slicer, React / Tailwind Web Dev, Web Consultant',
+        description: 'Track sekunder / freelance: Pengembangan antarmuka web modern berperforma tinggi (PageSpeed 95+), UI/UX slicing ke kode HTML/CSS/Tailwind responsif, arsitektur JavaScript ES6+, dan 28 portofolio live.',
+        keywords: ['Tailwind CSS & Modern UI', 'JavaScript ES6+ / React.js', 'Responsive Web Slicing', '28 Live Projects Porto', 'PageSpeed 95+ No Slop', 'Freelance Client Delivery']
     },
     {
         id: 'cv_scraping',
-        code: 'CV-C',
-        title: 'Web Scraping & Automation Specialist',
-        targetRoles: 'Automation Engineer, Data Scraper, Python Bot Developer, ETL Specialist',
-        description: 'Fokus pada ekstraksi data terstruktur, anti-blocking proxy bypass, automated crawling, data pipeline, dan scheduled bots.',
-        keywords: ['Python Scrapy', 'Selenium / Playwright', 'Data Mining', 'ETL Pipeline', 'Cron Automation', 'API Webhook']
-    },
-    {
-        id: 'cv_general',
-        code: 'CV-D',
-        title: 'Tech Specialist & WordPress / CMS',
-        targetRoles: 'WordPress Developer, IT Web Support, Tech Generalist, Freelance Lead',
-        description: 'Fokus pada pembuatan website cepat untuk UMKM/bisnis, integrasi payment gateway, custom theme/plugins, dan client handling.',
-        keywords: ['WordPress / Elementor', 'Speed Optimization', 'Domain & DNS', 'WhatsApp Commerce', 'Security & Backup']
+        code: 'CV-AUTO',
+        badge: 'FREELANCE TRACK',
+        isPrimary: false,
+        title: 'Automation & Web Scraping (Freelance)',
+        targetRoles: 'Automation Engineer, Python Bot Developer, Data Extraction Specialist, ETL Engineer',
+        description: 'Track sekunder / freelance: Otomasi ekstraksi data terstruktur web, anti-blocking proxy bypass, automated crawling, data pipeline, dan scheduled bots.',
+        keywords: ['Python Scrapy & Playwright', 'Data Mining & Extraction', 'ETL Pipeline', 'Cron Automation Bots', 'API Webhooks']
     }
 ];
 
 const INITIAL_APPLICATIONS = [
     {
         id: 'app-001',
-        company: 'PT Telkom Digital Solutions',
-        position: 'Frontend Web Developer',
-        jobType: 'Full-time (Hybrid)',
-        location: 'Jakarta Selatan',
+        company: 'PT Telkom Indonesia (Regional Jatim)',
+        position: 'NOC Network Engineer (Tier-2 Enterprise)',
+        jobType: 'Full-time (On-site)',
+        location: 'Surabaya, Jawa Timur',
         platform: 'LinkedIn',
-        salaryRange: 'Rp 9.000.000 - Rp 13.000.000',
+        salaryRange: 'Rp 8.000.000 - Rp 12.000.000',
         appliedDate: new Date().toISOString().split('T')[0],
-        cvVersion: 'cv_frontend',
+        cvVersion: 'cv_network',
         status: 'interview',
         interviewDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
-        notes: 'Wawancara user teknis hari Kamis jam 14:00 WIB. Diminta mempresentasikan demo proyek POS kasir dan sistem booking.',
-        jobUrl: 'https://linkedin.com/jobs/view/12345678',
-        background: 'Mencari pengembang yang mahir Tailwind CSS, modern responsive UI, dan integrasi API RESTful.'
+        notes: 'Wawancara user teknis hari Kamis jam 14:00 WIB. Materi: BGP peering, troubleshooting Metro-E Telkom Corporate, dan incident SLA & TTR Telkom Infrastruktur.',
+        jobUrl: 'https://www.linkedin.com/in/arkinmelviansyah/',
+        background: 'Mencari Network Engineer yang berpengalaman di NOC ISP Telkom, paham CCNA, topologi FTTx/FTTH, dan koordinasi dengan tim CCAN/DSO/EOS.'
     },
     {
         id: 'app-002',
-        company: 'Bukalapak (Tech Division)',
-        position: 'Junior Software Engineer (Web)',
-        jobType: 'Full-time (Remote)',
-        location: 'Jakarta (Remote)',
+        company: 'PT Supra Primatama Nusantara (Biznet)',
+        position: 'Network Operations Engineer (IP Core)',
+        jobType: 'Full-time (On-site)',
+        location: 'Surabaya / Sidoarjo',
         platform: 'Jobstreet',
         salaryRange: 'Rp 8.500.000 - Rp 11.500.000',
         appliedDate: new Date().toISOString().split('T')[0],
-        cvVersion: 'cv_fullstack',
+        cvVersion: 'cv_network',
         status: 'test',
         interviewDate: new Date(Date.now() + 86400000 * 4).toISOString().split('T')[0],
-        notes: 'Take-home coding test: Membuat modul cart checkout dengan validasi diskon bertingkat. Deadline hari Sabtu.',
-        jobUrl: 'https://jobstreet.co.id/job/9876543',
-        background: 'Pengembangan fitur merchant dashboard, pemrosesan transaksi berkecepatan tinggi.'
+        notes: 'Tes konfigurasi lab: Routing OSPF multi-area, VLAN trunking 802.1Q, failover BGP, dan analisis pcap Wireshark.',
+        jobUrl: 'https://jobstreet.co.id',
+        background: 'Operasional backbone IP Core Biznet, monitoring link fiber optik, dan penanganan insiden degradasi latency antarkota.'
     },
     {
         id: 'app-003',
-        company: 'Sirclo Omni-Commerce',
-        position: 'Automation & Scraping Specialist',
-        jobType: 'Contract (12 Bulan)',
-        location: 'Tangerang / Remote',
+        company: 'PT Aplikanusa Lintasarta',
+        position: 'NOC & Infrastructure Operations Specialist',
+        jobType: 'Full-time (Shift)',
+        location: 'Surabaya, Jawa Timur',
         platform: 'Glints',
-        salaryRange: 'Rp 10.000.000 - Rp 14.000.000',
+        salaryRange: 'Rp 7.500.000 - Rp 10.500.000',
         appliedDate: new Date(Date.now() - 86400000 * 1).toISOString().split('T')[0],
-        cvVersion: 'cv_scraping',
+        cvVersion: 'cv_network',
         status: 'screening',
         interviewDate: '',
-        notes: 'CV sudah lolos screening awal HR, menunggu penjadwalan interview dengan Lead Data Engineer.',
-        jobUrl: 'https://glints.com/id/opportunities/jobs/456789',
-        background: 'Otomasi crawling katalog marketplace dan perbandingan harga komoditas e-commerce.'
+        notes: 'CV lolos screening HRD, menunggu jadwal wawancara dengan Network Operations Manager.',
+        jobUrl: 'https://glints.com',
+        background: 'Monitoring koneksi data corporate VPN/MPLS, VSAT, dan fiber optic pelanggan enterprise perbankan.'
     },
     {
         id: 'app-004',
-        company: 'Agensi Media Kreatif Indie',
-        position: 'WordPress & Web Designer',
-        jobType: 'Freelance / Project',
-        location: 'Bandung (Remote)',
-        platform: 'Direct Email',
-        salaryRange: 'Rp 5.000.000 / Proyek',
-        appliedDate: new Date(Date.now() - 86400000 * 2).toISOString().split('T')[0],
-        cvVersion: 'cv_general',
+        company: 'Bank Central Asia (BCA Tech Group)',
+        position: 'Network & Security Engineer',
+        jobType: 'Full-time (Hybrid)',
+        location: 'Surabaya / Jakarta',
+        platform: 'LinkedIn',
+        salaryRange: 'Rp 11.000.000 - Rp 15.000.000',
+        appliedDate: new Date(Date.now() - 86400000 * 5).toISOString().split('T')[0],
+        cvVersion: 'cv_security',
         status: 'offering',
         interviewDate: '',
-        notes: 'Offering diterima! Kontrak pembuatan 3 website brand lokal dengan target rilis bulan depan.',
-        jobUrl: '',
-        background: 'Desain web company profile estetik dan integrasi WhatsApp katalog produk.'
+        notes: 'Offering letter diterima! Paket remunerasi mencakup asuransi kesehatan, BPJS, dan bonus kinerja tahunan.',
+        jobUrl: 'https://linkedin.com',
+        background: 'Pengelolaan firewall enterprise, ACL segmentasi jaringan perbankan, dan kepatuhan audit keamanan siber.'
     },
     {
         id: 'app-005',
-        company: 'Fintech Startup KoinNusa',
-        position: 'Frontend React Developer',
+        company: 'PT Mora Telematika Indonesia (Moratelindo)',
+        position: 'FTTH & ISP Transmission Engineer',
         jobType: 'Full-time (On-site)',
-        location: 'Jakarta Pusat',
+        location: 'Surabaya, Jawa Timur',
         platform: 'Kalibrr',
-        salaryRange: 'Rp 10.000.000 - Rp 15.000.000',
+        salaryRange: 'Rp 7.000.000 - Rp 9.500.000',
         appliedDate: new Date(Date.now() - 86400000 * 3).toISOString().split('T')[0],
-        cvVersion: 'cv_frontend',
+        cvVersion: 'cv_network',
         status: 'applied',
         interviewDate: '',
-        notes: 'Lamaran baru dikirim via Kalibrr lengkap dengan link portfolio jalaninweb.site.',
-        jobUrl: 'https://kalibrr.com/c/koinnusa/jobs',
-        background: 'Perancangan antarmuka aplikasi kredit mikro dan kalkulator simulasi cicilan.'
+        notes: 'Melampirkan sertifikat BNSP TIFO Madya, CCNA Kominfo, dan riwayat pengalaman lapangan Wahana Era Sejahtera & Telkom.',
+        jobUrl: 'https://kalibrr.com',
+        background: 'Pengawasan distribusi kabel optik backbone DWDM/FTTx, manajemen ODP/ODC, dan optimalisasi redaman dBm.'
+    },
+    {
+        id: 'app-006',
+        company: 'Klien UMKM Retail (Freelance Project)',
+        position: 'Frontend Landing Page & Web Slicing',
+        jobType: 'Freelance / Remote',
+        location: 'Remote (Surabaya)',
+        platform: 'Direct Email',
+        salaryRange: 'Rp 4.500.000 / Proyek',
+        appliedDate: new Date(Date.now() - 86400000 * 4).toISOString().split('T')[0],
+        cvVersion: 'cv_frontend',
+        status: 'offering',
+        interviewDate: '',
+        notes: 'Pekerjaan sampingan / freelance: Slicing Figma ke Tailwind CSS dan katalog produk WhatsApp.',
+        jobUrl: '',
+        background: 'Proyek freelance web UMKM jalaninweb.site di sela waktu luang operasional.'
     }
 ];
 
@@ -250,11 +284,17 @@ class CareerStore {
 
     loadApplications() {
         try {
+            const hasMigrated = localStorage.getItem('aamon_career_v3_network');
             const raw = localStorage.getItem('aamon_applications') || localStorage.getItem('arkin_applications');
-            if (raw) return JSON.parse(raw);
+            if (raw && hasMigrated) {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            }
         } catch (e) {
             console.error("Failed to load applications:", e);
         }
+        localStorage.setItem('aamon_career_v3_network', 'true');
+        localStorage.setItem('aamon_applications', JSON.stringify(INITIAL_APPLICATIONS));
         return [...INITIAL_APPLICATIONS];
     }
 
@@ -410,10 +450,24 @@ function getStatusBadge(status) {
 
 function getCvVersionBadge(cvId) {
     const found = CV_PROFILES.find(c => c.id === cvId);
-    if (!found) return `<span class="px-2 py-0.5 text-[11px] rounded bg-stone-800 text-stone-300 font-mono">CV Standar</span>`;
+    if (!found) {
+        if (cvId === 'cv_frontend') return `<span class="inline-flex items-center whitespace-nowrap badge-nowrap gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border border-stone-700 bg-stone-800/80 text-stone-300"><strong class="text-white">CV-DEV</strong> <span class="text-stone-500">•</span> Frontend</span>`;
+        if (cvId === 'cv_fullstack' || cvId === 'cv_general') return `<span class="inline-flex items-center whitespace-nowrap badge-nowrap gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border border-stone-700 bg-stone-800/80 text-stone-300"><strong class="text-white">CV-TECH</strong> <span class="text-stone-500">•</span> IT Tech</span>`;
+        if (cvId === 'cv_scraping') return `<span class="inline-flex items-center whitespace-nowrap badge-nowrap gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border border-stone-700 bg-stone-800/80 text-stone-300"><strong class="text-white">CV-AUTO</strong> <span class="text-stone-500">•</span> Scraping</span>`;
+        return `<span class="inline-flex items-center whitespace-nowrap badge-nowrap px-2 py-0.5 text-[11px] rounded bg-stone-800 text-stone-300 font-mono">CV Standar</span>`;
+    }
 
-    return `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono font-medium rounded border border-stone-700 bg-stone-800/80 text-stone-200" title="${found.title}">
-        <strong class="text-white">${found.code}</strong> • ${found.title.split('&')[0].trim()}
+    const shortTitle = found.title.split('&')[0].replace('(Freelance)', '').trim();
+    const isPri = found.isPrimary;
+    const badgeClass = isPri 
+        ? 'border-emerald-500/40 bg-emerald-950/40 text-emerald-200' 
+        : 'border-stone-700 bg-stone-800/90 text-stone-200';
+
+    return `<span class="inline-flex items-center whitespace-nowrap badge-nowrap gap-1.5 px-2.5 py-0.5 text-[11px] font-mono font-medium rounded border ${badgeClass}" title="${found.title}">
+        ${isPri ? '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>' : ''}
+        <strong class="${isPri ? 'text-emerald-300' : 'text-white'}">${found.code}</strong>
+        <span class="text-stone-500">•</span>
+        <span>${shortTitle}</span>
     </span>`;
 }
 
@@ -565,7 +619,7 @@ function renderTracker() {
                 <div class="font-semibold text-stone-200 text-xs sm:text-sm">${app.position}</div>
                 ${app.salaryRange ? `<div class="font-mono text-[11px] text-stone-400 mt-0.5">${app.salaryRange}</div>` : ''}
             </td>
-            <td class="py-3.5 px-4">
+            <td class="py-3.5 px-4 whitespace-nowrap">
                 ${getCvVersionBadge(app.cvVersion)}
             </td>
             <td class="py-3.5 px-4 font-mono text-xs text-stone-300">
@@ -659,15 +713,21 @@ async function renderCvVault() {
         const fileSizeText = hasFile ? (storedFile.size / 1024).toFixed(1) + ' KB' : 'Belum diunggah';
         const fileDateText = hasFile ? formatDateIndo(new Date(storedFile.lastModified).toISOString().split('T')[0]) : '-';
         const usageCount = store.applications.filter(a => a.cvVersion === prof.id).length;
+        const isPri = prof.isPrimary;
 
         return `
-            <div class="clean-card p-5 sm:p-6 flex flex-col justify-between">
+            <div class="clean-card p-5 sm:p-6 flex flex-col justify-between ${isPri ? 'border-emerald-500/50 relative bg-gradient-to-b from-stone-900/90 to-stoneCard' : ''}">
+                ${isPri ? `
+                    <div class="absolute -top-3 right-5 bg-emerald-400 text-stone-950 text-[10px] font-mono font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow-md tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-star text-[9px]"></i> FOKUS UTAMA KARIR
+                    </div>
+                ` : ''}
                 <div>
                     <div class="flex items-start justify-between gap-2">
-                        <span class="font-mono text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-stone-800 text-white border border-stone-700">
+                        <span class="font-mono text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded ${isPri ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40' : 'bg-stone-800 text-white border border-stone-700'}">
                             ${prof.code} // ${prof.title}
                         </span>
-                        <span class="font-mono text-[11px] text-stone-400 bg-stone-900 border border-stone-800 px-2 py-0.5 rounded">
+                        <span class="font-mono text-[11px] text-stone-400 bg-stone-900 border border-stone-800 px-2 py-0.5 rounded whitespace-nowrap">
                             Digunakan: <strong class="text-white">${usageCount}x</strong>
                         </span>
                     </div>
@@ -696,18 +756,22 @@ async function renderCvVault() {
                     </div>
                 </div>
 
-                <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2">
+                <div class="mt-5 pt-4 border-t border-stone-800 flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                    <button type="button" onclick="openAtsResumeModal('${prof.id}')" class="py-2 px-3 text-xs font-bold rounded ${isPri ? 'bg-white hover:bg-stone-200 text-stone-950' : 'bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700'} transition flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm" title="Lihat & Cetak Format ATS CV">
+                        <i class="fa-solid fa-file-invoice text-xs"></i>
+                        <span>Format ATS</span>
+                    </button>
                     <input type="file" id="fileInput_${prof.id}" class="hidden" accept=".pdf,.doc,.docx" onchange="handleCvFileUpload('${prof.id}', this)">
-                    <button onclick="document.getElementById('fileInput_${prof.id}').click()" class="flex-1 py-2 px-3 text-xs font-semibold rounded bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 transition flex items-center justify-center gap-1.5">
+                    <button type="button" onclick="document.getElementById('fileInput_${prof.id}').click()" class="flex-1 py-2 px-3 text-xs font-semibold rounded bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 transition flex items-center justify-center gap-1.5 whitespace-nowrap">
                         <i class="fa-solid fa-arrow-up-from-bracket text-[10px]"></i>
-                        <span>${hasFile ? 'Ganti File' : 'Unggah CV'}</span>
+                        <span>${hasFile ? 'Ganti File' : 'Unggah File'}</span>
                     </button>
                     ${hasFile ? `
-                        <button onclick="downloadVaultFile('${prof.id}')" class="py-2 px-3 text-xs font-semibold rounded bg-white text-stone-950 hover:bg-stone-200 transition flex items-center justify-center gap-1.5" title="Unduh File">
+                        <button type="button" onclick="downloadVaultFile('${prof.id}')" class="py-2 px-3 text-xs font-semibold rounded bg-stone-800 text-stone-200 hover:bg-stone-700 border border-stone-700 transition flex items-center justify-center gap-1.5 whitespace-nowrap" title="Unduh File">
                             <i class="fa-solid fa-download text-[10px]"></i>
                             <span>Unduh</span>
                         </button>
-                        <button onclick="deleteVaultFilePrompt('${prof.id}')" class="p-2 text-xs rounded hover:bg-red-500/20 text-stone-400 hover:text-red-400 transition" title="Hapus Berkas">
+                        <button type="button" onclick="deleteVaultFilePrompt('${prof.id}')" class="p-2 text-xs rounded hover:bg-red-500/20 text-stone-400 hover:text-red-400 transition" title="Hapus Berkas">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     ` : ''}
@@ -717,6 +781,7 @@ async function renderCvVault() {
     }));
 
     container.innerHTML = cardsHtml.join('');
+    renderLearningRoadmap();
 }
 
 // Render Calendar View
@@ -1330,6 +1395,568 @@ function handleImportJSON(inputEl) {
         }
     };
     reader.readAsText(file);
+}
+
+// --- 6. ATS Resume Generator & Real Credentials Data ---
+const ATS_RESUME_DATA = {
+    name: "ARKIN MELVIAN DWIANSYAH, A.Md.",
+    pronouns: "He/Him",
+    title: "Network Engineer | NOC Specialist | IT Infrastructure & Support",
+    location: "Surabaya, Jawa Timur, Indonesia",
+    email: "Kontak melalui LinkedIn / Portal",
+    linkedin: "https://www.linkedin.com/in/arkinmelviansyah/",
+    github: "https://github.com/ArkinMelvianDwiansyah",
+    portfolio: "https://jalaninweb.site",
+
+    summary: "IT Operations and Network Operations Center (NOC) professional dengan pengalaman lebih dari 4 tahun dalam mendukung operasional jaringan ISP enterprise serta infrastruktur telekomunikasi kritis pada project Telkom Indonesia (PT Infomedia Solusi Humanika). Memiliki keahlian teruji dalam 24/7 real-time network monitoring, incident handling, SLA & TTR performance tracking, analisis topologi jaringan, dan root cause analysis (RCA). Berpengalaman langsung dengan multi-vendor network hardware (Cisco, Mikrotik, Huawei, ZTE) serta jaringan optik FTTH/FTTx (splicing fiber optic, ODP/ODC, OTDR/OPM). Memegang lisensi sertifikasi CCNA Network Engineer, Cisco DevNet Associate, Cisco Network Security, Google Cyber Security, Mikrotik Aguna, dan BNSP TIFO Madya. Berorientasi pada disiplin operasional, pemecahan masalah teknis terstruktur, dan performa SLA tinggi.",
+
+    skills: [
+        {
+            category: "Routing, Switching & Network Protocols",
+            items: "OSPF (Single/Multi-area), BGP Peering, Static Routing, VLAN (802.1Q), Inter-VLAN Routing, STP/RSTP, EtherChannel/LACP, Subnetting IPv4/IPv6 CIDR, NAT/PAT, DHCP, DNS, VPN (IPsec, PPTP/L2TP), QoS, High Availability."
+        },
+        {
+            category: "Multi-Vendor Network Hardware",
+            items: "Cisco Catalyst Switches & ISR/ASR Routers (Cisco IOS / IOS-XE), Mikrotik RouterBOARD & Cloud Core Router (CCR, CRS, RB750 series), Huawei Enterprise Switches & OLT, ZTE GPON/EPON Optical Equipment."
+        },
+        {
+            category: "NOC Operations & Incident Management",
+            items: "Real-time ISP 24/7 Network Monitoring, Incident Ticket Handling, SLA & TTR Performance Tracking, Root Cause Analysis (RCA), Multi-divisional Coordination (CCAN, DSO, EOS, Field Engineers), SOP Compliance & Ticket Closure."
+        },
+        {
+            category: "Fiber Optic & Telecom Infrastructure",
+            items: "FTTH / FTTx Optical Network Topology, Fiber Fusion Splicing, Optical Distribution Point (ODP) & Optical Distribution Cabinet (ODC), Optical Time Domain Reflectometer (OTDR) Trace Analysis, Optical Power Meter (OPM) Loss Measurement, IndiHome Deployment."
+        },
+        {
+            category: "Network Security & Cyber Defense",
+            items: "Cisco Network Security Certified, Google Cyber Security Certified, Access Control Lists (ACLs), Firewall Filtering & NAT Rules, Traffic Anomaly Detection, Vulnerability Mitigation, Security Incident Response."
+        },
+        {
+            category: "Network Automation & Diagnostics",
+            items: "Cisco DevNet Associate, Python Scripting for Automation (Paramiko, Netmiko, REST APIs), Wireshark Packet Inspection, PRTG Network Monitor, Zabbix, Cisco Packet Tracer, EVE-NG, GNS3."
+        },
+        {
+            category: "Web & Freelance Development (Secondary Track)",
+            items: "HTML5, CSS3, Tailwind CSS, JavaScript ES6+, React.js, UI/UX Slicing to Code, Linux VPS & Nginx Server, 28 Live Production Web Systems (jalaninweb.site)."
+        }
+    ],
+
+    experience: [
+        {
+            role: "IT NOC Helpdesk & Operations Specialist (Agent – Telkom Infrastruktur Project)",
+            company: "PT Infomedia Solusi Humanika (ISH) · Assigned to Telkom Indonesia",
+            type: "Contract · On-site",
+            period: "Sep 2022 – Sekarang (4+ Tahun)",
+            location: "Surabaya, Jawa Timur, Indonesia",
+            points: [
+                "Melakukan pemantauan operasional jaringan ISP Telkom Indonesia secara real-time 24/7 guna memastikan service availability optimal, kepatuhan SLA korporat, dan kenyamanan pelanggan Telkom Corporate.",
+                "Menangani manajemen insiden jaringan harian untuk klien enterprise Telkom, melakukan isolasi gangguan, verifikasi topologi jaringan, dan identifikasi akar masalah (root cause identification).",
+                "Berkoordinasi aktif dengan divisi lintas fungsi (CCAN, DSO, EOS) dan teknisi lapangan untuk mempercepat eskalasi serta penyelesaian tiket gangguan (TTR).",
+                "Memverifikasi progres perbaikan lapangan, memvalidasi laporan teknis pemulihan kabel optik dan perangkat CPE pelanggan, serta memastikan penutupan tiket (ticket closure) sesuai SOP standar Telkom.",
+                "Memastikan seluruh insiden ditangani dalam koridor target SLA & TTR yang ketat pada ratusan laporan pelanggan enterprise per bulan."
+            ]
+        },
+        {
+            role: "Frontend Web Developer",
+            company: "Conecworld",
+            type: "Contract / Hybrid",
+            period: "Mar 2022 – Jun 2022 (4 Bulan)",
+            location: "Surabaya, Jawa Timur, Indonesia",
+            points: [
+                "Bertanggung jawab melakukan slicing desain UI/UX ke dalam kode antarmuka web menggunakan HTML, CSS, JavaScript, LESS, jQuery, Gulp, Node.js, dan Twitter Bootstrap.",
+                "Membuat design system dan pedoman style modular untuk kebutuhan efisiensi slicing design to code.",
+                "Berkoordinasi erat dengan Tech Division, CEO, dan Backend Developer dalam deliveri fitur proyek web aplikasi."
+            ]
+        },
+        {
+            role: "Telecommunications Technician",
+            company: "PT. Wahana Era Sejahtera",
+            type: "Internship",
+            period: "Jan 2021 – Feb 2021 (2 Bulan)",
+            location: "Malang, Jawa Timur, Indonesia",
+            points: [
+                "Bertugas melakukan penyambungan kabel fiber optik (fusion splicing) dan pengukuran redaman konektor optik di lapangan.",
+                "Mendukung manajemen pengadaan logistik material fiber optic FTTH (Fiber to the Home).",
+                "Melakukan instalasi dan aktivasi fisik jaringan baru pelanggan IndiHome Telkom.",
+                "Menyusun perencanaan titik sebaran ODP (Optical Distribution Point) baru dan berkoordinasi langsung dengan teknisi dan Supervisor Telkom."
+            ]
+        }
+    ],
+
+    education: [
+        {
+            institution: "Politeknik Negeri Malang (Polinema)",
+            degree: "Diploma III (A.Md - Ahli Madya), Teknik Telekomunikasi",
+            period: "Jul 2018 – Okt 2021",
+            grade: "IPK: 3.44 / 4.00 (Predikat Sangat Memuaskan)",
+            notes: "Fokus akademik: Sistem Komunikasi Data, Jaringan Komputer & Protokol IP, Sistem Transmisi Serat Optik, Rekayasa Gelombang Mikro, dan Telekomunikasi Seluler."
+        }
+    ],
+
+    certifications: [
+        {
+            name: "Cyber Security by Google",
+            issuer: "Digital Talent Scholarship — BLSDM Komdigi",
+            issued: "Okt 2025",
+            id: "19511087840-679/FGA/BLSDM.Komdigi/2025",
+            badge: "Google Certified"
+        },
+        {
+            name: "CCNA Network Engineer",
+            issuer: "Digital Talent Scholarship — Kominfo & Cisco",
+            issued: "Jun 2024",
+            id: "1987849840-1571",
+            badge: "Cisco Certified"
+        },
+        {
+            name: "DevNet Associate (Professional Academy)",
+            issuer: "Digital Talent Scholarship — Kominfo & Cisco",
+            issued: "Mar 2024",
+            id: "1987298840-402",
+            badge: "Cisco DevNet"
+        },
+        {
+            name: "Network Security by CISCO",
+            issuer: "Digital Talent Scholarship — BLSDM Kominfo",
+            issued: "Okt 2024",
+            id: "1989404840-771/PROA/BLSDM.Kominfo/2024",
+            badge: "Cisco NetSec"
+        },
+        {
+            name: "Mikrotik Certified (Aguna Course)",
+            issuer: "Aguna Course — Udemy",
+            issued: "Apr 2026 – Des 2030",
+            id: "UC-46d086fc-cc6c-41c1-bca3-dc165da94688",
+            badge: "Mikrotik RouterOS"
+        },
+        {
+            name: "IT Support Professional",
+            issuer: "Coursera",
+            issued: "Nov 2023",
+            id: "PTXXSVSS8KSR",
+            badge: "IT Support"
+        },
+        {
+            name: "Teknik Instalasi Fiber Optic Madya (TIFO MADYA)",
+            issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+            issued: "Des 2021",
+            id: "61100.3522.00.5.0006907.2021",
+            badge: "BNSP Fiber Optic"
+        }
+    ],
+
+    organizations: [
+        {
+            role: "Anggota Aktif (1 Periode)",
+            org: "Himpunan Mahasiswa Elektro (HME) Politeknik Negeri Malang",
+            period: "Mei 2018 – Jun 2019"
+        }
+    ]
+};
+
+// Cover Letter Templates for Multiple Job Profiles
+const COVER_LETTER_TEMPLATES = {
+    network: `Halo Tim HRD / Recruitment Team,
+
+Perkenalkan, saya Arkin Melvian Dwiansyah, A.Md., seorang profesional di bidang Network Operations Center (NOC) dan IT Infrastructure dengan pengalaman lebih dari 4 tahun dalam pemeliharaan dan pemantauan jaringan ISP enterprise (Project Telkom Infrastruktur).
+
+Saya tertarik untuk mengajukan diri pada posisi [NAMA POSISI: Network Engineer / NOC Specialist] di [NAMA PERUSAHAAN]. Berdasarkan kualifikasi yang dibutuhkan:
+• Saya memegang sertifikasi CCNA Network Engineer, Cisco DevNet Associate, Cisco Network Security, serta Google Cyber Security.
+• Berpengalaman langsung dalam monitoring jaringan ISP real-time 24/7, penanganan incident ticket berstandar SLA & TTR, investigasi topologi jaringan, serta root cause identification.
+• Mahir konfigurasi perangkat multi-vendor (Cisco IOS, Mikrotik RouterOS, Huawei, ZTE) dan tools monitoring/analisis (Wireshark, PRTG, Zabbix).
+• Berpengalaman dalam infrastruktur optik FTTH/FTTx (TIFO Madya BNSP), terminasi ODP/ODC, pengukuran redaman OTDR/OPM, dan koordinasi tim teknisi lintas divisi (CCAN/DSO/EOS).
+
+LinkedIn: https://www.linkedin.com/in/arkinmelviansyah/
+Portfolio Hub & Tracker: https://jalaninweb.site/career/
+GitHub: https://github.com/ArkinMelvianDwiansyah
+
+Terlampir berkas CV saya untuk ditinjau lebih lanjut. Saya sangat antusias untuk berdiskusi lebih mendalam mengenai bagaimana keahlian saya dapat berkontribusi menjaga stabilitas jaringan di perusahaan Anda. Terima kasih!`,
+
+    security: `Halo Tim Rekrutmen / IT Security Division,
+
+Saya Arkin Melvian Dwiansyah, IT Professional bersertifikasi Cyber Security by Google dan Network Security by CISCO, dengan latar belakang kuat di operasional jaringan ISP & Enterprise (4+ tahun di Project Telkom Infrastruktur).
+
+Saya bermaksud mengajukan lamaran untuk posisi [NAMA POSISI: Network / Cyber Security Specialist] di [NAMA PERUSAHAAN]. Keahlian saya mencakup investigasi anomali paket jaringan dengan Wireshark, perancangan ACL & firewall filtering rules, mitigasi serangan siber, serta manajemen insiden berbasis SLA.
+
+LinkedIn: https://www.linkedin.com/in/arkinmelviansyah/
+Portfolio Hub: https://jalaninweb.site/career/
+
+Besar harapan saya untuk dapat memaparkan kualifikasi teknis ini lebih lanjut dalam sesi wawancara. Terima kasih atas perhatian Bapak/Ibu.`,
+
+    support: `Halo Tim HRD / IT Management,
+
+Perkenalkan, saya Arkin Melvian Dwiansyah, lulusan D3 Teknik Telekomunikasi Politeknik Negeri Malang (IPK 3.44) dan pemegang sertifikasi IT Support by Coursera serta CISCO Networking.
+
+Saya mengajukan diri untuk posisi [NAMA POSISI: IT Support / Helpdesk Specialist] di [NAMA PERUSAHAAN]. Berbekal pengalaman menangani ratusan trouble ticket jaringan dan operasional komputer harian, saya terbiasa melakukan troubleshooting hardware, instalasi LAN/WLAN kantor, konfigurasi OS Windows/Linux, serta pelayanan pengguna dengan respon cepat dan komunikatif.
+
+LinkedIn: https://www.linkedin.com/in/arkinmelviansyah/
+Portfolio Hub: https://jalaninweb.site/career/
+
+Terlampir berkas lamaran lengkap saya. Terima kasih!`,
+
+    web: `Halo Tim Rekrutmen / Client,
+
+Saya Arkin Melvian Dwiansyah, Web Developer yang berpengalaman merancang 28+ aplikasi web dan landing page modern berperforma tinggi (PageSpeed 95+, Tailwind CSS, JavaScript ES6+, zero bloated dependencies).
+
+Saya mengajukan diri untuk kebutuhan proyek / posisi [NAMA POSISI: Frontend Web Developer] di [NAMA PERUSAHAAN / CLIENT]. Portofolio live dan demo sistem nyata saya dapat diakses langsung di:
+https://jalaninweb.site (Showcase 28 Proyek Live)
+GitHub: https://github.com/ArkinMelvianDwiansyah
+
+Terima kasih atas waktu dan perhatian Anda!`
+};
+
+function selectCoverLetterTemplate(type) {
+    const el = document.getElementById('coverLetterText');
+    if (!el || !COVER_LETTER_TEMPLATES[type]) return;
+    el.value = COVER_LETTER_TEMPLATES[type];
+
+    document.querySelectorAll('.cover-letter-tab').forEach(btn => {
+        if (btn.getAttribute('data-cl-type') === type) {
+            btn.classList.add('bg-white', 'text-stone-950', 'font-bold');
+            btn.classList.remove('bg-stone-900', 'text-stone-400');
+        } else {
+            btn.classList.remove('bg-white', 'text-stone-950', 'font-bold');
+            btn.classList.add('bg-stone-900', 'text-stone-400');
+        }
+    });
+}
+
+// Learning Roadmap State & Persistence
+const ROADMAP_DEFAULT = [
+    { id: 'ccna_done', title: 'Cisco CCNA Network Engineer (200-301)', desc: 'Routing, Switching, IP Services, Network Security, Automation fundamentals.', target: 'Lulus & Bersertifikat (Jun 2024)', done: true },
+    { id: 'devnet_done', title: 'Cisco DevNet Associate (200-901)', desc: 'Network automation, REST APIs, Python scripting, Netmiko/Paramiko, Cisco platforms.', target: 'Lulus & Bersertifikat (Mar 2024)', done: true },
+    { id: 'cisco_sec_done', title: 'Cisco Network Security', desc: 'Firewall rules, ACLs, secure routing, VPN tunnels, threat mitigation.', target: 'Lulus & Bersertifikat (Okt 2024)', done: true },
+    { id: 'google_sec_done', title: 'Cyber Security by Google', desc: 'SIEM, network forensics, packet analysis, incident response, defense in depth.', target: 'Lulus & Bersertifikat (Okt 2025)', done: true },
+    { id: 'tifo_done', title: 'BNSP TIFO Madya (Teknik Instalasi Fiber Optic)', desc: 'Fiber splicing, FTTx, ODP/ODC, OTDR loss measurement & restoration.', target: 'Lulus & Bersertifikat (Des 2021)', done: true },
+    { id: 'mikrotik_done', title: 'Mikrotik RouterOS (Aguna Course)', desc: 'Bandwidth management, queue tree, firewall nat, mangle, hotspot gateway.', target: 'Lulus & Bersertifikat (2026-2030)', done: true },
+    { id: 'ccnp_encor', title: 'CCNP Enterprise Core (ENCOR 350-401)', desc: 'Dual-stack enterprise routing (OSPF, BGP), SD-WAN, QoS, assurance, and network automation.', target: 'Target Q2 2027', done: false },
+    { id: 'mtcre_mtcine', title: 'Mikrotik MTCRE & MTCINE', desc: 'Advanced routing, multi-area OSPF, BGP peering, MPLS, VPLS, and traffic engineering.', target: 'Target Q3 2027', done: false },
+    { id: 'fortinet_nse', title: 'Fortinet NSE 4 (Network Security Professional)', desc: 'FortiGate firewall policy, SSL/IPsec VPN, SD-WAN rules, IPS, web filtering, and antivirus.', target: 'Target Q4 2027', done: false },
+    { id: 'juniper_jncia', title: 'Juniper JNCIA-Junos (JN0-104)', desc: 'Junos OS routing policies, CLI operations, firewall filters, and enterprise switching.', target: 'Target 2028', done: false },
+    { id: 'linux_rhcsa', title: 'Linux RHCSA / LPIC-1 (System & Network Admin)', desc: 'Red Hat Enterprise Linux system management, systemd, SSH, iptables/firewalld, network services.', target: 'Target 2028', done: false }
+];
+
+function getLearningRoadmap() {
+    try {
+        const raw = localStorage.getItem('aamon_learning_roadmap');
+        if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [...ROADMAP_DEFAULT];
+}
+
+function saveLearningRoadmap(items) {
+    localStorage.setItem('aamon_learning_roadmap', JSON.stringify(items));
+}
+
+function toggleRoadmapItem(id) {
+    const items = getLearningRoadmap();
+    const item = items.find(i => i.id === id);
+    if (item) {
+        item.done = !item.done;
+        saveLearningRoadmap(items);
+        renderLearningRoadmap();
+        showToastNotification('Progres Disimpan', `Status target "${item.title}" diperbarui.`);
+    }
+}
+
+function renderLearningRoadmap() {
+    const container = document.getElementById('learningRoadmapContainer');
+    if (!container) return;
+
+    const items = getLearningRoadmap();
+    const completed = items.filter(i => i.done).length;
+    const total = items.length;
+    const pct = Math.round((completed / total) * 100);
+
+    const progressEl = document.getElementById('roadmapProgressPercent');
+    const progressBar = document.getElementById('roadmapProgressBar');
+    if (progressEl) progressEl.textContent = `${completed}/${total} Selesai (${pct}%)`;
+    if (progressBar) progressBar.style.width = `${pct}%`;
+
+    container.innerHTML = items.map(item => `
+        <div class="p-3.5 rounded-lg border ${item.done ? 'border-emerald-500/40 bg-emerald-950/20' : 'border-stone-800 bg-stone-900/60'} flex items-start gap-3 transition">
+            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleRoadmapItem('${item.id}')" class="mt-1 w-4 h-4 rounded border-stone-700 bg-stone-900 text-emerald-400 focus:ring-0 cursor-pointer">
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                    <span class="font-bold text-xs ${item.done ? 'text-emerald-200 line-through opacity-80' : 'text-stone-200'}">
+                        ${item.title}
+                    </span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded ${item.done ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-stone-800 text-stone-400 border border-stone-700'}">
+                        ${item.target}
+                    </span>
+                </div>
+                <p class="text-[11px] text-stone-400 mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Reset Preset to Network & NOC Applications
+function resetToNetworkPresets() {
+    if (confirm('Muat ulang data contoh loker Network Engineer & NOC? Seluruh data lamaran saat ini akan diperbarui ke preset Network Engineer.')) {
+        store.applications = [...INITIAL_APPLICATIONS];
+        store.saveApplications();
+        renderMetricsHeader();
+        renderTracker();
+        renderCalendar();
+        showToastNotification('Preset Dimuat', 'Data contoh loker Network Engineer & NOC berhasil dimuat.');
+    }
+}
+
+// ATS Resume Modal & View Controller
+let currentAtsCvId = 'cv_network';
+
+function openAtsResumeModal(cvId = 'cv_network') {
+    currentAtsCvId = cvId;
+    const modal = document.getElementById('atsResumeModal');
+    if (!modal) return;
+
+    renderAtsResumeContent(cvId);
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeAtsResumeModal() {
+    const modal = document.getElementById('atsResumeModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function renderAtsResumeContent(cvId) {
+    const container = document.getElementById('atsResumePrintArea');
+    if (!container) return;
+
+    const d = ATS_RESUME_DATA;
+    const prof = CV_PROFILES.find(p => p.id === cvId) || CV_PROFILES[0];
+
+    container.innerHTML = `
+        <div class="ats-resume-sheet font-sans text-stone-900 bg-white p-6 sm:p-10 rounded-xl max-w-3xl mx-auto shadow-sm">
+            <!-- Header Section -->
+            <div class="border-b-2 border-stone-900 pb-4 text-center">
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-950 uppercase">${d.name}</h1>
+                <div class="text-sm font-bold text-stone-700 tracking-wide mt-1">${d.title}</div>
+                <div class="text-xs text-stone-600 mt-2 flex items-center justify-center gap-3 flex-wrap font-mono">
+                    <span>📍 ${d.location}</span>
+                    <span>•</span>
+                    <a href="${d.linkedin}" target="_blank" class="text-stone-900 underline font-semibold">LinkedIn Profile</a>
+                    <span>•</span>
+                    <a href="${d.github}" target="_blank" class="text-stone-900 underline font-semibold">GitHub</a>
+                    <span>•</span>
+                    <a href="${d.portfolio}" target="_blank" class="text-stone-900 underline font-semibold">Portfolio Hub</a>
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    RINGKASAN PROFESIONAL / PROFESSIONAL SUMMARY
+                </h2>
+                <p class="text-xs text-stone-800 leading-relaxed mt-2 text-justify">
+                    ${d.summary}
+                </p>
+            </div>
+
+            <!-- Core Competencies -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    KOMPETENSI INTI & KEAHLIAN TEKNIS (TECHNICAL SKILLS)
+                </h2>
+                <div class="mt-2 space-y-1.5 text-xs text-stone-800">
+                    ${d.skills.map(s => `
+                        <div>
+                            <strong class="text-stone-950 font-bold">${s.category}:</strong>
+                            <span class="text-stone-700"> ${s.items}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    PENGALAMAN KERJA PROFESIONAL (WORK EXPERIENCE)
+                </h2>
+                <div class="mt-3 space-y-4 text-xs">
+                    ${d.experience.map(e => `
+                        <div>
+                            <div class="flex items-start justify-between gap-2 flex-wrap">
+                                <div>
+                                    <div class="font-bold text-stone-950 text-sm">${e.role}</div>
+                                    <div class="font-semibold text-stone-700">${e.company}</div>
+                                </div>
+                                <div class="text-right font-mono text-[11px] text-stone-600">
+                                    <div>${e.period}</div>
+                                    <div class="italic">${e.location}</div>
+                                </div>
+                            </div>
+                            <ul class="list-disc list-inside mt-1.5 space-y-1 text-stone-700 leading-relaxed pl-1">
+                                ${e.points.map(pt => `<li>${pt}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    PENDIDIKAN FORMAL (EDUCATION)
+                </h2>
+                <div class="mt-2.5 space-y-2 text-xs">
+                    ${d.education.map(ed => `
+                        <div>
+                            <div class="flex items-start justify-between gap-2 flex-wrap">
+                                <span class="font-bold text-stone-950">${ed.institution}</span>
+                                <span class="font-mono text-[11px] text-stone-600">${ed.period}</span>
+                            </div>
+                            <div class="text-stone-800 font-semibold">${ed.degree} • <span class="font-bold text-stone-950">${ed.grade}</span></div>
+                            <div class="text-stone-600 text-[11px] mt-0.5">${ed.notes}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    LISENSI & SERTIFIKASI PROFESIONAL (LICENSES & CERTIFICATIONS)
+                </h2>
+                <div class="mt-2.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    ${d.certifications.map(c => `
+                        <div class="p-2 border border-stone-200 rounded bg-stone-50">
+                            <div class="font-bold text-stone-950">${c.name}</div>
+                            <div class="text-[11px] text-stone-600">${c.issuer} (${c.issued})</div>
+                            <div class="font-mono text-[10px] text-stone-500 mt-0.5 truncate">ID: ${c.id}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Organizations & Projects -->
+            <div class="mt-5">
+                <h2 class="text-xs font-bold font-mono uppercase tracking-wider text-stone-950 border-b border-stone-300 pb-1">
+                    ORGANISASI & PROYEK TAMBAHAN (ORGANIZATIONS & PROJECTS)
+                </h2>
+                <div class="mt-2 space-y-1 text-xs text-stone-800">
+                    <div>
+                        <strong class="text-stone-950">Himpunan Mahasiswa Elektro (HME) Politeknik Negeri Malang:</strong> Anggota Aktif (Mei 2018 – Jun 2019).
+                    </div>
+                    <div>
+                        <strong class="text-stone-950">Web & Automation Portofolio Showcase (jalaninweb.site):</strong> Mengembangkan 28 sistem web fungsional mencakup aplikasi kasir POS, booking system, kalkulator transaksi instan, dan multi-page corporate portals.
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function getAtsPlainText() {
+    const d = ATS_RESUME_DATA;
+    return `===================================================================
+${d.name}
+${d.title}
+Surabaya, Jawa Timur, Indonesia
+LinkedIn: ${d.linkedin}
+GitHub: ${d.github}
+Portfolio: ${d.portfolio}
+===================================================================
+
+PROFESSIONAL SUMMARY
+-------------------------------------------------------------------
+${d.summary}
+
+CORE TECHNICAL COMPETENCIES
+-------------------------------------------------------------------
+${d.skills.map(s => `• ${s.category}: ${s.items}`).join('\n')}
+
+PROFESSIONAL EXPERIENCE
+-------------------------------------------------------------------
+${d.experience.map(e => `
+${e.role.toUpperCase()}
+${e.company} | ${e.location}
+${e.period} (${e.type})
+${e.points.map(p => `  - ${p}`).join('\n')}
+`).join('')}
+
+EDUCATION
+-------------------------------------------------------------------
+${d.education.map(ed => `
+${ed.institution}
+${ed.degree} | ${ed.period}
+${ed.grade}
+${ed.notes}
+`).join('')}
+
+LICENSES & PROFESSIONAL CERTIFICATIONS
+-------------------------------------------------------------------
+${d.certifications.map(c => `• ${c.name} — ${c.issuer} (${c.issued}) [ID: ${c.id}]`).join('\n')}
+
+ORGANIZATIONS & PROJECTS
+-------------------------------------------------------------------
+• Himpunan Mahasiswa Elektro (HME) Politeknik Negeri Malang — Anggota Aktif (2018–2019)
+• 28+ Web Portfolios & Live Systems (jalaninweb.site) — Modern responsive apps with PageSpeed 95+
+===================================================================`;
+}
+
+function getAtsMarkdownText() {
+    const d = ATS_RESUME_DATA;
+    return `# ${d.name}
+**${d.title}**  
+📍 Surabaya, East Java, Indonesia | [LinkedIn](${d.linkedin}) | [GitHub](${d.github}) | [Portfolio](${d.portfolio})
+
+---
+
+## 🎯 Professional Summary
+${d.summary}
+
+---
+
+## 🛠️ Core Technical Competencies
+${d.skills.map(s => `- **${s.category}:** ${s.items}`).join('\n')}
+
+---
+
+## 💼 Work Experience
+${d.experience.map(e => `
+### ${e.role}
+**${e.company}** | *${e.location}* | \`${e.period}\` (\`${e.type}\`)
+${e.points.map(p => `- ${p}`).join('\n')}
+`).join('')}
+
+---
+
+## 🎓 Education
+${d.education.map(ed => `
+### ${ed.institution}
+*${ed.degree}* | \`${ed.period}\` | **${ed.grade}**  
+${ed.notes}
+`).join('')}
+
+---
+
+## 📜 Licenses & Certifications
+${d.certifications.map(c => `- **${c.name}** — ${c.issuer} (*${c.issued}*) \`ID: ${c.id}\``).join('\n')}
+
+---
+
+## 👥 Organizations & Projects
+- **Himpunan Mahasiswa Elektro (HME) Politeknik Negeri Malang:** Anggota Aktif (2018–2019)
+- **Web & Automation Portfolio (jalaninweb.site):** 28 Live web applications, POS systems, and booking engines
+`;
+}
+
+function copyAtsPlainText() {
+    copyTextToClipboard(getAtsPlainText(), 'CV Format ATS Plain Text berhasil disalin!');
+}
+
+function copyAtsMarkdown() {
+    copyTextToClipboard(getAtsMarkdownText(), 'CV Format Markdown berhasil disalin!');
+}
+
+function printAtsResume() {
+    window.print();
 }
 
 function copyTextToClipboard(text, successMsg = 'Teks berhasil disalin!') {

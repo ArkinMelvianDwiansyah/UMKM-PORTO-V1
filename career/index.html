@@ -305,10 +305,11 @@
 
                         <select id="filterCvVersion" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
                             <option value="all">Semua Versi CV</option>
-                            <option value="cv_frontend">CV-A: Frontend</option>
-                            <option value="cv_fullstack">CV-B: Fullstack</option>
-                            <option value="cv_scraping">CV-C: Scraping</option>
-                            <option value="cv_general">CV-D: WordPress / Tech</option>
+                            <option value="cv_network">CV-NET: Network & NOC (Utama)</option>
+                            <option value="cv_security">CV-SEC: Cyber Security</option>
+                            <option value="cv_support">CV-TECH: IT Support</option>
+                            <option value="cv_frontend">CV-DEV: Frontend (Freelance)</option>
+                            <option value="cv_scraping">CV-AUTO: Scraping (Freelance)</option>
                         </select>
 
                         <select id="filterPlatform" class="bg-stone-900 border border-stone-800 text-xs rounded-lg px-3 py-2 text-stone-300 focus:outline-none focus:border-stone-600">
@@ -322,14 +323,20 @@
                         </select>
                     </div>
 
-                    <!-- Display Mode Toggle -->
-                    <div class="p-1 bg-stone-900 border border-stone-800 rounded-lg flex items-center self-end md:self-auto shrink-0">
-                        <button type="button" id="btnViewTable" onclick="setTrackerDisplayMode('table')" class="px-2.5 py-1 text-xs font-semibold rounded bg-white text-stone-950" title="Tampilan Tabel">
-                            <i class="fa-solid fa-table-list"></i>
+                    <!-- Display Mode Toggle & Reset Preset Button -->
+                    <div class="flex items-center gap-2 self-end md:self-auto shrink-0">
+                        <button type="button" onclick="resetToNetworkPresets()" class="p-2 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white border border-stone-800 text-xs transition flex items-center gap-1.5" title="Muat Ulang Contoh Loker Network & NOC">
+                            <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                            <span class="hidden xl:inline text-[11px] font-mono">Preset Network</span>
                         </button>
-                        <button type="button" id="btnViewKanban" onclick="setTrackerDisplayMode('kanban')" class="px-2.5 py-1 text-xs font-semibold rounded bg-stone-900 text-stone-400 hover:text-white" title="Tampilan Kanban Board">
-                            <i class="fa-solid fa-table-columns"></i>
-                        </button>
+                        <div class="p-1 bg-stone-900 border border-stone-800 rounded-lg flex items-center">
+                            <button type="button" id="btnViewTable" onclick="setTrackerDisplayMode('table')" class="px-2.5 py-1 text-xs font-semibold rounded bg-white text-stone-950" title="Tampilan Tabel">
+                                <i class="fa-solid fa-table-list"></i>
+                            </button>
+                            <button type="button" id="btnViewKanban" onclick="setTrackerDisplayMode('kanban')" class="px-2.5 py-1 text-xs font-semibold rounded bg-stone-900 text-stone-400 hover:text-white" title="Tampilan Kanban Board">
+                                <i class="fa-solid fa-table-columns"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -339,13 +346,13 @@
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="border-b border-stone-800 bg-stone-900/80 font-mono text-xs uppercase tracking-wider text-stone-400">
-                                    <th class="py-3 px-4">Tgl Apply</th>
+                                    <th class="py-3 px-4 whitespace-nowrap">Tgl Apply</th>
                                     <th class="py-3 px-4">Perusahaan & Lokasi</th>
                                     <th class="py-3 px-4">Posisi & Gaji</th>
-                                    <th class="py-3 px-4">Versi CV</th>
-                                    <th class="py-3 px-4">Platform</th>
-                                    <th class="py-3 px-4">Status & Agenda</th>
-                                    <th class="py-3 px-4 text-right">Aksi</th>
+                                    <th class="py-3 px-4 whitespace-nowrap">Versi CV</th>
+                                    <th class="py-3 px-4 whitespace-nowrap">Platform</th>
+                                    <th class="py-3 px-4 whitespace-nowrap">Status & Agenda</th>
+                                    <th class="py-3 px-4 text-right whitespace-nowrap">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="applicationTableBody" class="divide-y divide-stone-800/60 text-sm">
@@ -520,31 +527,198 @@
             <!-- VIEW 3: VAULT CV MULTI-VERSI & DATA PENTING                   -->
             <!-- ============================================================== -->
             <section id="cvVaultViewPanel" class="hidden space-y-8">
-                <div class="border-b border-stoneBorder pb-5">
-                    <span class="font-mono text-xs uppercase tracking-widest text-stone-400 font-bold">MULTI-ROLE TAILORED CVS</span>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">Vault CV & Berkas Penting (Beda Loker, Beda CV)</h2>
-                    <p class="text-xs sm:text-sm text-stone-400 mt-1">
-                        Simpan dan unduh berkas CV PDF spesifik untuk tiap kategori pekerjaan. Seluruh file tersimpan secara privat & aman langsung di browser Anda menggunakan IndexedDB.
-                    </p>
+                <!-- Header & Executive Direction Banner -->
+                <div class="border-b border-stoneBorder pb-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-0.5 rounded">
+                                    ★ FOKUS KARIR UTAMA: NETWORK & NOC
+                                </span>
+                                <span class="font-mono text-xs text-stone-400">Arkin Melvian Dwiansyah, A.Md.</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-white">Vault CV Multi-Versi & Pusat Kredensial</h2>
+                            <p class="text-xs sm:text-sm text-stone-400 mt-1 max-w-3xl leading-relaxed">
+                                Jalur karir utama difokuskan pada <strong class="text-stone-200">Network Engineer & NOC Specialist</strong> (Cisco CCNA, DevNet, Cisco NetSec, Google CyberSec, Mikrotik & Fiber Optic). Jalur Web Development & Otomasi dialokasikan untuk pekerjaan sekunder / freelance.
+                            </p>
+                        </div>
+
+                        <!-- Quick Actions Header -->
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button type="button" onclick="openAtsResumeModal('cv_network')" class="py-2.5 px-4 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-stone-950 font-bold text-xs transition shadow-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-invoice text-sm"></i>
+                                <span>Buka CV ATS Network</span>
+                            </button>
+                            <button type="button" onclick="copyAtsPlainText()" class="py-2.5 px-3.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 text-xs font-semibold transition flex items-center gap-1.5" title="Salin format teks ATS langsung ke clipboard">
+                                <i class="fa-regular fa-copy text-xs"></i>
+                                <span>Salin Teks ATS</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- CV Profiles Cards Grid -->
-                <div id="cvProfilesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Populated dynamically by JS -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-mono text-xs uppercase tracking-wider text-stone-400 font-bold">5 Kategori CV Spesifik</span>
+                        <span class="text-xs text-stone-500 font-mono">Beda Loker = Beda CV & Penekanan Portofolio</span>
+                    </div>
+                    <div id="cvProfilesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Populated dynamically by JS -->
+                    </div>
                 </div>
 
-                <!-- Quick Copy Hub: Link & Templates -->
+                <!-- Verified Network Credentials & Multi-Vendor Equipment Matrix -->
+                <div class="clean-card p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-800 pb-4">
+                        <div>
+                            <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-bold">VERIFIED LICENSES & CERTIFICATIONS</span>
+                            <h3 class="text-lg font-bold text-white mt-0.5">7 Lisensi & Sertifikasi Resmi Terverifikasi</h3>
+                            <p class="text-xs text-stone-400 mt-0.5">Sertifikasi resmi Digital Talent Scholarship, Google, CISCO, Aguna Course, Coursera, dan BNSP.</p>
+                        </div>
+                        <a href="https://www.linkedin.com/in/arkinmelviansyah/details/certifications/" target="_blank" rel="noopener noreferrer" class="py-2 px-3.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-800 text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <i class="fa-brands fa-linkedin text-xs text-blue-400"></i>
+                            <span>Verifikasi di LinkedIn</span>
+                        </a>
+                    </div>
+
+                    <!-- 7 Certifications List Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 font-sans">
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>BLSDM Komdigi (2025)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">Cyber Security by Google</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: 19511087840-679/FGA/BLSDM.Komdigi/2025">ID: 19511087840-679/FGA/2025</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>Kominfo & CISCO (2024)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">CCNA Network Engineer</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: 1987849840-1571">ID: 1987849840-1571</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>CISCO Professional (2024)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">DevNet Associate (Automation)</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: 1987298840-402">ID: 1987298840-402</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>BLSDM Kominfo (2024)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">Network Security by CISCO</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: 1989404840-771/PROA/2024">ID: 1989404840-771/PROA/2024</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>Aguna Course (2026-2030)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">Mikrotik Udemy by Aguna Course</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: UC-46d086fc-cc6c-41c1-bca3-dc165da94688">ID: UC-46d086fc-cc6c-41c1...</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>Coursera (2023)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">IT Support Professional</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="Code: PTXXSVSS8KSR">Verify Code: PTXXSVSS8KSR</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>BNSP (2021)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Verified</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">TIFO Madya (Fiber Optic)</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono truncate" title="ID: 61100.3522.00.5.0006907.2021">ID: 61100.3522.00.5.0006907</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>Polinema (2018-2021)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">IPK: 3.44</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">D3 Teknik Telekomunikasi</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono">Gelar: A.Md (Ahli Madya)</div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg border border-stone-800 bg-stone-900/60">
+                            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400 mb-1">
+                                <span>Telkom Project (4+ Thn)</span>
+                                <span class="bg-emerald-500/10 text-emerald-300 px-1.5 py-0.2 rounded text-[10px]">Active</span>
+                            </div>
+                            <div class="font-bold text-xs text-white">IT NOC Helpdesk & ISP</div>
+                            <div class="text-[10px] text-stone-400 mt-1 font-mono">PT Infomedia Solusi Humanika</div>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Device Hardware Support Chips -->
+                    <div class="pt-4 border-t border-stone-800">
+                        <div class="text-xs font-mono uppercase text-stone-400 font-bold mb-2.5">Perangkat & Tools Jaringan yang Dikuasai:</div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-server text-stone-400"></i> Cisco IOS & Catalyst</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-stone-400"></i> Mikrotik RouterOS (CCR/RB)</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-microchip text-stone-400"></i> Huawei OLT / ONT</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-satellite-dish text-stone-400"></i> ZTE GPON ONU</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-bolt text-stone-400"></i> Fusion Splicer Optik</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-wave-square text-stone-400"></i> OTDR & OPM Tester</span>
+                            <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-200 border border-stone-800 flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass-chart text-stone-400"></i> Wireshark & PRTG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning & Next Certifications Roadmap (Interactive Tracker) -->
+                <div class="clean-card p-6 sm:p-8 space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-800 pb-4">
+                        <div>
+                            <span class="font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">CONTINUOUS LEARNING & ROADMAP</span>
+                            <h3 class="text-lg font-bold text-white mt-0.5">Target Belajar & Sertifikasi Network Mendatang</h3>
+                            <p class="text-xs text-stone-400 mt-0.5">Rencana pembelajaran multi-vendor dan peningkatan kualifikasi teknis. Centang target saat diselesaikan.</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="roadmapProgressPercent" class="font-mono text-xs font-bold text-emerald-400 bg-stone-900 border border-stone-800 px-3 py-1 rounded-lg">
+                                <!-- Populated by JS -->
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-stone-900 rounded-full h-2 overflow-hidden border border-stone-800">
+                        <div id="roadmapProgressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-300" style="width: 50%"></div>
+                    </div>
+
+                    <!-- Interactive Checklist Items Grid -->
+                    <div id="learningRoadmapContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+
+                <!-- Quick Copy Hub: Links & Tailored Cover Letters -->
                 <div class="clean-card p-6 sm:p-8">
-                    <h3 class="text-lg font-bold text-white mb-2">Vault Data Penting & Template Cepat Salin</h3>
-                    <p class="text-xs text-stone-400 mb-6">Salin tautan atau surat pengantar lamaran dalam 1 klik saat melamar pekerjaan di portal karir.</p>
+                    <h3 class="text-lg font-bold text-white mb-1">Vault Data Penting & Template Cepat Salin</h3>
+                    <p class="text-xs text-stone-400 mb-6">Salin tautan profil dan surat pengantar (cover letter) spesifik per role dalam 1 klik saat melamar pekerjaan.</p>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <!-- Quick Links -->
                         <div class="space-y-3 font-mono text-xs">
-                            <label class="block text-stone-400 uppercase font-bold text-[11px]">Tautan Portofolio Live</label>
+                            <label class="block text-stone-400 uppercase font-bold text-[11px]">LinkedIn Profile URL</label>
                             <div class="flex items-center gap-2">
-                                <input type="text" readonly value="https://jalaninweb.site" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
-                                <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site', 'Tautan portofolio disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
+                                <input type="text" readonly value="https://www.linkedin.com/in/arkinmelviansyah/" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
+                                <button type="button" onclick="copyTextToClipboard('https://www.linkedin.com/in/arkinmelviansyah/', 'LinkedIn URL disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
                                     Salin
                                 </button>
                             </div>
@@ -557,34 +731,56 @@
                                 </button>
                             </div>
 
-                            <label class="block text-stone-400 uppercase font-bold text-[11px] mt-4">Digital Wedding Project Demo</label>
+                            <label class="block text-stone-400 uppercase font-bold text-[11px] mt-4">Tautan Portofolio Live & Showcase</label>
                             <div class="flex items-center gap-2">
-                                <input type="text" readonly value="https://jalaninweb.site/wedding/" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
-                                <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site/wedding/', 'Demo Wedding disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
+                                <input type="text" readonly value="https://jalaninweb.site" class="flex-1 bg-stone-900 border border-stone-800 rounded px-3 py-2 text-stone-200">
+                                <button type="button" onclick="copyTextToClipboard('https://jalaninweb.site', 'Tautan portofolio disalin!')" class="py-2 px-3 rounded bg-white text-stone-950 font-semibold hover:bg-stone-200 transition shrink-0">
                                     Salin
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Quick Cover Letter Templates -->
+                        <!-- Multi-Profile Cover Letter Templates -->
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs font-mono uppercase text-stone-400 font-bold">Template Pesan Pengantar Lamaran (Cover Letter)</span>
+                                <span class="text-xs font-mono uppercase text-stone-400 font-bold">Pilih Template Surat Lamaran (Cover Letter):</span>
                                 <button type="button" onclick="copyTextToClipboard(document.getElementById('coverLetterText').value, 'Template pesan lamaran berhasil disalin!')" class="text-xs text-white hover:text-stone-300 font-bold transition flex items-center gap-1">
                                     <i class="fa-regular fa-copy"></i>
-                                    <span>Salin Template</span>
+                                    <span>Salin Pesan</span>
                                 </button>
                             </div>
-                            <textarea id="coverLetterText" rows="7" class="w-full bg-stone-900 border border-stone-800 rounded-lg p-3 text-xs text-stone-300 leading-relaxed focus:outline-none focus:border-stone-600 font-mono">Halo Tim HRD / Recruiter,
 
-Saya adalah Web Developer dengan pengalaman membangun lebih dari 28+ aplikasi web dan landing page berkinerja tinggi (kecepatan PageSpeed 95+, 0 external dependencies).
+                            <!-- Cover Letter Profile Switcher Tabs -->
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <button type="button" data-cl-type="network" onclick="selectCoverLetterTemplate('network')" class="cover-letter-tab py-1.5 px-3 rounded text-[11px] font-mono bg-white text-stone-950 font-bold transition border border-stone-700">
+                                    Network & NOC (Utama)
+                                </button>
+                                <button type="button" data-cl-type="security" onclick="selectCoverLetterTemplate('security')" class="cover-letter-tab py-1.5 px-3 rounded text-[11px] font-mono bg-stone-900 text-stone-400 hover:text-white transition border border-stone-800">
+                                    Cyber Security
+                                </button>
+                                <button type="button" data-cl-type="support" onclick="selectCoverLetterTemplate('support')" class="cover-letter-tab py-1.5 px-3 rounded text-[11px] font-mono bg-stone-900 text-stone-400 hover:text-white transition border border-stone-800">
+                                    IT Support
+                                </button>
+                                <button type="button" data-cl-type="web" onclick="selectCoverLetterTemplate('web')" class="cover-letter-tab py-1.5 px-3 rounded text-[11px] font-mono bg-stone-900 text-stone-400 hover:text-white transition border border-stone-800">
+                                    Web Dev (Freelance)
+                                </button>
+                            </div>
 
-Saya tertarik untuk mengajukan diri pada posisi [NAMA POSISI] di [NAMA PERUSAHAAN]. Berdasarkan kebutuhan tim, pengalaman saya dalam JavaScript modern, Tailwind CSS, sistem kalkulator transaksi, serta arsitektur deployment Linux/Nginx sangat selaras untuk langsung berkontribusi pada produk Anda.
+                            <textarea id="coverLetterText" rows="7" class="w-full bg-stone-900 border border-stone-800 rounded-lg p-3 text-xs text-stone-300 leading-relaxed focus:outline-none focus:border-stone-600 font-mono">Halo Tim HRD / Recruitment Team,
 
-Portofolio live saya dapat ditinjau di: https://jalaninweb.site
+Perkenalkan, saya Arkin Melvian Dwiansyah, A.Md., seorang profesional di bidang Network Operations Center (NOC) dan IT Infrastructure dengan pengalaman lebih dari 4 tahun dalam pemeliharaan dan pemantauan jaringan ISP enterprise (Project Telkom Infrastruktur).
+
+Saya tertarik untuk mengajukan diri pada posisi [NAMA POSISI: Network Engineer / NOC Specialist] di [NAMA PERUSAHAAN]. Berdasarkan kualifikasi yang dibutuhkan:
+• Saya memegang sertifikasi CCNA Network Engineer, Cisco DevNet Associate, Cisco Network Security, serta Google Cyber Security.
+• Berpengalaman langsung dalam monitoring jaringan ISP real-time 24/7, penanganan incident ticket berstandar SLA & TTR, investigasi topologi jaringan, serta root cause identification.
+• Mahir konfigurasi perangkat multi-vendor (Cisco IOS, Mikrotik RouterOS, Huawei, ZTE) dan tools monitoring/analisis (Wireshark, PRTG, Zabbix).
+• Berpengalaman dalam infrastruktur optik FTTH/FTTx (TIFO Madya BNSP), terminasi ODP/ODC, pengukuran redaman OTDR/OPM, dan koordinasi tim teknisi lintas divisi (CCAN/DSO/EOS).
+
+LinkedIn: https://www.linkedin.com/in/arkinmelviansyah/
+Portfolio Hub & Tracker: https://jalaninweb.site/career/
 GitHub: https://github.com/ArkinMelvianDwiansyah
 
-Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
+Terlampir berkas CV saya untuk ditinjau lebih lanjut. Saya sangat antusias untuk berdiskusi lebih mendalam mengenai bagaimana keahlian saya dapat berkontribusi menjaga stabilitas jaringan di perusahaan Anda. Terima kasih!</textarea>
                         </div>
                     </div>
                 </div>
@@ -794,10 +990,11 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                     <div>
                         <label class="block font-mono text-[11px] uppercase text-stone-400 mb-1">Versi CV Digunakan *</label>
                         <select id="formCvVersion" class="w-full bg-stone-900 border border-stone-800 rounded-lg px-3 py-2.5 text-stone-200 focus:outline-none focus:border-stone-500">
-                            <option value="cv_frontend">CV-A: Frontend & UI</option>
-                            <option value="cv_fullstack">CV-B: Fullstack & Web App</option>
-                            <option value="cv_scraping">CV-C: Scraping & Automation</option>
-                            <option value="cv_general">CV-D: WordPress / Tech</option>
+                            <option value="cv_network">CV-NET: Network & NOC (Utama / Full-Time)</option>
+                            <option value="cv_security">CV-SEC: Cyber Security</option>
+                            <option value="cv_support">CV-TECH: IT Support</option>
+                            <option value="cv_frontend">CV-DEV: Frontend Web (Freelance)</option>
+                            <option value="cv_scraping">CV-AUTO: Scraping & Bot (Freelance)</option>
                         </select>
                     </div>
                     <div>
@@ -975,6 +1172,59 @@ Terlampir CV saya untuk ditinjau lebih lanjut. Terima kasih!</textarea>
                     <span>+ Catat Lamaran di Tanggal Ini</span>
                 </button>
                 <button type="button" onclick="closeDateDetailsModal()" class="py-2 px-3 rounded bg-stone-800 text-stone-300 text-xs font-semibold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Modal Generator & Preview CV ATS Network Engineer -->
+    <div id="atsResumeModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-2 sm:p-4 overflow-y-auto">
+        <div class="clean-card bg-stoneCard w-full max-w-4xl rounded-2xl shadow-2xl p-5 sm:p-8 my-6 relative border border-stoneBorder flex flex-col max-h-[92vh]">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-stone-800 shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-sm font-bold">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </span>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-base sm:text-lg font-bold text-white">Curriculum Vitae ATS Generator</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/40">ATS Ready</span>
+                        </div>
+                        <p class="text-xs text-stone-400">Format bersih standar Applicant Tracking System (ATS), siap cetak atau salin teks.</p>
+                    </div>
+                </div>
+
+                <!-- Action Controls: Print, Copy Plaintext, Copy Markdown, Close -->
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="printAtsResume()" class="py-2 px-3 rounded-lg bg-white hover:bg-stone-200 text-stone-950 text-xs font-bold transition flex items-center gap-1.5 shadow-sm" title="Cetak atau Simpan PDF (A4 Clean)">
+                        <i class="fa-solid fa-print text-xs"></i>
+                        <span class="hidden sm:inline">Cetak / Simpan PDF</span>
+                    </button>
+                    <button type="button" onclick="copyAtsPlainText()" class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-800 text-xs font-semibold transition flex items-center gap-1.5" title="Salin format teks ATS polos">
+                        <i class="fa-regular fa-copy text-xs"></i>
+                        <span class="hidden sm:inline">Salin Teks ATS</span>
+                    </button>
+                    <button type="button" onclick="copyAtsMarkdown()" class="py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-800 text-xs font-semibold transition flex items-center gap-1.5" title="Salin format Markdown">
+                        <i class="fa-brands fa-markdown text-xs"></i>
+                        <span class="hidden md:inline">Markdown</span>
+                    </button>
+                    <button type="button" onclick="closeAtsResumeModal()" class="p-2 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition" title="Tutup Modal">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scrollable ATS Document Area -->
+            <div class="flex-1 overflow-y-auto py-5 pr-1 space-y-4">
+                <div id="atsResumePrintArea">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- Modal Footer Note -->
+            <div class="pt-3 border-t border-stone-800 flex items-center justify-between text-[11px] font-mono text-stone-500 shrink-0">
+                <span>Tips: Gunakan "Cetak / Simpan PDF" untuk mengekspor dokumen ke file PDF standar A4 tanpa elemen dashboard.</span>
+                <button type="button" onclick="closeAtsResumeModal()" class="py-1.5 px-3 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 font-sans text-xs transition">Tutup</button>
             </div>
         </div>
     </div>

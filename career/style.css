@@ -203,3 +203,43 @@ body {
 .warm-pulse-dot {
   animation: warm-pulse 2s infinite ease-in-out;
 }
+
+/* Badge No-Wrap Utility */
+.badge-nowrap {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+}
+
+/* Print Friendly Styles for ATS Resume Generator */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #atsResumePrintArea, #atsResumePrintArea * {
+    visibility: visible;
+  }
+  #atsResumePrintArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  #atsResumeModal {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+  #sidebar, #mobileTopBar, #topHeaderBar, button, .no-print {
+    display: none !important;
+  }
+}
+
