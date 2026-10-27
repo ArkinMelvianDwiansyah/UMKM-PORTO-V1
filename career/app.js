@@ -1001,7 +1001,7 @@ function switchView(viewName) {
     });
 
     // Toggle View Panels
-    const panels = ['tracker', 'targets', 'cvVault', 'calendar', 'portfolio'];
+    const panels = ['tracker', 'targets', 'cvVault', 'calendar', 'portfolio', 'learning'];
     panels.forEach(p => {
         const el = document.getElementById(`${p}ViewPanel`);
         if (el) {
@@ -1020,7 +1020,8 @@ function switchView(viewName) {
         targets: 'TARGET & GOALS DASHBOARD',
         cvVault: 'VAULT CV MULTI-VERSI & DOKUMEN',
         calendar: 'KALENDER AGENDA & JADWAL',
-        portfolio: 'SHOWCASE 28 PORTOFOLIO'
+        portfolio: 'SHOWCASE 28 PORTOFOLIO',
+        learning: 'AKADEMI & ROADMAP BELAJAR NETWORK'
     };
     if (headerTitle) headerTitle.textContent = titleMap[viewName] || 'DASHBOARD';
 
@@ -1033,6 +1034,7 @@ function switchView(viewName) {
     if (viewName === 'cvVault') renderCvVault();
     if (viewName === 'calendar') renderCalendar();
     if (viewName === 'portfolio') renderPortfolioGallery();
+    if (viewName === 'learning') renderLearningAcademy();
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -2089,3 +2091,978 @@ document.addEventListener('DOMContentLoaded', () => {
         targetForm.addEventListener('submit', handleSaveTargets);
     }
 });
+
+
+// ===================================================================
+// 8. AKADEMI & ROADMAP BELAJAR NETWORK (DEEP-DIVE MULTI-VENDOR)
+// ===================================================================
+
+const ACADEMY_MODULES = [
+    // --- MIKROTIK TRACK ---
+    {
+        id: 'mod_mtcna',
+        category: 'mikrotik',
+        vendor: 'MikroTik RouterOS',
+        code: 'MIKROTIK-01',
+        badge: 'MTCNA (Associate)',
+        level: 'Dasar / Fondasi',
+        title: 'MikroTik MTCNA: Fondasi RouterOS & Network Associate',
+        desc: 'Fondasi utama RouterOS: akses Winbox/CLI, pengalamatan IP, DHCP server & client, bridging L2 hardware offload, firewall filter stateful, NAT masquerade, simple queue, dan hotspot gateway.',
+        labTool: 'MikroTik CHR (Cloud Hosted Router) v7 di VirtualBox / Proxmox & Winbox 3/4',
+        subtopics: [
+            {
+                id: 'mtcna_01',
+                title: 'Akses RouterOS, Winbox MAC-Telnet & Reset Konfigurasi',
+                concept: 'Akses awal router melalui layer 2 (MAC Winbox / Neighbor Discovery) sebelum IP diset. Pengelolaan user management, reset configuration tanpa default script (no-default=yes), dan navigasi terminal CLI RouterOS.',
+                cliSnippet: `/system identity set name="R1-Gateway-AAMON"\n/user add name=arkin group=full password="StrongPassword123!"\n/user remove admin\n/ip service set telnet disabled=yes ftp disabled=yes www disabled=yes api disabled=yes\n/system package print`
+            },
+            {
+                id: 'mtcna_02',
+                title: 'Konfigurasi IP Addressing, Subnetting CIDR & ARP Table',
+                concept: 'Menetapkan IP static pada interface fisik, pemahaman notasi CIDR (/24, /29, /30), pengecekan tabel Address Resolution Protocol (ARP), dan pengamanan port dengan mode ARP reply-only.',
+                cliSnippet: `/ip address add address=192.168.10.1/24 interface=ether2 comment="LAN Office"\n/ip address print\n/ip arp print\n/interface ethernet set ether2 arp=reply-only`
+            },
+            {
+                id: 'mtcna_03',
+                title: 'DHCP Client (WAN), DHCP Server (LAN) & IP Pool',
+                concept: 'Menerima IP otomatis dari modem ISP dengan DHCP Client, lalu membagikan IP secara dinamis ke PC client melalui DHCP Server dengan parameter Lease Time, Gateway, dan DNS Server.',
+                cliSnippet: `/ip dhcp-client add interface=ether1 disabled=no use-peer-dns=yes use-peer-ntp=yes comment="Uplink ISP"\n/ip pool add name=pool-lan ranges=192.168.10.100-192.168.10.200\n/ip dhcp-server add name=dhcp-lan interface=ether2 address-pool=pool-lan lease-time=1d disabled=no\n/ip dhcp-server network add address=192.168.10.0/24 gateway=192.168.10.1 dns-server=8.8.8.8,1.1.1.1`
+            },
+            {
+                id: 'mtcna_04',
+                title: 'Bridging Interface & L2 Hardware Offloading',
+                concept: 'Menggabungkan beberapa port fisik (misal ether2 s/d ether5) ke dalam satu broadcast domain Layer 2 dengan fitur Hardware Offload (hw=yes) agar peralihan paket diproses oleh switch-chip tanpa membebani CPU.',
+                cliSnippet: `/interface bridge add name=bridge-lan protocol-mode=rstp\n/interface bridge port add bridge=bridge-lan interface=ether2 hw=yes\n/interface bridge port add bridge=bridge-lan interface=ether3 hw=yes\n/interface bridge port add bridge=bridge-lan interface=ether4 hw=yes`
+            },
+            {
+                id: 'mtcna_05',
+                title: 'Routing Statik & Failover Link (check-gateway=ping)',
+                concept: 'Tabel routing RouterOS (flag Active, Static, Dynamic). Menambahkan default route 0.0.0.0/0 dan mekanisme failover otomatis 2 jalur internet menggunakan distance dan check-gateway=ping.',
+                cliSnippet: `/ip route add dst-address=0.0.0.0/0 gateway=10.10.10.1 check-gateway=ping distance=1 comment="Primary ISP Telkom"\n/ip route add dst-address=0.0.0.0/0 gateway=192.168.20.1 distance=2 comment="Backup ISP Biznet"\n/ip route print detail`
+            },
+            {
+                id: 'mtcna_06',
+                title: 'Firewall Filter: Chain Input, Forward, Output & Stateful Rules',
+                concept: 'Chain Input melindungi router itu sendiri dari serangan luar. Chain Forward mengontrol paket yang melintasi router (LAN ke Internet). Menggunakan stateful inspection (accept established & related, drop invalid).',
+                cliSnippet: `/ip firewall filter add chain=input connection-state=established,related action=accept comment="Allow Established/Related"\n/ip firewall filter add chain=input connection-state=invalid action=drop comment="Drop Invalid"\n/ip firewall filter add chain=input protocol=icmp action=accept comment="Allow ICMP"\n/ip firewall filter add chain=input in-interface=ether1 action=drop comment="Drop WAN to Router Input"\n/ip firewall filter add chain=forward connection-state=established,related action=accept`
+            },
+            {
+                id: 'mtcna_07',
+                title: 'NAT: Masquerade (Internet Sharing) & Destination NAT (Port Forward)',
+                concept: 'Source NAT (Masquerade) mentranslasikan IP privat lokal ke IP publik WAN agar bisa browsing. Destination NAT (Port Forwarding) membuka akses publik ke server internal (misal web, CCTV, SSH).',
+                cliSnippet: `/ip firewall nat add chain=srcnat out-interface=ether1 action=masquerade comment="NAT Internet Masquerade"\n/ip firewall nat add chain=dstnat in-interface=ether1 protocol=tcp dst-port=8080 action=dst-nat to-addresses=192.168.10.50 to-ports=80 comment="Forward Web Server"`
+            },
+            {
+                id: 'mtcna_08',
+                title: 'Manajemen Bandwidth: Simple Queue & PCQ Dynamic Equalizer',
+                concept: 'Membatasi bandwidth per user/subnet. Simple Queue untuk alokasi fix (misal 10 Mbps). Per Connection Queue (PCQ) membagi bandwidth secara adil otomatis ke seluruh user aktif yang sedang download.',
+                cliSnippet: `/queue type add name=pcq-download kind=pcq pcq-rate=0 pcq-classifier=dst-address\n/queue type add name=pcq-upload kind=pcq pcq-rate=0 pcq-classifier=src-address\n/queue simple add name="Bandwidth-Office" target=192.168.10.0/24 max-limit=50M/50M queue=pcq-upload/pcq-download`
+            }
+        ]
+    },
+    {
+        id: 'mod_mtcre',
+        category: 'mikrotik',
+        vendor: 'MikroTik RouterOS',
+        code: 'MIKROTIK-02',
+        badge: 'MTCRE (Routing Engineer)',
+        level: 'Menengah',
+        title: 'MikroTik MTCRE: Routing Engineer, OSPF & Site-to-Site Tunneling',
+        desc: 'Routing tingkat lanjut: Equal-Cost Multi-Path (ECMP), Point-to-Point addressing (/30, /31, /32), Dynamic Routing OSPF Single & Multi-Area, Route Filtering, Mangle Routing Marks, EoIP/GRE/IPIP Tunneling, dan Bridge VLAN Filtering v7.',
+        labTool: 'EVE-NG / GNS3 dengan 3-4 node MikroTik CHR v7 saling terkoneksi',
+        subtopics: [
+            {
+                id: 'mtcre_01',
+                title: 'Multi-Gateway Routing, ECMP & Policy-Based Routing (Mangle)',
+                concept: 'Membagi beban koneksi internet (ECMP) dengan memasang beberapa gateway sekaligus pada satu rule route, serta Policy Based Routing (PBR) untuk memisahkan jalur traffic browsing vs streaming menggunakan routing mark.',
+                cliSnippet: `/ip route add dst-address=0.0.0.0/0 gateway=10.0.1.1,10.0.2.1 check-gateway=ping comment="ECMP 2 Uplink"\n/ip firewall mangle add chain=prerouting src-address=192.168.10.0/24 dst-address-type=!local action=mark-routing new-routing-mark=to-ISP2 passthrough=no\n/ip route add dst-address=0.0.0.0/0 gateway=10.0.2.1 routing-table=to-ISP2`
+            },
+            {
+                id: 'mtcre_02',
+                title: 'OSPFv2 Single Area (Area 0 Backbone) & Adjacency States',
+                concept: 'Konfigurasi dynamic routing Link State OSPF di RouterOS v7. Pembentukan Router-ID, instance OSPF, backbone area, interface template point-to-point, cost interface, dan passive interface pada LAN.',
+                cliSnippet: `/routing ospf instance add name=ospf-core router-id=10.255.255.1\n/routing ospf area add name=backbone instance=ospf-core area-id=0.0.0.0\n/routing ospf interface-template add area=backbone networks=10.0.0.0/30 type=ptp cost=10\n/routing ospf interface-template add area=backbone networks=192.168.10.0/24 passive=yes\n/routing ospf neighbor print`
+            },
+            {
+                id: 'mtcre_03',
+                title: 'OSPF Multi-Area, ABR, LSA Types & Route Summarization',
+                concept: 'Membatasi flooding LSA di jaringan luas dengan membagi rute ke beberapa area (misal Area 1 Surabaya, Area 2 Jakarta). Area Border Router (ABR) meringkas rute dengan area-range untuk menghemat memori routing table.',
+                cliSnippet: `/routing ospf area add name=area-surabaya instance=ospf-core area-id=0.0.0.1\n/routing ospf area-range add area=area-surabaya prefix=172.16.0.0/16 advertise=yes comment="Summarize Jatim Subnets"\n/routing ospf route print`
+            },
+            {
+                id: 'mtcre_04',
+                title: 'Tunneling: EoIP, GRE, IPIP & WireGuard L2/L3 Bridging',
+                concept: 'Menghubungkan jaringan antar-cabang via internet publik. Ethernet over IP (EoIP) membungkus frame L2 ke dalam paket IP sehingga kedua kantor seolah berada dalam satu kabel switch yang sama.',
+                cliSnippet: `/interface eoip add name=eoip-kantor-pusat remote-address=202.152.1.20 tunnel-id=10\n/interface bridge port add bridge=bridge-lan interface=eoip-kantor-pusat\n/interface wireguard add name=wg0 listen-port=13231 private-key="AutoGeneratedKey"\n/interface wireguard peers add interface=wg0 public-key="PeerPublicKey" endpoint-address=202.152.1.20 endpoint-port=13231 allowed-address=10.100.0.2/32`
+            },
+            {
+                id: 'mtcre_05',
+                title: 'Bridge VLAN Filtering (Standar Modern RouterOS v7)',
+                concept: 'Pemisahan VLAN trunk dan access di atas satu software bridge. Port ether1 sebagai trunk (tagged) membawa VLAN 10 & 20, ether2 access VLAN 10 (untagged pvid=10), ether3 access VLAN 20 (pvid=20).',
+                cliSnippet: `/interface bridge add name=bridge1 vlan-filtering=no\n/interface bridge vlan add bridge=bridge1 vlan-ids=10,20 tagged=bridge1,ether1 untagged=ether2,ether3\n/interface bridge port add bridge=bridge1 interface=ether2 pvid=10\n/interface bridge port add bridge=bridge1 interface=ether3 pvid=20\n/interface bridge set bridge1 vlan-filtering=yes`
+            }
+        ]
+    },
+    {
+        id: 'mod_mtcine',
+        category: 'mikrotik',
+        vendor: 'MikroTik RouterOS',
+        code: 'MIKROTIK-03',
+        badge: 'MTCINE (ISP & Enterprise)',
+        level: 'Lanjutan / Enterprise',
+        title: 'MikroTik MTCINE: Inter-networking ISP, BGP Peering & MPLS/VPLS',
+        desc: 'Kurikulum standar ISP tier-2/tier-3: Autonomous System (ASN), Exterior BGP Peering, Interior BGP & Route Reflector, BGP Path Selection (AS-Path Prepend, Local-Pref), MPLS LDP, VPLS L2VPN, dan VRF Multi-Tenant.',
+        labTool: 'EVE-NG dengan 5 node MikroTik CHR v7 membentuk topologi Core, Edge & Customer',
+        subtopics: [
+            {
+                id: 'mtcine_01',
+                title: 'BGP Fundamentals, Autonomous System (ASN) & EBGP Peering',
+                concept: 'Exterior Gateway Protocol standar perutean internet global. Pembentukan session TCP port 179 dengan upstream ISP / IXP, pertukaran routing table publik, dan penentuan hold-time serta keepalive.',
+                cliSnippet: `/routing bgp template add name=tpl-upstream as=65501 router-id=103.10.1.1 hold-time=90s\n/routing bgp connection add name=peer-biznet template=tpl-upstream remote.address=103.10.1.2 remote.as=17451 output.network=bgp-public-ip\n/routing bgp connection print\n/routing route print where bgp`
+            },
+            {
+                id: 'mtcine_02',
+                title: 'IBGP Full-Mesh Problem & Route Reflector (RR) Architecture',
+                concept: 'IBGP mensyaratkan full-mesh (n*(n-1)/2 koneksi) karena split-horizon rule tidak meneruskan rute yang diterima dari satu peer IBGP ke peer IBGP lain. Solusinya adalah menunjuk router sentral sebagai Route Reflector.',
+                cliSnippet: `/routing bgp connection add name=ibgp-client-1 template=tpl-upstream remote.address=10.255.255.2 remote.as=65501 cluster-id=1.1.1.1 route-reflector=yes\n/routing bgp connection add name=ibgp-client-2 template=tpl-upstream remote.address=10.255.255.3 remote.as=65501 cluster-id=1.1.1.1 route-reflector=yes`
+            },
+            {
+                id: 'mtcine_03',
+                title: 'BGP Path Selection, AS-Path Prepend & Local-Preference',
+                concept: 'Manipulasi jalur lalu lintas. Untuk mengatur rute masuk dari internet (Inbound traffic), lakukan AS-Path Prepending agar jalur alternatif terlihat lebih jauh. Untuk mengatur rute keluar (Outbound), pasang Local-Preference tertinggi.',
+                cliSnippet: `/routing filter rule add chain=bgp-out rule="if (dst == 103.100.0.0/22) { set bgp-path-prepend 3; accept; } comment='Make backup ISP longer'"\n/routing filter rule add chain=bgp-in rule="if (net == 0.0.0.0/0) { set bgp-local-pref 200; accept; } comment='Prefer this link for outbound'"`
+            },
+            {
+                id: 'mtcine_04',
+                title: 'MPLS LDP (Label Distribution Protocol) & Label Swapping',
+                concept: 'Teknologi pergantian label di router Provider (P) dan Provider Edge (PE). Paket diteruskan berdasarkan label 20-bit MPLS shim header, bukan lagi IP destination lookup di core, menghemat latency drastis.',
+                cliSnippet: `/mpls ldp add ldp-address=10.255.255.1 transport-address=10.255.255.1 interface=ether1,ether2\n/mpls ldp print\n/mpls ldp neighbor print\n/mpls forwarding-table print`
+            },
+            {
+                id: 'mtcine_05',
+                title: 'VPLS (Virtual Private LAN Service) & VRF Customer Segmentation',
+                concept: 'Membangun layanan Metro-Ethernet L2 point-to-multipoint untuk pelanggan korporat di atas jaringan backbone MPLS, serta isolasi tabel routing layer 3 antar pelanggan perbankan dengan VRF.',
+                cliSnippet: `/interface vpls add name=vpls-bank-jatim remote-peer=10.255.255.9 vpls-id=100 disabled=no\n/interface bridge port add bridge=br-customer-bank interface=vpls-bank-jatim\n/ip vrf add name=vrf-telkom-corp interfaces=vlan100 route-distinguisher=65501:100`
+            }
+        ]
+    },
+    {
+        id: 'mod_mtctce',
+        category: 'mikrotik',
+        vendor: 'MikroTik RouterOS',
+        code: 'MIKROTIK-04',
+        badge: 'MTCTCE (Traffic Control)',
+        level: 'Lanjutan',
+        title: 'MikroTik MTCTCE: Traffic Control, RAW Table & Hierarchical QoS',
+        desc: 'Kontrol trafik dan QoS tingkat mahir: Connection Tracking architecture, Firewall RAW table untuk mitigasi DDoS tanpa membebani CPU, Address-Lists dinamis, Packet Marking Mangle, dan HTB Queue Tree bertingkat.',
+        labTool: 'MikroTik CHR v7 dengan traffic generator (iperf3 / Packet Sender)',
+        subtopics: [
+            {
+                id: 'mtctce_01',
+                title: 'Arsitektur Packet Flow RouterOS v7 & Connection Tracking',
+                concept: 'Alur tahapan paket saat masuk router: Prerouting -> Connection Tracking -> Routing Decision -> Input/Forward -> Postrouting. Pemahaman batas kapasitas tabel conntrack pada router berkecepatan tinggi.',
+                cliSnippet: `/ip firewall connection print count-only\n/ip firewall connection tracking set tcp-established-timeout=1h tcp-syn-received-timeout=1m enabled=yes\n/ip firewall connection print where src-address ~ "192.168.10."`
+            },
+            {
+                id: 'mtctce_02',
+                title: 'Tabel RAW: Menangkal Serangan SYN Flood & Port Scan Instan',
+                concept: 'Tabel RAW memproses paket sebelum Connection Tracking terbentuk. Sangat ampuh men-drop jutaan paket serangan SYN flood atau UDP blaster tanpa membuat CPU router menyentuh 100%.',
+                cliSnippet: `/ip firewall raw add chain=prerouting protocol=tcp tcp-flags=syn in-interface=ether1 connection-limit=30,32 action=drop comment="Drop SYN Flood Attack"\n/ip firewall raw add chain=prerouting in-interface=ether1 src-address-list=bad_actors action=drop comment="Drop Blacklisted IPs"`
+            },
+            {
+                id: 'mtctce_03',
+                title: 'Address-Lists Dinamis & Port Knocking Secret Door',
+                concept: 'Mencatat IP penyerang yang mencoba brute-force Winbox atau SSH ke dalam daftar blacklist selama 24 jam secara otomatis. Membuka port manajemen hanya bagi user yang telah mengetuk urutan port tertentu.',
+                cliSnippet: `/ip firewall filter add chain=input protocol=tcp dst-port=22 connection-state=new action=add-src-to-address-list address-list=ssh_scanners address-list-timeout=1d comment="Detect SSH Scanners"\n/ip firewall filter add chain=input src-address-list=ssh_scanners action=drop comment="Block Blacklisted Scanners"`
+            },
+            {
+                id: 'mtctce_04',
+                title: 'QoS HTB (Hierarchical Token Bucket) & Queue Tree Mangle',
+                concept: 'Membuat pohon antrean bandwidth hierarkis. Mangle menandai paket DNS & Game (Priority 1, limit-at garansi), Web browsing (Priority 4), dan File download/Torrent (Priority 8).',
+                cliSnippet: `/ip firewall mangle add chain=forward protocol=udp dst-port=53 action=mark-packet new-packet-mark=pkt-dns passthrough=no\n/ip firewall mangle add chain=forward protocol=tcp dst-port=80,443 action=mark-packet new-packet-mark=pkt-web passthrough=no\n/queue tree add name=root-parent parent=bridge-lan max-limit=100M\n/queue tree add name=q-dns parent=root-parent packet-mark=pkt-dns priority=1 limit-at=5M max-limit=10M\n/queue tree add name=q-web parent=root-parent packet-mark=pkt-web priority=4 limit-at=30M max-limit=90M`
+            }
+        ]
+    },
+
+    // --- CISCO CCNA TRACK ---
+    {
+        id: 'mod_ccna_1',
+        category: 'cisco',
+        vendor: 'Cisco IOS',
+        code: 'CCNA-01',
+        badge: 'CCNA Domain 1',
+        level: 'Dasar / Fondasi',
+        title: 'Cisco CCNA: Network Fundamentals, OSI & IPv4/IPv6 Addressing',
+        desc: 'Fondasi jaringan komputer menurut silabus resmi Cisco 200-301: OSI 7 Layer, TCP/IP stack, Subnetting VLSM langkah demi langkah, IPv6 Global Unicast & SLAAC, media kabel UTP/Fiber, dan navigasi CLI Cisco IOS.',
+        labTool: 'Cisco Packet Tracer 8.2+ / GNS3',
+        subtopics: [
+            {
+                id: 'ccna1_01',
+                title: 'Model OSI 7 Layer vs TCP/IP & Enkapsulasi Paket (PDU)',
+                concept: 'Alur Data (Application) -> Segment (Transport TCP/UDP) -> Packet (Network IP) -> Frame (Data Link MAC) -> Bits (Physical). Pemahaman header IP, TTL, MSS, dan MTU 1500 bytes.',
+                cliSnippet: `show interfaces gigabitEthernet 0/0/0\nshow controllers gigabitEthernet 0/0/0\nshow ip interface brief`
+            },
+            {
+                id: 'ccna1_02',
+                title: 'IPv4 Subnetting VLSM (Variable Length Subnet Mask)',
+                concept: 'Perhitungan cepat subnetting: Network ID, Host Usable (2^h - 2), Broadcast ID, dan Wildcard Mask (255.255.255.255 - Subnet Mask). Penggunaan subnet hemat /30 dan /31 untuk link point-to-point router.',
+                cliSnippet: `conf t\ninterface gigabitEthernet 0/0/0\n description Uplink to Core Router\n ip address 10.10.10.1 255.255.255.252\n no shutdown\nexit`
+            },
+            {
+                id: 'ccna1_03',
+                title: 'IPv6 Architecture: Global Unicast, Link-Local & EUI-64',
+                concept: 'Alamat 128-bit hexadesimal. Link-Local (fe80::/10) untuk komunikasi lokal satu link, Global Unicast (2000::/3) rute internet publik, Multicast (ff02::1 all nodes, ff02::2 all routers), dan auto konversi MAC EUI-64.',
+                cliSnippet: `conf t\nipv6 unicast-routing\ninterface gigabitEthernet 0/0/1\n ipv6 address 2001:db8:acad:1::1/64\n ipv6 address fe80::1 link-local\n no shutdown\nexit\nshow ipv6 interface brief`
+            },
+            {
+                id: 'ccna1_04',
+                title: 'Navigasi Cisco IOS CLI, Mode Hirarki & Password Recovery',
+                concept: 'Navigasi User EXEC (>), Privileged EXEC (#), Global Configuration ((config)#), Interface ((config-if)#), dan Line configuration. Perintah copy running-config startup-config untuk menyimpan ke NVRAM.',
+                cliSnippet: `enable\nconf t\nhostname R1-SURABAYA\nservice password-encryption\nenable secret CiscoSecret2026!\nbanner motd # PERINGATAN: HANYA AKSES RESMI #\nline vty 0 4\n transport input ssh\n login local\nexit\nwrite memory`
+            }
+        ]
+    },
+    {
+        id: 'mod_ccna_2',
+        category: 'cisco',
+        vendor: 'Cisco IOS',
+        code: 'CCNA-02',
+        badge: 'CCNA Domain 2',
+        level: 'Dasar - Menengah',
+        title: 'Cisco CCNA: LAN Switching, VLAN, 802.1Q Trunk & Spanning Tree',
+        desc: 'Pengoperasian switch Cisco Catalyst: MAC Address Table, segmentasi VLAN, trunking 802.1Q, Inter-VLAN Routing (Router-on-a-Stick & L3 SVI), Spanning Tree Protocol (STP & Rapid-PVST+), EtherChannel LACP, dan CDP/LLDP.',
+        labTool: 'Cisco Packet Tracer dengan 2 Switch Cisco 2960 + 1 Router 2911',
+        subtopics: [
+            {
+                id: 'ccna2_01',
+                title: 'Switch Learning, Aging & MAC Address Table Flooding',
+                concept: '3 proses internal switch: 1. Belajar source MAC saat frame masuk, 2. Meneruskan frame jika destination MAC sudah tercatat di tabel, 3. Membanjiri (Flooding) ke seluruh port jika destination MAC belum dikenal.',
+                cliSnippet: `show mac address-table\nshow mac address-table dynamic\nclear mac address-table dynamic`
+            },
+            {
+                id: 'ccna2_02',
+                title: 'VLAN Segmentation & 802.1Q Trunking Protocol',
+                concept: 'Memecah satu broadcast domain menjadi beberapa departemen. Port Access menghubungkan ke PC pengguna, port Trunk membawa banyak tag VLAN 802.1Q ke switch lain dengan pengamanan native VLAN.',
+                cliSnippet: `conf t\nvlan 10\n name Staff-Office\nvlan 20\n name Server-Farm\ninterface range fastEthernet 0/1 - 10\n switchport mode access\n switchport access vlan 10\ninterface gigabitEthernet 0/1\n switchport mode trunk\n switchport trunk native vlan 99\n switchport trunk allowed vlan 10,20,99\nexit`
+            },
+            {
+                id: 'ccna2_03',
+                title: 'Inter-VLAN Routing: Router-on-a-Stick vs Layer 3 SVI',
+                concept: 'Menghubungkan komunikasi antar-VLAN. Router-on-a-Stick menggunakan sub-interface router fisik (encapsulation dot1Q). Switch Layer 3 menggunakan Switch Virtual Interface (SVI) dengan `ip routing` aktif.',
+                cliSnippet: `# Router-on-a-Stick:\nconf t\ninterface gigabitEthernet 0/0/0.10\n encapsulation dot1Q 10\n ip address 192.168.10.1 255.255.255.0\ninterface gigabitEthernet 0/0/0.20\n encapsulation dot1Q 20\n ip address 192.168.20.1 255.255.255.0\n\n# Atau pada L3 Switch:\nconf t\nip routing\ninterface vlan 10\n ip address 192.168.10.1 255.255.255.0`
+            },
+            {
+                id: 'ccna2_04',
+                title: 'Spanning Tree Protocol (STP 802.1D & Rapid-PVST+ 802.1w)',
+                concept: 'Mencegah terjadinya loop Layer 2 dan broadcast storm pada topologi redundant switch. Pemilihan Root Bridge berdasarkan Bridge Priority terendah (default 32768), Root Port, Designated Port, dan Alternate/Blocking Port.',
+                cliSnippet: `conf t\nspanning-tree mode rapid-pvst\nspanning-tree vlan 10,20 root primary\n# Atau manual set priority:\nspanning-tree vlan 10 priority 4096\nshow spanning-tree vlan 10\nshow spanning-tree summary`
+            },
+            {
+                id: 'ccna2_05',
+                title: 'EtherChannel / Link Aggregation (LACP IEEE 802.3ad & PAgP)',
+                concept: 'Menggabungkan 2 hingga 8 port fisik ethernet menjadi 1 link trunk logis berkecepatan tinggi dengan fitur failover otomatis jika salah satu kabel fisik terputus. Mode LACP standar terbuka: active dan passive.',
+                cliSnippet: `conf t\ninterface range gigabitEthernet 0/1 - 2\n channel-group 1 mode active\ninterface port-channel 1\n switchport mode trunk\n switchport trunk allowed vlan 10,20,99\nshow etherchannel summary`
+            }
+        ]
+    },
+    {
+        id: 'mod_ccna_3',
+        category: 'cisco',
+        vendor: 'Cisco IOS',
+        code: 'CCNA-03',
+        badge: 'CCNA Domain 3',
+        level: 'Menengah',
+        title: 'Cisco CCNA: IP Connectivity, Static Routing & OSPFv2 Single Area',
+        desc: 'Logika perutean paket IP: Routing Table, Longest Prefix Match, Administrative Distance, Static & Default Route, Floating Static Route, dan Dynamic Routing OSPFv2 (Neighbor adjacency, DR/BDR, Cost metric calculation).',
+        labTool: 'Cisco Packet Tracer dengan 3 Router Cisco 2911 saling terkoneksi serial/gigabit',
+        subtopics: [
+            {
+                id: 'ccna3_01',
+                title: 'Tabel Routing, Longest Prefix Match & Administrative Distance',
+                concept: 'Prinsip pemilihan rute terbaik: Router selalu memilih subnet terpanjang / paling spesifik lebih dulu. Jika ada dua rute dengan prefix sama dari protokol berbeda, router memilih Administrative Distance terendah (Connected=0, Static=1, eBGP=20, OSPF=110, iBGP=200).',
+                cliSnippet: `show ip route\nshow ip route summary\nshow ip route ospf`
+            },
+            {
+                id: 'ccna3_02',
+                title: 'Static Route, Default Route (0.0.0.0/0) & Floating Backup Route',
+                concept: 'Konfigurasi rute statik next-hop IP vs exit-interface. Floating static route dikonfigurasi dengan AD lebih tinggi (misal 150) sehingga berstatus siaga (standby) dan baru aktif saat link utama down.',
+                cliSnippet: `conf t\nip route 0.0.0.0 0.0.0.0 203.0.113.1 name Primary-Fiber\nip route 0.0.0.0 0.0.0.0 198.51.100.1 150 name Backup-Cellular\nip route 172.16.50.0 255.255.255.0 10.10.10.2`
+            },
+            {
+                id: 'ccna3_03',
+                title: 'OSPFv2 Single Area (Area 0), Router-ID & Adjacency States',
+                concept: '7 tahapan neighbor OSPF: Down -> Init -> 2-Way -> ExStart -> Exchange -> Loading -> Full. Menentukan Router ID unik, wildcard mask dalam network statement, dan pemilihan DR/BDR pada jaringan multi-access broadcast.',
+                cliSnippet: `conf t\nrouter ospf 1\n router-id 1.1.1.1\n network 192.168.10.0 0.0.0.255 area 0\n network 10.0.0.0 0.0.0.3 area 0\n passive-interface gigabitEthernet 0/0/1\n auto-cost reference-bandwidth 1000\nexit\nshow ip ospf neighbor`
+            },
+            {
+                id: 'ccna3_04',
+                title: 'Injeksi Default Route OSPF (default-information originate)',
+                concept: 'Meneruskan default route internet router gateway ke seluruh router internal OSPF secara otomatis tanpa perlu setting rute statik di tiap router cabang.',
+                cliSnippet: `conf t\nrouter ospf 1\n default-information originate always\nexit\nshow ip ospf database`
+            }
+        ]
+    },
+    {
+        id: 'mod_ccna_4',
+        category: 'cisco',
+        vendor: 'Cisco IOS',
+        code: 'CCNA-04',
+        badge: 'CCNA Domain 4 & 5',
+        level: 'Menengah',
+        title: 'Cisco CCNA: IP Services, NAT, HSRP & Network Security Basics',
+        desc: 'Layanan esensial jaringan: DHCP Server & Relay, NAT/PAT Overload, First Hop Redundancy HSRP, Standard & Extended IPv4 ACLs, Switchport Port-Security, DHCP Snooping, dan Dynamic ARP Inspection (DAI).',
+        labTool: 'Cisco Packet Tracer dengan topologi LAN Corporate lengkap',
+        subtopics: [
+            {
+                id: 'ccna4_01',
+                title: 'DHCP Server & DHCP Relay Agent (ip helper-address)',
+                concept: 'Konfigurasi pool DHCP di router, pengecualian IP statik server/printer, serta konfigurasi ip helper-address pada sub-interface switch/router agar request DHCP broadcast L2 diteruskan secara unicast ke server DHCP terpusat.',
+                cliSnippet: `conf t\nip dhcp excluded-address 192.168.10.1 192.168.10.20\nip dhcp pool POOL-OFFICE\n network 192.168.10.0 255.255.255.0\n default-router 192.168.10.1\n dns-server 8.8.8.8 1.1.1.1\ninterface gigabitEthernet 0/0/0.20\n ip helper-address 192.168.100.10`
+            },
+            {
+                id: 'ccna4_02',
+                title: 'Network Address Translation: Static NAT & PAT Overload',
+                concept: 'Translasi alamat IP. Port Address Translation (PAT / Overload) mentranslasikan ribuan koneksi lokal ke 1 alamat IP publik menggunakan pemetaan port source unik TCP/UDP.',
+                cliSnippet: `conf t\naccess-list 1 permit 192.168.0.0 0.0.255.255\ninterface gigabitEthernet 0/0/0\n ip nat outside\ninterface gigabitEthernet 0/0/1\n ip nat inside\nip nat inside source list 1 interface gigabitEthernet 0/0/0 overload\nshow ip nat translations`
+            },
+            {
+                id: 'ccna4_03',
+                title: 'First Hop Redundancy Protocol (HSRP Active & Standby)',
+                concept: 'Menyediakan default gateway redundan bagi PC client. Dua router berbagi satu IP gateway virtual (VIP). Router dengan priority tertinggi (default 100) menjadi Active, dan preempt memastikan router utama mengambil alih kembali saat pulih.',
+                cliSnippet: `conf t\ninterface gigabitEthernet 0/0/1\n ip address 192.168.10.2 255.255.255.0\n standby 1 ip 192.168.10.1\n standby 1 priority 110\n standby 1 preempt\nshow standby brief`
+            },
+            {
+                id: 'ccna4_04',
+                title: 'Standard & Extended IPv4 Access Control Lists (ACL)',
+                concept: 'Standard ACL (1-99) memfilter hanya berdasarkan IP source (diletakkan sedekat mungkin ke tujuan). Extended ACL (100-199) memfilter berdasarkan source IP, destination IP, protokol TCP/UDP/ICMP, dan nomor port (diletakkan sedekat mungkin ke sumber).',
+                cliSnippet: `conf t\nip access-list extended SECURE-SERVERS\n permit tcp 192.168.10.0 0.0.0.255 host 192.168.20.5 eq 443\n permit tcp 192.168.10.0 0.0.0.255 host 192.168.20.5 eq 22\n deny ip any host 192.168.20.5\n permit ip any any\ninterface gigabitEthernet 0/0/1\n ip access-group SECURE-SERVERS in`
+            },
+            {
+                id: 'ccna4_05',
+                title: 'Layer 2 Switch Security: Port-Security, DHCP Snooping & DAI',
+                concept: 'Port-Security membatasi MAC address per port (sticky MAC) dengan aksi shutdown jika ada laptop ilegal terhubung. DHCP Snooping mencegah rogue DHCP server, dan Dynamic ARP Inspection (DAI) menepis serangan Man-In-The-Middle ARP Poisoning.',
+                cliSnippet: `conf t\ninterface fastEthernet 0/5\n switchport mode access\n switchport port-security\n switchport port-security maximum 2\n switchport port-security mac-address sticky\n switchport port-security violation shutdown\nip dhcp snooping\nip dhcp snooping vlan 10,20\nip arp inspection vlan 10,20`
+            }
+        ]
+    },
+
+    // --- CISCO ENTERPRISE CORE & DEVNET AUTOMATION ---
+    {
+        id: 'mod_devnet',
+        category: 'enterprise',
+        vendor: 'Cisco NetDevOps',
+        code: 'DEVNET-01',
+        badge: 'DevNet Associate (200-901)',
+        level: 'Menengah - Lanjutan',
+        title: 'Cisco DevNet Associate: Network Automation, Python & REST APIs',
+        desc: 'Kurikulum NetDevOps modern: Pemrograman Python untuk engineer jaringan, parsing data terstruktur (JSON, YAML, XML), arsitektur REST API & Postman, otomasi SSH multi-device dengan pustaka Netmiko, model data YANG, NETCONF & RESTCONF.',
+        labTool: 'Python 3.10+, VS Code, Postman, Cisco DevNet Always-On Sandbox',
+        subtopics: [
+            {
+                id: 'devnet_01',
+                title: 'Dasar Python untuk Network Engineer (List, Dict, Loop)',
+                concept: 'Mengelola daftar perangkat inventori menggunakan Dictionary dan List Python, iterasi multi router, manipulasi string teks output CLI, dan penanganan exception saat koneksi gagal.',
+                cliSnippet: `devices = [\n    {"ip": "10.0.1.1", "role": "Core-R1", "vendor": "cisco"},\n    {"ip": "10.0.1.2", "role": "Dist-SW1", "vendor": "cisco"}\n]\nfor dev in devices:\n    print(f"Connecting to {dev['role']} ({dev['ip']})...")`
+            },
+            {
+                id: 'devnet_02',
+                title: 'Parsing Format Data Terstruktur: JSON, YAML & XML',
+                concept: 'Data format standar industri dalam automasi. Membaca file konfigurasi YAML, mengonversi respon API JSON menjadi dictionary Python, dan serialisasi data tanpa hardcoded string.',
+                cliSnippet: `import json, yaml\n\nwith open('devices.json') as f:\n    data = json.load(f)\n\nprint(yaml.dump(data, default_flow_style=False))`
+            },
+            {
+                id: 'devnet_03',
+                title: 'REST API Fundamentals, HTTP Verbs & Token Authentication',
+                concept: 'Interaksi API perangkat jaringan: HTTP GET untuk menarik status interface, POST untuk membuat rule baru, PUT/PATCH untuk mengedit rute, dan DELETE. Menggunakan Authorization Bearer token dan header application/json.',
+                cliSnippet: `import requests\n\nurl = "https://sandbox-iosxe-latest-1.cisco.com:443/restconf/data/ietf-interfaces:interfaces"\nheaders = {"Accept": "application/yang-data+json"}\nresp = requests.get(url, auth=('admin', 'C1sco12345'), headers=headers, verify=False)\nprint(resp.json())`
+            },
+            {
+                id: 'devnet_04',
+                title: 'Otomasi Multi-Device Cisco & MikroTik dengan Netmiko',
+                concept: 'Menghubungi puluhan router/switch secara massal via protokol SSH terenkripsi, menjalankan verifikasi show command, dan mem-push konfigurasi baru secara paralel dalam hitungan detik.',
+                cliSnippet: `from netmiko import ConnectHandler\n\ncisco_dev = {\n    'device_type': 'cisco_ios',\n    'host': '192.168.1.1',\n    'username': 'arkin',\n    'password': 'Password123'\n}\n\nwith ConnectHandler(**cisco_dev) as conn:\n    output = conn.send_command('show ip int brief')\n    print(output)`
+            },
+            {
+                id: 'devnet_05',
+                title: 'Model-Driven Programmability: YANG, NETCONF & RESTCONF',
+                concept: 'Menggantikan metode CLI screen-scraping yang mudah error dengan standar model data formal YANG (RFC 6020). Berkomunikasi melalui NETCONF (port 830 berbasis XML) atau RESTCONF (port 443 berbasis JSON).',
+                cliSnippet: `conf t\nnetconf-yang\nrestconf\nend\nshow netconf-yang datastores\nshow platform software yang-management process`
+            }
+        ]
+    },
+    {
+        id: 'mod_ccnp_encor',
+        category: 'enterprise',
+        vendor: 'Cisco Enterprise',
+        code: 'CCNP-01',
+        badge: 'CCNP Enterprise (ENCOR 350-401)',
+        level: 'Lanjutan / Enterprise',
+        title: 'Cisco CCNP Enterprise Core: SD-WAN, BGP Path & Telemetry',
+        desc: 'Kurikulum enterprise tier-1: Arsitektur Cisco SD-WAN (vManage, vSmart, vBond, vEdge), Algoritma Path Selection BGP 8 Tingkat, Multi-Area OSPF LSAs (Type 1-5, Stub/NSSA), Route Redistribution dengan Route-Maps, dan Model-Driven Streaming Telemetry.',
+        labTool: 'EVE-NG Baremetal dengan Cisco IOL & vManage SD-WAN nodes',
+        subtopics: [
+            {
+                id: 'ccnp_01',
+                title: 'Arsitektur Cisco SD-WAN Fabric (Control & Data Plane)',
+                concept: 'Pemisahan 4 bidang SD-WAN: Management Plane (vManage untuk dashboard & push template), Control Plane (vSmart menjalankan protokol OMP), Orchestration Plane (vBond untuk zero-touch onboarding & NAT traversal), dan Data Plane (vEdge/cEdge membangun IPsec tunnel mesh).',
+                cliSnippet: `show sdwan control connections\nshow sdwan bfd sessions\nshow sdwan omp routes\nshow sdwan ipsec inbound-connections`
+            },
+            {
+                id: 'ccnp_02',
+                title: 'Enterprise BGP: 8 Algoritma Path Selection & Route Policies',
+                concept: 'Urutan penentuan rute terbaik BGP: 1. Weight tertinggi (lokal Cisco), 2. Local-Preference tertinggi, 3. Locally originated, 4. AS-Path terpendek, 5. Origin code (IGP < EGP < Incomplete), 6. MED terendah, 7. eBGP lebih dipilih dari iBGP, 8. IGP metric ke Next-Hop terendah.',
+                cliSnippet: `conf t\nrouter bgp 65000\n neighbor 203.0.113.2 remote-as 65100\n neighbor 203.0.113.2 route-map SET-PREF in\nroute-map SET-PREF permit 10\n set local-preference 200\nexit\nshow ip bgp summary`
+            },
+            {
+                id: 'ccnp_03',
+                title: 'Multi-Area OSPF LSAs, Totally Stubby & NSSA (Type 7 LSA)',
+                concept: 'Penghematan database routing table. Tipe LSA 1 (Router), 2 (Network), 3 (Summary), 4 (ASBR Summary), 5 (External). Area Totally Stubby memblokir LSA 3, 4, 5 dan hanya menerima default route. NSSA mengizinkan injeksi external via LSA Type 7 yang dikonversi ke Type 5 di ABR.',
+                cliSnippet: `conf t\nrouter ospf 1\n area 10 stub no-summary\n area 20 nssa\nshow ip ospf database summary\nshow ip ospf database nssa-external`
+            },
+            {
+                id: 'ccnp_04',
+                title: 'Route Redistribution, Route-Maps & Tagging Anti-Looping',
+                concept: 'Mendistribusikan rute antar protokol perutean berbeda (misal OSPF ke BGP). Penggunaan route-tagging dengan route-map wajib diterapkan untuk mencegah rute berputar kembali (mutual redistribution routing loop).',
+                cliSnippet: `conf t\nroute-map OSPF-TO-BGP permit 10\n match ip address prefix-list PL-CORP\n set tag 999\nrouter bgp 65000\n redistribute ospf 1 route-map OSPF-TO-BGP`
+            },
+            {
+                id: 'ccnp_05',
+                title: 'Network Assurance, IP SLA Proaktif & Streaming Telemetry',
+                concept: 'Pengukuran performa link jitter, latency, dan packet loss dengan IP SLA probe. Streaming telemetry model-driven menggantikan polling SNMP berkala dengan pengiriman metrik terus-menerus ke collector.',
+                cliSnippet: `conf t\nip sla 10\n icmp-echo 8.8.8.8 source-interface gig0/0/0\n frequency 10\nip sla schedule 10 life forever start-time now\ntrack 1 ip sla 10 reachability\nshow ip sla summary`
+            }
+        ]
+    },
+
+    // --- CYBER SECURITY & DEFENSE TRACK ---
+    {
+        id: 'mod_cybersec',
+        category: 'security',
+        vendor: 'Google & Cisco Security',
+        code: 'SECURITY-01',
+        badge: 'Cyber & Network Defense',
+        level: 'Menengah',
+        title: 'Cyber Security & Network Defense: Forensik Paket, VPN & SIEM',
+        desc: 'Kurikulum gabungan Google Cyber Security Professional Certificate & Cisco Network Security: CIA Triad, Zero Trust Architecture, Analisis Forensik Paket Wireshark mendalam, Site-to-Site IPsec VPN (IKEv2), dan Triage Log Insiden Keamanan SIEM.',
+        labTool: 'Wireshark, Kali Linux / Security Onion VM, Splunk Free',
+        subtopics: [
+            {
+                id: 'sec_01',
+                title: 'Prinsip Keamanan Jaringan: CIA Triad & Zero Trust Model',
+                concept: 'Confidentiality (Enkripsi data bergerak & diam), Integrity (Verifikasi hash kriptografis SHA-256), Availability (Toleransi kegagalan dan redundansi). Model Zero Trust: verifikasi identitas secara eksplisit, batasi hak akses paling minim (Least Privilege).',
+                cliSnippet: `openssl dgst -sha256 firmware-upgrade.bin\nssh-keygen -t ed25519 -C "arkin-network-noc"\ngpg --verify signature.asc document.pdf`
+            },
+            {
+                id: 'sec_02',
+                title: 'Wireshark Deep-Dive: Analisis Flag TCP, Handshake & Anomali',
+                concept: 'Membedah frame jaringan: Analisis 3-Way Handshake TCP normal (SYN -> SYN-ACK -> ACK) vs serangan SYN Flood. Deteksi TCP RST tak terduga, retransmisi paket berulang karena packet loss, dan pola DNS tunneling.',
+                cliSnippet: `# Wireshark Display Filter Cheatsheet:\ntcp.flags.syn == 1 && tcp.flags.ack == 0\ntcp.analysis.retransmission\narp.duplicate-address-detected\ndns.flags.response == 1 && dns.count.answers > 10\nhttp.request.method == "POST"`
+            },
+            {
+                id: 'sec_03',
+                title: 'Site-to-Site IPsec VPN Architecture (IKEv1 & IKEv2)',
+                concept: 'Enkripsi terowongan antar kantor pusat dan cabang. Phase 1 (IKE SA: autentikasi identitas, negosiasi cipher AES-GCM-256 dan grup Diffie-Hellman), Phase 2 (IPsec SA: enkripsi payload traffic dengan protokol ESP tunnel mode).',
+                cliSnippet: `conf t\ncrypto ikev2 proposal IKE2-PROPOSAL\n encryption aes-gcm-256\n prf sha256\n group 19\ncrypto ikev2 policy IKE2-POLICY\n proposal IKE2-PROPOSAL\nshow crypto ikev2 sa\nshow crypto ipsec sa`
+            },
+            {
+                id: 'sec_04',
+                title: 'Triage Log Insiden SIEM & Penanganan Insiden Keamanan',
+                concept: 'Siklus Incident Response standar NIST SP 800-61: Persiapan -> Deteksi & Analisis -> Penahanan (Containment) -> Pemulihan -> Evaluasi Pasca-Insiden. Menjalankan query korelasi log di SIEM untuk mengisolasi IP penyerang.',
+                cliSnippet: `# Splunk SPL Query Contoh:\nindex=firewall action=blocked src_ip="192.168.*"\n| stats count by dest_port, src_ip\n| sort -count`
+            }
+        ]
+    },
+
+    // --- FIBER OPTIC FTTH TRACK ---
+    {
+        id: 'mod_fiber',
+        category: 'fiber',
+        vendor: 'BNSP & Telkom FTTH',
+        code: 'FIBER-01',
+        badge: 'TIFO Madya (Fiber Optic)',
+        level: 'Menengah - Standar Industri',
+        title: 'Fiber Optic FTTH & TIFO Madya: Splicing, OPM & Trace OTDR',
+        desc: 'Kurikulum standar kompetensi nasional BNSP TIFO Madya & operasional Telkom Indonesia: Fisika transmisi cahaya Single Mode G.652D, arsitektur Optical Distribution Network GPON (OLT, ODC, ODP, Roset, ONT), SOP Fusion Splicing presisi, Power Budgeting OPM, dan Analisis Jejak OTDR.',
+        labTool: 'Fusion Splicer Fujikura/Ilsintech, Fiber Cleaver 90°, OPM, VFL Red Laser, OTDR',
+        subtopics: [
+            {
+                id: 'fiber_01',
+                title: 'Fisika Serat Optik, Karakteristik Core & Panjang Gelombang',
+                concept: 'Prinsip Total Internal Reflection (Hukum Snellius). Single Mode Fiber (SMF core 9 μm, cladding 125 μm, panjang gelombang 1310/1490/1550 nm) untuk jarak jauh. Multi Mode Fiber (MMF core 50/62.5 μm, 850/1300 nm) untuk data center indoor.',
+                cliSnippet: `# Standar Spek Kabel Fiber Telkom:\nCore/Cladding: 9/125 um (G.652D)\nRedaman SMF @ 1310 nm: ~0.35 dB/km\nRedaman SMF @ 1550 nm: ~0.20 dB/km\nTipe: Aerial Drop Core 1-2 core kawat penggantung`
+            },
+            {
+                id: 'fiber_02',
+                title: 'Topologi ODN GPON: OLT -> Feeder -> ODC -> Distribusi -> ODP -> ONT',
+                concept: 'Struktur distribusi jaringan optik pasif: Dari OLT (di sentral Telkom) melewati kabel feeder, masuk ke ODC (Splitter primer 1:4 / 1:8), lalu kabel distribusi menuju ODP di tiang (Splitter sekunder 1:8 / 1:16), ditarik kabel drop core ke Roset dan modem ONT pelanggan.',
+                cliSnippet: `# Standar Loss Pasif Splitter:\nSplitter 1:2  -> Redaman ~3.0 dB\nSplitter 1:4  -> Redaman ~7.0 dB\nSplitter 1:8  -> Redaman ~10.5 dB\nSplitter 1:16 -> Redaman ~14.0 dB\nSplitter 1:32 -> Redaman ~17.5 dB`
+            },
+            {
+                id: 'fiber_03',
+                title: 'Standar Operasional Prosedur (SOP) Fusion Splicing',
+                concept: 'Prosedur penyambungan kabel optik: 1. Kupas jaket kabel dan buffer dengan Fiber Stripper 3-lubang, 2. Bersihkan core telanjang dengan alkohol 95%+ dan fiber wipe, 3. Potong sudut tegak 90° presisi menggunakan Fiber Cleaver, 4. Letakkan di V-groove Fusion Splicer, 5. Proses busur listrik (arc discharge) dengan estimasi loss <= 0.03 dB, 6. Pasang protection sleeve dan panaskan di heater.',
+                cliSnippet: `# Parameter Cek Fusion Splicer:\nCleave Angle: < 1.0 derajat (Wajib)\nSplice Loss: < 0.03 dB (Bagus), > 0.08 dB (Ulangi potong)\nHeater Time: 15-20 detik pada sleeve 60mm`
+            },
+            {
+                id: 'fiber_04',
+                title: 'Power Budgeting & Pengukuran Redaman OPM (Optical Power Meter)',
+                concept: 'Menghitung total redaman jalur optik: Total Loss = (Panjang kabel x 0.35 dB/km) + (Jumlah sambungan x 0.1 dB) + (Jumlah konektor x 0.5 dB) + Loss Splitter. Standar daya terima RX ONT yang prima menurut Telkom adalah antara -14 dBm hingga -23 dBm. Jika redaman lebih buruk dari -27 dBm, modem mengalami Link Loss (LOS).',
+                cliSnippet: `# Nilai Standar Daya Terima OPM di Pelanggan:\n-14 dBm s/d -23 dBm : SANGAT BAIK / STANDAR RESMI TELKOM\n-24 dBm s/d -26 dBm : MARGINAL (Rentan putus saat hujan/panas)\n< -27 dBm           : LOS / REDAMAN TINGGI (Kabel tertekuk / kotor)`
+            },
+            {
+                id: 'fiber_05',
+                title: 'Interpretasi Jejak OTDR (Optical Time Domain Reflectometer)',
+                concept: 'Membaca grafik pantulan cahaya: 1. Event Dead Zone (jarak buta setelah konektor awal), 2. Event Reflektif (lonjakan puncak vertikal tajam menandakan adanya konektor mekanik atau ujung kabel putus), 3. Event Non-Reflektif (penurunan garis tanpa lonjakan menandakan sambungan fusion splice atau macrobend/tekukan kabel patah).',
+                cliSnippet: `# Parameter Setting OTDR:\nPanjang Gelombang: 1310 nm & 1550 nm (Uji tekukan macrobend)\nPulse Width: 10 ns (Jarak dekat < 2km) / 100 ns (Jarak jauh > 10km)\nIndeks Bias (IOR): 1.4677 (G.652D)`
+            }
+        ]
+    },
+
+    // --- LINUX SYSADMIN & FORTINET TRACK ---
+    {
+        id: 'mod_linux',
+        category: 'linux',
+        vendor: 'Linux RHCSA & LPIC-1',
+        code: 'LINUX-01',
+        badge: 'Linux SysAdmin',
+        level: 'Dasar - Menengah',
+        title: 'Linux System & Network Operations: Systemd, Netplan & Iptables',
+        desc: 'Kurikulum standar SysAdmin & Network Operations berbasis Ubuntu / Debian / RHEL: Hak akses permission oktal, kontrol daemon systemd, konfigurasi interface Netplan & nmcli, perangkat diagnostik tcpdump/ss/mtr, dan firewall NAT Masquerade.',
+        labTool: 'Ubuntu Server 22.04 LTS / Rocky Linux VM di VirtualBox / VPS aaPanel',
+        subtopics: [
+            {
+                id: 'linux_01',
+                title: 'Linux CLI, Hak Akses File (chmod/chown) & Systemd Services',
+                concept: 'Operasional shell Bash, kepemilikan file (chown user:group), izin akses (chmod 755 / 600), dan kontrol layanan jaringan Linux dengan systemctl serta inspeksi log real-time journalctl.',
+                cliSnippet: `sudo chown -R arkin:arkin /var/log/network/\nsudo chmod 600 ~/.ssh/authorized_keys\nsudo systemctl restart systemd-resolved\nsudo systemctl enable --now isc-dhcp-server\nsudo journalctl -u isc-dhcp-server -f`
+            },
+            {
+                id: 'linux_02',
+                title: 'Konfigurasi Jaringan Linux Modern: Netplan, ip & nmcli',
+                concept: 'Manajemen interface jaringan Linux modern. Perintah `ip addr` dan `ip route`, konfigurasi static IP dan DNS resolver melalui file deklaratif Netplan YAML (/etc/netplan/01-netcfg.yaml).',
+                cliSnippet: `ip -br a\nip route show\nsudo ip addr add 192.168.1.10/24 dev eth0\nsudo ip route add default via 192.168.1.1\nsudo netplan apply`
+            },
+            {
+                id: 'linux_03',
+                title: 'Diagnostik Jaringan Mendalam: tcpdump, ss, mtr & iperf3',
+                concept: 'Toolkit troubleshooting insiden jaringan di server. Mengendus paket data langsung di terminal dengan tcpdump, memeriksa port TCP/UDP yang sedang listening dengan `ss -tulnp`, uji throughput bandwidth dengan iperf3, dan trace rute hop-by-hop dengan mtr.',
+                cliSnippet: `sudo tcpdump -i eth0 -nn -c 50 'port 80 or port 443'\nsudo ss -tulnp | grep -E ':(80|443|22)'\nmtr --report --report-cycles=10 8.8.8.8\niperf3 -c 10.10.10.1 -t 10 -P 4`
+            },
+            {
+                id: 'linux_04',
+                title: 'Linux Firewall & Gateway: Iptables NAT Masquerade & UFW',
+                concept: 'Mengaktifkan Linux IP forwarding (sysctl net.ipv4.ip_forward=1) agar server berfungsi sebagai router internet, aturan MASQUERADE nat iptables, dan manajemen firewall lokal UFW.',
+                cliSnippet: `echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward\nsudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\nsudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT\nsudo ufw default deny incoming\nsudo ufw allow OpenSSH\nsudo ufw enable`
+            }
+        ]
+    },
+    {
+        id: 'mod_fortinet',
+        category: 'linux',
+        vendor: 'Fortinet FortiOS',
+        code: 'FORTINET-01',
+        badge: 'Fortinet NSE 4',
+        level: 'Menengah - Enterprise',
+        title: 'Fortinet FortiOS: Next-Gen Firewall Policy, VIP & Security Profiles',
+        desc: 'Kurikulum Network Security Professional: Konsep Virtual Domains (VDOMs), Firewall Policy (Src/Dst Interface, Address Objects, Services, Action Accept/Deny), Virtual IP (VIP) Port Forwarding, Security Profiles (Antivirus, Web Filtering, IPS), dan SSL-VPN Remote Access.',
+        labTool: 'FortiGate VM 7.x di EVE-NG / VMware Workstation',
+        subtopics: [
+            {
+                id: 'forti_01',
+                title: 'Konfigurasi Interface, Virtual IP (VIP) & Firewall Policy',
+                concept: 'Arsitektur Next-Gen Firewall FortiGate. Setiap traffic antar interface (LAN port2 ke WAN port1) wajib melewati Firewall Policy eksplisit dengan opsi NAT Masquerade atau Virtual IP (VIP) untuk server publik.',
+                cliSnippet: `config firewall policy\n    edit 1\n        set name "LAN_to_Internet"\n        set srcintf "port2"\n        set dstintf "port1"\n        set srcaddr "all"\n        set dstaddr "all"\n        set action accept\n        set schedule "always"\n        set service "ALL"\n        set nat enable\n    next\nend`
+            },
+            {
+                id: 'forti_02',
+                title: 'Security Profiles: Antivirus, Web Filter & IPS Inspection',
+                concept: 'Inspeksi keamanan tingkat lanjut layer 7. Mengaktifkan profil inspeksi berbasis Flow atau Proxy untuk memblokir malware, kategori website berbahaya, dan pola exploitasi serangan zero-day.',
+                cliSnippet: `config firewall policy\n    edit 1\n        set utm-status enable\n        set ssl-ssh-profile "certificate-inspection"\n        set av-profile "default"\n        set webfilter-profile "default"\n        set ips-sensor "default"\n    next\nend`
+            }
+        ]
+    }
+];
+
+// Side-by-Side CLI Comparison Data (Cisco IOS vs MikroTik RouterOS)
+const CLI_COMPARISON_DATA = [
+    {
+        task: '1. Konfigurasi IP Address & Deskripsi Interface',
+        note: 'Menetapkan IP statik pada port ethernet LAN dan menyalakan interface.',
+        cisco: `configure terminal\ninterface gigabitEthernet 0/1\n description LAN-Corporate-Office\n ip address 192.168.10.1 255.255.255.0\n no shutdown\nexit`,
+        mikrotik: `/ip address add address=192.168.10.1/24 interface=ether2 comment="LAN-Corporate-Office"\n/interface ethernet enable ether2\n/ip address print`
+    },
+    {
+        task: '2. Default Route & Static Route Failover',
+        note: 'Menambahkan rute utama ke ISP (Distance 1) dan rute cadangan (Distance 2).',
+        cisco: `configure terminal\nip route 0.0.0.0 0.0.0.0 203.0.113.1 name Primary_Fiber\nip route 0.0.0.0 0.0.0.0 198.51.100.1 150 name Backup_LTE\nshow ip route static`,
+        mikrotik: `/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.1 check-gateway=ping distance=1 comment="Primary_Fiber"\n/ip route add dst-address=0.0.0.0/0 gateway=198.51.100.1 distance=2 comment="Backup_LTE"\n/ip route print`
+    },
+    {
+        task: '3. Pembuatan VLAN & 802.1Q Trunking',
+        note: 'Membuat VLAN 10 dan mengatur port switch sebagai trunk yang membawa tagged packet.',
+        cisco: `configure terminal\nvlan 10\n name Staff-Office\nexit\ninterface gigabitEthernet 0/24\n switchport mode trunk\n switchport trunk allowed vlan 10,20,99\nexit`,
+        mikrotik: `/interface vlan add name=vlan10-staff vlan-id=10 interface=bridge-lan\n# RouterOS v7 Bridge VLAN Filtering:\n/interface bridge vlan add bridge=bridge-lan vlan-ids=10 tagged=bridge-lan,ether1 untagged=ether2\n/interface bridge set bridge-lan vlan-filtering=yes`
+    },
+    {
+        task: '4. Konfigurasi DHCP Server & IP Pool',
+        note: 'Menyediakan alokasi IP otomatis, gateway, dan DNS server untuk client LAN.',
+        cisco: `configure terminal\nip dhcp excluded-address 192.168.10.1 192.168.10.20\nip dhcp pool LAN-USERS\n network 192.168.10.0 255.255.255.0\n default-router 192.168.10.1\n dns-server 8.8.8.8 1.1.1.1\nexit`,
+        mikrotik: `/ip pool add name=dhcp-pool-lan ranges=192.168.10.21-192.168.10.250\n/ip dhcp-server add name=dhcp-lan interface=bridge-lan address-pool=dhcp-pool-lan lease-time=1d disabled=no\n/ip dhcp-server network add address=192.168.10.0/24 gateway=192.168.10.1 dns-server=8.8.8.8,1.1.1.1`
+    },
+    {
+        task: '5. Source NAT (Internet Masquerade Sharing)',
+        note: 'Mentranslasikan IP privat lokal ke IP publik ISP agar seluruh client bisa browsing internet.',
+        cisco: `configure terminal\naccess-list 1 permit 192.168.10.0 0.0.0.255\ninterface gigabitEthernet 0/0\n ip nat outside\ninterface gigabitEthernet 0/1\n ip nat inside\nip nat inside source list 1 interface gigabitEthernet 0/0 overload\nexit`,
+        mikrotik: `/ip firewall nat add chain=srcnat out-interface=ether1-wan action=masquerade comment="NAT Internet Masquerade"`
+    },
+    {
+        task: '6. Destination NAT (Port Forwarding ke Web Server)',
+        note: 'Mengarahkan traffic port 80/8080 dari publik WAN ke server internal 192.168.10.50.',
+        cisco: `configure terminal\nip nat inside source static tcp 192.168.10.50 80 interface gigabitEthernet 0/0 80\nexit`,
+        mikrotik: `/ip firewall nat add chain=dstnat in-interface=ether1-wan protocol=tcp dst-port=8080 action=dst-nat to-addresses=192.168.10.50 to-ports=80 comment="Web Server Port Forward"`
+    },
+    {
+        task: '7. Dynamic Routing OSPF Single Area (Area 0)',
+        note: 'Menjalankan OSPFv2 dengan Router-ID, mendistribusikan subnet LAN, dan pasif interface.',
+        cisco: `configure terminal\nrouter ospf 1\n router-id 1.1.1.1\n network 192.168.10.0 0.0.0.255 area 0\n network 10.0.0.0 0.0.0.3 area 0\n passive-interface gigabitEthernet 0/1\nexit`,
+        mikrotik: `/routing ospf instance add name=ospf-core router-id=1.1.1.1\n/routing ospf area add name=backbone instance=ospf-core area-id=0.0.0.0\n/routing ospf interface-template add area=backbone networks=192.168.10.0/24 passive=yes\n/routing ospf interface-template add area=backbone networks=10.0.0.0/30 type=ptp`
+    },
+    {
+        task: '8. Perintah Verifikasi & Diagnostik Harian',
+        note: 'Perintah esensial untuk memeriksa interface, rute, tetangga OSPF, dan uji konektivitas.',
+        cisco: `show ip interface brief\nshow ip route\nshow ip ospf neighbor\nshow mac address-table\nping 8.8.8.8 source gigabitEthernet 0/1\ntraceroute 8.8.8.8`,
+        mikrotik: `/ip address print\n/ip route print\n/routing ospf neighbor print\n/interface bridge host print\n/ping 8.8.8.8 src-address=192.168.10.1 count=4\n/tool traceroute 8.8.8.8`
+    }
+];
+
+// State & Persistence for Learning Academy
+const academyFilterState = {
+    category: 'all',
+    search: ''
+};
+
+const DEFAULT_ACADEMY_COMPLETED = [
+    // Pre-completed based on user verified certificates (CCNA, DevNet, Cisco NetSec, Google CyberSec, TIFO Madya, Mikrotik Aguna)
+    'mtcna_01', 'mtcna_02', 'mtcna_03', 'mtcna_04', 'mtcna_05', 'mtcna_06', 'mtcna_07', 'mtcna_08',
+    'ccna1_01', 'ccna1_02', 'ccna1_03', 'ccna1_04',
+    'ccna2_01', 'ccna2_02', 'ccna2_03', 'ccna2_04', 'ccna2_05',
+    'ccna3_01', 'ccna3_02', 'ccna3_03', 'ccna3_04',
+    'ccna4_01', 'ccna4_02', 'ccna4_03', 'ccna4_04', 'ccna4_05',
+    'devnet_01', 'devnet_02', 'devnet_03', 'devnet_04', 'devnet_05',
+    'sec_01', 'sec_02', 'sec_03', 'sec_04',
+    'fiber_01', 'fiber_02', 'fiber_03', 'fiber_04', 'fiber_05'
+];
+
+function getAcademyCompletedSubtopics() {
+    try {
+        const raw = localStorage.getItem('aamon_academy_completed_subtopics');
+        if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return [...DEFAULT_ACADEMY_COMPLETED];
+}
+
+function saveAcademyCompletedSubtopics(subtopics) {
+    try {
+        localStorage.setItem('aamon_academy_completed_subtopics', JSON.stringify(subtopics));
+    } catch (e) {}
+}
+
+function toggleAcademySubtopic(subtopicId) {
+    const list = getAcademyCompletedSubtopics();
+    const idx = list.indexOf(subtopicId);
+    let isNowDone = false;
+    if (idx >= 0) {
+        list.splice(idx, 1);
+        isNowDone = false;
+    } else {
+        list.push(subtopicId);
+        isNowDone = true;
+    }
+    saveAcademyCompletedSubtopics(list);
+    renderLearningAcademy();
+    showToastNotification('Progres Disimpan', isNowDone ? 'Topik materi ditandai telah dipelajari.' : 'Topik materi dikembalikan ke status belum selesai.');
+}
+
+function filterAcademyCategory(cat) {
+    academyFilterState.category = cat;
+    renderLearningAcademy();
+}
+
+function handleAcademySearch(val) {
+    academyFilterState.search = (val || '').trim().toLowerCase();
+    renderLearningAcademy();
+}
+
+function copyAcademyCliSnippet(moduleId, subtopicId) {
+    const mod = ACADEMY_MODULES.find(m => m.id === moduleId);
+    if (!mod) return;
+    const sub = mod.subtopics.find(s => s.id === subtopicId);
+    if (!sub || !sub.cliSnippet) return;
+    copyTextToClipboard(sub.cliSnippet, `CLI untuk "${sub.title}" berhasil disalin!`);
+}
+
+function copyCliComparisonSnippet(idx, vendor) {
+    const item = CLI_COMPARISON_DATA[idx];
+    if (!item) return;
+    const text = vendor === 'cisco' ? item.cisco : item.mikrotik;
+    copyTextToClipboard(text, `Sintaks ${vendor.toUpperCase()} disalin!`);
+}
+
+function openCliCheatSheetModal() {
+    const modal = document.getElementById('cliCheatSheetModal');
+    const container = document.getElementById('cliCheatSheetBody');
+    if (!modal || !container) return;
+
+    container.innerHTML = CLI_COMPARISON_DATA.map((item, idx) => `
+        <div class="p-5 rounded-xl bg-stone-900/60 border border-stone-800 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                    <h4 class="text-sm font-bold text-white">${item.task}</h4>
+                    <p class="text-xs text-stone-400 mt-0.5">${item.note}</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-1">
+                <!-- Cisco Column -->
+                <div class="p-4 rounded-lg bg-stone-950 border border-stone-800 space-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono pb-2 border-b border-stone-800">
+                            <span class="text-sky-400 font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-terminal text-[10px]"></i>
+                                <span>Cisco IOS CLI</span>
+                            </span>
+                            <span class="text-stone-500 text-[10px]">IOS-XE / Catalyst</span>
+                        </div>
+                        <pre class="font-mono text-xs text-stone-200 mt-2 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${item.cisco}</pre>
+                    </div>
+                    <div class="pt-2 text-right">
+                        <button type="button" onclick="copyCliComparisonSnippet(${idx}, 'cisco')" class="text-[11px] font-mono text-stone-400 hover:text-white bg-stone-900 hover:bg-stone-800 border border-stone-800 px-2.5 py-1 rounded transition flex items-center gap-1 ml-auto">
+                            <i class="fa-regular fa-copy text-[10px]"></i>
+                            <span>Salin Cisco</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MikroTik Column -->
+                <div class="p-4 rounded-lg bg-stone-950 border border-stone-800 space-y-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono pb-2 border-b border-stone-800">
+                            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-microchip text-[10px]"></i>
+                                <span>MikroTik RouterOS CLI</span>
+                            </span>
+                            <span class="text-stone-500 text-[10px]">RouterOS v7</span>
+                        </div>
+                        <pre class="font-mono text-xs text-stone-200 mt-2 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${item.mikrotik}</pre>
+                    </div>
+                    <div class="pt-2 text-right">
+                        <button type="button" onclick="copyCliComparisonSnippet(${idx}, 'mikrotik')" class="text-[11px] font-mono text-stone-400 hover:text-white bg-stone-900 hover:bg-stone-800 border border-stone-800 px-2.5 py-1 rounded transition flex items-center gap-1 ml-auto">
+                            <i class="fa-regular fa-copy text-[10px]"></i>
+                            <span>Salin MikroTik</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeCliCheatSheetModal() {
+    const modal = document.getElementById('cliCheatSheetModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+// Render Main Learning Academy View
+function renderLearningAcademy() {
+    const gridContainer = document.getElementById('academyModulesGrid');
+    if (!gridContainer) return;
+
+    const completedSubtopics = getAcademyCompletedSubtopics();
+
+    // Calculate Overall Stats
+    let totalSubtopicsCount = 0;
+    let completedSubtopicsCount = 0;
+
+    ACADEMY_MODULES.forEach(m => {
+        m.subtopics.forEach(s => {
+            totalSubtopicsCount++;
+            if (completedSubtopics.includes(s.id)) {
+                completedSubtopicsCount++;
+            }
+        });
+    });
+
+    const overallPct = totalSubtopicsCount > 0 ? Math.round((completedSubtopicsCount / totalSubtopicsCount) * 100) : 0;
+
+    const progressBadge = document.getElementById('academyOverallProgressBadge');
+    const progressBar = document.getElementById('academyOverallProgressBar');
+    if (progressBadge) progressBadge.textContent = `${completedSubtopicsCount} / ${totalSubtopicsCount} (${overallPct}%) Selesai`;
+    if (progressBar) progressBar.style.width = `${overallPct}%`;
+
+    // Update Category Filter Buttons
+    document.querySelectorAll('.academy-cat-btn').forEach(btn => {
+        if (btn.dataset.category === academyFilterState.category) {
+            btn.className = 'academy-cat-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-stone-950 transition shadow-sm';
+        } else {
+            btn.className = 'academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition';
+        }
+    });
+
+    // Filter Modules
+    const currentCategory = academyFilterState.category;
+    const searchQuery = academyFilterState.search;
+
+    const filteredModules = ACADEMY_MODULES.filter(mod => {
+        // Category check
+        if (currentCategory !== 'all' && mod.category !== currentCategory) return false;
+
+        // Search query check
+        if (searchQuery) {
+            const matchesMod = mod.title.toLowerCase().includes(searchQuery) ||
+                               mod.desc.toLowerCase().includes(searchQuery) ||
+                               mod.vendor.toLowerCase().includes(searchQuery) ||
+                               mod.badge.toLowerCase().includes(searchQuery);
+
+            const matchesSub = mod.subtopics.some(s =>
+                s.title.toLowerCase().includes(searchQuery) ||
+                s.concept.toLowerCase().includes(searchQuery) ||
+                (s.cliSnippet && s.cliSnippet.toLowerCase().includes(searchQuery))
+            );
+
+            if (!matchesMod && !matchesSub) return false;
+        }
+
+        return true;
+    });
+
+    if (filteredModules.length === 0) {
+        gridContainer.innerHTML = `
+            <div class="clean-card p-12 text-center space-y-3">
+                <i class="fa-solid fa-magnifying-glass text-stone-600 text-3xl"></i>
+                <h4 class="text-base font-bold text-white">Tidak ada materi yang sesuai pencarian</h4>
+                <p class="text-xs text-stone-400 max-w-md mx-auto">Coba gunakan kata kunci lain (misal: "OSPF", "BGP", "VLAN", "OTDR", "NAT", "iptables") atau klik tab kategori "Semua".</p>
+                <button type="button" onclick="filterAcademyCategory('all'); document.getElementById('academySearchInput').value='';" class="mt-2 py-2 px-4 rounded bg-stone-800 hover:bg-stone-700 text-white text-xs font-semibold transition">
+                    Reset Filter Pencarian
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    gridContainer.innerHTML = filteredModules.map(mod => {
+        const modTotal = mod.subtopics.length;
+        const modDone = mod.subtopics.filter(s => completedSubtopics.includes(s.id)).length;
+        const modPct = Math.round((modDone / modTotal) * 100);
+
+        // Highlight matching subtopics if searching
+        const subtopicsToDisplay = mod.subtopics.filter(s => {
+            if (!searchQuery) return true;
+            return s.title.toLowerCase().includes(searchQuery) ||
+                   s.concept.toLowerCase().includes(searchQuery) ||
+                   (s.cliSnippet && s.cliSnippet.toLowerCase().includes(searchQuery)) ||
+                   mod.title.toLowerCase().includes(searchQuery);
+        });
+
+        return `
+            <div class="clean-card p-6 sm:p-7 space-y-5 transition border border-stoneBorder hover:border-stone-700">
+                <!-- Module Header -->
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-stone-800 pb-4">
+                    <div class="space-y-1.5 flex-1">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-amber-400">
+                                [${mod.code}]
+                            </span>
+                            <span class="font-mono text-[11px] font-semibold px-2 py-0.5 rounded bg-stone-900 text-stone-300 border border-stone-800">
+                                ${mod.vendor}
+                            </span>
+                            <span class="font-mono text-[10px] uppercase px-2 py-0.5 rounded ${mod.level.includes('Lanjutan') ? 'bg-purple-950/40 text-purple-300 border border-purple-800/40' : mod.level.includes('Menengah') ? 'bg-blue-950/40 text-blue-300 border border-blue-800/40' : 'bg-emerald-950/40 text-emerald-300 border border-emerald-800/40'}">
+                                ${mod.level}
+                            </span>
+                            <span class="font-mono text-[11px] font-semibold text-stone-400 ml-auto sm:ml-0">
+                                ${mod.badge}
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg sm:text-xl font-bold text-white pt-1">${mod.title}</h3>
+                        <p class="text-xs text-stone-300 leading-relaxed">${mod.desc}</p>
+
+                        <div class="flex items-center gap-2 pt-1 text-[11px] text-stone-400 font-mono">
+                            <i class="fa-solid fa-microchip text-amber-500"></i>
+                            <span>${mod.labTool}</span>
+                        </div>
+                    </div>
+
+                    <!-- Module Completion Badge & Mini Bar -->
+                    <div class="sm:text-right shrink-0 min-w-[140px] p-3 rounded-lg bg-stone-900/60 border border-stone-800">
+                        <div class="flex sm:justify-end items-center gap-1.5">
+                            <span class="text-xs font-mono font-bold ${modDone === modTotal ? 'text-emerald-400' : 'text-stone-300'}">
+                                ${modDone}/${modTotal} Selesai
+                            </span>
+                            <span class="text-[11px] font-mono text-stone-500">(${modPct}%)</span>
+                        </div>
+                        <div class="w-full bg-stone-950 rounded-full h-1.5 mt-2 overflow-hidden border border-stone-800">
+                            <div class="${modDone === modTotal ? 'bg-emerald-400' : 'bg-amber-400'} h-full rounded-full transition-all duration-300" style="width: ${modPct}%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subtopics Detailed Accordion / Checklist -->
+                <div class="space-y-3 pt-1">
+                    <div class="text-xs font-mono uppercase text-stone-400 font-bold flex items-center justify-between">
+                        <span>Daftar Topik & Praktik Hands-On (${subtopicsToDisplay.length} Topik):</span>
+                        <span class="text-[10px] text-stone-500 lowercase">centang jika materi sudah dipahami / dilatih</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        ${subtopicsToDisplay.map(sub => {
+                            const isDone = completedSubtopics.includes(sub.id);
+                            return `
+                                <div class="p-4 rounded-xl border ${isDone ? 'border-emerald-500/30 bg-emerald-950/10' : 'border-stone-800 bg-stone-900/40'} transition space-y-2.5">
+                                    <div class="flex items-start gap-3">
+                                        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleAcademySubtopic('${sub.id}')" class="mt-1 w-4 h-4 rounded border-stone-700 bg-stone-900 text-emerald-400 focus:ring-0 cursor-pointer shrink-0">
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center justify-between gap-2 flex-wrap">
+                                                <h4 class="text-xs font-bold ${isDone ? 'text-emerald-200' : 'text-white'}">
+                                                    ${sub.title}
+                                                </h4>
+                                                <span class="text-[10px] font-mono px-2 py-0.5 rounded ${isDone ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/40' : 'bg-stone-800 text-stone-400 border border-stone-700'}">
+                                                    ${isDone ? 'Sudah Dipahami' : 'Perlu Dipelajari'}
+                                                </span>
+                                            </div>
+
+                                            <p class="text-xs text-stone-400 mt-1.5 leading-relaxed">
+                                                ${sub.concept}
+                                            </p>
+
+                                            ${sub.cliSnippet ? `
+                                                <div class="mt-3 rounded-lg bg-stone-950 border border-stone-800/90 p-3 relative group">
+                                                    <div class="flex items-center justify-between pb-1.5 mb-1.5 border-b border-stone-900 text-[10px] font-mono text-stone-500">
+                                                        <span class="text-amber-400/90 flex items-center gap-1 font-semibold">
+                                                            <i class="fa-solid fa-terminal text-[9px]"></i>
+                                                            <span>CLI Command / Script Snippet</span>
+                                                        </span>
+                                                        <button type="button" onclick="copyAcademyCliSnippet('${mod.id}', '${sub.id}')" class="text-stone-400 hover:text-white bg-stone-900 hover:bg-stone-800 px-2 py-0.5 rounded border border-stone-800 transition flex items-center gap-1">
+                                                            <i class="fa-regular fa-copy text-[9px]"></i>
+                                                            <span>Salin CLI</span>
+                                                        </button>
+                                                    </div>
+                                                    <pre class="font-mono text-xs text-stone-300 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${sub.cliSnippet}</pre>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}

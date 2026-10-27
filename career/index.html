@@ -101,6 +101,10 @@
                     <i class="fa-solid fa-briefcase text-xs w-4 text-center"></i>
                     <span class="sidebar-text">28 Portofolio Live</span>
                 </button>
+                <button type="button" data-view="learning" onclick="switchView('learning')" class="sidebar-nav-item w-full text-left" title="Akademi & Roadmap Belajar Network">
+                    <i class="fa-solid fa-graduation-cap text-xs w-4 text-center"></i>
+                    <span class="sidebar-text">Roadmap Belajar</span>
+                </button>
             </nav>
         </div>
 
@@ -173,6 +177,10 @@
                 <button type="button" data-view="portfolio" onclick="switchView('portfolio')" class="sidebar-nav-item w-full text-left">
                     <i class="fa-solid fa-briefcase text-xs w-4"></i>
                     <span>28 Portofolio Live</span>
+                </button>
+                <button type="button" data-view="learning" onclick="switchView('learning')" class="sidebar-nav-item w-full text-left">
+                    <i class="fa-solid fa-graduation-cap text-xs w-4"></i>
+                    <span>Roadmap Belajar</span>
                 </button>
             </nav>
         </div>
@@ -689,8 +697,13 @@
                             <h3 class="text-lg font-bold text-white mt-0.5">Target Belajar & Sertifikasi Network Mendatang</h3>
                             <p class="text-xs text-stone-400 mt-0.5">Rencana pembelajaran multi-vendor dan peningkatan kualifikasi teknis. Centang target saat diselesaikan.</p>
                         </div>
-                        <div class="text-right">
-                            <span id="roadmapProgressPercent" class="font-mono text-xs font-bold text-emerald-400 bg-stone-900 border border-stone-800 px-3 py-1 rounded-lg">
+                        <div class="text-right flex items-center justify-end gap-2 flex-wrap">
+                            <button type="button" onclick="switchView('learning')" class="text-xs font-semibold text-stone-300 hover:text-white bg-stone-900 border border-stone-800 hover:border-stone-700 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+                                <span>Buka Silabus Terinci</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                            <span id="roadmapProgressPercent" class="font-mono text-xs font-bold text-emerald-400 bg-stone-900 border border-stone-800 px-3 py-1.5 rounded-lg">
                                 <!-- Populated by JS -->
                             </span>
                         </div>
@@ -907,6 +920,158 @@ Terlampir berkas CV saya untuk ditinjau lebih lanjut. Saya sangat antusias untuk
                     <div id="portfolioProjectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Populated by JS -->
                     </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- VIEW 6: AKADEMI & ROADMAP BELAJAR NETWORK (DEEP-DIVE)          -->
+            <!-- ============================================================== -->
+            <section id="learningViewPanel" class="hidden space-y-8">
+                <!-- Hero Header -->
+                <div class="clean-card p-6 sm:p-8 relative overflow-hidden">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div class="max-w-3xl space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono text-xs uppercase tracking-widest text-amber-400 font-bold bg-amber-950/40 border border-amber-800/40 px-2.5 py-0.5 rounded">
+                                    NETWORK ACADEMY & CONTINUOUS LEARNING
+                                </span>
+                                <span class="font-mono text-[11px] text-stone-400">Multi-Vendor Mastery</span>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                                Silabus Belajar & Sertifikasi Network Terstruktur
+                            </h2>
+                            <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+                                Panduan belajar mandiri dari fondasi dasar (OSI, Subnetting, CLI, Winbox) hingga arsitektur enterprise multi-vendor (BGP, MPLS, OSPF Multi-Area, NetDevOps Python, Fiber Optic FTTH, dan Linux SysAdmin). Lengkap dengan konsep teknis, checklist per modul, dan perintah CLI siap pakai.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <button type="button" onclick="openCliCheatSheetModal()" class="py-2 px-3.5 rounded-lg bg-white text-stone-950 font-bold text-xs hover:bg-stone-200 transition flex items-center gap-2 shadow-sm">
+                                    <i class="fa-solid fa-code-compare text-amber-600"></i>
+                                    <span>Cheat Sheet CLI Cisco vs MikroTik</span>
+                                </button>
+                                <button type="button" onclick="document.getElementById('labToolsCard').scrollIntoView({ behavior: 'smooth' })" class="py-2 px-3.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-300 border border-stone-800 text-xs font-semibold transition flex items-center gap-2">
+                                    <i class="fa-solid fa-flask-vial text-emerald-400"></i>
+                                    <span>Rekomendasi Simulator Lab</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Card & Quick Stats -->
+                        <div class="lg:w-80 w-full p-4 rounded-xl bg-stoneCardSubtle border border-stoneBorder space-y-3 shrink-0">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono uppercase text-stone-400 font-bold">Progres Belajar</span>
+                                <span id="academyOverallProgressBadge" class="font-mono text-xs font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2.5 py-0.5 rounded">
+                                    0 / 0 (0%)
+                                </span>
+                            </div>
+                            <div class="w-full bg-stone-900 rounded-full h-2 overflow-hidden border border-stone-800">
+                                <div id="academyOverallProgressBar" class="bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 pt-1 text-center font-mono text-xs">
+                                <div class="p-2 rounded bg-stone-900/60 border border-stone-800">
+                                    <div class="text-stone-500 text-[10px] uppercase">Track Utama</div>
+                                    <div class="text-white font-bold text-sm mt-0.5">7 Kategori</div>
+                                </div>
+                                <div class="p-2 rounded bg-stone-900/60 border border-stone-800">
+                                    <div class="text-stone-500 text-[10px] uppercase">Modul Belajar</div>
+                                    <div class="text-white font-bold text-sm mt-0.5">13 Modul</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab Environment Guide Card -->
+                <div id="labToolsCard" class="clean-card p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-stone-800 pb-3 flex-wrap gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-flask-vial text-amber-400 text-sm"></i>
+                            <h3 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Ekosistem Simulator & Lab Praktik Mandiri</h3>
+                        </div>
+                        <span class="text-[11px] font-mono text-stone-400">Peralatan Latihan Gratis & Standar Industri</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                        <div class="p-3.5 rounded-lg bg-stone-900/70 border border-stone-800 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white">Cisco Packet Tracer</span>
+                                <span class="font-mono text-[10px] text-amber-300 bg-amber-950/40 px-1.5 py-0.5 rounded border border-amber-800/40">CCNA Lab</span>
+                            </div>
+                            <p class="text-stone-400 text-[11px] leading-relaxed">
+                                Software simulasi visual resmi Cisco. Ringan dan sangat cepat untuk melatih L2 Switching, VLAN, Router-on-a-Stick, OSPFv2, DHCP, NAT, dan ACL tanpa membebani RAM laptop.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-stone-900/70 border border-stone-800 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white">MikroTik CHR (v7)</span>
+                                <span class="font-mono text-[10px] text-emerald-300 bg-emerald-950/40 px-1.5 py-0.5 rounded border border-emerald-800/40">Winbox Ready</span>
+                            </div>
+                            <p class="text-stone-400 text-[11px] leading-relaxed">
+                                Cloud Hosted RouterOS virtual. Dijalankan di VirtualBox, VMware Workstation, atau Proxmox VE. Lisensi Free (speed cap 1 Mbps) yang memadai untuk simulasi BGP, MPLS, Firewall & QoS.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-stone-900/70 border border-stone-800 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white">EVE-NG / GNS3</span>
+                                <span class="font-mono text-[10px] text-blue-300 bg-blue-950/40 px-1.5 py-0.5 rounded border border-blue-800/40">Multi-Vendor</span>
+                            </div>
+                            <p class="text-stone-400 text-[11px] leading-relaxed">
+                                Emulator image asli (Cisco IOL/QEMU, FortiGate VM, MikroTik CHR, Linux VM). Cocok untuk skenario multi-vendor terintegrasi, inter-AS BGP peering, MPLS L3VPN, dan NetDevOps.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-stone-900/70 border border-stone-800 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-white">Wireshark & Netmiko</span>
+                                <span class="font-mono text-[10px] text-purple-300 bg-purple-950/40 px-1.5 py-0.5 rounded border border-purple-800/40">Packet & NetDev</span>
+                            </div>
+                            <p class="text-stone-400 text-[11px] leading-relaxed">
+                                Wireshark untuk analisis TCP 3-way handshake, frame ARP, OSPF Hello, dan ICMP echo. Python 3 dengan pustaka `netmiko` untuk push konfigurasi massal otomatis melalui SSH.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter by Track and Search Bar -->
+                <div class="clean-card p-4 sm:p-5 space-y-3">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                        <!-- Category Tabs -->
+                        <div id="academyCategoryTabs" class="flex flex-wrap items-center gap-1.5">
+                            <button type="button" onclick="filterAcademyCategory('all')" class="academy-cat-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-stone-950 transition shadow-sm" data-category="all">
+                                Semua (13 Modul)
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('mikrotik')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="mikrotik">
+                                MikroTik RouterOS
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('cisco')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="cisco">
+                                Cisco CCNA
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('enterprise')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="enterprise">
+                                CCNP & DevNet
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('security')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="security">
+                                Cyber & Network Security
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('fiber')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="fiber">
+                                Fiber Optic & TIFO
+                            </button>
+                            <button type="button" onclick="filterAcademyCategory('linux')" class="academy-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-stone-400 hover:text-white hover:bg-stone-800 transition" data-category="linux">
+                                Linux & Fortinet
+                            </button>
+                        </div>
+
+                        <!-- Real-time Search -->
+                        <div class="relative w-full md:w-72 shrink-0">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-stone-500 text-xs"></i>
+                            <input type="text" id="academySearchInput" oninput="handleAcademySearch(this.value)" placeholder="Cari protokol, perintah, atau konsep..." class="w-full pl-9 pr-3 py-1.5 rounded-lg bg-stone-900 border border-stone-800 text-stone-200 text-xs focus:outline-none focus:border-stone-600 transition">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modules Dynamic Grid Container -->
+                <div id="academyModulesGrid" class="space-y-6">
+                    <!-- Populated dynamically by JS -->
                 </div>
             </section>
 
@@ -1225,6 +1390,38 @@ Terlampir berkas CV saya untuk ditinjau lebih lanjut. Saya sangat antusias untuk
             <div class="pt-3 border-t border-stone-800 flex items-center justify-between text-[11px] font-mono text-stone-500 shrink-0">
                 <span>Tips: Gunakan "Cetak / Simpan PDF" untuk mengekspor dokumen ke file PDF standar A4 tanpa elemen dashboard.</span>
                 <button type="button" onclick="closeAtsResumeModal()" class="py-1.5 px-3 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 font-sans text-xs transition">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Modal: Perbandingan CLI Cisco IOS vs MikroTik RouterOS Side-by-Side -->
+    <div id="cliCheatSheetModal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4 overflow-y-auto">
+        <div class="clean-card bg-stoneCard w-full max-w-5xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative border border-stoneBorder max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-stoneBorder shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-code-compare text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white">Cheat Sheet Perbandingan CLI: Cisco IOS vs MikroTik RouterOS</h3>
+                        <p class="text-xs text-stone-400">Panduan sintaks berdampingan untuk konfigurasi harian & wawancara teknis Network Engineer.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeCliCheatSheetModal()" class="p-2 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition" title="Tutup Modal">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto py-5 space-y-6 pr-1" id="cliCheatSheetBody">
+                <!-- Populated dynamically by JS -->
+            </div>
+
+            <div class="pt-3 border-t border-stoneBorder flex items-center justify-between text-xs text-stone-400 font-mono shrink-0">
+                <span>Tips: Format sintaks Cisco menggunakan mode `conf t`, MikroTik menggunakan terminal path RouterOS.</span>
+                <button type="button" onclick="closeCliCheatSheetModal()" class="py-1.5 px-4 rounded bg-stone-800 hover:bg-stone-700 text-white font-sans text-xs transition">
+                    Tutup
+                </button>
             </div>
         </div>
     </div>
