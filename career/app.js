@@ -3006,14 +3006,40 @@ function renderLearningAcademy() {
                             <span>${mod.labTool}</span>
                         </div>
 
+                        <!-- Banner Golden Reference jika MTCNA -->
+                        ${mod.id === 'mod_mtcna' ? `
+                            <div class="p-3 rounded-lg bg-gradient-to-r from-amber-400/15 via-amber-400/5 to-transparent border border-amber-500/40 flex items-center justify-between flex-wrap gap-3">
+                                <div class="space-y-0.5">
+                                    <div class="text-xs font-bold text-amber-300 flex items-center gap-1.5 font-mono">
+                                        <i class="fa-solid fa-star text-amber-400"></i>
+                                        <span>STUDIO BELAJAR BAKU: MATERI 1 TELAH AKTIF</span>
+                                    </div>
+                                    <p class="text-[11px] text-stone-300">
+                                        Routing: Static & Default Route (MikroTik v7.14+) dengan Topologi SVG Interaktif, Stepper CLI, Detail Parameter, Troubleshooting & Latihan Mandiri.
+                                    </p>
+                                </div>
+                                <button type="button" onclick="selectStudioMateri('mikrotik-01-routing'); document.getElementById('courseStudioApp').scrollIntoView({ behavior: 'smooth' });" class="py-1.5 px-3.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs transition flex items-center gap-2 shadow-sm shrink-0">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Buka Materi 1 di Studio</span>
+                                    <i class="fa-solid fa-arrow-up text-[10px]"></i>
+                                </button>
+                            </div>
+                        ` : ''}
+
                         <div class="flex flex-wrap items-center gap-2 pt-2">
-                            ${simBtn ? `
-                                <button type="button" onclick="selectSimulatorTab('${simBtn.tab}'); document.getElementById('visualSimulatorSection').scrollIntoView({ behavior: 'smooth' });" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-md bg-stone-900 hover:bg-stone-800 text-stone-200 text-xs font-mono border border-stone-800 hover:border-stone-700 transition shadow-sm">
+                            ${mod.id === 'mod_mtcna' ? `
+                                <button type="button" onclick="selectStudioMateri('mikrotik-01-routing'); document.getElementById('courseStudioApp').scrollIntoView({ behavior: 'smooth' });" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-md bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-mono font-bold transition shadow-sm">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Buka di Studio Interaktif</span>
+                                    <i class="fa-solid fa-arrow-up text-[9px]"></i>
+                                </button>
+                            ` : (simBtn ? `
+                                <button type="button" onclick="document.getElementById('courseStudioApp').scrollIntoView({ behavior: 'smooth' });" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-md bg-stone-900 hover:bg-stone-800 text-stone-200 text-xs font-mono border border-stone-800 hover:border-stone-700 transition shadow-sm">
                                     <i class="fa-solid ${simBtn.icon}"></i>
                                     <span>${simBtn.label}</span>
                                     <i class="fa-solid fa-arrow-up text-[9px] text-stone-400"></i>
                                 </button>
-                            ` : ''}
+                            ` : '')}
                             ${mod.ebookUrl ? `
                                 <a href="${encodeURI(mod.ebookUrl)}" target="_blank" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-md bg-stone-900 hover:bg-stone-800 text-stone-200 text-xs font-mono border border-stone-800 hover:border-stone-700 transition shadow-sm">
                                     <i class="fa-solid fa-file-pdf text-rose-400"></i>
@@ -3079,6 +3105,20 @@ function renderLearningAcademy() {
                                                         </button>
                                                     </div>
                                                     <pre class="font-mono text-xs text-stone-300 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${sub.cliSnippet}</pre>
+                                                </div>
+                                            ` : ''}
+
+                                            ${(sub.id === 'mtcna_05' || sub.title.includes('Routing Statik')) ? `
+                                                <div class="mt-2.5 p-2.5 rounded-lg bg-amber-400/10 border border-amber-500/30 flex items-center justify-between flex-wrap gap-2">
+                                                    <div class="flex items-center gap-2 text-xs text-amber-200">
+                                                        <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+                                                        <span>Materi ini telah tersedia lengkap dalam <strong>Format Studio Standar Baku (8 Section)</strong></span>
+                                                    </div>
+                                                    <button type="button" onclick="selectStudioMateri('mikrotik-01-routing'); document.getElementById('courseStudioApp').scrollIntoView({ behavior: 'smooth' });" class="py-1 px-3 rounded bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs transition flex items-center gap-1.5 shadow-sm">
+                                                        <i class="fa-solid fa-play text-stone-950"></i>
+                                                        <span>Buka di Studio Interaktif</span>
+                                                        <i class="fa-solid fa-arrow-up text-[9px]"></i>
+                                                    </button>
                                                 </div>
                                             ` : ''}
                                         </div>
@@ -3460,14 +3500,14 @@ function renderStandardizedCourseStudio(targetId) {
     let filteredOutline = outline;
     if (studioSearchFilter) {
         filteredOutline = outline.map(cat => {
-            const matchedItems = cat.items.filter(item => 
-                item.title.toLowerCase().includes(studioSearchFilter) ||
-                item.track.toLowerCase().includes(studioSearchFilter) ||
-                item.vendor.toLowerCase().includes(studioSearchFilter) ||
-                cat.title.toLowerCase().includes(studioSearchFilter)
+            const matList = cat.materials || [];
+            const matchedItems = matList.filter(item => 
+                (item.title && item.title.toLowerCase().includes(studioSearchFilter)) ||
+                (cat.category && cat.category.toLowerCase().includes(studioSearchFilter)) ||
+                (cat.badge && cat.badge.toLowerCase().includes(studioSearchFilter))
             );
-            return { ...cat, items: matchedItems };
-        }).filter(cat => cat.items.length > 0);
+            return { ...cat, materials: matchedItems };
+        }).filter(cat => cat.materials && cat.materials.length > 0);
     }
 
     studioContainer.innerHTML = `
@@ -3554,29 +3594,31 @@ function renderStandardizedCourseStudio(targetId) {
                         <span>45 Silabus</span>
                     </div>
 
-                    ${filteredOutline.map(cat => `
+                    ${filteredOutline.map(cat => {
+                        const matList = cat.materials || [];
+                        return `
                         <div class="rounded-lg bg-stone-900/50 border border-stone-800 overflow-hidden">
                             <div class="p-2.5 bg-stone-900/90 flex items-center justify-between border-b border-stone-800/60">
                                 <div class="flex items-center gap-2">
-                                    <i class="${cat.icon || 'fa-solid fa-network-wired'} text-xs text-amber-400"></i>
-                                    <span class="text-xs font-bold text-white tracking-wide">${cat.title}</span>
+                                    <i class="fa-solid fa-network-wired text-xs text-amber-400"></i>
+                                    <span class="text-xs font-bold text-white tracking-wide">${cat.category}</span>
                                 </div>
                                 <span class="font-mono text-[10px] text-stone-400 bg-stone-800 px-1.5 py-0.5 rounded">
-                                    ${cat.items.length} materi
+                                    ${matList.length} materi
                                 </span>
                             </div>
                             <div class="p-1.5 space-y-1">
-                                ${cat.items.map(item => {
+                                ${matList.map(item => {
                                     const isThisActive = item.id === currentMateri.id;
                                     const isThisDone = completedList.includes(item.id);
-                                    const isAvailable = item.id === 'mikrotik-01-routing'; // Only Materi 1 implemented per rule F.1
+                                    const isAvailable = item.id === 'mikrotik-01-routing' || item.available === true;
 
                                     if (isAvailable) {
                                         return `
                                             <button type="button" onclick="selectStudioMateri('${item.id}')" class="w-full text-left p-2 rounded-md transition text-xs flex items-center justify-between gap-2 ${isThisActive ? 'bg-amber-400/10 border border-amber-500/40 text-amber-200 font-bold' : 'hover:bg-stone-800 text-stone-300'}">
                                                 <div class="flex items-center gap-2 truncate">
                                                     <i class="fa-solid ${isThisDone ? 'fa-circle-check text-emerald-400' : (isThisActive ? 'fa-play text-amber-400' : 'fa-circle text-stone-600')} text-[10px] shrink-0"></i>
-                                                    <span class="truncate">[${item.num}] ${item.title}</span>
+                                                    <span class="truncate">[${item.order}] ${item.title}</span>
                                                 </div>
                                                 <span class="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded shrink-0 ${isThisDone ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-amber-950 text-amber-400 border border-amber-800'}">
                                                     ${isThisDone ? 'SELESAI' : 'AKTIF'}
@@ -3588,7 +3630,7 @@ function renderStandardizedCourseStudio(targetId) {
                                             <div class="w-full p-2 rounded-md text-xs text-stone-500 flex items-center justify-between gap-2 bg-stone-950/30 opacity-75 cursor-not-allowed">
                                                 <div class="flex items-center gap-2 truncate">
                                                     <i class="fa-solid fa-lock text-[10px] text-stone-600 shrink-0"></i>
-                                                    <span class="truncate">[${item.num}] ${item.title}</span>
+                                                    <span class="truncate">[${item.order}] ${item.title}</span>
                                                 </div>
                                                 <span class="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded bg-stone-900 text-stone-500 border border-stone-800 shrink-0">
                                                     Locked
@@ -3599,7 +3641,7 @@ function renderStandardizedCourseStudio(targetId) {
                                 }).join('')}
                             </div>
                         </div>
-                    `).join('')}
+                    `}).join('')}
                 </div>
             </div>
 
@@ -3954,35 +3996,21 @@ function renderStandardizedCourseStudio(targetId) {
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <!-- R1 Core Full -->
-                                <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
-                                    <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
-                                        <span class="font-bold text-white flex items-center gap-1.5 font-mono">
-                                            <i class="fa-solid fa-server text-amber-400"></i>
-                                            ${currentMateri.fullConfig.r1.device}
-                                        </span>
-                                        <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(currentMateri.fullConfig.r1.script)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
-                                            <i class="fa-regular fa-copy"></i>
-                                            <span>Salin Semua R1</span>
-                                        </button>
+                                ${(Array.isArray(currentMateri.fullConfig) ? currentMateri.fullConfig : []).map(cfg => `
+                                    <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
+                                        <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
+                                            <span class="font-bold text-white flex items-center gap-1.5 font-mono">
+                                                <i class="fa-solid fa-server text-amber-400"></i>
+                                                ${cfg.device}
+                                            </span>
+                                            <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(cfg.commands || cfg.script || '')})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
+                                                <i class="fa-regular fa-copy"></i>
+                                                <span>Salin Semua ${cfg.device}</span>
+                                            </button>
+                                        </div>
+                                        <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${cfg.commands || cfg.script || ''}</pre>
                                     </div>
-                                    <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${currentMateri.fullConfig.r1.script}</pre>
-                                </div>
-
-                                <!-- R2 Branch Full -->
-                                <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
-                                    <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs">
-                                        <span class="font-bold text-white flex items-center gap-1.5 font-mono">
-                                            <i class="fa-solid fa-network-wired text-sky-400"></i>
-                                            ${currentMateri.fullConfig.r2.device}
-                                        </span>
-                                        <button type="button" onclick="copyCliSnippet(this, ${JSON.stringify(currentMateri.fullConfig.r2.script)})" class="py-1 px-2.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 text-[11px] font-mono transition flex items-center gap-1 border border-stone-700">
-                                            <i class="fa-regular fa-copy"></i>
-                                            <span>Salin Semua R2</span>
-                                        </button>
-                                    </div>
-                                    <pre class="p-3 font-mono text-[11px] text-stone-300 whitespace-pre-wrap leading-relaxed max-h-64 overflow-y-auto select-all">${currentMateri.fullConfig.r2.script}</pre>
-                                </div>
+                                `).join('')}
                             </div>
                         </div>
 
@@ -4020,13 +4048,13 @@ function renderStandardizedCourseStudio(targetId) {
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-stone-800/60 font-sans">
-                                ${currentMateri.parameters.map(p => `
+                                ${(currentMateri.parameters || []).map(p => `
                                     <tr class="hover:bg-stone-900/30 transition">
                                         <td class="p-3 font-mono font-bold text-amber-300 whitespace-nowrap">${p.name}</td>
-                                        <td class="p-3 text-stone-300 leading-relaxed">${p.func}</td>
-                                        <td class="p-3 font-mono text-stone-200 whitespace-nowrap">${p.example}</td>
-                                        <td class="p-3 font-mono text-stone-400 whitespace-nowrap">${p.range}</td>
-                                        <td class="p-3 text-stone-400 leading-relaxed text-[11px]">${p.notes}</td>
+                                        <td class="p-3 text-stone-300 leading-relaxed">${p.function || p.func || ''}</td>
+                                        <td class="p-3 font-mono text-stone-200 whitespace-nowrap">${p.example || ''}</td>
+                                        <td class="p-3 font-mono text-stone-400 whitespace-nowrap">${p.default || p.range || ''}</td>
+                                        <td class="p-3 text-stone-400 leading-relaxed text-[11px]">${p.note || p.notes || ''}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -4063,16 +4091,16 @@ function renderStandardizedCourseStudio(targetId) {
                             </h4>
 
                             <div class="grid grid-cols-1 gap-4">
-                                ${currentMateri.verification.map(v => `
+                                ${(currentMateri.verification || []).map(v => `
                                     <div class="rounded-xl bg-stone-950 border border-stone-800 overflow-hidden">
                                         <div class="p-2.5 bg-stone-900 border-b border-stone-800 flex items-center justify-between text-xs font-mono">
                                             <span class="text-emerald-400 font-bold flex items-center gap-2">
                                                 <i class="fa-solid fa-circle-check text-[10px]"></i>
-                                                ${v.desc}
+                                                ${v.desc || v.command}
                                             </span>
-                                            <span class="text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">${v.cmd}</span>
+                                            <span class="text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">${v.command || v.cmd || ''}</span>
                                         </div>
-                                        <pre class="p-3.5 font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${v.output}</pre>
+                                        <pre class="p-3.5 font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all overflow-x-auto">${v.expectedOutput || v.output || ''}</pre>
                                     </div>
                                 `).join('')}
                             </div>
@@ -4086,13 +4114,13 @@ function renderStandardizedCourseStudio(targetId) {
                             </h4>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                ${currentMateri.troubleshooting.map((t, idx) => `
+                                ${(currentMateri.troubleshooting || []).map((t, idx) => `
                                     <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 space-y-2.5">
                                         <div class="flex items-center gap-2 border-b border-stone-800 pb-2">
                                             <span class="font-mono text-[10px] text-rose-400 bg-rose-950/60 border border-rose-800/60 px-2 py-0.5 rounded font-bold">
                                                 KASUS 0${idx + 1}
                                             </span>
-                                            <h5 class="text-xs font-bold text-white truncate">${t.issue}</h5>
+                                            <h5 class="text-xs font-bold text-white truncate">${t.issue || t.symptom}</h5>
                                         </div>
 
                                         <div class="space-y-1.5 text-[11px]">
@@ -4110,7 +4138,7 @@ function renderStandardizedCourseStudio(targetId) {
                                             </div>
                                             <div class="p-2 rounded bg-emerald-950/30 border border-emerald-900/40 text-emerald-200">
                                                 <strong class="font-mono text-[10px] uppercase block text-emerald-400 mb-0.5">Solusi:</strong>
-                                                <span>${t.solution}</span>
+                                                <span>${t.solution || t.fix}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -4128,20 +4156,7 @@ function renderStandardizedCourseStudio(targetId) {
                                 <span class="font-mono text-[10px] text-stone-400 bg-stone-950 px-2 py-0.5 rounded border border-stone-800">Operational Safety</span>
                             </div>
 
-                            <p class="text-stone-300 text-xs leading-relaxed">
-                                ${currentMateri.rollback.safeMode}
-                            </p>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                                <div class="p-3 rounded-lg bg-stone-950 border border-stone-800 space-y-1">
-                                    <span class="text-stone-400 text-[11px] block">Perintah Rollback CLI:</span>
-                                    <pre class="text-amber-200 select-all whitespace-pre-wrap">${currentMateri.rollback.cliRevert}</pre>
-                                </div>
-                                <div class="p-3 rounded-lg bg-stone-950 border border-stone-800 space-y-1">
-                                    <span class="text-stone-400 text-[11px] block">Backup Sebelum Eksekusi:</span>
-                                    <pre class="text-sky-200 select-all whitespace-pre-wrap">${currentMateri.rollback.backup}</pre>
-                                </div>
-                            </div>
+                            <pre class="font-mono text-xs text-stone-200 whitespace-pre-wrap leading-relaxed select-all bg-stone-950 p-3.5 rounded-lg border border-stone-800">${typeof currentMateri.rollback === 'string' ? currentMateri.rollback : ((currentMateri.rollback && currentMateri.rollback.safeMode) || '')}</pre>
                         </div>
 
                     </div>
@@ -4224,9 +4239,13 @@ function renderStandardizedCourseStudio(targetId) {
                                 <i class="fa-solid fa-shield-halved"></i>
                                 <span>Catatan Keamanan & Hardening Jaringan</span>
                             </h5>
-                            <p class="text-xs text-stone-300 leading-relaxed font-sans">
-                                ${currentMateri.conclusion.security}
-                            </p>
+                            <div class="text-xs text-stone-300 leading-relaxed font-sans">
+                                ${Array.isArray(currentMateri.conclusion.security) ? `
+                                    <ul class="space-y-1.5 list-disc list-inside">
+                                        ${currentMateri.conclusion.security.map(sec => `<li>${sec}</li>`).join('')}
+                                    </ul>
+                                ` : `<p>${currentMateri.conclusion.security || ''}</p>`}
+                            </div>
                         </div>
 
                         <!-- Navigation Next Button -->
@@ -4272,7 +4291,7 @@ function renderStandardizedCourseStudio(targetId) {
                             </h4>
 
                             <div class="space-y-4">
-                                ${currentMateri.exercises.map((ex, idx) => `
+                                ${(currentMateri.exercises || []).map((ex, idx) => `
                                     <div class="rounded-xl bg-stone-900/60 border border-stone-800 p-4 sm:p-5 space-y-2.5">
                                         <div class="flex items-center justify-between">
                                             <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-teal-950 border border-teal-800 text-teal-300">
@@ -4281,7 +4300,7 @@ function renderStandardizedCourseStudio(targetId) {
                                             <span class="font-mono text-[10px] text-stone-400">Tingkat Kesulitan: Sedang</span>
                                         </div>
                                         <h5 class="text-sm font-bold text-white">${ex.task}</h5>
-                                        <p class="text-xs text-stone-300 leading-relaxed font-sans">${ex.desc}</p>
+                                        ${ex.desc ? `<p class="text-xs text-stone-300 leading-relaxed font-sans">${ex.desc}</p>` : ''}
                                         <div class="p-3 rounded-lg bg-stone-950/60 border border-stone-800/80 font-mono text-[11px] text-stone-400 flex items-start gap-2">
                                             <i class="fa-regular fa-lightbulb text-amber-400 mt-0.5 shrink-0"></i>
                                             <div>
