@@ -601,31 +601,48 @@ function renderTracker() {
 
     tableBody.innerHTML = list.map((app) => `
         <tr class="border-b border-stone-800/80 hover:bg-stone-900/40 transition">
-            <td class="py-4 px-5 sm:px-6 font-mono text-xs text-stone-400 whitespace-nowrap">
+            <td class="py-4 px-4 sm:px-5 font-mono text-xs text-stone-400 whitespace-nowrap align-top pt-4">
                 ${formatDateIndo(app.appliedDate)}
             </td>
-            <td class="py-4 px-5 sm:px-6">
-                <div class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
-                    <span>${app.company}</span>
-                    ${app.jobUrl ? `<a href="${app.jobUrl}" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white text-xs" title="Buka tautan lowongan"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
-                </div>
-                <div class="text-xs text-stone-400 flex items-center gap-2 mt-1">
-                    <span><i class="fa-solid fa-location-dot text-[10px] text-stone-500 mr-1"></i>${app.location || 'Indonesia'}</span>
-                    <span>•</span>
-                    <span class="text-stone-300">${app.jobType || 'Full-time'}</span>
+            <td class="py-4 px-4 sm:px-5 align-top">
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-stone-900 border border-stone-800 text-stone-200 font-mono text-xs font-bold flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                        ${(app.company || 'C').replace(/^PT\.?\s+/i, '').charAt(0).toUpperCase()}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="font-bold text-white text-sm sm:text-base leading-snug tracking-tight">${app.company}</span>
+                            ${app.jobUrl ? `<a href="${app.jobUrl}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-white transition text-xs p-1 rounded hover:bg-stone-800" title="Buka tautan lowongan"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                        </div>
+                        <div class="flex items-center gap-2 mt-1.5 flex-wrap text-xs font-mono">
+                            <span class="inline-flex items-center gap-1 text-stone-400 whitespace-nowrap">
+                                <i class="fa-solid fa-location-dot text-[10px] text-stone-500"></i>
+                                <span>${app.location || 'Indonesia'}</span>
+                            </span>
+                            <span class="text-stone-700">•</span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-stone-300 text-[10px] whitespace-nowrap">
+                                ${app.jobType || 'Full-time'}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </td>
-            <td class="py-4 px-5 sm:px-6">
-                <div class="font-semibold text-stone-200 text-xs sm:text-sm">${app.position}</div>
-                ${app.salaryRange ? `<div class="font-mono text-[11px] text-stone-400 mt-1">${app.salaryRange}</div>` : ''}
+            <td class="py-4 px-4 sm:px-5 align-top">
+                <div class="font-semibold text-stone-200 text-xs sm:text-sm leading-snug">${app.position}</div>
+                ${app.salaryRange ? `
+                    <div class="inline-flex items-center gap-1.5 font-mono text-[11px] text-stone-300 mt-1.5 whitespace-nowrap bg-stone-900/80 px-2 py-0.5 rounded border border-stone-800">
+                        <span class="text-stone-400">Rp</span>
+                        <span>${app.salaryRange.replace(/^Rp\s*/i, '')}</span>
+                    </div>
+                ` : ''}
             </td>
-            <td class="py-4 px-5 sm:px-6 whitespace-nowrap">
+            <td class="py-4 px-4 sm:px-5 whitespace-nowrap align-top pt-4">
                 ${getCvVersionBadge(app.cvVersion)}
             </td>
-            <td class="py-4 px-5 sm:px-6 font-mono text-xs text-stone-300 whitespace-nowrap">
+            <td class="py-4 px-4 sm:px-5 font-mono text-xs text-stone-300 whitespace-nowrap align-top pt-4">
                 <span class="px-2.5 py-1 rounded bg-stone-900 text-stone-300 border border-stone-800">${app.platform || 'Direct'}</span>
             </td>
-            <td class="py-4 px-5 sm:px-6 whitespace-nowrap">
+            <td class="py-4 px-4 sm:px-5 whitespace-nowrap align-top">
                 <div class="flex items-center gap-2">
                     <select onchange="updateApplicationStatus('${app.id}', this.value)" class="bg-stone-900 border border-stone-700 text-xs rounded-lg px-2.5 py-1.5 text-stone-200 focus:outline-none focus:border-stone-500 cursor-pointer">
                         <option value="applied" ${app.status === 'applied' ? 'selected' : ''}>🟡 Terkirim</option>
@@ -639,8 +656,8 @@ function renderTracker() {
                 </div>
                 ${app.interviewDate ? `<div class="font-mono text-[11px] text-amber-300 mt-1.5 flex items-center gap-1.5"><i class="fa-regular fa-calendar-check"></i> Agenda: ${formatDateIndo(app.interviewDate)}</div>` : ''}
             </td>
-            <td class="py-4 px-5 sm:px-6 text-right whitespace-nowrap">
-                <div class="flex items-center justify-end gap-2">
+            <td class="py-4 px-4 sm:px-5 text-right whitespace-nowrap align-top pt-3.5">
+                <div class="flex items-center justify-end gap-1.5">
                     <button onclick="viewApplicationDetail('${app.id}')" class="p-2 rounded-lg hover:bg-stone-800 text-stone-400 hover:text-white transition" title="Lihat Detail & Catatan">
                         <i class="fa-solid fa-eye text-xs"></i>
                     </button>
