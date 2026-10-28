@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -60,6 +60,35 @@
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+    /* Mascot Video & Floating Badges */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    @keyframes floatAlt {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+    .animate-float-slow {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+    .animate-float-alt {
+      animation: floatAlt 5s ease-in-out infinite;
+    }
+    .mascot-portal-circle {
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(27, 59, 43, 0.22), 0 0 0 1px rgba(221, 215, 204, 0.85);
+      background: #E6F3EE;
+    }
+    .mascot-portal-circle video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 46% 36%;
+      transform: scale(1.18);
     }
   </style>
 </head>
@@ -234,46 +263,73 @@
           </div>
         </div>
 
-        <!-- Hero Right Column: Interactive Solution Showcase Card -->
-        <div class="lg:col-span-5">
-          <div class="bg-paper border border-line rounded-xl p-6 shadow-sm space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-line">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span class="text-xs font-mono font-bold uppercase text-ink">PILIHAN SISTEM SIAP PAKAI</span>
-              </div>
-              <span class="text-[11px] font-mono text-muted">100% Kustom</span>
+        <!-- Hero Right Column: Seamless Mascot Video Presentation -->
+        <div class="lg:col-span-5 relative flex items-center justify-center pt-4 lg:pt-0">
+          
+          <!-- Subtle Glow Aura behind character -->
+          <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-emerald-200/40 via-teal-100/30 to-amber-200/30 blur-3xl -z-10 pointer-events-none"></div>
+
+          <!-- Main Video Wrapper -->
+          <div class="relative w-full max-w-[380px] sm:max-w-[420px] flex items-center justify-center py-6 px-2 sm:px-4">
+            
+            <!-- Circular Avatar Portal (Premium Clean Mascot) -->
+            <div id="mascotPortal" class="mascot-portal-circle w-64 h-64 sm:w-80 sm:h-80 md:w-[350px] md:h-[350px]">
+              <video 
+                id="heroMascotVideo"
+                src="assets/gemini_generated_video_4b9fc14b.mp4" 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="pointer-events-none select-none">
+                <source src="assets/gemini_generated_video_4b9fc14b.mp4" type="video/mp4">
+                <source src="assets/hero-mascot.mp4" type="video/mp4">
+              </video>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <div class="bg-surface border border-line p-3.5 rounded-lg">
-                <div class="text-xl mb-1.5">🏢</div>
-                <div class="text-xs font-bold text-ink">Profil & Jasa Usaha</div>
-                <div class="text-[11px] text-muted mt-1 leading-snug">Form pesanan teknisi & kalkulator estimasi biaya.</div>
+            <!-- Floating Badge 1: Top Right (Speed / Turnkey) -->
+            <div class="absolute top-0 right-0 sm:-right-2 bg-surface/95 backdrop-blur-md border border-line/90 rounded-2xl p-2.5 sm:p-3 shadow-lg flex items-center gap-2.5 sm:gap-3 animate-float-slow z-10 max-w-[200px] sm:max-w-none">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-100/90 text-amber-700 flex items-center justify-center text-xs sm:text-sm font-bold shrink-0">
+                <i class="fa-solid fa-bolt text-amber-600"></i>
               </div>
-              <div class="bg-surface border border-line p-3.5 rounded-lg">
-                <div class="text-xl mb-1.5">🛍️</div>
-                <div class="text-xs font-bold text-ink">Katalog & Toko WA</div>
-                <div class="text-[11px] text-muted mt-1 leading-snug">Keranjang belanja & kirim nota pesanan ke WA.</div>
-              </div>
-              <div class="bg-surface border border-line p-3.5 rounded-lg">
-                <div class="text-xl mb-1.5">📅</div>
-                <div class="text-xs font-bold text-ink">Sistem Booking Slot</div>
-                <div class="text-[11px] text-muted mt-1 leading-snug">Cek jadwal kosong real-time & e-tiket antrean.</div>
-              </div>
-              <div class="bg-surface border border-line p-3.5 rounded-lg">
-                <div class="text-xl mb-1.5">💻</div>
-                <div class="text-xs font-bold text-ink">Kasir POS & Toko</div>
-                <div class="text-[11px] text-muted mt-1 leading-snug">Layar kasir cepat & cetak struk thermal 58mm.</div>
+              <div class="text-left pr-1">
+                <div class="text-[11px] sm:text-xs font-bold text-ink leading-tight">Siap Pakai 1&ndash;3 Hari</div>
+                <div class="text-[9px] sm:text-[10px] text-muted">Terima Beres & Cepat</div>
               </div>
             </div>
 
-            <div class="pt-2 text-center text-xs text-muted border-t border-line">
-              <span>💡 Klik tombol <strong>Buka Live Demo</strong> di bawah untuk mencoba langsung!</span>
+            <!-- Floating Badge 2: Bottom Left (WhatsApp & Catalog) -->
+            <div class="absolute bottom-1 left-0 sm:-left-2 bg-surface/95 backdrop-blur-md border border-line/90 rounded-2xl p-2.5 sm:p-3 shadow-lg flex items-center gap-2.5 sm:gap-3 animate-float-alt z-10 max-w-[220px] sm:max-w-none">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-100/90 text-emerald-700 flex items-center justify-center text-sm font-bold shrink-0">
+                <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+              </div>
+              <div class="text-left pr-1">
+                <div class="text-[11px] sm:text-xs font-bold text-ink leading-tight">Order Masuk ke WA</div>
+                <div class="text-[9px] sm:text-[10px] text-muted">Katalog & Kasir POS</div>
+              </div>
             </div>
+
+            <!-- Floating Badge 3: Top Left (Status Pill) -->
+            <div class="absolute top-8 left-1 sm:-left-3 bg-surface/90 backdrop-blur-md border border-line px-2.5 sm:px-3 py-1 rounded-full shadow-sm flex items-center gap-2 z-10">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-ink">Halo! Konsultasi Gratis</span>
+            </div>
+
+            <!-- Mini Video Control Pill (Bottom Right) -->
+            <div class="absolute bottom-3 right-1 sm:right-2 z-20">
+              <button 
+                type="button" 
+                onclick="toggleHeroVideoPlay(this)" 
+                class="px-2.5 py-1 bg-surface/85 hover:bg-surface border border-line rounded-full text-[10px] font-mono text-muted hover:text-ink shadow-sm backdrop-blur transition flex items-center gap-1.5"
+                title="Jeda / Putar Video">
+                <i class="fa-solid fa-pause text-[9px] text-emerald-600"></i>
+                <span class="control-text hidden sm:inline">Video Aktif</span>
+              </button>
+            </div>
+
           </div>
-        </div>
-      </div>
+
+        </div>      </div>
     </div>
   </section>
 
@@ -3225,6 +3281,23 @@
         backdrop.classList.remove('opacity-100', 'pointer-events-auto');
         backdrop.classList.add('opacity-0', 'pointer-events-none');
         document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+        // --- Hero Mascot Video Controls ---
+    function toggleHeroVideoPlay(btn) {
+      const v = document.getElementById('heroMascotVideo');
+      if (!v) return;
+      const icon = btn.querySelector('i');
+      const text = btn.querySelector('.control-text');
+      if (v.paused) {
+        v.play();
+        if (icon) icon.className = 'fa-solid fa-pause text-[9px] text-emerald-600';
+        if (text) text.innerText = 'Video Aktif';
+      } else {
+        v.pause();
+        if (icon) icon.className = 'fa-solid fa-play text-[9px] text-amber-600';
+        if (text) text.innerText = 'Jeda';
       }
     }
 
