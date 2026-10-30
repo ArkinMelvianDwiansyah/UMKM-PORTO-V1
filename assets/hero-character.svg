@@ -101,87 +101,79 @@
     <style>
       .char-root {
         transform-origin: 240px 380px;
-        animation: floatIdle 5s ease-in-out infinite;
+        animation: floatIdle 4s ease-in-out infinite;
       }
       .head-group {
         transform-origin: 240px 240px;
-        animation: headTilt 7s ease-in-out infinite;
+        animation: headTilt 6s ease-in-out infinite;
       }
       .eye-blink-wrapper {
         transform-origin: 0px 0px;
-        animation: naturalBlink 4.5s ease-in-out infinite;
+        animation: naturalBlink 4.2s ease-in-out infinite;
       }
       .hand-wave-group {
-        transform-origin: 400px 310px;
-        animation: waveGesture 2.8s ease-in-out infinite;
+        transform-origin: 360px 380px;
+        animation: armSway 4s ease-in-out infinite;
       }
       .hand-palm {
-        transform-origin: 420px 235px;
-        animation: palmWiggle 2.8s ease-in-out infinite;
+        transform-origin: 405px 260px;
+        animation: friendlyPalmWave 3.2s ease-in-out infinite;
       }
       .string-l {
         transform-origin: 208px 390px;
-        animation: swayL 5s ease-in-out infinite;
+        animation: swayL 4s ease-in-out infinite;
       }
       .string-r {
         transform-origin: 272px 390px;
-        animation: swayR 5s ease-in-out infinite 0.5s;
+        animation: swayR 4s ease-in-out infinite 0.5s;
       }
       .glare-sweep {
-        animation: glareShift 5s ease-in-out infinite;
-      }
-      .mouth-anim {
-        animation: mouthTalk 2.8s ease-in-out infinite;
+        animation: glareShift 4.5s ease-in-out infinite;
       }
       .spark-1 { animation: sparkBob 3.5s ease-in-out infinite; }
       .spark-2 { animation: sparkBob 4s ease-in-out infinite 0.8s; }
 
       @keyframes floatIdle {
         0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-7px); }
+        50% { transform: translateY(-5px); }
       }
       @keyframes headTilt {
-        0%, 100% { transform: rotate(0deg) translateY(0px); }
-        35% { transform: rotate(1.2deg) translateY(-2px); }
-        70% { transform: rotate(-1.2deg) translateY(-1px); }
+        0%, 100% { transform: rotate(0deg); }
+        35% { transform: rotate(0.8deg); }
+        70% { transform: rotate(-0.8deg); }
       }
       @keyframes naturalBlink {
-        0%, 45%, 55%, 100% { transform: scaleY(1); }
-        48%, 52% { transform: scaleY(0.08); }
+        0%, 93%, 97%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.08); }
       }
-      @keyframes waveGesture {
+      @keyframes armSway {
         0%, 100% { transform: rotate(0deg); }
-        20% { transform: rotate(-14deg); }
-        40% { transform: rotate(12deg); }
-        60% { transform: rotate(-10deg); }
-        80% { transform: rotate(8deg); }
+        50% { transform: rotate(-1.5deg); }
       }
-      @keyframes palmWiggle {
+      @keyframes friendlyPalmWave {
         0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-8deg); }
-        50% { transform: rotate(10deg); }
-        75% { transform: rotate(-6deg); }
-      }
-      @keyframes mouthTalk {
-        0%, 10%, 90%, 100% { transform: scaleY(1); }
-        25%, 65% { transform: scaleY(1.35) translateY(1px); }
-        45% { transform: scaleY(0.9); }
+        12% { transform: rotate(-9deg); }
+        24% { transform: rotate(8deg); }
+        36% { transform: rotate(-8deg); }
+        48% { transform: rotate(7deg); }
+        60% { transform: rotate(-4deg); }
+        72% { transform: rotate(0deg); }
       }
       @keyframes swayL {
         0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate(2.5deg); }
+        50% { transform: rotate(2deg); }
       }
       @keyframes swayR {
         0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate(-2.5deg); }
+        50% { transform: rotate(-2deg); }
       }
       @keyframes glareShift {
         0%, 100% { opacity: 0.35; transform: translateX(0px); }
-        50% { opacity: 0.75; transform: translateX(3px); }
+        50% { opacity: 0.7; transform: translateX(2.5px); }
       }
       @keyframes sparkBob {
         0%, 100% { transform: translateY(0px) scale(0.9); opacity: 0.6; }
-        50% { transform: translateY(-7px) scale(1.15); opacity: 0.95; }
+        50% { transform: translateY(-6px) scale(1.1); opacity: 0.95; }
       }
     </style>
   </defs>
@@ -276,10 +268,6 @@
 
         <!-- Palm Highlight / Blush -->
         <ellipse cx="426" cy="204" rx="10" ry="11" fill="#FF8A8A" opacity="0.25"/>
-
-        <!-- Friendly Hello Motion Lines -->
-        <path d="M 456 160 C 466 168, 468 180, 464 190" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
-        <path d="M 466 150 C 480 162, 482 182, 476 198" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
       </g>
     </g>
 
@@ -312,12 +300,19 @@
       <path d="M 234 248 C 237 254, 243 254, 246 248" fill="none" stroke="#DE9270" stroke-width="3" stroke-linecap="round"/>
       <ellipse cx="240" cy="245" rx="4" ry="2.5" fill="#F8B190" opacity="0.75"/>
 
-      <!-- Friendly Animated Speaking Smile -->
-      <g class="mouth-anim" style="transform-origin: 240px 274px;">
-        <path d="M 216 273 C 226 290, 254 290, 264 273" fill="none" stroke="#881337" stroke-width="4.5" stroke-linecap="round"/>
-        <!-- Cheek Smile Creases -->
-        <path d="M 213 271 C 214 275, 216 277, 218 277" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <path d="M 267 271 C 266 275, 264 277, 262 277" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <!-- Friendly Cute Warm Open Smile -->
+      <g id="cuteSmile">
+        <!-- Open Smile Mouth Cave -->
+        <path d="M 219 269 Q 240 273 261 269 C 259 287, 221 287, 219 269 Z" fill="#881337"/>
+        <!-- Soft Tongue Glow -->
+        <path d="M 226 276 Q 240 273 254 276 C 251 285, 229 285, 226 276 Z" fill="#FB7185"/>
+        <!-- Cute White Upper Teeth Tip -->
+        <path d="M 228 270 Q 240 273 252 270 C 250 272.5, 230 272.5, 228 270 Z" fill="#FFFFFF"/>
+        <!-- Upper Smile Lip Curve -->
+        <path d="M 216 268 Q 240 273 264 268" fill="none" stroke="#5A081D" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- Dimple Creases -->
+        <path d="M 213 266 C 214 269, 216 271, 218 271" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 267 266 C 266 269, 264 271, 262 271" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round"/>
       </g>
 
       <!-- ==================== EYES (BIG, ROUND, SPARKLING) ==================== -->

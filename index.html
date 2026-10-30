@@ -266,63 +266,40 @@
           </div>
         </div>
 
-        <!-- Hero Right Column: Animated Vector Mascot with Talking Speech Bubble -->
-        <div class="lg:col-span-6 flex flex-col items-center justify-center pt-4 lg:pt-0 relative">
-          <!-- Mascot Interactive Talking Speech Bubble -->
-          <div id="mascotBubbleWrapper" class="w-full max-w-[420px] mb-2 sm:mb-3 relative z-20 px-2 sm:px-0">
-            <div class="bg-surface/95 backdrop-blur-md border-2 border-forest/30 shadow-lg p-3.5 sm:p-4 rounded-xl relative transition-all duration-300">
-              <!-- Speech Bubble Header with Talking Wave Indicator -->
-              <div class="flex items-center justify-between pb-2 mb-2 border-b border-line text-xs font-mono">
-                <div class="flex items-center gap-2 text-forest font-bold">
-                  <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-forest"></span>
-                  </span>
-                  <span>MASKOT JALANINWEB</span>
+        <!-- Hero Right Column: Mascot with Friendly Side Speech Bubble -->
+        <div class="lg:col-span-6 flex items-center justify-center lg:justify-end relative pt-2 lg:pt-0">
+          <div class="relative w-full max-w-[420px] sm:max-w-[460px] lg:mr-0 lg:ml-auto flex flex-col items-center justify-center">
+            
+            <!-- Side Floating Speech Bubble (Di Samping Kiri Maskot pada Desktop) -->
+            <div id="mascotBubbleWrapper"
+                 class="relative lg:absolute lg:-left-24 xl:-left-32 lg:top-16 z-20 w-auto max-w-[260px] sm:max-w-[275px] mb-3 lg:mb-0 transition-transform duration-300 hover:scale-[1.02]">
+              <div class="relative bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-[0_12px_28px_-6px_rgba(16,185,129,0.18),0_4px_16px_-2px_rgba(0,0,0,0.06)] border border-emerald-100">
+                <!-- Friendly Header -->
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="text-[10.5px] font-mono font-bold uppercase tracking-wider text-emerald-800">Maskot JalaninWeb</span>
                 </div>
-                <div class="flex items-center gap-1.5 text-[11px] text-muted">
-                  <span class="inline-flex items-center gap-0.5 text-forest">
-                    <span class="w-1 h-2 bg-forest animate-pulse rounded-full"></span>
-                    <span class="w-1 h-3 bg-forest animate-pulse rounded-full" style="animation-delay: 0.15s"></span>
-                    <span class="w-1 h-2 bg-forest animate-pulse rounded-full" style="animation-delay: 0.3s"></span>
-                  </span>
-                  <span id="mascotBubbleIndex" class="font-bold text-ink">1</span><span class="text-stone-400">/5</span>
-                </div>
+                <!-- Dynamic Friendly Message -->
+                <p id="friendlyMascotText" class="text-xs sm:text-[12.5px] text-stone-800 leading-relaxed font-medium transition-opacity duration-300">
+                  👋 <strong>Halo kak!</strong> Mau punya website bisnis keren yang langsung siap pakai? Yuk coba 28 live demonya di bawah ya! 😊
+                </p>
+                <!-- Desktop Speech Tail (Pointing Right toward Mascot's Face) -->
+                <div class="hidden lg:block absolute -right-2 top-7 w-3.5 h-3.5 bg-white border-t border-r border-emerald-100 rotate-45"></div>
+                <!-- Mobile Speech Tail (Pointing Down toward Mascot) -->
+                <div class="lg:hidden absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-emerald-100 rotate-45"></div>
               </div>
-
-              <!-- Speech Message Content Container -->
-              <div id="mascotSpeechText" class="min-h-[52px] sm:min-h-[48px] flex items-center text-xs sm:text-[13px] text-ink leading-relaxed font-medium transition-opacity duration-300">
-                <span>👋 <strong class="text-ink">Halo! Kenalin, aku Maskot JalaninWeb.</strong> Yuk wujudkan website profesional untuk bisnis UMKM kamu!</span>
-              </div>
-
-              <!-- Interactive Controls (Pills / Next Button) -->
-              <div class="mt-2.5 pt-2 border-t border-line/60 flex items-center justify-between">
-                <div class="flex items-center gap-1.5" id="mascotBubbleDots">
-                  <button type="button" onclick="setMascotMessage(0)" class="w-5 h-1.5 rounded-full bg-forest transition-all duration-200" aria-label="Pesan 1"></button>
-                  <button type="button" onclick="setMascotMessage(1)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 2"></button>
-                  <button type="button" onclick="setMascotMessage(2)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 3"></button>
-                  <button type="button" onclick="setMascotMessage(3)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 4"></button>
-                  <button type="button" onclick="setMascotMessage(4)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 5"></button>
-                </div>
-                <button type="button" onclick="nextMascotMessage()" class="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-forest hover:text-ink transition cursor-pointer">
-                  <span>Lanjut</span>
-                  <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-              </div>
-
-              <!-- Speech Bubble Tail pointing down towards the mascot -->
-              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-surface border-r-2 border-b-2 border-forest/30 rotate-45"></div>
             </div>
-          </div>
 
-          <!-- Mascot SVG Clean -->
-          <div class="hero-mascot-clean relative z-10">
-            <img 
-              src="assets/hero-character.svg" 
-              alt="Maskot JalaninWeb - Solusi Website UMKM" 
-              width="500" 
-              height="540" 
-              loading="eager" />
+            <!-- Mascot SVG Clean -->
+            <div class="hero-mascot-clean relative z-10">
+              <img 
+                src="assets/hero-character.svg" 
+                alt="Maskot JalaninWeb - Solusi Website UMKM" 
+                width="500" 
+                height="540" 
+                loading="eager" />
+            </div>
+
           </div>
         </div>      </div>
     </div>
@@ -3291,85 +3268,41 @@
       }
     }
 
-    // --- Hero Talking Mascot Speech Bubble Controller ---
-    const MASCOT_MESSAGES = [
-      {
-        text: '<span>👋 <strong class="text-ink">Halo! Kenalin, aku Maskot JalaninWeb.</strong> Siap bantu wujudkan website profesional untuk bisnis UMKM kamu!</span>'
-      },
-      {
-        text: '<span>✨ <strong class="text-ink">Gak perlu pusing mikirin coding!</strong> Mulai dari beli domain, cloud hosting cepat, sampai setting kami bereskan.</span>'
-      },
-      {
-        text: '<span>🚀 <strong class="text-ink">Banyak pilihan website siap pakai:</strong> Toko Online WA, Booking Jadwal Salon, Kasir POS Struk, hingga Resto!</span>'
-      },
-      {
-        text: '<span>📱 <strong class="text-ink">Bisa langsung dicoba di HP!</strong> Ada 28 live demo di bawah dengan tampilan responsif & loading &lt; 1 detik.</span>'
-      },
-      {
-        text: '<span>💬 <strong class="text-ink">Mau tanya-tanya dulu?</strong> Bebas konsultasi santai via WhatsApp kami, 100% gratis tanpa dipungut biaya!</span>'
-      }
+    // --- Friendly Mascot Dialogue Bubble Controller ---
+    const FRIENDLY_MASCOT_MESSAGES = [
+      '👋 <strong>Halo kak!</strong> Mau punya website bisnis yang keren &amp; langsung siap pakai? Yuk coba 28 live demonya di bawah ya! 😊',
+      '✨ <strong>Gak perlu mikir coding!</strong> Mulai dari beli domain, server cepat, sampai settingan lengkap kami bantu bereskan.',
+      '🚀 <strong>Banyak pilihan siap pakai:</strong> Toko Online WA, Kasir POS Struk, Booking Salon & Barber, sampai Resto lho!',
+      '💬 <strong>Bebas tanya-tanya dulu via WA!</strong> Konsultasi kebutuhan usaha Anda santai tanpa biaya kok. 😊'
     ];
+    let mascotMsgIdx = 0;
+    let mascotMsgTimer = null;
 
-    let currentMascotMsgIndex = 0;
-    let mascotTimer = null;
-
-    function renderMascotMessage(index) {
-      const textEl = document.getElementById('mascotSpeechText');
-      const indexEl = document.getElementById('mascotBubbleIndex');
-      const dotsContainer = document.getElementById('mascotBubbleDots');
+    function cycleFriendlyMascotMessage() {
+      const textEl = document.getElementById('friendlyMascotText');
       if (!textEl) return;
-
       textEl.style.opacity = '0';
       setTimeout(() => {
-        textEl.innerHTML = MASCOT_MESSAGES[index].text;
+        mascotMsgIdx = (mascotMsgIdx + 1) % FRIENDLY_MASCOT_MESSAGES.length;
+        textEl.innerHTML = FRIENDLY_MASCOT_MESSAGES[mascotMsgIdx];
         textEl.style.opacity = '1';
-        if (indexEl) indexEl.textContent = (index + 1).toString();
-
-        if (dotsContainer) {
-          const dots = dotsContainer.querySelectorAll('button');
-          dots.forEach((dot, i) => {
-            if (i === index) {
-              dot.className = 'w-5 h-1.5 rounded-full bg-forest transition-all duration-200';
-            } else {
-              dot.className = 'w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200';
-            }
-          });
-        }
-      }, 180);
+      }, 250);
     }
 
-    function setMascotMessage(index) {
-      currentMascotMsgIndex = index;
-      renderMascotMessage(currentMascotMsgIndex);
-      resetMascotTimer();
+    function startMascotCycle() {
+      if (mascotMsgTimer) clearInterval(mascotMsgTimer);
+      mascotMsgTimer = setInterval(cycleFriendlyMascotMessage, 5500);
     }
 
-    function nextMascotMessage() {
-      currentMascotMsgIndex = (currentMascotMsgIndex + 1) % MASCOT_MESSAGES.length;
-      renderMascotMessage(currentMascotMsgIndex);
-      resetMascotTimer();
-    }
-
-    function resetMascotTimer() {
-      if (mascotTimer) clearInterval(mascotTimer);
-      mascotTimer = setInterval(() => {
-        currentMascotMsgIndex = (currentMascotMsgIndex + 1) % MASCOT_MESSAGES.length;
-        renderMascotMessage(currentMascotMsgIndex);
-      }, 4500);
-    }
-
-    // Initialize mascot speech cycle
-    resetMascotTimer();
-    const bubbleBox = document.getElementById('mascotBubbleWrapper');
-    if (bubbleBox) {
-      bubbleBox.addEventListener('mouseenter', () => {
-        if (mascotTimer) clearInterval(mascotTimer);
+    startMascotCycle();
+    const mascotBox = document.getElementById('mascotBubbleWrapper');
+    if (mascotBox) {
+      mascotBox.addEventListener('mouseenter', () => {
+        if (mascotMsgTimer) clearInterval(mascotMsgTimer);
       });
-      bubbleBox.addEventListener('mouseleave', () => {
-        resetMascotTimer();
-      });
-      bubbleBox.addEventListener('touchstart', () => {
-        if (mascotTimer) clearInterval(mascotTimer);
+      mascotBox.addEventListener('mouseleave', startMascotCycle);
+      mascotBox.addEventListener('touchstart', () => {
+        if (mascotMsgTimer) clearInterval(mascotMsgTimer);
       }, { passive: true });
     }
 
