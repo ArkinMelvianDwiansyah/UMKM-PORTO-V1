@@ -266,9 +266,57 @@
           </div>
         </div>
 
-        <!-- Hero Right Column: Loss Animated Vector Mascot (Murni Karakter, Tanpa Background Terpotong) -->
-        <div class="lg:col-span-6 flex items-center justify-center pt-4 lg:pt-0">
-          <div class="hero-mascot-clean">
+        <!-- Hero Right Column: Animated Vector Mascot with Talking Speech Bubble -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center pt-4 lg:pt-0 relative">
+          <!-- Mascot Interactive Talking Speech Bubble -->
+          <div id="mascotBubbleWrapper" class="w-full max-w-[420px] mb-2 sm:mb-3 relative z-20 px-2 sm:px-0">
+            <div class="bg-surface/95 backdrop-blur-md border-2 border-forest/30 shadow-lg p-3.5 sm:p-4 rounded-xl relative transition-all duration-300">
+              <!-- Speech Bubble Header with Talking Wave Indicator -->
+              <div class="flex items-center justify-between pb-2 mb-2 border-b border-line text-xs font-mono">
+                <div class="flex items-center gap-2 text-forest font-bold">
+                  <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-forest"></span>
+                  </span>
+                  <span>MASKOT JALANINWEB</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-[11px] text-muted">
+                  <span class="inline-flex items-center gap-0.5 text-forest">
+                    <span class="w-1 h-2 bg-forest animate-pulse rounded-full"></span>
+                    <span class="w-1 h-3 bg-forest animate-pulse rounded-full" style="animation-delay: 0.15s"></span>
+                    <span class="w-1 h-2 bg-forest animate-pulse rounded-full" style="animation-delay: 0.3s"></span>
+                  </span>
+                  <span id="mascotBubbleIndex" class="font-bold text-ink">1</span><span class="text-stone-400">/5</span>
+                </div>
+              </div>
+
+              <!-- Speech Message Content Container -->
+              <div id="mascotSpeechText" class="min-h-[52px] sm:min-h-[48px] flex items-center text-xs sm:text-[13px] text-ink leading-relaxed font-medium transition-opacity duration-300">
+                <span>👋 <strong class="text-ink">Halo! Kenalin, aku Maskot JalaninWeb.</strong> Yuk wujudkan website profesional untuk bisnis UMKM kamu!</span>
+              </div>
+
+              <!-- Interactive Controls (Pills / Next Button) -->
+              <div class="mt-2.5 pt-2 border-t border-line/60 flex items-center justify-between">
+                <div class="flex items-center gap-1.5" id="mascotBubbleDots">
+                  <button type="button" onclick="setMascotMessage(0)" class="w-5 h-1.5 rounded-full bg-forest transition-all duration-200" aria-label="Pesan 1"></button>
+                  <button type="button" onclick="setMascotMessage(1)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 2"></button>
+                  <button type="button" onclick="setMascotMessage(2)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 3"></button>
+                  <button type="button" onclick="setMascotMessage(3)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 4"></button>
+                  <button type="button" onclick="setMascotMessage(4)" class="w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200" aria-label="Pesan 5"></button>
+                </div>
+                <button type="button" onclick="nextMascotMessage()" class="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-forest hover:text-ink transition cursor-pointer">
+                  <span>Lanjut</span>
+                  <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </button>
+              </div>
+
+              <!-- Speech Bubble Tail pointing down towards the mascot -->
+              <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-surface border-r-2 border-b-2 border-forest/30 rotate-45"></div>
+            </div>
+          </div>
+
+          <!-- Mascot SVG Clean -->
+          <div class="hero-mascot-clean relative z-10">
             <img 
               src="assets/hero-character.svg" 
               alt="Maskot JalaninWeb - Solusi Website UMKM" 
@@ -2133,92 +2181,11 @@
         </div>
       </div>
 
-      <!-- FAQ Section (Tema JalaninWeb) -->
-      <div class="mt-14 sm:mt-16">
-        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold">TANYA JAWAB</div>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-ink mt-1 mb-6 tracking-tight">
-          Pertanyaan yang Sering Diajukan (FAQ)
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <!-- FAQ 1: Tech Stack -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-code text-accent text-xs mt-1 shrink-0"></i>
-              <span>Teknologi apa yang digunakan oleh JalaninWeb?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Kami menggunakan standar modern kelas industri: Backend <strong class="text-ink">Laravel Framework</strong> yang tangguh dan berkeamanan tinggi, <strong class="text-ink">Tailwind CSS</strong> untuk styling responsif ultra-ringan tanpa CSS kembung/plugin lambat, serta arsitektur mobile-first dengan loading sub-second (&lt; 1 detik) dan skor Google PageSpeed 90+.
-            </p>
-          </div>
-
-          <!-- FAQ 2: CMS Self-Update (Key Requirement!) -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-pen-to-square text-forest text-xs mt-1 shrink-0"></i>
-              <span>Bisakah saya update konten website sendiri setelah jadi?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              <strong class="text-ink">Tergantung paket yang Anda beli:</strong><br>
-              • Untuk <strong class="text-ink">Paket Growth (Rp 899.000)</strong> &amp; <strong class="text-ink">Enterprise</strong>: BISA dan SANGAT MUDAH. Website dilengkapi Dashboard Admin CMS (Laravel CMS) mandiri untuk ganti foto/teks/katalog kapan saja tanpa paham coding.<br>
-              • Untuk <strong class="text-ink">Paket Starter (Rp 399.000)</strong>: Difokuskan sebagai landing page instan ultra-cepat dengan biaya hemat. Revisi konten minor dibantu via tim support WhatsApp atau bisa upgrade ke Growth kapan pun.
-            </p>
-          </div>
-
-          <!-- FAQ 3: 5-Step Process -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-list-check text-accent text-xs mt-1 shrink-0"></i>
-              <span>Bagaimana alur dan step pengerjaan website hingga online?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Alur pengerjaan transparan dalam 5 tahap: <strong class="text-ink">[1] Konsultasi WA</strong> menentukan paket &rarr; <strong class="text-ink">[2] DP 50% &amp; Pengumpulan Materi</strong> (foto, teks, logo) &rarr; <strong class="text-ink">[3] Desain UI/UX &amp; Coding Laravel + Tailwind</strong> &rarr; <strong class="text-ink">[4] Review Live Demo di HP</strong> &amp; revisi sesuai jatah &rarr; <strong class="text-ink">[5] Pelunasan 50% &amp; Serah Terima Penuh</strong> 100% hak milik website serta domain.
-            </p>
-          </div>
-
-          <!-- FAQ 4: Pricing & Durasi -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-tags text-forest text-xs mt-1 shrink-0"></i>
-              <span>Berapa paket harga pembuatan website dan durasi pengerjaannya?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Tersedia 3 pilihan paket investasi transparan:<br>
-              • <strong class="text-ink">Starter (Rp 399.000)</strong>: 1–3 hari kerja, landing page 1 halaman responsif.<br>
-              • <strong class="text-ink">Growth (Rp 899.000)</strong>: 3–7 hari kerja, multi-halaman (3–6 halaman) + CMS Admin + Search Console.<br>
-              • <strong class="text-ink">Enterprise (Custom Price)</strong>: 2–4 minggu, sistem kustom, integrasi API &amp; database kompleks.
-            </p>
-          </div>
-
-          <!-- FAQ 5: Perpanjangan & Biaya Tersembunyi -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-clock-rotate-left text-accent text-xs mt-1 shrink-0"></i>
-              <span>Apakah ada biaya perpanjangan tahunan atau biaya tersembunyi?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              Sama sekali tidak ada biaya tersembunyi. Biaya paket sudah all-in untuk 1 tahun pertama (Domain, Cloud Hosting NVMe, SSL HTTPS, jatah revisi). Perpanjangan sewa domain &amp; hosting baru dimulai pada tahun kedua dengan biaya terjangkau dan transparan sesuai harga resmi registrasi.
-            </p>
-          </div>
-
-          <!-- FAQ 6: Kepemilikan 100% -->
-          <div class="bg-surface border border-line p-6 hover:border-ink transition">
-            <h4 class="font-bold text-sm text-ink flex items-start gap-2.5">
-              <i class="fa-solid fa-key text-forest text-xs mt-1 shrink-0"></i>
-              <span>Siapa yang memiliki hak kepemilikan atas website setelah jadi?</span>
-            </h4>
-            <p class="text-xs text-muted mt-2.5 leading-relaxed">
-              <strong class="text-ink">100% Hak Milik Anda.</strong> Bukan sistem sewa bulanan yang mengunci operasional bisnis Anda. Setelah serah terima dan pelunasan, seluruh akses registrar domain, akun hosting server, dan source code menjadi aset digital milik Anda seutuhnya tanpa ikatan tersembunyi.
-            </p>
-          </div>
-        </div>
-        
-        <!-- Bottom Catalog Note -->
-        <div class="mt-8 pt-4 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted font-mono">
-          <span>jalaninweb.site &bull; Solusi Website UMKM Indonesia</span>
-          <span>Katalog Resmi Layanan Pembuatan Website</span>
-        </div>
+      <!-- Bottom Catalog Note -->
+      <div class="mt-12 pt-4 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted font-mono">
+        <span>jalaninweb.site &bull; Solusi Website UMKM Indonesia</span>
+        <span>Katalog Resmi Layanan Pembuatan Website</span>
       </div>
-
     </div>
   </section>
 
@@ -2501,54 +2468,147 @@
     </div>
   </section>
 
-  <!-- Pertanyaan yang Sering Ditanyakan (FAQ) -->
-  <section id="faq" class="py-16 border-b border-line bg-paper">
-    <div class="max-w-4xl mx-auto px-4 sm:px-8">
-      <div class="text-center mb-10">
-        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">TANYA JAWAB</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink">Pertanyaan yang Sering Ditanyakan <span class="font-serif italic font-normal">(FAQ)</span></h2>
+  <!-- Pertanyaan yang Sering Ditanyakan (FAQ) - Unified & Rapi -->
+  <section id="faq" class="py-16 sm:py-20 border-b border-line bg-paper">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">TANYA JAWAB (FAQ)</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
+          Pertanyaan yang Sering Diajukan
+        </h2>
+        <p class="text-sm text-muted mt-3">
+          Semua jawaban transparan seputar proses, teknologi, kepemilikan, dan biaya pembuatan website usaha Anda.
+        </p>
       </div>
 
-      <div class="space-y-3">
-        <details class="group bg-surface border border-line p-5 open:border-ink transition" open>
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
-            <span>1. Apakah logo, warna, dan foto produk bisa disesuaikan dengan usaha saya?</span>
-            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
-          </summary>
-          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
-            Bisa banget! Seluruh contoh website di atas adalah template sistem yang siap disesuaikan dengan nama toko, logo, warna identitas, daftar produk, harga, dan nomor WhatsApp bisnis Anda.
-          </p>
-        </details>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+        <!-- FAQ 1: Tech Stack -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-amber-500/10 text-accent flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-code"></i></span>
+              <span>Teknologi apa yang digunakan oleh JalaninWeb?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Kami menggunakan standar industri modern: Backend <strong class="text-ink">Laravel Framework</strong> yang tangguh dan aman, <strong class="text-ink">Tailwind CSS</strong> untuk tampilan ultra-ringan tanpa plugin lambat, serta rancangan mobile-first dengan waktu muat di bawah 1 detik dan skor Google PageSpeed 90+.
+            </p>
+          </div>
+        </div>
 
-        <details class="group bg-surface border border-line p-5 open:border-ink transition">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
-            <span>2. Apakah website ini gampang diakses lewat HP?</span>
-            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
-          </summary>
-          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
-            Sangat gampang. Semua sistem dirancang responsif dan ringan, jadi calon pembeli yang buka lewat smartphone bisa melihat katalog dan memesan dengan cepat tanpa ngelag.
-          </p>
-        </details>
+        <!-- FAQ 2: CMS Self-Update -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-emerald-500/10 text-forest flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-pen-to-square"></i></span>
+              <span>Bisakah saya update konten website sendiri setelah jadi?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              <strong class="text-ink">Tentu bisa:</strong><br>
+              • Untuk <strong class="text-ink">Paket Growth &amp; Enterprise</strong>: Disediakan Dashboard Admin CMS mandiri untuk mengganti foto produk, harga, teks, dan katalog kapan saja tanpa perlu paham coding.<br>
+              • Untuk <strong class="text-ink">Paket Starter</strong>: Revisi konten minor langsung dibantu cepat oleh tim WhatsApp kami, atau bisa upgrade ke Growth sewaktu-waktu.
+            </p>
+          </div>
+        </div>
 
-        <details class="group bg-surface border border-line p-5 open:border-ink transition">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
-            <span>3. Berapa lama proses pembuatan sampai website siap pakai?</span>
-            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
-          </summary>
-          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
-            Untuk Landing Page dan Toko Online WhatsApp rata-rata selesai dalam 3–5 hari kerja setelah data usaha kami terima. Untuk sistem booking dan aplikasi kasir butuh waktu sekitar 5–7 hari kerja.
-          </p>
-        </details>
+        <!-- FAQ 3: 5-Step Process -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-amber-500/10 text-accent flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-list-check"></i></span>
+              <span>Bagaimana alur pengerjaan website hingga online?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Pengerjaan transparan dalam 5 langkah praktis: <strong class="text-ink">[1] Konsultasi WA</strong> pemilihan paket &rarr; <strong class="text-ink">[2] DP 50% &amp; Kirim Materi</strong> (logo, foto, kontak) &rarr; <strong class="text-ink">[3] Desain UI/UX &amp; Pemrograman</strong> &rarr; <strong class="text-ink">[4] Uji Coba Demo Langsung di HP</strong> &amp; revisi &rarr; <strong class="text-ink">[5] Pelunasan 50% &amp; Serah Terima Akses Penuh</strong>.
+            </p>
+          </div>
+        </div>
 
-        <details class="group bg-surface border border-line p-5 open:border-ink transition">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-ink list-none">
-            <span>4. Apakah sudah termasuk domain (.com / .id) dan hosting?</span>
-            <span class="font-mono text-xs px-2 py-0.5 border border-line group-open:bg-ink group-open:text-surface transition">+</span>
-          </summary>
-          <p class="mt-3 text-xs sm:text-sm text-muted leading-relaxed pt-3 border-t border-line">
-            Betul, sudah lengkap terima beres. Sudah gratis domain pilihan (.com / .id), server cepat selama 1 tahun pertama, sertifikat keamanan SSL (gembok hijau), dan panduan pemakaian untuk admin.
-          </p>
-        </details>
+        <!-- FAQ 4: Pricing & Durasi -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-emerald-500/10 text-forest flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-tags"></i></span>
+              <span>Berapa biaya pembuatan website dan durasi pengerjaannya?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Tersedia 3 pilihan paket investasi transparan:<br>
+              • <strong class="text-ink">Starter (Rp 399.000)</strong>: 1–3 hari kerja, landing page 1 halaman responsif.<br>
+              • <strong class="text-ink">Growth (Rp 899.000)</strong>: 3–7 hari kerja, multi-halaman + Dashboard CMS Admin + Search Console.<br>
+              • <strong class="text-ink">Enterprise (Custom Price)</strong>: 2–4 minggu untuk sistem custom, integrasi POS, &amp; database khusus.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5: Domain & Hosting -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-amber-500/10 text-accent flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-server"></i></span>
+              <span>Apakah sudah termasuk domain (.com / .id) dan hosting?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Betul, sudah lengkap <strong class="text-ink">terima beres tanpa biaya setup tambahan</strong>. Paket sudah termasuk sewa domain resmi (.com / .id), Cloud Server NVMe berkecepatan tinggi selama 1 tahun pertama, sertifikat keamanan SSL HTTPS (gembok hijau), dan panduan pemakaian.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 6: Perpanjangan & Biaya Tersembunyi -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-emerald-500/10 text-forest flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-clock-rotate-left"></i></span>
+              <span>Apakah ada biaya perpanjangan tahunan atau biaya tersembunyi?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Sama sekali tidak ada biaya tersembunyi. Biaya paket sudah all-in untuk 1 tahun penuh. Perpanjangan baru dilakukan mulai tahun kedua hanya untuk biaya resmi sewa domain dan cloud hosting dengan tarif terjangkau tanpa biaya royalti software.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 7: Kepemilikan 100% -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-amber-500/10 text-accent flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-key"></i></span>
+              <span>Siapa yang memiliki hak kepemilikan atas website setelah jadi?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              <strong class="text-ink">100% Hak Milik Anda Sepenuhnya.</strong> Kami tidak menggunakan skema sewa bulanan yang mengunci bisnis Anda. Setelah pelunasan dan serah terima, seluruh akun domain, hosting, serta file source code adalah aset digital milik Anda seutuhnya.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 8: Kustomisasi & Mobile Friendly -->
+        <div class="bg-surface border border-line p-6 hover:border-ink transition rounded-lg shadow-xs flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-ink flex items-start gap-3">
+              <span class="w-7 h-7 rounded-md bg-emerald-500/10 text-forest flex items-center justify-center shrink-0 text-xs mt-0.5"><i class="fa-solid fa-palette"></i></span>
+              <span>Apakah logo, warna, dan foto produk bisa disesuaikan dengan usaha saya?</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
+              Bisa banget! Seluruh contoh website di katalog siap kami sesuaikan secara menyeluruh dengan brand bisnis Anda: logo, palet warna, nama usaha, daftar produk &amp; harga, jam operasional, hingga nomor WhatsApp kasir atau admin.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ WhatsApp Help Banner -->
+      <div class="mt-10 p-6 sm:p-8 bg-surface border border-line rounded-xl flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm sm:text-base text-ink">Masih Ada Pertanyaan Lain Seputar Usaha Anda?</h4>
+            <p class="text-xs sm:text-sm text-muted mt-0.5">Diskusikan langsung kebutuhan website bisnis Anda bersama kami. Bebas tanya tanpa biaya.</p>
+          </div>
+        </div>
+        <a href="https://wa.me/6289680551957?text=Halo%20jalaninweb.site%2C%20saya%20mau%20konsultasi%20tanya-tanya%20dulu%20soal%20bikin%20website."
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-forest hover:bg-forest/90 text-surface text-xs sm:text-sm font-semibold rounded-lg transition shrink-0 shadow-sm">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Chat WhatsApp Sekarang</span>
+        </a>
       </div>
     </div>
   </section>
@@ -3231,7 +3291,87 @@
       }
     }
 
+    // --- Hero Talking Mascot Speech Bubble Controller ---
+    const MASCOT_MESSAGES = [
+      {
+        text: '<span>👋 <strong class="text-ink">Halo! Kenalin, aku Maskot JalaninWeb.</strong> Siap bantu wujudkan website profesional untuk bisnis UMKM kamu!</span>'
+      },
+      {
+        text: '<span>✨ <strong class="text-ink">Gak perlu pusing mikirin coding!</strong> Mulai dari beli domain, cloud hosting cepat, sampai setting kami bereskan.</span>'
+      },
+      {
+        text: '<span>🚀 <strong class="text-ink">Banyak pilihan website siap pakai:</strong> Toko Online WA, Booking Jadwal Salon, Kasir POS Struk, hingga Resto!</span>'
+      },
+      {
+        text: '<span>📱 <strong class="text-ink">Bisa langsung dicoba di HP!</strong> Ada 28 live demo di bawah dengan tampilan responsif & loading &lt; 1 detik.</span>'
+      },
+      {
+        text: '<span>💬 <strong class="text-ink">Mau tanya-tanya dulu?</strong> Bebas konsultasi santai via WhatsApp kami, 100% gratis tanpa dipungut biaya!</span>'
+      }
+    ];
 
+    let currentMascotMsgIndex = 0;
+    let mascotTimer = null;
+
+    function renderMascotMessage(index) {
+      const textEl = document.getElementById('mascotSpeechText');
+      const indexEl = document.getElementById('mascotBubbleIndex');
+      const dotsContainer = document.getElementById('mascotBubbleDots');
+      if (!textEl) return;
+
+      textEl.style.opacity = '0';
+      setTimeout(() => {
+        textEl.innerHTML = MASCOT_MESSAGES[index].text;
+        textEl.style.opacity = '1';
+        if (indexEl) indexEl.textContent = (index + 1).toString();
+
+        if (dotsContainer) {
+          const dots = dotsContainer.querySelectorAll('button');
+          dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.className = 'w-5 h-1.5 rounded-full bg-forest transition-all duration-200';
+            } else {
+              dot.className = 'w-2 h-1.5 rounded-full bg-line hover:bg-forest/50 transition-all duration-200';
+            }
+          });
+        }
+      }, 180);
+    }
+
+    function setMascotMessage(index) {
+      currentMascotMsgIndex = index;
+      renderMascotMessage(currentMascotMsgIndex);
+      resetMascotTimer();
+    }
+
+    function nextMascotMessage() {
+      currentMascotMsgIndex = (currentMascotMsgIndex + 1) % MASCOT_MESSAGES.length;
+      renderMascotMessage(currentMascotMsgIndex);
+      resetMascotTimer();
+    }
+
+    function resetMascotTimer() {
+      if (mascotTimer) clearInterval(mascotTimer);
+      mascotTimer = setInterval(() => {
+        currentMascotMsgIndex = (currentMascotMsgIndex + 1) % MASCOT_MESSAGES.length;
+        renderMascotMessage(currentMascotMsgIndex);
+      }, 4500);
+    }
+
+    // Initialize mascot speech cycle
+    resetMascotTimer();
+    const bubbleBox = document.getElementById('mascotBubbleWrapper');
+    if (bubbleBox) {
+      bubbleBox.addEventListener('mouseenter', () => {
+        if (mascotTimer) clearInterval(mascotTimer);
+      });
+      bubbleBox.addEventListener('mouseleave', () => {
+        resetMascotTimer();
+      });
+      bubbleBox.addEventListener('touchstart', () => {
+        if (mascotTimer) clearInterval(mascotTimer);
+      }, { passive: true });
+    }
 
     // --- Floating WhatsApp 5s Auto-Prompt Handler ---
     function dismissWaBubble(e) {
