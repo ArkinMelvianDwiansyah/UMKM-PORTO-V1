@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -61,43 +61,36 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    /* Giant Full Mascot Character (Loss, Polos, Gede & Full) */
-    .hero-mascot-giant {
+    /* Clean Loss SVG Animated Mascot (100% Transparent, Murni Karakter Tanpa Background / Kotak) */
+    .hero-mascot-clean {
       width: 100%;
-      max-width: 680px;
-      height: 380px;
-      overflow: hidden;
+      max-width: 440px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      -webkit-mask-image: 
-        radial-gradient(ellipse 64% 68% at 50% 50%, #000 52%, rgba(0,0,0,0.85) 68%, rgba(0,0,0,0.2) 84%, transparent 96%),
-        linear-gradient(to bottom, #000 84%, transparent 99%);
-      -webkit-mask-composite: source-in;
-      mask-composite: intersect;
-      filter: drop-shadow(0 20px 40px rgba(27, 59, 43, 0.08));
+      filter: drop-shadow(0 20px 35px rgba(27, 59, 43, 0.08));
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hero-mascot-clean:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    .hero-mascot-clean img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      display: block;
+      user-select: none;
+      pointer-events: none;
     }
     @media (min-width: 640px) {
-      .hero-mascot-giant {
-        height: 450px;
+      .hero-mascot-clean {
+        max-width: 480px;
       }
     }
     @media (min-width: 1024px) {
-      .hero-mascot-giant {
-        height: 520px;
-      }
-    }
-    .hero-mascot-giant video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 46% 36%;
-      transform: scale(1.22);
-    }
-    @media (min-width: 1024px) {
-      .hero-mascot-giant video {
-        transform: scale(1.36);
+      .hero-mascot-clean {
+        max-width: 530px;
       }
     }
   </style>
@@ -273,20 +266,15 @@
           </div>
         </div>
 
-        <!-- Hero Right Column: Giant Full Mascot (Loss, Polos, Lebih Gede & Full) -->
+        <!-- Hero Right Column: Loss Animated Vector Mascot (Murni Karakter, Tanpa Background Terpotong) -->
         <div class="lg:col-span-6 flex items-center justify-center pt-4 lg:pt-0">
-          <div class="hero-mascot-giant">
-            <video 
-              id="heroMascotVideo"
-              src="assets/gemini_generated_video_4b9fc14b.mp4" 
-              autoplay 
-              muted 
-              loop 
-              playsinline 
-              class="pointer-events-none select-none">
-              <source src="assets/gemini_generated_video_4b9fc14b.mp4" type="video/mp4">
-              <source src="assets/hero-mascot.mp4" type="video/mp4">
-            </video>
+          <div class="hero-mascot-clean">
+            <img 
+              src="assets/hero-character.svg" 
+              alt="Maskot JalaninWeb - Solusi Website UMKM" 
+              width="500" 
+              height="540" 
+              loading="eager" />
           </div>
         </div>      </div>
     </div>
@@ -3243,22 +3231,7 @@
       }
     }
 
-        // --- Hero Mascot Video Controls ---
-    function toggleHeroVideoPlay(btn) {
-      const v = document.getElementById('heroMascotVideo');
-      if (!v) return;
-      const icon = btn.querySelector('i');
-      const text = btn.querySelector('.control-text');
-      if (v.paused) {
-        v.play();
-        if (icon) icon.className = 'fa-solid fa-pause text-[9px] text-emerald-600';
-        if (text) text.innerText = 'Video Aktif';
-      } else {
-        v.pause();
-        if (icon) icon.className = 'fa-solid fa-play text-[9px] text-amber-600';
-        if (text) text.innerText = 'Jeda';
-      }
-    }
+
 
     // --- Floating WhatsApp 5s Auto-Prompt Handler ---
     function dismissWaBubble(e) {

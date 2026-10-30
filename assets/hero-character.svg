@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 540" width="100%" height="100%">
+  <defs>
+    <!-- Skin Gradients -->
+    <radialGradient id="skinGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFF3E8"/>
+      <stop offset="65%" stop-color="#FCD7C0"/>
+      <stop offset="100%" stop-color="#F1B998"/>
+    </radialGradient>
+    <radialGradient id="earGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFE8D8"/>
+      <stop offset="70%" stop-color="#F6BC9B"/>
+      <stop offset="100%" stop-color="#E29A74"/>
+    </radialGradient>
+    <radialGradient id="cheekBlush" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF5A5A" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#FF7575" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF7575" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Hair 3D Shading Gradients -->
+    <linearGradient id="hairBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#28221D"/>
+      <stop offset="50%" stop-color="#1A1613"/>
+      <stop offset="100%" stop-color="#0E0C0A"/>
+    </linearGradient>
+    <linearGradient id="hairMid" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#3D342C"/>
+      <stop offset="60%" stop-color="#27211C"/>
+      <stop offset="100%" stop-color="#14110E"/>
+    </linearGradient>
+    <linearGradient id="hairStrandL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F443B"/>
+      <stop offset="50%" stop-color="#342C25"/>
+      <stop offset="100%" stop-color="#1A1512"/>
+    </linearGradient>
+    <linearGradient id="hairStrandR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#55493F"/>
+      <stop offset="50%" stop-color="#362E27"/>
+      <stop offset="100%" stop-color="#1A1512"/>
+    </linearGradient>
+
+    <!-- Eyes Gradients -->
+    <radialGradient id="irisGrad" cx="42%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#703C1D"/>
+      <stop offset="45%" stop-color="#4E2713"/>
+      <stop offset="85%" stop-color="#241006"/>
+      <stop offset="100%" stop-color="#0D0502"/>
+    </radialGradient>
+
+    <!-- Hoodie Gradients (Emerald 3D Look) -->
+    <linearGradient id="hoodieBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="35%" stop-color="#059669"/>
+      <stop offset="80%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#065F46"/>
+    </linearGradient>
+    <linearGradient id="hoodieCollar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="40%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="hoodieInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#023E2C"/>
+    </linearGradient>
+
+    <!-- Glasses Glare -->
+    <linearGradient id="lensGlare" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="25%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+    </linearGradient>
+
+    <!-- Soft Ambient Drop Shadow -->
+    <filter id="charDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#064E3B" flood-opacity="0.14"/>
+    </filter>
+
+    <style>
+      .char-root {
+        transform-origin: 250px 380px;
+        animation: floatIdle 5s ease-in-out infinite;
+      }
+      .head-group {
+        transform-origin: 250px 240px;
+        animation: headTilt 7s ease-in-out infinite;
+      }
+      .eye-blink-wrapper {
+        transform-origin: 0px 0px;
+        animation: naturalBlink 4.5s ease-in-out infinite;
+      }
+      .string-l {
+        transform-origin: 218px 380px;
+        animation: swayL 5s ease-in-out infinite;
+      }
+      .string-r {
+        transform-origin: 282px 380px;
+        animation: swayR 5s ease-in-out infinite 0.5s;
+      }
+      .glare-sweep {
+        animation: glareShift 5s ease-in-out infinite;
+      }
+      .spark-1 { animation: sparkBob 3.5s ease-in-out infinite; }
+      .spark-2 { animation: sparkBob 4s ease-in-out infinite 0.8s; }
+
+      @keyframes floatIdle {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes headTilt {
+        0%, 100% { transform: rotate(0deg) translateY(0px); }
+        35% { transform: rotate(1.2deg) translateY(-2px); }
+        70% { transform: rotate(-1.3deg) translateY(-1px); }
+      }
+      @keyframes naturalBlink {
+        0%, 45%, 55%, 100% { transform: scaleY(1); }
+        48%, 52% { transform: scaleY(0.08); }
+      }
+      @keyframes swayL {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(2.8deg); }
+      }
+      @keyframes swayR {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(-2.8deg); }
+      }
+      @keyframes glareShift {
+        0%, 100% { opacity: 0.35; transform: translateX(0px); }
+        50% { opacity: 0.75; transform: translateX(3px); }
+      }
+      @keyframes sparkBob {
+        0%, 100% { transform: translateY(0px) scale(0.9); opacity: 0.6; }
+        50% { transform: translateY(-7px) scale(1.15); opacity: 0.95; }
+      }
+    </style>
+  </defs>
+
+  <!-- Ambient Micro Sparks (Transparent, Tech Vibe) -->
+  <g class="spark-1" transform="translate(60, 130)">
+    <path d="M0 -9 Q1.5 -1.5 9 0 Q1.5 1.5 0 9 Q-1.5 1.5 -9 0 Q-1.5 -1.5 0 -9 Z" fill="#F59E0B"/>
+  </g>
+  <g class="spark-2" transform="translate(435, 170)">
+    <path d="M0 -11 Q2 -2 11 0 Q2 2 0 11 Q-2 2 -11 0 Q-2 -2 0 -11 Z" fill="#10B981"/>
+  </g>
+  <circle cx="85" cy="245" r="3.5" fill="#38BDF8" opacity="0.8"/>
+  <circle cx="420" cy="100" r="3" fill="#FBBF24" opacity="0.8"/>
+
+  <!-- Character Group -->
+  <g class="char-root" filter="url(#charDrop)">
+
+    <!-- ==================== HOODIE & SHOULDERS ==================== -->
+    <g id="bodyGroup">
+      <!-- Back of Hood Inside -->
+      <path d="M 145 350 C 145 300, 355 300, 355 350 C 370 410, 130 410, 145 350 Z" fill="url(#hoodieInner)"/>
+
+      <!-- Main Torso / Shoulders -->
+      <path d="M 110 475 C 114 405, 150 358, 198 346 C 215 342, 285 342, 302 346 C 350 358, 386 405, 390 475 C 392 505, 370 535, 335 538 L 165 538 C 130 535, 108 505, 110 475 Z" fill="url(#hoodieBody)"/>
+
+      <!-- Shadow Folds under Arms -->
+      <path d="M 110 475 C 122 435, 148 395, 185 382 C 172 425, 162 478, 156 538 L 132 538 C 118 525, 112 502, 110 475 Z" fill="#034D37" opacity="0.45"/>
+      <path d="M 390 475 C 378 435, 352 395, 315 382 C 328 425, 338 478, 344 538 L 368 538 C 382 525, 388 502, 390 475 Z" fill="#034D37" opacity="0.45"/>
+
+      <!-- Thick 3D Folded Hood Rim -->
+      <path d="M 180 340 C 170 375, 195 422, 250 422 C 305 422, 330 375, 320 340 C 342 365, 335 415, 305 432 C 275 448, 225 448, 195 432 C 165 415, 158 365, 180 340 Z" fill="url(#hoodieCollar)"/>
+
+      <!-- Collar Front Gap Shadow -->
+      <path d="M 198 346 C 215 378, 235 396, 250 396 C 265 396, 285 378, 302 346 C 308 360, 306 390, 288 406 C 272 418, 228 418, 212 406 C 194 390, 192 360, 198 346 Z" fill="#034531"/>
+
+      <!-- Neck Inside -->
+      <path d="M 222 328 L 222 364 C 222 378, 278 378, 278 364 L 278 328 Z" fill="#E5A683"/>
+      <path d="M 226 335 L 226 360 C 226 372, 274 372, 274 360 L 274 335 Z" fill="#F0B998"/>
+
+      <!-- Zipper Line -->
+      <path d="M 250 432 L 250 538" stroke="#03533B" stroke-width="2.5" stroke-dasharray="4 2"/>
+
+      <!-- JalaninWeb Modern Ribbon Emblem -->
+      <g transform="translate(250, 482) scale(0.68)">
+        <path d="M -20 -9 C -11 -20, -2 -13, 0 -5 C 2 -13, 11 -20, 20 -9 C 25 -2, 22 9, 11 15 L 0 22 L -11 15 C -22 9, -25 -2, -20 -9 Z" fill="#FCD34D"/>
+        <path d="M -15 -5 C -7 -14, 0 -7, 0 0 C 0 -7, 7 -14, 15 -5 C 18 1, 15 8, 7 13 L 0 18 L -7 13 C -15 8, -18 1, -15 -5 Z" fill="#10B981"/>
+      </g>
+
+      <!-- Drawstring L -->
+      <g class="string-l">
+        <path d="M 218 390 C 214 425, 212 455, 216 480" fill="none" stroke="#F8FAFC" stroke-width="4.5" stroke-linecap="round"/>
+        <rect x="213" y="480" width="6" height="14" rx="3" fill="#94A3B8"/>
+        <rect x="214" y="482" width="2" height="10" rx="1" fill="#FFFFFF" opacity="0.8"/>
+      </g>
+
+      <!-- Drawstring R -->
+      <g class="string-r">
+        <path d="M 282 390 C 286 425, 288 455, 284 480" fill="none" stroke="#F8FAFC" stroke-width="4.5" stroke-linecap="round"/>
+        <rect x="281" y="480" width="6" height="14" rx="3" fill="#94A3B8"/>
+        <rect x="282" y="482" width="2" height="10" rx="1" fill="#FFFFFF" opacity="0.8"/>
+      </g>
+    </g>
+
+    <!-- ==================== HEAD & FACE ==================== -->
+    <g class="head-group">
+
+      <!-- Back Hair Base Volume -->
+      <path d="M 130 225 C 114 140, 158 50, 250 46 C 342 50, 386 140, 370 225 C 382 285, 360 325, 342 332 C 310 326, 290 338, 250 338 C 210 338, 190 326, 158 332 C 140 325, 118 285, 130 225 Z" fill="url(#hairBase)"/>
+
+      <!-- Left Ear -->
+      <g id="earL">
+        <ellipse cx="145" cy="242" rx="21" ry="26" transform="rotate(-6 145 242)" fill="url(#earGrad)"/>
+        <path d="M 152 232 C 140 234, 138 252, 146 256 C 148 248, 152 242, 155 240" fill="none" stroke="#DB8E6B" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <!-- Right Ear -->
+      <g id="earR">
+        <ellipse cx="355" cy="242" rx="21" ry="26" transform="rotate(6 355 242)" fill="url(#earGrad)"/>
+        <path d="M 348 232 C 360 234, 362 252, 354 256 C 352 248, 348 242, 345 240" fill="none" stroke="#DB8E6B" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <!-- Face Main Shape (Soft chubby cute 3D proportions) -->
+      <path d="M 156 215 C 152 145, 195 125, 250 125 C 305 125, 348 145, 344 215 C 344 275, 338 322, 296 334 C 275 340, 225 340, 204 334 C 162 322, 156 275, 156 215 Z" fill="url(#skinGrad)"/>
+
+      <!-- Cheeks Blush Glow -->
+      <ellipse cx="184" cy="272" rx="25" ry="16" fill="url(#cheekBlush)"/>
+      <ellipse cx="316" cy="272" rx="25" ry="16" fill="url(#cheekBlush)"/>
+
+      <!-- Cute Small 3D Nose -->
+      <path d="M 244 248 C 247 254, 253 254, 256 248" fill="none" stroke="#DE9270" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="250" cy="245" rx="4" ry="2.5" fill="#F8B190" opacity="0.75"/>
+
+      <!-- Friendly Smile -->
+      <path d="M 226 273 C 236 290, 264 290, 274 273" fill="none" stroke="#881337" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M 223 271 C 224 275, 226 277, 228 277" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M 277 271 C 276 275, 274 277, 272 277" fill="none" stroke="#BE123C" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+      <!-- ==================== EYES (BIG, ROUND, SPARKLING) ==================== -->
+      <!-- Left Eye -->
+      <g id="eyeL" transform="translate(195, 224)">
+        <g class="eye-blink-wrapper">
+          <ellipse cx="0" cy="0" rx="20.5" ry="23.5" fill="#FFFFFF"/>
+          <ellipse cx="1" cy="0" rx="16.5" ry="18.5" fill="url(#irisGrad)"/>
+          <ellipse cx="1.5" cy="0" rx="9" ry="10.5" fill="#0A0806"/>
+          <ellipse cx="-4.5" cy="-5.5" rx="6.5" ry="7.5" fill="#FFFFFF"/>
+          <circle cx="5.5" cy="4.5" r="3" fill="#FFFFFF" opacity="0.9"/>
+          <path d="M -8 6 C -4 12, 6 12, 9 6" fill="none" stroke="#A16207" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+        </g>
+      </g>
+
+      <!-- Right Eye -->
+      <g id="eyeR" transform="translate(305, 224)">
+        <g class="eye-blink-wrapper">
+          <ellipse cx="0" cy="0" rx="20.5" ry="23.5" fill="#FFFFFF"/>
+          <ellipse cx="-1" cy="0" rx="16.5" ry="18.5" fill="url(#irisGrad)"/>
+          <ellipse cx="-1.5" cy="0" rx="9" ry="10.5" fill="#0A0806"/>
+          <ellipse cx="-6.5" cy="-5.5" rx="6.5" ry="7.5" fill="#FFFFFF"/>
+          <circle cx="3.5" cy="4.5" r="3" fill="#FFFFFF" opacity="0.9"/>
+          <path d="M -9 6 C -6 12, 4 12, 8 6" fill="none" stroke="#A16207" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+        </g>
+      </g>
+
+      <!-- Soft Eyebrows -->
+      <path d="M 172 176 C 184 167, 208 167, 218 175" fill="none" stroke="#241E1A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 282 175 C 292 167, 316 167, 328 176" fill="none" stroke="#241E1A" stroke-width="5" stroke-linecap="round"/>
+
+      <!-- ==================== ROUND BLACK GLASSES ==================== -->
+      <g id="glasses">
+        <path d="M 226 222 C 238 215, 262 215, 274 222" fill="none" stroke="#18181B" stroke-width="5.5" stroke-linecap="round"/>
+
+        <!-- Left Rim -->
+        <circle cx="195" cy="224" r="33" fill="none" stroke="#18181B" stroke-width="5.5"/>
+        <circle cx="195" cy="224" r="30" fill="#38BDF8" fill-opacity="0.04"/>
+        <path class="glare-sweep" d="M 172 202 C 185 195, 208 198, 218 208 C 210 209, 190 207, 172 202 Z" fill="url(#lensGlare)"/>
+
+        <!-- Right Rim -->
+        <circle cx="305" cy="224" r="33" fill="none" stroke="#18181B" stroke-width="5.5"/>
+        <circle cx="305" cy="224" r="30" fill="#38BDF8" fill-opacity="0.04"/>
+        <path class="glare-sweep" d="M 282 202 C 295 195, 318 198, 328 208 C 320 209, 300 207, 282 202 Z" fill="url(#lensGlare)"/>
+
+        <!-- Arms -->
+        <path d="M 162 223 L 145 228" fill="none" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+        <path d="M 338 223 L 355 228" fill="none" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+      </g>
+
+      <!-- ==================== NATURAL TEXTURED WAVY BOY HAIR ==================== -->
+      <!-- Bangs falling downward softly across forehead -->
+      <g id="naturalHair">
+        <!-- Top Crown Layer -->
+        <path d="M 136 210 C 122 135, 168 52, 252 48 C 335 52, 378 135, 364 210 C 374 150, 340 70, 252 68 C 165 70, 130 150, 136 210 Z" fill="url(#hairStrandL)" opacity="0.65"/>
+
+        <!-- Forehead Soft Hair Base Underlay -->
+        <path d="M 152 170 C 165 130, 215 110, 250 115 C 285 110, 335 130, 348 170 C 335 155, 305 142, 275 146 C 255 148, 245 148, 225 146 C 195 142, 165 155, 152 170 Z" fill="#1C1814"/>
+
+        <!-- Left Soft Wavy Bang (sweeping down from part) -->
+        <path d="M 148 185 C 154 135, 195 115, 235 128 C 218 142, 208 168, 196 190 C 185 170, 168 162, 152 175 Z" fill="url(#hairMid)"/>
+
+        <!-- Left-Center Strand (falling over left eyebrow) -->
+        <path d="M 188 135 C 212 130, 235 145, 244 172 C 234 172, 222 182, 216 195 C 206 174, 196 156, 188 135 Z" fill="url(#hairBase)"/>
+
+        <!-- Center Front Soft Fringe -->
+        <path d="M 225 132 C 242 128, 260 135, 268 155 C 258 158, 248 168, 244 182 C 236 164, 230 148, 225 132 Z" fill="url(#hairStrandL)"/>
+
+        <!-- Center-Right Parted Lock (natural downward curve) -->
+        <path d="M 252 130 C 280 120, 305 132, 316 160 C 304 162, 290 174, 282 190 C 274 168, 262 148, 252 130 Z" fill="url(#hairStrandR)"/>
+
+        <!-- Right Sweeping Bang -->
+        <path d="M 288 132 C 320 130, 348 150, 354 186 C 344 170, 330 166, 316 176 C 308 160, 298 145, 288 132 Z" fill="url(#hairMid)"/>
+
+        <!-- Sideburns -->
+        <path d="M 152 205 C 148 222, 150 238, 156 244 C 158 232, 160 216, 164 208 Z" fill="#1A1613"/>
+        <path d="M 348 205 C 352 222, 350 238, 344 244 C 342 232, 340 216, 336 208 Z" fill="#1A1613"/>
+
+        <!-- Playful Top Cowlick Tufts -->
+        <path d="M 244 52 C 238 28, 255 14, 270 20 C 264 28, 258 36, 252 50 Z" fill="url(#hairStrandL)"/>
+        <path d="M 252 48 C 262 32, 278 24, 290 34 C 280 40, 272 48, 264 55 Z" fill="url(#hairBase)"/>
+      </g>
+
+    </g> <!-- End head-group -->
+
+  </g> <!-- End char-root -->
+</svg>
