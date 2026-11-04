@@ -126,7 +126,7 @@
   <header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-line">
     <div class="max-w-7xl mx-auto px-3 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-6">
       <a href="#top" class="flex items-center shrink-0" aria-label="Kembali ke atas">
-        <img src="assets/logo.svg" alt="jalaninweb.site" class="h-8 sm:h-11 w-auto" />
+        <img src="assets/logo.svg" alt="JalaninWeb.com" class="h-8 sm:h-11 w-auto" />
       </a>
 
       <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs xl:text-sm font-semibold text-ink">
@@ -344,48 +344,78 @@
       </div>
     </div>
 
-    <!-- Filter Bar Segmented & Search Box -->
-    <div class="bg-surface border border-line p-3 sm:p-4 mb-10 flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-4 shadow-sm">
-      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 xl:pb-0" id="categoryTabs">
-        <button onclick="filterPortfolio('all')" data-cat="all"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface shrink-0 transition">
-          Semua (28)
-        </button>
-        <button onclick="filterPortfolio('cat1')" data-cat="cat1"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Landing Page & Jasa (5)
-        </button>
-        <button onclick="filterPortfolio('cat2')" data-cat="cat2"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Katalog & Toko WA (4)
-        </button>
-        <button onclick="filterPortfolio('cat3')" data-cat="cat3"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Sistem Booking (3)
-        </button>
-        <button onclick="filterPortfolio('cat4')" data-cat="cat4"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Aplikasi Kasir & POS (4)
-        </button>
-        <button onclick="filterPortfolio('cat5')" data-cat="cat5"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Corporate & B2B (2)
-        </button>
-        <button onclick="filterPortfolio('cat6')" data-cat="cat6"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Landing Page One Page (9)
-        </button>
-        <button onclick="filterPortfolio('cat7')" data-cat="cat7"
-                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition">
-          Undangan Digital & Wedding (1)
-        </button>
+    <!-- Modern Filter Bar Segmented & Search Box -->
+    <div class="bg-surface border border-line p-4 sm:p-5 mb-10 shadow-sm rounded-xl space-y-4">
+      <!-- Top Row: Active Filter Status & Search Box -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3.5 pb-3.5 border-b border-line">
+        <div class="flex items-center gap-2 text-xs font-mono text-muted flex-wrap">
+          <span class="inline-flex items-center gap-1.5 text-accent font-semibold">
+            <i class="fa-solid fa-sliders text-[11px]"></i>
+            <span>FILTER KATEGORI:</span>
+          </span>
+          <span id="activeCategoryBadge" class="font-bold text-ink bg-paper px-2.5 py-1 border border-line rounded-md shadow-2xs">
+            Semua (28)
+          </span>
+          <button id="resetFilterBtn" onclick="filterPortfolio('all')" type="button"
+                  class="hidden text-[11px] font-mono text-accent hover:underline ml-1">
+            <i class="fa-solid fa-rotate-left mr-1"></i>Reset Filter
+          </button>
+        </div>
+
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-muted text-xs"></i>
+          <input id="searchInput" oninput="searchPortfolio()" type="text"
+                 placeholder="Cari (kontraktor, katering, kargo, villa)..."
+                 class="w-full pl-9 pr-9 py-2 bg-paper border border-line rounded-lg text-xs text-ink placeholder-muted focus:outline-none focus:border-ink transition" />
+          <button id="clearSearchBtn" onclick="clearSearch()" type="button" aria-label="Hapus Pencarian"
+                  class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-ink text-xs p-1">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="relative min-w-[260px] sm:min-w-[300px]">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-muted text-xs"></i>
-        <input id="searchInput" oninput="searchPortfolio()" type="text"
-               placeholder="Cari (kontraktor, katering, kargo, villa, kasir)..."
-               class="w-full pl-9 pr-4 py-2 bg-paper border border-line text-xs text-ink placeholder-muted focus:outline-none focus:border-ink" />
+      <!-- Bottom Row: Category Pills with Flex Wrap (All 8 Categories 100% Visible) -->
+      <div class="flex flex-wrap items-center gap-2 sm:gap-2.5" id="categoryTabs">
+        <button onclick="filterPortfolio('all')" data-cat="all"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-bold bg-ink text-surface rounded-lg shadow-xs transition flex items-center gap-1.5">
+          <span>Semua</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-white/20 text-white font-mono">28</span>
+        </button>
+        <button onclick="filterPortfolio('cat1')" data-cat="cat1"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Landing Page & Jasa</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">5</span>
+        </button>
+        <button onclick="filterPortfolio('cat2')" data-cat="cat2"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Katalog & Toko WA</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">4</span>
+        </button>
+        <button onclick="filterPortfolio('cat3')" data-cat="cat3"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Sistem Booking</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">3</span>
+        </button>
+        <button onclick="filterPortfolio('cat4')" data-cat="cat4"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Aplikasi Kasir & POS</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">4</span>
+        </button>
+        <button onclick="filterPortfolio('cat5')" data-cat="cat5"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Corporate & B2B</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">2</span>
+        </button>
+        <button onclick="filterPortfolio('cat6')" data-cat="cat6"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Landing Page One Page</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">9</span>
+        </button>
+        <button onclick="filterPortfolio('cat7')" data-cat="cat7"
+                class="cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5">
+          <span>Undangan Digital & Wedding</span>
+          <span class="cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono">1</span>
+        </button>
       </div>
     </div>
 
@@ -2953,22 +2983,49 @@
       currentCategory = category;
       currentPage = 1;
 
-      // Update category button styling
+      // Update category button styling and badge
+      let activeLabel = 'Semua (28)';
       document.querySelectorAll('.cat-btn').forEach(btn => {
+        const countSpan = btn.querySelector('.cat-count');
         if (btn.dataset.cat === category) {
-          btn.className = 'cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-semibold bg-ink text-surface shrink-0 transition';
+          btn.className = 'cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-bold bg-ink text-surface rounded-lg shadow-xs transition flex items-center gap-1.5';
+          if (countSpan) countSpan.className = 'cat-count px-1.5 py-0.5 rounded text-[10px] bg-white/20 text-white font-mono';
+          const titleSpan = btn.querySelector('span:first-child');
+          activeLabel = (titleSpan ? titleSpan.textContent.trim() : '') + (countSpan ? ` (${countSpan.textContent.trim()})` : '');
         } else {
-          btn.className = 'cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink shrink-0 transition';
+          btn.className = 'cat-btn px-3.5 py-2 text-xs font-mono uppercase tracking-wider font-medium bg-paper text-ink border border-line hover:border-ink hover:bg-stone-100 rounded-lg transition flex items-center gap-1.5';
+          if (countSpan) countSpan.className = 'cat-count px-1.5 py-0.5 rounded text-[10px] bg-stone-200 text-stone-700 font-mono';
         }
       });
+
+      const badge = document.getElementById('activeCategoryBadge');
+      if (badge) badge.textContent = activeLabel;
+
+      const resetBtn = document.getElementById('resetFilterBtn');
+      if (resetBtn) {
+        if (category !== 'all') resetBtn.classList.remove('hidden');
+        else resetBtn.classList.add('hidden');
+      }
 
       renderPortfolio();
     }
 
     function searchPortfolio() {
-      searchQuery = document.getElementById('searchInput').value;
+      const input = document.getElementById('searchInput');
+      searchQuery = input ? input.value : '';
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (clearBtn) {
+        if (searchQuery.trim().length > 0) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
       currentPage = 1;
       renderPortfolio();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      searchPortfolio();
     }
 
     // --- 3 Video Workflow Switcher Logic ---
